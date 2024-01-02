@@ -1,0 +1,7 @@
+<map id="xpe::render::cCamera" name="xpe::render::cCamera">
+<area shape="rect" id="Node000001" title=" " alt="" coords="21,80,168,107"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1render_1_1c_ortho_camera.html" title=" " alt="" coords="5,155,184,181"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="97,122,97,154,92,154,92,122"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1res_1_1c_json.html" title=" " alt="" coords="39,5,150,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,48,97,80,92,80,92,48"/>
+</map>

@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classxpe_1_1core_1_1c_hardware_manager.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1core.html">core</a></li><li class="navelem"><a class="el" href="classxpe_1_1core_1_1c_hardware_manager.html">cHardwareManager</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
@@ -84,6 +102,20 @@ $(function() {
 <div class="contents">
 
 <p><code>#include &lt;<a class="el" href="hardware__manager_8hpp_source.html">hardware_manager.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for xpe::core::cHardwareManager:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_hardware_manager__coll__graph.png" border="0" usemap="#axpe_1_1core_1_1c_hardware_manager_coll__map" alt="Collaboration graph"/></div>
+<map name="axpe_1_1core_1_1c_hardware_manager_coll__map" id="axpe_1_1core_1_1c_hardware_manager_coll__map">
+<area shape="rect" title=" " alt="" coords="172,96,367,123"/>
+<area shape="rect" href="structxpe_1_1core_1_1s_memory_stats.html" title=" " alt="" coords="5,5,174,32"/>
+<area shape="poly" title=" " alt="" coords="130,37,245,93,243,98,128,42"/>
+<area shape="rect" href="structxpe_1_1core_1_1s_cpu_stats.html" title=" " alt="" coords="197,5,342,32"/>
+<area shape="poly" title=" " alt="" coords="272,48,272,95,267,95,267,48"/>
+<area shape="rect" href="structxpe_1_1core_1_1s_gpu_stats.html" title=" " alt="" coords="366,5,512,32"/>
+<area shape="poly" title=" " alt="" coords="402,42,295,98,292,93,400,37"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -103,7 +135,10 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:ab988f1bc59fb9c997208683d9a2d1df8" id="r_ab988f1bc59fb9c997208683d9a2d1df8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">static</a> <a class="el" href="structxpe_1_1core_1_1s_gpu_stats.html">sGpuStats</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab988f1bc59fb9c997208683d9a2d1df8">GPU</a></td></tr>
 <tr class="separator:ab988f1bc59fb9c997208683d9a2d1df8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="hardware__manager_8hpp_source.html#l00037">37</a> of file <a class="el" href="hardware__manager_8hpp_source.html">hardware_manager.hpp</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a28e6013e329654423e5793bab22507f5" name="a28e6013e329654423e5793bab22507f5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a28e6013e329654423e5793bab22507f5">&#9670;&#160;</a></span>UpdateCpuStats()</h2>
 
@@ -126,6 +161,16 @@ Static Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_hardware_manager_a28e6013e329654423e5793bab22507f5_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_hardware_manager_a28e6013e329654423e5793bab22507f5_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_hardware_manager_a28e6013e329654423e5793bab22507f5_icgraph" id="aclassxpe_1_1core_1_1c_hardware_manager_a28e6013e329654423e5793bab22507f5_icgraph">
+<area shape="rect" title=" " alt="" coords="103,5,297,48"/>
+<area shape="rect" href="launcher_8hpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,55,40"/>
+<area shape="poly" title=" " alt="" coords="87,29,55,29,55,24,87,24"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -176,6 +221,16 @@ Static Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_hardware_manager_ace365cf2d81ec1edcd8798aa43e94fa9_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_hardware_manager_ace365cf2d81ec1edcd8798aa43e94fa9_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_hardware_manager_ace365cf2d81ec1edcd8798aa43e94fa9_icgraph" id="aclassxpe_1_1core_1_1c_hardware_manager_ace365cf2d81ec1edcd8798aa43e94fa9_icgraph">
+<area shape="rect" title=" " alt="" coords="103,5,297,48"/>
+<area shape="rect" href="launcher_8hpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,55,40"/>
+<area shape="poly" title=" " alt="" coords="87,29,55,29,55,24,87,24"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -200,6 +255,8 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="hardware__manager_8hpp_source.html#l00041">41</a> of file <a class="el" href="hardware__manager_8hpp_source.html">hardware_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="ab988f1bc59fb9c997208683d9a2d1df8" name="ab988f1bc59fb9c997208683d9a2d1df8"></a>
@@ -221,6 +278,8 @@ Static Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="hardware__manager_8hpp_source.html#l00042">42</a> of file <a class="el" href="hardware__manager_8hpp_source.html">hardware_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -244,16 +303,22 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="hardware__manager_8hpp_source.html#l00040">40</a> of file <a class="el" href="hardware__manager_8hpp_source.html">hardware_manager.hpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>engine/src/core/<a class="el" href="hardware__manager_8hpp_source.html">hardware_manager.hpp</a></li>
-<li>engine/src/core/<a class="el" href="hardware__manager_8cpp.html">hardware_manager.cpp</a></li>
+<li>engine/src/core/<a class="el" href="hardware__manager_8cpp_source.html">hardware_manager.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1core.html">core</a></li><li class="navelem"><a class="el" href="classxpe_1_1core_1_1c_hardware_manager.html">cHardwareManager</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

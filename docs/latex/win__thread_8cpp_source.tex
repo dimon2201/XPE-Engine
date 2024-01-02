@@ -1,0 +1,53 @@
+\doxysection{win\+\_\+thread.\+cpp}
+\hypertarget{win__thread_8cpp_source}{}\label{win__thread_8cpp_source}\index{engine/src/platform/win/win\_thread.cpp@{engine/src/platform/win/win\_thread.cpp}}
+\mbox{\hyperlink{win__thread_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#ifdef\ WINDOWS}}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#define\ NOMINMAX}}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <Windows.h>}}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00006}00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00008}00008\ \ \ \ \ \textcolor{keyword}{namespace\ }core\ \{}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00010}00010\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a2c4f38b61459c9d0cf5246ee5ad072de}{cThread::SetFormat}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}},\ ePriority\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{priority}})}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00011}00011\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{HANDLE}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{handle}}\ =\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{HANDLE}})\ m\_Thread.native\_handle();}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ set\ thread\ into\ dedicated\ core}}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{DWORD\_PTR}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{affinityMask}}\ =\ 1ull\ <<\ m\_ID;}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{DWORD\_PTR}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{affinity\_result}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{SetThreadAffinityMask}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{handle}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{affinityMask}});}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{assert}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{affinity\_result}}\ >\ 0);}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ set\ priority}}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{winPriority}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{THREAD\_PRIORITY\_NORMAL}};}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{priority}})\ \{}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1a0ea77189492827b038ecc31bb63879ae}{ePriority::LOWEST}}:}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{winPriority}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{THREAD\_PRIORITY\_LOWEST}};}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1a909306e50b86209177b07950049ad263}{ePriority::NORMAL}}:}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{winPriority}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{THREAD\_PRIORITY\_NORMAL}};}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1a2d251a22a90f57b47b2bb9c450656387}{ePriority::HIGHEST}}:}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{winPriority}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{THREAD\_PRIORITY\_HIGHEST}};}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ BOOL\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{priority\_result}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{SetThreadPriority}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{handle}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{priority}});}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{assert}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{priority\_result}}\ !=\ 0);}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ set\ thread\ name}}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ std::wstringstream\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{wss}};}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{wss}}\ <<\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}}\ <<\ \textcolor{stringliteral}{"{}-\/"{}}\ <<\ m\_ID;}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{HRESULT}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{hr}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{SetThreadDescription}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{handle}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{wss}}.str().c\_str());}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{assert}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{SUCCEEDED}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{hr}}));}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00043}00043\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00045}00045\ \}}
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{win__thread_8cpp_source_l00047}00047\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ WINDOWS}}
+
+\end{DoxyCode}

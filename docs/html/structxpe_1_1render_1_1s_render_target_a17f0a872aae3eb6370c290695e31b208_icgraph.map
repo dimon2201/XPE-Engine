@@ -1,0 +1,7 @@
+<map id="xpe::render::sRenderTarget::SetResizable" name="xpe::render::sRenderTarget::SetResizable">
+<area shape="rect" id="Node000001" title=" " alt="" coords="251,39,429,81"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1render_1_1c_ssao_shader.html#abe0dfc617df3607eaa964137437fffcb" title=" " alt="" coords="18,5,190,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="235,48,190,41,191,36,236,43"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1render_1_1c_shadow_manager.html#ab48f2f89acf430f23bd847d1d6522702" title=" " alt="" coords="5,72,203,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="236,77,203,82,203,77,235,72"/>
+</map>

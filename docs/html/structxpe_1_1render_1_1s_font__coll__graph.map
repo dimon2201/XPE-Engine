@@ -1,0 +1,10 @@
+<map id="xpe::render::sFont" name="xpe::render::sFont">
+<area shape="rect" id="Node000001" title=" " alt="" coords="11,248,139,275"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="5,5,134,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,47,77,247,72,248,67,47"/>
+<area shape="rect" id="Node000004" href="$structxpe_1_1render_1_1s_resource.html" title=" " alt="" coords="91,81,248,108"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="100,39,154,79,151,83,97,44"/>
+<area shape="rect" id="Node000003" href="$structxpe_1_1render_1_1s_texture.html" title=" " alt="" coords="93,157,238,184"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="143,197,90,249,86,246,140,193"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="171,123,169,157,164,157,165,123"/>
+</map>

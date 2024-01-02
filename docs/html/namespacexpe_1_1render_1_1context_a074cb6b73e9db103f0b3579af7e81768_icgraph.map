@@ -1,0 +1,12 @@
+<map id="xpe::render::context::CSBindSampler" name="xpe::render::context::CSBindSampler">
+<area shape="rect" id="Node000001" title=" " alt="" coords="376,50,513,93"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="474,37,463,31,445,29,427,30,417,35,413,41,414,49,409,50,408,40,414,31,426,25,445,23,465,26,477,32"/>
+<area shape="rect" id="Node000002" href="$namespacexpe_1_1render_1_1context.html#a06b6abc5f4a7d3fe0b48430d9a8b4c13" title=" " alt="" coords="5,9,143,51"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="395,44,362,28,327,17,280,9,232,8,144,18,143,12,232,3,281,4,329,11,364,23,397,39"/>
+<area shape="rect" id="Node000003" href="$namespacexpe_1_1render_1_1context.html#a55f4aaf4adaa170ec94d7f66e5bdebd5" title=" " alt="" coords="191,50,328,93"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="361,74,328,74,328,69,361,69"/>
+<area shape="rect" id="Node000004" href="$namespacexpe_1_1render_1_1context.html#a6622346d13576fefd4dc7d247e461c39" title=" " alt="" coords="191,117,328,159"/>
+<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="370,101,322,119,320,114,369,96"/>
+<area shape="poly" id="edge4_Node000003_Node000002" title=" " alt="" coords="175,55,143,48,144,43,176,50"/>
+<area shape="poly" id="edge5_Node000003_Node000003" title=" " alt="" coords="289,37,278,31,259,29,242,30,232,35,227,41,229,49,224,50,222,40,228,31,241,25,259,23,279,26,291,32"/>
+</map>

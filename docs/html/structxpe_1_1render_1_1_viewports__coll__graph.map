@@ -1,0 +1,7 @@
+<map id="xpe::render::Viewports" name="xpe::render::Viewports">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,188,157,215"/>
+<area shape="rect" id="Node000002" href="$structxpe_1_1render_1_1s_viewport.html" title=" " alt="" coords="5,81,157,108"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,123,84,188,78,188,78,123"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="17,5,145,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="84,47,84,81,78,81,78,47"/>
+</map>

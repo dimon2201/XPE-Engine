@@ -1,0 +1,11 @@
+<map id="xpe::render::sSampler::Init" name="xpe::render::sSampler::Init">
+<area shape="rect" id="Node000001" title=" " alt="" coords="251,105,400,148"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1render_1_1c_skybox_shader.html#a04b262012d3aeb73e97c1ccb095675c7" title=" " alt="" coords="11,5,197,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="274,100,202,62,173,51,175,46,204,58,276,95"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1render_1_1c_text_shader.html#ad8b58ce40667013c62bc85cb9ae913fa" title=" " alt="" coords="20,72,188,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="235,116,188,109,188,103,236,111"/>
+<area shape="rect" id="Node000004" href="$classxpe_1_1render_1_1c_shadow_manager.html#ab48f2f89acf430f23bd847d1d6522702" title=" " alt="" coords="5,139,203,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="236,143,203,148,203,142,235,138"/>
+<area shape="rect" id="Node000005" href="$classxpe_1_1render_1_1c_widget_manager.html#a4d08e3ea21dc782147a000446ff780c7" title=" " alt="" coords="8,205,200,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="276,158,204,196,175,207,173,202,202,191,274,154"/>
+</map>

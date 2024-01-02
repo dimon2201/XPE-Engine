@@ -1,0 +1,11 @@
+<map id="xpe::render::sShadowPcfBuffer" name="xpe::render::sShadowPcfBuffer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,320,205,347"/>
+<area shape="rect" id="Node000002" href="$structxpe_1_1render_1_1s_item_buffer.html" title=" " alt="" coords="25,229,185,272"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,288,108,319,102,319,102,288"/>
+<area shape="rect" id="Node000003" href="$structxpe_1_1render_1_1s_buffer.html" title=" " alt="" coords="38,155,172,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="108,197,108,229,102,229,102,197"/>
+<area shape="rect" id="Node000004" href="$structxpe_1_1render_1_1s_resource.html" title=" " alt="" coords="27,80,183,107"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="108,122,108,154,102,154,102,122"/>
+<area shape="rect" id="Node000005" href="$classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="41,5,169,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="108,48,108,80,102,80,102,48"/>
+</map>

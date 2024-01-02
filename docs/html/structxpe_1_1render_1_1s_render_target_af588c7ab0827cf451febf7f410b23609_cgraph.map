@@ -1,0 +1,9 @@
+<map id="xpe::render::sRenderTarget::Clear" name="xpe::render::sRenderTarget::Clear">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,75,184,117"/>
+<area shape="rect" id="Node000002" href="$namespacexpe_1_1render_1_1context.html#a7ef3ba5c9c5d29b8a2f1d9551b452d5e" title=" " alt="" coords="232,29,369,72"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,74,216,67,217,72,184,79"/>
+<area shape="rect" id="Node000003" href="$namespacexpe_1_1render_1_1context.html#a8bb6771b669d48ce52f66951f781c5e5" title=" " alt="" coords="232,120,369,163"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="184,113,217,120,216,125,183,118"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="261,29,259,19,266,10,280,5,300,3,322,5,336,11,333,16,321,10,300,8,281,10,269,15,265,21,266,28"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="261,120,259,110,266,101,280,95,300,93,322,96,336,102,333,107,321,101,300,99,281,101,269,105,265,111,266,119"/>
+</map>

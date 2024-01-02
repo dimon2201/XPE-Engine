@@ -1,0 +1,21 @@
+<map id="xpe::render::cInstancingShader" name="xpe::render::cInstancingShader">
+<area shape="rect" id="Node000001" title=" " alt="" coords="602,72,763,115"/>
+<area shape="rect" id="Node000005" href="$classxpe_1_1render_1_1c_opaque_shader.html" title=" " alt="" coords="811,29,999,56"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="777,69,842,54,844,59,778,74"/>
+<area shape="rect" id="Node000006" href="$classxpe_1_1render_1_1c_shadow_shader.html" title=" " alt="" coords="811,80,999,107"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="778,91,810,91,810,96,778,96"/>
+<area shape="rect" id="Node000010" href="$classxpe_1_1render_1_1c_transparent_shader.html" title=" " alt="" coords="820,131,990,173"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="778,116,822,127,821,133,777,121"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1render_1_1c_default_shader.html" title=" " alt="" coords="372,80,554,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="570,91,602,91,602,96,570,96"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1render_1_1c_shader.html" title=" " alt="" coords="182,80,324,107"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="340,91,371,91,371,96,340,96"/>
+<area shape="rect" id="Node000004" href="$classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="5,80,134,107"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="149,91,181,91,181,96,149,96"/>
+<area shape="rect" id="Node000007" href="$classxpe_1_1render_1_1c_directional_shadow_shader.html" title=" " alt="" coords="1055,5,1217,48"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="972,73,998,65,1063,46,1065,51,1000,71,974,78"/>
+<area shape="rect" id="Node000008" href="$classxpe_1_1render_1_1c_point_shadow_shader.html" title=" " alt="" coords="1047,72,1224,115"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="1015,91,1047,91,1047,96,1015,96"/>
+<area shape="rect" id="Node000009" href="$classxpe_1_1render_1_1c_spot_shadow_shader.html" title=" " alt="" coords="1049,139,1223,181"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="974,109,1000,116,1065,135,1063,141,998,121,972,114"/>
+</map>

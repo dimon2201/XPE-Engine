@@ -1,0 +1,11 @@
+<map id="xpe::render::sDirectLightBuffer" name="xpe::render::sDirectLightBuffer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,320,169,363"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1render_1_1s_list_buffer.html" title=" " alt="" coords="9,229,165,272"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="90,288,90,320,84,320,84,288"/>
+<area shape="rect" id="Node000003" href="$structxpe_1_1render_1_1s_buffer.html" title=" " alt="" coords="20,155,154,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="90,197,90,229,84,229,84,197"/>
+<area shape="rect" id="Node000004" href="$structxpe_1_1render_1_1s_resource.html" title=" " alt="" coords="9,80,165,107"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="90,122,90,154,84,154,84,122"/>
+<area shape="rect" id="Node000005" href="$classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="23,5,151,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="90,48,90,80,84,80,84,48"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="xpe::render::Textures" name="xpe::render::Textures">
+<area shape="rect" id="Node000001" title=" " alt="" coords="17,441,161,468"/>
+<area shape="rect" id="Node000002" href="$structxpe_1_1render_1_1s_texture.html" title=" " alt="" coords="11,157,156,184"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,199,83,233,81,305,83,377,90,441,84,441,78,378,76,305,78,233,79,199"/>
+<area shape="rect" id="Node000005" href="$structxpe_1_1render_1_1s_atlas.html" title=" " alt="" coords="187,292,319,319"/>
+<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="115,191,169,231,240,290,237,294,166,235,112,195"/>
+<area shape="rect" id="Node000003" href="$structxpe_1_1render_1_1s_resource.html" title=" " alt="" coords="5,81,162,108"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="86,123,86,157,81,157,81,123"/>
+<area shape="rect" id="Node000004" href="$classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="19,5,148,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="86,47,86,81,81,81,81,47"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="229,331,105,443,101,439,226,327"/>
+</map>

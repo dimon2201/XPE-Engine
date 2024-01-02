@@ -1,0 +1,6 @@
+<map id="xpe::render::context::FreeShaderStage" name="xpe::render::context::FreeShaderStage">
+<area shape="rect" id="Node000001" title=" " alt="" coords="246,29,383,72"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="349,16,336,10,314,8,294,10,282,15,277,21,279,28,274,29,272,19,279,10,293,5,314,3,337,5,351,11"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1render_1_1c_shader_manager.html#ad0ae2a451bce3fcb68a6fb712bffe722" title=" " alt="" coords="5,29,198,72"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="230,53,198,53,198,48,230,48"/>
+</map>

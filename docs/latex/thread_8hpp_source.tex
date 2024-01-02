@@ -2,34 +2,34 @@
 \hypertarget{thread_8hpp_source}{}\label{thread_8hpp_source}\index{engine/src/core/thread.hpp@{engine/src/core/thread.hpp}}
 \mbox{\hyperlink{thread_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
-\DoxyCodeLine{00004\ }
-\DoxyCodeLine{00005\ \ \ \ \ \textcolor{keyword}{namespace\ }core\ \{}
-\DoxyCodeLine{00006\ }
-\DoxyCodeLine{00007\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread}{cThread}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}\ \{}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1}{ePriority}}\ \{}
-\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1a0ea77189492827b038ecc31bb63879ae}{LOWEST}},\ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9a1e23852820b9154316c7c06e2b7ba051}{NORMAL}},\ HIGHEST}
-\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00013\ }
-\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread}{cThread}}(\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \textcolor{keywordtype}{id},\ std::thread\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{thread}});}
-\DoxyCodeLine{00015\ }
-\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ CurrentSleep(\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{millis}});}
-\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ CurrentID();}
-\DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a2c4f38b61459c9d0cf5246ee5ad072de}{SetFormat}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}},\ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1}{ePriority}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{priority}});}
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ m\_ID;}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ std::thread\&\ m\_Thread;}
-\DoxyCodeLine{00024\ }
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00026\ }
-\DoxyCodeLine{00027\ \ \ \ \ \}}
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \}}
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00003}00003\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00005}00005\ \ \ \ \ \textcolor{keyword}{namespace\ }core\ \{}
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00007}\mbox{\hyperlink{classxpe_1_1core_1_1c_thread}{00007}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread}{cThread}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}\ \{}
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00009}00009\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00010}\mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1}{00010}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1}{ePriority}}\ \{}
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00011}\mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1a0ea77189492827b038ecc31bb63879ae}{00011}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1a0ea77189492827b038ecc31bb63879ae}{LOWEST}},\ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9a1e23852820b9154316c7c06e2b7ba051}{NORMAL}},\ HIGHEST}
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00012}\mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1a2d251a22a90f57b47b2bb9c450656387}{00012}}\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread}{cThread}}(\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \textcolor{keywordtype}{id},\ std::thread\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{thread}});}
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ CurrentSleep(\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{millis}});}
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ CurrentID();}
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00019}\mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a2c4f38b61459c9d0cf5246ee5ad072de}{00019}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a2c4f38b61459c9d0cf5246ee5ad072de}{SetFormat}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}},\ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1}{ePriority}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{priority}});}
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ m\_ID;}
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ std::thread\&\ m\_Thread;}
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00027}00027\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{thread_8hpp_source_l00029}00029\ \}}
 
 \end{DoxyCode}

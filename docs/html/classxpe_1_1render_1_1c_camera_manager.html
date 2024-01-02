@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classxpe_1_1render_1_1c_camera_manager.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li><li class="navelem"><a class="el" href="classxpe_1_1render_1_1c_camera_manager.html">cCameraManager</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
@@ -115,7 +133,10 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a05a77a33e76294d2525aa4f638ba3b76" id="r_a05a77a33e76294d2525aa4f638ba3b76"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">static</a> <a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05a77a33e76294d2525aa4f638ba3b76">SetCamera</a> (<a class="el" href="classxpe_1_1render_1_1c_camera.html">cCamera</a> *<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">camera</a>)</td></tr>
 <tr class="separator:a05a77a33e76294d2525aa4f638ba3b76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="camera__manager_8hpp_source.html#l00009">9</a> of file <a class="el" href="camera__manager_8hpp_source.html">camera_manager.hpp</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a4ec78fc1eb083cc913d65b7186234a46" name="a4ec78fc1eb083cc913d65b7186234a46"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4ec78fc1eb083cc913d65b7186234a46">&#9670;&#160;</a></span>Bind()</h2>
 
@@ -138,6 +159,19 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="camera__manager_8cpp_source.html#l00031">31</a> of file <a class="el" href="camera__manager_8cpp_source.html">camera_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_camera_manager_a4ec78fc1eb083cc913d65b7186234a46_cgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_camera_manager_a4ec78fc1eb083cc913d65b7186234a46_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_camera_manager_a4ec78fc1eb083cc913d65b7186234a46_cgraph" id="aclassxpe_1_1render_1_1c_camera_manager_a4ec78fc1eb083cc913d65b7186234a46_cgraph">
+<area shape="rect" title=" " alt="" coords="5,29,202,72"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ad9d47407f33b3d590885b9f5a997a78c" title=" " alt="" coords="250,29,387,72"/>
+<area shape="poly" title=" " alt="" coords="202,48,234,48,234,53,202,53"/>
+<area shape="poly" title=" " alt="" coords="277,29,276,19,283,10,297,5,318,3,341,5,355,11,353,16,340,10,318,8,298,10,286,15,281,21,283,28"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -164,6 +198,37 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="camera__manager_8cpp_source.html#l00026">26</a> of file <a class="el" href="camera__manager_8cpp_source.html">camera_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_camera_manager_af424d0046e0de26200627a11e1051303_cgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_camera_manager_af424d0046e0de26200627a11e1051303_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_camera_manager_af424d0046e0de26200627a11e1051303_cgraph" id="aclassxpe_1_1render_1_1c_camera_manager_af424d0046e0de26200627a11e1051303_cgraph">
+<area shape="rect" title=" " alt="" coords="5,63,202,105"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_item_buffer.html#a36748548161b72588ad888d58a2aa163" title=" " alt="" coords="250,63,409,105"/>
+<area shape="poly" title=" " alt="" coords="202,81,234,81,234,87,202,87"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a43a3526ddcb06eddda247d1457ae02b3" title=" " alt="" coords="457,63,594,105"/>
+<area shape="poly" title=" " alt="" coords="409,81,441,81,441,87,409,87"/>
+<area shape="poly" title=" " alt="" coords="488,63,487,53,493,44,506,38,526,36,547,38,560,45,557,49,545,44,526,41,507,43,496,48,492,54,493,62"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a4307865df88da4fb54e36f929b6f88a5" title=" " alt="" coords="642,29,813,56"/>
+<area shape="poly" title=" " alt="" coords="594,67,644,57,645,62,596,73"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a32b89671df27bd47193c116873b60f3e" title=" " alt="" coords="659,104,796,147"/>
+<area shape="poly" title=" " alt="" coords="596,95,644,106,643,111,594,101"/>
+<area shape="poly" title=" " alt="" coords="693,30,687,21,691,11,705,5,728,3,752,5,764,12,762,16,750,10,727,8,706,10,695,15,692,20,698,27"/>
+<area shape="poly" title=" " alt="" coords="689,104,687,94,694,85,707,79,728,77,749,80,762,86,760,91,748,85,727,83,709,85,697,89,693,95,694,103"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_camera_manager_af424d0046e0de26200627a11e1051303_icgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_camera_manager_af424d0046e0de26200627a11e1051303_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_camera_manager_af424d0046e0de26200627a11e1051303_icgraph" id="aclassxpe_1_1render_1_1c_camera_manager_af424d0046e0de26200627a11e1051303_icgraph">
+<area shape="rect" title=" " alt="" coords="241,5,437,48"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_render_system.html#a7b60a7e2b3cfc9089bfda515a12f7984" title=" " alt="" coords="5,5,193,48"/>
+<area shape="poly" title=" " alt="" coords="225,29,193,29,193,24,225,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a08d7a77c9d82e1f4c3917df437bcfbb4" name="a08d7a77c9d82e1f4c3917df437bcfbb4"></a>
@@ -188,6 +253,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="camera__manager_8cpp_source.html#l00015">15</a> of file <a class="el" href="camera__manager_8cpp_source.html">camera_manager.cpp</a>.</p>
 
 </div>
 </div>
@@ -214,6 +281,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="camera__manager_8cpp_source.html#l00074">74</a> of file <a class="el" href="camera__manager_8cpp_source.html">camera_manager.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a3932ce0796389e9a760bd4066a649fee" name="a3932ce0796389e9a760bd4066a649fee"></a>
@@ -238,6 +307,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="camera__manager_8cpp_source.html#l00053">53</a> of file <a class="el" href="camera__manager_8cpp_source.html">camera_manager.cpp</a>.</p>
 
 </div>
 </div>
@@ -264,6 +335,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="camera__manager_8cpp_source.html#l00058">58</a> of file <a class="el" href="camera__manager_8cpp_source.html">camera_manager.cpp</a>.</p>
+
 </div>
 </div>
 <a id="abe3b469b340e88d3b463a76164e5f308" name="abe3b469b340e88d3b463a76164e5f308"></a>
@@ -288,6 +361,26 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="camera__manager_8cpp_source.html#l00069">69</a> of file <a class="el" href="camera__manager_8cpp_source.html">camera_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_camera_manager_abe3b469b340e88d3b463a76164e5f308_icgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_camera_manager_abe3b469b340e88d3b463a76164e5f308_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_camera_manager_abe3b469b340e88d3b463a76164e5f308_icgraph" id="aclassxpe_1_1render_1_1c_camera_manager_abe3b469b340e88d3b463a76164e5f308_icgraph">
+<area shape="rect" title=" " alt="" coords="241,139,437,181"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_canvas.html#a9d8c18ddfb24dcd26edf2ee2472f0fb5" title=" " alt="" coords="27,5,171,48"/>
+<area shape="poly" title=" " alt="" coords="297,131,248,96,191,62,166,51,168,46,194,58,251,92,300,127"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_render_system.html#abcbdfa25ef1687e44c642a2dd04e4762" title=" " alt="" coords="5,72,193,115"/>
+<area shape="poly" title=" " alt="" coords="245,137,178,118,179,113,246,132"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_widget_shader.html#a9b0f970a9d73603c8030fda37d7a5e3c" title=" " alt="" coords="7,139,191,181"/>
+<area shape="poly" title=" " alt="" coords="225,163,191,163,191,157,225,157"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_text_shader.html#a1eee34fddc8be62badbcb8c4a0b93ad2" title=" " alt="" coords="15,205,183,248"/>
+<area shape="poly" title=" " alt="" coords="246,188,179,207,178,202,245,183"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_render_system.html#a7b60a7e2b3cfc9089bfda515a12f7984" title=" " alt="" coords="5,272,193,315"/>
+<area shape="poly" title=" " alt="" coords="300,193,251,228,194,262,168,274,166,269,191,258,248,224,297,189"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -314,6 +407,20 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="camera__manager_8cpp_source.html#l00021">21</a> of file <a class="el" href="camera__manager_8cpp_source.html">camera_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_camera_manager_a58279b3cb239ca16a76b8d04eacb93cc_icgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_camera_manager_a58279b3cb239ca16a76b8d04eacb93cc_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_camera_manager_a58279b3cb239ca16a76b8d04eacb93cc_icgraph" id="aclassxpe_1_1render_1_1c_camera_manager_a58279b3cb239ca16a76b8d04eacb93cc_icgraph">
+<area shape="rect" title=" " alt="" coords="237,39,433,81"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_widget_shader.html#a9b0f970a9d73603c8030fda37d7a5e3c" title=" " alt="" coords="5,5,189,48"/>
+<area shape="poly" title=" " alt="" coords="221,47,189,42,190,37,221,41"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_text_shader.html#a1eee34fddc8be62badbcb8c4a0b93ad2" title=" " alt="" coords="13,72,181,115"/>
+<area shape="poly" title=" " alt="" coords="221,79,181,84,181,79,221,73"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a6129ad4a0dd72367141a83a9ca9c069f" name="a6129ad4a0dd72367141a83a9ca9c069f"></a>
@@ -338,6 +445,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="camera__manager_8cpp_source.html#l00010">10</a> of file <a class="el" href="camera__manager_8cpp_source.html">camera_manager.cpp</a>.</p>
 
 </div>
 </div>
@@ -364,6 +473,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="camera__manager_8cpp_source.html#l00079">79</a> of file <a class="el" href="camera__manager_8cpp_source.html">camera_manager.cpp</a>.</p>
+
 </div>
 </div>
 <a id="aba0502682c716b06e9b0b8e69bb18878" name="aba0502682c716b06e9b0b8e69bb18878"></a>
@@ -388,6 +499,37 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="camera__manager_8cpp_source.html#l00041">41</a> of file <a class="el" href="camera__manager_8cpp_source.html">camera_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_camera_manager_aba0502682c716b06e9b0b8e69bb18878_cgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_camera_manager_aba0502682c716b06e9b0b8e69bb18878_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_camera_manager_aba0502682c716b06e9b0b8e69bb18878_cgraph" id="aclassxpe_1_1render_1_1c_camera_manager_aba0502682c716b06e9b0b8e69bb18878_cgraph">
+<area shape="rect" title=" " alt="" coords="5,63,202,105"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_item_buffer.html#a36748548161b72588ad888d58a2aa163" title=" " alt="" coords="250,63,409,105"/>
+<area shape="poly" title=" " alt="" coords="202,81,234,81,234,87,202,87"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a43a3526ddcb06eddda247d1457ae02b3" title=" " alt="" coords="457,63,594,105"/>
+<area shape="poly" title=" " alt="" coords="409,81,441,81,441,87,409,87"/>
+<area shape="poly" title=" " alt="" coords="488,63,487,53,493,44,506,38,526,36,547,38,560,45,557,49,545,44,526,41,507,43,496,48,492,54,493,62"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a4307865df88da4fb54e36f929b6f88a5" title=" " alt="" coords="642,29,813,56"/>
+<area shape="poly" title=" " alt="" coords="594,67,644,57,645,62,596,73"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a32b89671df27bd47193c116873b60f3e" title=" " alt="" coords="659,104,796,147"/>
+<area shape="poly" title=" " alt="" coords="596,95,644,106,643,111,594,101"/>
+<area shape="poly" title=" " alt="" coords="693,30,687,21,691,11,705,5,728,3,752,5,764,12,762,16,750,10,727,8,706,10,695,15,692,20,698,27"/>
+<area shape="poly" title=" " alt="" coords="689,104,687,94,694,85,707,79,728,77,749,80,762,86,760,91,748,85,727,83,709,85,697,89,693,95,694,103"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_camera_manager_aba0502682c716b06e9b0b8e69bb18878_icgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_camera_manager_aba0502682c716b06e9b0b8e69bb18878_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_camera_manager_aba0502682c716b06e9b0b8e69bb18878_icgraph" id="aclassxpe_1_1render_1_1c_camera_manager_aba0502682c716b06e9b0b8e69bb18878_icgraph">
+<area shape="rect" title=" " alt="" coords="198,5,394,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,13,150,40"/>
+<area shape="poly" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -414,6 +556,37 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="camera__manager_8cpp_source.html#l00047">47</a> of file <a class="el" href="camera__manager_8cpp_source.html">camera_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_camera_manager_ac36b65d33a2ff4f2624492b3733fab11_cgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_camera_manager_ac36b65d33a2ff4f2624492b3733fab11_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_camera_manager_ac36b65d33a2ff4f2624492b3733fab11_cgraph" id="aclassxpe_1_1render_1_1c_camera_manager_ac36b65d33a2ff4f2624492b3733fab11_cgraph">
+<area shape="rect" title=" " alt="" coords="5,63,202,105"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_item_buffer.html#a36748548161b72588ad888d58a2aa163" title=" " alt="" coords="250,63,409,105"/>
+<area shape="poly" title=" " alt="" coords="202,81,234,81,234,87,202,87"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a43a3526ddcb06eddda247d1457ae02b3" title=" " alt="" coords="457,63,594,105"/>
+<area shape="poly" title=" " alt="" coords="409,81,441,81,441,87,409,87"/>
+<area shape="poly" title=" " alt="" coords="488,63,487,53,493,44,506,38,526,36,547,38,560,45,557,49,545,44,526,41,507,43,496,48,492,54,493,62"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a4307865df88da4fb54e36f929b6f88a5" title=" " alt="" coords="642,29,813,56"/>
+<area shape="poly" title=" " alt="" coords="594,67,644,57,645,62,596,73"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a32b89671df27bd47193c116873b60f3e" title=" " alt="" coords="659,104,796,147"/>
+<area shape="poly" title=" " alt="" coords="596,95,644,106,643,111,594,101"/>
+<area shape="poly" title=" " alt="" coords="693,30,687,21,691,11,705,5,728,3,752,5,764,12,762,16,750,10,727,8,706,10,695,15,692,20,698,27"/>
+<area shape="poly" title=" " alt="" coords="689,104,687,94,694,85,707,79,728,77,749,80,762,86,760,91,748,85,727,83,709,85,697,89,693,95,694,103"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_camera_manager_ac36b65d33a2ff4f2624492b3733fab11_icgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_camera_manager_ac36b65d33a2ff4f2624492b3733fab11_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_camera_manager_ac36b65d33a2ff4f2624492b3733fab11_icgraph" id="aclassxpe_1_1render_1_1c_camera_manager_ac36b65d33a2ff4f2624492b3733fab11_icgraph">
+<area shape="rect" title=" " alt="" coords="198,5,394,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,13,150,40"/>
+<area shape="poly" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a9c0c4c39c990785bf9a1872668e034d4" name="a9c0c4c39c990785bf9a1872668e034d4"></a>
@@ -438,6 +611,37 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="camera__manager_8cpp_source.html#l00063">63</a> of file <a class="el" href="camera__manager_8cpp_source.html">camera_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_camera_manager_a9c0c4c39c990785bf9a1872668e034d4_cgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_camera_manager_a9c0c4c39c990785bf9a1872668e034d4_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_camera_manager_a9c0c4c39c990785bf9a1872668e034d4_cgraph" id="aclassxpe_1_1render_1_1c_camera_manager_a9c0c4c39c990785bf9a1872668e034d4_cgraph">
+<area shape="rect" title=" " alt="" coords="5,63,202,105"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_item_buffer.html#a36748548161b72588ad888d58a2aa163" title=" " alt="" coords="250,63,409,105"/>
+<area shape="poly" title=" " alt="" coords="202,81,234,81,234,87,202,87"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a43a3526ddcb06eddda247d1457ae02b3" title=" " alt="" coords="457,63,594,105"/>
+<area shape="poly" title=" " alt="" coords="409,81,441,81,441,87,409,87"/>
+<area shape="poly" title=" " alt="" coords="488,63,487,53,493,44,506,38,526,36,547,38,560,45,557,49,545,44,526,41,507,43,496,48,492,54,493,62"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a4307865df88da4fb54e36f929b6f88a5" title=" " alt="" coords="642,29,813,56"/>
+<area shape="poly" title=" " alt="" coords="594,67,644,57,645,62,596,73"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a32b89671df27bd47193c116873b60f3e" title=" " alt="" coords="659,104,796,147"/>
+<area shape="poly" title=" " alt="" coords="596,95,644,106,643,111,594,101"/>
+<area shape="poly" title=" " alt="" coords="693,30,687,21,691,11,705,5,728,3,752,5,764,12,762,16,750,10,727,8,706,10,695,15,692,20,698,27"/>
+<area shape="poly" title=" " alt="" coords="689,104,687,94,694,85,707,79,728,77,749,80,762,86,760,91,748,85,727,83,709,85,697,89,693,95,694,103"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_camera_manager_a9c0c4c39c990785bf9a1872668e034d4_icgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_camera_manager_a9c0c4c39c990785bf9a1872668e034d4_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_camera_manager_a9c0c4c39c990785bf9a1872668e034d4_icgraph" id="aclassxpe_1_1render_1_1c_camera_manager_a9c0c4c39c990785bf9a1872668e034d4_icgraph">
+<area shape="rect" title=" " alt="" coords="241,5,437,48"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_render_system.html#abcbdfa25ef1687e44c642a2dd04e4762" title=" " alt="" coords="5,5,193,48"/>
+<area shape="poly" title=" " alt="" coords="225,29,193,29,193,24,225,24"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -464,16 +668,36 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="camera__manager_8cpp_source.html#l00036">36</a> of file <a class="el" href="camera__manager_8cpp_source.html">camera_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_camera_manager_ab38f9226063fb11f68d032c2bf9d69d7_cgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_camera_manager_ab38f9226063fb11f68d032c2bf9d69d7_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_camera_manager_ab38f9226063fb11f68d032c2bf9d69d7_cgraph" id="aclassxpe_1_1render_1_1c_camera_manager_ab38f9226063fb11f68d032c2bf9d69d7_cgraph">
+<area shape="rect" title=" " alt="" coords="5,29,202,72"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a14b40b432d37f92276a1766f9e1a39a2" title=" " alt="" coords="250,29,387,72"/>
+<area shape="poly" title=" " alt="" coords="202,48,234,48,234,53,202,53"/>
+<area shape="poly" title=" " alt="" coords="283,29,281,19,287,10,300,5,318,3,338,5,350,11,348,16,337,10,318,8,301,10,291,15,286,21,288,28"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ad9d47407f33b3d590885b9f5a997a78c" title=" " alt="" coords="435,29,572,72"/>
+<area shape="poly" title=" " alt="" coords="387,48,419,48,419,53,387,53"/>
+<area shape="poly" title=" " alt="" coords="468,29,467,19,473,10,485,5,504,3,524,5,536,11,533,16,522,10,504,8,486,10,476,15,472,21,473,28"/>
+</map>
+</div>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>engine/src/rendering/<a class="el" href="camera__manager_8hpp_source.html">camera_manager.hpp</a></li>
-<li>engine/src/rendering/<a class="el" href="camera__manager_8cpp.html">camera_manager.cpp</a></li>
+<li>engine/src/rendering/<a class="el" href="camera__manager_8cpp_source.html">camera_manager.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li><li class="navelem"><a class="el" href="classxpe_1_1render_1_1c_camera_manager.html">cCameraManager</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

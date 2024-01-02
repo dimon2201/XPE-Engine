@@ -1,0 +1,20 @@
+<map id="xpe::render::cMaterialManager::AddMaterial" name="xpe::render::cMaterialManager::AddMaterial">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,89,203,132"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1render_1_1s_list_buffer.html#a915d07581a0582453afaa6057d734476" title=" " alt="" coords="256,5,443,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,86,250,42,272,34,274,39,252,46,149,91"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1render_1_1c_material_manager.html#a2af0aaa9ef9bd87a55981b88cd8fd7a9" title=" " alt="" coords="251,56,448,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="203,95,235,90,235,95,203,100"/>
+<area shape="rect" id="Node000004" href="$classxpe_1_1render_1_1s_list_buffer.html#ad9de1835e029836261d585eec95bedd5" title=" " alt="" coords="272,123,427,165"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="203,121,256,129,256,134,203,127"/>
+<area shape="rect" id="Node000008" href="$classxpe_1_1render_1_1s_list_buffer.html#af1b78e374e912c0f7ea9363d579553c5" title=" " alt="" coords="272,189,427,232"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="151,130,252,175,268,181,266,186,250,180,149,135"/>
+<area shape="rect" id="Node000005" href="$namespacexpe_1_1render_1_1context.html#a43a3526ddcb06eddda247d1457ae02b3" title=" " alt="" coords="496,123,633,165"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="427,141,480,141,480,147,427,147"/>
+<area shape="poly" id="edge5_Node000005_Node000005" title=" " alt="" coords="526,123,525,113,531,104,544,98,565,96,586,98,599,105,597,109,585,104,565,101,546,103,534,108,530,114,531,122"/>
+<area shape="rect" id="Node000006" href="$namespacexpe_1_1render_1_1context.html#a4307865df88da4fb54e36f929b6f88a5" title=" " alt="" coords="681,89,852,116"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="633,127,683,117,684,122,635,133"/>
+<area shape="rect" id="Node000007" href="$namespacexpe_1_1render_1_1context.html#a32b89671df27bd47193c116873b60f3e" title=" " alt="" coords="698,164,835,207"/>
+<area shape="poly" id="edge8_Node000005_Node000007" title=" " alt="" coords="635,155,683,166,682,171,633,161"/>
+<area shape="poly" id="edge7_Node000006_Node000006" title=" " alt="" coords="732,90,726,81,730,71,744,65,767,63,791,65,803,72,801,76,789,70,766,68,745,70,734,75,731,80,737,87"/>
+<area shape="poly" id="edge9_Node000007_Node000007" title=" " alt="" coords="728,164,726,154,733,145,746,139,767,137,788,140,801,146,799,151,787,145,766,143,748,145,736,149,732,155,733,163"/>
+</map>

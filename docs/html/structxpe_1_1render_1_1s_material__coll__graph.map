@@ -1,0 +1,9 @@
+<map id="xpe::render::sMaterial" name="xpe::render::sMaterial">
+<area shape="rect" id="Node000001" title=" " alt="" coords="224,192,372,219"/>
+<area shape="rect" id="Node000002" href="$structxpe_1_1render_1_1s_material_data.html" title=" " alt="" coords="5,5,180,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,41,286,190,282,194,116,45"/>
+<area shape="rect" id="Node000003" href="$structxpe_1_1render_1_1s_material_format.html" title=" " alt="" coords="204,5,392,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="301,48,301,192,295,192,295,48"/>
+<area shape="rect" id="Node000004" href="$structxpe_1_1render_1_1s_texture_layer.html" title=" " alt="" coords="416,5,593,32"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="499,48,473,109,452,142,425,170,400,185,373,195,371,190,398,180,421,166,448,139,468,107,494,46"/>
+</map>

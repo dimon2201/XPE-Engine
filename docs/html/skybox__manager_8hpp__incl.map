@@ -1,0 +1,20 @@
+<map id="engine/src/rendering/skybox_manager.hpp" name="engine/src/rendering/skybox_manager.hpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="14,5,164,48"/>
+<area shape="rect" id="Node000002" href="$texture_8hpp.html" title=" " alt="" coords="5,592,178,619"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,49,55,118,44,162,39,207,39,441,43,479,53,516,79,577,74,579,48,518,38,480,34,441,34,207,39,161,50,117,76,47"/>
+<area shape="rect" id="Node000004" href="$geometries_8hpp.html" title=" " alt="" coords="75,96,207,139"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="103,47,124,81,119,84,99,50"/>
+<area shape="rect" id="Node000003" href="$rendering_2core_2core_8hpp.html" title=" " alt="" coords="13,667,170,693"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="94,619,94,651,89,651,89,619"/>
+<area shape="rect" id="Node000005" href="$geometry_8hpp.html" title=" " alt="" coords="76,187,208,229"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="144,139,144,171,139,171,138,139"/>
+<area shape="rect" id="Node000006" href="$buffers_8hpp.html" title=" " alt="" coords="82,277,224,304"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="148,230,152,262,147,262,142,230"/>
+<area shape="rect" id="Node000007" href="$rendering_2core_2context_8hpp.html" title=" " alt="" coords="75,352,250,379"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="157,304,161,336,156,337,152,305"/>
+<area shape="rect" id="Node000008" href="$shader_8hpp.html" title=" " alt="" coords="75,427,247,453"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="165,379,164,411,159,411,159,379"/>
+<area shape="rect" id="Node000009" href="$render__target_8hpp.html" title=" " alt="" coords="81,501,225,544"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="162,454,159,486,154,486,157,454"/>
+<area shape="poly" id="edge9_Node000009_Node000002" title=" " alt="" coords="139,546,112,581,108,578,135,543"/>
+</map>

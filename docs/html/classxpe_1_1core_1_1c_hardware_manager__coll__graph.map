@@ -1,0 +1,9 @@
+<map id="xpe::core::cHardwareManager" name="xpe::core::cHardwareManager">
+<area shape="rect" id="Node000001" title=" " alt="" coords="172,96,367,123"/>
+<area shape="rect" id="Node000002" href="$structxpe_1_1core_1_1s_memory_stats.html" title=" " alt="" coords="5,5,174,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,37,245,93,243,98,128,42"/>
+<area shape="rect" id="Node000003" href="$structxpe_1_1core_1_1s_cpu_stats.html" title=" " alt="" coords="197,5,342,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="272,48,272,95,267,95,267,48"/>
+<area shape="rect" id="Node000004" href="$structxpe_1_1core_1_1s_gpu_stats.html" title=" " alt="" coords="366,5,512,32"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="402,42,295,98,292,93,400,37"/>
+</map>

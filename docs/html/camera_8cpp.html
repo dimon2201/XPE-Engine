@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('camera_8cpp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li><li class="navelem"><a class="el" href="dir_c82fe33ead33fcc3829b24ace9891300.html">rendering</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a>  </div>
@@ -82,7 +100,64 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="camera_8hpp_source.html">rendering/camera.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="bindings_8hpp_source.html">rendering/bindings.hpp</a>&gt;</code><br />
-</div><table class="memberdecls">
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for camera.cpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="camera_8cpp__incl.png" border="0" usemap="#aengine_2src_2rendering_2camera_8cpp" alt=""/></div>
+<map name="aengine_2src_2rendering_2camera_8cpp" id="aengine_2src_2rendering_2camera_8cpp">
+<area shape="rect" title=" " alt="" coords="116,5,254,48"/>
+<area shape="rect" href="camera_8hpp.html" title=" " alt="" coords="183,96,329,123"/>
+<area shape="poly" title=" " alt="" coords="205,47,237,82,233,86,201,50"/>
+<area shape="rect" href="bindings_8hpp.html" title=" " alt="" coords="25,171,177,197"/>
+<area shape="poly" title=" " alt="" coords="176,49,117,158,113,156,172,47"/>
+<area shape="rect" href="components_8hpp.html" title=" " alt="" coords="267,171,410,197"/>
+<area shape="poly" title=" " alt="" coords="272,121,315,158,311,162,268,125"/>
+<area shape="rect" href="geometries_8hpp.html" title=" " alt="" coords="220,245,353,288"/>
+<area shape="poly" title=" " alt="" coords="333,199,310,234,306,231,328,196"/>
+<area shape="rect" href="buffers_8hpp.html" title=" " alt="" coords="196,427,337,453"/>
+<area shape="poly" title=" " alt="" coords="267,193,207,200,144,211,91,227,72,236,59,247,39,280,32,312,39,343,59,377,77,391,107,403,181,422,180,427,105,408,74,395,55,380,34,345,27,312,34,278,55,244,69,232,89,222,143,206,206,195,267,188"/>
+<area shape="rect" href="material_8hpp.html" title=" " alt="" coords="356,336,481,379"/>
+<area shape="poly" title=" " alt="" coords="347,196,405,321,400,323,342,199"/>
+<area shape="rect" href="font_8hpp.html" title=" " alt="" coords="754,501,904,528"/>
+<area shape="poly" title=" " alt="" coords="410,187,629,207,738,223,782,232,815,243,855,259,886,276,911,299,933,335,943,368,940,397,927,425,906,455,886,477,865,494,861,490,883,473,902,452,922,422,935,396,938,369,928,337,907,302,883,280,853,264,814,248,781,237,737,228,628,212,410,192"/>
+<area shape="rect" href="widget__manager_8hpp.html" title=" " alt="" coords="428,253,625,280"/>
+<area shape="poly" title=" " alt="" coords="369,195,485,245,482,250,367,200"/>
+<area shape="rect" href="skeleton_8hpp.html" title=" " alt="" coords="69,253,197,280"/>
+<area shape="poly" title=" " alt="" coords="307,200,180,250,178,245,305,195"/>
+<area shape="rect" href="audio_2core_2context_8hpp.html" title=" " alt="" coords="650,253,803,280"/>
+<area shape="poly" title=" " alt="" coords="404,195,638,243,657,247,656,252,637,248,403,201"/>
+<area shape="rect" href="geometry_8hpp.html" title=" " alt="" coords="200,336,333,379"/>
+<area shape="poly" title=" " alt="" coords="284,289,277,322,272,320,279,288"/>
+<area shape="poly" title=" " alt="" coords="269,379,269,411,264,411,264,379"/>
+<area shape="rect" href="rendering_2core_2context_8hpp.html" title=" " alt="" coords="429,501,605,528"/>
+<area shape="poly" title=" " alt="" coords="311,451,459,494,458,499,309,456"/>
+<area shape="rect" href="shader_8hpp.html" title=" " alt="" coords="463,576,635,603"/>
+<area shape="poly" title=" " alt="" coords="525,527,540,561,535,563,520,530"/>
+<area shape="rect" href="render__target_8hpp.html" title=" " alt="" coords="500,651,643,693"/>
+<area shape="poly" title=" " alt="" coords="555,602,564,635,559,637,550,604"/>
+<area shape="rect" href="texture_8hpp.html" title=" " alt="" coords="540,741,713,768"/>
+<area shape="poly" title=" " alt="" coords="588,692,612,727,607,730,584,695"/>
+<area shape="rect" href="rendering_2core_2core_8hpp.html" title=" " alt="" coords="548,816,705,843"/>
+<area shape="poly" title=" " alt="" coords="629,769,629,800,624,800,624,769"/>
+<area shape="poly" title=" " alt="" coords="381,382,305,421,302,417,378,377"/>
+<area shape="poly" title=" " alt="" coords="821,530,649,732,645,728,817,526"/>
+<area shape="poly" title=" " alt="" coords="154,278,224,325,221,329,151,283"/>
+<area shape="rect" href="anim_8hpp.html" title=" " alt="" coords="69,344,176,371"/>
+<area shape="poly" title=" " alt="" coords="134,281,128,329,123,328,129,280"/>
+<area shape="rect" href="audio_2core_2core_8hpp.html" title=" " alt="" coords="636,344,771,371"/>
+<area shape="poly" title=" " alt="" coords="726,281,713,330,708,328,721,280"/>
+<area shape="rect" href="sndfile__context_8hpp.html" title=" " alt="" coords="796,336,918,379"/>
+<area shape="poly" title=" " alt="" coords="747,278,816,325,813,329,744,283"/>
+<area shape="rect" href="types_8hpp.html" title=" " alt="" coords="505,344,612,371"/>
+<area shape="poly" title=" " alt="" coords="704,283,597,339,595,334,701,278"/>
+<area shape="rect" title=" " alt="" coords="822,427,892,453"/>
+<area shape="poly" title=" " alt="" coords="860,379,860,411,854,411,854,379"/>
+<area shape="poly" title=" " alt="" coords="78,200,52,220,31,247,16,283,9,315,13,345,31,377,53,393,90,406,181,425,180,431,89,411,51,398,27,380,8,347,3,314,11,281,27,244,48,216,75,196"/>
+</map>
+</div>
+</div>
+<p><a href="camera_8cpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacexpe" id="r_namespacexpe"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexpe.html">xpe</a></td></tr>
@@ -91,9 +166,13 @@ Namespaces</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li><li class="navelem"><a class="el" href="dir_c82fe33ead33fcc3829b24ace9891300.html">rendering</a></li><li class="navelem"><a class="el" href="camera_8cpp.html">camera.cpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

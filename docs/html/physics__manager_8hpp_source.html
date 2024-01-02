@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -53,6 +59,23 @@ $(function() {
 $(function() { codefold.init(0); });
 /* @license-end */
 </script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('physics__manager_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -74,11 +97,6 @@ $(function() { codefold.init(0); });
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li><li class="navelem"><a class="el" href="dir_1196fceec8cdf035bd6eb95fe8dddeb4.html">physics</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle"><div class="title">physics_manager.hpp</div></div>
 </div><!--header-->
@@ -347,54 +365,58 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    }</div>
 <div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>}</div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_object_html"><div class="ttname"><a href="classxpe_1_1core_1_1c_object.html">xpe::core::cObject</a></div><div class="ttdef"><b>Definition</b> types.hpp:39</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html">xpe::ecs::cEntity</a></div><div class="ttdef"><b>Definition</b> ecs.hpp:151</div></div>
-<div class="ttc" id="aclassxpe_1_1physics_1_1c_physics_allocator_html"><div class="ttname"><a href="classxpe_1_1physics_1_1c_physics_allocator.html">xpe::physics::cPhysicsAllocator</a></div><div class="ttdef"><b>Definition</b> allocators.hpp:13</div></div>
-<div class="ttc" id="aclassxpe_1_1physics_1_1c_physics_error_callback_html"><div class="ttname"><a href="classxpe_1_1physics_1_1c_physics_error_callback.html">xpe::physics::cPhysicsErrorCallback</a></div><div class="ttdef"><b>Definition</b> callbacks.hpp:13</div></div>
-<div class="ttc" id="aclassxpe_1_1physics_1_1c_physics_manager_html"><div class="ttname"><a href="classxpe_1_1physics_1_1c_physics_manager.html">xpe::physics::cPhysicsManager</a></div><div class="ttdef"><b>Definition</b> physics_manager.hpp:196</div></div>
-<div class="ttc" id="aclassxpe_1_1physics_1_1c_physics_simulation_event_callback_html"><div class="ttname"><a href="classxpe_1_1physics_1_1c_physics_simulation_event_callback.html">xpe::physics::cPhysicsSimulationEventCallback</a></div><div class="ttdef"><b>Definition</b> callbacks.hpp:28</div></div>
-<div class="ttc" id="ajson_8hpp_html_a64a0d7950ac2a45cdc342a649e970f96"><div class="ttname"><a href="json_8hpp.html#a64a0d7950ac2a45cdc342a649e970f96">JSON</a></div><div class="ttdeci">#define JSON(clazz,...)</div><div class="ttdef"><b>Definition</b> json.hpp:9</div></div>
-<div class="ttc" id="ajson_8hpp_html_a85a6dfc31ce6b1db814a5641eee98a59"><div class="ttname"><a href="json_8hpp.html#a85a6dfc31ce6b1db814a5641eee98a59">JSON_ENUM</a></div><div class="ttdeci">#define JSON_ENUM(clazz,...)</div><div class="ttdef"><b>Definition</b> json.hpp:27</div></div>
-<div class="ttc" id="amacro__build_8hpp_html_a0697ee40f69dc5dab56d13131f4c4835"><div class="ttname"><a href="macro__build_8hpp.html#a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</a></div><div class="ttdeci">#define ENGINE_API</div><div class="ttdef"><b>Definition</b> macro_build.hpp:17</div></div>
-<div class="ttc" id="anamespacephysx_html"><div class="ttname"><a href="namespacephysx.html">physx</a></div><div class="ttdef"><b>Definition</b> ecs.hpp:6</div></div>
-<div class="ttc" id="anamespacexpe_1_1core_html_a7a9b1d92471db2af59acf8c301267fde"><div class="ttname"><a href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">xpe::core::vector</a></div><div class="ttdeci">std::vector&lt; T, cMainAllocator&lt; T &gt; &gt; vector</div><div class="ttdef"><b>Definition</b> stl.hpp:17</div></div>
-<div class="ttc" id="anamespacexpe_1_1core_html_ac96cda3a207e0a6466eefd15632420f7"><div class="ttname"><a href="namespacexpe_1_1core.html#ac96cda3a207e0a6466eefd15632420f7">xpe::core::f32</a></div><div class="ttdeci">float f32</div><div class="ttdef"><b>Definition</b> types.hpp:15</div></div>
-<div class="ttc" id="anamespacexpe_1_1physics_html_a11de4146993380edd87e664894f5438e"><div class="ttname"><a href="namespacexpe_1_1physics.html#a11de4146993380edd87e664894f5438e">xpe::physics::eShapeType</a></div><div class="ttdeci">eShapeType</div><div class="ttdef"><b>Definition</b> physics_manager.hpp:49</div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_object_html"><div class="ttname"><a href="classxpe_1_1core_1_1c_object.html">xpe::core::cObject</a></div><div class="ttdef"><b>Definition</b> <a href="types_8hpp_source.html#l00038">types.hpp:39</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html">xpe::ecs::cEntity</a></div><div class="ttdef"><b>Definition</b> <a href="ecs_8hpp_source.html#l00150">ecs.hpp:151</a></div></div>
+<div class="ttc" id="aclassxpe_1_1physics_1_1c_physics_allocator_html"><div class="ttname"><a href="classxpe_1_1physics_1_1c_physics_allocator.html">xpe::physics::cPhysicsAllocator</a></div><div class="ttdef"><b>Definition</b> <a href="physics_2allocators_8hpp_source.html#l00012">allocators.hpp:13</a></div></div>
+<div class="ttc" id="aclassxpe_1_1physics_1_1c_physics_error_callback_html"><div class="ttname"><a href="classxpe_1_1physics_1_1c_physics_error_callback.html">xpe::physics::cPhysicsErrorCallback</a></div><div class="ttdef"><b>Definition</b> <a href="callbacks_8hpp_source.html#l00012">callbacks.hpp:13</a></div></div>
+<div class="ttc" id="aclassxpe_1_1physics_1_1c_physics_manager_html"><div class="ttname"><a href="classxpe_1_1physics_1_1c_physics_manager.html">xpe::physics::cPhysicsManager</a></div><div class="ttdef"><b>Definition</b> <a href="#l00195">physics_manager.hpp:196</a></div></div>
+<div class="ttc" id="aclassxpe_1_1physics_1_1c_physics_simulation_event_callback_html"><div class="ttname"><a href="classxpe_1_1physics_1_1c_physics_simulation_event_callback.html">xpe::physics::cPhysicsSimulationEventCallback</a></div><div class="ttdef"><b>Definition</b> <a href="callbacks_8hpp_source.html#l00027">callbacks.hpp:28</a></div></div>
+<div class="ttc" id="ajson_8hpp_html_a64a0d7950ac2a45cdc342a649e970f96"><div class="ttname"><a href="json_8hpp.html#a64a0d7950ac2a45cdc342a649e970f96">JSON</a></div><div class="ttdeci">#define JSON(clazz,...)</div><div class="ttdef"><b>Definition</b> <a href="json_8hpp_source.html#l00009">json.hpp:9</a></div></div>
+<div class="ttc" id="ajson_8hpp_html_a85a6dfc31ce6b1db814a5641eee98a59"><div class="ttname"><a href="json_8hpp.html#a85a6dfc31ce6b1db814a5641eee98a59">JSON_ENUM</a></div><div class="ttdeci">#define JSON_ENUM(clazz,...)</div><div class="ttdef"><b>Definition</b> <a href="json_8hpp_source.html#l00027">json.hpp:27</a></div></div>
+<div class="ttc" id="amacro__build_8hpp_html_a0697ee40f69dc5dab56d13131f4c4835"><div class="ttname"><a href="macro__build_8hpp.html#a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</a></div><div class="ttdeci">#define ENGINE_API</div><div class="ttdef"><b>Definition</b> <a href="macro__build_8hpp_source.html#l00017">macro_build.hpp:17</a></div></div>
+<div class="ttc" id="anamespacephysx_html"><div class="ttname"><a href="namespacephysx.html">physx</a></div><div class="ttdef"><b>Definition</b> <a href="ecs_8hpp_source.html#l00005">ecs.hpp:6</a></div></div>
+<div class="ttc" id="anamespacexpe_1_1core_html_a7a9b1d92471db2af59acf8c301267fde"><div class="ttname"><a href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">xpe::core::vector</a></div><div class="ttdeci">std::vector&lt; T, cMainAllocator&lt; T &gt; &gt; vector</div><div class="ttdef"><b>Definition</b> <a href="stl_8hpp_source.html#l00017">stl.hpp:17</a></div></div>
+<div class="ttc" id="anamespacexpe_1_1core_html_ac96cda3a207e0a6466eefd15632420f7"><div class="ttname"><a href="namespacexpe_1_1core.html#ac96cda3a207e0a6466eefd15632420f7">xpe::core::f32</a></div><div class="ttdeci">float f32</div><div class="ttdef"><b>Definition</b> <a href="types_8hpp_source.html#l00015">types.hpp:15</a></div></div>
+<div class="ttc" id="anamespacexpe_1_1physics_html_a11de4146993380edd87e664894f5438e"><div class="ttname"><a href="namespacexpe_1_1physics.html#a11de4146993380edd87e664894f5438e">xpe::physics::eShapeType</a></div><div class="ttdeci">eShapeType</div><div class="ttdef"><b>Definition</b> <a href="#l00048">physics_manager.hpp:49</a></div></div>
 <div class="ttc" id="anamespacexpe_1_1physics_html_a11de4146993380edd87e664894f5438ea67586f12c9792da11a4bdf60360d40e9"><div class="ttname"><a href="namespacexpe_1_1physics.html#a11de4146993380edd87e664894f5438ea67586f12c9792da11a4bdf60360d40e9">xpe::physics::eShapeType::CAPSULE</a></div><div class="ttdeci">@ CAPSULE</div></div>
 <div class="ttc" id="anamespacexpe_1_1physics_html_a11de4146993380edd87e664894f5438ea6f7cea7381e843e2ee0338b4a92b0d43"><div class="ttname"><a href="namespacexpe_1_1physics.html#a11de4146993380edd87e664894f5438ea6f7cea7381e843e2ee0338b4a92b0d43">xpe::physics::eShapeType::SPHERE</a></div><div class="ttdeci">@ SPHERE</div></div>
 <div class="ttc" id="anamespacexpe_1_1physics_html_a11de4146993380edd87e664894f5438eaad6990fc23cd957328515fde2db852a3"><div class="ttname"><a href="namespacexpe_1_1physics.html#a11de4146993380edd87e664894f5438eaad6990fc23cd957328515fde2db852a3">xpe::physics::eShapeType::PLANE</a></div><div class="ttdeci">@ PLANE</div></div>
 <div class="ttc" id="anamespacexpe_1_1physics_html_a11de4146993380edd87e664894f5438eab50339a10e1de285ac99d4c3990b8693"><div class="ttname"><a href="namespacexpe_1_1physics.html#a11de4146993380edd87e664894f5438eab50339a10e1de285ac99d4c3990b8693">xpe::physics::eShapeType::NONE</a></div><div class="ttdeci">@ NONE</div></div>
 <div class="ttc" id="anamespacexpe_1_1physics_html_a11de4146993380edd87e664894f5438eae657cce1913c857166b0475f18668ef5"><div class="ttname"><a href="namespacexpe_1_1physics.html#a11de4146993380edd87e664894f5438eae657cce1913c857166b0475f18668ef5">xpe::physics::eShapeType::BOX</a></div><div class="ttdeci">@ BOX</div></div>
-<div class="ttc" id="anamespacexpe_html"><div class="ttname"><a href="namespacexpe.html">xpe</a></div><div class="ttdef"><b>Definition</b> anim.hpp:3</div></div>
-<div class="ttc" id="astructxpe_1_1math_1_1s_transform_html"><div class="ttname"><a href="structxpe_1_1math_1_1s_transform.html">xpe::math::sTransform</a></div><div class="ttdef"><b>Definition</b> transform.hpp:9</div></div>
-<div class="ttc" id="astructxpe_1_1physics_1_1s_actor_html"><div class="ttname"><a href="structxpe_1_1physics_1_1s_actor.html">xpe::physics::sActor</a></div><div class="ttdef"><b>Definition</b> physics_manager.hpp:113</div></div>
+<div class="ttc" id="anamespacexpe_html"><div class="ttname"><a href="namespacexpe.html">xpe</a></div><div class="ttdef"><b>Definition</b> <a href="anim_8hpp_source.html#l00003">anim.hpp:3</a></div></div>
+<div class="ttc" id="astructxpe_1_1math_1_1s_transform_html"><div class="ttname"><a href="structxpe_1_1math_1_1s_transform.html">xpe::math::sTransform</a></div><div class="ttdef"><b>Definition</b> <a href="transform_8hpp_source.html#l00009">transform.hpp:9</a></div></div>
+<div class="ttc" id="astructxpe_1_1physics_1_1s_actor_html"><div class="ttname"><a href="structxpe_1_1physics_1_1s_actor.html">xpe::physics::sActor</a></div><div class="ttdef"><b>Definition</b> <a href="#l00112">physics_manager.hpp:113</a></div></div>
 <div class="ttc" id="astructxpe_1_1physics_1_1s_actor_html_a0d6b26bb92c74fce700ff90d28d9d58b"><div class="ttname"><a href="structxpe_1_1physics_1_1s_actor.html#a0d6b26bb92c74fce700ff90d28d9d58b">xpe::physics::sActor::JSON_ENUM</a></div><div class="ttdeci">JSON_ENUM(eActorType, { { eActorType::NONE, &quot;NONE&quot; }, { eActorType::RIGID_STATIC, &quot;RIGID_STATIC&quot; }, { eActorType::RIGID_DYNAMIC, &quot;RIGID_DYNAMIC&quot; }, }) sActor()=default</div></div>
-<div class="ttc" id="astructxpe_1_1physics_1_1s_actor_html_a6a5d73ace4ade9f6ed574941af2ccfc5"><div class="ttname"><a href="structxpe_1_1physics_1_1s_actor.html#a6a5d73ace4ade9f6ed574941af2ccfc5">xpe::physics::sActor::eActorType</a></div><div class="ttdeci">eActorType</div><div class="ttdef"><b>Definition</b> physics_manager.hpp:115</div></div>
-<div class="ttc" id="astructxpe_1_1physics_1_1s_actor_html_af3c72e195b2eb868f37caa615fb1bede"><div class="ttname"><a href="structxpe_1_1physics_1_1s_actor.html#af3c72e195b2eb868f37caa615fb1bede">xpe::physics::sActor::sActor</a></div><div class="ttdeci">sActor(PxActor *actor, PxMaterial *material, PxShape *shape, const eActorType &amp;actorType, sShapeDescriptor *shapeDesc, const glm::vec3 &amp;linearVelocity, f32 staticFriction, f32 dynamicFriction, f32 restitution, f32 contactOffset, f32 restOffset)</div><div class="ttdef"><b>Definition</b> physics_manager.hpp:128</div></div>
-<div class="ttc" id="astructxpe_1_1physics_1_1s_box_shape_descriptor_html"><div class="ttname"><a href="structxpe_1_1physics_1_1s_box_shape_descriptor.html">xpe::physics::sBoxShapeDescriptor</a></div><div class="ttdef"><b>Definition</b> physics_manager.hpp:97</div></div>
-<div class="ttc" id="astructxpe_1_1physics_1_1s_box_shape_descriptor_html_a051606b0870fe1954d2c12416774df48"><div class="ttname"><a href="structxpe_1_1physics_1_1s_box_shape_descriptor.html#a051606b0870fe1954d2c12416774df48">xpe::physics::sBoxShapeDescriptor::sBoxShapeDescriptor</a></div><div class="ttdeci">sBoxShapeDescriptor(const glm::vec3 &amp;halfExtents)</div><div class="ttdef"><b>Definition</b> physics_manager.hpp:99</div></div>
+<div class="ttc" id="astructxpe_1_1physics_1_1s_actor_html_a6a5d73ace4ade9f6ed574941af2ccfc5"><div class="ttname"><a href="structxpe_1_1physics_1_1s_actor.html#a6a5d73ace4ade9f6ed574941af2ccfc5">xpe::physics::sActor::eActorType</a></div><div class="ttdeci">eActorType</div><div class="ttdef"><b>Definition</b> <a href="#l00114">physics_manager.hpp:115</a></div></div>
+<div class="ttc" id="astructxpe_1_1physics_1_1s_actor_html_af3c72e195b2eb868f37caa615fb1bede"><div class="ttname"><a href="structxpe_1_1physics_1_1s_actor.html#af3c72e195b2eb868f37caa615fb1bede">xpe::physics::sActor::sActor</a></div><div class="ttdeci">sActor(PxActor *actor, PxMaterial *material, PxShape *shape, const eActorType &amp;actorType, sShapeDescriptor *shapeDesc, const glm::vec3 &amp;linearVelocity, f32 staticFriction, f32 dynamicFriction, f32 restitution, f32 contactOffset, f32 restOffset)</div><div class="ttdef"><b>Definition</b> <a href="#l00128">physics_manager.hpp:128</a></div></div>
+<div class="ttc" id="astructxpe_1_1physics_1_1s_box_shape_descriptor_html"><div class="ttname"><a href="structxpe_1_1physics_1_1s_box_shape_descriptor.html">xpe::physics::sBoxShapeDescriptor</a></div><div class="ttdef"><b>Definition</b> <a href="#l00096">physics_manager.hpp:97</a></div></div>
+<div class="ttc" id="astructxpe_1_1physics_1_1s_box_shape_descriptor_html_a051606b0870fe1954d2c12416774df48"><div class="ttname"><a href="structxpe_1_1physics_1_1s_box_shape_descriptor.html#a051606b0870fe1954d2c12416774df48">xpe::physics::sBoxShapeDescriptor::sBoxShapeDescriptor</a></div><div class="ttdeci">sBoxShapeDescriptor(const glm::vec3 &amp;halfExtents)</div><div class="ttdef"><b>Definition</b> <a href="#l00099">physics_manager.hpp:99</a></div></div>
 <div class="ttc" id="astructxpe_1_1physics_1_1s_box_shape_descriptor_html_a76afcf8b7c0f7a678bc16f7aa2e62d9e"><div class="ttname"><a href="structxpe_1_1physics_1_1s_box_shape_descriptor.html#a76afcf8b7c0f7a678bc16f7aa2e62d9e">xpe::physics::sBoxShapeDescriptor::sBoxShapeDescriptor</a></div><div class="ttdeci">sBoxShapeDescriptor()=delete</div></div>
-<div class="ttc" id="astructxpe_1_1physics_1_1s_box_shape_descriptor_html_ad4f5759c1e4707e26115e7c8773664e9"><div class="ttname"><a href="structxpe_1_1physics_1_1s_box_shape_descriptor.html#ad4f5759c1e4707e26115e7c8773664e9">xpe::physics::sBoxShapeDescriptor::HalfExtents</a></div><div class="ttdeci">glm::vec3 HalfExtents</div><div class="ttdef"><b>Definition</b> physics_manager.hpp:102</div></div>
-<div class="ttc" id="astructxpe_1_1physics_1_1s_capsule_shape_descriptor_html"><div class="ttname"><a href="structxpe_1_1physics_1_1s_capsule_shape_descriptor.html">xpe::physics::sCapsuleShapeDescriptor</a></div><div class="ttdef"><b>Definition</b> physics_manager.hpp:86</div></div>
+<div class="ttc" id="astructxpe_1_1physics_1_1s_box_shape_descriptor_html_ad4f5759c1e4707e26115e7c8773664e9"><div class="ttname"><a href="structxpe_1_1physics_1_1s_box_shape_descriptor.html#ad4f5759c1e4707e26115e7c8773664e9">xpe::physics::sBoxShapeDescriptor::HalfExtents</a></div><div class="ttdeci">glm::vec3 HalfExtents</div><div class="ttdef"><b>Definition</b> <a href="#l00102">physics_manager.hpp:102</a></div></div>
+<div class="ttc" id="astructxpe_1_1physics_1_1s_capsule_shape_descriptor_html"><div class="ttname"><a href="structxpe_1_1physics_1_1s_capsule_shape_descriptor.html">xpe::physics::sCapsuleShapeDescriptor</a></div><div class="ttdef"><b>Definition</b> <a href="#l00085">physics_manager.hpp:86</a></div></div>
 <div class="ttc" id="astructxpe_1_1physics_1_1s_capsule_shape_descriptor_html_a61158ad802b90d0fd6d8fd8337cfc17c"><div class="ttname"><a href="structxpe_1_1physics_1_1s_capsule_shape_descriptor.html#a61158ad802b90d0fd6d8fd8337cfc17c">xpe::physics::sCapsuleShapeDescriptor::sCapsuleShapeDescriptor</a></div><div class="ttdeci">sCapsuleShapeDescriptor()=delete</div></div>
-<div class="ttc" id="astructxpe_1_1physics_1_1s_capsule_shape_descriptor_html_a835f3869ee5fbf04bfd6d8e7890d2fd7"><div class="ttname"><a href="structxpe_1_1physics_1_1s_capsule_shape_descriptor.html#a835f3869ee5fbf04bfd6d8e7890d2fd7">xpe::physics::sCapsuleShapeDescriptor::sCapsuleShapeDescriptor</a></div><div class="ttdeci">sCapsuleShapeDescriptor(f32 radius, f32 halfHeight)</div><div class="ttdef"><b>Definition</b> physics_manager.hpp:88</div></div>
-<div class="ttc" id="astructxpe_1_1physics_1_1s_capsule_shape_descriptor_html_a8ad1075ad479924eca65379dd2706af3"><div class="ttname"><a href="structxpe_1_1physics_1_1s_capsule_shape_descriptor.html#a8ad1075ad479924eca65379dd2706af3">xpe::physics::sCapsuleShapeDescriptor::Radius</a></div><div class="ttdeci">f32 Radius</div><div class="ttdef"><b>Definition</b> physics_manager.hpp:91</div></div>
-<div class="ttc" id="astructxpe_1_1physics_1_1s_capsule_shape_descriptor_html_aa7edc05c32c2d0c3d3fd3a705f0b6ba7"><div class="ttname"><a href="structxpe_1_1physics_1_1s_capsule_shape_descriptor.html#aa7edc05c32c2d0c3d3fd3a705f0b6ba7">xpe::physics::sCapsuleShapeDescriptor::HalfHeight</a></div><div class="ttdeci">f32 HalfHeight</div><div class="ttdef"><b>Definition</b> physics_manager.hpp:92</div></div>
-<div class="ttc" id="astructxpe_1_1physics_1_1s_plane_shape_descriptor_html"><div class="ttname"><a href="structxpe_1_1physics_1_1s_plane_shape_descriptor.html">xpe::physics::sPlaneShapeDescriptor</a></div><div class="ttdef"><b>Definition</b> physics_manager.hpp:107</div></div>
-<div class="ttc" id="astructxpe_1_1physics_1_1s_plane_shape_descriptor_html_a7d1367152f1377925c58e7979b83a415"><div class="ttname"><a href="structxpe_1_1physics_1_1s_plane_shape_descriptor.html#a7d1367152f1377925c58e7979b83a415">xpe::physics::sPlaneShapeDescriptor::sPlaneShapeDescriptor</a></div><div class="ttdeci">sPlaneShapeDescriptor()</div><div class="ttdef"><b>Definition</b> physics_manager.hpp:108</div></div>
-<div class="ttc" id="astructxpe_1_1physics_1_1s_ragdoll_html"><div class="ttname"><a href="structxpe_1_1physics_1_1s_ragdoll.html">xpe::physics::sRagdoll</a></div><div class="ttdef"><b>Definition</b> physics_manager.hpp:169</div></div>
-<div class="ttc" id="astructxpe_1_1physics_1_1s_ragdoll_html_a3c78e7d1cf49375afb779a32b6f71ad8"><div class="ttname"><a href="structxpe_1_1physics_1_1s_ragdoll.html#a3c78e7d1cf49375afb779a32b6f71ad8">xpe::physics::sRagdoll::Bodyparts</a></div><div class="ttdeci">vector&lt; sActor * &gt; Bodyparts</div><div class="ttdef"><b>Definition</b> physics_manager.hpp:192</div></div>
+<div class="ttc" id="astructxpe_1_1physics_1_1s_capsule_shape_descriptor_html_a835f3869ee5fbf04bfd6d8e7890d2fd7"><div class="ttname"><a href="structxpe_1_1physics_1_1s_capsule_shape_descriptor.html#a835f3869ee5fbf04bfd6d8e7890d2fd7">xpe::physics::sCapsuleShapeDescriptor::sCapsuleShapeDescriptor</a></div><div class="ttdeci">sCapsuleShapeDescriptor(f32 radius, f32 halfHeight)</div><div class="ttdef"><b>Definition</b> <a href="#l00088">physics_manager.hpp:88</a></div></div>
+<div class="ttc" id="astructxpe_1_1physics_1_1s_capsule_shape_descriptor_html_a8ad1075ad479924eca65379dd2706af3"><div class="ttname"><a href="structxpe_1_1physics_1_1s_capsule_shape_descriptor.html#a8ad1075ad479924eca65379dd2706af3">xpe::physics::sCapsuleShapeDescriptor::Radius</a></div><div class="ttdeci">f32 Radius</div><div class="ttdef"><b>Definition</b> <a href="#l00091">physics_manager.hpp:91</a></div></div>
+<div class="ttc" id="astructxpe_1_1physics_1_1s_capsule_shape_descriptor_html_aa7edc05c32c2d0c3d3fd3a705f0b6ba7"><div class="ttname"><a href="structxpe_1_1physics_1_1s_capsule_shape_descriptor.html#aa7edc05c32c2d0c3d3fd3a705f0b6ba7">xpe::physics::sCapsuleShapeDescriptor::HalfHeight</a></div><div class="ttdeci">f32 HalfHeight</div><div class="ttdef"><b>Definition</b> <a href="#l00092">physics_manager.hpp:92</a></div></div>
+<div class="ttc" id="astructxpe_1_1physics_1_1s_plane_shape_descriptor_html"><div class="ttname"><a href="structxpe_1_1physics_1_1s_plane_shape_descriptor.html">xpe::physics::sPlaneShapeDescriptor</a></div><div class="ttdef"><b>Definition</b> <a href="#l00106">physics_manager.hpp:107</a></div></div>
+<div class="ttc" id="astructxpe_1_1physics_1_1s_plane_shape_descriptor_html_a7d1367152f1377925c58e7979b83a415"><div class="ttname"><a href="structxpe_1_1physics_1_1s_plane_shape_descriptor.html#a7d1367152f1377925c58e7979b83a415">xpe::physics::sPlaneShapeDescriptor::sPlaneShapeDescriptor</a></div><div class="ttdeci">sPlaneShapeDescriptor()</div><div class="ttdef"><b>Definition</b> <a href="#l00108">physics_manager.hpp:108</a></div></div>
+<div class="ttc" id="astructxpe_1_1physics_1_1s_ragdoll_html"><div class="ttname"><a href="structxpe_1_1physics_1_1s_ragdoll.html">xpe::physics::sRagdoll</a></div><div class="ttdef"><b>Definition</b> <a href="#l00168">physics_manager.hpp:169</a></div></div>
+<div class="ttc" id="astructxpe_1_1physics_1_1s_ragdoll_html_a3c78e7d1cf49375afb779a32b6f71ad8"><div class="ttname"><a href="structxpe_1_1physics_1_1s_ragdoll.html#a3c78e7d1cf49375afb779a32b6f71ad8">xpe::physics::sRagdoll::Bodyparts</a></div><div class="ttdeci">vector&lt; sActor * &gt; Bodyparts</div><div class="ttdef"><b>Definition</b> <a href="#l00192">physics_manager.hpp:192</a></div></div>
 <div class="ttc" id="astructxpe_1_1physics_1_1s_ragdoll_html_aa867b794021be6821bd4d44f5f6da88e"><div class="ttname"><a href="structxpe_1_1physics_1_1s_ragdoll.html#aa867b794021be6821bd4d44f5f6da88e">xpe::physics::sRagdoll::~sRagdoll</a></div><div class="ttdeci">~sRagdoll()=default</div></div>
-<div class="ttc" id="astructxpe_1_1physics_1_1s_ragdoll_html_aeda9a25ef2fa74f5948681b045346e80"><div class="ttname"><a href="structxpe_1_1physics_1_1s_ragdoll.html#aeda9a25ef2fa74f5948681b045346e80">xpe::physics::sRagdoll::sRagdoll</a></div><div class="ttdeci">sRagdoll(const vector&lt; sActor * &gt; &amp;bodyparts)</div><div class="ttdef"><b>Definition</b> physics_manager.hpp:170</div></div>
-<div class="ttc" id="astructxpe_1_1physics_1_1s_ragdoll_html_afcafb1e0c7980f74ea09073f55b47709"><div class="ttname"><a href="structxpe_1_1physics_1_1s_ragdoll.html#afcafb1e0c7980f74ea09073f55b47709">xpe::physics::sRagdoll::eBodypart</a></div><div class="ttdeci">eBodypart</div><div class="ttdef"><b>Definition</b> physics_manager.hpp:176</div></div>
-<div class="ttc" id="astructxpe_1_1physics_1_1s_sphere_shape_descriptor_html"><div class="ttname"><a href="structxpe_1_1physics_1_1s_sphere_shape_descriptor.html">xpe::physics::sSphereShapeDescriptor</a></div><div class="ttdef"><b>Definition</b> physics_manager.hpp:77</div></div>
+<div class="ttc" id="astructxpe_1_1physics_1_1s_ragdoll_html_aeda9a25ef2fa74f5948681b045346e80"><div class="ttname"><a href="structxpe_1_1physics_1_1s_ragdoll.html#aeda9a25ef2fa74f5948681b045346e80">xpe::physics::sRagdoll::sRagdoll</a></div><div class="ttdeci">sRagdoll(const vector&lt; sActor * &gt; &amp;bodyparts)</div><div class="ttdef"><b>Definition</b> <a href="#l00170">physics_manager.hpp:170</a></div></div>
+<div class="ttc" id="astructxpe_1_1physics_1_1s_ragdoll_html_afcafb1e0c7980f74ea09073f55b47709"><div class="ttname"><a href="structxpe_1_1physics_1_1s_ragdoll.html#afcafb1e0c7980f74ea09073f55b47709">xpe::physics::sRagdoll::eBodypart</a></div><div class="ttdeci">eBodypart</div><div class="ttdef"><b>Definition</b> <a href="#l00175">physics_manager.hpp:176</a></div></div>
+<div class="ttc" id="astructxpe_1_1physics_1_1s_sphere_shape_descriptor_html"><div class="ttname"><a href="structxpe_1_1physics_1_1s_sphere_shape_descriptor.html">xpe::physics::sSphereShapeDescriptor</a></div><div class="ttdef"><b>Definition</b> <a href="#l00076">physics_manager.hpp:77</a></div></div>
 <div class="ttc" id="astructxpe_1_1physics_1_1s_sphere_shape_descriptor_html_a17f9361b0cfab9468c439f0d71beb125"><div class="ttname"><a href="structxpe_1_1physics_1_1s_sphere_shape_descriptor.html#a17f9361b0cfab9468c439f0d71beb125">xpe::physics::sSphereShapeDescriptor::sSphereShapeDescriptor</a></div><div class="ttdeci">sSphereShapeDescriptor()=delete</div></div>
-<div class="ttc" id="astructxpe_1_1physics_1_1s_sphere_shape_descriptor_html_a430c8fb21c235d141e847d4e1b66d572"><div class="ttname"><a href="structxpe_1_1physics_1_1s_sphere_shape_descriptor.html#a430c8fb21c235d141e847d4e1b66d572">xpe::physics::sSphereShapeDescriptor::sSphereShapeDescriptor</a></div><div class="ttdeci">sSphereShapeDescriptor(f32 radius)</div><div class="ttdef"><b>Definition</b> physics_manager.hpp:79</div></div>
-<div class="ttc" id="astructxpe_1_1physics_1_1s_sphere_shape_descriptor_html_a867e5eddcf13838f0a8a1165d9794682"><div class="ttname"><a href="structxpe_1_1physics_1_1s_sphere_shape_descriptor.html#a867e5eddcf13838f0a8a1165d9794682">xpe::physics::sSphereShapeDescriptor::Radius</a></div><div class="ttdeci">f32 Radius</div><div class="ttdef"><b>Definition</b> physics_manager.hpp:81</div></div>
+<div class="ttc" id="astructxpe_1_1physics_1_1s_sphere_shape_descriptor_html_a430c8fb21c235d141e847d4e1b66d572"><div class="ttname"><a href="structxpe_1_1physics_1_1s_sphere_shape_descriptor.html#a430c8fb21c235d141e847d4e1b66d572">xpe::physics::sSphereShapeDescriptor::sSphereShapeDescriptor</a></div><div class="ttdeci">sSphereShapeDescriptor(f32 radius)</div><div class="ttdef"><b>Definition</b> <a href="#l00079">physics_manager.hpp:79</a></div></div>
+<div class="ttc" id="astructxpe_1_1physics_1_1s_sphere_shape_descriptor_html_a867e5eddcf13838f0a8a1165d9794682"><div class="ttname"><a href="structxpe_1_1physics_1_1s_sphere_shape_descriptor.html#a867e5eddcf13838f0a8a1165d9794682">xpe::physics::sSphereShapeDescriptor::Radius</a></div><div class="ttdeci">f32 Radius</div><div class="ttdef"><b>Definition</b> <a href="#l00081">physics_manager.hpp:81</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li><li class="navelem"><a class="el" href="dir_1196fceec8cdf035bd6eb95fe8dddeb4.html">physics</a></li><li class="navelem"><a class="el" href="physics__manager_8hpp.html">physics_manager.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

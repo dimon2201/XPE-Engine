@@ -1,0 +1,140 @@
+\doxysection{json.\+cpp}
+\hypertarget{json_8cpp_source}{}\label{json_8cpp_source}\index{engine/src/res/json.cpp@{engine/src/res/json.cpp}}
+\mbox{\hyperlink{json_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{json_8hpp}{res/json.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00003}00003\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00005}\mbox{\hyperlink{namespacexpe_1_1res}{00005}}\ \ \ \ \ \textcolor{keyword}{namespace\ }res\ \{}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00007}\mbox{\hyperlink{namespacexpe_1_1res_a457564438c0393afed9708a5e9da8433}{00007}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1res_a457564438c0393afed9708a5e9da8433}{ReadJsonFile}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}},\ \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{cJson}}\&\ \textcolor{keywordtype}{object})}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00008}00008\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00009}00009\ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}},\ std::ios::in\ |\ std::ios::binary);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00011}00011\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}}.is\_open())}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00013}00013\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{root}}\ =\ json::parse(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}});}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{object}.FromJson(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{root}});}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00023}\mbox{\hyperlink{namespacexpe_1_1res_ab18afec3554029bc51ab158fc31b846c}{00023}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1res_ab18afec3554029bc51ab158fc31b846c}{WriteJsonFile}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}},\ \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{cJson}}\&\ \textcolor{keywordtype}{object})}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ std::ofstream\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}},\ std::ios::out\ |\ std::ios::binary);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}}.is\_open())}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{root}};}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{object}.ToJson(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{root}});}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}}\ <<\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{root}}.dump();}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00040}00040\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00042}00042\ \}}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00044}\mbox{\hyperlink{namespaceglm}{00044}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceglm}{glm}}\ \{}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00046}\mbox{\hyperlink{namespaceglm_a6ca3f0bb1f4567a945315161608f3fb8}{00046}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceglm_a6ca3f0bb1f4567a945315161608f3fb8}{to\_json}}(\mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}}\&\ j,\ \textcolor{keyword}{const}\ glm::mat2\&\ m)}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00047}00047\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ j\ =\ \mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}}\ \{}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m00"{}},\ m[0][0]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m01"{}},\ m[0][1]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m10"{}},\ m[1][0]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m11"{}},\ m[1][1]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00054}00054\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00056}\mbox{\hyperlink{namespaceglm_a5cdb13e0404806cd221c3870fc7b9760}{00056}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceglm_a5cdb13e0404806cd221c3870fc7b9760}{from\_json}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}}\&\ j,\ glm::mat2\&\ m)}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00057}00057\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m00"{}}).get\_to(m[0][0]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m01"{}}).get\_to(m[0][1]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m10"{}}).get\_to(m[1][0]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m11"{}}).get\_to(m[1][1]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00062}00062\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00064}\mbox{\hyperlink{namespaceglm_aac16aab5372625b0e1e8256ba3d6c8a5}{00064}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceglm_a6ca3f0bb1f4567a945315161608f3fb8}{to\_json}}(\mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}}\&\ j,\ \textcolor{keyword}{const}\ glm::mat3\&\ m)}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00065}00065\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ j\ =\ \mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}}\ \{}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m00"{}},\ m[0][0]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m01"{}},\ m[0][1]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m02"{}},\ m[0][2]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m10"{}},\ m[1][0]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m11"{}},\ m[1][1]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m12"{}},\ m[1][2]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m20"{}},\ m[2][0]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m21"{}},\ m[2][1]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m22"{}},\ m[2][2]\ \}}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00077}00077\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00079}\mbox{\hyperlink{namespaceglm_a05f58758cca3383a1c393639cde56cad}{00079}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceglm_a5cdb13e0404806cd221c3870fc7b9760}{from\_json}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}}\&\ j,\ glm::mat3\&\ m)}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00080}00080\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m00"{}}).get\_to(m[0][0]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m01"{}}).get\_to(m[0][1]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m02"{}}).get\_to(m[0][2]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m10"{}}).get\_to(m[1][0]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m11"{}}).get\_to(m[1][1]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m12"{}}).get\_to(m[1][2]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m20"{}}).get\_to(m[2][0]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m21"{}}).get\_to(m[2][1]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m22"{}}).get\_to(m[2][2]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00090}00090\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00092}\mbox{\hyperlink{namespaceglm_a5e6943721882e8ab806468897263d8ad}{00092}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceglm_a6ca3f0bb1f4567a945315161608f3fb8}{to\_json}}(\mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}}\&\ j,\ \textcolor{keyword}{const}\ glm::mat4\&\ m)}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00093}00093\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ j\ =\ \mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}}\ \{}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m00"{}},\ m[0][0]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m01"{}},\ m[0][1]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m02"{}},\ m[0][2]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m03"{}},\ m[0][3]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m10"{}},\ m[1][0]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m11"{}},\ m[1][1]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m12"{}},\ m[1][2]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m13"{}},\ m[1][3]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m20"{}},\ m[2][0]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m21"{}},\ m[2][1]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m22"{}},\ m[2][2]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m23"{}},\ m[2][3]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m30"{}},\ m[3][0]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m31"{}},\ m[3][1]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m32"{}},\ m[3][2]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}m33"{}},\ m[3][3]\ \},}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00112}00112\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00114}\mbox{\hyperlink{namespaceglm_a68ed9b5561fba2143e62fb81a499dfe0}{00114}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceglm_a5cdb13e0404806cd221c3870fc7b9760}{from\_json}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{json_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json}}\&\ j,\ glm::mat4\&\ m)}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00115}00115\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m00"{}}).get\_to(m[0][0]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m01"{}}).get\_to(m[0][1]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m02"{}}).get\_to(m[0][2]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m03"{}}).get\_to(m[0][3]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m10"{}}).get\_to(m[1][0]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m11"{}}).get\_to(m[1][1]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m12"{}}).get\_to(m[1][2]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m13"{}}).get\_to(m[1][3]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m20"{}}).get\_to(m[2][0]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m21"{}}).get\_to(m[2][1]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m22"{}}).get\_to(m[2][2]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m23"{}}).get\_to(m[2][3]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m30"{}}).get\_to(m[3][0]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m31"{}}).get\_to(m[3][1]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m32"{}}).get\_to(m[3][2]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ j.at(\textcolor{stringliteral}{"{}m33"{}}).get\_to(m[3][3]);}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00132}00132\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{json_8cpp_source_l00134}00134\ \}}
+
+\end{DoxyCode}

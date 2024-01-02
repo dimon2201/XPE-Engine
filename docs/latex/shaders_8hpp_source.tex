@@ -2,203 +2,203 @@
 \hypertarget{shaders_8hpp_source}{}\label{shaders_8hpp_source}\index{engine/src/rendering/shaders.hpp@{engine/src/rendering/shaders.hpp}}
 \mbox{\hyperlink{shaders_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{shader_8hpp}{rendering/core/shader.hpp}}>}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{buffers_8hpp}{rendering/buffers.hpp}}>}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{geometry_8hpp}{rendering/geometry/geometry.hpp}}>}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{font_8hpp}{rendering/font/font.hpp}}>}}
-\DoxyCodeLine{00007\ }
-\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
-\DoxyCodeLine{00009\ }
-\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{namespace\ }render\ \{}
-\DoxyCodeLine{00011\ }
-\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_instancing_shader}{cInstancingShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_default_shader}{cDefaultShader}}}
-\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00014\ }
-\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_instancing_shader}{cInstancingShader}}(\mbox{\hyperlink{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04}{eCategory}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{category}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}});}
-\DoxyCodeLine{00017\ }
-\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ DrawInstanced(}
-\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}},}
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_info}{sGeometryInfo}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{geometryInfo}},}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}(\mbox{\hyperlink{namespacexpe_1_1ecs_ac3e87a77d3ea7391b91ea14a0c999ac5}{EntityID}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{entityId}},\ \mbox{\hyperlink{structxpe_1_1render_1_1s_render_instance}{sRenderInstance}}\&)>\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{callback}}\ =\ [](\mbox{\hyperlink{namespacexpe_1_1ecs_ac3e87a77d3ea7391b91ea14a0c999ac5}{EntityID}},\ \mbox{\hyperlink{structxpe_1_1render_1_1s_render_instance}{sRenderInstance}}\&)\ \{\}}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ );}
-\DoxyCodeLine{00024\ }
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_instance_buffer}{sInstanceBuffer}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_instancing_shader_a70b3f1e8e8ca450f06a4127e0793704e}{m\_InstanceBuffer}};}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00027\ }
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_opaque_shader}{cOpaqueShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_instancing_shader}{cInstancingShader}}}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_opaque_shader}{cOpaqueShader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}});}
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Draw(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{ecs::cScene}}\ *\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00035\ }
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_transparent_shader}{cTransparentShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_instancing_shader}{cInstancingShader}}}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_transparent_shader}{cTransparentShader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}});}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Draw(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{ecs::cScene}}\ *\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_shadow_shader}{cShadowShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_instancing_shader}{cInstancingShader}}}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_shadow_shader}{cShadowShader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}});}
-\DoxyCodeLine{00048\ }
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ DrawShadow(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}},\ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{lightIndex}});}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ InitPrepass()\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00053\ }
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_directional_shadow_shader}{cDirectionalShadowShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_shadow_shader}{cShadowShader}}}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_directional_shadow_shader}{cDirectionalShadowShader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}});}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Draw(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00060\ }
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_point_shadow_shader}{cPointShadowShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_shadow_shader}{cShadowShader}}}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_point_shadow_shader}{cPointShadowShader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}});}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Draw(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_spot_shadow_shader}{cSpotShadowShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_shadow_shader}{cShadowShader}}}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_spot_shadow_shader}{cSpotShadowShader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}});}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Draw(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00074\ }
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_skybox_shader}{cSkyboxShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_default_shader}{cDefaultShader}}}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_skybox_shader}{cSkyboxShader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}});}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_skybox_shader}{\string~cSkyboxShader}}()\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00080\ }
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Draw(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00082\ }
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ InitOpaque()\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00086\ }
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_composite_transparent_shader}{cCompositeTransparentShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_default_shader}{cDefaultShader}}}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_composite_transparent_shader}{cCompositeTransparentShader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}},\ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sampleCount}});}
-\DoxyCodeLine{00091\ }
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Draw(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{ecs::cScene}}\ *\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00093\ }
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ InitPostFX()\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00097\ }
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_ssao_shader}{cSsaoShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_default_shader}{cDefaultShader}}}
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_ssao_shader}{cSsaoShader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}},\ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sampleCount}});}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_ssao_shader}{\string~cSsaoShader}}();}
-\DoxyCodeLine{00103\ }
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Draw(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{ecs::cScene}}\ *\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00106\ }
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_final_shader}{cFinalShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_default_shader}{cDefaultShader}}}
-\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_final_shader}{cFinalShader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}},\ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sampleCount}});}
-\DoxyCodeLine{00111\ }
-\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Draw(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{ecs::cScene}}\ *\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00114\ }
-\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_widget_shader}{cWidgetShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_default_shader}{cDefaultShader}}}
-\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00117\ }
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_widget_shader}{cWidgetShader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}});}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Draw(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00121\ }
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ DrawWidgets();}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateWidget2D(}
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{projection}},}
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1math_1_1s_transform}{sTransform}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{transform}},}
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ glm::vec4\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{color}},}
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enableTexture}},}
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_atlas_1_1s_location}{sAtlas::sLocation}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{atlasLocation}},}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fillFrame}},}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pressed}},}
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}(\mbox{\hyperlink{structxpe_1_1render_1_1s_widget_data}{sWidgetData}}\&)>\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pressedCallback}},}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}(\mbox{\hyperlink{structxpe_1_1render_1_1s_widget_data}{sWidgetData}}\&)>\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{hoveredCallback}}}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ );}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateWidget3D(}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{projection}},}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1math_1_1s_transform}{sTransform}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{transform}},}
-\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ glm::vec4\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{color}},}
-\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enableTexture}},}
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_atlas_1_1s_location}{sAtlas::sLocation}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{atlasLocation}},}
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fillFrame}},}
-\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pressed}},}
-\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}(\mbox{\hyperlink{structxpe_1_1render_1_1s_widget_data}{sWidgetData}}\&)>\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pressedCallback}},}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}(\mbox{\hyperlink{structxpe_1_1render_1_1s_widget_data}{sWidgetData}}\&)>\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{hoveredCallback}}}
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ );}
-\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ IsHovered2D(\textcolor{keyword}{const}\ glm::mat4\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{modelMatrix}},\ \textcolor{keyword}{const}\ glm::vec2\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{mousePos}});}
-\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ IsHovered3D(\textcolor{keyword}{const}\ glm::mat4\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{modelMatrix}},\ \textcolor{keyword}{const}\ glm::vec2\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{mousePos}});}
-\DoxyCodeLine{00148\ }
-\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry}{sGeometry}}\ m\_Quad;}
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_info}{sGeometryInfo}}\ m\_QuadInfo;}
-\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_widget_buffer}{sWidgetBuffer}}\ m\_WidgetBuffer;}
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ m\_Projection2D;}
-\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ m\_Projection3D;}
-\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00155\ }
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_text_shader}{cTextShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_default_shader}{cDefaultShader}}}
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00158\ }
-\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_text_shader}{cTextShader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}});}
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_text_shader}{\string~cTextShader}}();}
-\DoxyCodeLine{00162\ }
-\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Draw(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00164\ }
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ DrawTexts(\mbox{\hyperlink{structxpe_1_1render_1_1s_texture}{sTexture}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fontAtlas}});}
-\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateText2D(}
-\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{projection}},}
-\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1math_1_1s_transform}{sTransform}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{transform}},}
-\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{textIndex}},}
-\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_font}{sFont}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{font}},}
-\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{textString}},}
-\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ glm::vec4\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{textColor}},}
-\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fillFrame}}}
-\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ );}
-\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateText3D(}
-\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{projection}},}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1math_1_1s_transform}{sTransform}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{transform}},}
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{textIndex}},}
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_font}{sFont}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{font}},}
-\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{textString}},}
-\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ glm::vec4\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{textColor}},}
-\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fillFrame}}}
-\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ );}
-\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ IsHovered2D(\textcolor{keyword}{const}\ glm::mat4\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{modelMatrix}},\ \textcolor{keyword}{const}\ glm::vec2\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{mousePos}});}
-\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ IsHovered3D(\textcolor{keyword}{const}\ glm::mat4\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{modelMatrix}},\ \textcolor{keyword}{const}\ glm::vec2\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{mousePos}});}
-\DoxyCodeLine{00187\ }
-\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry}{sGeometry}}\ m\_Quad;}
-\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_info}{sGeometryInfo}}\ m\_QuadInfo;}
-\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_char_buffer}{sCharBuffer}}\ m\_CharBuffer;}
-\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_text_buffer}{sTextBuffer}}\ m\_TextBuffer;}
-\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ m\_Projection2D;}
-\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ m\_Projection3D;}
-\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00195\ }
-\DoxyCodeLine{00196\ \ \ \ \ \}}
-\DoxyCodeLine{00197\ }
-\DoxyCodeLine{00198\ \}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{shader_8hpp}{rendering/core/shader.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{buffers_8hpp}{rendering/buffers.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{geometry_8hpp}{rendering/geometry/geometry.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{font_8hpp}{rendering/font/font.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00008}00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00010}00010\ \ \ \ \ \textcolor{keyword}{namespace\ }render\ \{}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00012}\mbox{\hyperlink{classxpe_1_1render_1_1c_instancing_shader}{00012}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_instancing_shader}{cInstancingShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_default_shader}{cDefaultShader}}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00013}00013\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_instancing_shader}{cInstancingShader}}(\mbox{\hyperlink{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04}{eCategory}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{category}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}});}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ DrawInstanced(}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_info}{sGeometryInfo}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{geometryInfo}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}(\mbox{\hyperlink{namespacexpe_1_1ecs_ac3e87a77d3ea7391b91ea14a0c999ac5}{EntityID}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{entityId}},\ \mbox{\hyperlink{structxpe_1_1render_1_1s_render_instance}{sRenderInstance}}\&)>\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{callback}}\ =\ [](\mbox{\hyperlink{namespacexpe_1_1ecs_ac3e87a77d3ea7391b91ea14a0c999ac5}{EntityID}},\ \mbox{\hyperlink{structxpe_1_1render_1_1s_render_instance}{sRenderInstance}}\&)\ \{\}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00025}\mbox{\hyperlink{classxpe_1_1render_1_1c_instancing_shader_a70b3f1e8e8ca450f06a4127e0793704e}{00025}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_instance_buffer}{sInstanceBuffer}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_instancing_shader_a70b3f1e8e8ca450f06a4127e0793704e}{m\_InstanceBuffer}};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00028}\mbox{\hyperlink{classxpe_1_1render_1_1c_opaque_shader}{00028}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_opaque_shader}{cOpaqueShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_instancing_shader}{cInstancingShader}}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_opaque_shader}{cOpaqueShader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}});}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Draw(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{ecs::cScene}}\ *\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00036}\mbox{\hyperlink{classxpe_1_1render_1_1c_transparent_shader}{00036}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_transparent_shader}{cTransparentShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_instancing_shader}{cInstancingShader}}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_transparent_shader}{cTransparentShader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}});}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Draw(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{ecs::cScene}}\ *\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00044}\mbox{\hyperlink{classxpe_1_1render_1_1c_shadow_shader}{00044}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_shadow_shader}{cShadowShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_instancing_shader}{cInstancingShader}}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_shadow_shader}{cShadowShader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}});}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ DrawShadow(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}},\ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{lightIndex}});}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ InitPrepass()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00054}\mbox{\hyperlink{classxpe_1_1render_1_1c_directional_shadow_shader}{00054}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_directional_shadow_shader}{cDirectionalShadowShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_shadow_shader}{cShadowShader}}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_directional_shadow_shader}{cDirectionalShadowShader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}});}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Draw(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00061}\mbox{\hyperlink{classxpe_1_1render_1_1c_point_shadow_shader}{00061}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_point_shadow_shader}{cPointShadowShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_shadow_shader}{cShadowShader}}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_point_shadow_shader}{cPointShadowShader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}});}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Draw(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00068}\mbox{\hyperlink{classxpe_1_1render_1_1c_spot_shadow_shader}{00068}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_spot_shadow_shader}{cSpotShadowShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_shadow_shader}{cShadowShader}}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_spot_shadow_shader}{cSpotShadowShader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}});}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Draw(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00075}\mbox{\hyperlink{classxpe_1_1render_1_1c_skybox_shader}{00075}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_skybox_shader}{cSkyboxShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_default_shader}{cDefaultShader}}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_skybox_shader}{cSkyboxShader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}});}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_skybox_shader}{\string~cSkyboxShader}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Draw(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ InitOpaque()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00087}\mbox{\hyperlink{classxpe_1_1render_1_1c_composite_transparent_shader}{00087}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_composite_transparent_shader}{cCompositeTransparentShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_default_shader}{cDefaultShader}}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_composite_transparent_shader}{cCompositeTransparentShader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}},\ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sampleCount}});}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Draw(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{ecs::cScene}}\ *\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ InitPostFX()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00098}\mbox{\hyperlink{classxpe_1_1render_1_1c_ssao_shader}{00098}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_ssao_shader}{cSsaoShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_default_shader}{cDefaultShader}}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_ssao_shader}{cSsaoShader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}},\ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sampleCount}});}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_ssao_shader}{\string~cSsaoShader}}();}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Draw(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{ecs::cScene}}\ *\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00107}\mbox{\hyperlink{classxpe_1_1render_1_1c_final_shader}{00107}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_final_shader}{cFinalShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_default_shader}{cDefaultShader}}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_final_shader}{cFinalShader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}},\ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sampleCount}});}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Draw(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{ecs::cScene}}\ *\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00115}\mbox{\hyperlink{classxpe_1_1render_1_1c_widget_shader}{00115}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_widget_shader}{cWidgetShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_default_shader}{cDefaultShader}}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_widget_shader}{cWidgetShader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}});}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Draw(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ DrawWidgets();}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateWidget2D(}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{projection}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1math_1_1s_transform}{sTransform}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{transform}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ glm::vec4\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{color}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enableTexture}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_atlas_1_1s_location}{sAtlas::sLocation}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{atlasLocation}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fillFrame}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pressed}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}(\mbox{\hyperlink{structxpe_1_1render_1_1s_widget_data}{sWidgetData}}\&)>\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pressedCallback}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}(\mbox{\hyperlink{structxpe_1_1render_1_1s_widget_data}{sWidgetData}}\&)>\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{hoveredCallback}}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateWidget3D(}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{projection}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1math_1_1s_transform}{sTransform}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{transform}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ glm::vec4\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{color}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enableTexture}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_atlas_1_1s_location}{sAtlas::sLocation}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{atlasLocation}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fillFrame}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pressed}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}(\mbox{\hyperlink{structxpe_1_1render_1_1s_widget_data}{sWidgetData}}\&)>\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pressedCallback}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}(\mbox{\hyperlink{structxpe_1_1render_1_1s_widget_data}{sWidgetData}}\&)>\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{hoveredCallback}}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ IsHovered2D(\textcolor{keyword}{const}\ glm::mat4\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{modelMatrix}},\ \textcolor{keyword}{const}\ glm::vec2\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{mousePos}});}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ IsHovered3D(\textcolor{keyword}{const}\ glm::mat4\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{modelMatrix}},\ \textcolor{keyword}{const}\ glm::vec2\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{mousePos}});}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry}{sGeometry}}\ m\_Quad;}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_info}{sGeometryInfo}}\ m\_QuadInfo;}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_widget_buffer}{sWidgetBuffer}}\ m\_WidgetBuffer;}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ m\_Projection2D;}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ m\_Projection3D;}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00156}\mbox{\hyperlink{classxpe_1_1render_1_1c_text_shader}{00156}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_text_shader}{cTextShader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_default_shader}{cDefaultShader}}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_text_shader}{cTextShader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}});}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_text_shader}{\string~cTextShader}}();}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Draw(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ DrawTexts(\mbox{\hyperlink{structxpe_1_1render_1_1s_texture}{sTexture}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fontAtlas}});}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateText2D(}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{projection}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1math_1_1s_transform}{sTransform}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{transform}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{textIndex}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_font}{sFont}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{font}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{textString}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ glm::vec4\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{textColor}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fillFrame}}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateText3D(}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{projection}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1math_1_1s_transform}{sTransform}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{transform}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{textIndex}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_font}{sFont}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{font}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{textString}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ glm::vec4\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{textColor}},}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fillFrame}}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ IsHovered2D(\textcolor{keyword}{const}\ glm::mat4\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{modelMatrix}},\ \textcolor{keyword}{const}\ glm::vec2\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{mousePos}});}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ IsHovered3D(\textcolor{keyword}{const}\ glm::mat4\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{modelMatrix}},\ \textcolor{keyword}{const}\ glm::vec2\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{mousePos}});}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry}{sGeometry}}\ m\_Quad;}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_info}{sGeometryInfo}}\ m\_QuadInfo;}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_char_buffer}{sCharBuffer}}\ m\_CharBuffer;}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_text_buffer}{sTextBuffer}}\ m\_TextBuffer;}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ m\_Projection2D;}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ m\_Projection3D;}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00194}00194\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00196}00196\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00197}00197\ }
+\DoxyCodeLine{\Hypertarget{shaders_8hpp_source_l00198}00198\ \}}
 
 \end{DoxyCode}

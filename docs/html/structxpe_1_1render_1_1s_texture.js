@@ -1,0 +1,48 @@
+var structxpe_1_1render_1_1s_texture =
+[
+    [ "eType", "structxpe_1_1render_1_1s_texture.html#a495c63bd3a4c8fa449a25a168f7909c7", [
+      [ "TEXTURE_1D", "structxpe_1_1render_1_1s_texture.html#a495c63bd3a4c8fa449a25a168f7909c7a85975f3555d8eb49414ceb23f293b0e3", null ],
+      [ "TEXTURE_2D", "structxpe_1_1render_1_1s_texture.html#a495c63bd3a4c8fa449a25a168f7909c7acc301ce75e16247f3b96a3907519096c", null ],
+      [ "TEXTURE_2D_MS", "structxpe_1_1render_1_1s_texture.html#a495c63bd3a4c8fa449a25a168f7909c7a0780be97b60994fb8fee7f0d84f15e5f", null ],
+      [ "TEXTURE_2D_DEPTH_STENCIL", "structxpe_1_1render_1_1s_texture.html#a495c63bd3a4c8fa449a25a168f7909c7a52e05a9e7056e6b657eb3fc397403433", null ],
+      [ "TEXTURE_2D_ARRAY", "structxpe_1_1render_1_1s_texture.html#a495c63bd3a4c8fa449a25a168f7909c7a0a9d553de9943da3013fb61a284c8689", null ],
+      [ "TEXTURE_3D", "structxpe_1_1render_1_1s_texture.html#a495c63bd3a4c8fa449a25a168f7909c7a197c970fd2222156ffc203ec66c64bb4", null ],
+      [ "TEXTURE_CUBE", "structxpe_1_1render_1_1s_texture.html#a495c63bd3a4c8fa449a25a168f7909c7a2dfa8fb773797e0343322a33cd625b44", null ],
+      [ "TEXTURE_DEFAULT", "structxpe_1_1render_1_1s_texture.html#a495c63bd3a4c8fa449a25a168f7909c7a1c1fa6ee771ae6e5643eea6259295aac", null ]
+    ] ],
+    [ "eUsage", "structxpe_1_1render_1_1s_texture.html#a38f5cc01d9dbc0bbd30463c0563daa2b", [
+      [ "DEFAULT", "structxpe_1_1render_1_1s_texture.html#a38f5cc01d9dbc0bbd30463c0563daa2ba5b39c8b553c821e7cddc6da64b5bd2ee", null ],
+      [ "STATIC", "structxpe_1_1render_1_1s_texture.html#a38f5cc01d9dbc0bbd30463c0563daa2bafe6f99ef1ec99efbdc19a9786cf1facc", null ],
+      [ "DYNAMIC", "structxpe_1_1render_1_1s_texture.html#a38f5cc01d9dbc0bbd30463c0563daa2ba0fcc90da4811c877ba9f9c12f7d60bc9", null ],
+      [ "STAGING", "structxpe_1_1render_1_1s_texture.html#a38f5cc01d9dbc0bbd30463c0563daa2bab8a1431064f351dbef92871d02bab8cf", null ]
+    ] ],
+    [ "sTexture", "structxpe_1_1render_1_1s_texture.html#a700b7503a37d4f407f2c57287b121a1d", null ],
+    [ "~sTexture", "structxpe_1_1render_1_1s_texture.html#aacf76abd32ef8b66ad73b177086bb6fd", null ],
+    [ "CreateLayer", "structxpe_1_1render_1_1s_texture.html#a2e269ea33914935250859d42dadae69b", null ],
+    [ "Flip", "structxpe_1_1render_1_1s_texture.html#a133c8b74d8bff5b814d265334c7ced00", null ],
+    [ "Flush", "structxpe_1_1render_1_1s_texture.html#a2cdf5d311c6d8c2f0f066e63a2cbb854", null ],
+    [ "FlushLayer", "structxpe_1_1render_1_1s_texture.html#ad6c83752e22730ab10f2fd97c160de63", null ],
+    [ "Free", "structxpe_1_1render_1_1s_texture.html#a9f477cd7cc9f05c9544b5cd7f864f8a4", null ],
+    [ "GenerateMips", "structxpe_1_1render_1_1s_texture.html#a9ea65fd61b1bd856345e485a76611ca9", null ],
+    [ "GetMipLevels", "structxpe_1_1render_1_1s_texture.html#afca3ad09a60227179d3a670ccc977cde", null ],
+    [ "Init", "structxpe_1_1render_1_1s_texture.html#a266c9db8925ad6755a455f20f1375e52", null ],
+    [ "IsResizable", "structxpe_1_1render_1_1s_texture.html#ad6d30c28e7b20bfdfb29b099a371def3", null ],
+    [ "RemoveLayerAt", "structxpe_1_1render_1_1s_texture.html#a0369835873cfc25776640f320e0fad09", null ],
+    [ "Resize", "structxpe_1_1render_1_1s_texture.html#a972b174ae8fa4351f8cecf52e771b92b", null ],
+    [ "ResizePixels", "structxpe_1_1render_1_1s_texture.html#a5d2b4723da07e042cc5d2d9807820fc8", null ],
+    [ "SetResizable", "structxpe_1_1render_1_1s_texture.html#a5b2549ba6691480e47ea4175c584f8f8", null ],
+    [ "WindowFrameResized", "structxpe_1_1render_1_1s_texture.html#af387596e9480a6ea1647b59a5cf59da2", null ],
+    [ "Channels", "structxpe_1_1render_1_1s_texture.html#a10628a7ab9042a9df51147bf76b38c81", null ],
+    [ "Depth", "structxpe_1_1render_1_1s_texture.html#a981813f57d7d1d49d1c8bd3f142c9a96", null ],
+    [ "EnableRenderTarget", "structxpe_1_1render_1_1s_texture.html#a39d0f942dc05ef4c535be42d8ea3d0b0", null ],
+    [ "Format", "structxpe_1_1render_1_1s_texture.html#abb723fd3f4ee9573148bf11fd9491985", null ],
+    [ "Height", "structxpe_1_1render_1_1s_texture.html#a30ea6eae15dadddb4f65afae1a4106e6", null ],
+    [ "InitializeData", "structxpe_1_1render_1_1s_texture.html#ad97d493ce4705e27f8fa3be57b23657d", null ],
+    [ "Layers", "structxpe_1_1render_1_1s_texture.html#a269fc30698e07b48a71b4ee0b5ea2e19", null ],
+    [ "MostDetailedMip", "structxpe_1_1render_1_1s_texture.html#a828db7ee4fc05b358bd43b60ceb69532", null ],
+    [ "SampleCount", "structxpe_1_1render_1_1s_texture.html#ac10f77c7c7b681f8c057d739e927c1fb", null ],
+    [ "Slot", "structxpe_1_1render_1_1s_texture.html#a57c79caedf5201b6ff362b15499313d0", null ],
+    [ "Type", "structxpe_1_1render_1_1s_texture.html#ac31bce368d387d78d37db106f54cc5bf", null ],
+    [ "Usage", "structxpe_1_1render_1_1s_texture.html#ac23d567666987a86801e12b7daefea2d", null ],
+    [ "Width", "structxpe_1_1render_1_1s_texture.html#a6c8207cb90ffe2906a9409638386c6dd", null ]
+];

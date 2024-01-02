@@ -2,84 +2,84 @@
 \hypertarget{macro__constants_8hpp_source}{}\label{macro__constants_8hpp_source}\index{engine/src/core/macro\_constants.hpp@{engine/src/core/macro\_constants.hpp}}
 \mbox{\hyperlink{macro__constants_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ K\_DEPTH\_INVALID\ -\/1.0f}}
-\DoxyCodeLine{00004\ }
-\DoxyCodeLine{00005\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Math\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
-\DoxyCodeLine{00006\ }
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ K\_PI\ 3.14159265359f}}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Memory\ measure\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
-\DoxyCodeLine{00010\ }
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ K\_MEMORY\_KB\ 1024}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ K\_MEMORY\_MB\ (1024\ *\ K\_MEMORY\_KB)}}
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ K\_MEMORY\_GB\ (1024\ *\ K\_MEMORY\_MB)}}
-\DoxyCodeLine{00014\ }
-\DoxyCodeLine{00015\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Shader\ Profiles\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
-\DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ K\_PROFILE\_VERTEX\ \ \ "{}vs\_5\_0"{}}}
-\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ K\_PROFILE\_PIXEL\ \ \ \ "{}ps\_5\_0"{}}}
-\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ K\_PROFILE\_GEOMETRY\ "{}gs\_5\_0"{}}}
-\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ K\_PROFILE\_COMPUTE\ \ "{}cs\_5\_0"{}}}
-\DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Shader\ Entry\ Points\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
-\DoxyCodeLine{00023\ }
-\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ K\_ENTRY\_POINT\_VERTEX\ \ \ "{}vs\_main"{}}}
-\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ K\_ENTRY\_POINT\_PIXEL\ \ \ \ "{}ps\_main"{}}}
-\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ K\_ENTRY\_POINT\_GEOMETRY\ "{}gs\_main"{}}}
-\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ K\_ENTRY\_POINT\_COMPUTE\ \ "{}cs\_main"{}}}
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ K\_SLOT\_DEFAULT\ UINT32\_MAX}}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Structure\ Buffers\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ //}}
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Vertex\ Stage\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ //}}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00035\ \textcolor{comment}{//\ UI}}
-\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ K\_SLOT\_WIDGETS\ 0}}
-\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ K\_SLOT\_CHARS\ 0}}
-\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ K\_SLOT\_TEXTS\ 1}}
-\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ K\_SLOT\_WIDGET\_SAMPLER\ 0}}
-\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ K\_SLOT\_WIDGET\_ATLAS\ 0}}
-\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ K\_SLOT\_FONT\_SAMPLER\ 0}}
-\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ K\_SLOT\_FONT\_ATLAS\ 0}}
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ \textcolor{comment}{//\ Scene}}
-\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ K\_SLOT\_INSTANCES\ 0}}
-\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ K\_SLOT\_SKELETONS\ 1}}
-\DoxyCodeLine{00047\ }
-\DoxyCodeLine{00048\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Pixel\ Stage\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ //}}
-\DoxyCodeLine{00049\ }
-\DoxyCodeLine{00050\ \textcolor{comment}{//\ materials}}
-\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ K\_SLOT\_MATERIAL\_SAMPLER\ 0}}
-\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ K\_SLOT\_MATERIALS\ 0}}
-\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ K\_SLOT\_ALBEDO\ 1}}
-\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ K\_SLOT\_BUMPING\ 2}}
-\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ K\_SLOT\_PARALLAX\ 3}}
-\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ K\_SLOT\_METALLIC\ 4}}
-\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ K\_SLOT\_ROUGHNESS\ 5}}
-\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ K\_SLOT\_AO\ 6}}
-\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ K\_SLOT\_EMISSION\ 7}}
-\DoxyCodeLine{00060\ }
-\DoxyCodeLine{00061\ \textcolor{comment}{//\ lights}}
-\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ K\_SLOT\_DIRECT\_LIGHTS\ 8}}
-\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ K\_SLOT\_POINT\_LIGHTS\ 9}}
-\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ K\_SLOT\_SPOT\_LIGHTS\ 10}}
-\DoxyCodeLine{00065\ }
-\DoxyCodeLine{00066\ \textcolor{comment}{//\ shadows}}
-\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ K\_SLOT\_SHADOW\_ATLAS\ 11}}
-\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ K\_SLOT\_SHADOW\_SAMPLER\ 1}}
-\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ K\_SLOT\_SHADOW\_PCF\ 0}}
-\DoxyCodeLine{00070\ }
-\DoxyCodeLine{00071\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Constant\ Buffers\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ //}}
-\DoxyCodeLine{00072\ }
-\DoxyCodeLine{00073\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Vertex\ Stage\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ //}}
-\DoxyCodeLine{00074\ }
-\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ K\_SLOT\_CAMERA\ 0}}
-\DoxyCodeLine{00076\ }
-\DoxyCodeLine{00077\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Pixel\ Stage\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ //}}
-\DoxyCodeLine{00078\ }
-\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ K\_SLOT\_SSAO\ 0}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00003}\mbox{\hyperlink{macro__constants_8hpp_a85e6337346a6ea4f556bebea44119253}{00003}}\ \textcolor{preprocessor}{\#define\ K\_DEPTH\_INVALID\ -\/1.0f}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00005}00005\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Math\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00007}\mbox{\hyperlink{macro__constants_8hpp_a7f5d931d5fbaeacdfc2efacf4175b298}{00007}}\ \textcolor{preprocessor}{\#define\ K\_PI\ 3.14159265359f}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00009}00009\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Memory\ measure\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00011}\mbox{\hyperlink{macro__constants_8hpp_a1f8a407cbad0acdc37be099e2cc86baa}{00011}}\ \textcolor{preprocessor}{\#define\ K\_MEMORY\_KB\ 1024}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00012}\mbox{\hyperlink{macro__constants_8hpp_a02ed90f1d23f1fc49883cf0e231d1edc}{00012}}\ \textcolor{preprocessor}{\#define\ K\_MEMORY\_MB\ (1024\ *\ K\_MEMORY\_KB)}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00013}\mbox{\hyperlink{macro__constants_8hpp_a67c5a3e6e5cd32bdf91e31d40ee78cd0}{00013}}\ \textcolor{preprocessor}{\#define\ K\_MEMORY\_GB\ (1024\ *\ K\_MEMORY\_MB)}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00015}00015\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Shader\ Profiles\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00017}\mbox{\hyperlink{macro__constants_8hpp_a2d22a9fda7c68f0389bdc591e97533ca}{00017}}\ \textcolor{preprocessor}{\#define\ K\_PROFILE\_VERTEX\ \ \ "{}vs\_5\_0"{}}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00018}\mbox{\hyperlink{macro__constants_8hpp_aef1338f2ecff3c5574144e98c9475b2b}{00018}}\ \textcolor{preprocessor}{\#define\ K\_PROFILE\_PIXEL\ \ \ \ "{}ps\_5\_0"{}}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00019}\mbox{\hyperlink{macro__constants_8hpp_af8d64bd1af6c56777ef2a273262743d7}{00019}}\ \textcolor{preprocessor}{\#define\ K\_PROFILE\_GEOMETRY\ "{}gs\_5\_0"{}}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00020}\mbox{\hyperlink{macro__constants_8hpp_a7ecc2e6bb743ab97a04929292edc9e0d}{00020}}\ \textcolor{preprocessor}{\#define\ K\_PROFILE\_COMPUTE\ \ "{}cs\_5\_0"{}}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00022}00022\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Shader\ Entry\ Points\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00024}\mbox{\hyperlink{macro__constants_8hpp_a187fca04ed0ba353f82db5669137aa38}{00024}}\ \textcolor{preprocessor}{\#define\ K\_ENTRY\_POINT\_VERTEX\ \ \ "{}vs\_main"{}}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00025}\mbox{\hyperlink{macro__constants_8hpp_aaeeb5334a4a232e31e7fca5b93580b8e}{00025}}\ \textcolor{preprocessor}{\#define\ K\_ENTRY\_POINT\_PIXEL\ \ \ \ "{}ps\_main"{}}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00026}\mbox{\hyperlink{macro__constants_8hpp_afce5797e90e14ecc67a9af5924eb049c}{00026}}\ \textcolor{preprocessor}{\#define\ K\_ENTRY\_POINT\_GEOMETRY\ "{}gs\_main"{}}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00027}\mbox{\hyperlink{macro__constants_8hpp_a3b5ea3a71b2057d627ab8f0b53e7040b}{00027}}\ \textcolor{preprocessor}{\#define\ K\_ENTRY\_POINT\_COMPUTE\ \ "{}cs\_main"{}}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00029}\mbox{\hyperlink{macro__constants_8hpp_a957882f9609425b078baff6f65857f43}{00029}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_DEFAULT\ UINT32\_MAX}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00031}00031\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Structure\ Buffers\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ //}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00033}00033\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Vertex\ Stage\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ //}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00035}00035\ \textcolor{comment}{//\ UI}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00036}\mbox{\hyperlink{macro__constants_8hpp_aeee5bb13dd29a33510cf6eedb79e688f}{00036}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_WIDGETS\ 0}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00037}\mbox{\hyperlink{macro__constants_8hpp_aa497b187bf5238d20687fe45bd2fa864}{00037}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_CHARS\ 0}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00038}\mbox{\hyperlink{macro__constants_8hpp_a696e064280b9ae46de00c7796e6729bf}{00038}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_TEXTS\ 1}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00039}\mbox{\hyperlink{macro__constants_8hpp_a14627b7c6e78a1dee74ad3ff7c2e8cc6}{00039}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_WIDGET\_SAMPLER\ 0}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00040}\mbox{\hyperlink{macro__constants_8hpp_a25c3a64b705621ce38eb5b258b52d603}{00040}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_WIDGET\_ATLAS\ 0}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00041}\mbox{\hyperlink{macro__constants_8hpp_ade20640b54450a3d066eceeeed341511}{00041}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_FONT\_SAMPLER\ 0}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00042}\mbox{\hyperlink{macro__constants_8hpp_a40d988bc2f682c48febfec59326c66d9}{00042}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_FONT\_ATLAS\ 0}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00044}00044\ \textcolor{comment}{//\ Scene}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00045}\mbox{\hyperlink{macro__constants_8hpp_a7aa9c09536f63465cce816ada9c6198d}{00045}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_INSTANCES\ 0}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00046}\mbox{\hyperlink{macro__constants_8hpp_a9c625f55e51989edd74d1ce9c4df4776}{00046}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_SKELETONS\ 1}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00048}00048\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Pixel\ Stage\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ //}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00050}00050\ \textcolor{comment}{//\ materials}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00051}\mbox{\hyperlink{macro__constants_8hpp_abd3add7e8a71e8b76f7ddde13f4dd872}{00051}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_MATERIAL\_SAMPLER\ 0}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00052}\mbox{\hyperlink{macro__constants_8hpp_a1371de9c80b3be24ab606e5ed2579bc0}{00052}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_MATERIALS\ 0}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00053}\mbox{\hyperlink{macro__constants_8hpp_aa42ea15a2dd8e8db222f0ef5b41b382a}{00053}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_ALBEDO\ 1}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00054}\mbox{\hyperlink{macro__constants_8hpp_a1995ccbf83e8506089d9cf4b5516fc01}{00054}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_BUMPING\ 2}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00055}\mbox{\hyperlink{macro__constants_8hpp_a50d0d26800e7825664a38c16f334f5e6}{00055}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_PARALLAX\ 3}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00056}\mbox{\hyperlink{macro__constants_8hpp_aa5c2bd81300aa2f35c1bbfefe8e22fc9}{00056}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_METALLIC\ 4}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00057}\mbox{\hyperlink{macro__constants_8hpp_a28be33e3843004d307f2943cd7238612}{00057}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_ROUGHNESS\ 5}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00058}\mbox{\hyperlink{macro__constants_8hpp_a49221d34edf7442d66b433967b2dcc21}{00058}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_AO\ 6}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00059}\mbox{\hyperlink{macro__constants_8hpp_a6f2ebfba73bfdc52330d43b7bf94c6f7}{00059}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_EMISSION\ 7}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00061}00061\ \textcolor{comment}{//\ lights}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00062}\mbox{\hyperlink{macro__constants_8hpp_af5e23be2d64a830eacc2b7104d50cd93}{00062}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_DIRECT\_LIGHTS\ 8}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00063}\mbox{\hyperlink{macro__constants_8hpp_ae63f50f316d512217ef6f57a69bbe058}{00063}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_POINT\_LIGHTS\ 9}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00064}\mbox{\hyperlink{macro__constants_8hpp_a5163ca2f051525fe5dd1eb3702eb3bc2}{00064}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_SPOT\_LIGHTS\ 10}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00066}00066\ \textcolor{comment}{//\ shadows}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00067}\mbox{\hyperlink{macro__constants_8hpp_ad4aea4f869eaed47721fee63a8ddcd81}{00067}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_SHADOW\_ATLAS\ 11}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00068}\mbox{\hyperlink{macro__constants_8hpp_af94ba6b41910053a120ce7e89cd56f7c}{00068}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_SHADOW\_SAMPLER\ 1}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00069}\mbox{\hyperlink{macro__constants_8hpp_ab00ecd5c7aa4b113b5ef03024f2b4eef}{00069}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_SHADOW\_PCF\ 0}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00071}00071\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Constant\ Buffers\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ //}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00073}00073\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Vertex\ Stage\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ //}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00075}\mbox{\hyperlink{macro__constants_8hpp_a5e65ccfc4325ebb3b4ecb123b2aee29c}{00075}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_CAMERA\ 0}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00077}00077\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Pixel\ Stage\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ //}}
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{macro__constants_8hpp_source_l00079}\mbox{\hyperlink{macro__constants_8hpp_a4e22ca4479658148746f876744072766}{00079}}\ \textcolor{preprocessor}{\#define\ K\_SLOT\_SSAO\ 0}}
 
 \end{DoxyCode}

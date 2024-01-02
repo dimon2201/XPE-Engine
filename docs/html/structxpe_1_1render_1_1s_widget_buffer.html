@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('structxpe_1_1render_1_1s_widget_buffer.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li><li class="navelem"><a class="el" href="structxpe_1_1render_1_1s_widget_buffer.html">sWidgetBuffer</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -86,15 +104,35 @@ $(function() {
 <div class="dynheader">
 Inheritance diagram for xpe::render::sWidgetBuffer:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="structxpe_1_1render_1_1s_widget_buffer.png" usemap="#xpe::render::sWidgetBuffer_map" alt=""/>
-  <map id="xpe::render::sWidgetBuffer_map" name="xpe::render::sWidgetBuffer_map">
-<area href="classxpe_1_1render_1_1s_list_buffer.html" alt="xpe::render::sListBuffer&lt; sWidgetData &gt;" shape="rect" coords="0,168,236,192"/>
-<area href="structxpe_1_1render_1_1s_buffer.html" alt="xpe::render::sBuffer" shape="rect" coords="0,112,236,136"/>
-<area href="structxpe_1_1render_1_1s_resource.html" alt="xpe::render::sResource" shape="rect" coords="0,56,236,80"/>
-<area href="classxpe_1_1core_1_1c_object.html" alt="xpe::core::cObject" shape="rect" coords="0,0,236,24"/>
-  </map>
-</div></div>
+<div class="center"><img src="structxpe_1_1render_1_1s_widget_buffer__inherit__graph.png" border="0" usemap="#axpe_1_1render_1_1s_widget_buffer_inherit__map" alt="Inheritance graph"/></div>
+<map name="axpe_1_1render_1_1s_widget_buffer_inherit__map" id="axpe_1_1render_1_1s_widget_buffer_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,320,181,347"/>
+<area shape="rect" href="classxpe_1_1render_1_1s_list_buffer.html" title=" " alt="" coords="15,229,171,272"/>
+<area shape="poly" title=" " alt="" coords="96,288,96,319,90,319,90,288"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_buffer.html" title=" " alt="" coords="26,155,160,181"/>
+<area shape="poly" title=" " alt="" coords="96,197,96,229,90,229,90,197"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_resource.html" title=" " alt="" coords="15,80,171,107"/>
+<area shape="poly" title=" " alt="" coords="96,122,96,154,90,154,90,122"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="29,5,157,32"/>
+<area shape="poly" title=" " alt="" coords="96,48,96,80,90,80,90,48"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for xpe::render::sWidgetBuffer:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_widget_buffer__coll__graph.png" border="0" usemap="#axpe_1_1render_1_1s_widget_buffer_coll__map" alt="Collaboration graph"/></div>
+<map name="axpe_1_1render_1_1s_widget_buffer_coll__map" id="axpe_1_1render_1_1s_widget_buffer_coll__map">
+<area shape="rect" title=" " alt="" coords="5,320,181,347"/>
+<area shape="rect" href="classxpe_1_1render_1_1s_list_buffer.html" title=" " alt="" coords="15,229,171,272"/>
+<area shape="poly" title=" " alt="" coords="96,288,96,319,90,319,90,288"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_buffer.html" title=" " alt="" coords="26,155,160,181"/>
+<area shape="poly" title=" " alt="" coords="96,197,96,229,90,229,90,197"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_resource.html" title=" " alt="" coords="15,80,171,107"/>
+<area shape="poly" title=" " alt="" coords="96,122,96,154,90,154,90,122"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="29,5,157,32"/>
+<area shape="poly" title=" " alt="" coords="96,48,96,80,90,80,90,48"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -220,7 +258,10 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a5f8dfd6829fafa6ef35f66123f4d65be inherit pro_attribs_classxpe_1_1render_1_1s_list_buffer" id="r_a5f8dfd6829fafa6ef35f66123f4d65be"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">vector</a>&lt; <a class="el" href="structxpe_1_1render_1_1s_widget_data.html">sWidgetData</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxpe_1_1render_1_1s_list_buffer.html#a5f8dfd6829fafa6ef35f66123f4d65be">m_List</a></td></tr>
 <tr class="separator:a5f8dfd6829fafa6ef35f66123f4d65be inherit pro_attribs_classxpe_1_1render_1_1s_list_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="buffers_8hpp_source.html#l00458">458</a> of file <a class="el" href="buffers_8hpp_source.html">buffers.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a22c1d6f353d7c5ac31eb6ec322999734" name="a22c1d6f353d7c5ac31eb6ec322999734"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a22c1d6f353d7c5ac31eb6ec322999734">&#9670;&#160;</a></span>sWidgetBuffer()</h2>
 
@@ -244,15 +285,21 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="buffers_8hpp_source.html#l00460">460</a> of file <a class="el" href="buffers_8hpp_source.html">buffers.hpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>engine/src/rendering/<a class="el" href="buffers_8hpp_source.html">buffers.hpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li><li class="navelem"><a class="el" href="structxpe_1_1render_1_1s_widget_buffer.html">sWidgetBuffer</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

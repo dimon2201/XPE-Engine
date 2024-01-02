@@ -1,0 +1,7 @@
+<map id="xpe::render::cRenderSystem" name="xpe::render::cRenderSystem">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,155,193,181"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1ecs_1_1c_system.html" title=" " alt="" coords="33,80,165,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="102,122,102,154,96,154,96,122"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="35,5,163,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="102,48,102,80,96,80,96,48"/>
+</map>

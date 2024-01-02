@@ -1,0 +1,12 @@
+<map id="xpe::render::context::BindVSStage" name="xpe::render::context::BindVSStage">
+<area shape="rect" id="Node000001" title=" " alt="" coords="638,39,776,81"/>
+<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="741,25,728,20,707,17,688,19,676,24,671,30,673,38,667,39,666,29,672,20,686,14,707,12,729,14,743,21"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1render_1_1c_default_shader.html#ae049ee7d29afa50b562466bdef95b704" title=" " alt="" coords="408,5,590,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="622,49,590,44,591,39,623,44"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1render_1_1c_canvas.html#a220c846d34dca49160b1d1af669cba2a" title=" " alt="" coords="428,72,571,115"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="624,76,572,84,571,79,623,71"/>
+<area shape="rect" id="Node000004" href="$classxpe_1_1core_1_1c_app.html#a1b8ab19056f84742e5fa02c488cf3f52" title=" " alt="" coords="198,80,360,107"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="412,96,360,96,360,91,412,91"/>
+<area shape="rect" id="Node000005" href="$classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,80,150,107"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="182,96,150,96,150,91,182,91"/>
+</map>

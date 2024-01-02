@@ -1,0 +1,13 @@
+<map id="xpe::render::context::VSBindSampler" name="xpe::render::context::VSBindSampler">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,88,143,131"/>
+<area shape="rect" id="Node000002" href="$namespacexpe_1_1render_1_1context.html#aa422283e5b1e7f0ec37bce4e205040b1" title=" " alt="" coords="191,29,328,72"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,85,175,75,177,80,144,90"/>
+<area shape="rect" id="Node000003" href="$namespacexpe_1_1render_1_1context.html#a378adc3598118f270308a9c303641443" title=" " alt="" coords="376,129,513,172"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="143,113,328,132,361,136,360,141,328,137,143,118"/>
+<area shape="rect" id="Node000004" href="$namespacexpe_1_1render_1_1context.html#a20d1920aae42b9edcf360b04d4ec08b8" title=" " alt="" coords="191,171,328,213"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="125,129,198,162,195,167,123,134"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="224,29,222,19,228,10,241,5,259,3,279,5,291,11,289,16,278,10,259,8,242,10,232,15,227,21,229,28"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="409,129,408,119,414,110,426,105,445,103,465,105,477,111,474,116,463,110,445,108,427,110,417,115,413,121,414,128"/>
+<area shape="poly" id="edge6_Node000004_Node000003" title=" " alt="" coords="328,174,360,167,361,172,329,179"/>
+<area shape="poly" id="edge7_Node000004_Node000004" title=" " alt="" coords="224,170,222,161,228,152,241,146,259,144,279,146,291,153,289,157,278,152,259,149,242,151,232,156,227,162,229,170"/>
+</map>

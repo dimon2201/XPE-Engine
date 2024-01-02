@@ -26,3 +26,9 @@
 [submodule "engine/thirdparty/entt"]
 	path = engine/thirdparty/entt
 	url = https://github.com/skypjack/entt.git
+[submodule "engine/thirdparty/doxygen-awesome-css"]
+	path = engine/thirdparty/doxygen-awesome-css
+	url = https://github.com/jothepro/doxygen-awesome-css.git
+[submodule "docs/css/doxygen-awesome-css"]
+	path = docs/css/doxygen-awesome-css
+	url = https://github.com/jothepro/doxygen-awesome-css.git

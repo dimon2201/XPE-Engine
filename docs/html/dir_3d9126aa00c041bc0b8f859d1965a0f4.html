@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('dir_3d9126aa00c041bc0b8f859d1965a0f4.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,15 +92,73 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle"><div class="title">src Directory Reference</div></div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Directory dependency graph for src:</div>
+<div class="dyncontent">
+<div class="center"><img src="dir_3d9126aa00c041bc0b8f859d1965a0f4_dep.png" border="0" usemap="#adir__3d9126aa00c041bc0b8f859d1965a0f4__dep" alt="engine/src"/></div>
+<map name="adir__3d9126aa00c041bc0b8f859d1965a0f4__dep" id="adir__3d9126aa00c041bc0b8f859d1965a0f4__dep">
+<area shape="rect" href="dir_5e835386694ce392648cfcf102577fe3.html" title="core" alt="" coords="82,139,129,165"/>
+<area shape="poly" href="dir_000019_000003.html" alt="" coords="211,92,142,133,139,128,209,88"/>
+<area shape="rect" href="dir_000019_000003.html" title="24" alt="" coords="140,128,154,144"/>
+<area shape="rect" href="dir_73cab53f03832bd35660497d6d17d469.html" title="ecs" alt="" coords="119,288,161,315"/>
+<area shape="poly" href="dir_000019_000006.html" alt="" coords="237,90,248,118,257,157,259,200,255,221,246,241,233,259,215,273,177,292,175,287,212,269,229,255,242,239,250,220,254,200,252,158,243,120,232,92"/>
+<area shape="rect" href="dir_000019_000006.html" title="9" alt="" coords="178,289,185,305"/>
+<area shape="rect" href="dir_f8c22eb530ce806c9f0ee03801c99f37.html" title="math" alt="" coords="179,139,229,165"/>
+<area shape="poly" href="dir_000019_000013.html" alt="" coords="228,91,216,125,211,123,223,90"/>
+<area shape="rect" href="dir_000019_000013.html" title="1" alt="" coords="219,116,226,132"/>
+<area shape="rect" href="dir_1196fceec8cdf035bd6eb95fe8dddeb4.html" title="physics" alt="" coords="166,213,232,240"/>
+<area shape="poly" href="dir_000019_000015.html" alt="" coords="212,92,188,112,169,140,166,155,168,170,182,199,177,201,163,171,161,154,164,138,184,109,209,88"/>
+<area shape="rect" href="dir_000019_000015.html" title="3" alt="" coords="181,185,188,201"/>
+<area shape="rect" href="dir_0c92e0ec2b3a83cff45176222669dd0e.html" title="res" alt="" coords="280,139,320,165"/>
+<area shape="poly" href="dir_000019_000018.html" alt="" coords="243,89,279,125,275,129,239,92"/>
+<area shape="rect" href="dir_000019_000018.html" title="2" alt="" coords="277,111,284,127"/>
+<area shape="rect" href="dir_19e277690a1829304e766a2009d3edd1.html" title="stl" alt="" coords="309,213,347,240"/>
+<area shape="poly" href="dir_000019_000020.html" alt="" coords="250,81,294,100,317,116,334,137,340,152,342,169,339,199,334,198,337,169,335,154,330,140,313,120,291,105,248,86"/>
+<area shape="rect" href="dir_000019_000020.html" title="4" alt="" coords="342,190,349,206"/>
+<area shape="rect" href="dir_2afa4a2c4df85670c270dbd0d609878e.html" title="anim" alt="" coords="65,213,114,240"/>
+<area shape="poly" href="dir_000000_000006.html" alt="" coords="93,239,117,275,112,278,89,242"/>
+<area shape="rect" href="dir_000000_000006.html" title="1" alt="" coords="116,260,123,276"/>
+<area shape="rect" href="dir_c82fe33ead33fcc3829b24ace9891300.html" title="rendering" alt="" coords="52,363,127,389"/>
+<area shape="poly" href="dir_000000_000017.html" alt="" coords="87,241,83,291,85,347,79,347,78,291,81,240"/>
+<area shape="rect" href="dir_000000_000017.html" title="2" alt="" coords="87,335,94,351"/>
+<area shape="rect" href="dir_631c8843ac195263795098473f2aa130.html" title="audio" alt="" coords="191,363,244,389"/>
+<area shape="poly" href="dir_000001_000003.html" alt="" coords="229,361,246,332,261,294,266,253,262,233,254,215,237,201,209,187,143,165,144,160,211,182,240,197,258,212,267,231,271,253,266,295,251,335,233,364"/>
+<area shape="rect" href="dir_000001_000003.html" title="1" alt="" coords="141,163,148,179"/>
+<area shape="poly" href="dir_000001_000006.html" alt="" coords="209,364,170,327,174,323,213,360"/>
+<area shape="rect" href="dir_000001_000006.html" title="1" alt="" coords="166,325,173,341"/>
+<area shape="poly" href="dir_000003_000000.html" alt="" coords="105,166,98,199,93,198,100,165"/>
+<area shape="rect" href="dir_000003_000000.html" title="1" alt="" coords="101,189,108,205"/>
+<area shape="poly" href="dir_000003_000001.html" alt="" coords="130,160,190,183,217,197,234,212,242,229,247,247,246,284,237,319,227,349,222,347,232,318,240,283,241,247,237,230,230,215,214,201,187,188,128,165"/>
+<area shape="rect" href="dir_000003_000001.html" title="1" alt="" coords="229,340,236,356"/>
+<area shape="poly" href="dir_000003_000006.html" alt="" coords="113,165,128,213,139,272,134,273,123,214,107,166"/>
+<area shape="rect" href="dir_000003_000006.html" title="1" alt="" coords="141,260,148,276"/>
+<area shape="poly" href="dir_000003_000015.html" alt="" coords="123,164,172,202,169,206,120,168"/>
+<area shape="rect" href="dir_000003_000015.html" title="2" alt="" coords="170,187,177,203"/>
+<area shape="poly" href="dir_000003_000017.html" alt="" coords="91,168,71,188,54,214,48,249,53,286,64,319,77,348,72,350,59,321,48,287,43,249,50,212,67,185,87,164"/>
+<area shape="rect" href="dir_000003_000017.html" title="8" alt="" coords="77,334,84,350"/>
+<area shape="poly" href="dir_000006_000000.html" alt="" coords="136,289,113,253,117,251,140,286"/>
+<area shape="rect" href="dir_000006_000000.html" title="1" alt="" coords="107,252,114,268"/>
+<area shape="poly" href="dir_000006_000001.html" alt="" coords="148,313,187,351,184,355,145,317"/>
+<area shape="rect" href="dir_000006_000001.html" title="1" alt="" coords="185,336,192,352"/>
+<area shape="poly" href="dir_000006_000017.html" alt="" coords="126,317,101,351,96,348,122,314"/>
+<area shape="rect" href="dir_000006_000017.html" title="5" alt="" coords="104,343,111,359"/>
+<area shape="poly" href="dir_000015_000006.html" alt="" coords="191,242,162,277,158,274,186,239"/>
+<area shape="rect" href="dir_000015_000006.html" title="2" alt="" coords="165,271,172,287"/>
+<area shape="rect" href="dir_5023b6ae898e8cb97148492cc641a5cd.html" title="platform" alt="" coords="90,64,158,91"/>
+<area shape="poly" href="dir_000017_000000.html" alt="" coords="92,362,96,312,94,256,99,256,101,312,97,362"/>
+<area shape="rect" href="dir_000017_000000.html" title="1" alt="" coords="85,252,92,268"/>
+<area shape="poly" href="dir_000017_000006.html" alt="" coords="103,361,129,327,133,330,107,364"/>
+<area shape="rect" href="dir_000017_000006.html" title="3" alt="" coords="118,319,125,335"/>
+<area shape="poly" href="dir_000018_000020.html" alt="" coords="307,165,320,198,315,200,302,167"/>
+<area shape="rect" href="dir_000018_000020.html" title="2" alt="" coords="321,185,328,201"/>
+<area shape="rect" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html" alt="" coords="27,53,357,400"/>
+<area shape="rect" href="dir_996f45160da62e1a3d7f6046fad68f51.html" title="engine" alt="" coords="16,16,368,411"/>
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="subdirs" name="subdirs"></a>
 Directories</h2></td></tr>
@@ -110,9 +191,13 @@ Files</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

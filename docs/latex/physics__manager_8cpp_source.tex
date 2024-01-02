@@ -1,0 +1,301 @@
+\doxysection{physics\+\_\+manager.\+cpp}
+\hypertarget{physics__manager_8cpp_source}{}\label{physics__manager_8cpp_source}\index{engine/src/physics/physics\_manager.cpp@{engine/src/physics/physics\_manager.cpp}}
+\mbox{\hyperlink{physics__manager_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <PxPhysics.h>}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{physics__manager_8hpp}{physics/physics\_manager.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{physics_2allocators_8hpp}{physics/allocators.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{callbacks_8hpp}{physics/callbacks.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{components_8hpp}{ecs/components.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <gtx/quaternion.hpp>}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00011}00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00012}00012\ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00013}00013\ \ \ \ \ \textcolor{keyword}{namespace\ }physics}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00014}00014\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ cPhysicsAllocator*\ cPhysicsManager::s\_Allocator\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ cPhysicsErrorCallback*\ cPhysicsManager::s\_ErrorCallback\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ cPhysicsSimulationEventCallback*\ cPhysicsManager::s\_EventCallback\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxFoundation}}*\ cPhysicsManager::s\_Foundation\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxPhysics}}*\ cPhysicsManager::s\_Physics\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ PxCpuDispatcher*\ cPhysicsManager::s\_Dispatcher\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{unordered\_map<string,\ sActor*>}}*\ cPhysicsManager::s\_Actors\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{unordered\_map<string,\ PxScene*>}}*\ cPhysicsManager::s\_Scenes\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00024}\mbox{\hyperlink{namespacexpe_1_1physics_a7816cdaccad0a246b07867c18b673b9b}{00024}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxFilterFlags}}\ \mbox{\hyperlink{namespacexpe_1_1physics_a7816cdaccad0a246b07867c18b673b9b}{FilterShader}}(}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxFilterObjectAttributes}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{attributes0}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxFilterData}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filterData0}},}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxFilterObjectAttributes}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{attributes1}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxFilterData}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filterData1}},}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxPairFlags}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pairFlags}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{constantBlock}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxU32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{constantBlockSize}})}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ let\ triggers\ through}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxFilterObjectIsTrigger}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{attributes0}})\ ||\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxFilterObjectIsTrigger}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{attributes1}}))}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pairFlags}}\ =\ PxPairFlag::eTRIGGER\_DEFAULT;}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ PxFilterFlag::eDEFAULT;}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ generate\ contacts\ for\ all\ that\ were\ not\ filtered\ above}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pairFlags}}\ =\ PxPairFlag::eCONTACT\_DEFAULT;}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filterData0}}.word0\ \&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filterData1}}.word0)\ \&\&\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filterData1}}.word1\ \&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filterData0}}.word1))}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pairFlags}}\ |=\ PxPairFlag::eNOTIFY\_TOUCH\_FOUND;}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ PxFilterFlag::eDEFAULT;}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00044}\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_a37d2691cdf4bf8bf56425ffee6d932ec}{00044}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_a37d2691cdf4bf8bf56425ffee6d932ec}{cPhysicsManager::Init}}(PxCpuDispatcher*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{dispatcher}},\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enableMemoryProfiling}})}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ s\_Allocator\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_allocator}{cPhysicsAllocator}}();}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ s\_ErrorCallback\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_error_callback}{cPhysicsErrorCallback}}();}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ s\_EventCallback\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_simulation_event_callback}{cPhysicsSimulationEventCallback}}();}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ s\_Dispatcher\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{dispatcher}};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ s\_Foundation\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxCreateFoundation}}(}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PX\_PHYSICS\_VERSION}},}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *s\_Allocator,}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *s\_ErrorCallback}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (s\_Foundation\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log__manager_8hpp_a611dbbfa5c2f148b7190b97a12835b5e}{LogError}}(\textcolor{stringliteral}{"{}cPhysicsManager:\ Failed\ to\ initialize\ PhysXFoundation!"{}});}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ s\_Physics\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxCreatePhysics}}(}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PX\_PHYSICS\_VERSION}},}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *s\_Foundation,}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxTolerancesScale}}(),}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enableMemoryProfiling}},}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (s\_Physics\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log__manager_8hpp_a611dbbfa5c2f148b7190b97a12835b5e}{LogError}}(\textcolor{stringliteral}{"{}cPhysicsManager:\ Failed\ to\ initialize\ PhysXPhysics!"{}});}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ s\_Actors\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{unordered\_map<string,\ sActor*>}};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ s\_Scenes\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{unordered\_map<string,\ PxScene*>}};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00080}\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_a4f1601625b22bfa825c44ee871d4f8be}{00080}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_a4f1601625b22bfa825c44ee871d4f8be}{cPhysicsManager::Free}}()}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ s\_Physics-\/>release();}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ s\_Foundation-\/>release();}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ s\_EventCallback;}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00088}\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_a5cd5060de27b26d69c7a1de65acef7e6}{00088}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_a5cd5060de27b26d69c7a1de65acef7e6}{cPhysicsManager::EnableLoggingInfo}}(\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enable}})\ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ s\_ErrorCallback-\/>\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_error_callback_a34a3f282f5bd81e9cee52f8986750fb8}{EnableInfo}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enable}};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00092}\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_af76f425ba35f8fd00fb6f740ea3219f3}{00092}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_af76f425ba35f8fd00fb6f740ea3219f3}{cPhysicsManager::EnableLoggingWarning}}(\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enable}})\ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ s\_ErrorCallback-\/>\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_error_callback_abbeeb19aa0fa65b36ffb21d9f80086a9}{EnableWarning}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enable}};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00096}\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_adce57bf32f9b50791e22c1eafcf3a8a1}{00096}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_adce57bf32f9b50791e22c1eafcf3a8a1}{cPhysicsManager::EnableLoggingError}}(\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enable}})\ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ s\_ErrorCallback-\/>\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_error_callback_a6eb8c3499057b2191f0fb4f2a46f00e6}{EnableError}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enable}};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00100}\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_a8485895993a10de8e7bea43e462665f6}{00100}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor}{sActor}}*\ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_a8485895993a10de8e7bea43e462665f6}{cPhysicsManager::AddActor}}(}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1ecs_1_1c_entity}{cEntity}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{entity}},}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5}{sActor::eActorType}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actorType}},}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ sShapeDescriptor*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{shapeDesc}},}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ glm::vec3\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{linearVelocity}},}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{staticFriction}},}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{dynamicFriction}},}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{restitution}},}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{contactOffset}},}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{restOffset}}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{entityPosition}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{entity}}.GetPosition();}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{position}}\ =\ glm::vec3(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{entityPosition}}.y,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{entityPosition}}.x,\ -\/\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{entityPosition}}.z);}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Creating\ material}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxMaterial}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsMaterial}}\ =\ s\_Physics-\/>createMaterial(}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{staticFriction}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{dynamicFriction}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{restitution}}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Creation\ of\ actor}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxActor}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsActor}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actorType}})}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5a7cf76c15ffb134a3b2f63b8be9e24b4c}{sActor::eActorType::RIGID\_STATIC}}:}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsActor}}\ =\ s\_Physics-\/>createRigidStatic(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxTransform}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{position}}.x,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{position}}.y,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{position}}.z));}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5af3a2fdd374dcb8c7e625e1848b4344c1}{sActor::eActorType::RIGID\_DYNAMIC}}:}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsActor}}\ =\ s\_Physics-\/>createRigidDynamic(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxTransform}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{position}}.x,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{position}}.y,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{position}}.z));}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxRigidDynamic}}*)\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsActor}})-\/>setAngularDamping(0.75f);}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxRigidDynamic}}*)\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsActor}})-\/>setLinearVelocity(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxVec3}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{linearVelocity}}.x,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{linearVelocity}}.y,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{linearVelocity}}.z));}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsActor}}\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{entity}}.GetScene()-\/>PhysicsScene-\/>addActor(*\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsActor}});}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Shape\ creation}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxShape}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsShape}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{shapeDesc}}-\/>Type)}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438ea6f7cea7381e843e2ee0338b4a92b0d43}{eShapeType::SPHERE}}:}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1physics_1_1s_sphere_shape_descriptor}{sSphereShapeDescriptor}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sphereShapeDesc}}\ =\ (\mbox{\hyperlink{structxpe_1_1physics_1_1s_sphere_shape_descriptor}{sSphereShapeDescriptor}}*)\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{shapeDesc}};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsShape}}\ =\ s\_Physics-\/>createShape(}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxSphereGeometry}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sphereShapeDesc}}-\/>Radius),}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsMaterial}}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438ea67586f12c9792da11a4bdf60360d40e9}{eShapeType::CAPSULE}}:}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1physics_1_1s_capsule_shape_descriptor}{sCapsuleShapeDescriptor}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{capsuleShapeDesc}}\ =\ (\mbox{\hyperlink{structxpe_1_1physics_1_1s_capsule_shape_descriptor}{sCapsuleShapeDescriptor}}*)\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{shapeDesc}};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsShape}}\ =\ s\_Physics-\/>createShape(}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxCapsuleGeometry}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{capsuleShapeDesc}}-\/>Radius,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{capsuleShapeDesc}}-\/>HalfHeight),}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsMaterial}}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438eae657cce1913c857166b0475f18668ef5}{eShapeType::BOX}}:}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1physics_1_1s_box_shape_descriptor}{sBoxShapeDescriptor}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{boxShapeDesc}}\ =\ (\mbox{\hyperlink{structxpe_1_1physics_1_1s_box_shape_descriptor}{sBoxShapeDescriptor}}*)\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{shapeDesc}};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsShape}}\ =\ s\_Physics-\/>createShape(}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxBoxGeometry}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{boxShapeDesc}}-\/>HalfExtents.y,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{boxShapeDesc}}-\/>HalfExtents.x,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{boxShapeDesc}}-\/>HalfExtents.z),}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsMaterial}}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438eaad6990fc23cd957328515fde2db852a3}{eShapeType::PLANE}}:}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsShape}}\ =\ s\_Physics-\/>createShape(}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxPlaneGeometry}}(),}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsMaterial}}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsShape}}\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//physicsShape-\/>setFlag(PxShapeFlag::eVISUALIZATION,\ true);}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//physicsShape-\/>setFlag(PxShapeFlag::eSIMULATION\_SHAPE,\ true);}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//shape-\/>setFlag(PxShapeFlag::eTRIGGER\_SHAPE,\ true);}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//shape-\/>setFlag(PxShapeFlag::eSCENE\_QUERY\_SHAPE,\ true);}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00201}00201\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsShape}}-\/>setContactOffset(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{contactOffset}});}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsShape}}-\/>setRestOffset(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{restOffset}});}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00204}00204\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxFilterData}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{FilterData}};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{FilterData}}.word0\ =\ 0;\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{FilterData}}.word1\ =\ 0;\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{FilterData}}.word2\ =\ 0;\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{FilterData}}.word3\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsShape}}-\/>setSimulationFilterData(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{FilterData}});}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00208}00208\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actorType}})}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00211}00211\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5a7cf76c15ffb134a3b2f63b8be9e24b4c}{sActor::eActorType::RIGID\_STATIC}}:}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxRigidStatic}}*)\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsActor}})-\/>attachShape(*\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsShape}});}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00215}00215\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5af3a2fdd374dcb8c7e625e1848b4344c1}{sActor::eActorType::RIGID\_DYNAMIC}}:}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxRigidDynamic}}*)\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsActor}})-\/>attachShape(*\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsShape}});}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00219}00219\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00221}00221\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor}{sActor}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actor}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor}{sActor}}(}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsActor}},}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsMaterial}},}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsShape}},}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actorType}},}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{shapeDesc}},}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{linearVelocity}},}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{staticFriction}},}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{dynamicFriction}},}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{restitution}},}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{contactOffset}},}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{restOffset}}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00236}00236\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ s\_Actors-\/>insert(\{\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{entity}}.GetTag(),\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actor}}\ \});}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00238}00238\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actor}};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00240}00240\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00241}00241\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00242}\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_a2cf208ad9559752ec45914ea1562c79a}{00242}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1physics_1_1s_ragdoll}{sRagdoll}}*\ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_a2cf208ad9559752ec45914ea1562c79a}{cPhysicsManager::AddRagdoll}}()}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00243}00243\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<sActor*>}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bodyparts}};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00245}00245\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{i}}\ =\ 0;\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{i}}\ <\ \mbox{\hyperlink{structxpe_1_1physics_1_1s_ragdoll_a2781089318e519e18316b4f65f840062}{sRagdoll::k\_BodypartCount}};\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{i}}++)}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00249}00249\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00251}00251\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00252}00252\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00253}\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_aa898c0a40205f342209d97ccd68d6bb7}{00253}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxScene}}*\ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_aa898c0a40205f342209d97ccd68d6bb7}{cPhysicsManager::AddScene}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tag}})}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00254}00254\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxSceneDesc}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sceneDesc}}(s\_Physics-\/>getTolerancesScale());}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sceneDesc}}.gravity\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxVec3}}(-\/1.0f,\ 0.0f,\ 0.0f);}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sceneDesc}}.cpuDispatcher\ =\ s\_Dispatcher;}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sceneDesc}}.simulationEventCallback\ =\ s\_EventCallback;}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sceneDesc}}.filterShader\ =\ \mbox{\hyperlink{namespacexpe_1_1physics_a7816cdaccad0a246b07867c18b673b9b}{FilterShader}};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00260}00260\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsScene}}\ =\ s\_Physics-\/>createScene(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sceneDesc}});}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00262}00262\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsScene}}\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log__manager_8hpp_a611dbbfa5c2f148b7190b97a12835b5e}{LogError}}(\textcolor{stringliteral}{"{}cPhysicsManager:\ Failed\ to\ create\ PhysX\ scene!"{}});}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00268}00268\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ s\_Scenes-\/>insert(\{\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tag}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsScene}}\ \});}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00270}00270\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{physicsScene}};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00272}00272\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00273}00273\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00274}\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_a6a2db35b7416716d3b07b7c5cf862835}{00274}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_a6a2db35b7416716d3b07b7c5cf862835}{cPhysicsManager::SetActorPose}}(\mbox{\hyperlink{structxpe_1_1physics_1_1s_actor}{sActor}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actor}},\ \mbox{\hyperlink{structxpe_1_1math_1_1s_transform}{sTransform}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{transform}})}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00275}00275\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actor}}.ActorType)}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00278}00278\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{structxpe_1_1physics_1_1s_actor_a6a5d73ace4ade9f6ed574941af2ccfc5af3a2fdd374dcb8c7e625e1848b4344c1}{sActor::eActorType::RIGID\_DYNAMIC}}:}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00280}00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glm::quat\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{rotation}}\ =\ glm::quat(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{transform}}.Rotation);}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00281}00281\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxRigidDynamic}}*)\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{actor}}.Actor)-\/>setGlobalPose(}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxTransform}}(}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxVec3}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{transform}}.Position.y,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{transform}}.Position.x,\ -\/\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{transform}}.Position.z),}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxQuat}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{rotation}}.x,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{rotation}}.y,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{rotation}}.z,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{rotation}}.w)}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00289}00289\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00291}00291\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00292}00292\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00293}00293\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00294}00294\ }
+\DoxyCodeLine{\Hypertarget{physics__manager_8cpp_source_l00295}00295\ \}}
+
+\end{DoxyCode}

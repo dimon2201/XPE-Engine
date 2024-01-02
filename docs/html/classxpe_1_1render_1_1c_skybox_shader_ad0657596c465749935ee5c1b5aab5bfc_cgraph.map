@@ -1,0 +1,16 @@
+<map id="xpe::render::cSkyboxShader::Draw" name="xpe::render::cSkyboxShader::Draw">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,149,192,192"/>
+<area shape="rect" id="Node000002" href="$namespacexpe_1_1render_1_1context.html#a57085dc2ff5ca279f149c984962121c1" title=" " alt="" coords="274,29,430,72"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="128,147,179,114,239,82,258,74,260,79,241,86,181,118,131,151"/>
+<area shape="rect" id="Node000003" href="$namespacexpe_1_1render_1_1context.html#a535d65fcd9491e2ec65cf429ca2a78f2" title=" " alt="" coords="283,120,421,163"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="192,157,267,148,268,154,192,163"/>
+<area shape="rect" id="Node000004" href="$classxpe_1_1render_1_1c_skybox_manager.html#a7dd6b461180ad3928c1b9b26d12c29b3" title=" " alt="" coords="240,187,464,213"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="192,179,224,183,224,188,192,184"/>
+<area shape="rect" id="Node000006" href="$namespacexpe_1_1render_1_1context.html#af7d77195f515615a89c72aa4f236bf05" title=" " alt="" coords="283,261,421,304"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="150,190,289,252,287,257,148,195"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="304,29,302,19,310,10,327,5,352,3,379,5,395,11,393,16,378,10,352,8,328,10,313,15,307,21,309,28"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="304,120,302,110,310,101,327,95,352,93,379,96,395,102,393,107,378,101,352,99,328,101,313,105,307,111,309,119"/>
+<area shape="rect" id="Node000005" href="$classxpe_1_1render_1_1c_skybox_manager.html#aea9472d88211bd66da7999eabdb307cd" title=" " alt="" coords="512,179,707,221"/>
+<area shape="poly" id="edge6_Node000004_Node000005" title=" " alt="" coords="464,197,496,197,496,203,464,203"/>
+<area shape="poly" id="edge8_Node000006_Node000006" title=" " alt="" coords="304,261,302,251,310,242,327,237,352,235,379,237,395,243,393,248,378,242,352,240,328,242,313,247,307,253,309,260"/>
+</map>

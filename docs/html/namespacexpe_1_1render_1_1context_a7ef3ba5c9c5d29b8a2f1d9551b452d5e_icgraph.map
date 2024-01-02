@@ -1,0 +1,13 @@
+<map id="xpe::render::context::ClearColorTarget" name="xpe::render::context::ClearColorTarget">
+<area shape="rect" id="Node000001" title=" " alt="" coords="634,39,772,81"/>
+<area shape="poly" id="edge4_Node000001_Node000001" title=" " alt="" coords="736,25,724,20,703,17,684,19,672,24,667,30,669,38,664,39,662,29,669,20,682,14,703,12,725,14,738,21"/>
+<area shape="rect" id="Node000002" href="$structxpe_1_1render_1_1s_render_target.html#af588c7ab0827cf451febf7f410b23609" title=" " alt="" coords="408,5,586,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="619,49,586,44,587,39,620,44"/>
+<area shape="rect" id="Node000005" href="$classxpe_1_1render_1_1c_canvas.html#a220c846d34dca49160b1d1af669cba2a" title=" " alt="" coords="426,72,569,115"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="620,76,570,84,569,79,619,71"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1core_1_1c_app.html#a1b8ab19056f84742e5fa02c488cf3f52" title=" " alt="" coords="198,47,360,73"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="393,45,361,50,360,45,392,40"/>
+<area shape="rect" id="Node000004" href="$classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,47,150,73"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="182,63,150,63,150,57,182,57"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="410,83,360,75,361,70,411,77"/>
+</map>

@@ -1,0 +1,299 @@
+\doxysection{camera.\+cpp}
+\hypertarget{camera_8cpp_source}{}\label{camera_8cpp_source}\index{engine/src/rendering/camera.cpp@{engine/src/rendering/camera.cpp}}
+\mbox{\hyperlink{camera_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{camera_8hpp}{rendering/camera.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{bindings_8hpp}{rendering/bindings.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00004}00004\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00006}00006\ \ \ \ \ \textcolor{keyword}{namespace\ }render\ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00008}\mbox{\hyperlink{classxpe_1_1render_1_1c_camera_a98bea1639b40d11d667454189ec3df06}{00008}}\ \ \ \ \ \ \ \ \ glm::vec2\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_a98bea1639b40d11d667454189ec3df06}{cCamera::GetPanSpeed}}()}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00009}00009\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00010}00010\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{panAcc}}\ =\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_a2d2a648cead8ed474c91d1c5a9500a59}{PanAcceleration}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00011}00011\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{width}}\ =\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_a53656dd1e3a3d618506140a982c8b825}{m\_ViewWidth}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{height}}\ =\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_a28492e2235c4200f70320ef5a7096728}{m\_ViewHeight}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_a49526f1e6a80726936b0b54c8ac10411}{x}}\ =\ \mbox{\hyperlink{namespacexpe_1_1math_a775d2b1b17133befae2d3e4570a1f62a}{math::min}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{width}}\ /\ 1000.0f,\ 2.4f);}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{xFactor}}\ =\ 0.0366f\ *\ (\mbox{\hyperlink{namespacexpe_1_1core_a49526f1e6a80726936b0b54c8ac10411}{x}}\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a49526f1e6a80726936b0b54c8ac10411}{x}})\ -\/\ 0.1778f\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a49526f1e6a80726936b0b54c8ac10411}{x}}\ +\ 0.3021f;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{y}}\ =\ \mbox{\hyperlink{namespacexpe_1_1math_a775d2b1b17133befae2d3e4570a1f62a}{math::min}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{height}}\ /\ 1000.0f,\ 2.4f);}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{yFactor}}\ =\ 0.0366f\ *\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{y}}\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{y}})\ -\/\ 0.1778f\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{y}}\ +\ 0.3021f;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{xFactor}}\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{panAcc}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{yFactor}}\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{panAcc}}\ \};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00023}\mbox{\hyperlink{classxpe_1_1render_1_1c_camera_a8968d5dc16af5c4d22c0dad61069b88a}{00023}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_a8968d5dc16af5c4d22c0dad61069b88a}{cCamera::GetZoomSpeed}}()}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{distance}}\ =\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_a5ae0b712e41b4cff13ae7af9d57c388e}{MoveSpeed}}\ *\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_a81d64eaef93a01651b6e6923f84afd88}{ZoomAcceleration}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{distance}}\ =\ \mbox{\hyperlink{namespacexpe_1_1math_a874b4329b074d5747abead18d6e273fe}{math::max}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{distance}},\ 0.0f);}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{distance}}\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{distance}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ cPerspectiveCamera::cPerspectiveCamera(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewWidth}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewHeight}})}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ m\_ViewWidth\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewWidth}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ m\_ViewHeight\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewHeight}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Position\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.Position;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input__manager_8hpp_a576eabc769112ab438a27635af3dda0c}{AddWindowResized}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cPerspectiveCamera}},\ eWindowFrameResizedPriority::CAMERA);}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input__manager_8hpp_a9b823d06edce33615df6f3fb7bd88538}{AddWindowRatioChanged}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cPerspectiveCamera}},\ 1);}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input__manager_8hpp_a81e1153a87fa319a45de9d00676b0b5e}{AddCursorMove}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cPerspectiveCamera}},\ 2);}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input__manager_8hpp_a6a71e46125bc7a2d501908f55cdfb0f9}{AddScrollChanged}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cPerspectiveCamera}},\ 2);}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ cPerspectiveCamera::\string~cPerspectiveCamera()}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input__manager_8hpp_a63d155ba501a5780d2d067ac845da1d9}{RemoveWindowFrameResized}}();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input__manager_8hpp_af865feaedb0105ecf2395f440302d37b}{RemoveWindowRatioChanged}}();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input__manager_8hpp_a3be6a41ac17dff84029bf2d0067df2b3}{RemoveCursorMove}}();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input__manager_8hpp_a61c570116fdcc1ac2fd424fc9ecb8cf6}{RemoveScrollChanged}}();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cPerspectiveCamera::Flush()}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Position\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.Position;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{MaxFovDegree}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.FovDegree;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{math::sViewMatrix}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewMatrix}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewMatrix}}.Position\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.Position;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewMatrix}}.Front\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.Front;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewMatrix}}.Up\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.Up;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bufferData}}\ =\ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a3cf0d01b28c943dc5fbfb8d51f9d04e0}{Item}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bufferData}}.\mbox{\hyperlink{structxpe_1_1render_1_1s_camera_data_a6545a53760842893edeae2a6d35df7e9}{Position}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.Position;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bufferData}}.View\ =\ \mbox{\hyperlink{classxpe_1_1math_1_1c_math_manager_a346e686b18a98afe101c8bc164d28d01}{cMathManager::UpdateViewMatrix}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewMatrix}});}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bufferData}}.Projection\ =\ \mbox{\hyperlink{classxpe_1_1math_1_1c_math_manager_a26636137cc090d16adfc60715ff9aef8}{cMathManager::UpdatePerspectiveMatrix}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}});}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a36748548161b72588ad888d58a2aa163}{Flush}}();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cPerspectiveCamera::Pan(\textcolor{keyword}{const}\ glm::vec2\ \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{delta}})}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{distance}}\ =\ MoveSpeed;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{focalPoint}}\ =\ m\_Position;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec2\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{speed}}\ =\ GetPanSpeed();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{focalPoint}}\ +=\ -\/GetRightDirection()\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{delta}}.x\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{speed}}.x\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{distance}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{focalPoint}}\ +=\ GetUpDirection()\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{delta}}.y\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{speed}}.y\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{distance}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{UpdateView}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{focalPoint}});}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a36748548161b72588ad888d58a2aa163}{Flush}}();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cPerspectiveCamera::Move()}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{position}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.Position;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{front}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.Front;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{up}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.Up;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{right}}\ =\ glm::cross(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{front}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{up}});}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classxpe_1_1core_1_1c_input_manager_a6d336bd3188eee03be5628186cd4d5e7}{cInputManager::KeyPressed}}(KeyMoveForward))}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{position}}\ =\ CalculateFrontPosition();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classxpe_1_1core_1_1c_input_manager_a6d336bd3188eee03be5628186cd4d5e7}{cInputManager::KeyPressed}}(KeyMoveLeft))}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{position}}\ =\ CalculateLeftPosition();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classxpe_1_1core_1_1c_input_manager_a6d336bd3188eee03be5628186cd4d5e7}{cInputManager::KeyPressed}}(KeyMoveBackward))}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{position}}\ =\ CalculateBackPosition();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classxpe_1_1core_1_1c_input_manager_a6d336bd3188eee03be5628186cd4d5e7}{cInputManager::KeyPressed}}(KeyMoveRight))}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{position}}\ =\ CalculateRightPosition();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{UpdateView}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{position}});}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a36748548161b72588ad888d58a2aa163}{Flush}}();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cPerspectiveCamera::ZoomIn()}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cameraBuffer}}\ =\ *\mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fov}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.FovDegree;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fov}}\ -\/=\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{float}})\ GetZoomSpeed();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1math_a9b91d360a2a3dc49a3d5f1199bdf7037}{math::clamp}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fov}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{MinFovDegree}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{MaxFovDegree}});}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cameraBuffer}}.Item.Projection\ =\ \mbox{\hyperlink{classxpe_1_1math_1_1c_math_manager_a26636137cc090d16adfc60715ff9aef8}{cMathManager::UpdatePerspectiveMatrix}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}});}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cameraBuffer}}.Flush();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cPerspectiveCamera::ZoomOut()}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cameraBuffer}}\ =\ *\mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fov}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.FovDegree;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fov}}\ +=\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{float}})\ GetZoomSpeed();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1math_a9b91d360a2a3dc49a3d5f1199bdf7037}{math::clamp}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fov}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{MinFovDegree}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{MaxFovDegree}});}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cameraBuffer}}.Item.Projection\ =\ \mbox{\hyperlink{classxpe_1_1math_1_1c_math_manager_a26636137cc090d16adfc60715ff9aef8}{cMathManager::UpdatePerspectiveMatrix}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}});}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cameraBuffer}}.Flush();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cPerspectiveCamera::ScrollChanged(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacexpe_1_1core_a49526f1e6a80726936b0b54c8ac10411}{x}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{y}})}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cameraBuffer}}\ =\ *\mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fov}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.FovDegree;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fov}}\ -\/=\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{float}})\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{y}}\ *\ GetZoomSpeed();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1math_a9b91d360a2a3dc49a3d5f1199bdf7037}{math::clamp}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fov}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{MinFovDegree}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{MaxFovDegree}});}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cameraBuffer}}.Item.Projection\ =\ \mbox{\hyperlink{classxpe_1_1math_1_1c_math_manager_a26636137cc090d16adfc60715ff9aef8}{cMathManager::UpdatePerspectiveMatrix}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}});}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cameraBuffer}}.Flush();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cPerspectiveCamera::Look(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacexpe_1_1core_a49526f1e6a80726936b0b54c8ac10411}{x}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{y}})}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!EnableLook)}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_input_manager_ac74f24bf4b6ab0d31c1d5f160a828ad4}{cInputManager::CaptureCursor}}(\mbox{\hyperlink{namespacexpe_1_1core_a49526f1e6a80726936b0b54c8ac10411}{x}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{y}});}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cursorDelta}}\ =\ \mbox{\hyperlink{classxpe_1_1core_1_1c_input_manager_acb8d964541b09642226c3d11c298a8e6}{cInputManager::GetMouseCursor}}().\mbox{\hyperlink{structxpe_1_1core_1_1s_mouse_cursor_a6b798a24286bebff3a4b19d043d1f5f6}{Delta}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{lookSign}}\ =\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{float}})\ LookMode;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{yawSign}}\ =\ GetUpDirection().y\ <\ 0\ ?\ -\/1.0f\ :\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ Yaw\ +=\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{yawSign}}\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cursorDelta}}.x\ *\ HorizontalSensitivity\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{lookSign}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ Pitch\ +=\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cursorDelta}}.y\ *\ VerticalSensitivity\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{lookSign}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{UpdateView}}(m\_Position);}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a36748548161b72588ad888d58a2aa163}{Flush}}();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cPerspectiveCamera::WindowResized(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a531d26e89a16703584b7e1ec09302f99}{w}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{h}})}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log__manager_8hpp_a57eb3ffc98e6ad1bdbed0a980a54c484}{LogInfo}}(\textcolor{stringliteral}{"{}cPerspectiveCamera::WindowResized:\ width=\{\},\ height=\{\}"{}},\ \mbox{\hyperlink{namespacexpe_1_1core_a531d26e89a16703584b7e1ec09302f99}{w}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{h}});}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ m\_ViewWidth\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a531d26e89a16703584b7e1ec09302f99}{w}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ m\_ViewHeight\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{h}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{WindowRatioChanged}}((\textcolor{keywordtype}{float})\ \mbox{\hyperlink{namespacexpe_1_1core_a531d26e89a16703584b7e1ec09302f99}{w}}\ /\ (\textcolor{keywordtype}{float})\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{h}});}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cPerspectiveCamera::WindowRatioChanged(\textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ratio}})}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log__manager_8hpp_a57eb3ffc98e6ad1bdbed0a980a54c484}{LogInfo}}(\textcolor{stringliteral}{"{}cPerspectiveCamera::WindowRatioChanged:\ ratio=\{\}"{}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ratio}});}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.AspectRatio\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ratio}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ UpdateProjection();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a36748548161b72588ad888d58a2aa163}{Flush}}();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00181}00181\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cPerspectiveCamera::CursorMoved(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacexpe_1_1core_a49526f1e6a80726936b0b54c8ac10411}{x}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{y}})}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00183}00183\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ Look(\mbox{\hyperlink{namespacexpe_1_1core_a49526f1e6a80726936b0b54c8ac10411}{x}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{y}});}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cPerspectiveCamera::UpdateProjection()}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00188}00188\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a3cf0d01b28c943dc5fbfb8d51f9d04e0}{Item}}.\mbox{\hyperlink{structxpe_1_1render_1_1s_camera_data_a191d0f1815561855dcf294c8ce3cbe7d}{Projection}}\ =\ \mbox{\hyperlink{classxpe_1_1math_1_1c_math_manager_a26636137cc090d16adfc60715ff9aef8}{cMathManager::UpdatePerspectiveMatrix}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}});}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00190}00190\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00192}00192\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cPerspectiveCamera::UpdateView(\textcolor{keyword}{const}\ glm::vec3\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{position}})}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00193}00193\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ m\_Yaw\ =\ m\_Pitch\ =\ 0.0f;\ //\ Lock\ the\ camera's\ rotation}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ glm::quat\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{orientation}}\ =\ GetOrientation();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewMatrix}}\ =\ glm::translate(glm::mat4(1.0f),\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{position}})\ *\ glm::toMat4(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{orientation}});}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewMatrix}}\ =\ glm::inverse(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewMatrix}});}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00199}00199\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.Position\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{position}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Position\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{position}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a3cf0d01b28c943dc5fbfb8d51f9d04e0}{Item}}.\mbox{\hyperlink{structxpe_1_1render_1_1s_camera_data_a6545a53760842893edeae2a6d35df7e9}{Position}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{position}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a3cf0d01b28c943dc5fbfb8d51f9d04e0}{Item}}.\mbox{\hyperlink{structxpe_1_1render_1_1s_camera_data_a5aac4ac1e531d6962e12165f74d4c6fe}{View}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewMatrix}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00204}00204\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00205}00205\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00206}\mbox{\hyperlink{classxpe_1_1render_1_1c_ortho_camera_af2c1a1fac211e146b8199d4bf7499dda}{00206}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_ortho_camera_af2c1a1fac211e146b8199d4bf7499dda}{cOrthoCamera::cOrthoCamera}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewWidth}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewHeight}})}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00207}00207\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_a53656dd1e3a3d618506140a982c8b825}{m\_ViewWidth}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewWidth}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_a28492e2235c4200f70320ef5a7096728}{m\_ViewHeight}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewHeight}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_aeaced429c0b6541fbf79bacdf04cd13b}{m\_Position}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.Position;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input__manager_8hpp_a576eabc769112ab438a27635af3dda0c}{AddWindowResized}}(\mbox{\hyperlink{classxpe_1_1render_1_1c_ortho_camera}{cOrthoCamera}},\ eWindowFrameResizedPriority::CAMERA);}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input__manager_8hpp_a6a71e46125bc7a2d501908f55cdfb0f9}{AddScrollChanged}}(\mbox{\hyperlink{classxpe_1_1render_1_1c_ortho_camera}{cOrthoCamera}},\ 2);}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input__manager_8hpp_a81e1153a87fa319a45de9d00676b0b5e}{AddCursorMove}}(\mbox{\hyperlink{classxpe_1_1render_1_1c_ortho_camera}{cOrthoCamera}},\ 2);}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00214}00214\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00215}00215\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00216}\mbox{\hyperlink{classxpe_1_1render_1_1c_ortho_camera_abea6a471706796afe7bcc5b2f5a97649}{00216}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_ortho_camera_abea6a471706796afe7bcc5b2f5a97649}{cOrthoCamera::\string~cOrthoCamera}}()}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00217}00217\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input__manager_8hpp_a63d155ba501a5780d2d067ac845da1d9}{RemoveWindowFrameResized}}();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input__manager_8hpp_a61c570116fdcc1ac2fd424fc9ecb8cf6}{RemoveScrollChanged}}();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input__manager_8hpp_a3be6a41ac17dff84029bf2d0067df2b3}{RemoveCursorMove}}();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00221}00221\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00222}00222\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00223}\mbox{\hyperlink{classxpe_1_1render_1_1c_ortho_camera_a03d4d16733c86e076d05d0b548ab05aa}{00223}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_ortho_camera_a03d4d16733c86e076d05d0b548ab05aa}{cOrthoCamera::Flush}}()}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00224}00224\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_aeaced429c0b6541fbf79bacdf04cd13b}{m\_Position}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.Position;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00226}00226\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{math::sViewMatrix}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewMatrix}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewMatrix}}.Position\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.Position;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewMatrix}}.Front\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.Front;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewMatrix}}.Up\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.Up;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00231}00231\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.Right\ =\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_a53656dd1e3a3d618506140a982c8b825}{m\_ViewWidth}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.Left\ =\ -\/\mbox{\hyperlink{classxpe_1_1render_1_1c_camera_a53656dd1e3a3d618506140a982c8b825}{m\_ViewWidth}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.Top\ =\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_a28492e2235c4200f70320ef5a7096728}{m\_ViewHeight}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.Bottom\ =\ -\/\mbox{\hyperlink{classxpe_1_1render_1_1c_camera_a28492e2235c4200f70320ef5a7096728}{m\_ViewHeight}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00236}00236\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bufferData}}\ =\ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a3cf0d01b28c943dc5fbfb8d51f9d04e0}{Item}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bufferData}}.\mbox{\hyperlink{structxpe_1_1render_1_1s_camera_data_a6545a53760842893edeae2a6d35df7e9}{Position}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.Position;}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bufferData}}.View\ =\ \mbox{\hyperlink{classxpe_1_1math_1_1c_math_manager_a346e686b18a98afe101c8bc164d28d01}{cMathManager::UpdateViewMatrix}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewMatrix}});}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bufferData}}.Projection\ =\ \mbox{\hyperlink{classxpe_1_1math_1_1c_math_manager_a0b5cbb14457c0bb17e32670b8251335b}{cMathManager::UpdateOrthoMatrix}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}});}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a36748548161b72588ad888d58a2aa163}{Flush}}();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00242}00242\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00243}00243\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00244}\mbox{\hyperlink{classxpe_1_1render_1_1c_ortho_camera_a1f753d281df71156a2310d0971960a61}{00244}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_ortho_camera_a1f753d281df71156a2310d0971960a61}{cOrthoCamera::Move}}()}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00245}00245\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ todo\ ortho\ camera\ move\ function}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00247}00247\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00248}00248\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00249}\mbox{\hyperlink{classxpe_1_1render_1_1c_ortho_camera_a7144c7e376127972d7f6988e54c0e54a}{00249}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_ortho_camera_a7144c7e376127972d7f6988e54c0e54a}{cOrthoCamera::ZoomIn}}()}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00250}00250\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ todo\ ortho\ camera\ zoom\ in\ function}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00252}00252\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00253}00253\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00254}\mbox{\hyperlink{classxpe_1_1render_1_1c_ortho_camera_a1c8c2f326316d5b441e8317fe05a09b1}{00254}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_ortho_camera_a1c8c2f326316d5b441e8317fe05a09b1}{cOrthoCamera::ZoomOut}}()}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00255}00255\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ todo\ ortho\ camera\ zoom\ out\ function}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00257}00257\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00258}00258\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00259}\mbox{\hyperlink{classxpe_1_1render_1_1c_ortho_camera_a6581d3ed635346a4ef6989f57521980c}{00259}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_ortho_camera_a6581d3ed635346a4ef6989f57521980c}{cOrthoCamera::Look}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacexpe_1_1core_a49526f1e6a80726936b0b54c8ac10411}{x}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{y}})}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00260}00260\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ todo\ ortho\ camera\ look\ function}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00262}00262\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00263}00263\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00264}\mbox{\hyperlink{classxpe_1_1render_1_1c_ortho_camera_af4132b8507b0868ae09a75ea93fab69e}{00264}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_ortho_camera_af4132b8507b0868ae09a75ea93fab69e}{cOrthoCamera::WindowResized}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{width}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{height}})}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00265}00265\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log__manager_8hpp_a57eb3ffc98e6ad1bdbed0a980a54c484}{LogInfo}}(\textcolor{stringliteral}{"{}cOrthoCamera::WindowResized:\ width=\{\},\ height=\{\}"{}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{width}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{height}});}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_a53656dd1e3a3d618506140a982c8b825}{m\_ViewWidth}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{width}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_a28492e2235c4200f70320ef5a7096728}{m\_ViewHeight}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{height}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ UpdateProjection();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a36748548161b72588ad888d58a2aa163}{Flush}}();}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00271}00271\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00272}00272\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00273}\mbox{\hyperlink{classxpe_1_1render_1_1c_ortho_camera_ac9fb2452ea6f0de6a3e9fdc165e348c5}{00273}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_ortho_camera_ac9fb2452ea6f0de6a3e9fdc165e348c5}{cOrthoCamera::ScrollChanged}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacexpe_1_1core_a49526f1e6a80726936b0b54c8ac10411}{x}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{y}})}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00274}00274\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00275}00275\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00276}00276\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00277}\mbox{\hyperlink{classxpe_1_1render_1_1c_ortho_camera_a4627bf922337adb1e171eef09b8e279e}{00277}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_ortho_camera_a4627bf922337adb1e171eef09b8e279e}{cOrthoCamera::CursorMoved}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacexpe_1_1core_a49526f1e6a80726936b0b54c8ac10411}{x}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{y}})}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00278}00278\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_ortho_camera_a6581d3ed635346a4ef6989f57521980c}{Look}}(\mbox{\hyperlink{namespacexpe_1_1core_a49526f1e6a80726936b0b54c8ac10411}{x}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{y}});}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00280}00280\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00281}00281\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00282}00282\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cOrthoCamera::UpdateProjection()}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00283}00283\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.Right\ =\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_a53656dd1e3a3d618506140a982c8b825}{m\_ViewWidth}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.Left\ =\ -\/\mbox{\hyperlink{classxpe_1_1render_1_1c_camera_a53656dd1e3a3d618506140a982c8b825}{m\_ViewWidth}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.Top\ =\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_a28492e2235c4200f70320ef5a7096728}{m\_ViewHeight}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}}.Bottom\ =\ -\/\mbox{\hyperlink{classxpe_1_1render_1_1c_camera_a28492e2235c4200f70320ef5a7096728}{m\_ViewHeight}};}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a3cf0d01b28c943dc5fbfb8d51f9d04e0}{Item}}.\mbox{\hyperlink{structxpe_1_1render_1_1s_camera_data_a191d0f1815561855dcf294c8ce3cbe7d}{Projection}}\ =\ \mbox{\hyperlink{classxpe_1_1math_1_1c_math_manager_a0b5cbb14457c0bb17e32670b8251335b}{cMathManager::UpdateOrthoMatrix}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Component}});}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00289}00289\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00290}00290\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00291}00291\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00292}00292\ }
+\DoxyCodeLine{\Hypertarget{camera_8cpp_source_l00293}00293\ \}}
+
+\end{DoxyCode}

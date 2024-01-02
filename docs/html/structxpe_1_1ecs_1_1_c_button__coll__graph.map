@@ -1,0 +1,9 @@
+<map id="xpe::ecs::CButton" name="xpe::ecs::CButton">
+<area shape="rect" id="Node000001" title=" " alt="" coords="93,188,220,215"/>
+<area shape="rect" id="Node000002" href="$structxpe_1_1render_1_1s_widget.html" title=" " alt="" coords="5,89,148,116"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,126,148,186,144,189,94,130"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1res_1_1c_xml.html" title=" " alt="" coords="24,5,129,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="79,47,79,89,74,89,74,47"/>
+<area shape="rect" id="Node000004" href="$structxpe_1_1render_1_1s_atlas_1_1s_location.html" title=" " alt="" coords="172,81,304,124"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="213,138,169,189,165,186,209,134"/>
+</map>

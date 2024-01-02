@@ -1,0 +1,42 @@
+\doxysection{win\+\_\+hardware\+\_\+manager.\+cpp}
+\hypertarget{win__hardware__manager_8cpp_source}{}\label{win__hardware__manager_8cpp_source}\index{engine/src/platform/win/win\_hardware\_manager.cpp@{engine/src/platform/win/win\_hardware\_manager.cpp}}
+\mbox{\hyperlink{win__hardware__manager_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#ifdef\ WINDOWS}}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#define\ \_WIN32\_WINNT\ 0x0501}}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <Windows.h>}}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00006}00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00008}00008\ \ \ \ \ \textcolor{keyword}{namespace\ }core\ \{}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00010}00010\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_ace365cf2d81ec1edcd8798aa43e94fa9}{cHardwareManager::UpdateMemoryStats}}()}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00011}00011\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{MEMORYSTATUSEX}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{memStatus}};}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00013}00013\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{memStatus}}.dwLength\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{memStatus}});}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{GlobalMemoryStatusEx}}(\&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{memStatus}});}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_ab313ef35e5e9a83bed08fb81a53667f2}{Memory}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_memory_stats_a220f10afa301f9ed2ebf598e78569fc0}{TotalPhysical}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{memStatus}}.ullTotalPhys;}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_ab313ef35e5e9a83bed08fb81a53667f2}{Memory}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_memory_stats_ae799df1ce6fe17affc3099139e9ec6d7}{AvailablePhysical}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{memStatus}}.ullAvailPhys;}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_ab313ef35e5e9a83bed08fb81a53667f2}{Memory}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_memory_stats_a80e87be0f062400d3a308db83878751e}{TotalPageFile}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{memStatus}}.ullTotalPageFile;}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_ab313ef35e5e9a83bed08fb81a53667f2}{Memory}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_memory_stats_a78e941676875753cb8e567cdd7b17e84}{AvailablePageFile}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{memStatus}}.ullAvailPageFile;}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_ab313ef35e5e9a83bed08fb81a53667f2}{Memory}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_memory_stats_a97dcda75a5e9bcecbbb0a93205aee4be}{TotalVirtual}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{memStatus}}.ullTotalVirtual;}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_ab313ef35e5e9a83bed08fb81a53667f2}{Memory}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_memory_stats_a9b521535612e7862b6986cea48f547f8}{AvailableVirtual}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{memStatus}}.ullAvailVirtual;}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_ab313ef35e5e9a83bed08fb81a53667f2}{Memory}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_memory_stats_a35de423916b10e10457a432734e146f3}{AvailableVirtualExtended}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{memStatus}}.ullAvailExtendedVirtual;}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_a28e6013e329654423e5793bab22507f5}{cHardwareManager::UpdateCpuStats}}()}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{SYSTEM\_INFO}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sysinfo}};}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{GetSystemInfo}}(\&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sysinfo}});}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_a862c8f425b7c7fb53f5598f68247fef2}{CPU}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_cpu_stats_a92593625c5c576608457355a36efa268}{Threads}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sysinfo}}.dwNumberOfProcessors;}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_a862c8f425b7c7fb53f5598f68247fef2}{CPU}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_cpu_stats_aa9f742abf986cc7a944b75ba141df48a}{Cores}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sysinfo}}.dwNumberOfProcessors\ /\ 2;}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00032}00032\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00034}00034\ \}}
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{win__hardware__manager_8cpp_source_l00036}00036\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ WINDOWS}}
+
+\end{DoxyCode}

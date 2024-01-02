@@ -1,0 +1,46 @@
+\doxysection{allocators.\+cpp}
+\hypertarget{physics_2allocators_8cpp_source}{}\label{physics_2allocators_8cpp_source}\index{engine/src/physics/allocators.cpp@{engine/src/physics/allocators.cpp}}
+\mbox{\hyperlink{physics_2allocators_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{physics_2allocators_8hpp}{physics/allocators.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00003}00003\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00005}00005\ \ \ \ \ \textcolor{keyword}{namespace\ }physics\ \{}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00007}\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_allocator_a10874132e7da29d5f5784a6f4aa6d6ce}{00007}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_allocator_a10874132e7da29d5f5784a6f4aa6d6ce}{cPhysicsAllocator::\string~cPhysicsAllocator}}()\ \{\}}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00009}\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_allocator_a6c5007c5709a9fe777a1511709231d21}{00009}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_allocator_a6c5007c5709a9fe777a1511709231d21}{cPhysicsAllocator::allocate}}(\textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{size}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{typeName}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filename}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{line}})}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00010}00010\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00011}00011\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//hstringstream\ ss;}}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//ss\ <<\ "{}\(\backslash\)n-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ PhysX\ Allocator\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\(\backslash\)n\(\backslash\)n"{};}}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00013}00013\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//ss\ <<\ "{}Type:\ "{}\ <<\ typeName\ <<\ "{}\(\backslash\)n"{};}}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//ss\ <<\ "{}File:\ "{}\ <<\ filename\ <<\ "{}\(\backslash\)n"{};}}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//ss\ <<\ "{}sLine:\ "{}\ <<\ line\ <<\ "{}\(\backslash\)n"{};}}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//ss\ <<\ "{}Size:\ "{}\ <<\ size\ <<\ "{}\(\backslash\)n"{};}}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//ss\ <<\ "{}\(\backslash\)n-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\(\backslash\)n"{};}}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//LogInfo(ss.str());}}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ptr}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_ae5d0b54168ae6e02cf8c8b7d9327c96f}{align16\_malloc}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{size}});}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PX\_ASSERT}}((\textcolor{keywordtype}{size\_t}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ptr}})\ \&\ 15)==0)}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00023}00023\ \textcolor{preprocessor}{\#if\ PX\_STOMP\_ALLOCATED\_MEMORY}}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ptr}}\ !=\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{NULL}})}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxMemSet}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ptr}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxI32}}(0xcd),\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxU32}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{size}}));}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00028}00028\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ptr}};}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00032}\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_allocator_ab0e2f88b10d5f15bc408c1234bcceabf}{00032}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_allocator_ab0e2f88b10d5f15bc408c1234bcceabf}{cPhysicsAllocator::deallocate}}(\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ptr}})}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//LogInfo("{}PhysX\ freeing\ memory\ \{\}"{},\ ptr);}}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a10508d83f4fe37b4a622196fe785a7b5}{align16\_free}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ptr}});}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00038}00038\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{physics_2allocators_8cpp_source_l00040}00040\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,11 @@
+<map id="xpe::core::cMemoryPool::Init" name="xpe::core::cMemoryPool::Init">
+<area shape="rect" id="Node000001" title=" " alt="" coords="496,72,659,115"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1core_1_1c_memory_pool_stack.html#ae688cd1d27bb1cf64dec6c6824e156aa" title=" " alt="" coords="251,39,448,81"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="480,82,448,77,449,72,481,77"/>
+<area shape="rect" id="Node000005" href="$classxpe_1_1core_1_1c_memory_pool_stack.html#ace90e70bb73ad1ad7cad09b7bd28318d" title=" " alt="" coords="251,105,448,148"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="481,110,449,115,448,110,480,105"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1core_1_1c_memory_pool_stack.html#a0a2b778334b1190ace97d88626a74c6a" title=" " alt="" coords="5,5,203,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="235,47,203,43,204,37,236,42"/>
+<area shape="rect" id="Node000004" href="$classxpe_1_1core_1_1c_memory_pool_stack.html#aa6ae78170d3ddcc6d8b0760f61c417a5" title=" " alt="" coords="5,72,203,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="236,78,204,83,203,77,235,73"/>
+</map>

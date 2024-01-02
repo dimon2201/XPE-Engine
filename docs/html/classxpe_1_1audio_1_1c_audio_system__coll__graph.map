@@ -1,0 +1,7 @@
+<map id="xpe::audio::cAudioSystem" name="xpe::audio::cAudioSystem">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,155,180,181"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1ecs_1_1c_system.html" title=" " alt="" coords="27,80,158,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,122,95,154,90,154,90,122"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="28,5,157,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="95,48,95,80,90,80,90,48"/>
+</map>

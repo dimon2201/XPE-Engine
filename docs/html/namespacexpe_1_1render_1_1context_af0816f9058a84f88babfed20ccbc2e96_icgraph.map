@@ -1,0 +1,10 @@
+<map id="xpe::render::context::MoveBufferOffset" name="xpe::render::context::MoveBufferOffset">
+<area shape="rect" id="Node000001" title=" " alt="" coords="226,72,363,115"/>
+<area shape="poly" id="edge4_Node000001_Node000001" title=" " alt="" coords="327,59,315,53,294,51,275,53,264,57,259,63,261,71,255,72,254,62,260,53,274,47,294,45,316,48,329,54"/>
+<area shape="rect" id="Node000002" href="$namespacexpe_1_1render_1_1context.html#a82d8f65416b6f460b4f3307bd0a88fe5" title=" " alt="" coords="23,5,160,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="212,69,158,51,160,46,214,64"/>
+<area shape="rect" id="Node000003" href="$structxpe_1_1render_1_1s_index_buffer.html#acaf5d900bc6fb01667e50c8cb458a983" title=" " alt="" coords="9,72,174,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="210,96,175,96,175,91,210,91"/>
+<area shape="rect" id="Node000004" href="$structxpe_1_1render_1_1s_vertex_buffer.html#ab319de361de407e89c7b62eb8874a96a" title=" " alt="" coords="5,139,178,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="214,122,160,141,158,135,212,117"/>
+</map>

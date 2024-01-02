@@ -1,0 +1,202 @@
+\doxysection{file\+\_\+manager.\+cpp}
+\hypertarget{file__manager_8cpp_source}{}\label{file__manager_8cpp_source}\index{engine/src/core/file\_manager.cpp@{engine/src/core/file\_manager.cpp}}
+\mbox{\hyperlink{file__manager_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00001}00001\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00003}00003\ \ \ \ \ \textcolor{keyword}{namespace\ }core\ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00005}\mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_a28a6dc4ad3fa49fe9827b2ef9c935d8f}{00005}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_a28a6dc4ad3fa49fe9827b2ef9c935d8f}{cFileManager::CreateDir}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{dirName}})\ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00006}00006\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ fs::create\_directory(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{dirName}});}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00007}00007\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00009}\mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_a3026d07fbdb1dc19bc823cf2e474ba7d}{00009}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_a3026d07fbdb1dc19bc823cf2e474ba7d}{cFileManager::ReadFileWithIncludes}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{path}},\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{includeIdentifier}})}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00010}00010\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00011}00011\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{includeIdentifier}}\ +=\ \textcolor{charliteral}{'\ '};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{recursive}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00013}00013\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fullSrc}}\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}}.open(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{path}}.c\_str());}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}}.is\_open())\ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log__manager_8hpp_a611dbbfa5c2f148b7190b97a12835b5e}{LogError}}(\textcolor{stringliteral}{"{}Failed\ to\ open\ file\ \{\}"{}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{path}}.c\_str());}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fullSrc}};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{lineBuffer}};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{lineBuffer}}))\ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Look\ for\ the\ new\ mShader\ include\ identifier}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{lineBuffer}}.find(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{includeIdentifier}})\ !=\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{lineBuffer}}.npos)\ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remove\ the\ include\ identifier,\ this\ will\ cause\ the\ path\ to\ remain}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{lineBuffer}}.erase(0,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{includeIdentifier}}.size());}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ include\ path\ is\ relative\ to\ the\ current\ mShader\ file\ path}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pathOfThisFile}};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetFilepath(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{path}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pathOfThisFile}});}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{lineBuffer}}.insert(0,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pathOfThisFile}});}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ By\ using\ recursion,\ the\ new\ include\ file\ can\ be\ extracted}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ and\ inserted\ at\ this\ location\ in\ the\ mShader\ source\ code}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{recursive}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fullSrc}}\ +=\ \mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_a3026d07fbdb1dc19bc823cf2e474ba7d}{ReadFileWithIncludes}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{lineBuffer}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{includeIdentifier}})\ +\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Do\ not\ add\ this\ line\ to\ the\ mShader\ source\ code,\ as\ the\ include}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ path\ would\ generate\ a\ compilation\ issue\ in\ the\ final\ source\ code}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fullSrc}}\ +=\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{lineBuffer}}\ +\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Only\ add\ the\ null\ terminator\ at\ the\ end\ of\ the\ complete\ file,}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ essentially\ skipping\ recursive\ function\ calls\ this\ way}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{recursive}})}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fullSrc}}\ +=\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}}.close();}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fullSrc}};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cFileManager::GetFilepath(}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fullPath}},}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pathWithoutFilename}}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remove\ the\ file\ name\ and\ store\ the\ path\ to\ this\ folder}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{found}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fullPath}}.find\_last\_of(\textcolor{stringliteral}{"{}/\(\backslash\)\(\backslash\)"{}});}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pathWithoutFilename}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{fullPath}}.substr(0,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{found}}\ +\ 1);}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00068}\mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_a02cd65aa35a57be6e3a4d7528cff14b8}{00068}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_a02cd65aa35a57be6e3a4d7528cff14b8}{cFileManager::ReadFile}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}})}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}}.open(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}});}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}}.is\_open())\ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log__manager_8hpp_a611dbbfa5c2f148b7190b97a12835b5e}{LogError}}(\textcolor{stringliteral}{"{}Failed\ to\ open-\/read\ a\ file\ \{\}"{}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}});}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{line}};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{buffer}};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{line}}))\ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{buffer}}\ +=\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{line}}\ +\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}}.close();}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{buffer}};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00090}\mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_a221d7dc090f0c8097021dc42da2cbc39}{00090}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_a221d7dc090f0c8097021dc42da2cbc39}{cFileManager::WriteFile}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{str}})}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_a221d7dc090f0c8097021dc42da2cbc39}{WriteFile}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{str}}.c\_str(),\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{str}}.length());}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00095}\mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_ae928135acfb41bbb93c30966864516e5}{00095}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_a221d7dc090f0c8097021dc42da2cbc39}{cFileManager::WriteFile}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bytes}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{byteSize}})}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ std::ofstream\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}}.open(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}});}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}}.is\_open())\ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log__manager_8hpp_a611dbbfa5c2f148b7190b97a12835b5e}{LogError}}(\textcolor{stringliteral}{"{}Failed\ to\ open-\/write\ a\ file\ \{\}"{}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}});}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}}.write(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{bytes}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{byteSize}});}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}}.close();}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00113}\mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_af7ff525630cba86a3b75986484a95da6}{00113}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_af7ff525630cba86a3b75986484a95da6}{cFileManager::CopyFile}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{srcPath}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{destPath}})}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!fs::exists(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{destPath}}))\ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_a221d7dc090f0c8097021dc42da2cbc39}{WriteFile}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{destPath}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ fs::copy\_file(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{srcPath}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{destPath}},\ fs::copy\_options::overwrite\_existing);}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00121}\mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_a1986bc9e71c7c9d1f2a1423b491bf9fc}{00121}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_acef017c0ff17c5aee0985b3aea112a90}{hstring}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_a1986bc9e71c7c9d1f2a1423b491bf9fc}{cFileManager::GetFullFileName}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{path}})}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ fs::path\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{path}};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}}.has\_filename())\ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}}.filename().string().c\_str();}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00130}\mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_ae0ad5cad24b99c8253e77f8d5808a36a}{00130}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_acef017c0ff17c5aee0985b3aea112a90}{hstring}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_ae0ad5cad24b99c8253e77f8d5808a36a}{cFileManager::GetFileName}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{path}})}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ todo\ remove\ extension\ from\ file\ name}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ fs::path\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{path}};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}}.has\_filename())\ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}}.filename().string().c\_str();}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00140}\mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_afac3970a6e3feedceb1cb90bc33c5bb0}{00140}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_afac3970a6e3feedceb1cb90bc33c5bb0}{cFileManager::CopyDirs}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{srcPath}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{destPath}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{createRoot}})}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{createRoot}})\ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fs::create\_directory(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{destPath}});}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (fs::path\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{p}}:\ fs::directory\_iterator(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{srcPath}}))}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fs::path\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{destFile}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{destPath}}/\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{p}}.filename();}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fs::is\_directory(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{p}}))\ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fs::create\_directory(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{destFile}});}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_afac3970a6e3feedceb1cb90bc33c5bb0}{CopyDirs}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{p}}.string().c\_str(),\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{destFile}}.string().c\_str(),\ \textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fs::exists(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{destFile}}))\ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fs::copy\_file(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{p}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{destFile}},\ fs::copy\_options::overwrite\_existing);}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fs::copy(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{p}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{destFile}});}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (std::exception\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{e}})\ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log__manager_8hpp_a611dbbfa5c2f148b7190b97a12835b5e}{LogError}}(\textcolor{stringliteral}{"{}Failed\ to\ copy\ dirs\ from\ \{\}\ to\ \{\}\ \(\backslash\)n\ Error:\ \{\}"{}},}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{p}}.string(),}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{destFile}}.string(),}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{e}}.what());}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00178}\mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_af17eb7986be8bd1300c5978042190e0f}{00178}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_af17eb7986be8bd1300c5978042190e0f}{cFileManager::Exists}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}})}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ fs::exists(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}});}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00183}\mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_ada817efaf82347a6ca2c9cc75640b2c4}{00183}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_ada817efaf82347a6ca2c9cc75640b2c4}{cFileManager::GetAbsolutePath}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{path}})}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ fs::absolute(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{path}}).string().c\_str();}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00188}\mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_a1cc1ec53a0795f14ced10c23cbc1c4e9}{00188}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_acef017c0ff17c5aee0985b3aea112a90}{hstring}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_file_manager_a1cc1ec53a0795f14ced10c23cbc1c4e9}{cFileManager::GetDirectory}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}})}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00189}00189\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_acef017c0ff17c5aee0985b3aea112a90}{hstring}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepathStr}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepath}};}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepathStr}}.substr(0,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{filepathStr}}.find\_last\_of(\textcolor{charliteral}{'/'}));}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00192}00192\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00194}00194\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{file__manager_8cpp_source_l00196}00196\ \}}
+
+\end{DoxyCode}

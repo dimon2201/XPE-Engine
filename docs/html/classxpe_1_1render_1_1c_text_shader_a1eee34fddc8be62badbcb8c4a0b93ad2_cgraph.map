@@ -1,0 +1,9 @@
+<map id="xpe::render::cTextShader::Draw" name="xpe::render::cTextShader::Draw">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,72,173,115"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1render_1_1c_camera_manager.html#abe3b469b340e88d3b463a76164e5f308" title=" " alt="" coords="221,5,417,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="164,69,227,50,229,55,165,74"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1render_1_1c_camera_manager.html#a58279b3cb239ca16a76b8d04eacb93cc" title=" " alt="" coords="221,72,417,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="173,91,205,91,205,96,173,96"/>
+<area shape="rect" id="Node000004" href="$classxpe_1_1math_1_1c_math_manager.html#a0b5cbb14457c0bb17e32670b8251335b" title=" " alt="" coords="232,139,406,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="165,113,229,131,227,136,164,118"/>
+</map>

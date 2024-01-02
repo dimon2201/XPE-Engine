@@ -1,0 +1,9 @@
+<map id="xpe::math::cMathManager::UpdateViewMatrix" name="xpe::math::cMathManager::UpdateViewMatrix">
+<area shape="rect" id="Node000001" title=" " alt="" coords="232,72,405,115"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1render_1_1c_ortho_camera.html#a03d4d16733c86e076d05d0b548ab05aa" title=" " alt="" coords="5,5,184,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="229,70,168,51,170,46,231,65"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1math_1_1c_math_manager.html#a50589adb8ddea81fc5f07378aa4d26c6" title=" " alt="" coords="8,72,181,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="216,96,181,96,181,91,216,91"/>
+<area shape="rect" id="Node000004" href="$classxpe_1_1math_1_1c_math_manager.html#a37863e53d00e46ba3877ecdcf90599ac" title=" " alt="" coords="8,139,181,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="231,122,170,141,168,135,229,117"/>
+</map>

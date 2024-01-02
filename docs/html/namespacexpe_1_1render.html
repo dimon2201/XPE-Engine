@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('namespacexpe_1_1render.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
@@ -515,6 +533,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="debugger_8hpp_source.html#l00082">82</a> of file <a class="el" href="debugger_8hpp_source.html">debugger.hpp</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
@@ -557,6 +577,8 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="a64832e2bcfa081e507f4237e8bebe22cab0b7d955c7fa184d61392db88e403251" name="a64832e2bcfa081e507f4237e8bebe22cab0b7d955c7fa184d61392db88e403251"></a>INV_SRC1_ALPHA&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
+<p class="definition">Definition at line <a class="el" href="rendering_2core_2core_8hpp_source.html#l00248">248</a> of file <a class="el" href="rendering_2core_2core_8hpp_source.html">core.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a6267ae08d343761595b6aa7932961025" name="a6267ae08d343761595b6aa7932961025"></a>
@@ -586,6 +608,8 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="a6267ae08d343761595b6aa7932961025a26a4b44a837bf97b972628509912b4a5" name="a6267ae08d343761595b6aa7932961025a26a4b44a837bf97b972628509912b4a5"></a>MAX&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
+<p class="definition">Definition at line <a class="el" href="rendering_2core_2core_8hpp_source.html#l00268">268</a> of file <a class="el" href="rendering_2core_2core_8hpp_source.html">core.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a7c37d1dd6c9b619ebef5a38235c2618e" name="a7c37d1dd6c9b619ebef5a38235c2618e"></a>
@@ -606,6 +630,8 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="a7c37d1dd6c9b619ebef5a38235c2618eafbc64e20f8fda25c03e032a359e22743" name="a7c37d1dd6c9b619ebef5a38235c2618eafbc64e20f8fda25c03e032a359e22743"></a>ALPHA&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a7c37d1dd6c9b619ebef5a38235c2618eae8d0dfe7c060638bef4030ce7aa1fcd1" name="a7c37d1dd6c9b619ebef5a38235c2618eae8d0dfe7c060638bef4030ce7aa1fcd1"></a>ALL&#160;</td><td class="fielddoc"></td></tr>
 </table>
+
+<p class="definition">Definition at line <a class="el" href="rendering_2core_2core_8hpp_source.html#l00276">276</a> of file <a class="el" href="rendering_2core_2core_8hpp_source.html">core.hpp</a>.</p>
 
 </div>
 </div>
@@ -634,6 +660,8 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="a70a8f9b1d613e1174531c58b493c2ef9a1dd26f1f1790f0b56d5752fb0fbecef0" name="a70a8f9b1d613e1174531c58b493c2ef9a1dd26f1f1790f0b56d5752fb0fbecef0"></a>BACK&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a70a8f9b1d613e1174531c58b493c2ef9a5b39c8b553c821e7cddc6da64b5bd2ee" name="a70a8f9b1d613e1174531c58b493c2ef9a5b39c8b553c821e7cddc6da64b5bd2ee"></a>DEFAULT&#160;</td><td class="fielddoc"></td></tr>
 </table>
+
+<p class="definition">Definition at line <a class="el" href="rendering_2core_2core_8hpp_source.html#l00321">321</a> of file <a class="el" href="rendering_2core_2core_8hpp_source.html">core.hpp</a>.</p>
 
 </div>
 </div>
@@ -665,6 +693,8 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="a9310408e246af9000b45bc55535ac29ba1e01595272cae31b06033ec30b468cb5" name="a9310408e246af9000b45bc55535ac29ba1e01595272cae31b06033ec30b468cb5"></a>D_APPLICATION&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a9310408e246af9000b45bc55535ac29ba270d9db2cf5e7fd2b20e13501f18c70a" name="a9310408e246af9000b45bc55535ac29ba270d9db2cf5e7fd2b20e13501f18c70a"></a>D_OTHER&#160;</td><td class="fielddoc"></td></tr>
 </table>
+
+<p class="definition">Definition at line <a class="el" href="debugger_8hpp_source.html#l00055">55</a> of file <a class="el" href="debugger_8hpp_source.html">debugger.hpp</a>.</p>
 
 </div>
 </div>
@@ -699,6 +729,8 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="a99c9e8bef18b3615f39b1cdb2e9253ecac314679bc84c66501549f2c9628ebe0f" name="a99c9e8bef18b3615f39b1cdb2e9253ecac314679bc84c66501549f2c9628ebe0f"></a>D_OTHER_ERROR_TYPE&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
+<p class="definition">Definition at line <a class="el" href="debugger_8hpp_source.html#l00029">29</a> of file <a class="el" href="debugger_8hpp_source.html">debugger.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a6ad3cf0e40aa506e56b2cc176ff704d5" name="a6ad3cf0e40aa506e56b2cc176ff704d5"></a>
@@ -727,6 +759,8 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="a6ad3cf0e40aa506e56b2cc176ff704d5af769df1231303c4666d57bcb351f2034" name="a6ad3cf0e40aa506e56b2cc176ff704d5af769df1231303c4666d57bcb351f2034"></a>D_HIGH&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a6ad3cf0e40aa506e56b2cc176ff704d5a5c3d90b1e74e0d47247d2c23913f8427" name="a6ad3cf0e40aa506e56b2cc176ff704d5a5c3d90b1e74e0d47247d2c23913f8427"></a>D_NOTIFICATION&#160;</td><td class="fielddoc"></td></tr>
 </table>
+
+<p class="definition">Definition at line <a class="el" href="debugger_8hpp_source.html#l00065">65</a> of file <a class="el" href="debugger_8hpp_source.html">debugger.hpp</a>.</p>
 
 </div>
 </div>
@@ -763,6 +797,8 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="a6d046b1ff462d4e59679d8de1dfbad0ea270d9db2cf5e7fd2b20e13501f18c70a" name="a6d046b1ff462d4e59679d8de1dfbad0ea270d9db2cf5e7fd2b20e13501f18c70a"></a>D_OTHER&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
+<p class="definition">Definition at line <a class="el" href="debugger_8hpp_source.html#l00041">41</a> of file <a class="el" href="debugger_8hpp_source.html">debugger.hpp</a>.</p>
+
 </div>
 </div>
 <a id="abb3c1d6aed9b08a7c4da9ec1c14ec927" name="abb3c1d6aed9b08a7c4da9ec1c14ec927"></a>
@@ -794,6 +830,8 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="abb3c1d6aed9b08a7c4da9ec1c14ec927a87e6b203bf40967d37a33f9a4438561a" name="abb3c1d6aed9b08a7c4da9ec1c14ec927a87e6b203bf40967d37a33f9a4438561a"></a>GREATER_EQUAL&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="abb3c1d6aed9b08a7c4da9ec1c14ec927af3fc827ade4b968e50406496907ef962" name="abb3c1d6aed9b08a7c4da9ec1c14ec927af3fc827ade4b968e50406496907ef962"></a>ALWAYS&#160;</td><td class="fielddoc"></td></tr>
 </table>
+
+<p class="definition">Definition at line <a class="el" href="rendering_2core_2core_8hpp_source.html#l00205">205</a> of file <a class="el" href="rendering_2core_2core_8hpp_source.html">core.hpp</a>.</p>
 
 </div>
 </div>
@@ -827,6 +865,8 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="afd9133f65cb93b6650a0ba29806d1409ac121b991572aba8a5789d08d7e9cf76e" name="afd9133f65cb93b6650a0ba29806d1409ac121b991572aba8a5789d08d7e9cf76e"></a>DECR&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
+<p class="definition">Definition at line <a class="el" href="rendering_2core_2core_8hpp_source.html#l00216">216</a> of file <a class="el" href="rendering_2core_2core_8hpp_source.html">core.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a56b413432be5a427db344339041ed542" name="a56b413432be5a427db344339041ed542"></a>
@@ -852,6 +892,8 @@ Variables</h2></td></tr>
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a56b413432be5a427db344339041ed542a529e9e0beb5f85d1f132917c1a09860c" name="a56b413432be5a427db344339041ed542a529e9e0beb5f85d1f132917c1a09860c"></a>ZERO&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a56b413432be5a427db344339041ed542a5fb1f955b45e38e31789286a1790398d" name="a56b413432be5a427db344339041ed542a5fb1f955b45e38e31789286a1790398d"></a>ALL&#160;</td><td class="fielddoc"></td></tr>
 </table>
+
+<p class="definition">Definition at line <a class="el" href="rendering_2core_2core_8hpp_source.html#l00200">200</a> of file <a class="el" href="rendering_2core_2core_8hpp_source.html">core.hpp</a>.</p>
 
 </div>
 </div>
@@ -882,6 +924,8 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="ac86b8e5ecdfbdf8d0635cd13d790cc5faa5d5ca1447586e23dc011f8c0cc0a6db" name="ac86b8e5ecdfbdf8d0635cd13d790cc5faa5d5ca1447586e23dc011f8c0cc0a6db"></a>BMP&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00078">78</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
+
 </div>
 </div>
 <a id="af084fc3ad14c992e70a372f3d237bf84" name="af084fc3ad14c992e70a372f3d237bf84"></a>
@@ -908,6 +952,8 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="af084fc3ad14c992e70a372f3d237bf84ad0dea69649a83749aa6bdf176092e8c9" name="af084fc3ad14c992e70a372f3d237bf84ad0dea69649a83749aa6bdf176092e8c9"></a>SOLID&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="af084fc3ad14c992e70a372f3d237bf84a5b39c8b553c821e7cddc6da64b5bd2ee" name="af084fc3ad14c992e70a372f3d237bf84a5b39c8b553c821e7cddc6da64b5bd2ee"></a>DEFAULT&#160;</td><td class="fielddoc"></td></tr>
 </table>
+
+<p class="definition">Definition at line <a class="el" href="rendering_2core_2core_8hpp_source.html#l00314">314</a> of file <a class="el" href="rendering_2core_2core_8hpp_source.html">core.hpp</a>.</p>
 
 </div>
 </div>
@@ -938,6 +984,8 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="a1ed914ac1656a886e026259749d31100ae64a4d2159ed46d077e21a505575c814" name="a1ed914ac1656a886e026259749d31100ae64a4d2159ed46d077e21a505575c814"></a>LINE_STRIP&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a1ed914ac1656a886e026259749d31100a5b39c8b553c821e7cddc6da64b5bd2ee" name="a1ed914ac1656a886e026259749d31100a5b39c8b553c821e7cddc6da64b5bd2ee"></a>DEFAULT&#160;</td><td class="fielddoc"></td></tr>
 </table>
+
+<p class="definition">Definition at line <a class="el" href="rendering_2core_2core_8hpp_source.html#l00034">34</a> of file <a class="el" href="rendering_2core_2core_8hpp_source.html">core.hpp</a>.</p>
 
 </div>
 </div>
@@ -978,6 +1026,8 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="a46d0dfa0f134db6b834ccc2b921e2da2a5b39c8b553c821e7cddc6da64b5bd2ee" name="a46d0dfa0f134db6b834ccc2b921e2da2a5b39c8b553c821e7cddc6da64b5bd2ee"></a>DEFAULT&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a46d0dfa0f134db6b834ccc2b921e2da2a6cad826248cd3f4e93da71e7b49928e3" name="a46d0dfa0f134db6b834ccc2b921e2da2a6cad826248cd3f4e93da71e7b49928e3"></a>HDR&#160;</td><td class="fielddoc"></td></tr>
 </table>
+
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00011">11</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
 
 </div>
 </div>
@@ -1095,6 +1145,8 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="rendering_2core_2core_8hpp_source.html#l00180">180</a> of file <a class="el" href="rendering_2core_2core_8hpp_source.html">core.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a20d5df2122adaf548e2487f60472fdd0" name="a20d5df2122adaf548e2487f60472fdd0"></a>
@@ -1131,6 +1183,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="font_8hpp_source.html#l00060">60</a> of file <a class="el" href="font_8hpp_source.html">font.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a2fe1f6d43d54e1296405a1f31ebe4a50" name="a2fe1f6d43d54e1296405a1f31ebe4a50"></a>
@@ -1144,6 +1198,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="font_8hpp_source.html#l00061">61</a> of file <a class="el" href="font_8hpp_source.html">font.hpp</a>.</p>
 
 </div>
 </div>
@@ -1159,6 +1215,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="font_8hpp_source.html#l00064">64</a> of file <a class="el" href="font_8hpp_source.html">font.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a7ff3e06a3c32742dbfbdb8a7d3f9827c" name="a7ff3e06a3c32742dbfbdb8a7d3f9827c"></a>
@@ -1172,6 +1230,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="font_8hpp_source.html#l00062">62</a> of file <a class="el" href="font_8hpp_source.html">font.hpp</a>.</p>
 
 </div>
 </div>
@@ -1187,6 +1247,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="geometries_8hpp_source.html#l00023">23</a> of file <a class="el" href="geometries_8hpp_source.html">geometries.hpp</a>.</p>
+
 </div>
 </div>
 <a id="ae8a095ac0234687d57db4287a5b747ef" name="ae8a095ac0234687d57db4287a5b747ef"></a>
@@ -1200,6 +1262,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="geometries_8hpp_source.html#l00024">24</a> of file <a class="el" href="geometries_8hpp_source.html">geometries.hpp</a>.</p>
 
 </div>
 </div>
@@ -1215,12 +1279,18 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="font_8hpp_source.html#l00063">63</a> of file <a class="el" href="font_8hpp_source.html">font.hpp</a>.</p>
+
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

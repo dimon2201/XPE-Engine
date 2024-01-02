@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classxpe_1_1render_1_1c_geometry_manager.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li><li class="navelem"><a class="el" href="classxpe_1_1render_1_1c_geometry_manager.html">cGeometryManager</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
@@ -93,7 +111,10 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:afcab89931d34518de9c76ff962e6a5b9" id="r_afcab89931d34518de9c76ff962e6a5b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">static</a> std::pair&lt; <a class="el" href="structxpe_1_1render_1_1s_geometry.html">sGeometry</a>, <a class="el" href="structxpe_1_1render_1_1s_geometry_info.html">sGeometryInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afcab89931d34518de9c76ff962e6a5b9">AddGeometry</a> (<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">const</a> <a class="el" href="structxpe_1_1render_1_1s_geometry.html">sGeometry</a> &amp;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">_geometry</a>)</td></tr>
 <tr class="separator:afcab89931d34518de9c76ff962e6a5b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="geometry__manager_8hpp_source.html#l00009">9</a> of file <a class="el" href="geometry__manager_8hpp_source.html">geometry_manager.hpp</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="afcab89931d34518de9c76ff962e6a5b9" name="afcab89931d34518de9c76ff962e6a5b9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afcab89931d34518de9c76ff962e6a5b9">&#9670;&#160;</a></span>AddGeometry()</h2>
 
@@ -116,6 +137,65 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="geometry__manager_8cpp_source.html#l00020">20</a> of file <a class="el" href="geometry__manager_8cpp_source.html">geometry_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_geometry_manager_afcab89931d34518de9c76ff962e6a5b9_cgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_geometry_manager_afcab89931d34518de9c76ff962e6a5b9_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_geometry_manager_afcab89931d34518de9c76ff962e6a5b9_cgraph" id="aclassxpe_1_1render_1_1c_geometry_manager_afcab89931d34518de9c76ff962e6a5b9_cgraph">
+<area shape="rect" title=" " alt="" coords="5,129,214,172"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_index_buffer.html#ae66af1dc4e7fdb4e9b68681f840ce088" title=" " alt="" coords="265,29,431,72"/>
+<area shape="poly" title=" " alt="" coords="158,126,261,82,275,76,277,81,263,86,160,131"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_vertex_buffer.html#a51156ba60b131894740fcda87d91459d" title=" " alt="" coords="262,96,434,139"/>
+<area shape="poly" title=" " alt="" coords="214,133,246,129,247,134,215,139"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_index_buffer.html#aaa6c6f473ab50ee10652c85dd2bbfdb0" title=" " alt="" coords="265,163,431,205"/>
+<area shape="poly" title=" " alt="" coords="215,163,250,168,249,173,214,168"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_vertex_buffer.html#a896c35b36d1987189db78fbca0a81a19" title=" " alt="" coords="262,229,434,272"/>
+<area shape="poly" title=" " alt="" coords="160,170,263,215,277,221,275,226,261,220,158,175"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a43a3526ddcb06eddda247d1457ae02b3" title=" " alt="" coords="702,63,840,105"/>
+<area shape="poly" title=" " alt="" coords="411,160,433,148,446,137,455,126,465,114,481,104,532,87,586,78,639,74,687,74,687,79,639,79,587,83,534,92,483,109,468,118,459,129,450,141,435,153,414,164"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_buffer.html#a2f14b04e600f8e56b9651a1e8ee32fb9" title=" " alt="" coords="704,311,838,353"/>
+<area shape="poly" title=" " alt="" coords="417,204,436,215,452,233,460,251,468,267,483,282,519,296,571,307,689,323,688,328,570,312,517,301,481,286,463,270,455,253,447,236,432,219,415,208"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_index_buffer.html#a7cc39f24072b907a5b007037b457c3ae" title=" " alt="" coords="486,163,651,205"/>
+<area shape="poly" title=" " alt="" coords="431,181,470,181,470,187,431,187"/>
+<area shape="poly" title=" " alt="" coords="732,63,731,53,737,44,751,38,771,36,793,38,806,45,803,49,791,44,771,41,752,43,741,48,736,54,738,62"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a4307865df88da4fb54e36f929b6f88a5" title=" " alt="" coords="888,29,1058,56"/>
+<area shape="poly" title=" " alt="" coords="840,67,889,57,890,62,841,73"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a32b89671df27bd47193c116873b60f3e" title=" " alt="" coords="904,104,1042,147"/>
+<area shape="poly" title=" " alt="" coords="841,95,890,106,889,111,840,101"/>
+<area shape="poly" title=" " alt="" coords="939,30,932,21,937,11,950,5,973,3,997,5,1010,12,1007,16,995,10,973,8,952,10,940,15,938,20,943,27"/>
+<area shape="poly" title=" " alt="" coords="934,104,933,94,939,85,953,79,973,77,995,80,1008,86,1005,91,993,85,973,83,954,85,942,89,938,95,939,103"/>
+<area shape="poly" title=" " alt="" coords="616,160,653,142,701,115,710,110,712,115,704,120,656,146,619,165"/>
+<area shape="poly" title=" " alt="" coords="639,204,656,215,673,236,681,257,689,276,704,297,707,299,704,303,700,300,684,279,676,258,669,239,653,219,636,208"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a55a0590129a19f52e243dc67094efaf5" title=" " alt="" coords="702,244,840,287"/>
+<area shape="poly" title=" " alt="" coords="627,203,655,215,705,235,703,240,653,220,625,208"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#aabfe2d29425d231b5bcb38398009e73c" title=" " alt="" coords="702,153,840,196"/>
+<area shape="poly" title=" " alt="" coords="651,178,687,176,687,181,652,183"/>
+<area shape="poly" title=" " alt="" coords="732,244,731,234,737,225,751,219,771,217,793,220,806,226,803,231,791,225,771,223,752,225,741,229,736,235,738,243"/>
+<area shape="poly" title=" " alt="" coords="732,153,731,143,737,134,751,129,771,127,793,129,806,135,803,140,791,134,771,132,752,134,741,139,736,145,738,152"/>
+<area shape="poly" title=" " alt="" coords="415,226,432,215,447,199,455,182,464,165,481,148,509,138,561,124,687,97,688,103,562,130,511,143,483,153,468,168,460,184,452,202,436,219,417,231"/>
+<area shape="poly" title=" " alt="" coords="378,270,425,301,454,315,483,325,535,336,589,341,688,339,688,344,588,346,534,341,481,331,451,320,423,305,375,275"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_vertex_buffer.html#a1e35d4d007d4707711bd3e42c0d8ae4f" title=" " alt="" coords="482,229,654,272"/>
+<area shape="poly" title=" " alt="" coords="435,248,467,248,467,253,435,253"/>
+<area shape="poly" title=" " alt="" coords="637,227,652,215,670,191,676,167,683,142,700,116,703,113,707,117,704,119,688,144,681,169,675,194,656,219,640,231"/>
+<area shape="poly" title=" " alt="" coords="624,270,702,302,700,307,622,275"/>
+<area shape="poly" title=" " alt="" coords="655,254,687,257,687,262,655,260"/>
+<area shape="poly" title=" " alt="" coords="626,226,697,199,699,204,628,231"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_geometry_manager_afcab89931d34518de9c76ff962e6a5b9_icgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_geometry_manager_afcab89931d34518de9c76ff962e6a5b9_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_geometry_manager_afcab89931d34518de9c76ff962e6a5b9_icgraph" id="aclassxpe_1_1render_1_1c_geometry_manager_afcab89931d34518de9c76ff962e6a5b9_icgraph">
+<area shape="rect" title=" " alt="" coords="237,39,445,81"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_text_shader.html#ad8b58ce40667013c62bc85cb9ae913fa" title=" " alt="" coords="13,5,181,48"/>
+<area shape="poly" title=" " alt="" coords="221,46,181,41,181,35,221,41"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_widget_shader.html#ac6d0a01c7e25a93a16e38d9642dfe0f2" title=" " alt="" coords="5,72,189,115"/>
+<area shape="poly" title=" " alt="" coords="221,79,190,83,189,78,221,74"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -142,6 +222,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="geometry__manager_8cpp_source.html#l00014">14</a> of file <a class="el" href="geometry__manager_8cpp_source.html">geometry_manager.cpp</a>.</p>
+
 </div>
 </div>
 <a id="aff16fdc19b1ed7d7e0874aa661c43a8e" name="aff16fdc19b1ed7d7e0874aa661c43a8e"></a>
@@ -167,16 +249,22 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="geometry__manager_8cpp_source.html#l00008">8</a> of file <a class="el" href="geometry__manager_8cpp_source.html">geometry_manager.cpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>engine/src/rendering/geometry/<a class="el" href="geometry__manager_8hpp_source.html">geometry_manager.hpp</a></li>
-<li>engine/src/rendering/geometry/<a class="el" href="geometry__manager_8cpp.html">geometry_manager.cpp</a></li>
+<li>engine/src/rendering/geometry/<a class="el" href="geometry__manager_8cpp_source.html">geometry_manager.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li><li class="navelem"><a class="el" href="classxpe_1_1render_1_1c_geometry_manager.html">cGeometryManager</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

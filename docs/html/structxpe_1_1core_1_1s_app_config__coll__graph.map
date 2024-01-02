@@ -1,0 +1,13 @@
+<map id="xpe::core::sAppConfig" name="xpe::core::sAppConfig">
+<area shape="rect" id="Node000001" title=" " alt="" coords="159,204,309,231"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1res_1_1c_json.html" title=" " alt="" coords="5,105,116,132"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,138,212,201,210,206,95,142"/>
+<area shape="rect" id="Node000003" href="$structxpe_1_1core_1_1s_observer_window_ratio.html" title=" " alt="" coords="140,97,328,140"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="237,156,237,204,231,204,231,156"/>
+<area shape="rect" id="Node000004" href="$structxpe_1_1core_1_1s_observer.html" title=" " alt="" coords="163,5,305,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="237,64,237,97,231,97,231,64"/>
+<area shape="rect" id="Node000005" href="$structxpe_1_1core_1_1s_observer_sample_count.html" title=" " alt="" coords="352,97,537,140"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="387,149,315,182,263,206,261,201,313,178,385,144"/>
+<area shape="rect" id="Node000006" href="$structxpe_1_1core_1_1s_observer.html" title=" " alt="" coords="374,5,515,48"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="447,64,447,97,442,97,442,64"/>
+</map>

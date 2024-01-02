@@ -1,0 +1,14 @@
+<map id="xpe::render::sTextureLayer::FreeMips" name="xpe::render::sTextureLayer::FreeMips">
+<area shape="rect" id="Node000001" title=" " alt="" coords="633,72,810,115"/>
+<area shape="rect" id="Node000002" href="$structxpe_1_1render_1_1s_texture_layer.html#a3cc06d7291a272bb5316e177a2c1fe6a" title=" " alt="" coords="409,5,585,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="632,70,571,51,572,46,634,65"/>
+<area shape="rect" id="Node000003" href="$structxpe_1_1render_1_1s_texture_layer.html#acf486041e8c9738e444750b84c881074" title=" " alt="" coords="409,72,585,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="618,96,586,96,586,91,618,91"/>
+<area shape="rect" id="Node000006" href="$structxpe_1_1render_1_1s_texture_layer.html#a3a21289fbdb54c0191c706c31edf3abc" title=" " alt="" coords="409,139,585,181"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="634,122,572,141,571,135,632,117"/>
+<area shape="rect" id="Node000004" href="$structxpe_1_1render_1_1s_texture_layer.html#a312528dbd92ffb2a012cc45b08b0c48d" title=" " alt="" coords="185,105,361,148"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="394,111,362,116,361,111,393,106"/>
+<area shape="rect" id="Node000005" href="$structxpe_1_1render_1_1s_atlas.html#aadddcc49677815c6ff7169e7cb8b9f5a" title=" " alt="" coords="5,105,137,148"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="169,129,137,129,137,124,169,124"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="393,147,361,142,362,137,394,142"/>
+</map>

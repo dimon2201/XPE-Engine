@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('canvas_8cpp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li><li class="navelem"><a class="el" href="dir_c82fe33ead33fcc3829b24ace9891300.html">rendering</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a>  </div>
@@ -83,7 +101,69 @@ $(function() {
 <div class="textblock"><code>#include &lt;<a class="el" href="canvas_8hpp_source.html">rendering/canvas.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="camera__manager_8hpp_source.html">rendering/camera_manager.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="bindings_8hpp_source.html">rendering/bindings.hpp</a>&gt;</code><br />
-</div><table class="memberdecls">
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for canvas.cpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="canvas_8cpp__incl.png" border="0" usemap="#aengine_2src_2rendering_2canvas_8cpp" alt=""/></div>
+<map name="aengine_2src_2rendering_2canvas_8cpp" id="aengine_2src_2rendering_2canvas_8cpp">
+<area shape="rect" title=" " alt="" coords="499,5,637,48"/>
+<area shape="rect" href="canvas_8hpp.html" title=" " alt="" coords="143,171,286,197"/>
+<area shape="poly" title=" " alt="" coords="522,51,258,166,256,162,520,46"/>
+<area shape="rect" href="camera__manager_8hpp.html" title=" " alt="" coords="466,96,670,123"/>
+<area shape="poly" title=" " alt="" coords="571,49,571,80,565,80,565,49"/>
+<area shape="rect" href="bindings_8hpp.html" title=" " alt="" coords="831,245,982,272"/>
+<area shape="poly" title=" " alt="" coords="605,46,683,94,793,170,880,234,877,238,790,174,680,98,602,51"/>
+<area shape="rect" href="rendering_2core_2context_8hpp.html" title=" " alt="" coords="179,576,354,603"/>
+<area shape="poly" title=" " alt="" coords="177,200,132,220,84,250,63,269,47,290,36,314,32,340,32,433,36,460,47,483,63,504,85,522,136,550,190,569,188,574,133,555,82,526,60,508,42,486,31,461,27,434,27,340,31,312,42,287,60,265,81,246,129,216,175,195"/>
+<area shape="rect" href="shader_8hpp.html" title=" " alt="" coords="165,651,336,677"/>
+<area shape="poly" title=" " alt="" coords="266,604,259,636,254,635,261,603"/>
+<area shape="rect" href="render__target_8hpp.html" title=" " alt="" coords="156,725,300,768"/>
+<area shape="poly" title=" " alt="" coords="250,679,240,711,235,710,245,677"/>
+<area shape="rect" href="texture_8hpp.html" title=" " alt="" coords="81,816,253,843"/>
+<area shape="poly" title=" " alt="" coords="214,770,188,805,183,802,210,767"/>
+<area shape="rect" href="rendering_2core_2core_8hpp.html" title=" " alt="" coords="88,891,245,917"/>
+<area shape="poly" title=" " alt="" coords="169,843,169,875,164,875,164,843"/>
+<area shape="rect" href="camera_8hpp.html" title=" " alt="" coords="495,171,641,197"/>
+<area shape="poly" title=" " alt="" coords="571,123,571,155,565,155,565,123"/>
+<area shape="rect" href="components_8hpp.html" title=" " alt="" coords="497,245,639,272"/>
+<area shape="poly" title=" " alt="" coords="571,198,571,230,565,230,565,198"/>
+<area shape="rect" href="geometries_8hpp.html" title=" " alt="" coords="905,320,1037,363"/>
+<area shape="poly" title=" " alt="" coords="640,269,890,317,889,322,639,274"/>
+<area shape="rect" href="buffers_8hpp.html" title=" " alt="" coords="597,501,739,528"/>
+<area shape="poly" title=" " alt="" coords="573,272,581,312,596,362,626,430,656,487,651,489,621,433,591,364,576,314,568,273"/>
+<area shape="rect" href="material_8hpp.html" title=" " alt="" coords="606,320,730,363"/>
+<area shape="poly" title=" " alt="" coords="585,270,632,308,629,312,582,275"/>
+<area shape="rect" href="font_8hpp.html" title=" " alt="" coords="5,576,155,603"/>
+<area shape="poly" title=" " alt="" coords="496,264,404,269,300,279,206,296,170,308,144,322,120,346,103,375,90,408,82,441,77,508,79,561,74,561,72,508,77,441,85,406,98,373,116,343,141,318,168,303,205,291,299,274,403,264,496,259"/>
+<area shape="rect" href="widget__manager_8hpp.html" title=" " alt="" coords="333,328,531,355"/>
+<area shape="poly" title=" " alt="" coords="548,275,468,322,465,318,545,270"/>
+<area shape="rect" href="skeleton_8hpp.html" title=" " alt="" coords="754,328,881,355"/>
+<area shape="poly" title=" " alt="" coords="608,270,765,320,763,325,606,275"/>
+<area shape="rect" href="audio_2core_2context_8hpp.html" title=" " alt="" coords="155,328,309,355"/>
+<area shape="poly" title=" " alt="" coords="516,275,300,326,299,321,515,270"/>
+<area shape="rect" href="geometry_8hpp.html" title=" " alt="" coords="866,411,998,453"/>
+<area shape="poly" title=" " alt="" coords="964,364,950,397,945,395,959,362"/>
+<area shape="poly" title=" " alt="" coords="866,456,725,499,723,494,865,451"/>
+<area shape="poly" title=" " alt="" coords="598,531,352,575,351,570,597,526"/>
+<area shape="poly" title=" " alt="" coords="671,363,671,486,665,486,665,363"/>
+<area shape="poly" title=" " alt="" coords="87,602,147,767,159,800,154,802,141,769,82,604"/>
+<area shape="poly" title=" " alt="" coords="835,353,895,399,892,403,832,357"/>
+<area shape="rect" href="anim_8hpp.html" title=" " alt="" coords="735,419,841,445"/>
+<area shape="poly" title=" " alt="" coords="816,356,800,404,795,403,811,354"/>
+<area shape="rect" href="audio_2core_2core_8hpp.html" title=" " alt="" coords="264,419,400,445"/>
+<area shape="poly" title=" " alt="" coords="248,353,308,406,304,410,245,357"/>
+<area shape="rect" href="sndfile__context_8hpp.html" title=" " alt="" coords="118,411,240,453"/>
+<area shape="poly" title=" " alt="" coords="227,357,201,399,197,396,222,354"/>
+<area shape="rect" href="types_8hpp.html" title=" " alt="" coords="424,419,531,445"/>
+<area shape="poly" title=" " alt="" coords="268,353,429,411,427,416,266,358"/>
+<area shape="rect" title=" " alt="" coords="144,501,213,528"/>
+<area shape="poly" title=" " alt="" coords="181,454,181,485,176,485,176,454"/>
+<area shape="poly" title=" " alt="" coords="979,270,1019,288,1037,302,1052,319,1058,337,1057,358,1043,402,1024,439,1012,455,993,467,967,476,901,492,826,503,754,510,754,505,825,498,900,487,966,471,991,462,1009,451,1019,436,1038,400,1052,357,1053,338,1047,321,1033,306,1016,293,977,275"/>
+</map>
+</div>
+</div>
+<p><a href="canvas_8cpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacexpe" id="r_namespacexpe"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexpe.html">xpe</a></td></tr>
@@ -92,9 +172,13 @@ Namespaces</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li><li class="navelem"><a class="el" href="dir_c82fe33ead33fcc3829b24ace9891300.html">rendering</a></li><li class="navelem"><a class="el" href="canvas_8cpp.html">canvas.cpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

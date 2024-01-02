@@ -1,0 +1,36 @@
+\doxysection{sndfile\+\_\+context.\+cpp}
+\hypertarget{sndfile__context_8cpp_source}{}\label{sndfile__context_8cpp_source}\index{engine/src/audio/core/sndfile\_context.cpp@{engine/src/audio/core/sndfile\_context.cpp}}
+\mbox{\hyperlink{sndfile__context_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{sndfile__context_8hpp}{audio/core/sndfile\_context.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00003}00003\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00005}00005\ \ \ \ \ \textcolor{keyword}{namespace\ }audio\ \{}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00007}\mbox{\hyperlink{structxpe_1_1audio_1_1s_audio_file_aeb5babadd185412211cbf04fe66b0b98}{00007}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1audio_1_1s_audio_file_aeb5babadd185412211cbf04fe66b0b98}{sAudioFile::\string~sAudioFile}}()}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00008}00008\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00009}00009\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sf\_close}}(\mbox{\hyperlink{structxpe_1_1audio_1_1s_audio_file_a97675b10e8a1029dd95bad890948f0bf}{File}});}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00010}00010\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \textcolor{keyword}{namespace\ }context\ \{}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00014}\mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a441e3db4c0c07452df254a5b649b7935}{00014}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a441e3db4c0c07452df254a5b649b7935}{SetCurrentFrame}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{SNDFILE}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}},\ \mbox{\hyperlink{namespacexpe_1_1core_a37a5a683d03a765d1a97c0984dd65771}{s64}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{frame}})}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sf\_seek}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{frame}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{SEEK\_SET}});}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00019}\mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a7c97f85c585f9e3b795db945c5581d52}{00019}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a37a5a683d03a765d1a97c0984dd65771}{s64}}\ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a7c97f85c585f9e3b795db945c5581d52}{ReadChunk}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{SNDFILE}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{m\_File}},\ \textcolor{keywordtype}{short}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{data}},\ \mbox{\hyperlink{namespacexpe_1_1core_a37a5a683d03a765d1a97c0984dd65771}{s64}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{num\_frames}})}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sf\_readf\_short}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{m\_File}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{data}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{num\_frames}});}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00024}\mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a91f3ee3b32d5bd17626a0eb696aba5a2}{00024}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a91f3ee3b32d5bd17626a0eb696aba5a2}{isAmbisonic}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1audio_1_1s_audio_file}{sAudioFile}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}})}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sf\_command}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}}.File,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{SFC\_WAVEX\_GET\_AMBISONIC}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{NULL}},\ 0)\ ==\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{SF\_AMBISONIC\_B\_FORMAT}};}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00029}00029\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8cpp_source_l00030}00030\ \}}
+
+\end{DoxyCode}

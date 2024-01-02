@@ -2,74 +2,74 @@
 \hypertarget{app__config_8hpp_source}{}\label{app__config_8hpp_source}\index{engine/src/core/app\_config.hpp@{engine/src/core/app\_config.hpp}}
 \mbox{\hyperlink{app__config_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{observers_8hpp}{core/observers.hpp}}>}}
-\DoxyCodeLine{00004\ }
-\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
-\DoxyCodeLine{00006\ }
-\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{namespace\ }core\ \{}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_app_config}{sAppConfig}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{res::cJson}}}
-\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a25b6c80ea03e809e2d2f536c681aec3b}{JSON\_CLASS}}(}
-\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_app_config}{sAppConfig}},}
-\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{WinTitle}},}
-\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WinWidth,}
-\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WinHeight,}
-\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WinX,}
-\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WinY,}
-\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VSync,}
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Fullscreen,}
-\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Gamma,}
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Exposure,}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AspectRatio.Value,}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LogTitle,}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LogBacktrace,}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EnableGPUInfoLog,}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EnableGPUWarnLog,}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EnableGPUErrorLog,}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FPS,}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LogTimeDelaySeconds,}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LockOnFps,}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HotReloadShaders,}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MsaaSampleCount.Value,}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EnableSSAO}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ )}
-\DoxyCodeLine{00035\ }
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{WinTitle}};}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ WinWidth\ =\ 0;}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ WinHeight\ =\ 0;}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ WinX\ =\ 0;}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ WinY\ =\ 0;}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ VSync\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Fullscreen\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Gamma\ =\ 2.2f;}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Exposure\ =\ 1;}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_observer_window_ratio}{sObserverWindowRatio}}\ AspectRatio\ =\ 1.6f;}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a05df6daee01aea8de6417a1900702caf}{LogTitle}};}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ LogBacktrace\ =\ 32;}
-\DoxyCodeLine{00049\ }
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ EnableGPUInfoLog\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ EnableGPUWarnLog\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ EnableGPUErrorLog\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00053\ }
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ FPS\ =\ 165.0f;}
-\DoxyCodeLine{00055\ }
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ LogTimeDelaySeconds\ =\ 5;}
-\DoxyCodeLine{00057\ }
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ LockOnFps\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00059\ }
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ HotReloadShaders\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00061\ }
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ EnableSSAO\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_observer_sample_count}{sObserverSampleCount}}\ MsaaSampleCount\ =\ 1;}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00066\ }
-\DoxyCodeLine{00067\ \ \ \ \ \}}
-\DoxyCodeLine{00068\ }
-\DoxyCodeLine{00069\ \}}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{observers_8hpp}{core/observers.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00005}00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00007}00007\ \ \ \ \ \textcolor{keyword}{namespace\ }core\ \{}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00009}\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config}{00009}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_app_config}{sAppConfig}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1res_1_1c_json}{res::cJson}}}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00010}00010\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00011}\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a25b6c80ea03e809e2d2f536c681aec3b}{00011}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a25b6c80ea03e809e2d2f536c681aec3b}{JSON\_CLASS}}(}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_app_config}{sAppConfig}},}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00013}00013\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{WinTitle}},}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WinWidth,}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WinHeight,}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WinX,}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WinY,}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VSync,}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Fullscreen,}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Gamma,}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Exposure,}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AspectRatio.Value,}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LogTitle,}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LogBacktrace,}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EnableGPUInfoLog,}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EnableGPUWarnLog,}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EnableGPUErrorLog,}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FPS,}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LogTimeDelaySeconds,}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LockOnFps,}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HotReloadShaders,}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MsaaSampleCount.Value,}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EnableSSAO}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{WinTitle}};}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00037}\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a80e6b6553193953e456c6e2f35297d32}{00037}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ WinWidth\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00038}\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_af516a3d629e71ffc18d60dde9c875fd6}{00038}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ WinHeight\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00039}\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_af912eff016d31d8adfd619bf4ded8cf9}{00039}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ WinX\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00040}\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a2bb52f0570e63dae9e2d5abd380e6014}{00040}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ WinY\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00041}\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a790e643af27d43ef9749bdc55a6256a3}{00041}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ VSync\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00042}\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a1c442f3483b8a4aec58343e8bda6505b}{00042}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Fullscreen\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00043}\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a718146fc87ff59c80bd01c76e62f633f}{00043}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Gamma\ =\ 2.2f;}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00044}\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a840271115d6af0604f3267e189d23677}{00044}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Exposure\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00045}\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a2cccaa8ba46ff64ec540ab7d30f5f7dd}{00045}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_observer_window_ratio}{sObserverWindowRatio}}\ AspectRatio\ =\ 1.6f;}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00047}\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a05df6daee01aea8de6417a1900702caf}{00047}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a05df6daee01aea8de6417a1900702caf}{LogTitle}};}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00048}\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a63eefdde091f2c253a3cda2baa184275}{00048}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ LogBacktrace\ =\ 32;}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00050}\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a6540494d2193a2df842b87f1936a6e78}{00050}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ EnableGPUInfoLog\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00051}\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_addd31d13da2f5aa0f721460f33ff1748}{00051}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ EnableGPUWarnLog\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00052}\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a7c9c2f867c6786427cb34c9356cd8c21}{00052}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ EnableGPUErrorLog\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00054}\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a1823d143e1013df4c8ba7e8d753f82b0}{00054}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ FPS\ =\ 165.0f;}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00056}\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_aa7872ab3325e0842574d226448d8831e}{00056}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ LogTimeDelaySeconds\ =\ 5;}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00058}\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a72ff94e27d9a4e862ac4f25000a456b4}{00058}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ LockOnFps\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00060}\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_abe8961c8be9c69d0d19683ecdcf23c32}{00060}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ HotReloadShaders\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00062}\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_af4517f8977b042a2024669783c4f8c77}{00062}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ EnableSSAO\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00064}\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a599d63e604f7e57d34d49ea56a6bc2d8}{00064}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_observer_sample_count}{sObserverSampleCount}}\ MsaaSampleCount\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00067}00067\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{app__config_8hpp_source_l00069}00069\ \}}
 
 \end{DoxyCode}

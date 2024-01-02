@@ -1,0 +1,7 @@
+<map id="xpe::core::sTask" name="xpe::core::sTask">
+<area shape="rect" id="Node000001" title=" " alt="" coords="24,80,143,107"/>
+<area shape="rect" id="Node000003" href="$structxpe_1_1core_1_1s_task_queue.html" title=" " alt="" coords="5,155,162,181"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="86,122,86,154,81,154,81,122"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="19,5,148,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,48,86,80,81,80,81,48"/>
+</map>

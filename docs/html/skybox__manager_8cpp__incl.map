@@ -1,0 +1,22 @@
+<map id="engine/src/rendering/skybox_manager.cpp" name="engine/src/rendering/skybox_manager.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="32,5,181,48"/>
+<area shape="rect" id="Node000002" href="$skybox__manager_8hpp.html" title=" " alt="" coords="5,96,208,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,49,109,80,104,80,104,49"/>
+<area shape="rect" id="Node000003" href="$texture_8hpp.html" title=" " alt="" coords="23,667,195,693"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="102,124,74,190,62,235,57,281,57,516,61,554,71,591,97,652,92,654,66,592,56,555,52,516,52,281,57,234,69,189,97,122"/>
+<area shape="rect" id="Node000005" href="$geometries_8hpp.html" title=" " alt="" coords="92,171,225,213"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="117,122,139,156,135,159,112,125"/>
+<area shape="rect" id="Node000004" href="$rendering_2core_2core_8hpp.html" title=" " alt="" coords="31,741,188,768"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="112,694,112,726,107,726,107,694"/>
+<area shape="rect" id="Node000006" href="$geometry_8hpp.html" title=" " alt="" coords="94,261,226,304"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="161,214,162,246,157,246,156,214"/>
+<area shape="rect" id="Node000007" href="$buffers_8hpp.html" title=" " alt="" coords="100,352,241,379"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="165,304,169,336,164,337,160,305"/>
+<area shape="rect" id="Node000008" href="$rendering_2core_2context_8hpp.html" title=" " alt="" coords="92,427,268,453"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="175,379,179,411,174,412,169,380"/>
+<area shape="rect" id="Node000009" href="$shader_8hpp.html" title=" " alt="" coords="93,501,264,528"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="182,454,182,486,176,486,177,454"/>
+<area shape="rect" id="Node000010" href="$render__target_8hpp.html" title=" " alt="" coords="99,576,242,619"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="180,529,177,561,171,561,175,528"/>
+<area shape="poly" id="edge10_Node000010_Node000003" title=" " alt="" coords="157,621,130,656,126,653,153,618"/>
+</map>

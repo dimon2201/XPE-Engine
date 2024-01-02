@@ -1,5 +1,13 @@
 \doxysection{engine/src/core/allocators.hpp File Reference}
 \hypertarget{core_2allocators_8hpp}{}\label{core_2allocators_8hpp}\index{engine/src/core/allocators.hpp@{engine/src/core/allocators.hpp}}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{core_2allocators_8hpp__dep__incl}
+\end{center}
+\end{figure}
 \doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
@@ -77,11 +85,19 @@ namespace \mbox{\hyperlink{namespacexpe_1_1core}{xpe\+::core}}
 \doxysubsubsection{\texorpdfstring{hot\_alloc}{hot\_alloc}}
 {\footnotesize\ttfamily \#define hot\+\_\+alloc(\begin{DoxyParamCaption}\item[{}]{size }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_memory_manager_a876715269b6bd8bd6b0f333836d7c229}{xpe\+::core\+::c\+Memory\+Manager\+::\+Hot\+Pools}}-\/$>$Allocate(size)}
 
+
+
+Definition at line \mbox{\hyperlink{core_2allocators_8hpp_source_l00003}{3}} of file \mbox{\hyperlink{core_2allocators_8hpp_source}{allocators.\+hpp}}.
+
 \Hypertarget{core_2allocators_8hpp_ab1b790797d76f5cdbf0071e7c6bd1f4f}\label{core_2allocators_8hpp_ab1b790797d76f5cdbf0071e7c6bd1f4f} 
 \index{allocators.hpp@{allocators.hpp}!hot\_allocT@{hot\_allocT}}
 \index{hot\_allocT@{hot\_allocT}!allocators.hpp@{allocators.hpp}}
 \doxysubsubsection{\texorpdfstring{hot\_allocT}{hot\_allocT}}
 {\footnotesize\ttfamily \#define hot\+\_\+allocT(\begin{DoxyParamCaption}\item[{}]{T,  }\item[{}]{count }\end{DoxyParamCaption})~static\+\_\+cast$<$T\texorpdfstring{$\ast$}{*}$>$(\mbox{\hyperlink{core_2allocators_8hpp_a907c182cb7f92ee2064968fda57d6656}{hot\+\_\+alloc}}(sizeof(T) \texorpdfstring{$\ast$}{*} count))}
+
+
+
+Definition at line \mbox{\hyperlink{core_2allocators_8hpp_source_l00004}{4}} of file \mbox{\hyperlink{core_2allocators_8hpp_source}{allocators.\+hpp}}.
 
 \Hypertarget{core_2allocators_8hpp_a2bfcf8361a911e1d5f9356cea3ea74c8}\label{core_2allocators_8hpp_a2bfcf8361a911e1d5f9356cea3ea74c8} 
 \index{allocators.hpp@{allocators.hpp}!hot\_construct@{hot\_construct}}
@@ -89,11 +105,19 @@ namespace \mbox{\hyperlink{namespacexpe_1_1core}{xpe\+::core}}
 \doxysubsubsection{\texorpdfstring{hot\_construct}{hot\_construct}}
 {\footnotesize\ttfamily \#define hot\+\_\+construct(\begin{DoxyParamCaption}\item[{}]{T }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_memory_manager_a876715269b6bd8bd6b0f333836d7c229}{xpe\+::core\+::c\+Memory\+Manager\+::\+Hot\+Pools}}-\/$>$Allocate\+Construct$<$T$>$()}
 
+
+
+Definition at line \mbox{\hyperlink{core_2allocators_8hpp_source_l00005}{5}} of file \mbox{\hyperlink{core_2allocators_8hpp_source}{allocators.\+hpp}}.
+
 \Hypertarget{core_2allocators_8hpp_ac67ca42f522dd054da17196865395fc2}\label{core_2allocators_8hpp_ac67ca42f522dd054da17196865395fc2} 
 \index{allocators.hpp@{allocators.hpp}!hot\_construct\_args@{hot\_construct\_args}}
 \index{hot\_construct\_args@{hot\_construct\_args}!allocators.hpp@{allocators.hpp}}
 \doxysubsubsection{\texorpdfstring{hot\_construct\_args}{hot\_construct\_args}}
 {\footnotesize\ttfamily \#define hot\+\_\+construct\+\_\+args(\begin{DoxyParamCaption}\item[{}]{T,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_memory_manager_a876715269b6bd8bd6b0f333836d7c229}{xpe\+::core\+::c\+Memory\+Manager\+::\+Hot\+Pools}}-\/$>$Allocate\+Construct\+Args$<$T$>$(\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+
+
+Definition at line \mbox{\hyperlink{core_2allocators_8hpp_source_l00006}{6}} of file \mbox{\hyperlink{core_2allocators_8hpp_source}{allocators.\+hpp}}.
 
 \Hypertarget{core_2allocators_8hpp_a375348b94c144f7dd96baac0e308ef4e}\label{core_2allocators_8hpp_a375348b94c144f7dd96baac0e308ef4e} 
 \index{allocators.hpp@{allocators.hpp}!hot\_destruct@{hot\_destruct}}
@@ -107,11 +131,19 @@ namespace \mbox{\hyperlink{namespacexpe_1_1core}{xpe\+::core}}
 \DoxyCodeLine{hot\_free(addr)}
 
 \end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{core_2allocators_8hpp_source_l00008}{8}} of file \mbox{\hyperlink{core_2allocators_8hpp_source}{allocators.\+hpp}}.
+
 \Hypertarget{core_2allocators_8hpp_a787bfb5b87d8abdec2e3c38601cf4a31}\label{core_2allocators_8hpp_a787bfb5b87d8abdec2e3c38601cf4a31} 
 \index{allocators.hpp@{allocators.hpp}!hot\_free@{hot\_free}}
 \index{hot\_free@{hot\_free}!allocators.hpp@{allocators.hpp}}
 \doxysubsubsection{\texorpdfstring{hot\_free}{hot\_free}}
 {\footnotesize\ttfamily \#define hot\+\_\+free(\begin{DoxyParamCaption}\item[{}]{addr }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_memory_manager_a876715269b6bd8bd6b0f333836d7c229}{xpe\+::core\+::c\+Memory\+Manager\+::\+Hot\+Pools}}-\/$>$Free(addr)}
+
+
+
+Definition at line \mbox{\hyperlink{core_2allocators_8hpp_source_l00007}{7}} of file \mbox{\hyperlink{core_2allocators_8hpp_source}{allocators.\+hpp}}.
 
 \Hypertarget{core_2allocators_8hpp_abdfa33f12655d0a8f26a1fb077ee2f0a}\label{core_2allocators_8hpp_abdfa33f12655d0a8f26a1fb077ee2f0a} 
 \index{allocators.hpp@{allocators.hpp}!LogStackMemory@{LogStackMemory}}
@@ -119,11 +151,19 @@ namespace \mbox{\hyperlink{namespacexpe_1_1core}{xpe\+::core}}
 \doxysubsubsection{\texorpdfstring{LogStackMemory}{LogStackMemory}}
 {\footnotesize\ttfamily \#define Log\+Stack\+Memory(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+Definition at line \mbox{\hyperlink{core_2allocators_8hpp_source_l00038}{38}} of file \mbox{\hyperlink{core_2allocators_8hpp_source}{allocators.\+hpp}}.
+
 \Hypertarget{core_2allocators_8hpp_a0b2c774a281f8d83b9add0b64bf4cff1}\label{core_2allocators_8hpp_a0b2c774a281f8d83b9add0b64bf4cff1} 
 \index{allocators.hpp@{allocators.hpp}!main\_alloc@{main\_alloc}}
 \index{main\_alloc@{main\_alloc}!allocators.hpp@{allocators.hpp}}
 \doxysubsubsection{\texorpdfstring{main\_alloc}{main\_alloc}}
 {\footnotesize\ttfamily \#define main\+\_\+alloc(\begin{DoxyParamCaption}\item[{}]{size }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_memory_manager_a936d86a0072701410f49106edf16abba}{xpe\+::core\+::c\+Memory\+Manager\+::\+Main\+Pools}}-\/$>$Allocate(size)}
+
+
+
+Definition at line \mbox{\hyperlink{core_2allocators_8hpp_source_l00012}{12}} of file \mbox{\hyperlink{core_2allocators_8hpp_source}{allocators.\+hpp}}.
 
 \Hypertarget{core_2allocators_8hpp_a302f380460dc88796d2decc19478bf62}\label{core_2allocators_8hpp_a302f380460dc88796d2decc19478bf62} 
 \index{allocators.hpp@{allocators.hpp}!main\_allocT@{main\_allocT}}
@@ -131,17 +171,29 @@ namespace \mbox{\hyperlink{namespacexpe_1_1core}{xpe\+::core}}
 \doxysubsubsection{\texorpdfstring{main\_allocT}{main\_allocT}}
 {\footnotesize\ttfamily \#define main\+\_\+allocT(\begin{DoxyParamCaption}\item[{}]{T,  }\item[{}]{count }\end{DoxyParamCaption})~static\+\_\+cast$<$T\texorpdfstring{$\ast$}{*}$>$(\mbox{\hyperlink{core_2allocators_8hpp_a0b2c774a281f8d83b9add0b64bf4cff1}{main\+\_\+alloc}}(sizeof(T) \texorpdfstring{$\ast$}{*} count))}
 
+
+
+Definition at line \mbox{\hyperlink{core_2allocators_8hpp_source_l00013}{13}} of file \mbox{\hyperlink{core_2allocators_8hpp_source}{allocators.\+hpp}}.
+
 \Hypertarget{core_2allocators_8hpp_ad15daf8841b5c2684e797833d6d948ec}\label{core_2allocators_8hpp_ad15daf8841b5c2684e797833d6d948ec} 
 \index{allocators.hpp@{allocators.hpp}!main\_construct@{main\_construct}}
 \index{main\_construct@{main\_construct}!allocators.hpp@{allocators.hpp}}
 \doxysubsubsection{\texorpdfstring{main\_construct}{main\_construct}}
 {\footnotesize\ttfamily \#define main\+\_\+construct(\begin{DoxyParamCaption}\item[{}]{T }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_memory_manager_a936d86a0072701410f49106edf16abba}{xpe\+::core\+::c\+Memory\+Manager\+::\+Main\+Pools}}-\/$>$Allocate\+Construct$<$T$>$()}
 
+
+
+Definition at line \mbox{\hyperlink{core_2allocators_8hpp_source_l00014}{14}} of file \mbox{\hyperlink{core_2allocators_8hpp_source}{allocators.\+hpp}}.
+
 \Hypertarget{core_2allocators_8hpp_af6f8111492d698bb692248ef013f538a}\label{core_2allocators_8hpp_af6f8111492d698bb692248ef013f538a} 
 \index{allocators.hpp@{allocators.hpp}!main\_construct\_args@{main\_construct\_args}}
 \index{main\_construct\_args@{main\_construct\_args}!allocators.hpp@{allocators.hpp}}
 \doxysubsubsection{\texorpdfstring{main\_construct\_args}{main\_construct\_args}}
 {\footnotesize\ttfamily \#define main\+\_\+construct\+\_\+args(\begin{DoxyParamCaption}\item[{}]{T,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_memory_manager_a936d86a0072701410f49106edf16abba}{xpe\+::core\+::c\+Memory\+Manager\+::\+Main\+Pools}}-\/$>$Allocate\+Construct\+Args$<$T$>$(\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+
+
+Definition at line \mbox{\hyperlink{core_2allocators_8hpp_source_l00015}{15}} of file \mbox{\hyperlink{core_2allocators_8hpp_source}{allocators.\+hpp}}.
 
 \Hypertarget{core_2allocators_8hpp_a1141b5be50573f8004090ec0346d4cec}\label{core_2allocators_8hpp_a1141b5be50573f8004090ec0346d4cec} 
 \index{allocators.hpp@{allocators.hpp}!main\_destruct@{main\_destruct}}
@@ -155,11 +207,19 @@ namespace \mbox{\hyperlink{namespacexpe_1_1core}{xpe\+::core}}
 \DoxyCodeLine{main\_free(addr)}
 
 \end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{core_2allocators_8hpp_source_l00017}{17}} of file \mbox{\hyperlink{core_2allocators_8hpp_source}{allocators.\+hpp}}.
+
 \Hypertarget{core_2allocators_8hpp_a998b108b08cd42f273b431e77afe83cc}\label{core_2allocators_8hpp_a998b108b08cd42f273b431e77afe83cc} 
 \index{allocators.hpp@{allocators.hpp}!main\_free@{main\_free}}
 \index{main\_free@{main\_free}!allocators.hpp@{allocators.hpp}}
 \doxysubsubsection{\texorpdfstring{main\_free}{main\_free}}
 {\footnotesize\ttfamily \#define main\+\_\+free(\begin{DoxyParamCaption}\item[{}]{addr }\end{DoxyParamCaption})~\mbox{\hyperlink{classxpe_1_1core_1_1c_memory_manager_a936d86a0072701410f49106edf16abba}{xpe\+::core\+::c\+Memory\+Manager\+::\+Main\+Pools}}-\/$>$Free(addr)}
+
+
+
+Definition at line \mbox{\hyperlink{core_2allocators_8hpp_source_l00016}{16}} of file \mbox{\hyperlink{core_2allocators_8hpp_source}{allocators.\+hpp}}.
 
 \Hypertarget{core_2allocators_8hpp_a8cf9fa12fa5eb5f94831f79c7bc47caf}\label{core_2allocators_8hpp_a8cf9fa12fa5eb5f94831f79c7bc47caf} 
 \index{allocators.hpp@{allocators.hpp}!salloc@{salloc}}
@@ -167,9 +227,17 @@ namespace \mbox{\hyperlink{namespacexpe_1_1core}{xpe\+::core}}
 \doxysubsubsection{\texorpdfstring{salloc}{salloc}}
 {\footnotesize\ttfamily \#define salloc(\begin{DoxyParamCaption}\item[{}]{size }\end{DoxyParamCaption})~alloca(size)}
 
+
+
+Definition at line \mbox{\hyperlink{core_2allocators_8hpp_source_l00035}{35}} of file \mbox{\hyperlink{core_2allocators_8hpp_source}{allocators.\+hpp}}.
+
 \Hypertarget{core_2allocators_8hpp_aec82d3215267096f8c99bd3378cba794}\label{core_2allocators_8hpp_aec82d3215267096f8c99bd3378cba794} 
 \index{allocators.hpp@{allocators.hpp}!sallocT@{sallocT}}
 \index{sallocT@{sallocT}!allocators.hpp@{allocators.hpp}}
 \doxysubsubsection{\texorpdfstring{sallocT}{sallocT}}
 {\footnotesize\ttfamily \#define sallocT(\begin{DoxyParamCaption}\item[{}]{T,  }\item[{}]{count }\end{DoxyParamCaption})~static\+\_\+cast$<$T\texorpdfstring{$\ast$}{*}$>$(alloca(sizeof(T) \texorpdfstring{$\ast$}{*} count))}
+
+
+
+Definition at line \mbox{\hyperlink{core_2allocators_8hpp_source_l00036}{36}} of file \mbox{\hyperlink{core_2allocators_8hpp_source}{allocators.\+hpp}}.
 

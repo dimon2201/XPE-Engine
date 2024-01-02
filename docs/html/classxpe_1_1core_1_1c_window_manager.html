@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classxpe_1_1core_1_1c_window_manager.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1core.html">core</a></li><li class="navelem"><a class="el" href="classxpe_1_1core_1_1c_window_manager.html">cWindowManager</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
@@ -151,7 +169,10 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ad0256b89189dfb6664b39067dc791cf0" id="r_ad0256b89189dfb6664b39067dc791cf0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">static</a> <a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad0256b89189dfb6664b39067dc791cf0">ToggleWindowMode</a> ()</td></tr>
 <tr class="separator:ad0256b89189dfb6664b39067dc791cf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="window__manager_8hpp_source.html#l00049">49</a> of file <a class="el" href="window__manager_8hpp_source.html">window_manager.hpp</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a88200bc290e795f49cb7c0e3ea1b695b" name="a88200bc290e795f49cb7c0e3ea1b695b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a88200bc290e795f49cb7c0e3ea1b695b">&#9670;&#160;</a></span>Close()</h2>
 
@@ -174,6 +195,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00166">166</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
 
 </div>
 </div>
@@ -200,6 +223,18 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00056">56</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_window_manager_a89c96ef2f0b2adb0e3d731e2a61f3ce9_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_window_manager_a89c96ef2f0b2adb0e3d731e2a61f3ce9_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_window_manager_a89c96ef2f0b2adb0e3d731e2a61f3ce9_icgraph" id="aclassxpe_1_1core_1_1c_window_manager_a89c96ef2f0b2adb0e3d731e2a61f3ce9_icgraph">
+<area shape="rect" title=" " alt="" coords="198,5,384,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,13,150,40"/>
+<area shape="poly" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="af5dfe3894003a8ad57e1354021b8d298" name="af5dfe3894003a8ad57e1354021b8d298"></a>
@@ -224,6 +259,18 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00082">82</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_window_manager_af5dfe3894003a8ad57e1354021b8d298_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_window_manager_af5dfe3894003a8ad57e1354021b8d298_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_window_manager_af5dfe3894003a8ad57e1354021b8d298_icgraph" id="aclassxpe_1_1core_1_1c_window_manager_af5dfe3894003a8ad57e1354021b8d298_icgraph">
+<area shape="rect" title=" " alt="" coords="198,5,384,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,13,150,40"/>
+<area shape="poly" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -250,6 +297,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00090">90</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a880f8bbce61c69fd26da08b2134f455e" name="a880f8bbce61c69fd26da08b2134f455e"></a>
@@ -274,6 +323,18 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00110">110</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_window_manager_a880f8bbce61c69fd26da08b2134f455e_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_window_manager_a880f8bbce61c69fd26da08b2134f455e_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_window_manager_a880f8bbce61c69fd26da08b2134f455e_icgraph" id="aclassxpe_1_1core_1_1c_window_manager_a880f8bbce61c69fd26da08b2134f455e_icgraph">
+<area shape="rect" title=" " alt="" coords="226,5,412,48"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_ssao_shader.html#abe0dfc617df3607eaa964137437fffcb" title=" " alt="" coords="5,5,178,48"/>
+<area shape="poly" title=" " alt="" coords="210,29,178,29,178,24,210,24"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -300,6 +361,18 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00104">104</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_window_manager_a895d5b1c7978ec07a7561a7b4f3ef5c7_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_window_manager_a895d5b1c7978ec07a7561a7b4f3ef5c7_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_window_manager_a895d5b1c7978ec07a7561a7b4f3ef5c7_icgraph" id="aclassxpe_1_1core_1_1c_window_manager_a895d5b1c7978ec07a7561a7b4f3ef5c7_icgraph">
+<area shape="rect" title=" " alt="" coords="226,5,412,48"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_ssao_shader.html#abe0dfc617df3607eaa964137437fffcb" title=" " alt="" coords="5,5,178,48"/>
+<area shape="poly" title=" " alt="" coords="210,29,178,29,178,24,210,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a146fad2784fb4c33d64eaa08ae1bc340" name="a146fad2784fb4c33d64eaa08ae1bc340"></a>
@@ -324,6 +397,18 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00099">99</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_window_manager_a146fad2784fb4c33d64eaa08ae1bc340_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_window_manager_a146fad2784fb4c33d64eaa08ae1bc340_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_window_manager_a146fad2784fb4c33d64eaa08ae1bc340_icgraph" id="aclassxpe_1_1core_1_1c_window_manager_a146fad2784fb4c33d64eaa08ae1bc340_icgraph">
+<area shape="rect" title=" " alt="" coords="198,5,384,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,13,150,40"/>
+<area shape="poly" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -350,6 +435,20 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00130">130</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_window_manager_ae6ee892b3e32195143535ebe4aa37858_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_window_manager_ae6ee892b3e32195143535ebe4aa37858_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_window_manager_ae6ee892b3e32195143535ebe4aa37858_icgraph" id="aclassxpe_1_1core_1_1c_window_manager_ae6ee892b3e32195143535ebe4aa37858_icgraph">
+<area shape="rect" title=" " alt="" coords="414,5,600,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_input_manager.html#a6e64b8653d658153d72bba1301edec2c" title=" " alt="" coords="198,5,366,48"/>
+<area shape="poly" title=" " alt="" coords="398,29,366,29,366,24,398,24"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,13,150,40"/>
+<area shape="poly" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a35d7a85b94a7527e94423b84f5177640" name="a35d7a85b94a7527e94423b84f5177640"></a>
@@ -374,6 +473,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00146">146</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
 
 </div>
 </div>
@@ -400,6 +501,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00142">142</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
+
 </div>
 </div>
 <a id="aadcd2ac4ac0095630fb03b2db5e969a3" name="aadcd2ac4ac0095630fb03b2db5e969a3"></a>
@@ -424,6 +527,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00116">116</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
 
 </div>
 </div>
@@ -450,6 +555,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00121">121</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a8c466849bc2c1e70f76e89876294a17f" name="a8c466849bc2c1e70f76e89876294a17f"></a>
@@ -474,6 +581,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00138">138</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
 
 </div>
 </div>
@@ -500,6 +609,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00126">126</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
+
 </div>
 </div>
 <a id="ac29f6ffdaf7f10a9812a75357ffce295" name="ac29f6ffdaf7f10a9812a75357ffce295"></a>
@@ -524,6 +635,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00182">182</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
 
 </div>
 </div>
@@ -550,6 +663,18 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00094">94</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_window_manager_afe9947fdbfa0a31f51a29d9553362c8c_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_window_manager_afe9947fdbfa0a31f51a29d9553362c8c_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_window_manager_afe9947fdbfa0a31f51a29d9553362c8c_icgraph" id="aclassxpe_1_1core_1_1c_window_manager_afe9947fdbfa0a31f51a29d9553362c8c_icgraph">
+<area shape="rect" title=" " alt="" coords="198,5,384,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,13,150,40"/>
+<area shape="poly" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a30882cfcb3ad62671bfff6f14ed7a51b" name="a30882cfcb3ad62671bfff6f14ed7a51b"></a>
@@ -574,6 +699,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00134">134</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
 
 </div>
 </div>
@@ -600,6 +727,18 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00036">36</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_window_manager_ab5db59ec1956eab92788445e2a236ade_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_window_manager_ab5db59ec1956eab92788445e2a236ade_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_window_manager_ab5db59ec1956eab92788445e2a236ade_icgraph" id="aclassxpe_1_1core_1_1c_window_manager_ab5db59ec1956eab92788445e2a236ade_icgraph">
+<area shape="rect" title=" " alt="" coords="198,5,384,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,13,150,40"/>
+<area shape="poly" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a5acf1469a7302505924c4c95048009c8" name="a5acf1469a7302505924c4c95048009c8"></a>
@@ -624,6 +763,36 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00061">61</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_window_manager_a5acf1469a7302505924c4c95048009c8_cgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_window_manager_a5acf1469a7302505924c4c95048009c8_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_window_manager_a5acf1469a7302505924c4c95048009c8_cgraph" id="aclassxpe_1_1core_1_1c_window_manager_a5acf1469a7302505924c4c95048009c8_cgraph">
+<area shape="rect" title=" " alt="" coords="5,139,192,181"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_window_manager.html#aaf0739a9475b6a20379432dd9140a66c" title=" " alt="" coords="240,5,426,48"/>
+<area shape="poly" title=" " alt="" coords="124,136,175,97,238,58,249,52,252,57,241,62,178,101,127,140"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_window_manager.html#a6272f70a591a097255dfa7d8051bff64" title=" " alt="" coords="240,72,426,115"/>
+<area shape="poly" title=" " alt="" coords="175,136,240,117,241,122,176,141"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_window_manager.html#a0f891f944608a67f77c84c6ba7624437" title=" " alt="" coords="240,139,426,181"/>
+<area shape="poly" title=" " alt="" coords="192,157,224,157,224,163,192,163"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_window_manager.html#ad85e7f388533d9accbe91470ae88b6eb" title=" " alt="" coords="240,205,426,248"/>
+<area shape="poly" title=" " alt="" coords="176,179,241,198,240,203,175,184"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_window_manager.html#a064a9ffa1f78b69ffb273cd012d9e05e" title=" " alt="" coords="240,272,426,315"/>
+<area shape="poly" title=" " alt="" coords="127,180,178,219,241,258,252,263,249,268,238,262,175,223,124,184"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_window_manager_a5acf1469a7302505924c4c95048009c8_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_window_manager_a5acf1469a7302505924c4c95048009c8_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_window_manager_a5acf1469a7302505924c4c95048009c8_icgraph" id="aclassxpe_1_1core_1_1c_window_manager_a5acf1469a7302505924c4c95048009c8_icgraph">
+<area shape="rect" title=" " alt="" coords="198,5,384,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,13,150,40"/>
+<area shape="poly" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -650,6 +819,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00241">241</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
+
 </div>
 </div>
 <a id="ad74b693a50096c3e25b72c15e4e3fc55" name="ad74b693a50096c3e25b72c15e4e3fc55"></a>
@@ -674,6 +845,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00237">237</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
 
 </div>
 </div>
@@ -700,6 +873,18 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00170">170</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_window_manager_a8130115cee9a62495d705fdd78be284f_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_window_manager_a8130115cee9a62495d705fdd78be284f_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_window_manager_a8130115cee9a62495d705fdd78be284f_icgraph" id="aclassxpe_1_1core_1_1c_window_manager_a8130115cee9a62495d705fdd78be284f_icgraph">
+<area shape="rect" title=" " alt="" coords="198,5,384,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,13,150,40"/>
+<area shape="poly" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="aaf0739a9475b6a20379432dd9140a66c" name="aaf0739a9475b6a20379432dd9140a66c"></a>
@@ -725,6 +910,22 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00190">190</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_window_manager_aaf0739a9475b6a20379432dd9140a66c_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_window_manager_aaf0739a9475b6a20379432dd9140a66c_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_window_manager_aaf0739a9475b6a20379432dd9140a66c_icgraph" id="aclassxpe_1_1core_1_1c_window_manager_aaf0739a9475b6a20379432dd9140a66c_icgraph">
+<area shape="rect" title=" " alt="" coords="432,39,618,81"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_window_manager.html#a5acf1469a7302505924c4c95048009c8" title=" " alt="" coords="198,5,384,48"/>
+<area shape="poly" title=" " alt="" coords="416,47,384,43,385,37,417,42"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_window_manager.html#ad0256b89189dfb6664b39067dc791cf0" title=" " alt="" coords="198,72,384,115"/>
+<area shape="poly" title=" " alt="" coords="417,78,385,83,384,77,416,73"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,13,150,40"/>
+<area shape="poly" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="ad0abb87740201504a6329cd1808b8bea" name="ad0abb87740201504a6329cd1808b8bea"></a>
@@ -749,6 +950,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00214">214</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
 
 </div>
 </div>
@@ -779,6 +982,20 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00150">150</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_window_manager_a6272f70a591a097255dfa7d8051bff64_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_window_manager_a6272f70a591a097255dfa7d8051bff64_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_window_manager_a6272f70a591a097255dfa7d8051bff64_icgraph" id="aclassxpe_1_1core_1_1c_window_manager_a6272f70a591a097255dfa7d8051bff64_icgraph">
+<area shape="rect" title=" " alt="" coords="432,5,618,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_window_manager.html#a5acf1469a7302505924c4c95048009c8" title=" " alt="" coords="198,5,384,48"/>
+<area shape="poly" title=" " alt="" coords="417,29,384,29,384,24,417,24"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,13,150,40"/>
+<area shape="poly" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a0f891f944608a67f77c84c6ba7624437" name="a0f891f944608a67f77c84c6ba7624437"></a>
@@ -808,6 +1025,20 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00156">156</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_window_manager_a0f891f944608a67f77c84c6ba7624437_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_window_manager_a0f891f944608a67f77c84c6ba7624437_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_window_manager_a0f891f944608a67f77c84c6ba7624437_icgraph" id="aclassxpe_1_1core_1_1c_window_manager_a0f891f944608a67f77c84c6ba7624437_icgraph">
+<area shape="rect" title=" " alt="" coords="432,5,618,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_window_manager.html#a5acf1469a7302505924c4c95048009c8" title=" " alt="" coords="198,5,384,48"/>
+<area shape="poly" title=" " alt="" coords="417,29,384,29,384,24,417,24"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,13,150,40"/>
+<area shape="poly" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="aa115c4c27d22e63ccedc60c82ce68a1b" name="aa115c4c27d22e63ccedc60c82ce68a1b"></a>
@@ -832,6 +1063,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00178">178</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
 
 </div>
 </div>
@@ -858,6 +1091,20 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00186">186</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_window_manager_ad85e7f388533d9accbe91470ae88b6eb_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_window_manager_ad85e7f388533d9accbe91470ae88b6eb_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_window_manager_ad85e7f388533d9accbe91470ae88b6eb_icgraph" id="aclassxpe_1_1core_1_1c_window_manager_ad85e7f388533d9accbe91470ae88b6eb_icgraph">
+<area shape="rect" title=" " alt="" coords="432,5,618,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_window_manager.html#a5acf1469a7302505924c4c95048009c8" title=" " alt="" coords="198,5,384,48"/>
+<area shape="poly" title=" " alt="" coords="417,29,384,29,384,24,417,24"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,13,150,40"/>
+<area shape="poly" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a064a9ffa1f78b69ffb273cd012d9e05e" name="a064a9ffa1f78b69ffb273cd012d9e05e"></a>
@@ -882,6 +1129,22 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00199">199</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_window_manager_a064a9ffa1f78b69ffb273cd012d9e05e_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_window_manager_a064a9ffa1f78b69ffb273cd012d9e05e_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_window_manager_a064a9ffa1f78b69ffb273cd012d9e05e_icgraph" id="aclassxpe_1_1core_1_1c_window_manager_a064a9ffa1f78b69ffb273cd012d9e05e_icgraph">
+<area shape="rect" title=" " alt="" coords="432,39,618,81"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_window_manager.html#a5acf1469a7302505924c4c95048009c8" title=" " alt="" coords="198,5,384,48"/>
+<area shape="poly" title=" " alt="" coords="416,47,384,43,385,37,417,42"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_window_manager.html#ad0256b89189dfb6664b39067dc791cf0" title=" " alt="" coords="198,72,384,115"/>
+<area shape="poly" title=" " alt="" coords="417,78,385,83,384,77,416,73"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,13,150,40"/>
+<area shape="poly" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -908,6 +1171,18 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00162">162</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_window_manager_a0e9a87fc7593793533fe673a3078dab0_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_window_manager_a0e9a87fc7593793533fe673a3078dab0_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_window_manager_a0e9a87fc7593793533fe673a3078dab0_icgraph" id="aclassxpe_1_1core_1_1c_window_manager_a0e9a87fc7593793533fe673a3078dab0_icgraph">
+<area shape="rect" title=" " alt="" coords="198,5,384,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,13,150,40"/>
+<area shape="poly" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a2783e36503821ce0cb3d15d7be6c9c4d" name="a2783e36503821ce0cb3d15d7be6c9c4d"></a>
@@ -932,6 +1207,18 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00174">174</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_window_manager_a2783e36503821ce0cb3d15d7be6c9c4d_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_window_manager_a2783e36503821ce0cb3d15d7be6c9c4d_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_window_manager_a2783e36503821ce0cb3d15d7be6c9c4d_icgraph" id="aclassxpe_1_1core_1_1c_window_manager_a2783e36503821ce0cb3d15d7be6c9c4d_icgraph">
+<area shape="rect" title=" " alt="" coords="198,5,384,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,13,150,40"/>
+<area shape="poly" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -958,16 +1245,34 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="window__manager_8cpp_source.html#l00229">229</a> of file <a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_window_manager_ad0256b89189dfb6664b39067dc791cf0_cgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_window_manager_ad0256b89189dfb6664b39067dc791cf0_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_window_manager_ad0256b89189dfb6664b39067dc791cf0_cgraph" id="aclassxpe_1_1core_1_1c_window_manager_ad0256b89189dfb6664b39067dc791cf0_cgraph">
+<area shape="rect" title=" " alt="" coords="5,39,192,81"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_window_manager.html#aaf0739a9475b6a20379432dd9140a66c" title=" " alt="" coords="240,5,426,48"/>
+<area shape="poly" title=" " alt="" coords="192,44,224,39,225,45,192,49"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_window_manager.html#a064a9ffa1f78b69ffb273cd012d9e05e" title=" " alt="" coords="240,72,426,115"/>
+<area shape="poly" title=" " alt="" coords="192,71,225,75,224,81,192,76"/>
+</map>
+</div>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>engine/src/core/<a class="el" href="window__manager_8hpp_source.html">window_manager.hpp</a></li>
-<li>engine/src/core/<a class="el" href="window__manager_8cpp.html">window_manager.cpp</a></li>
+<li>engine/src/core/<a class="el" href="window__manager_8cpp_source.html">window_manager.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1core.html">core</a></li><li class="navelem"><a class="el" href="classxpe_1_1core_1_1c_window_manager.html">cWindowManager</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

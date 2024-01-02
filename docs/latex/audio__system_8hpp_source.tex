@@ -2,53 +2,53 @@
 \hypertarget{audio__system_8hpp_source}{}\label{audio__system_8hpp_source}\index{engine/src/audio/audio\_system.hpp@{engine/src/audio/audio\_system.hpp}}
 \mbox{\hyperlink{audio__system_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{components_8hpp}{ecs/components.hpp}}>}}
-\DoxyCodeLine{00004\ }
-\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
-\DoxyCodeLine{00006\ }
-\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{namespace\ }audio\ \{}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }core;}
-\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }ecs;}
-\DoxyCodeLine{00011\ }
-\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_system}{cAudioSystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1ecs_1_1c_system}{cSystem}}}
-\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00014\ }
-\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_system}{cAudioSystem}}();}
-\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_system}{\string~cAudioSystem}}();}
-\DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Update(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_time}{cTime}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{dt}})\ \textcolor{keyword}{override}\ \textcolor{keyword}{final};}
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateVoices(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}});}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateAudios(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}});}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateStreamAudios(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}});}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ VoiceRecord();}
-\DoxyCodeLine{00027\ }
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ AudioInit(\mbox{\hyperlink{structxpe_1_1ecs_1_1_c_audio}{CAudio}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}});}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ AudioInit(\mbox{\hyperlink{structxpe_1_1ecs_1_1_c_stream_audio}{CStreamAudio}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}});}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ AudioSet(\mbox{\hyperlink{structxpe_1_1ecs_1_1_c_audio}{CAudio}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}});}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ AudioSet(\mbox{\hyperlink{structxpe_1_1ecs_1_1_c_stream_audio}{CStreamAudio}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}});}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ AudioUpdate(\mbox{\hyperlink{structxpe_1_1ecs_1_1_c_audio}{CAudio}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}});}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ AudioUpdate(\mbox{\hyperlink{structxpe_1_1ecs_1_1_c_stream_audio}{CStreamAudio}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}});}
-\DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ AudioStop(\mbox{\hyperlink{structxpe_1_1ecs_1_1_c_audio}{CAudio}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}});}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ AudioStop(\mbox{\hyperlink{structxpe_1_1ecs_1_1_c_stream_audio}{CStreamAudio}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}});}
-\DoxyCodeLine{00039\ }
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<signed\ char>}}\ m\_VoiceData;}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Test\ varriables\ to\ hear\ myself\ \(\backslash\)/}}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ m\_MySourceID;}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<u32>}}\ m\_MyBuffersID;}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00047\ \ \ \ \ \}}
-\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{components_8hpp}{ecs/components.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00005}00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00007}00007\ \ \ \ \ \textcolor{keyword}{namespace\ }audio\ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00009}00009\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }core;}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00010}00010\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }ecs;}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00012}\mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_system}{00012}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_system}{cAudioSystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1ecs_1_1c_system}{cSystem}}}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00013}00013\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_system}{cAudioSystem}}();}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_system}{\string~cAudioSystem}}();}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Update(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_time}{cTime}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{dt}})\ \textcolor{keyword}{override}\ \textcolor{keyword}{final};}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateVoices(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateAudios(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateStreamAudios(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ VoiceRecord();}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ AudioInit(\mbox{\hyperlink{structxpe_1_1ecs_1_1_c_audio}{CAudio}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ AudioInit(\mbox{\hyperlink{structxpe_1_1ecs_1_1_c_stream_audio}{CStreamAudio}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ AudioSet(\mbox{\hyperlink{structxpe_1_1ecs_1_1_c_audio}{CAudio}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ AudioSet(\mbox{\hyperlink{structxpe_1_1ecs_1_1_c_stream_audio}{CStreamAudio}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ AudioUpdate(\mbox{\hyperlink{structxpe_1_1ecs_1_1_c_audio}{CAudio}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ AudioUpdate(\mbox{\hyperlink{structxpe_1_1ecs_1_1_c_stream_audio}{CStreamAudio}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ AudioStop(\mbox{\hyperlink{structxpe_1_1ecs_1_1_c_audio}{CAudio}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ AudioStop(\mbox{\hyperlink{structxpe_1_1ecs_1_1_c_stream_audio}{CStreamAudio}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<signed\ char>}}\ m\_VoiceData;}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Test\ varriables\ to\ hear\ myself\ \(\backslash\)/}}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ m\_MySourceID;}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<u32>}}\ m\_MyBuffersID;}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00047}00047\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8hpp_source_l00048}00048\ \}}
 
 \end{DoxyCode}

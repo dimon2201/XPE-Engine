@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classxpe_1_1core_1_1c_event_manager.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1core.html">core</a></li><li class="navelem"><a class="el" href="classxpe_1_1core_1_1c_event_manager.html">cEventManager</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
@@ -85,6 +103,76 @@ $(function() {
 <div class="contents">
 
 <p><code>#include &lt;<a class="el" href="event__manager_8hpp_source.html">event_manager.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for xpe::core::cEventManager:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_event_manager__coll__graph.png" border="0" usemap="#axpe_1_1core_1_1c_event_manager_coll__map" alt="Collaboration graph"/></div>
+<map name="axpe_1_1core_1_1c_event_manager_coll__map" id="axpe_1_1core_1_1c_event_manager_coll__map">
+<area shape="rect" title=" " alt="" coords="582,645,755,672"/>
+<area shape="poly" title=" " alt="" coords="633,628,645,621,668,619,690,621,704,627,708,637,702,646,698,643,703,636,700,631,689,626,669,624,647,626,635,632"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="195,5,350,48"/>
+<area shape="poly" title=" " alt="" coords="366,17,415,20,467,30,517,49,540,63,560,81,575,100,589,126,612,194,631,276,645,365,662,535,669,645,664,645,657,536,639,366,625,277,607,195,584,129,571,103,556,85,537,68,515,54,466,35,415,26,365,23"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="5,648,134,675"/>
+<area shape="poly" title=" " alt="" coords="72,632,102,430,126,291,155,150,161,101,166,80,181,58,195,47,198,51,185,62,171,83,166,102,160,151,132,292,107,431,77,633"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="195,72,350,115"/>
+<area shape="poly" title=" " alt="" coords="70,632,81,522,102,370,117,293,135,223,156,165,181,125,195,113,198,117,185,128,161,167,140,224,123,294,108,371,87,522,76,633"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="183,139,361,181"/>
+<area shape="poly" title=" " alt="" coords="71,632,84,534,107,402,122,336,139,276,159,226,181,192,195,180,199,184,185,195,163,228,144,277,127,337,112,403,89,535,77,633"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="195,205,350,248"/>
+<area shape="poly" title=" " alt="" coords="68,632,71,558,86,458,100,405,120,352,147,302,181,258,195,246,199,251,185,262,151,305,125,354,105,406,91,459,76,559,73,632"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="195,272,350,315"/>
+<area shape="poly" title=" " alt="" coords="70,632,77,569,95,488,110,444,128,401,152,361,181,325,195,313,199,317,185,329,156,364,133,404,115,446,100,489,83,570,75,633"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="195,339,350,381"/>
+<area shape="poly" title=" " alt="" coords="73,632,84,581,104,517,136,450,157,419,181,391,196,380,200,384,185,395,161,422,140,453,109,519,89,583,78,633"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="195,405,350,448"/>
+<area shape="poly" title=" " alt="" coords="77,632,92,593,114,547,143,500,181,458,198,446,201,451,185,462,148,503,118,550,97,596,82,634"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="195,472,350,515"/>
+<area shape="poly" title=" " alt="" coords="85,633,125,579,151,550,181,524,201,513,204,518,185,529,155,554,129,582,89,636"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="195,539,350,581"/>
+<area shape="poly" title=" " alt="" coords="102,637,182,591,208,579,210,584,184,596,105,641"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="195,605,350,648"/>
+<area shape="poly" title=" " alt="" coords="149,645,193,637,194,643,150,650"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="195,672,350,715"/>
+<area shape="poly" title=" " alt="" coords="150,671,194,678,194,684,149,676"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="195,739,350,781"/>
+<area shape="poly" title=" " alt="" coords="106,681,184,724,210,736,208,741,182,729,103,685"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="195,805,350,848"/>
+<area shape="poly" title=" " alt="" coords="95,685,161,762,172,778,185,791,204,803,201,807,181,795,168,782,157,766,91,688"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="195,872,350,915"/>
+<area shape="poly" title=" " alt="" coords="91,686,126,738,161,800,171,832,175,845,185,858,200,869,196,874,181,862,170,847,166,833,157,802,121,741,87,689"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="195,939,350,981"/>
+<area shape="poly" title=" " alt="" coords="88,687,124,757,162,843,168,868,169,888,173,906,185,925,198,936,195,940,181,928,168,908,164,889,162,868,156,845,119,759,83,690"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="195,1005,350,1048"/>
+<area shape="poly" title=" " alt="" coords="85,688,121,779,162,895,167,924,168,948,171,969,185,992,198,1003,195,1007,181,995,166,971,162,948,162,925,156,897,116,781,80,690"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="195,1072,350,1115"/>
+<area shape="poly" title=" " alt="" coords="82,689,162,966,166,994,167,1017,171,1037,185,1058,198,1069,195,1074,181,1062,166,1039,162,1017,161,994,156,967,77,691"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="195,1139,350,1181"/>
+<area shape="poly" title=" " alt="" coords="79,689,128,931,159,1057,173,1101,185,1125,198,1136,195,1140,181,1128,168,1103,154,1059,123,932,74,691"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="184,1205,361,1248"/>
+<area shape="poly" title=" " alt="" coords="76,690,88,799,109,949,124,1025,142,1095,162,1152,185,1192,198,1203,194,1207,181,1195,157,1155,137,1097,119,1027,104,950,82,800,71,690"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="185,1272,360,1315"/>
+<area shape="poly" title=" " alt="" coords="75,690,84,812,104,982,119,1069,137,1149,159,1214,171,1239,185,1258,198,1270,195,1274,181,1262,167,1242,154,1216,132,1150,113,1070,99,983,79,813,70,690"/>
+<area shape="poly" title=" " alt="" coords="366,98,480,115,528,129,560,147,574,165,586,187,608,246,626,318,641,396,660,546,669,645,664,645,655,547,635,397,621,319,603,248,581,189,569,167,557,151,526,134,478,120,365,103"/>
+<area shape="poly" title=" " alt="" coords="378,166,485,184,530,197,560,214,584,248,604,299,621,360,636,428,658,557,668,645,663,645,652,558,631,429,616,362,599,300,579,251,557,218,528,202,484,189,377,171"/>
+<area shape="poly" title=" " alt="" coords="366,232,479,249,528,263,560,281,597,323,625,373,645,426,658,481,670,579,671,645,665,645,664,579,653,482,639,428,620,375,593,327,557,285,526,268,478,255,365,237"/>
+<area shape="poly" title=" " alt="" coords="366,298,479,316,527,329,560,346,592,380,617,420,636,464,650,508,665,589,670,645,664,645,660,590,645,509,631,466,612,423,588,384,557,350,525,334,478,321,365,304"/>
+<area shape="poly" title=" " alt="" coords="366,364,478,379,527,391,560,407,587,434,610,465,628,499,642,534,660,599,668,645,663,646,655,600,637,536,623,501,605,468,583,437,557,412,525,396,477,384,365,369"/>
+<area shape="poly" title=" " alt="" coords="366,424,413,429,464,440,514,457,560,482,581,500,600,520,631,566,653,611,665,644,660,646,648,613,627,569,596,524,578,503,557,486,512,462,462,445,412,435,365,430"/>
+<area shape="poly" title=" " alt="" coords="366,499,462,518,512,534,560,555,591,575,618,599,658,643,654,647,615,603,587,579,557,560,510,539,461,523,365,504"/>
+<area shape="poly" title=" " alt="" coords="365,571,460,589,559,613,637,642,635,647,558,619,458,594,365,576"/>
+<area shape="poly" title=" " alt="" coords="366,631,582,649,582,654,365,637"/>
+<area shape="poly" title=" " alt="" coords="365,684,558,668,582,666,582,671,559,673,366,689"/>
+<area shape="poly" title=" " alt="" coords="365,746,459,729,558,704,601,688,639,670,642,675,603,693,559,709,460,734,366,751"/>
+<area shape="poly" title=" " alt="" coords="365,807,484,784,557,764,588,743,616,718,655,671,660,674,620,721,592,747,559,769,485,789,366,813"/>
+<area shape="poly" title=" " alt="" coords="347,864,385,853,435,847,476,848,514,845,534,838,557,826,578,810,596,790,626,747,648,704,660,671,665,673,652,706,631,749,600,794,581,813,560,830,536,843,515,850,476,854,435,852,386,859,348,869"/>
+<area shape="poly" title=" " alt="" coords="351,929,360,924,371,914,384,904,410,895,433,892,475,895,514,894,535,888,557,875,581,853,602,827,633,768,652,712,662,672,667,673,658,714,638,771,606,830,585,857,560,879,537,893,515,900,475,900,434,898,411,901,387,909,375,918,363,929,354,934"/>
+<area shape="poly" title=" " alt="" coords="354,995,360,991,371,977,384,962,409,950,432,946,474,947,515,947,535,940,557,926,584,897,607,864,625,827,639,790,656,721,663,672,669,673,662,722,644,792,630,830,612,866,589,901,560,930,537,945,516,952,474,952,432,951,410,955,387,966,375,980,363,995,356,1000"/>
+<area shape="poly" title=" " alt="" coords="353,1062,360,1058,371,1045,384,1031,409,1019,432,1013,475,1012,516,1008,536,999,557,983,588,947,612,905,631,859,645,814,660,730,664,672,670,673,665,730,650,815,636,861,617,907,592,950,560,987,538,1004,517,1013,476,1017,433,1018,411,1024,387,1035,375,1048,363,1062,356,1066"/>
+<area shape="poly" title=" " alt="" coords="356,1131,481,1088,531,1068,557,1053,591,1006,618,953,637,897,651,840,663,739,665,672,670,672,669,739,656,841,643,898,623,955,596,1009,560,1057,533,1072,483,1093,358,1136"/>
+<area shape="poly" title=" " alt="" coords="376,1220,423,1211,472,1196,517,1174,556,1142,580,1105,600,1049,618,981,632,907,653,766,663,672,669,673,659,766,638,908,623,983,605,1051,584,1107,560,1146,520,1178,474,1201,424,1216,377,1225"/>
+<area shape="poly" title=" " alt="" coords="375,1299,422,1297,471,1287,517,1269,556,1241,571,1222,585,1196,608,1129,626,1046,640,956,658,783,664,672,669,673,663,784,646,957,631,1047,613,1130,590,1198,576,1225,560,1245,520,1274,473,1292,423,1302,375,1305"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -143,7 +231,10 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:a385369abce04e3c83959fa8920847fc0" id="r_a385369abce04e3c83959fa8920847fc0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">static</a> <a class="el" href="classxpe_1_1core_1_1c_event_manager.html">cEventManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a385369abce04e3c83959fa8920847fc0">s_Instance</a> = <a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">nullptr</a></td></tr>
 <tr class="separator:a385369abce04e3c83959fa8920847fc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="event__manager_8hpp_source.html#l00009">9</a> of file <a class="el" href="event__manager_8hpp_source.html">event_manager.hpp</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ade6d0f70bc2e8420e85ffa785fb6ce00" name="ade6d0f70bc2e8420e85ffa785fb6ce00"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ade6d0f70bc2e8420e85ffa785fb6ce00">&#9670;&#160;</a></span>Free()</h2>
 
@@ -166,6 +257,18 @@ Static Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event__manager_8cpp_source.html#l00013">13</a> of file <a class="el" href="event__manager_8cpp_source.html">event_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_event_manager_ade6d0f70bc2e8420e85ffa785fb6ce00_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_event_manager_ade6d0f70bc2e8420e85ffa785fb6ce00_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_event_manager_ade6d0f70bc2e8420e85ffa785fb6ce00_icgraph" id="aclassxpe_1_1core_1_1c_event_manager_ade6d0f70bc2e8420e85ffa785fb6ce00_icgraph">
+<area shape="rect" title=" " alt="" coords="198,5,370,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,13,150,40"/>
+<area shape="poly" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -192,6 +295,20 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="event__manager_8cpp_source.html#l00018">18</a> of file <a class="el" href="event__manager_8cpp_source.html">event_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74_icgraph" id="aclassxpe_1_1core_1_1c_event_manager_aa3306b0e31f6ee8fb24269cea0c07a74_icgraph">
+<area shape="rect" title=" " alt="" coords="253,47,454,73"/>
+<area shape="rect" href="structxpe_1_1core_1_1s_observer_sample_count.html#a139ad0f42b4f4fada31c94a4c12ede63" title=" " alt="" coords="5,5,205,48"/>
+<area shape="poly" title=" " alt="" coords="237,47,205,43,205,37,237,42"/>
+<area shape="rect" href="structxpe_1_1core_1_1s_observer_window_ratio.html#ae68d3a3544c87ab3b2af8ad258c6248d" title=" " alt="" coords="8,72,202,115"/>
+<area shape="poly" title=" " alt="" coords="237,78,203,83,202,78,237,73"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="ab412052ff29ce97f039a00d4f9a2e492" name="ab412052ff29ce97f039a00d4f9a2e492"></a>
@@ -217,6 +334,18 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="event__manager_8cpp_source.html#l00009">9</a> of file <a class="el" href="event__manager_8cpp_source.html">event_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_event_manager_ab412052ff29ce97f039a00d4f9a2e492_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_event_manager_ab412052ff29ce97f039a00d4f9a2e492_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_event_manager_ab412052ff29ce97f039a00d4f9a2e492_icgraph" id="aclassxpe_1_1core_1_1c_event_manager_ab412052ff29ce97f039a00d4f9a2e492_icgraph">
+<area shape="rect" title=" " alt="" coords="198,5,370,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,13,150,40"/>
+<area shape="poly" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -232,6 +361,8 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="event__manager_8hpp_source.html#l00040">40</a> of file <a class="el" href="event__manager_8hpp_source.html">event_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="ae79400387bf047e61b2551a482170763" name="ae79400387bf047e61b2551a482170763"></a>
@@ -245,6 +376,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event__manager_8hpp_source.html#l00039">39</a> of file <a class="el" href="event__manager_8hpp_source.html">event_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -260,6 +393,8 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="event__manager_8hpp_source.html#l00034">34</a> of file <a class="el" href="event__manager_8hpp_source.html">event_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a7286ff88377e8ad45673f471fd3e1ae9" name="a7286ff88377e8ad45673f471fd3e1ae9"></a>
@@ -273,6 +408,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event__manager_8hpp_source.html#l00035">35</a> of file <a class="el" href="event__manager_8hpp_source.html">event_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -288,6 +425,8 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="event__manager_8hpp_source.html#l00033">33</a> of file <a class="el" href="event__manager_8hpp_source.html">event_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a15e7e9e520e886e97493dd58d28d6e00" name="a15e7e9e520e886e97493dd58d28d6e00"></a>
@@ -301,6 +440,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event__manager_8hpp_source.html#l00027">27</a> of file <a class="el" href="event__manager_8hpp_source.html">event_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -316,6 +457,8 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="event__manager_8hpp_source.html#l00025">25</a> of file <a class="el" href="event__manager_8hpp_source.html">event_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a08191ffca0923ac3e59719887f2b0087" name="a08191ffca0923ac3e59719887f2b0087"></a>
@@ -329,6 +472,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event__manager_8hpp_source.html#l00026">26</a> of file <a class="el" href="event__manager_8hpp_source.html">event_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -344,6 +489,8 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="event__manager_8hpp_source.html#l00031">31</a> of file <a class="el" href="event__manager_8hpp_source.html">event_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a800fe33db86f10f94e7c8f7a86406137" name="a800fe33db86f10f94e7c8f7a86406137"></a>
@@ -358,6 +505,8 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="event__manager_8hpp_source.html#l00029">29</a> of file <a class="el" href="event__manager_8hpp_source.html">event_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="ac38ed3f882437410700a586a3094469b" name="ac38ed3f882437410700a586a3094469b"></a>
@@ -371,6 +520,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event__manager_8hpp_source.html#l00030">30</a> of file <a class="el" href="event__manager_8hpp_source.html">event_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -394,6 +545,8 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="event__manager_8hpp_source.html#l00016">16</a> of file <a class="el" href="event__manager_8hpp_source.html">event_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="add5169833eec90354a462d95bbbebb40" name="add5169833eec90354a462d95bbbebb40"></a>
@@ -407,6 +560,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event__manager_8hpp_source.html#l00042">42</a> of file <a class="el" href="event__manager_8hpp_source.html">event_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -422,6 +577,8 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="event__manager_8hpp_source.html#l00037">37</a> of file <a class="el" href="event__manager_8hpp_source.html">event_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a1fa9a503822713cec2899907232edaee" name="a1fa9a503822713cec2899907232edaee"></a>
@@ -435,6 +592,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event__manager_8hpp_source.html#l00018">18</a> of file <a class="el" href="event__manager_8hpp_source.html">event_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -450,6 +609,8 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="event__manager_8hpp_source.html#l00022">22</a> of file <a class="el" href="event__manager_8hpp_source.html">event_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a9ada7c9ea5791057a509cff58f415647" name="a9ada7c9ea5791057a509cff58f415647"></a>
@@ -463,6 +624,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event__manager_8hpp_source.html#l00023">23</a> of file <a class="el" href="event__manager_8hpp_source.html">event_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -478,6 +641,8 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="event__manager_8hpp_source.html#l00020">20</a> of file <a class="el" href="event__manager_8hpp_source.html">event_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a25442c4c0e28fe5ebb6715c6e4b55aef" name="a25442c4c0e28fe5ebb6715c6e4b55aef"></a>
@@ -491,6 +656,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event__manager_8hpp_source.html#l00021">21</a> of file <a class="el" href="event__manager_8hpp_source.html">event_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -506,6 +673,8 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="event__manager_8hpp_source.html#l00043">43</a> of file <a class="el" href="event__manager_8hpp_source.html">event_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="ae6b0b4b84061bc90e485d20b4744a1d6" name="ae6b0b4b84061bc90e485d20b4744a1d6"></a>
@@ -520,16 +689,22 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="event__manager_8hpp_source.html#l00019">19</a> of file <a class="el" href="event__manager_8hpp_source.html">event_manager.hpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>engine/src/core/<a class="el" href="event__manager_8hpp_source.html">event_manager.hpp</a></li>
-<li>engine/src/core/<a class="el" href="event__manager_8cpp.html">event_manager.cpp</a></li>
+<li>engine/src/core/<a class="el" href="event__manager_8cpp_source.html">event_manager.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1core.html">core</a></li><li class="navelem"><a class="el" href="classxpe_1_1core_1_1c_event_manager.html">cEventManager</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -1,0 +1,13 @@
+<map id="xpe::render::context::ClearDepthStencilTarget" name="xpe::render::context::ClearDepthStencilTarget">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,75,175,117"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="51,75,50,65,56,56,70,50,90,48,112,50,125,57,122,61,110,56,90,53,71,55,60,60,55,66,57,74"/>
+<area shape="rect" id="Node000002" href="$namespacexpe_1_1render_1_1context.html#a5e7adec056e5269e8803ce06f45144c4" title=" " alt="" coords="223,75,360,117"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="175,93,207,93,207,99,175,99"/>
+<area shape="poly" id="edge3_Node000002_Node000002" title=" " alt="" coords="253,75,251,65,258,56,271,50,291,48,313,50,326,57,324,61,312,56,291,53,272,55,261,60,256,66,258,74"/>
+<area shape="rect" id="Node000003" href="$namespacexpe_1_1render_1_1context.html#a30c9be414613bc60cde541b08bc57417" title=" " alt="" coords="408,29,605,72"/>
+<area shape="poly" id="edge4_Node000002_Node000003" title=" " alt="" coords="360,79,392,72,393,77,361,84"/>
+<area shape="rect" id="Node000004" href="$namespacexpe_1_1render_1_1context.html#a6aedc29a164c62f5ef61f220d4e4309b" title=" " alt="" coords="410,120,604,163"/>
+<area shape="poly" id="edge6_Node000002_Node000004" title=" " alt="" coords="361,108,395,115,393,120,360,113"/>
+<area shape="poly" id="edge5_Node000003_Node000003" title=" " alt="" coords="466,29,464,19,471,10,485,5,507,3,530,5,544,11,541,16,528,10,507,8,486,10,474,15,469,21,471,28"/>
+<area shape="poly" id="edge7_Node000004_Node000004" title=" " alt="" coords="466,120,464,110,471,101,485,95,507,93,530,96,544,102,541,107,528,101,507,99,486,101,474,105,469,111,471,119"/>
+</map>

@@ -1,0 +1,257 @@
+\doxysection{audio\+\_\+system.\+cpp}
+\hypertarget{audio__system_8cpp_source}{}\label{audio__system_8cpp_source}\index{engine/src/audio/audio\_system.cpp@{engine/src/audio/audio\_system.cpp}}
+\mbox{\hyperlink{audio__system_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{audio__system_8hpp}{audio/audio\_system.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{audio_2core_2context_8hpp}{audio/core/context.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{audio__manager_8hpp}{audio/audio\_manager.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00005}00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00007}00007\ \ \ \ \ \textcolor{keyword}{namespace\ }audio\ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00009}00009\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }context;}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00011}\mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_system_a95f083e4a21c794f3c64643719caa313}{00011}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_system_a95f083e4a21c794f3c64643719caa313}{cAudioSystem::cAudioSystem}}()}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00013}00013\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_aebdf7c3fbf66f961dab2f22e150bd360}{context::InitAudio}}();}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ m\_VoiceData\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<signed\ char>}}(\mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a40ab66b328485e78adfbc1de5692615b}{k\_CaptureBufferSize}}\ *\ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a709280f20d67e451e173e2aadc3c2a3a}{k\_NumCaptureBuffers}},\ 0);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Test\ varriables\ to\ hear\ myself\ \(\backslash\)/}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a740dd5a6dcb373654e6aacc52c4994d1}{GenSources}}(1,\ \&m\_MySourceID);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ m\_MyBuffersID\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<u32>}}(\mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a709280f20d67e451e173e2aadc3c2a3a}{k\_NumCaptureBuffers}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a4a19b59e809d6f081ac3f7cd67f053f1}{GenBuffers}}(\mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a709280f20d67e451e173e2aadc3c2a3a}{k\_NumCaptureBuffers}},\ m\_MyBuffersID.data());}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_af85f271fb092d6ad6c1ef2e87bc9fc5f}{AddBuffer}}(m\_MySourceID,\ m\_MyBuffersID.data(),\ m\_VoiceData.data(),}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a40ab66b328485e78adfbc1de5692615b}{k\_CaptureBufferSize}},\ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a487ca035375c56d588285567bbb51298}{k\_CaptureFrequency}},\ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a709280f20d67e451e173e2aadc3c2a3a}{k\_NumCaptureBuffers}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a93bb84201f282d370e3a962c588311f0}{PlaySource}}(m\_MySourceID);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00028}\mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_system_a3c2d14284b08c7d90704a843b4478938}{00028}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_system_a3c2d14284b08c7d90704a843b4478938}{cAudioSystem::\string~cAudioSystem}}()}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_aaad802187553ce017518fd6df0bb418c}{DeleteSources}}(1,\ \&m\_MySourceID);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a5b811183b3c6fe18d071d3d10ba6695b}{DeleteBuffers}}(\mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a709280f20d67e451e173e2aadc3c2a3a}{k\_NumCaptureBuffers}},\ m\_MyBuffersID.data());}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a4ddbaa76c1383f18ef7d912ae18037e7}{context::FreeAudio}}();}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00036}\mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_system_aa5ea13f96fded87ef85fd3164207670f}{00036}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_system_aa5ea13f96fded87ef85fd3164207670f}{cAudioSystem::Update}}(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{ecs::cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_time}{cTime}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{dt}})}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cAudioManager::s\_Recording)\ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VoiceRecord();}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ UpdateVoices(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ UpdateAudios(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ UpdateStreamAudios(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cAudioSystem::UpdateVoices(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ testing\ voice\ recorder}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016ae}{eAudioState}}\ State;}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Processed}};}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_aabf0a793a002bcb24f87e281766c3c39}{GetState}}(m\_MySourceID,\ State);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a85be12a461dea756893467159c32aee7}{GetProcessed}}(m\_MySourceID,\ \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Processed}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Processed}})\ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a5d4fd160e5c0f6ed9defdaf07cbe572b}{UpdateBuffers}}(m\_MySourceID,\ m\_MyBuffersID.data(),\ m\_VoiceData.data(),}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a40ab66b328485e78adfbc1de5692615b}{k\_CaptureBufferSize}},\ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a487ca035375c56d588285567bbb51298}{k\_CaptureFrequency}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (State\ !=\ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea875587098dc97678c4f5bc80f8cac127}{eAudioState::PLAYING}})\ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a93bb84201f282d370e3a962c588311f0}{PlaySource}}(m\_MySourceID);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ There\ is\ no\ sense\ in\ doing\ this\ now,\ so\ I'll\ leave\ it\ for\ later}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//scene-\/>ForEach<sCVoice>([this](sCVoice\ *component)\ \{}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ //Voices\ update\ }}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\});}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cAudioSystem::UpdateAudios(cScene*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{components}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}}-\/>GetComponents<CAudio,\ CTransform>();}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ [\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{entity}},\ audio,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{transform}}]\ :\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{components}}.\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{each}}())}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (audio.State\ ==\ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea875587098dc97678c4f5bc80f8cac127}{eAudioState::PLAYING}})\ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AudioUpdate(audio);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_addef3f14afbb1bd8ea577a9f7a388b10}{SetPosition}}(audio.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{transform}}.Position);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (audio.State\ ==\ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea35613ba4e10128a91ab652ee7fa26164}{eAudioState::INITIAL}})\ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AudioInit(audio);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AudioSet(audio);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_addef3f14afbb1bd8ea577a9f7a388b10}{SetPosition}}(audio.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{transform}}.Position);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (audio.State\ ==\ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea596e93b346295a6bc7e7fd514fa5a662}{eAudioState::STOPPED}})\ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AudioStop(audio);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cAudioSystem::UpdateStreamAudios(cScene*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}})}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{components}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{scene}}-\/>GetComponents<CStreamAudio,\ CTransform>();}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ [\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{entity}},\ audio,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{transform}}]\ :\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{components}}.\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{each}}())}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (audio.State\ ==\ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea875587098dc97678c4f5bc80f8cac127}{eAudioState::PLAYING}})\ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AudioUpdate(audio);\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_addef3f14afbb1bd8ea577a9f7a388b10}{SetPosition}}(audio.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{transform}}.Position);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (audio.State\ ==\ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea35613ba4e10128a91ab652ee7fa26164}{eAudioState::INITIAL}})\ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AudioInit(audio);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AudioSet(audio);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_addef3f14afbb1bd8ea577a9f7a388b10}{SetPosition}}(audio.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{transform}}.Position);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (audio.State\ ==\ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea596e93b346295a6bc7e7fd514fa5a662}{eAudioState::STOPPED}})\ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AudioStop(audio);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cAudioSystem::VoiceRecord()}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{samples}};}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a491941b05ab5353dc8b10da8c2f625a2}{GetCaptureSamples}}(1,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{samples}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{samples}}\ >=\ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a40ab66b328485e78adfbc1de5692615b}{k\_CaptureBufferSize}})\ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a646b5160dbb3f5a7f75685965e1c86e2}{UploadSamplesToBuffer}}(m\_VoiceData.data(),\ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a40ab66b328485e78adfbc1de5692615b}{k\_CaptureBufferSize}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cAudioSystem::AudioInit(CAudio\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}})}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a740dd5a6dcb373654e6aacc52c4994d1}{GenSources}}(1,\ \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a4a19b59e809d6f081ac3f7cd67f053f1}{GenBuffers}}(1,\ \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.BufferID);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a98626288e386bfa8eec597486f973808}{UploadFileToBuffer}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.File,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.BufferID);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a033b1d21279a7378ba69fc12472fe41e}{bindBuffers}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.BufferID);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a44c13b01d74c2c11e49e796c710aa67c}{SetGain}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Gain);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a8b865561de769ae59b513963ef30aa09}{SetPitch}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Pitch);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a47f6ad7639831412d8f2dda2883931ce}{SetRefDistance}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.RefDistance);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_ae1728065795c85684b6116070fbc1e5a}{SetMaxDistance}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.MaxDistance);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_ac58eefadaa8576175b627f2c0a5941b9}{SetRollOffFactor}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.RollOffFactor);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a83e34264dad5c6cffcc911396918735b}{SetConeInnerAngle}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.ConeInnerAngle);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a3fca2c88cdcaad5612fc2451ab486159}{SetConeOuterAngle}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.ConeOuterAngle);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a48123e05d88b2e95a251296105f97a25}{SetLooping}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Looping);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cAudioSystem::AudioInit(CStreamAudio\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}})}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a740dd5a6dcb373654e6aacc52c4994d1}{GenSources}}(1,\ \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.BufferID\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<u32>}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.NumBuffers);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a4a19b59e809d6f081ac3f7cd67f053f1}{GenBuffers}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.NumBuffers,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.BufferID.data());}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Data\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<short>}}(\mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a6b3d6a9d9503b61ec83bc85d8ee281c3}{GetBufferSize}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.File-\/>Info.channels,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.BufferSamples));}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a44c13b01d74c2c11e49e796c710aa67c}{SetGain}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Gain);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a8b865561de769ae59b513963ef30aa09}{SetPitch}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Pitch);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a47f6ad7639831412d8f2dda2883931ce}{SetRefDistance}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.RefDistance);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_ae1728065795c85684b6116070fbc1e5a}{SetMaxDistance}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.MaxDistance);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_ac58eefadaa8576175b627f2c0a5941b9}{SetRollOffFactor}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.RollOffFactor);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a83e34264dad5c6cffcc911396918735b}{SetConeInnerAngle}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.ConeInnerAngle);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a3fca2c88cdcaad5612fc2451ab486159}{SetConeOuterAngle}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.ConeOuterAngle);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cAudioSystem::AudioSet(CAudio\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}})}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a93bb84201f282d370e3a962c588311f0}{PlaySource}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.State\ =\ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea875587098dc97678c4f5bc80f8cac127}{eAudioState::PLAYING}};}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cAudioSystem::AudioSet(CStreamAudio\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}})}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{i}}\ =\ 0;\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{i}}\ <\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.NumBuffers;\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{i}}++)\ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a441e3db4c0c07452df254a5b649b7935}{SetCurrentFrame}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.File-\/>File,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.CurrentFrame);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.CurrentFrame\ +=\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.BufferSamples;}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a64541bbaea56e49ce9ad2330d4423041}{UpdateBuffer}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.File,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.BufferID[\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{i}}],\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Data.data(),}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.BufferSamples,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00184}00184\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a93bb84201f282d370e3a962c588311f0}{PlaySource}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_aabf0a793a002bcb24f87e281766c3c39}{GetState}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.State);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00189}00189\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cAudioSystem::AudioUpdate(CAudio\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}})}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00190}00190\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_aabf0a793a002bcb24f87e281766c3c39}{GetState}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.State);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00192}00192\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00194}00194\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cAudioSystem::AudioUpdate(CStreamAudio\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}})}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00195}00195\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{processed}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a85be12a461dea756893467159c32aee7}{GetProcessed}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id,\ \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{processed}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_aabf0a793a002bcb24f87e281766c3c39}{GetState}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.State);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a738ff8c8cb47e4d2bad2e13b52c4c768}{GetError}}()\ ==\ eAudioError::NONE)\ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00201}00201\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.State\ ==\ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea596e93b346295a6bc7e7fd514fa5a662}{eAudioState::STOPPED}}\ \&\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.CurrentFrame\ <\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.File-\/>Info.frames)\ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Recreating\ audio}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AudioStop(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AudioInit(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AudioSet(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{i}}\ =\ 0;\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.CurrentFrame\ <\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.File-\/>Info.frames\ \&\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{processed}}\ >\ 0;\ ++\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{i}})\ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a441e3db4c0c07452df254a5b649b7935}{SetCurrentFrame}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.File-\/>File,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.CurrentFrame);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.CurrentFrame\ +=\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.BufferSamples;}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00212}00212\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a64541bbaea56e49ce9ad2330d4423041}{UpdateBuffer}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.File,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.BufferID[\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{i}}],\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Data.data(),}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.BufferSamples,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00215}00215\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/-\/\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{processed}};}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log__manager_8hpp_a611dbbfa5c2f148b7190b97a12835b5e}{LogError}}(\textcolor{stringliteral}{"{}Error\ checking\ music\ source\ state"{}});}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00224}00224\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00225}00225\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00226}00226\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cAudioSystem::AudioStop(CAudio\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}})}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00227}00227\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a66e5e7236c6f2c249eba9037880a43eb}{StopSource}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a11629f1a894ca251fb5731689e76ae58}{UnbindBuffers}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_aaad802187553ce017518fd6df0bb418c}{DeleteSources}}(1,\ \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a5b811183b3c6fe18d071d3d10ba6695b}{DeleteBuffers}}(1,\ \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.BufferID);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00233}00233\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00235}00235\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.State\ =\ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aeaeb58ffe6530007eea0b50e296ff45651}{eAudioState::PAUSED}};}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00237}00237\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00238}00238\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00239}00239\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cAudioSystem::AudioStop(CStreamAudio\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}})}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00240}00240\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a66e5e7236c6f2c249eba9037880a43eb}{StopSource}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00242}00242\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_aaad802187553ce017518fd6df0bb418c}{DeleteSources}}(1,\ \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id);}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a5b811183b3c6fe18d071d3d10ba6695b}{DeleteBuffers}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.NumBuffers,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.BufferID.data());}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00245}00245\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.Source.Id\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00247}00247\ }
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{component}}.State\ =\ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aeaeb58ffe6530007eea0b50e296ff45651}{eAudioState::PAUSED}};}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00249}00249\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00250}00250\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__system_8cpp_source_l00251}00251\ \}}
+
+\end{DoxyCode}

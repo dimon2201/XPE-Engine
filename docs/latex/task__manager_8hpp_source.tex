@@ -2,111 +2,111 @@
 \hypertarget{task__manager_8hpp_source}{}\label{task__manager_8hpp_source}\index{engine/src/core/task\_manager.hpp@{engine/src/core/task\_manager.hpp}}
 \mbox{\hyperlink{task__manager_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <PxPhysicsAPI.h>}}
-\DoxyCodeLine{00004\ }
-\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
-\DoxyCodeLine{00006\ }
-\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{namespace\ }core\ \{}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_task}{sTask}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_object}{cObject}}}
-\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06}{eType}}\ :\ \mbox{\hyperlink{namespacexpe_1_1core_a13fec7f69dcb34583a9c88a8c2d85ab6}{u8}}}
-\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ THREAD\_POOL\ =\ 0,}
-\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AUDIO\ =\ 1,}
-\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NETWORK\ =\ 2,}
-\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ANIMATION\ =\ 3,}
-\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PHYSICS\ =\ 4,}
-\DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9a5b39c8b553c821e7cddc6da64b5bd2ee}{DEFAULT}}\ =\ THREAD\_POOL}
-\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06}{eType}}\ Type\ =\ eType::DEFAULT;}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ std::function<\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}}()>\ Todo\ =\ []()\{\};}
-\DoxyCodeLine{00024\ }
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_task_a98a32f166503d07754051ffbb0de4f77}{sTask}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_task_a72b2582e5dc7cceb42a92214c20b438c}{sTask}}(\mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06}{eType}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{type}},\ \textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}()>\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{todo}})\ :\ Type(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{type}}),\ Todo(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{todo}})\ \{\}}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_task_queue}{sTaskQueue}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_task}{sTask}}}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<sTask>}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_task_queue_afb918d59e8c049ce1b5ca93f68dd245d}{Tasks}};}
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_task_queue}{sTaskQueue}}();}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_task_queue}{sTaskQueue}}(\mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06}{eType}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{type}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<sTask>}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tasks}}\ =\ \{\});}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher}{cTaskDispatcher}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_object}{cObject}}}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00039\ }
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher}{cTaskDispatcher}}(\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{workerSize}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{taskBufferSize}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}},\ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1}{cThread::ePriority}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{priority}});}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ executes\ single\ task\ in\ a\ single\ worker\ thread}}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Dispatch(\textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_task}{sTask}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{task}});}
-\DoxyCodeLine{00045\ }
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ executes\ multiple\ tasks\ with\ multiple\ amount\ of\ workers\ per\ task}}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ taskSize\ -\/\ count\ of\ inner\ tasks\ inside\ single\ task}}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ tasksPerThread\ -\/\ count\ of\ tasks\ for\ each\ worker\ thread}}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Dispatch(\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tasksPerThread}},\ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{taskSize}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_task}{sTask}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{task}});}
-\DoxyCodeLine{00050\ }
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ IsBusy();}
-\DoxyCodeLine{00052\ }
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ GetWorkerCount()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00054\ }
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Wait();}
-\DoxyCodeLine{00056\ }
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ wakes\ only\ one\ worker}}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ allows\ caller-\/thread\ to\ be\ rescheduled\ by\ OS}}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ Poll();}
-\DoxyCodeLine{00061\ }
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ InitThread(\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{workerId}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}},\ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1}{cThread::ePriority}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{priority}});}
-\DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cRingBuffer<sTask>}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_a6b88d57d92d2d9745c3df4d684edea50}{m\_TaskBuffer}};}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ std::condition\_variable\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_ab138311f4c5844fc1ffdd9b575c5e057}{m\_WakeCondition}};}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ std::mutex\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_aeed8047b981e99e67ae3025006d586e9}{m\_WakeMutex}};}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a5339d437e076788ee8b8217188685ee6}{u64}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_a122a3bb1bfa10ac948f995fe3a5c820e}{m\_TasksTodo}};}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ std::atomic<u64>\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_a2a1a61cf6c2caea1de30583c0146f7b5}{m\_TasksDone}};}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_a932baf4d6c1c03c8968a8129da4ab6d1}{m\_WorkerCount}};}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00071\ }
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_simulation_dispatcher}{cSimulationDispatcher}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher}{cTaskDispatcher}},\ \textcolor{keyword}{public}\ physx::PxCpuDispatcher\ \{}
-\DoxyCodeLine{00073\ }
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_simulation_dispatcher_a03402af9a4692af19df4f4cf1fb06f69}{cSimulationDispatcher}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{workerSize}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{taskBufferSize}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}},\ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1}{cThread::ePriority}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{priority}})}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher}{cTaskDispatcher}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{workerSize}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{taskBufferSize}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{priority}})\ \{\}}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_simulation_dispatcher_a493289526bd21e68c177c08468d555f4}{\string~cSimulationDispatcher}}()\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00079\ }
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ submitTask(physx::PxBaseTask\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{task}})\ \textcolor{keyword}{override}\ \textcolor{keyword}{final};}
-\DoxyCodeLine{00081\ }
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{uint32\_t}}\ getWorkerCount()\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{override}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}};}
-\DoxyCodeLine{00083\ }
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00085\ }
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{class}}\ \mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_manager}{cTaskManager}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}\ \{}
-\DoxyCodeLine{00087\ }
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Init();}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Free();}
-\DoxyCodeLine{00091\ }
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ SubmitTask(\textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_task}{sTask}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{task}});}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ SubmitTask(\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tasksPerThread}},\ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{totalTasks}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_task}{sTask}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{task}});}
-\DoxyCodeLine{00094\ }
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_simulation_dispatcher}{cSimulationDispatcher}}*\ GetSimulationDispatcher();}
-\DoxyCodeLine{00096\ }
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher}{cTaskDispatcher}}*\ s\_AudioDispatcher;}
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher}{cTaskDispatcher}}*\ s\_NetworkDispatcher;}
-\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_simulation_dispatcher}{cSimulationDispatcher}}*\ s\_SimulationDispatcher;}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher}{cTaskDispatcher}}*\ s\_ThreadPoolDispatcher;}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00103\ }
-\DoxyCodeLine{00104\ \ \ \ \ \}}
-\DoxyCodeLine{00105\ }
-\DoxyCodeLine{00106\ \}}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <PxPhysicsAPI.h>}}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00005}00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00007}00007\ \ \ \ \ \textcolor{keyword}{namespace\ }core\ \{}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00009}\mbox{\hyperlink{structxpe_1_1core_1_1s_task}{00009}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_task}{sTask}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_object}{cObject}}}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00010}00010\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00011}\mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06}{00011}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06}{eType}}\ :\ \mbox{\hyperlink{namespacexpe_1_1core_a13fec7f69dcb34583a9c88a8c2d85ab6}{u8}}}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00013}\mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06a94d31be7e1f36b87dfa2bd656a1a3c96}{00013}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ THREAD\_POOL\ =\ 0,}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00014}\mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06af4bf6660262e3d2549982e749ae1d3ae}{00014}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AUDIO\ =\ 1,}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00015}\mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06acb60d6dc473d6e15b055f3c2dcf34e0d}{00015}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NETWORK\ =\ 2,}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00016}\mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06ac714ab3a4d500fd02027aa8ad56b221b}{00016}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ANIMATION\ =\ 3,}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00017}\mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06aed765b7c07e66137f89ad423143fdcdb}{00017}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PHYSICS\ =\ 4,}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9a5b39c8b553c821e7cddc6da64b5bd2ee}{DEFAULT}}\ =\ THREAD\_POOL}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00020}\mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06a8b6292bef5d7121c0bd55eb0adc15d96}{00020}}\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00022}\mbox{\hyperlink{structxpe_1_1core_1_1s_task_a8b6c4d6e9f73187b6fe9594c26121b08}{00022}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06}{eType}}\ Type\ =\ eType::DEFAULT;}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00023}\mbox{\hyperlink{structxpe_1_1core_1_1s_task_ae37dc636337031739b2ea80a97c78f94}{00023}}\ \ \ \ \ \ \ \ \ \ \ \ \ std::function<\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{void}}()>\ Todo\ =\ []()\{\};}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00025}\mbox{\hyperlink{structxpe_1_1core_1_1s_task_a98a32f166503d07754051ffbb0de4f77}{00025}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_task_a98a32f166503d07754051ffbb0de4f77}{sTask}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00026}\mbox{\hyperlink{structxpe_1_1core_1_1s_task_a72b2582e5dc7cceb42a92214c20b438c}{00026}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_task_a72b2582e5dc7cceb42a92214c20b438c}{sTask}}(\mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06}{eType}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{type}},\ \textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}()>\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{todo}})\ :\ Type(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{type}}),\ Todo(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{todo}})\ \{\}}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00029}\mbox{\hyperlink{structxpe_1_1core_1_1s_task_queue}{00029}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_task_queue}{sTaskQueue}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_task}{sTask}}}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00031}\mbox{\hyperlink{structxpe_1_1core_1_1s_task_queue_afb918d59e8c049ce1b5ca93f68dd245d}{00031}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<sTask>}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_task_queue_afb918d59e8c049ce1b5ca93f68dd245d}{Tasks}};}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_task_queue}{sTaskQueue}}();}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_task_queue}{sTaskQueue}}(\mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06}{eType}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{type}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<sTask>}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tasks}}\ =\ \{\});}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00037}\mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher}{00037}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher}{cTaskDispatcher}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_object}{cObject}}}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher}{cTaskDispatcher}}(\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{workerSize}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{taskBufferSize}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}},\ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1}{cThread::ePriority}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{priority}});}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ executes\ single\ task\ in\ a\ single\ worker\ thread}}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Dispatch(\textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_task}{sTask}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{task}});}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ executes\ multiple\ tasks\ with\ multiple\ amount\ of\ workers\ per\ task}}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ taskSize\ -\/\ count\ of\ inner\ tasks\ inside\ single\ task}}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ tasksPerThread\ -\/\ count\ of\ tasks\ for\ each\ worker\ thread}}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Dispatch(\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tasksPerThread}},\ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{taskSize}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_task}{sTask}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{task}});}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ IsBusy();}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ GetWorkerCount()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Wait();}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ wakes\ only\ one\ worker}}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ allows\ caller-\/thread\ to\ be\ rescheduled\ by\ OS}}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ Poll();}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ InitThread(\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{workerId}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}},\ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1}{cThread::ePriority}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{priority}});}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00064}\mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_a6b88d57d92d2d9745c3df4d684edea50}{00064}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cRingBuffer<sTask>}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_a6b88d57d92d2d9745c3df4d684edea50}{m\_TaskBuffer}};}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00065}\mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_ab138311f4c5844fc1ffdd9b575c5e057}{00065}}\ \ \ \ \ \ \ \ \ \ \ \ \ std::condition\_variable\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_ab138311f4c5844fc1ffdd9b575c5e057}{m\_WakeCondition}};}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00066}\mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_aeed8047b981e99e67ae3025006d586e9}{00066}}\ \ \ \ \ \ \ \ \ \ \ \ \ std::mutex\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_aeed8047b981e99e67ae3025006d586e9}{m\_WakeMutex}};}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00067}\mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_a122a3bb1bfa10ac948f995fe3a5c820e}{00067}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a5339d437e076788ee8b8217188685ee6}{u64}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_a122a3bb1bfa10ac948f995fe3a5c820e}{m\_TasksTodo}};}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00068}\mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_a2a1a61cf6c2caea1de30583c0146f7b5}{00068}}\ \ \ \ \ \ \ \ \ \ \ \ \ std::atomic<u64>\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_a2a1a61cf6c2caea1de30583c0146f7b5}{m\_TasksDone}};}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00069}\mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_a932baf4d6c1c03c8968a8129da4ab6d1}{00069}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher_a932baf4d6c1c03c8968a8129da4ab6d1}{m\_WorkerCount}};}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00072}\mbox{\hyperlink{classxpe_1_1core_1_1c_simulation_dispatcher}{00072}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_simulation_dispatcher}{cSimulationDispatcher}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher}{cTaskDispatcher}},\ \textcolor{keyword}{public}\ physx::PxCpuDispatcher\ \{}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00075}\mbox{\hyperlink{classxpe_1_1core_1_1c_simulation_dispatcher_a03402af9a4692af19df4f4cf1fb06f69}{00075}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_simulation_dispatcher_a03402af9a4692af19df4f4cf1fb06f69}{cSimulationDispatcher}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{workerSize}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{taskBufferSize}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}},\ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a714e0fbeefe921f4fbe195de023a4fa1}{cThread::ePriority}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{priority}})}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher}{cTaskDispatcher}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{workerSize}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{taskBufferSize}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{name}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{priority}})\ \{\}}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00078}\mbox{\hyperlink{classxpe_1_1core_1_1c_simulation_dispatcher_a493289526bd21e68c177c08468d555f4}{00078}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_simulation_dispatcher_a493289526bd21e68c177c08468d555f4}{\string~cSimulationDispatcher}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ submitTask(physx::PxBaseTask\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{task}})\ \textcolor{keyword}{override}\ \textcolor{keyword}{final};}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{uint32\_t}}\ getWorkerCount()\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{const}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{override}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}};}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00086}\mbox{\hyperlink{classxpe_1_1core_1_1c_task_manager}{00086}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{class}}\ \mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_manager}{cTaskManager}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}\ \{}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Init();}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Free();}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ SubmitTask(\textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_task}{sTask}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{task}});}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ SubmitTask(\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tasksPerThread}},\ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{totalTasks}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_task}{sTask}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{task}});}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_simulation_dispatcher}{cSimulationDispatcher}}*\ GetSimulationDispatcher();}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher}{cTaskDispatcher}}*\ s\_AudioDispatcher;}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher}{cTaskDispatcher}}*\ s\_NetworkDispatcher;}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_simulation_dispatcher}{cSimulationDispatcher}}*\ s\_SimulationDispatcher;}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_dispatcher}{cTaskDispatcher}}*\ s\_ThreadPoolDispatcher;}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00104}00104\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{task__manager_8hpp_source_l00106}00106\ \}}
 
 \end{DoxyCode}

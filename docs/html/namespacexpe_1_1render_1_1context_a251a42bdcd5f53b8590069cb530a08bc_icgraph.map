@@ -1,0 +1,6 @@
+<map id="xpe::render::context::Dispatch" name="xpe::render::context::Dispatch">
+<area shape="rect" id="Node000001" title=" " alt="" coords="248,29,385,72"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="351,16,338,10,316,8,296,10,284,15,279,21,281,28,276,29,274,19,281,10,295,5,316,3,339,5,353,11"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1render_1_1c_compute_shader.html#ac9c262bc825081afa6b2e6c8b7323cfc" title=" " alt="" coords="5,29,200,72"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="232,53,200,53,200,48,232,48"/>
+</map>

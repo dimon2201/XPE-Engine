@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('structxpe_1_1render_1_1s_texture.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li><li class="navelem"><a class="el" href="structxpe_1_1render_1_1s_texture.html">sTexture</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
@@ -90,14 +108,29 @@ $(function() {
 <div class="dynheader">
 Inheritance diagram for xpe::render::sTexture:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="structxpe_1_1render_1_1s_texture.png" usemap="#xpe::render::sTexture_map" alt=""/>
-  <map id="xpe::render::sTexture_map" name="xpe::render::sTexture_map">
-<area href="structxpe_1_1render_1_1s_resource.html" alt="xpe::render::sResource" shape="rect" coords="0,56,142,80"/>
-<area href="classxpe_1_1core_1_1c_object.html" alt="xpe::core::cObject" shape="rect" coords="0,0,142,24"/>
-<area href="structxpe_1_1render_1_1s_atlas.html" alt="xpe::render::sAtlas" shape="rect" coords="0,168,142,192"/>
-  </map>
-</div></div>
+<div class="center"><img src="structxpe_1_1render_1_1s_texture__inherit__graph.png" border="0" usemap="#axpe_1_1render_1_1s_texture_inherit__map" alt="Inheritance graph"/></div>
+<map name="axpe_1_1render_1_1s_texture_inherit__map" id="axpe_1_1render_1_1s_texture_inherit__map">
+<area shape="rect" title=" " alt="" coords="11,155,156,181"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_atlas.html" title=" " alt="" coords="18,229,149,256"/>
+<area shape="poly" title=" " alt="" coords="86,197,86,229,81,229,81,197"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_resource.html" title=" " alt="" coords="5,80,162,107"/>
+<area shape="poly" title=" " alt="" coords="86,122,86,154,81,154,81,122"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="19,5,148,32"/>
+<area shape="poly" title=" " alt="" coords="86,48,86,80,81,80,81,48"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for xpe::render::sTexture:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_texture__coll__graph.png" border="0" usemap="#axpe_1_1render_1_1s_texture_coll__map" alt="Collaboration graph"/></div>
+<map name="axpe_1_1render_1_1s_texture_coll__map" id="axpe_1_1render_1_1s_texture_coll__map">
+<area shape="rect" title=" " alt="" coords="11,155,156,181"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_resource.html" title=" " alt="" coords="5,80,162,107"/>
+<area shape="poly" title=" " alt="" coords="86,122,86,154,81,154,81,122"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="19,5,148,32"/>
+<area shape="poly" title=" " alt="" coords="86,48,86,80,81,80,81,48"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -230,7 +263,10 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:a29bf78a80d911f38c36e371e4a75828e" id="r_a29bf78a80d911f38c36e371e4a75828e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">static</a> <a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">const</a> std::unordered_map&lt; <a class="el" href="namespacexpe_1_1render.html#a46d0dfa0f134db6b834ccc2b921e2da2">eTextureFormat</a>, <a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">int</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a29bf78a80d911f38c36e371e4a75828e">k_BppTable</a></td></tr>
 <tr class="separator:a29bf78a80d911f38c36e371e4a75828e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00087">87</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a495c63bd3a4c8fa449a25a168f7909c7" name="a495c63bd3a4c8fa449a25a168f7909c7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a495c63bd3a4c8fa449a25a168f7909c7">&#9670;&#160;</a></span>eType</h2>
 
@@ -261,6 +297,8 @@ Static Public Attributes</h2></td></tr>
 <tr><td class="fieldname"><a id="a495c63bd3a4c8fa449a25a168f7909c7a1c1fa6ee771ae6e5643eea6259295aac" name="a495c63bd3a4c8fa449a25a168f7909c7a1c1fa6ee771ae6e5643eea6259295aac"></a>TEXTURE_DEFAULT&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00090">90</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a38f5cc01d9dbc0bbd30463c0563daa2b" name="a38f5cc01d9dbc0bbd30463c0563daa2b"></a>
@@ -289,6 +327,8 @@ Static Public Attributes</h2></td></tr>
 <tr><td class="fieldname"><a id="a38f5cc01d9dbc0bbd30463c0563daa2bab8a1431064f351dbef92871d02bab8cf" name="a38f5cc01d9dbc0bbd30463c0563daa2bab8a1431064f351dbef92871d02bab8cf"></a>STAGING&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00103">103</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -307,6 +347,8 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8cpp_source.html#l00056">56</a> of file <a class="el" href="texture_8cpp_source.html">texture.cpp</a>.</p>
+
 </div>
 </div>
 <a id="aacf76abd32ef8b66ad73b177086bb6fd" name="aacf76abd32ef8b66ad73b177086bb6fd"></a>
@@ -323,6 +365,93 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="texture_8cpp_source.html#l00061">61</a> of file <a class="el" href="texture_8cpp_source.html">texture.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_texture_aacf76abd32ef8b66ad73b177086bb6fd_cgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_texture_aacf76abd32ef8b66ad73b177086bb6fd_cgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_texture_aacf76abd32ef8b66ad73b177086bb6fd_cgraph" id="astructxpe_1_1render_1_1s_texture_aacf76abd32ef8b66ad73b177086bb6fd_cgraph">
+<area shape="rect" title=" " alt="" coords="5,528,150,571"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_texture.html#a9f477cd7cc9f05c9544b5cd7f864f8a4" title=" " alt="" coords="198,528,342,571"/>
+<area shape="poly" title=" " alt="" coords="150,547,182,547,182,552,150,552"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ad9f56074521a5a0ab26fdaea101b6f58" title=" " alt="" coords="390,528,527,571"/>
+<area shape="poly" title=" " alt="" coords="343,547,374,547,374,552,343,552"/>
+<area shape="poly" title=" " alt="" coords="422,528,421,518,427,509,440,503,459,501,479,504,491,510,489,515,478,509,459,507,441,509,430,513,426,519,428,527"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ab645a09c78f03af220fecf9d70f66046" title=" " alt="" coords="575,256,755,299"/>
+<area shape="poly" title=" " alt="" coords="462,527,475,482,497,424,529,363,550,334,573,309,577,306,580,310,577,313,554,337,534,365,501,426,480,484,467,528"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a143faa6f9a1a98ccc8693ed6b600b026" title=" " alt="" coords="596,347,734,389"/>
+<area shape="poly" title=" " alt="" coords="469,526,510,464,540,429,574,399,581,394,584,399,577,403,544,433,515,467,474,529"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a1ad2c5d4b1882d594db271a02185afc0" title=" " alt="" coords="596,437,734,480"/>
+<area shape="poly" title=" " alt="" coords="501,525,574,490,588,484,590,489,576,494,503,530"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ab5b80587e0e0a2ed7073c7d5442f550f" title=" " alt="" coords="592,528,738,571"/>
+<area shape="poly" title=" " alt="" coords="528,547,577,547,577,552,528,552"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a3bfe7da2d40a3f5687abaa367365f3c4" title=" " alt="" coords="596,619,734,661"/>
+<area shape="poly" title=" " alt="" coords="510,569,602,609,599,614,508,574"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a49902c69bdc635fcdd8fc28d9f60f283" title=" " alt="" coords="596,709,734,752"/>
+<area shape="poly" title=" " alt="" coords="479,569,522,618,577,671,614,699,611,703,574,675,518,622,475,573"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#aee5cc723306d146fa933cc5374b44a8b" title=" " alt="" coords="579,800,751,843"/>
+<area shape="poly" title=" " alt="" coords="470,570,509,659,539,713,577,762,610,789,606,793,573,766,535,716,504,662,465,572"/>
+<area shape="poly" title=" " alt="" coords="626,256,624,246,631,237,644,231,665,229,687,232,701,238,698,243,686,237,665,235,646,237,634,241,629,247,631,255"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#abbf0f19b8986fbcfb44dc1319a0d929c" title=" " alt="" coords="803,256,940,299"/>
+<area shape="poly" title=" " alt="" coords="755,275,787,275,787,280,755,280"/>
+<area shape="poly" title=" " alt="" coords="832,256,830,246,837,237,851,231,871,229,894,232,907,238,905,243,892,237,871,235,852,237,840,241,836,247,837,255"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a3a582c1e42d2723c6ed55199dffa1388" title=" " alt="" coords="1012,301,1149,344"/>
+<area shape="poly" title=" " alt="" coords="941,290,997,302,996,307,940,295"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ae47b3b8018bd7eee48028b1d54e939ab" title=" " alt="" coords="1012,392,1149,435"/>
+<area shape="poly" title=" " alt="" coords="905,297,989,354,1032,381,1029,386,987,358,902,301"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#abff1f0ac31f4a180d2d34a49d65a9b75" title=" " alt="" coords="1002,483,1159,525"/>
+<area shape="poly" title=" " alt="" coords="886,298,927,367,956,408,990,445,1025,472,1022,476,986,449,952,411,923,370,881,301"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a764b5dd46b1c2311d955375b60ac0e21" title=" " alt="" coords="1012,29,1149,72"/>
+<area shape="poly" title=" " alt="" coords="878,254,893,218,916,171,947,124,986,82,996,75,999,79,990,86,951,127,920,174,897,220,883,256"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a76ed1d16ec42691a55ec5ebcb87fc452" title=" " alt="" coords="1010,120,1150,163"/>
+<area shape="poly" title=" " alt="" coords="891,254,933,213,987,172,996,167,998,172,989,177,936,217,894,257"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a77dff8ef52c9bf1912037df988aaeb7a" title=" " alt="" coords="988,211,1172,253"/>
+<area shape="poly" title=" " alt="" coords="940,260,972,253,974,258,941,265"/>
+<area shape="poly" title=" " alt="" coords="1040,301,1039,291,1045,282,1059,277,1080,275,1103,277,1116,283,1114,288,1101,282,1080,280,1061,282,1049,287,1044,293,1046,300"/>
+<area shape="poly" title=" " alt="" coords="1040,392,1039,382,1045,373,1059,367,1080,365,1103,368,1116,374,1114,379,1101,373,1080,371,1061,373,1049,377,1044,383,1046,391"/>
+<area shape="poly" title=" " alt="" coords="1040,483,1039,473,1045,464,1059,458,1080,456,1103,458,1116,465,1114,469,1101,464,1080,461,1061,463,1049,468,1044,474,1046,482"/>
+<area shape="poly" title=" " alt="" coords="1040,29,1039,19,1045,10,1059,5,1080,3,1103,5,1116,11,1114,16,1101,10,1080,8,1061,10,1049,15,1044,21,1046,28"/>
+<area shape="poly" title=" " alt="" coords="1040,120,1039,110,1045,101,1059,95,1080,93,1103,96,1116,102,1114,107,1101,101,1080,99,1061,101,1049,105,1044,111,1046,119"/>
+<area shape="poly" title=" " alt="" coords="1040,211,1039,201,1045,192,1059,186,1080,184,1103,186,1116,193,1114,197,1101,192,1080,189,1061,191,1049,196,1044,202,1046,210"/>
+<area shape="poly" title=" " alt="" coords="626,347,624,337,631,328,644,322,665,320,687,322,701,329,698,333,686,328,665,325,646,327,634,332,629,338,631,346"/>
+<area shape="poly" title=" " alt="" coords="626,437,624,427,631,418,644,413,665,411,687,413,701,419,698,424,686,418,665,416,646,418,634,423,629,429,631,436"/>
+<area shape="poly" title=" " alt="" coords="626,528,624,518,631,509,644,503,665,501,687,504,701,510,698,515,686,509,665,507,646,509,634,513,629,519,631,527"/>
+<area shape="poly" title=" " alt="" coords="626,619,624,609,631,600,644,594,665,592,687,594,701,601,698,605,686,600,665,597,646,599,634,604,629,610,631,618"/>
+<area shape="poly" title=" " alt="" coords="626,709,624,699,631,690,644,685,665,683,687,685,701,691,698,696,686,690,665,688,646,690,634,695,629,701,631,708"/>
+<area shape="poly" title=" " alt="" coords="626,800,624,790,631,781,644,775,665,773,687,776,701,782,698,787,686,781,665,779,646,781,634,785,629,791,631,799"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ad3910232ff154a7f62321718e26b25ef" title=" " alt="" coords="803,664,940,707"/>
+<area shape="poly" title=" " alt="" coords="702,797,753,762,776,739,801,717,807,713,810,717,804,721,780,743,756,766,705,802"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a0c17c312b353723b43af3a1cf5407f13" title=" " alt="" coords="803,755,940,797"/>
+<area shape="poly" title=" " alt="" coords="751,800,787,792,788,797,752,805"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a3faab955dbc785ed504ae513dbc7389e" title=" " alt="" coords="803,845,940,888"/>
+<area shape="poly" title=" " alt="" coords="752,838,788,846,787,851,751,843"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#aec880a263a1e58be5380fe1aeb9c4462" title=" " alt="" coords="803,936,940,979"/>
+<area shape="poly" title=" " alt="" coords="701,841,827,925,824,930,698,845"/>
+<area shape="poly" title=" " alt="" coords="832,664,830,654,837,645,851,639,871,637,894,640,907,646,905,651,892,645,871,643,852,645,840,649,836,655,837,663"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a4307865df88da4fb54e36f929b6f88a5" title=" " alt="" coords="995,721,1165,748"/>
+<area shape="poly" title=" " alt="" coords="941,699,1007,715,1005,720,940,704"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a32b89671df27bd47193c116873b60f3e" title=" " alt="" coords="1012,796,1149,839"/>
+<area shape="poly" title=" " alt="" coords="922,705,942,716,966,737,990,758,1030,785,1027,790,986,762,963,741,938,721,919,709"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#aada76b8212676ccbb3ad3e364b42f80e" title=" " alt="" coords="1012,887,1149,929"/>
+<area shape="poly" title=" " alt="" coords="929,705,942,717,955,734,962,751,968,783,972,815,979,832,990,849,1021,876,1017,880,986,852,974,834,967,817,962,784,957,753,950,737,938,720,925,709"/>
+<area shape="poly" title=" " alt="" coords="1045,722,1038,713,1043,703,1057,697,1080,695,1105,697,1118,704,1116,708,1104,702,1080,700,1058,702,1046,707,1044,712,1049,719"/>
+<area shape="poly" title=" " alt="" coords="1040,796,1039,786,1045,777,1059,771,1080,769,1103,772,1116,778,1114,783,1101,777,1080,775,1061,777,1049,781,1044,787,1046,795"/>
+<area shape="poly" title=" " alt="" coords="1040,887,1039,877,1045,868,1059,862,1080,860,1103,862,1116,869,1114,873,1101,868,1080,865,1061,867,1049,872,1044,878,1046,886"/>
+<area shape="poly" title=" " alt="" coords="940,760,994,749,995,754,941,765"/>
+<area shape="poly" title=" " alt="" coords="941,787,997,798,996,803,940,792"/>
+<area shape="poly" title=" " alt="" coords="922,796,942,807,966,828,990,849,1030,876,1027,880,986,853,963,832,938,812,919,800"/>
+<area shape="poly" title=" " alt="" coords="832,755,830,745,837,736,851,730,871,728,894,730,907,737,905,741,892,736,871,733,852,735,840,740,836,746,837,754"/>
+<area shape="poly" title=" " alt="" coords="898,843,938,807,960,781,971,769,987,758,998,752,1000,757,989,762,974,773,965,784,942,811,901,847"/>
+<area shape="poly" title=" " alt="" coords="940,848,996,834,997,840,941,853"/>
+<area shape="poly" title=" " alt="" coords="941,878,997,889,996,894,940,883"/>
+<area shape="poly" title=" " alt="" coords="832,845,830,835,837,826,851,821,871,819,894,821,907,827,905,832,892,826,871,824,852,826,840,831,836,837,837,844"/>
+<area shape="poly" title=" " alt="" coords="903,933,922,917,938,898,948,879,954,861,957,826,963,792,971,775,986,758,990,755,994,759,990,762,976,778,968,794,963,827,959,862,953,881,942,902,926,921,907,937"/>
+<area shape="poly" title=" " alt="" coords="898,934,938,898,961,872,986,849,996,843,999,847,990,853,965,876,942,902,901,938"/>
+<area shape="poly" title=" " alt="" coords="940,939,996,925,997,930,941,944"/>
+<area shape="poly" title=" " alt="" coords="832,936,830,926,837,917,851,911,871,909,894,912,907,918,905,923,892,917,871,915,852,917,840,921,836,927,837,935"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -342,6 +471,20 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8cpp_source.html#l00082">82</a> of file <a class="el" href="texture_8cpp_source.html">texture.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_texture_a2e269ea33914935250859d42dadae69b_icgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_texture_a2e269ea33914935250859d42dadae69b_icgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_texture_a2e269ea33914935250859d42dadae69b_icgraph" id="astructxpe_1_1render_1_1s_texture_a2e269ea33914935250859d42dadae69b_icgraph">
+<area shape="rect" title=" " alt="" coords="425,5,569,48"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_atlas.html#a9b13fba96a509782b26f37769d067d1a" title=" " alt="" coords="246,5,377,48"/>
+<area shape="poly" title=" " alt="" coords="409,29,378,29,378,24,409,24"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_widget_manager.html#a4d08e3ea21dc782147a000446ff780c7" title=" " alt="" coords="5,5,198,48"/>
+<area shape="poly" title=" " alt="" coords="230,29,198,29,198,24,230,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a133c8b74d8bff5b814d265334c7ced00" name="a133c8b74d8bff5b814d265334c7ced00"></a>
@@ -358,6 +501,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="texture_8cpp_source.html#l00187">187</a> of file <a class="el" href="texture_8cpp_source.html">texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -376,6 +521,102 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8cpp_source.html#l00212">212</a> of file <a class="el" href="texture_8cpp_source.html">texture.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_texture_a2cdf5d311c6d8c2f0f066e63a2cbb854_cgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_texture_a2cdf5d311c6d8c2f0f066e63a2cbb854_cgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_texture_a2cdf5d311c6d8c2f0f066e63a2cbb854_cgraph" id="astructxpe_1_1render_1_1s_texture_a2cdf5d311c6d8c2f0f066e63a2cbb854_cgraph">
+<area shape="rect" title=" " alt="" coords="5,465,150,508"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#abbf0f19b8986fbcfb44dc1319a0d929c" title=" " alt="" coords="610,295,748,337"/>
+<area shape="poly" title=" " alt="" coords="110,463,160,432,226,395,303,360,382,332,437,321,492,314,595,310,595,315,493,319,437,326,384,337,305,365,229,400,163,436,113,467"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ad9f56074521a5a0ab26fdaea101b6f58" title=" " alt="" coords="198,597,335,640"/>
+<area shape="poly" title=" " alt="" coords="111,506,223,586,220,590,108,511"/>
+<area shape="poly" title=" " alt="" coords="640,295,638,285,645,276,658,270,679,268,701,270,715,277,712,281,700,276,679,273,660,275,648,280,643,286,645,294"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a3a582c1e42d2723c6ed55199dffa1388" title=" " alt="" coords="819,301,957,344"/>
+<area shape="poly" title=" " alt="" coords="748,316,804,317,803,323,748,321"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ae47b3b8018bd7eee48028b1d54e939ab" title=" " alt="" coords="819,392,957,435"/>
+<area shape="poly" title=" " alt="" coords="728,335,828,383,825,387,725,340"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#abff1f0ac31f4a180d2d34a49d65a9b75" title=" " alt="" coords="809,483,967,525"/>
+<area shape="poly" title=" " alt="" coords="698,336,741,388,797,445,835,472,832,476,794,449,737,391,694,339"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a764b5dd46b1c2311d955375b60ac0e21" title=" " alt="" coords="819,29,957,72"/>
+<area shape="poly" title=" " alt="" coords="683,293,696,250,718,193,750,134,770,106,794,82,804,74,807,79,797,86,774,110,754,137,723,195,701,251,688,295"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a76ed1d16ec42691a55ec5ebcb87fc452" title=" " alt="" coords="818,120,958,163"/>
+<area shape="poly" title=" " alt="" coords="691,293,732,234,761,201,794,173,803,167,805,171,797,177,765,205,736,237,695,296"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a77dff8ef52c9bf1912037df988aaeb7a" title=" " alt="" coords="796,211,980,253"/>
+<area shape="poly" title=" " alt="" coords="727,292,795,263,810,257,812,262,797,268,729,297"/>
+<area shape="poly" title=" " alt="" coords="848,301,846,291,853,282,867,277,888,275,910,277,924,283,922,288,909,282,888,280,868,282,856,287,852,293,853,300"/>
+<area shape="poly" title=" " alt="" coords="848,392,846,382,853,373,867,367,888,365,910,368,924,374,922,379,909,373,888,371,868,373,856,377,852,383,853,391"/>
+<area shape="poly" title=" " alt="" coords="848,483,846,473,853,464,867,458,888,456,910,458,924,465,922,469,909,464,888,461,868,463,856,468,852,474,853,482"/>
+<area shape="poly" title=" " alt="" coords="848,29,846,19,853,10,867,5,888,3,910,5,924,11,922,16,909,10,888,8,868,10,856,15,852,21,853,28"/>
+<area shape="poly" title=" " alt="" coords="848,120,846,110,853,101,867,95,888,93,910,96,924,102,922,107,909,101,888,99,868,101,856,105,852,111,853,119"/>
+<area shape="poly" title=" " alt="" coords="848,211,846,201,853,192,867,186,888,184,910,186,924,193,922,197,909,192,888,189,868,191,856,196,852,202,853,210"/>
+<area shape="poly" title=" " alt="" coords="230,597,229,587,235,578,247,573,266,571,287,573,299,579,297,584,285,578,266,576,249,578,238,583,234,589,235,596"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ab645a09c78f03af220fecf9d70f66046" title=" " alt="" coords="383,552,562,595"/>
+<area shape="poly" title=" " alt="" coords="335,601,367,594,368,599,336,606"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a143faa6f9a1a98ccc8693ed6b600b026" title=" " alt="" coords="404,733,541,776"/>
+<area shape="poly" title=" " alt="" coords="301,638,384,695,426,722,423,727,382,700,298,643"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a1ad2c5d4b1882d594db271a02185afc0" title=" " alt="" coords="404,824,541,867"/>
+<area shape="poly" title=" " alt="" coords="281,639,322,708,352,749,385,786,419,813,416,817,381,790,347,752,318,711,277,642"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ab5b80587e0e0a2ed7073c7d5442f550f" title=" " alt="" coords="400,915,545,957"/>
+<area shape="poly" title=" " alt="" coords="275,640,289,687,311,748,343,815,385,877,416,904,412,908,381,880,338,818,306,750,284,688,270,641"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a3bfe7da2d40a3f5687abaa367365f3c4" title=" " alt="" coords="404,371,541,413"/>
+<area shape="poly" title=" " alt="" coords="273,596,288,559,311,513,342,465,381,423,389,417,393,422,385,427,346,468,315,516,293,561,278,598"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a49902c69bdc635fcdd8fc28d9f60f283" title=" " alt="" coords="404,461,541,504"/>
+<area shape="poly" title=" " alt="" coords="286,595,328,554,382,514,390,509,393,514,384,518,331,558,289,599"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#aee5cc723306d146fa933cc5374b44a8b" title=" " alt="" coords="387,643,559,685"/>
+<area shape="poly" title=" " alt="" coords="336,631,372,639,371,644,335,636"/>
+<area shape="poly" title=" " alt="" coords="515,549,539,533,560,514,593,474,621,430,661,350,666,352,626,432,598,477,564,518,542,538,518,554"/>
+<area shape="poly" title=" " alt="" coords="433,552,432,542,438,533,452,527,473,525,495,528,508,534,506,539,493,533,473,531,453,533,442,537,437,543,438,551"/>
+<area shape="poly" title=" " alt="" coords="433,733,432,723,438,714,452,709,473,707,495,709,508,715,506,720,493,714,473,712,453,714,442,719,437,725,438,732"/>
+<area shape="poly" title=" " alt="" coords="433,824,432,814,438,805,452,799,473,797,495,800,508,806,506,811,493,805,473,803,453,805,442,809,437,815,438,823"/>
+<area shape="poly" title=" " alt="" coords="433,915,432,905,438,896,452,890,473,888,495,890,508,897,506,901,493,896,473,893,453,895,442,900,437,906,438,914"/>
+<area shape="poly" title=" " alt="" coords="433,371,432,361,438,352,452,346,473,344,495,346,508,353,506,357,493,352,473,349,453,351,442,356,437,362,438,370"/>
+<area shape="poly" title=" " alt="" coords="433,461,432,451,438,442,452,437,473,435,495,437,508,443,506,448,493,442,473,440,453,442,442,447,437,453,438,460"/>
+<area shape="poly" title=" " alt="" coords="433,643,432,633,438,624,452,618,473,616,495,618,508,625,506,629,493,624,473,621,453,623,442,628,437,634,438,642"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ad3910232ff154a7f62321718e26b25ef" title=" " alt="" coords="610,812,748,855"/>
+<area shape="poly" title=" " alt="" coords="547,684,564,695,582,715,591,734,598,753,612,774,638,800,635,804,608,778,594,755,586,736,577,718,561,699,544,688"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a0c17c312b353723b43af3a1cf5407f13" title=" " alt="" coords="610,540,748,583"/>
+<area shape="poly" title=" " alt="" coords="516,640,609,592,618,588,621,592,612,597,518,644"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a3faab955dbc785ed504ae513dbc7389e" title=" " alt="" coords="610,631,748,673"/>
+<area shape="poly" title=" " alt="" coords="559,656,595,654,595,660,559,662"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#aec880a263a1e58be5380fe1aeb9c4462" title=" " alt="" coords="610,721,748,764"/>
+<area shape="poly" title=" " alt="" coords="533,683,563,695,609,713,607,718,561,700,532,688"/>
+<area shape="poly" title=" " alt="" coords="640,812,638,802,645,793,658,787,679,785,701,788,715,794,712,799,700,793,679,791,660,793,648,797,643,803,645,811"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a4307865df88da4fb54e36f929b6f88a5" title=" " alt="" coords="803,597,973,624"/>
+<area shape="poly" title=" " alt="" coords="711,809,729,793,745,774,756,755,761,737,765,702,771,668,779,651,794,634,798,631,801,635,798,638,784,654,776,670,770,703,767,738,761,757,750,778,733,797,715,813"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a32b89671df27bd47193c116873b60f3e" title=" " alt="" coords="819,672,957,715"/>
+<area shape="poly" title=" " alt="" coords="705,810,746,774,769,748,794,725,804,719,806,723,797,729,772,752,750,778,709,814"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#aada76b8212676ccbb3ad3e364b42f80e" title=" " alt="" coords="819,763,957,805"/>
+<area shape="poly" title=" " alt="" coords="747,815,803,801,805,806,748,820"/>
+<area shape="poly" title=" " alt="" coords="852,598,846,589,850,579,865,573,888,571,913,573,926,580,924,584,911,578,888,576,866,578,854,583,851,588,857,595"/>
+<area shape="poly" title=" " alt="" coords="848,672,846,662,853,653,867,647,888,645,910,648,924,654,922,659,909,653,888,651,868,653,856,657,852,663,853,671"/>
+<area shape="poly" title=" " alt="" coords="848,763,846,753,853,744,867,738,888,736,910,738,924,745,922,749,909,744,888,741,868,743,856,748,852,754,853,762"/>
+<area shape="poly" title=" " alt="" coords="748,575,814,591,813,596,747,580"/>
+<area shape="poly" title=" " alt="" coords="730,581,749,592,774,613,797,634,837,661,835,666,794,638,770,617,746,597,727,585"/>
+<area shape="poly" title=" " alt="" coords="736,581,750,593,762,610,770,627,775,659,780,691,786,708,798,725,828,752,825,756,794,728,782,710,775,693,770,660,765,629,758,613,746,596,733,585"/>
+<area shape="poly" title=" " alt="" coords="640,540,638,530,645,521,658,515,679,513,701,516,715,522,712,527,700,521,679,519,660,521,648,525,643,531,645,539"/>
+<area shape="poly" title=" " alt="" coords="747,636,801,625,802,630,748,641"/>
+<area shape="poly" title=" " alt="" coords="748,663,805,674,804,679,747,668"/>
+<area shape="poly" title=" " alt="" coords="730,672,749,683,774,704,797,725,837,752,835,756,794,729,770,708,746,688,727,676"/>
+<area shape="poly" title=" " alt="" coords="640,631,638,621,645,612,658,606,679,604,701,606,715,613,712,617,700,612,679,609,660,611,648,616,643,622,645,630"/>
+<area shape="poly" title=" " alt="" coords="705,719,746,683,768,657,778,645,794,634,805,628,808,633,797,638,782,649,772,660,750,687,709,723"/>
+<area shape="poly" title=" " alt="" coords="747,724,803,710,805,716,748,729"/>
+<area shape="poly" title=" " alt="" coords="748,754,805,765,804,770,747,759"/>
+<area shape="poly" title=" " alt="" coords="640,721,638,711,645,702,658,697,679,695,701,697,715,703,712,708,700,702,679,700,660,702,648,707,643,713,645,720"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_texture_a2cdf5d311c6d8c2f0f066e63a2cbb854_icgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_texture_a2cdf5d311c6d8c2f0f066e63a2cbb854_icgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_texture_a2cdf5d311c6d8c2f0f066e63a2cbb854_icgraph" id="astructxpe_1_1render_1_1s_texture_a2cdf5d311c6d8c2f0f066e63a2cbb854_icgraph">
+<area shape="rect" title=" " alt="" coords="251,5,395,48"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_material_manager.html#a842944eaf29305b77e95d8b9f18c728b" title=" " alt="" coords="5,5,203,48"/>
+<area shape="poly" title=" " alt="" coords="235,29,203,29,203,24,235,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="ad6c83752e22730ab10f2fd97c160de63" name="ad6c83752e22730ab10f2fd97c160de63"></a>
@@ -392,6 +633,28 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="texture_8cpp_source.html#l00202">202</a> of file <a class="el" href="texture_8cpp_source.html">texture.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_texture_ad6c83752e22730ab10f2fd97c160de63_cgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_texture_ad6c83752e22730ab10f2fd97c160de63_cgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_texture_ad6c83752e22730ab10f2fd97c160de63_cgraph" id="astructxpe_1_1render_1_1s_texture_ad6c83752e22730ab10f2fd97c160de63_cgraph">
+<area shape="rect" title=" " alt="" coords="5,104,150,147"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ad3910232ff154a7f62321718e26b25ef" title=" " alt="" coords="198,104,335,147"/>
+<area shape="poly" title=" " alt="" coords="150,123,182,123,182,128,150,128"/>
+<area shape="poly" title=" " alt="" coords="230,104,229,94,235,85,247,79,266,77,287,80,299,86,297,91,285,85,266,83,249,85,238,89,234,95,235,103"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a4307865df88da4fb54e36f929b6f88a5" title=" " alt="" coords="383,29,553,56"/>
+<area shape="poly" title=" " alt="" coords="306,101,382,66,400,59,402,64,384,70,309,106"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a32b89671df27bd47193c116873b60f3e" title=" " alt="" coords="400,104,537,147"/>
+<area shape="poly" title=" " alt="" coords="336,123,384,123,384,128,336,128"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#aada76b8212676ccbb3ad3e364b42f80e" title=" " alt="" coords="400,195,537,237"/>
+<area shape="poly" title=" " alt="" coords="317,145,406,185,404,190,315,150"/>
+<area shape="poly" title=" " alt="" coords="434,30,428,21,432,11,446,5,468,3,492,5,505,12,503,16,491,10,468,8,447,10,436,15,433,20,438,27"/>
+<area shape="poly" title=" " alt="" coords="430,104,428,94,434,85,448,79,468,77,490,80,503,86,501,91,488,85,468,83,449,85,438,89,433,95,435,103"/>
+<area shape="poly" title=" " alt="" coords="430,195,428,185,434,176,448,170,468,168,490,170,503,177,501,181,488,176,468,173,449,175,438,180,433,186,435,194"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -410,6 +673,101 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8cpp_source.html#l00076">76</a> of file <a class="el" href="texture_8cpp_source.html">texture.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_texture_a9f477cd7cc9f05c9544b5cd7f864f8a4_cgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_texture_a9f477cd7cc9f05c9544b5cd7f864f8a4_cgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_texture_a9f477cd7cc9f05c9544b5cd7f864f8a4_cgraph" id="astructxpe_1_1render_1_1s_texture_a9f477cd7cc9f05c9544b5cd7f864f8a4_cgraph">
+<area shape="rect" title=" " alt="" coords="5,528,150,571"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ad9f56074521a5a0ab26fdaea101b6f58" title=" " alt="" coords="198,528,335,571"/>
+<area shape="poly" title=" " alt="" coords="150,547,182,547,182,552,150,552"/>
+<area shape="poly" title=" " alt="" coords="230,528,229,518,235,509,247,503,266,501,287,504,299,510,297,515,285,509,266,507,249,509,238,513,234,519,235,527"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ab645a09c78f03af220fecf9d70f66046" title=" " alt="" coords="383,256,562,299"/>
+<area shape="poly" title=" " alt="" coords="270,527,282,482,304,424,337,363,357,334,381,309,384,306,388,310,385,313,361,337,341,365,309,426,287,484,275,528"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a143faa6f9a1a98ccc8693ed6b600b026" title=" " alt="" coords="404,347,541,389"/>
+<area shape="poly" title=" " alt="" coords="277,526,318,464,347,429,381,399,389,394,392,399,385,403,351,433,322,467,282,529"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a1ad2c5d4b1882d594db271a02185afc0" title=" " alt="" coords="404,437,541,480"/>
+<area shape="poly" title=" " alt="" coords="308,525,382,490,396,484,398,489,384,494,311,530"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ab5b80587e0e0a2ed7073c7d5442f550f" title=" " alt="" coords="400,528,545,571"/>
+<area shape="poly" title=" " alt="" coords="335,547,385,547,385,552,335,552"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a3bfe7da2d40a3f5687abaa367365f3c4" title=" " alt="" coords="404,619,541,661"/>
+<area shape="poly" title=" " alt="" coords="318,569,409,609,407,614,316,574"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a49902c69bdc635fcdd8fc28d9f60f283" title=" " alt="" coords="404,709,541,752"/>
+<area shape="poly" title=" " alt="" coords="287,569,330,618,385,671,422,699,419,703,381,675,326,622,283,573"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#aee5cc723306d146fa933cc5374b44a8b" title=" " alt="" coords="387,800,559,843"/>
+<area shape="poly" title=" " alt="" coords="278,570,316,659,347,713,385,762,418,789,414,793,381,766,343,716,312,662,273,572"/>
+<area shape="poly" title=" " alt="" coords="433,256,432,246,438,237,452,231,473,229,495,232,508,238,506,243,493,237,473,235,453,237,442,241,437,247,438,255"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#abbf0f19b8986fbcfb44dc1319a0d929c" title=" " alt="" coords="610,256,748,299"/>
+<area shape="poly" title=" " alt="" coords="563,275,595,275,595,280,563,280"/>
+<area shape="poly" title=" " alt="" coords="640,256,638,246,645,237,658,231,679,229,701,232,715,238,712,243,700,237,679,235,660,237,648,241,643,247,645,255"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a3a582c1e42d2723c6ed55199dffa1388" title=" " alt="" coords="819,301,957,344"/>
+<area shape="poly" title=" " alt="" coords="748,290,805,302,804,307,747,295"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ae47b3b8018bd7eee48028b1d54e939ab" title=" " alt="" coords="819,392,957,435"/>
+<area shape="poly" title=" " alt="" coords="713,297,797,354,840,381,837,386,794,358,710,301"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#abff1f0ac31f4a180d2d34a49d65a9b75" title=" " alt="" coords="809,483,967,525"/>
+<area shape="poly" title=" " alt="" coords="694,298,735,367,764,408,797,445,833,472,830,476,794,449,760,411,730,370,689,301"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a764b5dd46b1c2311d955375b60ac0e21" title=" " alt="" coords="819,29,957,72"/>
+<area shape="poly" title=" " alt="" coords="685,254,700,218,723,171,755,124,794,82,804,75,807,79,797,86,759,127,728,174,705,220,690,256"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a76ed1d16ec42691a55ec5ebcb87fc452" title=" " alt="" coords="818,120,958,163"/>
+<area shape="poly" title=" " alt="" coords="698,254,740,213,794,172,803,167,806,172,797,177,744,217,702,257"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a77dff8ef52c9bf1912037df988aaeb7a" title=" " alt="" coords="796,211,980,253"/>
+<area shape="poly" title=" " alt="" coords="747,260,780,253,781,258,748,265"/>
+<area shape="poly" title=" " alt="" coords="848,301,846,291,853,282,867,277,888,275,910,277,924,283,922,288,909,282,888,280,868,282,856,287,852,293,853,300"/>
+<area shape="poly" title=" " alt="" coords="848,392,846,382,853,373,867,367,888,365,910,368,924,374,922,379,909,373,888,371,868,373,856,377,852,383,853,391"/>
+<area shape="poly" title=" " alt="" coords="848,483,846,473,853,464,867,458,888,456,910,458,924,465,922,469,909,464,888,461,868,463,856,468,852,474,853,482"/>
+<area shape="poly" title=" " alt="" coords="848,29,846,19,853,10,867,5,888,3,910,5,924,11,922,16,909,10,888,8,868,10,856,15,852,21,853,28"/>
+<area shape="poly" title=" " alt="" coords="848,120,846,110,853,101,867,95,888,93,910,96,924,102,922,107,909,101,888,99,868,101,856,105,852,111,853,119"/>
+<area shape="poly" title=" " alt="" coords="848,211,846,201,853,192,867,186,888,184,910,186,924,193,922,197,909,192,888,189,868,191,856,196,852,202,853,210"/>
+<area shape="poly" title=" " alt="" coords="433,347,432,337,438,328,452,322,473,320,495,322,508,329,506,333,493,328,473,325,453,327,442,332,437,338,438,346"/>
+<area shape="poly" title=" " alt="" coords="433,437,432,427,438,418,452,413,473,411,495,413,508,419,506,424,493,418,473,416,453,418,442,423,437,429,438,436"/>
+<area shape="poly" title=" " alt="" coords="433,528,432,518,438,509,452,503,473,501,495,504,508,510,506,515,493,509,473,507,453,509,442,513,437,519,438,527"/>
+<area shape="poly" title=" " alt="" coords="433,619,432,609,438,600,452,594,473,592,495,594,508,601,506,605,493,600,473,597,453,599,442,604,437,610,438,618"/>
+<area shape="poly" title=" " alt="" coords="433,709,432,699,438,690,452,685,473,683,495,685,508,691,506,696,493,690,473,688,453,690,442,695,437,701,438,708"/>
+<area shape="poly" title=" " alt="" coords="433,800,432,790,438,781,452,775,473,773,495,776,508,782,506,787,493,781,473,779,453,781,442,785,437,791,438,799"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ad3910232ff154a7f62321718e26b25ef" title=" " alt="" coords="610,664,748,707"/>
+<area shape="poly" title=" " alt="" coords="509,797,561,762,584,739,609,717,614,713,617,717,612,721,588,743,564,766,512,802"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a0c17c312b353723b43af3a1cf5407f13" title=" " alt="" coords="610,755,748,797"/>
+<area shape="poly" title=" " alt="" coords="559,800,595,792,596,797,560,805"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a3faab955dbc785ed504ae513dbc7389e" title=" " alt="" coords="610,845,748,888"/>
+<area shape="poly" title=" " alt="" coords="560,838,596,846,595,851,559,843"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#aec880a263a1e58be5380fe1aeb9c4462" title=" " alt="" coords="610,936,748,979"/>
+<area shape="poly" title=" " alt="" coords="508,841,634,925,631,930,505,845"/>
+<area shape="poly" title=" " alt="" coords="640,664,638,654,645,645,658,639,679,637,701,640,715,646,712,651,700,645,679,643,660,645,648,649,643,655,645,663"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a4307865df88da4fb54e36f929b6f88a5" title=" " alt="" coords="803,721,973,748"/>
+<area shape="poly" title=" " alt="" coords="748,699,814,715,813,720,747,704"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a32b89671df27bd47193c116873b60f3e" title=" " alt="" coords="819,796,957,839"/>
+<area shape="poly" title=" " alt="" coords="730,705,749,716,774,737,797,758,837,785,835,790,794,762,770,741,746,721,727,709"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#aada76b8212676ccbb3ad3e364b42f80e" title=" " alt="" coords="819,887,957,929"/>
+<area shape="poly" title=" " alt="" coords="736,705,750,717,762,734,770,751,775,783,780,815,786,832,798,849,828,876,825,880,794,852,782,834,775,817,770,784,765,753,758,737,746,720,733,709"/>
+<area shape="poly" title=" " alt="" coords="852,722,846,713,850,703,865,697,888,695,913,697,926,704,924,708,911,702,888,700,866,702,854,707,851,712,857,719"/>
+<area shape="poly" title=" " alt="" coords="848,796,846,786,853,777,867,771,888,769,910,772,924,778,922,783,909,777,888,775,868,777,856,781,852,787,853,795"/>
+<area shape="poly" title=" " alt="" coords="848,887,846,877,853,868,867,862,888,860,910,862,924,869,922,873,909,868,888,865,868,867,856,872,852,878,853,886"/>
+<area shape="poly" title=" " alt="" coords="747,760,801,749,802,754,748,765"/>
+<area shape="poly" title=" " alt="" coords="748,787,805,798,804,803,747,792"/>
+<area shape="poly" title=" " alt="" coords="730,796,749,807,774,828,797,849,837,876,835,880,794,853,770,832,746,812,727,800"/>
+<area shape="poly" title=" " alt="" coords="640,755,638,745,645,736,658,730,679,728,701,730,715,737,712,741,700,736,679,733,660,735,648,740,643,746,645,754"/>
+<area shape="poly" title=" " alt="" coords="705,843,746,807,768,781,778,769,794,758,805,752,808,757,797,762,782,773,772,784,750,811,709,847"/>
+<area shape="poly" title=" " alt="" coords="747,848,803,834,805,840,748,853"/>
+<area shape="poly" title=" " alt="" coords="748,878,805,889,804,894,747,883"/>
+<area shape="poly" title=" " alt="" coords="640,845,638,835,645,826,658,821,679,819,701,821,715,827,712,832,700,826,679,824,660,826,648,831,643,837,645,844"/>
+<area shape="poly" title=" " alt="" coords="711,933,729,917,745,898,756,879,761,861,765,826,771,792,779,775,794,758,798,755,801,759,798,762,784,778,776,794,770,827,767,862,761,881,750,902,733,921,715,937"/>
+<area shape="poly" title=" " alt="" coords="705,934,746,898,769,872,794,849,804,843,806,847,797,853,772,876,750,902,709,938"/>
+<area shape="poly" title=" " alt="" coords="747,939,803,925,805,930,748,944"/>
+<area shape="poly" title=" " alt="" coords="640,936,638,926,645,917,658,911,679,909,701,912,715,918,712,923,700,917,679,915,660,917,648,921,643,927,645,935"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_texture_a9f477cd7cc9f05c9544b5cd7f864f8a4_icgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_texture_a9f477cd7cc9f05c9544b5cd7f864f8a4_icgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_texture_a9f477cd7cc9f05c9544b5cd7f864f8a4_icgraph" id="astructxpe_1_1render_1_1s_texture_a9f477cd7cc9f05c9544b5cd7f864f8a4_icgraph">
+<area shape="rect" title=" " alt="" coords="198,5,342,48"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_texture.html#aacf76abd32ef8b66ad73b177086bb6fd" title=" " alt="" coords="5,5,150,48"/>
+<area shape="poly" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a9ea65fd61b1bd856345e485a76611ca9" name="a9ea65fd61b1bd856345e485a76611ca9"></a>
@@ -427,6 +785,8 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8cpp_source.html#l00195">195</a> of file <a class="el" href="texture_8cpp_source.html">texture.cpp</a>.</p>
+
 </div>
 </div>
 <a id="afca3ad09a60227179d3a670ccc977cde" name="afca3ad09a60227179d3a670ccc977cde"></a>
@@ -443,6 +803,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="texture_8cpp_source.html#l00101">101</a> of file <a class="el" href="texture_8cpp_source.html">texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -469,6 +831,8 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8cpp_source.html#l00111">111</a> of file <a class="el" href="texture_8cpp_source.html">texture.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a266c9db8925ad6755a455f20f1375e52" name="a266c9db8925ad6755a455f20f1375e52"></a>
@@ -485,6 +849,47 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="texture_8cpp_source.html#l00071">71</a> of file <a class="el" href="texture_8cpp_source.html">texture.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_texture_a266c9db8925ad6755a455f20f1375e52_cgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_texture_a266c9db8925ad6755a455f20f1375e52_cgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_texture_a266c9db8925ad6755a455f20f1375e52_cgraph" id="astructxpe_1_1render_1_1s_texture_a266c9db8925ad6755a455f20f1375e52_cgraph">
+<area shape="rect" title=" " alt="" coords="5,256,150,299"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#abbf0f19b8986fbcfb44dc1319a0d929c" title=" " alt="" coords="198,256,335,299"/>
+<area shape="poly" title=" " alt="" coords="150,275,182,275,182,280,150,280"/>
+<area shape="poly" title=" " alt="" coords="230,256,229,246,235,237,247,231,266,229,287,232,299,238,297,243,285,237,266,235,249,237,238,241,234,247,235,255"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a3a582c1e42d2723c6ed55199dffa1388" title=" " alt="" coords="407,29,544,72"/>
+<area shape="poly" title=" " alt="" coords="273,254,288,218,311,171,342,124,381,82,391,75,394,79,385,86,346,127,315,174,292,220,278,256"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ae47b3b8018bd7eee48028b1d54e939ab" title=" " alt="" coords="407,120,544,163"/>
+<area shape="poly" title=" " alt="" coords="286,254,328,213,382,172,391,167,394,172,384,177,331,217,289,257"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#abff1f0ac31f4a180d2d34a49d65a9b75" title=" " alt="" coords="397,211,554,253"/>
+<area shape="poly" title=" " alt="" coords="335,260,381,250,382,255,336,265"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a764b5dd46b1c2311d955375b60ac0e21" title=" " alt="" coords="407,301,544,344"/>
+<area shape="poly" title=" " alt="" coords="336,290,392,302,391,307,335,295"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a76ed1d16ec42691a55ec5ebcb87fc452" title=" " alt="" coords="405,392,545,435"/>
+<area shape="poly" title=" " alt="" coords="300,297,384,354,427,381,424,386,382,358,297,301"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a77dff8ef52c9bf1912037df988aaeb7a" title=" " alt="" coords="383,483,567,525"/>
+<area shape="poly" title=" " alt="" coords="281,298,322,367,351,408,385,445,420,472,417,476,381,449,347,411,318,370,276,301"/>
+<area shape="poly" title=" " alt="" coords="435,29,434,19,440,10,454,5,475,3,498,5,511,11,509,16,496,10,475,8,456,10,444,15,439,21,441,28"/>
+<area shape="poly" title=" " alt="" coords="435,120,434,110,440,101,454,95,475,93,498,96,511,102,509,107,496,101,475,99,456,101,444,105,439,111,441,119"/>
+<area shape="poly" title=" " alt="" coords="435,211,434,201,440,192,454,186,475,184,498,186,511,193,509,197,496,192,475,189,456,191,444,196,439,202,441,210"/>
+<area shape="poly" title=" " alt="" coords="435,301,434,291,440,282,454,277,475,275,498,277,511,283,509,288,496,282,475,280,456,282,444,287,439,293,441,300"/>
+<area shape="poly" title=" " alt="" coords="435,392,434,382,440,373,454,367,475,365,498,368,511,374,509,379,496,373,475,371,456,373,444,377,439,383,441,391"/>
+<area shape="poly" title=" " alt="" coords="435,483,434,473,440,464,454,458,475,456,498,458,511,465,509,469,496,464,475,461,456,463,444,468,439,474,441,482"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_texture_a266c9db8925ad6755a455f20f1375e52_icgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_texture_a266c9db8925ad6755a455f20f1375e52_icgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_texture_a266c9db8925ad6755a455f20f1375e52_icgraph" id="astructxpe_1_1render_1_1s_texture_a266c9db8925ad6755a455f20f1375e52_icgraph">
+<area shape="rect" title=" " alt="" coords="246,5,390,48"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_widget_manager.html#a4d08e3ea21dc782147a000446ff780c7" title=" " alt="" coords="5,5,198,48"/>
+<area shape="poly" title=" " alt="" coords="230,29,198,29,198,24,230,24"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -511,6 +916,8 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00163">163</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a0369835873cfc25776640f320e0fad09" name="a0369835873cfc25776640f320e0fad09"></a>
@@ -527,6 +934,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="texture_8cpp_source.html#l00094">94</a> of file <a class="el" href="texture_8cpp_source.html">texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -549,6 +958,104 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8cpp_source.html#l00121">121</a> of file <a class="el" href="texture_8cpp_source.html">texture.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_texture_a972b174ae8fa4351f8cecf52e771b92b_cgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_texture_a972b174ae8fa4351f8cecf52e771b92b_cgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_texture_a972b174ae8fa4351f8cecf52e771b92b_cgraph" id="astructxpe_1_1render_1_1s_texture_a972b174ae8fa4351f8cecf52e771b92b_cgraph">
+<area shape="rect" title=" " alt="" coords="5,465,150,508"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#abbf0f19b8986fbcfb44dc1319a0d929c" title=" " alt="" coords="610,295,748,337"/>
+<area shape="poly" title=" " alt="" coords="110,463,160,432,226,395,303,360,382,332,437,321,492,314,595,310,595,315,493,319,437,326,384,337,305,365,229,400,163,436,113,467"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ad9f56074521a5a0ab26fdaea101b6f58" title=" " alt="" coords="198,597,335,640"/>
+<area shape="poly" title=" " alt="" coords="111,506,223,586,220,590,108,511"/>
+<area shape="poly" title=" " alt="" coords="640,295,638,285,645,276,658,270,679,268,701,270,715,277,712,281,700,276,679,273,660,275,648,280,643,286,645,294"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a3a582c1e42d2723c6ed55199dffa1388" title=" " alt="" coords="819,301,957,344"/>
+<area shape="poly" title=" " alt="" coords="748,316,804,317,803,323,748,321"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ae47b3b8018bd7eee48028b1d54e939ab" title=" " alt="" coords="819,392,957,435"/>
+<area shape="poly" title=" " alt="" coords="728,335,828,383,825,387,725,340"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#abff1f0ac31f4a180d2d34a49d65a9b75" title=" " alt="" coords="809,483,967,525"/>
+<area shape="poly" title=" " alt="" coords="698,336,741,388,797,445,835,472,832,476,794,449,737,391,694,339"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a764b5dd46b1c2311d955375b60ac0e21" title=" " alt="" coords="819,29,957,72"/>
+<area shape="poly" title=" " alt="" coords="683,293,696,250,718,193,750,134,770,106,794,82,804,74,807,79,797,86,774,110,754,137,723,195,701,251,688,295"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a76ed1d16ec42691a55ec5ebcb87fc452" title=" " alt="" coords="818,120,958,163"/>
+<area shape="poly" title=" " alt="" coords="691,293,732,234,761,201,794,173,803,167,805,171,797,177,765,205,736,237,695,296"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a77dff8ef52c9bf1912037df988aaeb7a" title=" " alt="" coords="796,211,980,253"/>
+<area shape="poly" title=" " alt="" coords="727,292,795,263,810,257,812,262,797,268,729,297"/>
+<area shape="poly" title=" " alt="" coords="848,301,846,291,853,282,867,277,888,275,910,277,924,283,922,288,909,282,888,280,868,282,856,287,852,293,853,300"/>
+<area shape="poly" title=" " alt="" coords="848,392,846,382,853,373,867,367,888,365,910,368,924,374,922,379,909,373,888,371,868,373,856,377,852,383,853,391"/>
+<area shape="poly" title=" " alt="" coords="848,483,846,473,853,464,867,458,888,456,910,458,924,465,922,469,909,464,888,461,868,463,856,468,852,474,853,482"/>
+<area shape="poly" title=" " alt="" coords="848,29,846,19,853,10,867,5,888,3,910,5,924,11,922,16,909,10,888,8,868,10,856,15,852,21,853,28"/>
+<area shape="poly" title=" " alt="" coords="848,120,846,110,853,101,867,95,888,93,910,96,924,102,922,107,909,101,888,99,868,101,856,105,852,111,853,119"/>
+<area shape="poly" title=" " alt="" coords="848,211,846,201,853,192,867,186,888,184,910,186,924,193,922,197,909,192,888,189,868,191,856,196,852,202,853,210"/>
+<area shape="poly" title=" " alt="" coords="230,597,229,587,235,578,247,573,266,571,287,573,299,579,297,584,285,578,266,576,249,578,238,583,234,589,235,596"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ab645a09c78f03af220fecf9d70f66046" title=" " alt="" coords="383,552,562,595"/>
+<area shape="poly" title=" " alt="" coords="335,601,367,594,368,599,336,606"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a143faa6f9a1a98ccc8693ed6b600b026" title=" " alt="" coords="404,733,541,776"/>
+<area shape="poly" title=" " alt="" coords="301,638,384,695,426,722,423,727,382,700,298,643"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a1ad2c5d4b1882d594db271a02185afc0" title=" " alt="" coords="404,824,541,867"/>
+<area shape="poly" title=" " alt="" coords="281,639,322,708,352,749,385,786,419,813,416,817,381,790,347,752,318,711,277,642"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ab5b80587e0e0a2ed7073c7d5442f550f" title=" " alt="" coords="400,915,545,957"/>
+<area shape="poly" title=" " alt="" coords="275,640,289,687,311,748,343,815,385,877,416,904,412,908,381,880,338,818,306,750,284,688,270,641"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a3bfe7da2d40a3f5687abaa367365f3c4" title=" " alt="" coords="404,371,541,413"/>
+<area shape="poly" title=" " alt="" coords="273,596,288,559,311,513,342,465,381,423,389,417,393,422,385,427,346,468,315,516,293,561,278,598"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a49902c69bdc635fcdd8fc28d9f60f283" title=" " alt="" coords="404,461,541,504"/>
+<area shape="poly" title=" " alt="" coords="286,595,328,554,382,514,390,509,393,514,384,518,331,558,289,599"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#aee5cc723306d146fa933cc5374b44a8b" title=" " alt="" coords="387,643,559,685"/>
+<area shape="poly" title=" " alt="" coords="336,631,372,639,371,644,335,636"/>
+<area shape="poly" title=" " alt="" coords="515,549,539,533,560,514,593,474,621,430,661,350,666,352,626,432,598,477,564,518,542,538,518,554"/>
+<area shape="poly" title=" " alt="" coords="433,552,432,542,438,533,452,527,473,525,495,528,508,534,506,539,493,533,473,531,453,533,442,537,437,543,438,551"/>
+<area shape="poly" title=" " alt="" coords="433,733,432,723,438,714,452,709,473,707,495,709,508,715,506,720,493,714,473,712,453,714,442,719,437,725,438,732"/>
+<area shape="poly" title=" " alt="" coords="433,824,432,814,438,805,452,799,473,797,495,800,508,806,506,811,493,805,473,803,453,805,442,809,437,815,438,823"/>
+<area shape="poly" title=" " alt="" coords="433,915,432,905,438,896,452,890,473,888,495,890,508,897,506,901,493,896,473,893,453,895,442,900,437,906,438,914"/>
+<area shape="poly" title=" " alt="" coords="433,371,432,361,438,352,452,346,473,344,495,346,508,353,506,357,493,352,473,349,453,351,442,356,437,362,438,370"/>
+<area shape="poly" title=" " alt="" coords="433,461,432,451,438,442,452,437,473,435,495,437,508,443,506,448,493,442,473,440,453,442,442,447,437,453,438,460"/>
+<area shape="poly" title=" " alt="" coords="433,643,432,633,438,624,452,618,473,616,495,618,508,625,506,629,493,624,473,621,453,623,442,628,437,634,438,642"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ad3910232ff154a7f62321718e26b25ef" title=" " alt="" coords="610,812,748,855"/>
+<area shape="poly" title=" " alt="" coords="547,684,564,695,582,715,591,734,598,753,612,774,638,800,635,804,608,778,594,755,586,736,577,718,561,699,544,688"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a0c17c312b353723b43af3a1cf5407f13" title=" " alt="" coords="610,540,748,583"/>
+<area shape="poly" title=" " alt="" coords="516,640,609,592,618,588,621,592,612,597,518,644"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a3faab955dbc785ed504ae513dbc7389e" title=" " alt="" coords="610,631,748,673"/>
+<area shape="poly" title=" " alt="" coords="559,656,595,654,595,660,559,662"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#aec880a263a1e58be5380fe1aeb9c4462" title=" " alt="" coords="610,721,748,764"/>
+<area shape="poly" title=" " alt="" coords="533,683,563,695,609,713,607,718,561,700,532,688"/>
+<area shape="poly" title=" " alt="" coords="640,812,638,802,645,793,658,787,679,785,701,788,715,794,712,799,700,793,679,791,660,793,648,797,643,803,645,811"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a4307865df88da4fb54e36f929b6f88a5" title=" " alt="" coords="803,597,973,624"/>
+<area shape="poly" title=" " alt="" coords="711,809,729,793,745,774,756,755,761,737,765,702,771,668,779,651,794,634,798,631,801,635,798,638,784,654,776,670,770,703,767,738,761,757,750,778,733,797,715,813"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a32b89671df27bd47193c116873b60f3e" title=" " alt="" coords="819,672,957,715"/>
+<area shape="poly" title=" " alt="" coords="705,810,746,774,769,748,794,725,804,719,806,723,797,729,772,752,750,778,709,814"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#aada76b8212676ccbb3ad3e364b42f80e" title=" " alt="" coords="819,763,957,805"/>
+<area shape="poly" title=" " alt="" coords="747,815,803,801,805,806,748,820"/>
+<area shape="poly" title=" " alt="" coords="852,598,846,589,850,579,865,573,888,571,913,573,926,580,924,584,911,578,888,576,866,578,854,583,851,588,857,595"/>
+<area shape="poly" title=" " alt="" coords="848,672,846,662,853,653,867,647,888,645,910,648,924,654,922,659,909,653,888,651,868,653,856,657,852,663,853,671"/>
+<area shape="poly" title=" " alt="" coords="848,763,846,753,853,744,867,738,888,736,910,738,924,745,922,749,909,744,888,741,868,743,856,748,852,754,853,762"/>
+<area shape="poly" title=" " alt="" coords="748,575,814,591,813,596,747,580"/>
+<area shape="poly" title=" " alt="" coords="730,581,749,592,774,613,797,634,837,661,835,666,794,638,770,617,746,597,727,585"/>
+<area shape="poly" title=" " alt="" coords="736,581,750,593,762,610,770,627,775,659,780,691,786,708,798,725,828,752,825,756,794,728,782,710,775,693,770,660,765,629,758,613,746,596,733,585"/>
+<area shape="poly" title=" " alt="" coords="640,540,638,530,645,521,658,515,679,513,701,516,715,522,712,527,700,521,679,519,660,521,648,525,643,531,645,539"/>
+<area shape="poly" title=" " alt="" coords="747,636,801,625,802,630,748,641"/>
+<area shape="poly" title=" " alt="" coords="748,663,805,674,804,679,747,668"/>
+<area shape="poly" title=" " alt="" coords="730,672,749,683,774,704,797,725,837,752,835,756,794,729,770,708,746,688,727,676"/>
+<area shape="poly" title=" " alt="" coords="640,631,638,621,645,612,658,606,679,604,701,606,715,613,712,617,700,612,679,609,660,611,648,616,643,622,645,630"/>
+<area shape="poly" title=" " alt="" coords="705,719,746,683,768,657,778,645,794,634,805,628,808,633,797,638,782,649,772,660,750,687,709,723"/>
+<area shape="poly" title=" " alt="" coords="747,724,803,710,805,716,748,729"/>
+<area shape="poly" title=" " alt="" coords="748,754,805,765,804,770,747,759"/>
+<area shape="poly" title=" " alt="" coords="640,721,638,711,645,702,658,697,679,695,701,697,715,703,712,708,700,702,679,700,660,702,648,707,643,713,645,720"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_texture_a972b174ae8fa4351f8cecf52e771b92b_icgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_texture_a972b174ae8fa4351f8cecf52e771b92b_icgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_texture_a972b174ae8fa4351f8cecf52e771b92b_icgraph" id="astructxpe_1_1render_1_1s_texture_a972b174ae8fa4351f8cecf52e771b92b_icgraph">
+<area shape="rect" title=" " alt="" coords="241,39,385,81"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_render_system.html#a7b60a7e2b3cfc9089bfda515a12f7984" title=" " alt="" coords="5,5,193,48"/>
+<area shape="poly" title=" " alt="" coords="224,49,193,44,194,39,225,44"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_texture.html#af387596e9480a6ea1647b59a5cf59da2" title=" " alt="" coords="19,72,179,115"/>
+<area shape="poly" title=" " alt="" coords="225,76,179,84,179,78,225,71"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a5d2b4723da07e042cc5d2d9807820fc8" name="a5d2b4723da07e042cc5d2d9807820fc8"></a>
@@ -570,6 +1077,8 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8cpp_source.html#l00129">129</a> of file <a class="el" href="texture_8cpp_source.html">texture.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a5b2549ba6691480e47ea4175c584f8f8" name="a5b2549ba6691480e47ea4175c584f8f8"></a>
@@ -586,6 +1095,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="texture_8cpp_source.html#l00228">228</a> of file <a class="el" href="texture_8cpp_source.html">texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -608,6 +1119,94 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8cpp_source.html#l00116">116</a> of file <a class="el" href="texture_8cpp_source.html">texture.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_texture_af387596e9480a6ea1647b59a5cf59da2_cgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_texture_af387596e9480a6ea1647b59a5cf59da2_cgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_texture_af387596e9480a6ea1647b59a5cf59da2_cgraph" id="astructxpe_1_1render_1_1s_texture_af387596e9480a6ea1647b59a5cf59da2_cgraph">
+<area shape="rect" title=" " alt="" coords="5,465,165,508"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_texture.html#a972b174ae8fa4351f8cecf52e771b92b" title=" " alt="" coords="213,465,357,508"/>
+<area shape="poly" title=" " alt="" coords="165,484,197,484,197,489,165,489"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#abbf0f19b8986fbcfb44dc1319a0d929c" title=" " alt="" coords="818,295,955,337"/>
+<area shape="poly" title=" " alt="" coords="317,463,368,432,434,395,510,360,590,332,644,321,700,314,802,310,802,315,700,319,645,326,591,337,512,365,436,400,370,436,320,467"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ad9f56074521a5a0ab26fdaea101b6f58" title=" " alt="" coords="405,597,542,640"/>
+<area shape="poly" title=" " alt="" coords="318,506,431,586,428,590,315,511"/>
+<area shape="poly" title=" " alt="" coords="847,295,845,285,852,276,866,270,886,268,909,270,922,277,920,281,907,276,886,273,867,275,855,280,851,286,852,294"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a3a582c1e42d2723c6ed55199dffa1388" title=" " alt="" coords="1027,301,1164,344"/>
+<area shape="poly" title=" " alt="" coords="955,316,1011,317,1011,323,955,321"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ae47b3b8018bd7eee48028b1d54e939ab" title=" " alt="" coords="1027,392,1164,435"/>
+<area shape="poly" title=" " alt="" coords="935,335,1035,383,1033,387,933,340"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#abff1f0ac31f4a180d2d34a49d65a9b75" title=" " alt="" coords="1017,483,1174,525"/>
+<area shape="poly" title=" " alt="" coords="906,336,948,388,1005,445,1043,472,1039,476,1001,449,944,391,902,339"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a764b5dd46b1c2311d955375b60ac0e21" title=" " alt="" coords="1027,29,1164,72"/>
+<area shape="poly" title=" " alt="" coords="890,293,903,250,925,193,957,134,978,106,1001,82,1011,74,1014,79,1005,86,982,110,962,137,930,195,908,251,895,295"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a76ed1d16ec42691a55ec5ebcb87fc452" title=" " alt="" coords="1025,120,1165,163"/>
+<area shape="poly" title=" " alt="" coords="898,293,939,234,968,201,1001,173,1010,167,1013,171,1005,177,972,205,943,237,902,296"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a77dff8ef52c9bf1912037df988aaeb7a" title=" " alt="" coords="1003,211,1187,253"/>
+<area shape="poly" title=" " alt="" coords="935,292,1002,263,1018,257,1020,262,1004,268,937,297"/>
+<area shape="poly" title=" " alt="" coords="1055,301,1054,291,1060,282,1074,277,1095,275,1118,277,1131,283,1129,288,1116,282,1095,280,1076,282,1064,287,1059,293,1061,300"/>
+<area shape="poly" title=" " alt="" coords="1055,392,1054,382,1060,373,1074,367,1095,365,1118,368,1131,374,1129,379,1116,373,1095,371,1076,373,1064,377,1059,383,1061,391"/>
+<area shape="poly" title=" " alt="" coords="1055,483,1054,473,1060,464,1074,458,1095,456,1118,458,1131,465,1129,469,1116,464,1095,461,1076,463,1064,468,1059,474,1061,482"/>
+<area shape="poly" title=" " alt="" coords="1055,29,1054,19,1060,10,1074,5,1095,3,1118,5,1131,11,1129,16,1116,10,1095,8,1076,10,1064,15,1059,21,1061,28"/>
+<area shape="poly" title=" " alt="" coords="1055,120,1054,110,1060,101,1074,95,1095,93,1118,96,1131,102,1129,107,1116,101,1095,99,1076,101,1064,105,1059,111,1061,119"/>
+<area shape="poly" title=" " alt="" coords="1055,211,1054,201,1060,192,1074,186,1095,184,1118,186,1131,193,1129,197,1116,192,1095,189,1076,191,1064,196,1059,202,1061,210"/>
+<area shape="poly" title=" " alt="" coords="437,597,436,587,442,578,455,573,474,571,494,573,506,579,504,584,493,578,474,576,456,578,445,583,441,589,443,596"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ab645a09c78f03af220fecf9d70f66046" title=" " alt="" coords="590,552,770,595"/>
+<area shape="poly" title=" " alt="" coords="542,601,574,594,576,599,543,606"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a143faa6f9a1a98ccc8693ed6b600b026" title=" " alt="" coords="611,733,749,776"/>
+<area shape="poly" title=" " alt="" coords="508,638,592,695,634,722,631,727,589,700,505,643"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a1ad2c5d4b1882d594db271a02185afc0" title=" " alt="" coords="611,824,749,867"/>
+<area shape="poly" title=" " alt="" coords="488,639,530,708,559,749,592,786,627,813,623,817,589,790,555,752,525,711,484,642"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ab5b80587e0e0a2ed7073c7d5442f550f" title=" " alt="" coords="607,915,753,957"/>
+<area shape="poly" title=" " alt="" coords="483,640,496,687,518,748,550,815,592,877,623,904,620,908,588,880,546,818,513,750,491,688,478,641"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a3bfe7da2d40a3f5687abaa367365f3c4" title=" " alt="" coords="611,371,749,413"/>
+<area shape="poly" title=" " alt="" coords="480,596,495,559,518,513,549,465,589,423,597,417,600,422,592,427,553,468,523,516,500,561,485,598"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a49902c69bdc635fcdd8fc28d9f60f283" title=" " alt="" coords="611,461,749,504"/>
+<area shape="poly" title=" " alt="" coords="493,595,535,554,589,514,597,509,600,514,592,518,538,558,497,599"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#aee5cc723306d146fa933cc5374b44a8b" title=" " alt="" coords="594,643,766,685"/>
+<area shape="poly" title=" " alt="" coords="543,631,579,639,578,644,542,636"/>
+<area shape="poly" title=" " alt="" coords="722,549,746,533,768,514,801,474,829,430,868,350,873,352,833,432,805,477,772,518,749,538,725,554"/>
+<area shape="poly" title=" " alt="" coords="641,552,639,542,646,533,659,527,680,525,702,528,716,534,713,539,701,533,680,531,661,533,649,537,644,543,646,551"/>
+<area shape="poly" title=" " alt="" coords="641,733,639,723,646,714,659,709,680,707,702,709,716,715,713,720,701,714,680,712,661,714,649,719,644,725,646,732"/>
+<area shape="poly" title=" " alt="" coords="641,824,639,814,646,805,659,799,680,797,702,800,716,806,713,811,701,805,680,803,661,805,649,809,644,815,646,823"/>
+<area shape="poly" title=" " alt="" coords="641,915,639,905,646,896,659,890,680,888,702,890,716,897,713,901,701,896,680,893,661,895,649,900,644,906,646,914"/>
+<area shape="poly" title=" " alt="" coords="641,371,639,361,646,352,659,346,680,344,702,346,716,353,713,357,701,352,680,349,661,351,649,356,644,362,646,370"/>
+<area shape="poly" title=" " alt="" coords="641,461,639,451,646,442,659,437,680,435,702,437,716,443,713,448,701,442,680,440,661,442,649,447,644,453,646,460"/>
+<area shape="poly" title=" " alt="" coords="641,643,639,633,646,624,659,618,680,616,702,618,716,625,713,629,701,624,680,621,661,623,649,628,644,634,646,642"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ad3910232ff154a7f62321718e26b25ef" title=" " alt="" coords="818,812,955,855"/>
+<area shape="poly" title=" " alt="" coords="754,684,771,695,789,715,798,734,806,753,820,774,846,800,842,804,816,778,801,755,793,736,785,718,768,699,751,688"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a0c17c312b353723b43af3a1cf5407f13" title=" " alt="" coords="818,540,955,583"/>
+<area shape="poly" title=" " alt="" coords="723,640,816,592,826,588,828,592,819,597,725,644"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a3faab955dbc785ed504ae513dbc7389e" title=" " alt="" coords="818,631,955,673"/>
+<area shape="poly" title=" " alt="" coords="766,656,802,654,802,660,767,662"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#aec880a263a1e58be5380fe1aeb9c4462" title=" " alt="" coords="818,721,955,764"/>
+<area shape="poly" title=" " alt="" coords="741,683,771,695,817,713,815,718,769,700,739,688"/>
+<area shape="poly" title=" " alt="" coords="847,812,845,802,852,793,866,787,886,785,909,788,922,794,920,799,907,793,886,791,867,793,855,797,851,803,852,811"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a4307865df88da4fb54e36f929b6f88a5" title=" " alt="" coords="1010,597,1180,624"/>
+<area shape="poly" title=" " alt="" coords="918,809,937,793,953,774,963,755,969,737,972,702,978,668,986,651,1001,634,1005,631,1009,635,1005,638,991,654,983,670,978,703,974,738,968,757,957,778,941,797,922,813"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a32b89671df27bd47193c116873b60f3e" title=" " alt="" coords="1027,672,1164,715"/>
+<area shape="poly" title=" " alt="" coords="913,810,953,774,976,748,1001,725,1011,719,1014,723,1005,729,980,752,957,778,916,814"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#aada76b8212676ccbb3ad3e364b42f80e" title=" " alt="" coords="1027,763,1164,805"/>
+<area shape="poly" title=" " alt="" coords="955,815,1011,801,1012,806,956,820"/>
+<area shape="poly" title=" " alt="" coords="1060,598,1053,589,1058,579,1072,573,1095,571,1120,573,1133,580,1131,584,1119,578,1095,576,1073,578,1061,583,1059,588,1064,595"/>
+<area shape="poly" title=" " alt="" coords="1055,672,1054,662,1060,653,1074,647,1095,645,1118,648,1131,654,1129,659,1116,653,1095,651,1076,653,1064,657,1059,663,1061,671"/>
+<area shape="poly" title=" " alt="" coords="1055,763,1054,753,1060,744,1074,738,1095,736,1118,738,1131,745,1129,749,1116,744,1095,741,1076,743,1064,748,1059,754,1061,762"/>
+<area shape="poly" title=" " alt="" coords="956,575,1022,591,1020,596,955,580"/>
+<area shape="poly" title=" " alt="" coords="937,581,957,592,981,613,1005,634,1045,661,1042,666,1001,638,978,617,953,597,934,585"/>
+<area shape="poly" title=" " alt="" coords="944,581,957,593,970,610,977,627,983,659,987,691,994,708,1005,725,1036,752,1032,756,1001,728,989,710,982,693,977,660,972,629,965,613,953,596,940,585"/>
+<area shape="poly" title=" " alt="" coords="847,540,845,530,852,521,866,515,886,513,909,516,922,522,920,527,907,521,886,519,867,521,855,525,851,531,852,539"/>
+<area shape="poly" title=" " alt="" coords="955,636,1009,625,1010,630,956,641"/>
+<area shape="poly" title=" " alt="" coords="956,663,1012,674,1011,679,955,668"/>
+<area shape="poly" title=" " alt="" coords="937,672,957,683,981,704,1005,725,1045,752,1042,756,1001,729,978,708,953,688,934,676"/>
+<area shape="poly" title=" " alt="" coords="847,631,845,621,852,612,866,606,886,604,909,606,922,613,920,617,907,612,886,609,867,611,855,616,851,622,852,630"/>
+<area shape="poly" title=" " alt="" coords="913,719,953,683,975,657,986,645,1002,634,1013,628,1015,633,1004,638,989,649,980,660,957,687,916,723"/>
+<area shape="poly" title=" " alt="" coords="955,724,1011,710,1012,716,956,729"/>
+<area shape="poly" title=" " alt="" coords="956,754,1012,765,1011,770,955,759"/>
+<area shape="poly" title=" " alt="" coords="847,721,845,711,852,702,866,697,886,695,909,697,922,703,920,708,907,702,886,700,867,702,855,707,851,713,852,720"/>
+</map>
+</div>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -623,6 +1222,8 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00122">122</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a981813f57d7d1d49d1c8bd3f142c9a96" name="a981813f57d7d1d49d1c8bd3f142c9a96"></a>
@@ -636,6 +1237,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00121">121</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
 
 </div>
 </div>
@@ -651,6 +1254,8 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00126">126</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
+
 </div>
 </div>
 <a id="abb723fd3f4ee9573148bf11fd9491985" name="abb723fd3f4ee9573148bf11fd9491985"></a>
@@ -664,6 +1269,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00123">123</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
 
 </div>
 </div>
@@ -679,6 +1286,8 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00120">120</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
+
 </div>
 </div>
 <a id="ad97d493ce4705e27f8fa3be57b23657d" name="ad97d493ce4705e27f8fa3be57b23657d"></a>
@@ -692,6 +1301,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00132">132</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
 
 </div>
 </div>
@@ -748,6 +1359,8 @@ Static Public Attributes</h2></td></tr>
 <div class="ttc" id="anamespacexpe_1_1render_html_a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90"><div class="ttname"><a href="namespacexpe_1_1render.html#a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90">xpe::render::eTextureFormat::R8</a></div><div class="ttdeci">@ R8</div></div>
 <div class="ttc" id="anamespacexpe_1_1render_html_a46d0dfa0f134db6b834ccc2b921e2da2ad9e8e4a9228ed56eceb29f0a1223b02b"><div class="ttname"><a href="namespacexpe_1_1render.html#a46d0dfa0f134db6b834ccc2b921e2da2ad9e8e4a9228ed56eceb29f0a1223b02b">xpe::render::eTextureFormat::RGBA32</a></div><div class="ttdeci">@ RGBA32</div></div>
 </div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00114">114</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
+
 </div>
 </div>
 <a id="adc0d03a68a09e08cd032cad442af672c" name="adc0d03a68a09e08cd032cad442af672c"></a>
@@ -790,6 +1403,8 @@ Static Public Attributes</h2></td></tr>
 <div class="line">                { <a class="code hl_enumvalue" href="namespacexpe_1_1render.html#a46d0dfa0f134db6b834ccc2b921e2da2aad2ecedf63a30a8f4201f44431d3e2f3">eTextureFormat::SRGBA8</a>, 4 }</div>
 <div class="line">        }</div>
 </div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00112">112</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a269fc30698e07b48a71b4ee0b5ea2e19" name="a269fc30698e07b48a71b4ee0b5ea2e19"></a>
@@ -803,6 +1418,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00133">133</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
 
 </div>
 </div>
@@ -818,6 +1435,8 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00130">130</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
+
 </div>
 </div>
 <a id="ac10f77c7c7b681f8c057d739e927c1fb" name="ac10f77c7c7b681f8c057d739e927c1fb"></a>
@@ -831,6 +1450,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00124">124</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
 
 </div>
 </div>
@@ -846,6 +1467,8 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00128">128</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
+
 </div>
 </div>
 <a id="ac31bce368d387d78d37db106f54cc5bf" name="ac31bce368d387d78d37db106f54cc5bf"></a>
@@ -859,6 +1482,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00116">116</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
 
 </div>
 </div>
@@ -874,6 +1499,8 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00117">117</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a6c8207cb90ffe2906a9409638386c6dd" name="a6c8207cb90ffe2906a9409638386c6dd"></a>
@@ -888,16 +1515,22 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00119">119</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following files:<ul>
 <li>engine/src/rendering/core/<a class="el" href="texture_8hpp_source.html">texture.hpp</a></li>
-<li>engine/src/rendering/core/<a class="el" href="texture_8cpp.html">texture.cpp</a></li>
+<li>engine/src/rendering/core/<a class="el" href="texture_8cpp_source.html">texture.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li><li class="navelem"><a class="el" href="structxpe_1_1render_1_1s_texture.html">sTexture</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

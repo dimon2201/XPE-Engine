@@ -1,0 +1,85 @@
+\doxysection{canvas.\+cpp}
+\hypertarget{canvas_8cpp_source}{}\label{canvas_8cpp_source}\index{engine/src/rendering/canvas.cpp@{engine/src/rendering/canvas.cpp}}
+\mbox{\hyperlink{canvas_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{canvas_8hpp}{rendering/canvas.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{camera__manager_8hpp}{rendering/camera\_manager.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{bindings_8hpp}{rendering/bindings.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00005}00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00007}00007\ \ \ \ \ \textcolor{keyword}{namespace\ }render\ \{}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00009}\mbox{\hyperlink{classxpe_1_1render_1_1c_canvas_a9d8c18ddfb24dcd26edf2ee2472f0fb5}{00009}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_canvas_a9d8c18ddfb24dcd26edf2ee2472f0fb5}{cCanvas::cCanvas}}()}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00010}00010\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00011}00011\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Shader\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_default_shader}{cDefaultShader}}(\mbox{\hyperlink{classxpe_1_1render_1_1c_shader_acb782867f55952b3546bcc4731be3b04a84cb5a52346e63f8796237b92cc81c5a}{cShader::eCategory::NONE}},\ \textcolor{stringliteral}{"{}canvas"{}});}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Shader-\/>\mbox{\hyperlink{classxpe_1_1render_1_1c_default_shader_af28923883534a920f9315e0393627af0}{VertexStage}}\ =\ \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_manager_a97a6e32b351d6afb063039f115b55ae7}{cShaderManager::GetFromFile}}(\mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781a0c3e47aef93a7f244f41ab309a33634b}{sShaderStage::eType::VERTEX}},\ \textcolor{stringliteral}{"{}engine\_shaders/passes/screen.vs"{}});}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00013}00013\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Shader-\/>\mbox{\hyperlink{classxpe_1_1render_1_1c_default_shader_a12fc55115ef8d894b3f6987c9bb008fd}{PixelStage}}\ =\ \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_manager_a97a6e32b351d6afb063039f115b55ae7}{cShaderManager::GetFromFile}}(\mbox{\hyperlink{structxpe_1_1render_1_1s_shader_stage_a3d61a06d4a3009d46e2180c0f9a8c781a06e536f5c0819e7aa379dcd35556f441}{sShaderStage::eType::PIXEL}},\ \textcolor{stringliteral}{"{}engine\_shaders/passes/canvas.ps"{}});}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Viewport\ =\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_abe3b469b340e88d3b463a76164e5f308}{cCameraManager::GetViewport}}();}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_manager_a25db8a33bd2cf7ff61d126363bcb945f}{cShaderManager::SetShader}}(m\_Shader);}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ CreatePresentTarget();}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ CreatePresentSampler();}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input__manager_8hpp_a2cd1cdcbe57492f3f37f3242807b8d22}{AddWindowFrameResized}}(\mbox{\hyperlink{classxpe_1_1render_1_1c_canvas}{cCanvas}},\ 1);}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00022}\mbox{\hyperlink{classxpe_1_1render_1_1c_canvas_acf1b2e05f157135eb1ea38e361f47354}{00022}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_canvas_acf1b2e05f157135eb1ea38e361f47354}{cCanvas::\string~cCanvas}}()}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ m\_Shader;}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ m\_PresentTarget;}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ m\_PresentSampler;}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input__manager_8hpp_a63d155ba501a5780d2d067ac845da1d9}{RemoveWindowFrameResized}}();}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00030}\mbox{\hyperlink{classxpe_1_1render_1_1c_canvas_a220c846d34dca49160b1d1af669cba2a}{00030}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_canvas_a220c846d34dca49160b1d1af669cba2a}{cCanvas::Draw}}()}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_1_1context_a012199697e8054ff25d90b30a8e434ad}{context::PSBindTextureSlot}}(0);}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_1_1context_a1b599623aad5a454a34697cec5c79143}{context::BindRenderTarget}}(m\_PresentTarget-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_render_target_a7ed892ae572b888369028e5fe5e04dae}{ColorViews}},\ m\_PresentTarget-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_render_target_ae9050a5b264993030f0a1efebbe44526}{DepthStencilView}},\ m\_PresentTarget-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_render_target_ac8f50a66375d807db256b81a9a6ca28e}{Viewport}});}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_1_1context_a48c270e9a05382bd3824c1d9fa92268b}{context::BindVSStage}}(*m\_Shader-\/>\mbox{\hyperlink{classxpe_1_1render_1_1c_default_shader_af28923883534a920f9315e0393627af0}{VertexStage}});}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_1_1context_a68b9c3c436cb270939b34679a3c4dcef}{context::BindPSStage}}(*m\_Shader-\/>\mbox{\hyperlink{classxpe_1_1render_1_1c_default_shader_a12fc55115ef8d894b3f6987c9bb008fd}{PixelStage}});}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_1_1context_aa422283e5b1e7f0ec37bce4e205040b1}{context::PSBindSampler}}(*m\_PresentSampler);}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_1_1context_af7d77195f515615a89c72aa4f236bf05}{context::PSBindTexture}}(*\mbox{\hyperlink{structxpe_1_1render_1_1_textures_ad899c5ceab4e39079770ff8b238f1b82}{Textures::Canvas}},\ 0);}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_1_1context_a7ef3ba5c9c5d29b8a2f1d9551b452d5e}{context::ClearColorTarget}}(m\_PresentTarget-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_render_target_a7ed892ae572b888369028e5fe5e04dae}{ColorViews}}[m\_BoundTargetIndex],\ glm::vec4(0,\ 0,\ 0,\ 1));}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_1_1context_a87a2da77de2bea05f299145aa58d7ca5}{context::DrawQuad}}();}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_1_1context_aebbc29eb22343932ff7c938aefcb3468}{context::Present}}();}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00046}\mbox{\hyperlink{classxpe_1_1render_1_1c_canvas_a01d13a50afd94a2e6d847eb2ef0c186b}{00046}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_canvas_a01d13a50afd94a2e6d847eb2ef0c186b}{cCanvas::WindowFrameResized}}(\mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{width}},\ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{height}})}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_1_1context_a50e128be96001994d7db255d0f372e80}{context::ResizeSwapchain}}(*m\_PresentTarget,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{width}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{height}});}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cCanvas::CreatePresentTarget()}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ m\_PresentTarget\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_render_target}{sRenderTarget}}(}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<void*>}}\ \{\ \mbox{\hyperlink{namespacexpe_1_1render_1_1context_a7d95bd6eeae71095919960361058fd7f}{context::SwapchainTargetView}}\ \},}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_Viewport}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ m\_PresentTarget-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_render_target_a17f0a872aae3eb6370c290695e31b208}{SetResizable}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cCanvas::CreatePresentSampler()}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ m\_PresentSampler\ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{new}\ sSampler();}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ m\_PresentSampler-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_a00645d12398bcc905de33feb27153065}{Filter}}\ \ \ =\ \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_a9a8d696e711426896c0a151ba1f5f625a735f974737d2c9d1164c4c1a750f2eb5}{sSampler::eFilter::MIN\_MAG\_MIP\_POINT}};}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ m\_PresentSampler-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_a667dc6455e11368da13e15df19234954}{AddressU}}\ =\ \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4daecf301fe86e23bb2bf5155bbef3b1345}{sSampler::eAddress::CLAMP}};}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ m\_PresentSampler-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_a101c6c8edcb9e9b127fdd2bcfb2e5056}{AddressV}}\ =\ \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4daecf301fe86e23bb2bf5155bbef3b1345}{sSampler::eAddress::CLAMP}};}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ m\_PresentSampler-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_af7562572bdf962338a55e88467f24f82}{AddressW}}\ =\ \mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_ab0e8e2699d503fbfea12d7150c685f4daecf301fe86e23bb2bf5155bbef3b1345}{sSampler::eAddress::CLAMP}};}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ m\_PresentSampler-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_a3288fae8b851ef315ce0ed38335f81ab}{AnisotropyLevel}}\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ m\_PresentSampler-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_sampler_afb7fae3cf8ede538ecf2c087de227340}{Init}}();}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00071}\mbox{\hyperlink{classxpe_1_1render_1_1c_canvas_a8b2bcc95a8e76bff19d4aaa3938e8450}{00071}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_canvas_a8b2bcc95a8e76bff19d4aaa3938e8450}{cCanvas::SetViewport}}(\mbox{\hyperlink{structxpe_1_1render_1_1s_viewport}{sViewport}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewport}})}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Viewport\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewport}};}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_canvas_a01d13a50afd94a2e6d847eb2ef0c186b}{WindowFrameResized}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewport}}-\/>Width,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewport}}-\/>Height);}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00077}00077\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{canvas_8cpp_source_l00079}00079\ \}}
+
+\end{DoxyCode}

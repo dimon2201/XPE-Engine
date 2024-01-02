@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classxpe_1_1physics_1_1c_physics_system.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1physics.html">physics</a></li><li class="navelem"><a class="el" href="classxpe_1_1physics_1_1c_physics_system.html">cPhysicsSystem</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -86,13 +104,27 @@ $(function() {
 <div class="dynheader">
 Inheritance diagram for xpe::physics::cPhysicsSystem:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classxpe_1_1physics_1_1c_physics_system.png" usemap="#xpe::physics::cPhysicsSystem_map" alt=""/>
-  <map id="xpe::physics::cPhysicsSystem_map" name="xpe::physics::cPhysicsSystem_map">
-<area href="classxpe_1_1ecs_1_1c_system.html" alt="xpe::ecs::cSystem" shape="rect" coords="0,56,178,80"/>
-<area href="classxpe_1_1core_1_1c_object.html" alt="xpe::core::cObject" shape="rect" coords="0,0,178,24"/>
-  </map>
-</div></div>
+<div class="center"><img src="classxpe_1_1physics_1_1c_physics_system__inherit__graph.png" border="0" usemap="#axpe_1_1physics_1_1c_physics_system_inherit__map" alt="Inheritance graph"/></div>
+<map name="axpe_1_1physics_1_1c_physics_system_inherit__map" id="axpe_1_1physics_1_1c_physics_system_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,155,208,181"/>
+<area shape="rect" href="classxpe_1_1ecs_1_1c_system.html" title=" " alt="" coords="41,80,172,107"/>
+<area shape="poly" title=" " alt="" coords="109,122,109,154,104,154,104,122"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="42,5,171,32"/>
+<area shape="poly" title=" " alt="" coords="109,48,109,80,104,80,104,48"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for xpe::physics::cPhysicsSystem:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1physics_1_1c_physics_system__coll__graph.png" border="0" usemap="#axpe_1_1physics_1_1c_physics_system_coll__map" alt="Collaboration graph"/></div>
+<map name="axpe_1_1physics_1_1c_physics_system_coll__map" id="axpe_1_1physics_1_1c_physics_system_coll__map">
+<area shape="rect" title=" " alt="" coords="5,155,208,181"/>
+<area shape="rect" href="classxpe_1_1ecs_1_1c_system.html" title=" " alt="" coords="41,80,172,107"/>
+<area shape="poly" title=" " alt="" coords="109,122,109,154,104,154,104,122"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="42,5,171,32"/>
+<area shape="poly" title=" " alt="" coords="109,48,109,80,104,80,104,48"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -104,7 +136,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af52ced913116436c9a1410d942d1911e inherit pub_methods_classxpe_1_1core_1_1c_object" id="r_af52ced913116436c9a1410d942d1911e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxpe_1_1core_1_1c_object.html#af52ced913116436c9a1410d942d1911e">operator delete</a> (<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">void</a> *<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">address</a>)</td></tr>
 <tr class="separator:af52ced913116436c9a1410d942d1911e inherit pub_methods_classxpe_1_1core_1_1c_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="physics__system_8hpp_source.html#l00007">7</a> of file <a class="el" href="physics__system_8hpp_source.html">physics_system.hpp</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a5679425dd00d09e95985cb8ffb23a036" name="a5679425dd00d09e95985cb8ffb23a036"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5679425dd00d09e95985cb8ffb23a036">&#9670;&#160;</a></span>Update()</h2>
 
@@ -134,16 +169,42 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="classxpe_1_1ecs_1_1c_system.html#a2a77b444fc80b9f1bd43215a7ba894d6">xpe::ecs::cSystem</a>.</p>
 
+<p class="definition">Definition at line <a class="el" href="physics__system_8cpp_source.html#l00019">19</a> of file <a class="el" href="physics__system_8cpp_source.html">physics_system.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1physics_1_1c_physics_system_a5679425dd00d09e95985cb8ffb23a036_cgraph.png" border="0" usemap="#aclassxpe_1_1physics_1_1c_physics_system_a5679425dd00d09e95985cb8ffb23a036_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1physics_1_1c_physics_system_a5679425dd00d09e95985cb8ffb23a036_cgraph" id="aclassxpe_1_1physics_1_1c_physics_system_a5679425dd00d09e95985cb8ffb23a036_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,208,48"/>
+<area shape="rect" href="namespacexpe_1_1physics.html#afa19f45096b2341a10365ac1f56c1255" title=" " alt="" coords="256,13,431,40"/>
+<area shape="poly" title=" " alt="" coords="208,24,240,24,240,29,208,29"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1physics_1_1c_physics_system_a5679425dd00d09e95985cb8ffb23a036_icgraph.png" border="0" usemap="#aclassxpe_1_1physics_1_1c_physics_system_a5679425dd00d09e95985cb8ffb23a036_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1physics_1_1c_physics_system_a5679425dd00d09e95985cb8ffb23a036_icgraph" id="aclassxpe_1_1physics_1_1c_physics_system_a5679425dd00d09e95985cb8ffb23a036_icgraph">
+<area shape="rect" title=" " alt="" coords="198,5,400,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,13,150,40"/>
+<area shape="poly" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>engine/src/physics/<a class="el" href="physics__system_8hpp_source.html">physics_system.hpp</a></li>
-<li>engine/src/physics/<a class="el" href="physics__system_8cpp.html">physics_system.cpp</a></li>
+<li>engine/src/physics/<a class="el" href="physics__system_8cpp_source.html">physics_system.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1physics.html">physics</a></li><li class="navelem"><a class="el" href="classxpe_1_1physics_1_1c_physics_system.html">cPhysicsSystem</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

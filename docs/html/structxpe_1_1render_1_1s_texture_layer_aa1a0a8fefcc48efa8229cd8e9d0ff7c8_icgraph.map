@@ -1,0 +1,14 @@
+<map id="xpe::render::sTextureLayer::ResizePixelsU8" name="xpe::render::sTextureLayer::ResizePixelsU8">
+<area shape="rect" id="Node000001" title=" " alt="" coords="858,43,1034,85"/>
+<area shape="rect" id="Node000002" href="$structxpe_1_1render_1_1s_texture_layer.html#a3d0688e388aa3c4e46ed6a46c50155ca" title=" " alt="" coords="633,13,810,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="842,53,810,49,811,44,843,48"/>
+<area shape="rect" id="Node000004" href="$structxpe_1_1render_1_1s_texture_layer.html#a3a21289fbdb54c0191c706c31edf3abc" title=" " alt="" coords="409,72,585,115"/>
+<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="843,73,586,90,586,85,842,68"/>
+<area shape="rect" id="Node000003" href="$structxpe_1_1render_1_1s_texture_layer.html#a351c03d48adce5f555d6475ba1cde159" title=" " alt="" coords="409,5,585,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="618,34,586,32,586,27,618,28"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="623,63,582,74,581,69,622,58"/>
+<area shape="rect" id="Node000005" href="$structxpe_1_1render_1_1s_texture_layer.html#a312528dbd92ffb2a012cc45b08b0c48d" title=" " alt="" coords="185,72,361,115"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="394,96,362,96,362,91,394,91"/>
+<area shape="rect" id="Node000006" href="$structxpe_1_1render_1_1s_atlas.html#aadddcc49677815c6ff7169e7cb8b9f5a" title=" " alt="" coords="5,72,137,115"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="169,96,137,96,137,91,169,91"/>
+</map>

@@ -1,0 +1,25 @@
+\doxysection{thread.\+cpp}
+\hypertarget{thread_8cpp_source}{}\label{thread_8cpp_source}\index{engine/src/core/thread.cpp@{engine/src/core/thread.cpp}}
+\mbox{\hyperlink{thread_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{thread_8cpp_source_l00001}00001\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{thread_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{thread_8cpp_source_l00003}00003\ \ \ \ \ \textcolor{keyword}{namespace\ }core\ \{}
+\DoxyCodeLine{\Hypertarget{thread_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{thread_8cpp_source_l00005}\mbox{\hyperlink{classxpe_1_1core_1_1c_thread_ac1bd1b99597a7dac182fd0c142bb93bc}{00005}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_ac1bd1b99597a7dac182fd0c142bb93bc}{cThread::cThread}}(\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \textcolor{keywordtype}{id},\ std::thread\ \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{thread}})\ :\ m\_ID(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{id}}),\ m\_Thread(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{thread}})\ \{\}}
+\DoxyCodeLine{\Hypertarget{thread_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{thread_8cpp_source_l00007}\mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a8a5362a2375462e796b4361c8c406e48}{00007}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a8a5362a2375462e796b4361c8c406e48}{cThread::CurrentID}}()}
+\DoxyCodeLine{\Hypertarget{thread_8cpp_source_l00008}00008\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{thread_8cpp_source_l00009}00009\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::hash<std::thread::id>\{\}(std::this\_thread::get\_id());}
+\DoxyCodeLine{\Hypertarget{thread_8cpp_source_l00010}00010\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{thread_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{thread_8cpp_source_l00012}\mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a2099798571924fd52cafa3c336fc8a57}{00012}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_thread_a2099798571924fd52cafa3c336fc8a57}{cThread::CurrentSleep}}(\mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{millis}})}
+\DoxyCodeLine{\Hypertarget{thread_8cpp_source_l00013}00013\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{thread_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ std::this\_thread::sleep\_for(std::chrono::milliseconds(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{millis}}));}
+\DoxyCodeLine{\Hypertarget{thread_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{thread_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{thread_8cpp_source_l00017}00017\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{thread_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{thread_8cpp_source_l00019}00019\ \}}
+
+\end{DoxyCode}

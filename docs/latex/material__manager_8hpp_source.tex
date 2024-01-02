@@ -2,60 +2,60 @@
 \hypertarget{material__manager_8hpp_source}{}\label{material__manager_8hpp_source}\index{engine/src/rendering/material/material\_manager.hpp@{engine/src/rendering/material/material\_manager.hpp}}
 \mbox{\hyperlink{material__manager_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{material_8hpp}{rendering/material/material.hpp}}>}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{bindings_8hpp}{rendering/bindings.hpp}}>}}
-\DoxyCodeLine{00005\ }
-\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
-\DoxyCodeLine{00007\ }
-\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{namespace\ }render\ \{}
-\DoxyCodeLine{00009\ }
-\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_material_manager}{cMaterialManager}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}}
-\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Init();}
-\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Free();}
-\DoxyCodeLine{00015\ }
-\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Args}}>}
-\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_material}{sMaterial}}\ AddMaterial(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Args}}\&\&...\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{args}});}
-\DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Clear();}
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Flush(\textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_material}{sMaterial}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}});}
-\DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ AddLayer(\mbox{\hyperlink{structxpe_1_1render_1_1s_texture}{sTexture}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{texture}},\ \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_layer}{sTextureLayer}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{layer}});}
-\DoxyCodeLine{00024\ }
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ SetLayer(\mbox{\hyperlink{structxpe_1_1render_1_1s_texture}{sTexture}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{texture}},\ \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_layer}{sTextureLayer}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{layer}},\ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{layerIndex}});}
-\DoxyCodeLine{00026\ }
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ InitSampler();}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_texture}{sTexture}}*\ InitTextureArray(\textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_material_format}{sMaterialFormat}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{materialFormat}});}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Args}}>}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_material}{sMaterial}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_material_manager_a6b824ebed9ce5b4d7a2c4a33cefdb3f4}{cMaterialManager::AddMaterial}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Args}}\ \&\&...\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{args}})}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_material}{sMaterial}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}}(std::forward<Args>(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{args}})...);}
-\DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}}.Index\ =\ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_af61f00806c13311b489ee4f5abc0a12d}{Buffers::Material}}-\/>\mbox{\hyperlink{classxpe_1_1render_1_1s_list_buffer_af1b78e374e912c0f7ea9363d579553c5}{Size}}();}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_af61f00806c13311b489ee4f5abc0a12d}{Buffers::Material}}-\/>\mbox{\hyperlink{classxpe_1_1render_1_1s_list_buffer_a915d07581a0582453afaa6057d734476}{Add}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}});}
-\DoxyCodeLine{00039\ }
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_material_manager_a2af0aaa9ef9bd87a55981b88cd8fd7a9}{AddLayer}}(*\mbox{\hyperlink{structxpe_1_1render_1_1_textures_a42292b1dc7b07a324b4e23d567a9bfd7}{Textures::AlbedoAtlas}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}}.AlbedoMap);}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_material_manager_a2af0aaa9ef9bd87a55981b88cd8fd7a9}{AddLayer}}(*\mbox{\hyperlink{structxpe_1_1render_1_1_textures_a6ef1ffedc5f27b970a4f7c2bfbe06194}{Textures::NormalAtlas}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}}.NormalMap);}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_material_manager_a2af0aaa9ef9bd87a55981b88cd8fd7a9}{AddLayer}}(*\mbox{\hyperlink{structxpe_1_1render_1_1_textures_aa122a27de0ed7cbea22357dad2f23f11}{Textures::ParallaxAtlas}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}}.ParallaxMap);}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_material_manager_a2af0aaa9ef9bd87a55981b88cd8fd7a9}{AddLayer}}(*\mbox{\hyperlink{structxpe_1_1render_1_1_textures_a02d35766e8095f673f878003eb765b35}{Textures::MetalAtlas}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}}.MetalMap);}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_material_manager_a2af0aaa9ef9bd87a55981b88cd8fd7a9}{AddLayer}}(*\mbox{\hyperlink{structxpe_1_1render_1_1_textures_adf5081ac8b7892c619b284fdefccdff3}{Textures::RoughnessAtlas}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}}.RoughnessMap);}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_material_manager_a2af0aaa9ef9bd87a55981b88cd8fd7a9}{AddLayer}}(*\mbox{\hyperlink{structxpe_1_1render_1_1_textures_a23d603423d753c8df77368b4a62aac4c}{Textures::AOAtlas}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}}.AOMap);}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_material_manager_a2af0aaa9ef9bd87a55981b88cd8fd7a9}{AddLayer}}(*\mbox{\hyperlink{structxpe_1_1render_1_1_textures_acc343398897ff2e4334c241c7fb83f58}{Textures::EmissionAtlas}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}}.EmissionMap);}
-\DoxyCodeLine{00047\ }
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_af61f00806c13311b489ee4f5abc0a12d}{Buffers::Material}}-\/>\mbox{\hyperlink{classxpe_1_1render_1_1s_list_buffer_ad9de1835e029836261d585eec95bedd5}{Flush}}();}
-\DoxyCodeLine{00049\ }
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}};}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00052\ }
-\DoxyCodeLine{00053\ \ \ \ \ \}}
-\DoxyCodeLine{00054\ }
-\DoxyCodeLine{00055\ \}}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{material_8hpp}{rendering/material/material.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{bindings_8hpp}{rendering/bindings.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00006}00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00008}00008\ \ \ \ \ \textcolor{keyword}{namespace\ }render\ \{}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00010}\mbox{\hyperlink{classxpe_1_1render_1_1c_material_manager}{00010}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_material_manager}{cMaterialManager}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00011}00011\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00013}00013\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Init();}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Free();}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Args}}>}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_material}{sMaterial}}\ AddMaterial(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Args}}\&\&...\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{args}});}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Clear();}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Flush(\textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_material}{sMaterial}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}});}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ AddLayer(\mbox{\hyperlink{structxpe_1_1render_1_1s_texture}{sTexture}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{texture}},\ \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_layer}{sTextureLayer}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{layer}});}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ SetLayer(\mbox{\hyperlink{structxpe_1_1render_1_1s_texture}{sTexture}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{texture}},\ \mbox{\hyperlink{structxpe_1_1render_1_1s_texture_layer}{sTextureLayer}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{layer}},\ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{layerIndex}});}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ InitSampler();}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_texture}{sTexture}}*\ InitTextureArray(\textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_material_format}{sMaterialFormat}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{materialFormat}});}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Args}}>}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00033}\mbox{\hyperlink{classxpe_1_1render_1_1c_material_manager_a6b824ebed9ce5b4d7a2c4a33cefdb3f4}{00033}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_material}{sMaterial}}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_material_manager_a6b824ebed9ce5b4d7a2c4a33cefdb3f4}{cMaterialManager::AddMaterial}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Args}}\ \&\&...\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{args}})}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_material}{sMaterial}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}}(std::forward<Args>(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{args}})...);}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}}.Index\ =\ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_af61f00806c13311b489ee4f5abc0a12d}{Buffers::Material}}-\/>\mbox{\hyperlink{classxpe_1_1render_1_1s_list_buffer_af1b78e374e912c0f7ea9363d579553c5}{Size}}();}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_af61f00806c13311b489ee4f5abc0a12d}{Buffers::Material}}-\/>\mbox{\hyperlink{classxpe_1_1render_1_1s_list_buffer_a915d07581a0582453afaa6057d734476}{Add}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}});}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_material_manager_a2af0aaa9ef9bd87a55981b88cd8fd7a9}{AddLayer}}(*\mbox{\hyperlink{structxpe_1_1render_1_1_textures_a42292b1dc7b07a324b4e23d567a9bfd7}{Textures::AlbedoAtlas}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}}.AlbedoMap);}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_material_manager_a2af0aaa9ef9bd87a55981b88cd8fd7a9}{AddLayer}}(*\mbox{\hyperlink{structxpe_1_1render_1_1_textures_a6ef1ffedc5f27b970a4f7c2bfbe06194}{Textures::NormalAtlas}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}}.NormalMap);}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_material_manager_a2af0aaa9ef9bd87a55981b88cd8fd7a9}{AddLayer}}(*\mbox{\hyperlink{structxpe_1_1render_1_1_textures_aa122a27de0ed7cbea22357dad2f23f11}{Textures::ParallaxAtlas}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}}.ParallaxMap);}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_material_manager_a2af0aaa9ef9bd87a55981b88cd8fd7a9}{AddLayer}}(*\mbox{\hyperlink{structxpe_1_1render_1_1_textures_a02d35766e8095f673f878003eb765b35}{Textures::MetalAtlas}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}}.MetalMap);}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_material_manager_a2af0aaa9ef9bd87a55981b88cd8fd7a9}{AddLayer}}(*\mbox{\hyperlink{structxpe_1_1render_1_1_textures_adf5081ac8b7892c619b284fdefccdff3}{Textures::RoughnessAtlas}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}}.RoughnessMap);}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_material_manager_a2af0aaa9ef9bd87a55981b88cd8fd7a9}{AddLayer}}(*\mbox{\hyperlink{structxpe_1_1render_1_1_textures_a23d603423d753c8df77368b4a62aac4c}{Textures::AOAtlas}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}}.AOMap);}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_material_manager_a2af0aaa9ef9bd87a55981b88cd8fd7a9}{AddLayer}}(*\mbox{\hyperlink{structxpe_1_1render_1_1_textures_acc343398897ff2e4334c241c7fb83f58}{Textures::EmissionAtlas}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}}.EmissionMap);}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_af61f00806c13311b489ee4f5abc0a12d}{Buffers::Material}}-\/>\mbox{\hyperlink{classxpe_1_1render_1_1s_list_buffer_ad9de1835e029836261d585eec95bedd5}{Flush}}();}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{material}};}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00053}00053\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{material__manager_8hpp_source_l00055}00055\ \}}
 
 \end{DoxyCode}

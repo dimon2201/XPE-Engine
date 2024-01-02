@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -53,6 +59,23 @@ $(function() {
 $(function() { codefold.init(0); });
 /* @license-end */
 </script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('ring__buffer_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -74,11 +97,6 @@ $(function() { codefold.init(0); });
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li><li class="navelem"><a class="el" href="dir_19e277690a1829304e766a2009d3edd1.html">stl</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle"><div class="title">ring_buffer.hpp</div></div>
 </div><!--header-->
@@ -166,19 +184,23 @@ $(function() { codefold.init(0); });
 </div>
 </div>
 </div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_object_html"><div class="ttname"><a href="classxpe_1_1core_1_1c_object.html">xpe::core::cObject</a></div><div class="ttdef"><b>Definition</b> types.hpp:39</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_ring_buffer_html"><div class="ttname"><a href="classxpe_1_1core_1_1c_ring_buffer.html">xpe::core::cRingBuffer</a></div><div class="ttdef"><b>Definition</b> ring_buffer.hpp:9</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_ring_buffer_html_a642e4da2861f21242c6268b480a0eb88"><div class="ttname"><a href="classxpe_1_1core_1_1c_ring_buffer.html#a642e4da2861f21242c6268b480a0eb88">xpe::core::cRingBuffer::Pop</a></div><div class="ttdeci">bool Pop(T &amp;item)</div><div class="ttdef"><b>Definition</b> ring_buffer.hpp:51</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_ring_buffer_html_a7e2a7496f4d8a0f1f1a741ab765f7dad"><div class="ttname"><a href="classxpe_1_1core_1_1c_ring_buffer.html#a7e2a7496f4d8a0f1f1a741ab765f7dad">xpe::core::cRingBuffer::Reserve</a></div><div class="ttdeci">void Reserve(usize capacity)</div><div class="ttdef"><b>Definition</b> ring_buffer.hpp:25</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_ring_buffer_html_add2bf87765a5be55fd2547edacc153f0"><div class="ttname"><a href="classxpe_1_1core_1_1c_ring_buffer.html#add2bf87765a5be55fd2547edacc153f0">xpe::core::cRingBuffer::Push</a></div><div class="ttdeci">bool Push(const T &amp;item)</div><div class="ttdef"><b>Definition</b> ring_buffer.hpp:37</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_ring_buffer_html_aeeb81d25975173d770612c5857de76eb"><div class="ttname"><a href="classxpe_1_1core_1_1c_ring_buffer.html#aeeb81d25975173d770612c5857de76eb">xpe::core::cRingBuffer::Resize</a></div><div class="ttdeci">void Resize(usize size)</div><div class="ttdef"><b>Definition</b> ring_buffer.hpp:31</div></div>
-<div class="ttc" id="anamespacexpe_1_1core_html_a7a9b1d92471db2af59acf8c301267fde"><div class="ttname"><a href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">xpe::core::vector</a></div><div class="ttdeci">std::vector&lt; T, cMainAllocator&lt; T &gt; &gt; vector</div><div class="ttdef"><b>Definition</b> stl.hpp:17</div></div>
-<div class="ttc" id="anamespacexpe_1_1core_html_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b"><div class="ttname"><a href="namespacexpe_1_1core.html#ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">xpe::core::T</a></div><div class="ttdeci">@ T</div><div class="ttdef"><b>Definition</b> codes_keyboard.hpp:57</div></div>
-<div class="ttc" id="anamespacexpe_html"><div class="ttname"><a href="namespacexpe.html">xpe</a></div><div class="ttdef"><b>Definition</b> anim.hpp:3</div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_object_html"><div class="ttname"><a href="classxpe_1_1core_1_1c_object.html">xpe::core::cObject</a></div><div class="ttdef"><b>Definition</b> <a href="types_8hpp_source.html#l00038">types.hpp:39</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_ring_buffer_html"><div class="ttname"><a href="classxpe_1_1core_1_1c_ring_buffer.html">xpe::core::cRingBuffer</a></div><div class="ttdef"><b>Definition</b> <a href="#l00008">ring_buffer.hpp:9</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_ring_buffer_html_a642e4da2861f21242c6268b480a0eb88"><div class="ttname"><a href="classxpe_1_1core_1_1c_ring_buffer.html#a642e4da2861f21242c6268b480a0eb88">xpe::core::cRingBuffer::Pop</a></div><div class="ttdeci">bool Pop(T &amp;item)</div><div class="ttdef"><b>Definition</b> <a href="#l00051">ring_buffer.hpp:51</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_ring_buffer_html_a7e2a7496f4d8a0f1f1a741ab765f7dad"><div class="ttname"><a href="classxpe_1_1core_1_1c_ring_buffer.html#a7e2a7496f4d8a0f1f1a741ab765f7dad">xpe::core::cRingBuffer::Reserve</a></div><div class="ttdeci">void Reserve(usize capacity)</div><div class="ttdef"><b>Definition</b> <a href="#l00025">ring_buffer.hpp:25</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_ring_buffer_html_add2bf87765a5be55fd2547edacc153f0"><div class="ttname"><a href="classxpe_1_1core_1_1c_ring_buffer.html#add2bf87765a5be55fd2547edacc153f0">xpe::core::cRingBuffer::Push</a></div><div class="ttdeci">bool Push(const T &amp;item)</div><div class="ttdef"><b>Definition</b> <a href="#l00037">ring_buffer.hpp:37</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_ring_buffer_html_aeeb81d25975173d770612c5857de76eb"><div class="ttname"><a href="classxpe_1_1core_1_1c_ring_buffer.html#aeeb81d25975173d770612c5857de76eb">xpe::core::cRingBuffer::Resize</a></div><div class="ttdeci">void Resize(usize size)</div><div class="ttdef"><b>Definition</b> <a href="#l00031">ring_buffer.hpp:31</a></div></div>
+<div class="ttc" id="anamespacexpe_1_1core_html_a7a9b1d92471db2af59acf8c301267fde"><div class="ttname"><a href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">xpe::core::vector</a></div><div class="ttdeci">std::vector&lt; T, cMainAllocator&lt; T &gt; &gt; vector</div><div class="ttdef"><b>Definition</b> <a href="stl_8hpp_source.html#l00017">stl.hpp:17</a></div></div>
+<div class="ttc" id="anamespacexpe_1_1core_html_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b"><div class="ttname"><a href="namespacexpe_1_1core.html#ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">xpe::core::T</a></div><div class="ttdeci">@ T</div><div class="ttdef"><b>Definition</b> <a href="codes__keyboard_8hpp_source.html#l00057">codes_keyboard.hpp:57</a></div></div>
+<div class="ttc" id="anamespacexpe_html"><div class="ttname"><a href="namespacexpe.html">xpe</a></div><div class="ttdef"><b>Definition</b> <a href="anim_8hpp_source.html#l00003">anim.hpp:3</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li><li class="navelem"><a class="el" href="dir_19e277690a1829304e766a2009d3edd1.html">stl</a></li><li class="navelem"><a class="el" href="ring__buffer_8hpp.html">ring_buffer.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

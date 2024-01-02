@@ -1,0 +1,11 @@
+<map id="xpe::render::cWidgetShader::Draw" name="xpe::render::cWidgetShader::Draw">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,105,189,148"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1render_1_1c_camera_manager.html#abe3b469b340e88d3b463a76164e5f308" title=" " alt="" coords="237,5,433,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,103,236,58,251,51,253,56,238,62,141,107"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1render_1_1c_camera_manager.html#a58279b3cb239ca16a76b8d04eacb93cc" title=" " alt="" coords="237,72,433,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="189,111,221,107,222,112,190,116"/>
+<area shape="rect" id="Node000004" href="$classxpe_1_1core_1_1c_input_manager.html#a54f5c248de3d090bad3605187bf6a87e" title=" " alt="" coords="251,139,419,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="190,137,235,143,235,149,189,142"/>
+<area shape="rect" id="Node000005" href="$classxpe_1_1math_1_1c_math_manager.html#a0b5cbb14457c0bb17e32670b8251335b" title=" " alt="" coords="248,205,422,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="141,146,238,191,253,197,251,202,236,196,139,151"/>
+</map>

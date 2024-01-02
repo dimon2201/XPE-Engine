@@ -1,0 +1,192 @@
+\doxysection{app.\+cpp}
+\hypertarget{app_8cpp_source}{}\label{app_8cpp_source}\index{engine/src/core/app.cpp@{engine/src/core/app.cpp}}
+\mbox{\hyperlink{app_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{app_8hpp}{core/app.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{debugger_8hpp}{rendering/core/debugger.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{render__system_8hpp}{rendering/render\_system.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{canvas_8hpp}{rendering/canvas.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{bindings_8hpp}{rendering/bindings.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{shaders_8hpp}{rendering/shaders.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{anim__system_8hpp}{anim/anim\_system.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{audio__system_8hpp}{audio/audio\_system.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{physics__manager_8hpp}{physics/physics\_manager.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{physics__system_8hpp}{physics/physics\_system.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00016}00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00018}00018\ \ \ \ \ \textcolor{keyword}{using\ namespace\ }render;}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00019}00019\ \ \ \ \ \textcolor{keyword}{using\ namespace\ }ecs;}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00020}00020\ \ \ \ \ \textcolor{keyword}{using\ namespace\ }anim;}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00021}00021\ \ \ \ \ \textcolor{keyword}{using\ namespace\ }audio;}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00022}00022\ \ \ \ \ \textcolor{keyword}{using\ namespace\ }physics;}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00024}00024\ \ \ \ \ \textcolor{keyword}{namespace\ }core\ \{}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00026}\mbox{\hyperlink{classxpe_1_1core_1_1c_app_adf244904fa58277fe265be994ae664fc}{00026}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_adf244904fa58277fe265be994ae664fc}{cApp::Run}}()}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_logger_descriptor}{sLoggerDescriptor}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{logDesc}};}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{logDesc}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_logger_descriptor_afc1b0ee6bfda7d6bba679494db09bb7a}{Name}}\ =\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a05df6daee01aea8de6417a1900702caf}{LogTitle}}.c\_str();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{logDesc}}.Backtrace\ =\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a63eefdde091f2c253a3cda2baa184275}{LogBacktrace}};}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log__manager_8hpp_ace537ecfc8a0c748069d8946e3a48369}{InitLogger}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{logDesc}});}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor}{sWindowDescriptor}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{winDesc}};}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{winDesc}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_abeacae5dd25884d31e9b16fc50448178}{Title}}\ =\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.WinTitle.c\_str();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{winDesc}}.Width\ =\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a80e6b6553193953e456c6e2f35297d32}{WinWidth}};}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{winDesc}}.Height\ =\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_af516a3d629e71ffc18d60dde9c875fd6}{WinHeight}};}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{winDesc}}.X\ =\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_af912eff016d31d8adfd619bf4ded8cf9}{WinX}};}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{winDesc}}.Y\ =\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a2bb52f0570e63dae9e2d5abd380e6014}{WinY}};}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{winDesc}}.VSync\ =\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a790e643af27d43ef9749bdc55a6256a3}{VSync}};}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{winDesc}}.Fullscreen\ =\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a1c442f3483b8a4aec58343e8bda6505b}{Fullscreen}};}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{winDesc}}.Gamma\ =\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a718146fc87ff59c80bd01c76e62f633f}{Gamma}};}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{winDesc}}.Exposure\ =\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a840271115d6af0604f3267e189d23677}{Exposure}};}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_aa093bbe02a4e655fa90d7c03459a8235}{DeltaTime}}.\mbox{\hyperlink{classxpe_1_1core_1_1c_time_a7f748397ee483ce2bfdf6ce54e89992d}{SetFps}}(\mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a1823d143e1013df4c8ba7e8d753f82b0}{FPS}});}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_afa7bf2c8fb46d0ab2f731b097ad4e3a0}{CPUTime}}\ =\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_aa093bbe02a4e655fa90d7c03459a8235}{DeltaTime}};}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_manager_a46a55aa8997512cd132a29694a4f5526}{cTaskManager::Init}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_ab412052ff29ce97f039a00d4f9a2e492}{cEventManager::Init}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_window_manager_ab5db59ec1956eab92788445e2a236ade}{cWindowManager::Init}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_window_manager_a5acf1469a7302505924c4c95048009c8}{cWindowManager::InitWindow}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{winDesc}});}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_input_manager_a6e64b8653d658153d72bba1301edec2c}{cInputManager::Init}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_a37d2691cdf4bf8bf56425ffee6d932ec}{cPhysicsManager::Init}}(\mbox{\hyperlink{classxpe_1_1core_1_1c_task_manager_afdf5cf1f256eb417b3207318805aaba3}{cTaskManager::GetSimulationDispatcher}}());}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_1_1context_af2d11cdae2d8d2f7d279f2f5084af3db}{render::context::EnableInfoLog}}\ =\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a6540494d2193a2df842b87f1936a6e78}{EnableGPUInfoLog}};}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_1_1context_a0aadefb26c0f0b42144c840348f50dc8}{render::context::EnableWarnLog}}\ =\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_addd31d13da2f5aa0f721460f33ff1748}{EnableGPUWarnLog}};}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_1_1context_a8d307d9518a59bafae06691f1c8009cc}{render::context::EnableErrorLog}}\ =\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a7c9c2f867c6786427cb34c9356cd8c21}{EnableGPUErrorLog}};}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_aa5fbd2978189be084ded83cb82bce612}{m\_Viewport}}.\mbox{\hyperlink{structxpe_1_1render_1_1s_viewport_af844df25d5d2c89c0c9cb8ebacbfc7a9}{Width}}\ =\ \mbox{\hyperlink{classxpe_1_1core_1_1c_window_manager_afe9947fdbfa0a31f51a29d9553362c8c}{cWindowManager::GetWidth}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_aa5fbd2978189be084ded83cb82bce612}{m\_Viewport}}.\mbox{\hyperlink{structxpe_1_1render_1_1s_viewport_a5bf4baa8340c1e14a5208eba4165add7}{Height}}\ =\ \mbox{\hyperlink{classxpe_1_1core_1_1c_window_manager_a146fad2784fb4c33d64eaa08ae1bc340}{cWindowManager::GetHeight}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_ad570e1eb695c8e071001503abef9106f}{m\_RenderSystem}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_render_system}{cRenderSystem}}(\mbox{\hyperlink{classxpe_1_1core_1_1c_app_aa5fbd2978189be084ded83cb82bce612}{m\_Viewport}},\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a599d63e604f7e57d34d49ea56a6bc2d8}{MsaaSampleCount}});}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a383aa3cc5c1df7085ff2601d5ef3c559}{m\_Canvas}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_canvas}{cCanvas}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a96c4c6c63918967c724923577f7570f3}{m\_AnimSystem}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classxpe_1_1anim_1_1c_anim_system}{cAnimSystem}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a39fceb74db114dad5ab2f2bcf5f27be2}{m\_AudioSystem}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_system}{cAudioSystem}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_abbe71f6bebeba16997b626d3f1941039}{m\_PhysicsSystem}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_system}{cPhysicsSystem}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0346f4840135da0c87a39899926cd98e}{InitShaders}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_aba0502682c716b06e9b0b8e69bb18878}{cCameraManager::SetExposure}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{winDesc}}.Exposure);}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_ac36b65d33a2ff4f2624492b3733fab11}{cCameraManager::SetGamma}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{winDesc}}.Gamma);}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a8b18a15ca5b08c1cd6e06985a9ee28f9}{m\_Scene}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a5ef55c63d56dfccfc7738b50cf5be70a}{Init}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_ad570e1eb695c8e071001503abef9106f}{m\_RenderSystem}}-\/>\mbox{\hyperlink{classxpe_1_1render_1_1c_render_system_ac2834a58be8933708392e7d92a79e43e}{Prepare}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{classxpe_1_1core_1_1c_app_a56f56ce2f1d738cc92dd1017bb737b61}{m\_Opened}})}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ measure\ cpu\ ticks\ in\ seconds\ and\ log\ CPU\ time}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00082}00082\ \textcolor{preprocessor}{\#ifdef\ DEBUG}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cpuTickSec}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cpuTickSec}}\ +=\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_afa7bf2c8fb46d0ab2f731b097ad4e3a0}{CPUTime}}.\mbox{\hyperlink{classxpe_1_1core_1_1c_time_a9ef071be238e4c1adb24bc48e9b990b3}{Seconds}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cpuTickSec}}\ >=\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_aa7872ab3325e0842574d226448d8831e}{LogTimeDelaySeconds}})\ \{}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cpuTickSec}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{time__manager_8hpp_ab3a55de6979b221cf68ec9d259b90f3a}{LogCpuTime}}(\mbox{\hyperlink{classxpe_1_1core_1_1c_app_afa7bf2c8fb46d0ab2f731b097ad4e3a0}{CPUTime}});}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{memory__manager_8hpp_ac17247c0375861bfc4d740e77109acdc}{LogMemoryPools}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{core_2allocators_8hpp_abdfa33f12655d0a8f26a1fb077ee2f0a}{LogStackMemory}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00091}00091\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_time_manager}{cTimeManager}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cpuTimer}}(\&\mbox{\hyperlink{classxpe_1_1core_1_1c_app_afa7bf2c8fb46d0ab2f731b097ad4e3a0}{CPUTime}});}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_time_manager}{cTimeManager}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{deltaTimer}}(\&\mbox{\hyperlink{classxpe_1_1core_1_1c_app_aa093bbe02a4e655fa90d7c03459a8235}{DeltaTime}});}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a2e4a9bdbfb9563c041ab0447a108e26d}{CurrentTime}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cpuTimer}}.GetStartTime();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a3b069d8cbc5de0646cc885b9ccc62d85}{Update}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ submit\ audio\ task\ with\ current\ scene\ state}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_manager_a0e82de392ba02bbe3ad1303ef2d4d813}{cTaskManager::SubmitTask}}(\{\ \mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06af4bf6660262e3d2549982e749ae1d3ae}{sTask::eType::AUDIO}},\ [\textcolor{keyword}{this}]()\ \{}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a39fceb74db114dad5ab2f2bcf5f27be2}{m\_AudioSystem}}-\/>\mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_system_aa5ea13f96fded87ef85fd3164207670f}{Update}}(\mbox{\hyperlink{classxpe_1_1core_1_1c_app_a8b18a15ca5b08c1cd6e06985a9ee28f9}{m\_Scene}},\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_aa093bbe02a4e655fa90d7c03459a8235}{DeltaTime}});}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\});}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ submit\ animation\ task\ with\ current\ scene\ state}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_manager_a0e82de392ba02bbe3ad1303ef2d4d813}{cTaskManager::SubmitTask}}(\{\ \mbox{\hyperlink{structxpe_1_1core_1_1s_task_a2504f45dc46cedefee9d942004e12e06ac714ab3a4d500fd02027aa8ad56b221b}{sTask::eType::ANIMATION}},\ [\textcolor{keyword}{this}]()\ \{}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a96c4c6c63918967c724923577f7570f3}{m\_AnimSystem}}-\/>\mbox{\hyperlink{classxpe_1_1anim_1_1c_anim_system_a0a35098c9165bcf4720ccfd500467e9d}{Update}}(\mbox{\hyperlink{classxpe_1_1core_1_1c_app_a8b18a15ca5b08c1cd6e06985a9ee28f9}{m\_Scene}},\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_aa093bbe02a4e655fa90d7c03459a8235}{DeltaTime}});}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\});}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ calls\ physics\ simulation\ that\ will\ be\ automatically\ dispatched\ into\ TaskManager}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ don't\ need\ to\ submit\ physics\ system\ into\ task}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_abbe71f6bebeba16997b626d3f1941039}{m\_PhysicsSystem}}-\/>\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_system_a5679425dd00d09e95985cb8ffb23a036}{Update}}(\mbox{\hyperlink{classxpe_1_1core_1_1c_app_a8b18a15ca5b08c1cd6e06985a9ee28f9}{m\_Scene}},\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_aa093bbe02a4e655fa90d7c03459a8235}{DeltaTime}});}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a1b8ab19056f84742e5fa02c488cf3f52}{Render}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_window_manager_a8130115cee9a62495d705fdd78be284f}{cWindowManager::PollEvents}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_window_manager_a2783e36503821ce0cb3d15d7be6c9c4d}{cWindowManager::Swap}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a56f56ce2f1d738cc92dd1017bb737b61}{m\_Opened}}\ =\ !\mbox{\hyperlink{classxpe_1_1core_1_1c_window_manager_a0e9a87fc7593793533fe673a3078dab0}{cWindowManager::ShouldClose}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ measure\ delta\ ticks\ in\ seconds\ and\ log\ delta}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00122}00122\ \textcolor{preprocessor}{\#ifdef\ DEBUG}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{deltaTickSec}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{deltaTickSec}}\ +=\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_afa7bf2c8fb46d0ab2f731b097ad4e3a0}{CPUTime}}.\mbox{\hyperlink{classxpe_1_1core_1_1c_time_a9ef071be238e4c1adb24bc48e9b990b3}{Seconds}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{deltaTickSec}}\ >=\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_aa7872ab3325e0842574d226448d8831e}{LogTimeDelaySeconds}})\ \{}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{deltaTickSec}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log__manager_8hpp_ab1ef1da5fb4535faa4cac7287d508334}{LogTime}}(\mbox{\hyperlink{classxpe_1_1core_1_1c_app_aa093bbe02a4e655fa90d7c03459a8235}{DeltaTime}});}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00129}00129\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a2024288747447bdb0a69a021fed66b2f}{Free}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a8b18a15ca5b08c1cd6e06985a9ee28f9}{m\_Scene}};}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a39fceb74db114dad5ab2f2bcf5f27be2}{m\_AudioSystem}};}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a96c4c6c63918967c724923577f7570f3}{m\_AnimSystem}};}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a383aa3cc5c1df7085ff2601d5ef3c559}{m\_Canvas}};}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_ad570e1eb695c8e071001503abef9106f}{m\_RenderSystem}};}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_manager_a4f1601625b22bfa825c44ee871d4f8be}{cPhysicsManager::Free}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_input_manager_a9ec787efb7db503df7a6d05119a3d8de}{cInputManager::Free}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_window_manager_af5dfe3894003a8ad57e1354021b8d298}{cWindowManager::FreeWindow}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_window_manager_a89c96ef2f0b2adb0e3d731e2a61f3ce9}{cWindowManager::Free}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_event_manager_ade6d0f70bc2e8420e85ffa785fb6ce00}{cEventManager::Free}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_task_manager_a1460b83cb7d2cc385262757d46157076}{cTaskManager::Free}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log__manager_8hpp_a2483e63d382a5858591b9d725cf36485}{FreeLogger}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00152}\mbox{\hyperlink{classxpe_1_1core_1_1c_app_a3755f6a16cd4ffbf305714016a876383}{00152}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a3755f6a16cd4ffbf305714016a876383}{cApp::LockFPSFromConfig}}()}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a72ff94e27d9a4e862ac4f25000a456b4}{LockOnFps}}\ \&\&\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a1823d143e1013df4c8ba7e8d753f82b0}{FPS}}\ <\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_aa093bbe02a4e655fa90d7c03459a8235}{DeltaTime}}.\mbox{\hyperlink{classxpe_1_1core_1_1c_time_af639bb5b7e24e85652ddd5508db9fd9a}{Fps}}())}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_aa093bbe02a4e655fa90d7c03459a8235}{DeltaTime}}.\mbox{\hyperlink{classxpe_1_1core_1_1c_time_a7f748397ee483ce2bfdf6ce54e89992d}{SetFps}}(\mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a1823d143e1013df4c8ba7e8d753f82b0}{FPS}});}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00160}\mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0346f4840135da0c87a39899926cd98e}{00160}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0346f4840135da0c87a39899926cd98e}{cApp::InitShaders}}()}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_manager_a25db8a33bd2cf7ff61d126363bcb945f}{cShaderManager::SetShader}}(\textcolor{keyword}{new}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_skybox_shader}{cSkyboxShader}}(\textcolor{stringliteral}{"{}skybox"{}}));}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_manager_a25db8a33bd2cf7ff61d126363bcb945f}{cShaderManager::SetShader}}(\textcolor{keyword}{new}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_directional_shadow_shader}{cDirectionalShadowShader}}(\textcolor{stringliteral}{"{}directional\_shadow"{}}));}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00164}00164\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ cShaderManager::SetShader(new\ cPointShadowShader("{}point\_shadow"{}));}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00165}00165\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ cShaderManager::SetShader(new\ cSpotShadowShader("{}spot\_shadow"{}));}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_manager_a25db8a33bd2cf7ff61d126363bcb945f}{cShaderManager::SetShader}}(\textcolor{keyword}{new}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_opaque_shader}{cOpaqueShader}}(\textcolor{stringliteral}{"{}opaque"{}}));}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_manager_a25db8a33bd2cf7ff61d126363bcb945f}{cShaderManager::SetShader}}(\textcolor{keyword}{new}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_transparent_shader}{cTransparentShader}}(\textcolor{stringliteral}{"{}transparent"{}}));}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_manager_a25db8a33bd2cf7ff61d126363bcb945f}{cShaderManager::SetShader}}(\textcolor{keyword}{new}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_composite_transparent_shader}{cCompositeTransparentShader}}(\textcolor{stringliteral}{"{}composite\_transparent"{}},\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a599d63e604f7e57d34d49ea56a6bc2d8}{MsaaSampleCount}}));}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_manager_a25db8a33bd2cf7ff61d126363bcb945f}{cShaderManager::SetShader}}(\textcolor{keyword}{new}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_ssao_shader}{cSsaoShader}}(\textcolor{stringliteral}{"{}ssao"{}},\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a599d63e604f7e57d34d49ea56a6bc2d8}{MsaaSampleCount}}));}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_manager_a25db8a33bd2cf7ff61d126363bcb945f}{cShaderManager::SetShader}}(\textcolor{keyword}{new}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_widget_shader}{cWidgetShader}}(\textcolor{stringliteral}{"{}widget"{}}));}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_manager_a25db8a33bd2cf7ff61d126363bcb945f}{cShaderManager::SetShader}}(\textcolor{keyword}{new}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_text_shader}{cTextShader}}(\textcolor{stringliteral}{"{}text"{}}));}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_manager_a25db8a33bd2cf7ff61d126363bcb945f}{cShaderManager::SetShader}}(\textcolor{keyword}{new}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_final_shader}{cFinalShader}}(\textcolor{stringliteral}{"{}final"{}},\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_a599d63e604f7e57d34d49ea56a6bc2d8}{MsaaSampleCount}}));}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_shader_manager_a4057793b0888fbca76fcaa4b670dae05}{cShaderManager::GetShader}}(\textcolor{stringliteral}{"{}ssao"{}})-\/>\mbox{\hyperlink{classxpe_1_1render_1_1c_shader_afb11bac579269c1289d67f9ef0892980}{Enable}}\ =\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a0cc9fce34bf62c88a60d175f0a7f89bf}{Config}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_app_config_af4517f8977b042a2024669783c4f8c77}{EnableSSAO}};}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00177}\mbox{\hyperlink{classxpe_1_1core_1_1c_app_a1b8ab19056f84742e5fa02c488cf3f52}{00177}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a1b8ab19056f84742e5fa02c488cf3f52}{cApp::Render}}()}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_render_targets_a4edea5878877cdda968bc46eb9da6707}{RenderTargets::SSAO}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_render_target_af588c7ab0827cf451febf7f410b23609}{Clear}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_ad570e1eb695c8e071001503abef9106f}{m\_RenderSystem}}-\/>\mbox{\hyperlink{classxpe_1_1render_1_1c_render_system_adf9ca8fc79ed13660b521ef4cf9f78be}{Update}}(\mbox{\hyperlink{classxpe_1_1core_1_1c_app_a8b18a15ca5b08c1cd6e06985a9ee28f9}{m\_Scene}},\ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_aa093bbe02a4e655fa90d7c03459a8235}{DeltaTime}});}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_app_a383aa3cc5c1df7085ff2601d5ef3c559}{m\_Canvas}}-\/>\mbox{\hyperlink{classxpe_1_1render_1_1c_canvas_a220c846d34dca49160b1d1af669cba2a}{Draw}}();}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00183}00183\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00184}00184\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{app_8cpp_source_l00186}00186\ \}}
+
+\end{DoxyCode}

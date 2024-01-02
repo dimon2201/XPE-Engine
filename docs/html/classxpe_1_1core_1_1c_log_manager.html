@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classxpe_1_1core_1_1c_log_manager.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1core.html">core</a></li><li class="navelem"><a class="el" href="classxpe_1_1core_1_1c_log_manager.html">cLogManager</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
@@ -99,7 +117,10 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a9926687b6984605f8e0282325d7264a0" id="r_a9926687b6984605f8e0282325d7264a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">static</a> <a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9926687b6984605f8e0282325d7264a0">DumpBacktrace</a> ()</td></tr>
 <tr class="separator:a9926687b6984605f8e0282325d7264a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="log__manager_8hpp_source.html#l00056">56</a> of file <a class="el" href="log__manager_8hpp_source.html">log_manager.hpp</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a9926687b6984605f8e0282325d7264a0" name="a9926687b6984605f8e0282325d7264a0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9926687b6984605f8e0282325d7264a0">&#9670;&#160;</a></span>DumpBacktrace()</h2>
 
@@ -122,6 +143,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="log__manager_8cpp_source.html#l00080">80</a> of file <a class="el" href="log__manager_8cpp_source.html">log_manager.cpp</a>.</p>
 
 </div>
 </div>
@@ -148,6 +171,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="log__manager_8cpp_source.html#l00074">74</a> of file <a class="el" href="log__manager_8cpp_source.html">log_manager.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a619950f7cd7eca33631d17311e25de06" name="a619950f7cd7eca33631d17311e25de06"></a>
@@ -172,6 +197,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="log__manager_8cpp_source.html#l00084">84</a> of file <a class="el" href="log__manager_8cpp_source.html">log_manager.cpp</a>.</p>
 
 </div>
 </div>
@@ -198,6 +225,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="log__manager_8cpp_source.html#l00092">92</a> of file <a class="el" href="log__manager_8cpp_source.html">log_manager.cpp</a>.</p>
+
 </div>
 </div>
 <a id="ab61d9f265f1d8a79f8c35ced774bf096" name="ab61d9f265f1d8a79f8c35ced774bf096"></a>
@@ -222,6 +251,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="log__manager_8cpp_source.html#l00088">88</a> of file <a class="el" href="log__manager_8cpp_source.html">log_manager.cpp</a>.</p>
 
 </div>
 </div>
@@ -248,16 +279,22 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="log__manager_8cpp_source.html#l00038">38</a> of file <a class="el" href="log__manager_8cpp_source.html">log_manager.cpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>engine/src/core/<a class="el" href="log__manager_8hpp_source.html">log_manager.hpp</a></li>
-<li>engine/src/core/<a class="el" href="log__manager_8cpp.html">log_manager.cpp</a></li>
+<li>engine/src/core/<a class="el" href="log__manager_8cpp_source.html">log_manager.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1core.html">core</a></li><li class="navelem"><a class="el" href="classxpe_1_1core_1_1c_log_manager.html">cLogManager</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

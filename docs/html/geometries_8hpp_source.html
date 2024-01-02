@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -53,6 +59,23 @@ $(function() {
 $(function() { codefold.init(0); });
 /* @license-end */
 </script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('geometries_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -74,11 +97,6 @@ $(function() { codefold.init(0); });
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li><li class="navelem"><a class="el" href="dir_c82fe33ead33fcc3829b24ace9891300.html">rendering</a></li><li class="navelem"><a class="el" href="dir_24058a3dfe158ba78d4abd2421b76572.html">geometry</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle"><div class="title">geometries.hpp</div></div>
 </div><!--header-->
@@ -274,39 +292,43 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>}</div>
 <div class="ttc" id="ageometry_8hpp_html"><div class="ttname"><a href="geometry_8hpp.html">geometry.hpp</a></div></div>
-<div class="ttc" id="ajson_8hpp_html_a64a0d7950ac2a45cdc342a649e970f96"><div class="ttname"><a href="json_8hpp.html#a64a0d7950ac2a45cdc342a649e970f96">JSON</a></div><div class="ttdeci">#define JSON(clazz,...)</div><div class="ttdef"><b>Definition</b> json.hpp:9</div></div>
-<div class="ttc" id="ajson_8hpp_html_a85a6dfc31ce6b1db814a5641eee98a59"><div class="ttname"><a href="json_8hpp.html#a85a6dfc31ce6b1db814a5641eee98a59">JSON_ENUM</a></div><div class="ttdeci">#define JSON_ENUM(clazz,...)</div><div class="ttdef"><b>Definition</b> json.hpp:27</div></div>
-<div class="ttc" id="amacro__build_8hpp_html_a0697ee40f69dc5dab56d13131f4c4835"><div class="ttname"><a href="macro__build_8hpp.html#a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</a></div><div class="ttdeci">#define ENGINE_API</div><div class="ttdef"><b>Definition</b> macro_build.hpp:17</div></div>
-<div class="ttc" id="anamespacexpe_1_1core_html_a7a9b1d92471db2af59acf8c301267fde"><div class="ttname"><a href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">xpe::core::vector</a></div><div class="ttdeci">std::vector&lt; T, cMainAllocator&lt; T &gt; &gt; vector</div><div class="ttdef"><b>Definition</b> stl.hpp:17</div></div>
-<div class="ttc" id="anamespacexpe_1_1core_html_aa507c1ad5e6e22c6561d60671555dafc"><div class="ttname"><a href="namespacexpe_1_1core.html#aa507c1ad5e6e22c6561d60671555dafc">xpe::core::u32</a></div><div class="ttdeci">uint32_t u32</div><div class="ttdef"><b>Definition</b> types.hpp:11</div></div>
-<div class="ttc" id="anamespacexpe_1_1core_html_accef6bf85b3c0f0eb539eb2a4f1c6109"><div class="ttname"><a href="namespacexpe_1_1core.html#accef6bf85b3c0f0eb539eb2a4f1c6109">xpe::core::s32</a></div><div class="ttdeci">int32_t s32</div><div class="ttdef"><b>Definition</b> types.hpp:12</div></div>
-<div class="ttc" id="anamespacexpe_1_1render_html_a0829045bba88bd2197a49b7c5226531a"><div class="ttname"><a href="namespacexpe_1_1render.html#a0829045bba88bd2197a49b7c5226531a">xpe::render::PrimitiveTopology</a></div><div class="ttdeci">PrimitiveTopology</div><div class="ttdef"><b>Definition</b> geometries.hpp:23</div></div>
-<div class="ttc" id="anamespacexpe_1_1render_html_a1ed914ac1656a886e026259749d31100"><div class="ttname"><a href="namespacexpe_1_1render.html#a1ed914ac1656a886e026259749d31100">xpe::render::ePrimitiveTopology</a></div><div class="ttdeci">ePrimitiveTopology</div><div class="ttdef"><b>Definition</b> core.hpp:35</div></div>
+<div class="ttc" id="ajson_8hpp_html_a64a0d7950ac2a45cdc342a649e970f96"><div class="ttname"><a href="json_8hpp.html#a64a0d7950ac2a45cdc342a649e970f96">JSON</a></div><div class="ttdeci">#define JSON(clazz,...)</div><div class="ttdef"><b>Definition</b> <a href="json_8hpp_source.html#l00009">json.hpp:9</a></div></div>
+<div class="ttc" id="ajson_8hpp_html_a85a6dfc31ce6b1db814a5641eee98a59"><div class="ttname"><a href="json_8hpp.html#a85a6dfc31ce6b1db814a5641eee98a59">JSON_ENUM</a></div><div class="ttdeci">#define JSON_ENUM(clazz,...)</div><div class="ttdef"><b>Definition</b> <a href="json_8hpp_source.html#l00027">json.hpp:27</a></div></div>
+<div class="ttc" id="amacro__build_8hpp_html_a0697ee40f69dc5dab56d13131f4c4835"><div class="ttname"><a href="macro__build_8hpp.html#a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</a></div><div class="ttdeci">#define ENGINE_API</div><div class="ttdef"><b>Definition</b> <a href="macro__build_8hpp_source.html#l00017">macro_build.hpp:17</a></div></div>
+<div class="ttc" id="anamespacexpe_1_1core_html_a7a9b1d92471db2af59acf8c301267fde"><div class="ttname"><a href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">xpe::core::vector</a></div><div class="ttdeci">std::vector&lt; T, cMainAllocator&lt; T &gt; &gt; vector</div><div class="ttdef"><b>Definition</b> <a href="stl_8hpp_source.html#l00017">stl.hpp:17</a></div></div>
+<div class="ttc" id="anamespacexpe_1_1core_html_aa507c1ad5e6e22c6561d60671555dafc"><div class="ttname"><a href="namespacexpe_1_1core.html#aa507c1ad5e6e22c6561d60671555dafc">xpe::core::u32</a></div><div class="ttdeci">uint32_t u32</div><div class="ttdef"><b>Definition</b> <a href="types_8hpp_source.html#l00011">types.hpp:11</a></div></div>
+<div class="ttc" id="anamespacexpe_1_1core_html_accef6bf85b3c0f0eb539eb2a4f1c6109"><div class="ttname"><a href="namespacexpe_1_1core.html#accef6bf85b3c0f0eb539eb2a4f1c6109">xpe::core::s32</a></div><div class="ttdeci">int32_t s32</div><div class="ttdef"><b>Definition</b> <a href="types_8hpp_source.html#l00012">types.hpp:12</a></div></div>
+<div class="ttc" id="anamespacexpe_1_1render_html_a0829045bba88bd2197a49b7c5226531a"><div class="ttname"><a href="namespacexpe_1_1render.html#a0829045bba88bd2197a49b7c5226531a">xpe::render::PrimitiveTopology</a></div><div class="ttdeci">PrimitiveTopology</div><div class="ttdef"><b>Definition</b> <a href="#l00023">geometries.hpp:23</a></div></div>
+<div class="ttc" id="anamespacexpe_1_1render_html_a1ed914ac1656a886e026259749d31100"><div class="ttname"><a href="namespacexpe_1_1render.html#a1ed914ac1656a886e026259749d31100">xpe::render::ePrimitiveTopology</a></div><div class="ttdeci">ePrimitiveTopology</div><div class="ttdef"><b>Definition</b> <a href="rendering_2core_2core_8hpp_source.html#l00034">core.hpp:35</a></div></div>
 <div class="ttc" id="anamespacexpe_1_1render_html_a1ed914ac1656a886e026259749d31100a14d20da17f6d27fc43c5f311c17eb912"><div class="ttname"><a href="namespacexpe_1_1render.html#a1ed914ac1656a886e026259749d31100a14d20da17f6d27fc43c5f311c17eb912">xpe::render::ePrimitiveTopology::TRIANGLE_LIST</a></div><div class="ttdeci">@ TRIANGLE_LIST</div></div>
 <div class="ttc" id="anamespacexpe_1_1render_html_a1ed914ac1656a886e026259749d31100a195d93c98c5e94cad21509e910f65fae"><div class="ttname"><a href="namespacexpe_1_1render.html#a1ed914ac1656a886e026259749d31100a195d93c98c5e94cad21509e910f65fae">xpe::render::ePrimitiveTopology::LINE_LIST</a></div><div class="ttdeci">@ LINE_LIST</div></div>
 <div class="ttc" id="anamespacexpe_1_1render_html_a1ed914ac1656a886e026259749d31100a5b39c8b553c821e7cddc6da64b5bd2ee"><div class="ttname"><a href="namespacexpe_1_1render.html#a1ed914ac1656a886e026259749d31100a5b39c8b553c821e7cddc6da64b5bd2ee">xpe::render::ePrimitiveTopology::DEFAULT</a></div><div class="ttdeci">@ DEFAULT</div></div>
 <div class="ttc" id="anamespacexpe_1_1render_html_a1ed914ac1656a886e026259749d31100a708de017e3b83ccba21dfc9f6367d46f"><div class="ttname"><a href="namespacexpe_1_1render.html#a1ed914ac1656a886e026259749d31100a708de017e3b83ccba21dfc9f6367d46f">xpe::render::ePrimitiveTopology::TRIANGLE_STRIP</a></div><div class="ttdeci">@ TRIANGLE_STRIP</div></div>
 <div class="ttc" id="anamespacexpe_1_1render_html_a1ed914ac1656a886e026259749d31100ad2632e54a7b9520714554554f4b9619d"><div class="ttname"><a href="namespacexpe_1_1render.html#a1ed914ac1656a886e026259749d31100ad2632e54a7b9520714554554f4b9619d">xpe::render::ePrimitiveTopology::POINT_LIST</a></div><div class="ttdeci">@ POINT_LIST</div></div>
 <div class="ttc" id="anamespacexpe_1_1render_html_a1ed914ac1656a886e026259749d31100ae64a4d2159ed46d077e21a505575c814"><div class="ttname"><a href="namespacexpe_1_1render.html#a1ed914ac1656a886e026259749d31100ae64a4d2159ed46d077e21a505575c814">xpe::render::ePrimitiveTopology::LINE_STRIP</a></div><div class="ttdeci">@ LINE_STRIP</div></div>
-<div class="ttc" id="anamespacexpe_1_1render_html_ae8a095ac0234687d57db4287a5b747ef"><div class="ttname"><a href="namespacexpe_1_1render.html#ae8a095ac0234687d57db4287a5b747ef">xpe::render::Vertices</a></div><div class="ttdeci">Vertices</div><div class="ttdef"><b>Definition</b> geometries.hpp:24</div></div>
-<div class="ttc" id="anamespacexpe_html"><div class="ttname"><a href="namespacexpe.html">xpe</a></div><div class="ttdef"><b>Definition</b> anim.hpp:3</div></div>
-<div class="ttc" id="astructxpe_1_1render_1_1s_cube_html"><div class="ttname"><a href="structxpe_1_1render_1_1s_cube.html">xpe::render::sCube</a></div><div class="ttdef"><b>Definition</b> geometries.hpp:40</div></div>
-<div class="ttc" id="astructxpe_1_1render_1_1s_geometry_html"><div class="ttname"><a href="structxpe_1_1render_1_1s_geometry.html">xpe::render::sGeometry</a></div><div class="ttdef"><b>Definition</b> geometry.hpp:69</div></div>
-<div class="ttc" id="astructxpe_1_1render_1_1s_index_buffer_html"><div class="ttname"><a href="structxpe_1_1render_1_1s_index_buffer.html">xpe::render::sIndexBuffer</a></div><div class="ttdef"><b>Definition</b> buffers.hpp:13</div></div>
-<div class="ttc" id="astructxpe_1_1render_1_1s_line_html"><div class="ttname"><a href="structxpe_1_1render_1_1s_line.html">xpe::render::sLine</a></div><div class="ttdef"><b>Definition</b> geometries.hpp:32</div></div>
-<div class="ttc" id="astructxpe_1_1render_1_1s_model_html"><div class="ttname"><a href="structxpe_1_1render_1_1s_model.html">xpe::render::sModel</a></div><div class="ttdef"><b>Definition</b> geometries.hpp:55</div></div>
-<div class="ttc" id="astructxpe_1_1render_1_1s_model_html_a7961f490ba4d53b5a96d2e303c12106f"><div class="ttname"><a href="structxpe_1_1render_1_1s_model.html#a7961f490ba4d53b5a96d2e303c12106f">xpe::render::sModel::Geometries</a></div><div class="ttdeci">vector&lt; sGeometry &gt; Geometries</div><div class="ttdef"><b>Definition</b> geometries.hpp:56</div></div>
-<div class="ttc" id="astructxpe_1_1render_1_1s_plane_html"><div class="ttname"><a href="structxpe_1_1render_1_1s_plane.html">xpe::render::sPlane</a></div><div class="ttdef"><b>Definition</b> geometries.hpp:44</div></div>
-<div class="ttc" id="astructxpe_1_1render_1_1s_quad_html"><div class="ttname"><a href="structxpe_1_1render_1_1s_quad.html">xpe::render::sQuad</a></div><div class="ttdef"><b>Definition</b> geometries.hpp:36</div></div>
-<div class="ttc" id="astructxpe_1_1render_1_1s_sphere_html"><div class="ttname"><a href="structxpe_1_1render_1_1s_sphere.html">xpe::render::sSphere</a></div><div class="ttdef"><b>Definition</b> geometries.hpp:48</div></div>
-<div class="ttc" id="astructxpe_1_1render_1_1s_sphere_html_a3fc30d210bed867d8b64c75be12cf654"><div class="ttname"><a href="structxpe_1_1render_1_1s_sphere.html#a3fc30d210bed867d8b64c75be12cf654">xpe::render::sSphere::Center</a></div><div class="ttdeci">glm::vec3 Center</div><div class="ttdef"><b>Definition</b> geometries.hpp:49</div></div>
-<div class="ttc" id="astructxpe_1_1render_1_1s_sphere_html_a7e1128cb020b06871a86fa8f9e2e9fa9"><div class="ttname"><a href="structxpe_1_1render_1_1s_sphere.html#a7e1128cb020b06871a86fa8f9e2e9fa9">xpe::render::sSphere::Radius</a></div><div class="ttdeci">float Radius</div><div class="ttdef"><b>Definition</b> geometries.hpp:50</div></div>
-<div class="ttc" id="astructxpe_1_1render_1_1s_triangle_html"><div class="ttname"><a href="structxpe_1_1render_1_1s_triangle.html">xpe::render::sTriangle</a></div><div class="ttdef"><b>Definition</b> geometries.hpp:28</div></div>
-<div class="ttc" id="astructxpe_1_1render_1_1s_vertex_buffer_html"><div class="ttname"><a href="structxpe_1_1render_1_1s_vertex_buffer.html">xpe::render::sVertexBuffer</a></div><div class="ttdef"><b>Definition</b> buffers.hpp:48</div></div>
+<div class="ttc" id="anamespacexpe_1_1render_html_ae8a095ac0234687d57db4287a5b747ef"><div class="ttname"><a href="namespacexpe_1_1render.html#ae8a095ac0234687d57db4287a5b747ef">xpe::render::Vertices</a></div><div class="ttdeci">Vertices</div><div class="ttdef"><b>Definition</b> <a href="#l00024">geometries.hpp:24</a></div></div>
+<div class="ttc" id="anamespacexpe_html"><div class="ttname"><a href="namespacexpe.html">xpe</a></div><div class="ttdef"><b>Definition</b> <a href="anim_8hpp_source.html#l00003">anim.hpp:3</a></div></div>
+<div class="ttc" id="astructxpe_1_1render_1_1s_cube_html"><div class="ttname"><a href="structxpe_1_1render_1_1s_cube.html">xpe::render::sCube</a></div><div class="ttdef"><b>Definition</b> <a href="#l00040">geometries.hpp:40</a></div></div>
+<div class="ttc" id="astructxpe_1_1render_1_1s_geometry_html"><div class="ttname"><a href="structxpe_1_1render_1_1s_geometry.html">xpe::render::sGeometry</a></div><div class="ttdef"><b>Definition</b> <a href="geometry_8hpp_source.html#l00068">geometry.hpp:69</a></div></div>
+<div class="ttc" id="astructxpe_1_1render_1_1s_index_buffer_html"><div class="ttname"><a href="structxpe_1_1render_1_1s_index_buffer.html">xpe::render::sIndexBuffer</a></div><div class="ttdef"><b>Definition</b> <a href="buffers_8hpp_source.html#l00012">buffers.hpp:13</a></div></div>
+<div class="ttc" id="astructxpe_1_1render_1_1s_line_html"><div class="ttname"><a href="structxpe_1_1render_1_1s_line.html">xpe::render::sLine</a></div><div class="ttdef"><b>Definition</b> <a href="#l00032">geometries.hpp:32</a></div></div>
+<div class="ttc" id="astructxpe_1_1render_1_1s_model_html"><div class="ttname"><a href="structxpe_1_1render_1_1s_model.html">xpe::render::sModel</a></div><div class="ttdef"><b>Definition</b> <a href="#l00055">geometries.hpp:55</a></div></div>
+<div class="ttc" id="astructxpe_1_1render_1_1s_model_html_a7961f490ba4d53b5a96d2e303c12106f"><div class="ttname"><a href="structxpe_1_1render_1_1s_model.html#a7961f490ba4d53b5a96d2e303c12106f">xpe::render::sModel::Geometries</a></div><div class="ttdeci">vector&lt; sGeometry &gt; Geometries</div><div class="ttdef"><b>Definition</b> <a href="#l00056">geometries.hpp:56</a></div></div>
+<div class="ttc" id="astructxpe_1_1render_1_1s_plane_html"><div class="ttname"><a href="structxpe_1_1render_1_1s_plane.html">xpe::render::sPlane</a></div><div class="ttdef"><b>Definition</b> <a href="#l00044">geometries.hpp:44</a></div></div>
+<div class="ttc" id="astructxpe_1_1render_1_1s_quad_html"><div class="ttname"><a href="structxpe_1_1render_1_1s_quad.html">xpe::render::sQuad</a></div><div class="ttdef"><b>Definition</b> <a href="#l00036">geometries.hpp:36</a></div></div>
+<div class="ttc" id="astructxpe_1_1render_1_1s_sphere_html"><div class="ttname"><a href="structxpe_1_1render_1_1s_sphere.html">xpe::render::sSphere</a></div><div class="ttdef"><b>Definition</b> <a href="#l00048">geometries.hpp:48</a></div></div>
+<div class="ttc" id="astructxpe_1_1render_1_1s_sphere_html_a3fc30d210bed867d8b64c75be12cf654"><div class="ttname"><a href="structxpe_1_1render_1_1s_sphere.html#a3fc30d210bed867d8b64c75be12cf654">xpe::render::sSphere::Center</a></div><div class="ttdeci">glm::vec3 Center</div><div class="ttdef"><b>Definition</b> <a href="#l00049">geometries.hpp:49</a></div></div>
+<div class="ttc" id="astructxpe_1_1render_1_1s_sphere_html_a7e1128cb020b06871a86fa8f9e2e9fa9"><div class="ttname"><a href="structxpe_1_1render_1_1s_sphere.html#a7e1128cb020b06871a86fa8f9e2e9fa9">xpe::render::sSphere::Radius</a></div><div class="ttdeci">float Radius</div><div class="ttdef"><b>Definition</b> <a href="#l00050">geometries.hpp:50</a></div></div>
+<div class="ttc" id="astructxpe_1_1render_1_1s_triangle_html"><div class="ttname"><a href="structxpe_1_1render_1_1s_triangle.html">xpe::render::sTriangle</a></div><div class="ttdef"><b>Definition</b> <a href="#l00028">geometries.hpp:28</a></div></div>
+<div class="ttc" id="astructxpe_1_1render_1_1s_vertex_buffer_html"><div class="ttname"><a href="structxpe_1_1render_1_1s_vertex_buffer.html">xpe::render::sVertexBuffer</a></div><div class="ttdef"><b>Definition</b> <a href="buffers_8hpp_source.html#l00047">buffers.hpp:48</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li><li class="navelem"><a class="el" href="dir_c82fe33ead33fcc3829b24ace9891300.html">rendering</a></li><li class="navelem"><a class="el" href="dir_24058a3dfe158ba78d4abd2421b76572.html">geometry</a></li><li class="navelem"><a class="el" href="geometries_8hpp.html">geometries.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

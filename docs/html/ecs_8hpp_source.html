@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -53,6 +59,23 @@ $(function() {
 $(function() { codefold.init(0); });
 /* @license-end */
 </script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('ecs_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -74,11 +97,6 @@ $(function() { codefold.init(0); });
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li><li class="navelem"><a class="el" href="dir_73cab53f03832bd35660497d6d17d469.html">ecs</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle"><div class="title">ecs.hpp</div></div>
 </div><!--header-->
@@ -449,61 +467,65 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    }</div>
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
 <div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>}</div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_object_html"><div class="ttname"><a href="classxpe_1_1core_1_1c_object.html">xpe::core::cObject</a></div><div class="ttdef"><b>Definition</b> types.hpp:39</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_time_html"><div class="ttname"><a href="classxpe_1_1core_1_1c_time.html">xpe::core::cTime</a></div><div class="ttdef"><b>Definition</b> time_manager.hpp:29</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html">xpe::ecs::cEntity</a></div><div class="ttdef"><b>Definition</b> ecs.hpp:151</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a01a305c23617cf429a10f01a91b6ee3a"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a01a305c23617cf429a10f01a91b6ee3a">xpe::ecs::cEntity::GetID</a></div><div class="ttdeci">const EntityID GetID() const</div><div class="ttdef"><b>Definition</b> ecs.hpp:190</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a0511e484ab193125c532e624ceaab1fe"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a0511e484ab193125c532e624ceaab1fe">xpe::ecs::cEntity::SetScale</a></div><div class="ttdeci">void SetScale(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> ecs.hpp:258</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a072b7e4f5b9028802f0ea9630c54a3c5"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a072b7e4f5b9028802f0ea9630c54a3c5">xpe::ecs::cEntity::HasAny</a></div><div class="ttdeci">bool HasAny()</div><div class="ttdef"><b>Definition</b> ecs.hpp:300</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a1368be7cdcee488845a75e7742e2eea3"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a1368be7cdcee488845a75e7742e2eea3">xpe::ecs::cEntity::Add</a></div><div class="ttdeci">T &amp; Add(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> ecs.hpp:288</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a167547bc69875ea850e783eeee1ca245"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a167547bc69875ea850e783eeee1ca245">xpe::ecs::cEntity::m_ID</a></div><div class="ttdeci">EntityID m_ID</div><div class="ttdef"><b>Definition</b> ecs.hpp:235</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a1b67c3393510cce04fa2e1ce13af6bf1"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a1b67c3393510cce04fa2e1ce13af6bf1">xpe::ecs::cEntity::SetRotation</a></div><div class="ttdeci">void SetRotation(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> ecs.hpp:252</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a4b76e7d0f1a2d7980cdfde0fd516418e"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a4b76e7d0f1a2d7980cdfde0fd516418e">xpe::ecs::cEntity::Remove</a></div><div class="ttdeci">void Remove()</div><div class="ttdef"><b>Definition</b> ecs.hpp:294</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a52aa3f4ad37d92a976085deea7cd78f7"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a52aa3f4ad37d92a976085deea7cd78f7">xpe::ecs::cEntity::Rotate</a></div><div class="ttdeci">void Rotate(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> ecs.hpp:270</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a6b56f191adb04a8f03422a665d591743"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a6b56f191adb04a8f03422a665d591743">xpe::ecs::cEntity::Get</a></div><div class="ttdeci">T &amp; Get()</div><div class="ttdef"><b>Definition</b> ecs.hpp:282</div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_object_html"><div class="ttname"><a href="classxpe_1_1core_1_1c_object.html">xpe::core::cObject</a></div><div class="ttdef"><b>Definition</b> <a href="types_8hpp_source.html#l00038">types.hpp:39</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_time_html"><div class="ttname"><a href="classxpe_1_1core_1_1c_time.html">xpe::core::cTime</a></div><div class="ttdef"><b>Definition</b> <a href="time__manager_8hpp_source.html#l00029">time_manager.hpp:29</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html">xpe::ecs::cEntity</a></div><div class="ttdef"><b>Definition</b> <a href="#l00150">ecs.hpp:151</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a01a305c23617cf429a10f01a91b6ee3a"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a01a305c23617cf429a10f01a91b6ee3a">xpe::ecs::cEntity::GetID</a></div><div class="ttdeci">const EntityID GetID() const</div><div class="ttdef"><b>Definition</b> <a href="#l00190">ecs.hpp:190</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a0511e484ab193125c532e624ceaab1fe"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a0511e484ab193125c532e624ceaab1fe">xpe::ecs::cEntity::SetScale</a></div><div class="ttdeci">void SetScale(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> <a href="#l00258">ecs.hpp:258</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a072b7e4f5b9028802f0ea9630c54a3c5"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a072b7e4f5b9028802f0ea9630c54a3c5">xpe::ecs::cEntity::HasAny</a></div><div class="ttdeci">bool HasAny()</div><div class="ttdef"><b>Definition</b> <a href="#l00300">ecs.hpp:300</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a1368be7cdcee488845a75e7742e2eea3"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a1368be7cdcee488845a75e7742e2eea3">xpe::ecs::cEntity::Add</a></div><div class="ttdeci">T &amp; Add(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> <a href="#l00288">ecs.hpp:288</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a167547bc69875ea850e783eeee1ca245"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a167547bc69875ea850e783eeee1ca245">xpe::ecs::cEntity::m_ID</a></div><div class="ttdeci">EntityID m_ID</div><div class="ttdef"><b>Definition</b> <a href="#l00235">ecs.hpp:235</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a1b67c3393510cce04fa2e1ce13af6bf1"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a1b67c3393510cce04fa2e1ce13af6bf1">xpe::ecs::cEntity::SetRotation</a></div><div class="ttdeci">void SetRotation(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> <a href="#l00252">ecs.hpp:252</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a4b76e7d0f1a2d7980cdfde0fd516418e"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a4b76e7d0f1a2d7980cdfde0fd516418e">xpe::ecs::cEntity::Remove</a></div><div class="ttdeci">void Remove()</div><div class="ttdef"><b>Definition</b> <a href="#l00294">ecs.hpp:294</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a52aa3f4ad37d92a976085deea7cd78f7"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a52aa3f4ad37d92a976085deea7cd78f7">xpe::ecs::cEntity::Rotate</a></div><div class="ttdeci">void Rotate(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> <a href="#l00270">ecs.hpp:270</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a6b56f191adb04a8f03422a665d591743"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a6b56f191adb04a8f03422a665d591743">xpe::ecs::cEntity::Get</a></div><div class="ttdeci">T &amp; Get()</div><div class="ttdef"><b>Definition</b> <a href="#l00282">ecs.hpp:282</a></div></div>
 <div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a7d0327cd0b0ed2e96f75bdae0aae0760"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a7d0327cd0b0ed2e96f75bdae0aae0760">xpe::ecs::cEntity::cEntity</a></div><div class="ttdeci">cEntity()=default</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a7d5ceafa1010d6a4d7f7c442cb404aab"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a7d5ceafa1010d6a4d7f7c442cb404aab">xpe::ecs::cEntity::SetPosition</a></div><div class="ttdeci">void SetPosition(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> ecs.hpp:246</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a81c43f79a2ed47a5134f9a251a314a91"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a81c43f79a2ed47a5134f9a251a314a91">xpe::ecs::cEntity::SetScene</a></div><div class="ttdeci">void SetScene(cScene *scene)</div><div class="ttdef"><b>Definition</b> ecs.hpp:159</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a8aea04e449fd687290e5dbafaf1ec07d"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a8aea04e449fd687290e5dbafaf1ec07d">xpe::ecs::cEntity::Children</a></div><div class="ttdeci">vector&lt; cEntity * &gt; Children</div><div class="ttdef"><b>Definition</b> ecs.hpp:154</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a8bac6d5b9f509daf154e5c0b76d164bf"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a8bac6d5b9f509daf154e5c0b76d164bf">xpe::ecs::cEntity::GetScene</a></div><div class="ttdeci">const cScene * GetScene() const</div><div class="ttdef"><b>Definition</b> ecs.hpp:191</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a8d13aff4bc5e40b94739dc996d4a6639"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a8d13aff4bc5e40b94739dc996d4a6639">xpe::ecs::cEntity::Move</a></div><div class="ttdeci">void Move(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> ecs.hpp:264</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_abddf20321b8ee95df3b9bbeeb5ce670d"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#abddf20321b8ee95df3b9bbeeb5ce670d">xpe::ecs::cEntity::Scale</a></div><div class="ttdeci">void Scale(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> ecs.hpp:276</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_abeb7a36a599d1e2284696e6a8df2a14f"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#abeb7a36a599d1e2284696e6a8df2a14f">xpe::ecs::cEntity::SetTransform</a></div><div class="ttdeci">void SetTransform(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> ecs.hpp:240</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_acf15df8c9d4a6961dc28eb82f860f6f2"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#acf15df8c9d4a6961dc28eb82f860f6f2">xpe::ecs::cEntity::m_Scene</a></div><div class="ttdeci">cScene * m_Scene</div><div class="ttdef"><b>Definition</b> ecs.hpp:236</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_addda17a9e49912a9c25fa7304921e665"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#addda17a9e49912a9c25fa7304921e665">xpe::ecs::cEntity::HasAll</a></div><div class="ttdeci">bool HasAll()</div><div class="ttdef"><b>Definition</b> ecs.hpp:306</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_scene_html"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_scene.html">xpe::ecs::cScene</a></div><div class="ttdef"><b>Definition</b> ecs.hpp:27</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_scene_html_a08a445f8a61afef6e5b4221d4ed45c36"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_scene.html#a08a445f8a61afef6e5b4221d4ed45c36">xpe::ecs::cScene::PhysicsScene</a></div><div class="ttdeci">physx::PxScene * PhysicsScene</div><div class="ttdef"><b>Definition</b> ecs.hpp:71</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_scene_html_a09f2e93dae557058af5ea5d69fcdf639"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_scene.html#a09f2e93dae557058af5ea5d69fcdf639">xpe::ecs::cScene::GetComponents</a></div><div class="ttdeci">auto GetComponents()</div><div class="ttdef"><b>Definition</b> ecs.hpp:145</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_scene_html_a132ac580d0c04aa43d71fe827ca333da"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_scene.html#a132ac580d0c04aa43d71fe827ca333da">xpe::ecs::cScene::RemoveComponent</a></div><div class="ttdeci">void RemoveComponent(EntityID entityId)</div><div class="ttdef"><b>Definition</b> ecs.hpp:103</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_scene_html_a72859f04ba3f448f96fc2353fae7906a"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_scene.html#a72859f04ba3f448f96fc2353fae7906a">xpe::ecs::cScene::GetTag</a></div><div class="ttdeci">const string &amp; GetTag() const</div><div class="ttdef"><b>Definition</b> ecs.hpp:32</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_scene_html_a837ce789126d7aa510afb211f86b36da"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_scene.html#a837ce789126d7aa510afb211f86b36da">xpe::ecs::cScene::HasAllComponent</a></div><div class="ttdeci">bool HasAllComponent(EntityID entityId)</div><div class="ttdef"><b>Definition</b> ecs.hpp:131</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_scene_html_a9382a3ab28600cc502022e1e09823cba"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_scene.html#a9382a3ab28600cc502022e1e09823cba">xpe::ecs::cScene::SetTag</a></div><div class="ttdeci">void SetTag(const string &amp;tag)</div><div class="ttdef"><b>Definition</b> ecs.hpp:30</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_scene_html_ab39105edd3f4294de8bfb4f97369259f"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_scene.html#ab39105edd3f4294de8bfb4f97369259f">xpe::ecs::cScene::ClearComponents</a></div><div class="ttdeci">void ClearComponents()</div><div class="ttdef"><b>Definition</b> ecs.hpp:137</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_scene_html_adfe5448c670a7646b1b49f1698c0e965"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_scene.html#adfe5448c670a7646b1b49f1698c0e965">xpe::ecs::cScene::GetComponent</a></div><div class="ttdeci">T &amp; GetComponent(EntityID entityId)</div><div class="ttdef"><b>Definition</b> ecs.hpp:119</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_scene_html_af10ade81ca093d8c007444182173209c"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_scene.html#af10ade81ca093d8c007444182173209c">xpe::ecs::cScene::AddComponent</a></div><div class="ttdeci">T &amp; AddComponent(EntityID entityId, Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> ecs.hpp:81</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_scene_html_af8dda2e288dfd0505ee3d7bc545f8d85"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_scene.html#af8dda2e288dfd0505ee3d7bc545f8d85">xpe::ecs::cScene::HasAnyComponent</a></div><div class="ttdeci">bool HasAnyComponent(EntityID entityId)</div><div class="ttdef"><b>Definition</b> ecs.hpp:125</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_system_html"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_system.html">xpe::ecs::cSystem</a></div><div class="ttdef"><b>Definition</b> ecs.hpp:311</div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a7d5ceafa1010d6a4d7f7c442cb404aab"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a7d5ceafa1010d6a4d7f7c442cb404aab">xpe::ecs::cEntity::SetPosition</a></div><div class="ttdeci">void SetPosition(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> <a href="#l00246">ecs.hpp:246</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a81c43f79a2ed47a5134f9a251a314a91"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a81c43f79a2ed47a5134f9a251a314a91">xpe::ecs::cEntity::SetScene</a></div><div class="ttdeci">void SetScene(cScene *scene)</div><div class="ttdef"><b>Definition</b> <a href="#l00159">ecs.hpp:159</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a8aea04e449fd687290e5dbafaf1ec07d"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a8aea04e449fd687290e5dbafaf1ec07d">xpe::ecs::cEntity::Children</a></div><div class="ttdeci">vector&lt; cEntity * &gt; Children</div><div class="ttdef"><b>Definition</b> <a href="#l00154">ecs.hpp:154</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a8bac6d5b9f509daf154e5c0b76d164bf"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a8bac6d5b9f509daf154e5c0b76d164bf">xpe::ecs::cEntity::GetScene</a></div><div class="ttdeci">const cScene * GetScene() const</div><div class="ttdef"><b>Definition</b> <a href="#l00191">ecs.hpp:191</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_a8d13aff4bc5e40b94739dc996d4a6639"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#a8d13aff4bc5e40b94739dc996d4a6639">xpe::ecs::cEntity::Move</a></div><div class="ttdeci">void Move(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> <a href="#l00264">ecs.hpp:264</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_abddf20321b8ee95df3b9bbeeb5ce670d"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#abddf20321b8ee95df3b9bbeeb5ce670d">xpe::ecs::cEntity::Scale</a></div><div class="ttdeci">void Scale(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> <a href="#l00276">ecs.hpp:276</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_abeb7a36a599d1e2284696e6a8df2a14f"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#abeb7a36a599d1e2284696e6a8df2a14f">xpe::ecs::cEntity::SetTransform</a></div><div class="ttdeci">void SetTransform(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> <a href="#l00240">ecs.hpp:240</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_acf15df8c9d4a6961dc28eb82f860f6f2"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#acf15df8c9d4a6961dc28eb82f860f6f2">xpe::ecs::cEntity::m_Scene</a></div><div class="ttdeci">cScene * m_Scene</div><div class="ttdef"><b>Definition</b> <a href="#l00236">ecs.hpp:236</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_entity_html_addda17a9e49912a9c25fa7304921e665"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_entity.html#addda17a9e49912a9c25fa7304921e665">xpe::ecs::cEntity::HasAll</a></div><div class="ttdeci">bool HasAll()</div><div class="ttdef"><b>Definition</b> <a href="#l00306">ecs.hpp:306</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_scene_html"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_scene.html">xpe::ecs::cScene</a></div><div class="ttdef"><b>Definition</b> <a href="#l00026">ecs.hpp:27</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_scene_html_a08a445f8a61afef6e5b4221d4ed45c36"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_scene.html#a08a445f8a61afef6e5b4221d4ed45c36">xpe::ecs::cScene::PhysicsScene</a></div><div class="ttdeci">physx::PxScene * PhysicsScene</div><div class="ttdef"><b>Definition</b> <a href="#l00071">ecs.hpp:71</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_scene_html_a09f2e93dae557058af5ea5d69fcdf639"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_scene.html#a09f2e93dae557058af5ea5d69fcdf639">xpe::ecs::cScene::GetComponents</a></div><div class="ttdeci">auto GetComponents()</div><div class="ttdef"><b>Definition</b> <a href="#l00145">ecs.hpp:145</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_scene_html_a132ac580d0c04aa43d71fe827ca333da"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_scene.html#a132ac580d0c04aa43d71fe827ca333da">xpe::ecs::cScene::RemoveComponent</a></div><div class="ttdeci">void RemoveComponent(EntityID entityId)</div><div class="ttdef"><b>Definition</b> <a href="#l00103">ecs.hpp:103</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_scene_html_a72859f04ba3f448f96fc2353fae7906a"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_scene.html#a72859f04ba3f448f96fc2353fae7906a">xpe::ecs::cScene::GetTag</a></div><div class="ttdeci">const string &amp; GetTag() const</div><div class="ttdef"><b>Definition</b> <a href="#l00032">ecs.hpp:32</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_scene_html_a837ce789126d7aa510afb211f86b36da"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_scene.html#a837ce789126d7aa510afb211f86b36da">xpe::ecs::cScene::HasAllComponent</a></div><div class="ttdeci">bool HasAllComponent(EntityID entityId)</div><div class="ttdef"><b>Definition</b> <a href="#l00131">ecs.hpp:131</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_scene_html_a9382a3ab28600cc502022e1e09823cba"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_scene.html#a9382a3ab28600cc502022e1e09823cba">xpe::ecs::cScene::SetTag</a></div><div class="ttdeci">void SetTag(const string &amp;tag)</div><div class="ttdef"><b>Definition</b> <a href="#l00030">ecs.hpp:30</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_scene_html_ab39105edd3f4294de8bfb4f97369259f"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_scene.html#ab39105edd3f4294de8bfb4f97369259f">xpe::ecs::cScene::ClearComponents</a></div><div class="ttdeci">void ClearComponents()</div><div class="ttdef"><b>Definition</b> <a href="#l00137">ecs.hpp:137</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_scene_html_adfe5448c670a7646b1b49f1698c0e965"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_scene.html#adfe5448c670a7646b1b49f1698c0e965">xpe::ecs::cScene::GetComponent</a></div><div class="ttdeci">T &amp; GetComponent(EntityID entityId)</div><div class="ttdef"><b>Definition</b> <a href="#l00119">ecs.hpp:119</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_scene_html_af10ade81ca093d8c007444182173209c"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_scene.html#af10ade81ca093d8c007444182173209c">xpe::ecs::cScene::AddComponent</a></div><div class="ttdeci">T &amp; AddComponent(EntityID entityId, Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> <a href="#l00081">ecs.hpp:81</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_scene_html_af8dda2e288dfd0505ee3d7bc545f8d85"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_scene.html#af8dda2e288dfd0505ee3d7bc545f8d85">xpe::ecs::cScene::HasAnyComponent</a></div><div class="ttdeci">bool HasAnyComponent(EntityID entityId)</div><div class="ttdef"><b>Definition</b> <a href="#l00125">ecs.hpp:125</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_system_html"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_system.html">xpe::ecs::cSystem</a></div><div class="ttdef"><b>Definition</b> <a href="#l00311">ecs.hpp:311</a></div></div>
 <div class="ttc" id="aclassxpe_1_1ecs_1_1c_system_html_a2a77b444fc80b9f1bd43215a7ba894d6"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_system.html#a2a77b444fc80b9f1bd43215a7ba894d6">xpe::ecs::cSystem::Update</a></div><div class="ttdeci">virtual void Update(cScene *scene, const cTime &amp;dt)=0</div></div>
-<div class="ttc" id="aclassxpe_1_1res_1_1c_json_html"><div class="ttname"><a href="classxpe_1_1res_1_1c_json.html">xpe::res::cJson</a></div><div class="ttdef"><b>Definition</b> json.hpp:37</div></div>
-<div class="ttc" id="aclassxpe_1_1res_1_1c_xml_html"><div class="ttname"><a href="classxpe_1_1res_1_1c_xml.html">xpe::res::cXml</a></div><div class="ttdef"><b>Definition</b> xml.hpp:205</div></div>
-<div class="ttc" id="ajson_8hpp_html_ab701e3ac61a85b337ec5c1abaad6742d"><div class="ttname"><a href="json_8hpp.html#ab701e3ac61a85b337ec5c1abaad6742d">json</a></div><div class="ttdeci">nlohmann::json json</div><div class="ttdef"><b>Definition</b> json.hpp:7</div></div>
-<div class="ttc" id="amacro__build_8hpp_html_a0697ee40f69dc5dab56d13131f4c4835"><div class="ttname"><a href="macro__build_8hpp.html#a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</a></div><div class="ttdeci">#define ENGINE_API</div><div class="ttdef"><b>Definition</b> macro_build.hpp:17</div></div>
-<div class="ttc" id="anamespacephysx_html"><div class="ttname"><a href="namespacephysx.html">physx</a></div><div class="ttdef"><b>Definition</b> ecs.hpp:6</div></div>
+<div class="ttc" id="aclassxpe_1_1res_1_1c_json_html"><div class="ttname"><a href="classxpe_1_1res_1_1c_json.html">xpe::res::cJson</a></div><div class="ttdef"><b>Definition</b> <a href="json_8hpp_source.html#l00036">json.hpp:37</a></div></div>
+<div class="ttc" id="aclassxpe_1_1res_1_1c_xml_html"><div class="ttname"><a href="classxpe_1_1res_1_1c_xml.html">xpe::res::cXml</a></div><div class="ttdef"><b>Definition</b> <a href="xml_8hpp_source.html#l00204">xml.hpp:205</a></div></div>
+<div class="ttc" id="ajson_8hpp_html_ab701e3ac61a85b337ec5c1abaad6742d"><div class="ttname"><a href="json_8hpp.html#ab701e3ac61a85b337ec5c1abaad6742d">json</a></div><div class="ttdeci">nlohmann::json json</div><div class="ttdef"><b>Definition</b> <a href="json_8hpp_source.html#l00007">json.hpp:7</a></div></div>
+<div class="ttc" id="amacro__build_8hpp_html_a0697ee40f69dc5dab56d13131f4c4835"><div class="ttname"><a href="macro__build_8hpp.html#a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</a></div><div class="ttdeci">#define ENGINE_API</div><div class="ttdef"><b>Definition</b> <a href="macro__build_8hpp_source.html#l00017">macro_build.hpp:17</a></div></div>
+<div class="ttc" id="anamespacephysx_html"><div class="ttname"><a href="namespacephysx.html">physx</a></div><div class="ttdef"><b>Definition</b> <a href="#l00005">ecs.hpp:6</a></div></div>
 <div class="ttc" id="anamespacexpe_1_1audio_1_1context_html_addef3f14afbb1bd8ea577a9f7a388b10"><div class="ttname"><a href="namespacexpe_1_1audio_1_1context.html#addef3f14afbb1bd8ea577a9f7a388b10">xpe::audio::context::SetPosition</a></div><div class="ttdeci">ENGINE_API void SetPosition(u32 sourceID, glm::vec3 position)</div></div>
-<div class="ttc" id="anamespacexpe_1_1core_html_a7a9b1d92471db2af59acf8c301267fde"><div class="ttname"><a href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">xpe::core::vector</a></div><div class="ttdeci">std::vector&lt; T, cMainAllocator&lt; T &gt; &gt; vector</div><div class="ttdef"><b>Definition</b> stl.hpp:17</div></div>
-<div class="ttc" id="anamespacexpe_1_1core_html_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b"><div class="ttname"><a href="namespacexpe_1_1core.html#ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">xpe::core::T</a></div><div class="ttdeci">@ T</div><div class="ttdef"><b>Definition</b> codes_keyboard.hpp:57</div></div>
-<div class="ttc" id="anamespacexpe_1_1ecs_html_a1046766c77e58971bcc166487987d765"><div class="ttname"><a href="namespacexpe_1_1ecs.html#a1046766c77e58971bcc166487987d765">xpe::ecs::cStorage</a></div><div class="ttdeci">entt::basic_storage&lt; T, EntityID, cMainAllocator&lt; EntityID &gt; &gt; cStorage</div><div class="ttdef"><b>Definition</b> ecs.hpp:24</div></div>
-<div class="ttc" id="anamespacexpe_1_1ecs_html_a27b929b1a51cf2205dac0671e06d8937"><div class="ttname"><a href="namespacexpe_1_1ecs.html#a27b929b1a51cf2205dac0671e06d8937">xpe::ecs::EntityNull</a></div><div class="ttdeci">constexpr EntityID EntityNull</div><div class="ttdef"><b>Definition</b> ecs.hpp:20</div></div>
-<div class="ttc" id="anamespacexpe_1_1ecs_html_a5d94892c480b4d1cee59dd45fb6799bc"><div class="ttname"><a href="namespacexpe_1_1ecs.html#a5d94892c480b4d1cee59dd45fb6799bc">xpe::ecs::ComponentID</a></div><div class="ttdeci">usize ComponentID</div><div class="ttdef"><b>Definition</b> ecs.hpp:21</div></div>
-<div class="ttc" id="anamespacexpe_1_1ecs_html_a7963541b7fa8df6c5e97615835f40acf"><div class="ttname"><a href="namespacexpe_1_1ecs.html#a7963541b7fa8df6c5e97615835f40acf">xpe::ecs::cRegistry</a></div><div class="ttdeci">entt::basic_registry&lt; EntityID, cMainAllocator&lt; EntityID &gt; &gt; cRegistry</div><div class="ttdef"><b>Definition</b> ecs.hpp:22</div></div>
-<div class="ttc" id="anamespacexpe_1_1ecs_html_ac3e87a77d3ea7391b91ea14a0c999ac5"><div class="ttname"><a href="namespacexpe_1_1ecs.html#ac3e87a77d3ea7391b91ea14a0c999ac5">xpe::ecs::EntityID</a></div><div class="ttdeci">entt::entity EntityID</div><div class="ttdef"><b>Definition</b> ecs.hpp:19</div></div>
-<div class="ttc" id="anamespacexpe_html"><div class="ttname"><a href="namespacexpe.html">xpe</a></div><div class="ttdef"><b>Definition</b> anim.hpp:3</div></div>
-<div class="ttc" id="astructxpe_1_1math_1_1s_transform_html"><div class="ttname"><a href="structxpe_1_1math_1_1s_transform.html">xpe::math::sTransform</a></div><div class="ttdef"><b>Definition</b> transform.hpp:9</div></div>
-<div class="ttc" id="axml_8hpp_html_aa0a06f210737bd93431285d99e56096a"><div class="ttname"><a href="xml_8hpp.html#aa0a06f210737bd93431285d99e56096a">xml</a></div><div class="ttdeci">pugi::xml_node xml</div><div class="ttdef"><b>Definition</b> xml.hpp:7</div></div>
+<div class="ttc" id="anamespacexpe_1_1core_html_a7a9b1d92471db2af59acf8c301267fde"><div class="ttname"><a href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">xpe::core::vector</a></div><div class="ttdeci">std::vector&lt; T, cMainAllocator&lt; T &gt; &gt; vector</div><div class="ttdef"><b>Definition</b> <a href="stl_8hpp_source.html#l00017">stl.hpp:17</a></div></div>
+<div class="ttc" id="anamespacexpe_1_1core_html_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b"><div class="ttname"><a href="namespacexpe_1_1core.html#ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">xpe::core::T</a></div><div class="ttdeci">@ T</div><div class="ttdef"><b>Definition</b> <a href="codes__keyboard_8hpp_source.html#l00057">codes_keyboard.hpp:57</a></div></div>
+<div class="ttc" id="anamespacexpe_1_1ecs_html_a1046766c77e58971bcc166487987d765"><div class="ttname"><a href="namespacexpe_1_1ecs.html#a1046766c77e58971bcc166487987d765">xpe::ecs::cStorage</a></div><div class="ttdeci">entt::basic_storage&lt; T, EntityID, cMainAllocator&lt; EntityID &gt; &gt; cStorage</div><div class="ttdef"><b>Definition</b> <a href="#l00024">ecs.hpp:24</a></div></div>
+<div class="ttc" id="anamespacexpe_1_1ecs_html_a27b929b1a51cf2205dac0671e06d8937"><div class="ttname"><a href="namespacexpe_1_1ecs.html#a27b929b1a51cf2205dac0671e06d8937">xpe::ecs::EntityNull</a></div><div class="ttdeci">constexpr EntityID EntityNull</div><div class="ttdef"><b>Definition</b> <a href="#l00020">ecs.hpp:20</a></div></div>
+<div class="ttc" id="anamespacexpe_1_1ecs_html_a5d94892c480b4d1cee59dd45fb6799bc"><div class="ttname"><a href="namespacexpe_1_1ecs.html#a5d94892c480b4d1cee59dd45fb6799bc">xpe::ecs::ComponentID</a></div><div class="ttdeci">usize ComponentID</div><div class="ttdef"><b>Definition</b> <a href="#l00021">ecs.hpp:21</a></div></div>
+<div class="ttc" id="anamespacexpe_1_1ecs_html_a7963541b7fa8df6c5e97615835f40acf"><div class="ttname"><a href="namespacexpe_1_1ecs.html#a7963541b7fa8df6c5e97615835f40acf">xpe::ecs::cRegistry</a></div><div class="ttdeci">entt::basic_registry&lt; EntityID, cMainAllocator&lt; EntityID &gt; &gt; cRegistry</div><div class="ttdef"><b>Definition</b> <a href="#l00022">ecs.hpp:22</a></div></div>
+<div class="ttc" id="anamespacexpe_1_1ecs_html_ac3e87a77d3ea7391b91ea14a0c999ac5"><div class="ttname"><a href="namespacexpe_1_1ecs.html#ac3e87a77d3ea7391b91ea14a0c999ac5">xpe::ecs::EntityID</a></div><div class="ttdeci">entt::entity EntityID</div><div class="ttdef"><b>Definition</b> <a href="#l00019">ecs.hpp:19</a></div></div>
+<div class="ttc" id="anamespacexpe_html"><div class="ttname"><a href="namespacexpe.html">xpe</a></div><div class="ttdef"><b>Definition</b> <a href="anim_8hpp_source.html#l00003">anim.hpp:3</a></div></div>
+<div class="ttc" id="astructxpe_1_1math_1_1s_transform_html"><div class="ttname"><a href="structxpe_1_1math_1_1s_transform.html">xpe::math::sTransform</a></div><div class="ttdef"><b>Definition</b> <a href="transform_8hpp_source.html#l00009">transform.hpp:9</a></div></div>
+<div class="ttc" id="axml_8hpp_html_aa0a06f210737bd93431285d99e56096a"><div class="ttname"><a href="xml_8hpp.html#aa0a06f210737bd93431285d99e56096a">xml</a></div><div class="ttdeci">pugi::xml_node xml</div><div class="ttdef"><b>Definition</b> <a href="xml_8hpp_source.html#l00007">xml.hpp:7</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li><li class="navelem"><a class="el" href="dir_73cab53f03832bd35660497d6d17d469.html">ecs</a></li><li class="navelem"><a class="el" href="ecs_8hpp.html">ecs.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

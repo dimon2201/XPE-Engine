@@ -1,0 +1,16 @@
+<map id="xpe::render::cRenderSystem::Update" name="xpe::render::cRenderSystem::Update">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,63,193,105"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1anim_1_1c_skeleton_manager.html#a4abeb14a1cd0427e88c31b8ef6efc480" title=" " alt="" coords="241,63,435,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,81,225,81,225,87,193,87"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1render_1_1s_list_buffer.html#ad9de1835e029836261d585eec95bedd5" title=" " alt="" coords="483,63,638,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="435,81,467,81,467,87,435,87"/>
+<area shape="rect" id="Node000004" href="$namespacexpe_1_1render_1_1context.html#a43a3526ddcb06eddda247d1457ae02b3" title=" " alt="" coords="686,63,824,105"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="639,81,671,81,671,87,639,87"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="718,63,716,53,722,44,736,38,755,36,776,38,789,45,786,49,774,44,755,41,737,43,726,48,721,54,723,62"/>
+<area shape="rect" id="Node000005" href="$namespacexpe_1_1render_1_1context.html#a4307865df88da4fb54e36f929b6f88a5" title=" " alt="" coords="872,29,1042,56"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="824,67,873,57,874,62,825,73"/>
+<area shape="rect" id="Node000006" href="$namespacexpe_1_1render_1_1context.html#a32b89671df27bd47193c116873b60f3e" title=" " alt="" coords="888,104,1026,147"/>
+<area shape="poly" id="edge7_Node000004_Node000006" title=" " alt="" coords="825,95,874,106,873,111,824,101"/>
+<area shape="poly" id="edge6_Node000005_Node000005" title=" " alt="" coords="923,30,916,21,921,11,934,5,957,3,981,5,994,12,991,16,979,10,957,8,936,10,924,15,922,20,927,27"/>
+<area shape="poly" id="edge8_Node000006_Node000006" title=" " alt="" coords="918,104,917,94,923,85,937,79,957,77,979,80,992,86,989,91,977,85,957,83,938,85,926,89,922,95,923,103"/>
+</map>

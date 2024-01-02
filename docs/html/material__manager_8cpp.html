@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('material__manager_8cpp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li><li class="navelem"><a class="el" href="dir_c82fe33ead33fcc3829b24ace9891300.html">rendering</a></li><li class="navelem"><a class="el" href="dir_a06090fc11c93ee533847a5ed3378050.html">material</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a>  </div>
@@ -81,7 +99,36 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="material__manager_8hpp_source.html">rendering/material/material_manager.hpp</a>&gt;</code><br />
-</div><table class="memberdecls">
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for material_manager.cpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="material__manager_8cpp__incl.png" border="0" usemap="#aengine_2src_2rendering_2material_2material__manager_8cpp" alt=""/></div>
+<map name="aengine_2src_2rendering_2material_2material__manager_8cpp" id="aengine_2src_2rendering_2material_2material__manager_8cpp">
+<area shape="rect" title=" " alt="" coords="46,5,249,48"/>
+<area shape="rect" href="material__manager_8hpp.html" title=" " alt="" coords="71,96,224,139"/>
+<area shape="poly" title=" " alt="" coords="150,48,150,81,145,81,145,48"/>
+<area shape="rect" href="material_8hpp.html" title=" " alt="" coords="5,187,130,229"/>
+<area shape="poly" title=" " alt="" coords="131,141,98,177,94,174,127,137"/>
+<area shape="rect" href="bindings_8hpp.html" title=" " alt="" coords="153,195,305,221"/>
+<area shape="poly" title=" " alt="" coords="168,137,209,181,205,185,164,141"/>
+<area shape="rect" href="buffers_8hpp.html" title=" " alt="" coords="77,277,218,304"/>
+<area shape="poly" title=" " alt="" coords="90,228,126,264,123,268,86,232"/>
+<area shape="rect" href="rendering_2core_2context_8hpp.html" title=" " alt="" coords="60,352,235,379"/>
+<area shape="poly" title=" " alt="" coords="150,305,150,336,145,336,145,305"/>
+<area shape="rect" href="shader_8hpp.html" title=" " alt="" coords="62,427,233,453"/>
+<area shape="poly" title=" " alt="" coords="150,379,150,411,145,411,145,379"/>
+<area shape="rect" href="render__target_8hpp.html" title=" " alt="" coords="76,501,219,544"/>
+<area shape="poly" title=" " alt="" coords="150,454,150,486,145,486,145,454"/>
+<area shape="rect" href="texture_8hpp.html" title=" " alt="" coords="61,592,234,619"/>
+<area shape="poly" title=" " alt="" coords="150,545,150,576,145,576,145,545"/>
+<area shape="rect" href="rendering_2core_2core_8hpp.html" title=" " alt="" coords="69,667,226,693"/>
+<area shape="poly" title=" " alt="" coords="150,619,150,651,145,651,145,619"/>
+<area shape="poly" title=" " alt="" coords="218,224,173,268,169,265,214,220"/>
+</map>
+</div>
+</div>
+<p><a href="material__manager_8cpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacexpe" id="r_namespacexpe"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexpe.html">xpe</a></td></tr>
@@ -90,9 +137,13 @@ Namespaces</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li><li class="navelem"><a class="el" href="dir_c82fe33ead33fcc3829b24ace9891300.html">rendering</a></li><li class="navelem"><a class="el" href="dir_a06090fc11c93ee533847a5ed3378050.html">material</a></li><li class="navelem"><a class="el" href="material__manager_8cpp.html">material_manager.cpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -1,0 +1,43 @@
+\doxysection{linux\+\_\+hardware\+\_\+manager.\+cpp}
+\hypertarget{linux__hardware__manager_8cpp_source}{}\label{linux__hardware__manager_8cpp_source}\index{engine/src/platform/linux/linux\_hardware\_manager.cpp@{engine/src/platform/linux/linux\_hardware\_manager.cpp}}
+\mbox{\hyperlink{linux__hardware__manager_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#ifdef\ LINUX}}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <sys/sysinfo.h>}}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00005}00005\ \ \ \ \textcolor{keywordtype}{int}\ sysinfo(\textcolor{keyword}{struct}\ sysinfo\ *info);}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00007}00007\ \ \ \ \textcolor{keyword}{struct\ }sysinfo\ \{}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00008}00008\ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ uptime;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Seconds\ since\ boot\ */}}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00009}00009\ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ loads[3];\ \ \textcolor{comment}{/*\ 1,\ 5,\ and\ 15\ minute\ load\ averages\ */}}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00010}00010\ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ totalram;\ \ \textcolor{comment}{/*\ Total\ usable\ main\ memory\ size\ */}}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00011}00011\ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ freeram;\ \ \ \textcolor{comment}{/*\ Available\ memory\ size\ */}}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ sharedram;\ \textcolor{comment}{/*\ Amount\ of\ shared\ memory\ */}}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00013}00013\ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ bufferram;\ \textcolor{comment}{/*\ Memory\ used\ by\ buffers\ */}}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ totalswap;\ \textcolor{comment}{/*\ Total\ swap\ space\ size\ */}}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ freeswap;\ \ \textcolor{comment}{/*\ swap\ space\ still\ available\ */}}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ procs;\ \ \ \ \textcolor{comment}{/*\ Number\ of\ current\ processes\ */}}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ totalhigh;\ \textcolor{comment}{/*\ Total\ high\ memory\ size\ */}}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ freehigh;\ \ \textcolor{comment}{/*\ Available\ high\ memory\ size\ */}}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ mem\_unit;\ \ \ \textcolor{comment}{/*\ Memory\ unit\ size\ in\ bytes\ */}}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ \_f[20-\/2*\textcolor{keyword}{sizeof}(long)-\/\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int})];\ \textcolor{comment}{/*\ Padding\ for\ libc5\ */}}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00021}00021\ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00023}00023\ \ \ \ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \textcolor{keyword}{namespace\ }core\ \{}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_a28e6013e329654423e5793bab22507f5}{cHardwareManager::UpdateCpuStats}}()}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_a862c8f425b7c7fb53f5598f68247fef2}{CPU}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_cpu_stats_a92593625c5c576608457355a36efa268}{Threads}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sysconf}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{\_SC\_NPROCESSORS\_ONLN}});}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_a862c8f425b7c7fb53f5598f68247fef2}{CPU}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_cpu_stats_aa9f742abf986cc7a944b75ba141df48a}{Cores}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sysconf}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{\_SC\_NPROCESSORS\_ONLN}})\ /\ 2;}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00035}00035\ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{linux__hardware__manager_8cpp_source_l00037}00037\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ LINUX}}
+
+\end{DoxyCode}

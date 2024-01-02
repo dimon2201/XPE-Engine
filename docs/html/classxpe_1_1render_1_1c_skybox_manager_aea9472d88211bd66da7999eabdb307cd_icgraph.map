@@ -1,0 +1,7 @@
+<map id="xpe::render::cSkyboxManager::Init" name="xpe::render::cSkyboxManager::Init">
+<area shape="rect" id="Node000001" title=" " alt="" coords="512,5,707,48"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1render_1_1c_skybox_manager.html#a7dd6b461180ad3928c1b9b26d12c29b3" title=" " alt="" coords="240,13,464,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="496,29,464,29,464,24,496,24"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1render_1_1c_skybox_shader.html#ad0657596c465749935ee5c1b5aab5bfc" title=" " alt="" coords="5,5,192,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="224,29,192,29,192,24,224,24"/>
+</map>

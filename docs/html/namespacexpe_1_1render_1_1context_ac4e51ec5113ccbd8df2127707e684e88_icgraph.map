@@ -1,0 +1,12 @@
+<map id="xpe::render::context::CopyBufferOffset" name="xpe::render::context::CopyBufferOffset">
+<area shape="rect" id="Node000001" title=" " alt="" coords="454,72,591,115"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="554,59,542,53,523,51,505,53,493,57,489,63,491,71,485,72,484,62,490,53,503,47,523,45,544,48,556,54"/>
+<area shape="rect" id="Node000002" href="$namespacexpe_1_1render_1_1context.html#a82d8f65416b6f460b4f3307bd0a88fe5" title=" " alt="" coords="260,5,397,48"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="443,69,392,51,393,46,445,64"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1render_1_1s_list_buffer.html#abbb9adba1403faffd5abc203db0ba419" title=" " alt="" coords="251,72,406,115"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="438,96,406,96,406,91,438,91"/>
+<area shape="rect" id="Node000005" href="$classxpe_1_1render_1_1s_list_buffer.html#a3a082aa393d4ddd287620213150952db" title=" " alt="" coords="251,139,406,181"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="445,123,393,141,392,136,443,118"/>
+<area shape="rect" id="Node000004" href="$classxpe_1_1render_1_1c_material_manager.html#a93d92265c6b46eadf6bcb57c948f2907" title=" " alt="" coords="5,72,203,115"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="235,96,203,96,203,91,235,91"/>
+</map>

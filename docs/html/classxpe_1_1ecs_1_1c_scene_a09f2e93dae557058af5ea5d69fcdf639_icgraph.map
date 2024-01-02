@@ -1,0 +1,7 @@
+<map id="xpe::ecs::cScene::GetComponents" name="xpe::ecs::cScene::GetComponents">
+<area shape="rect" id="Node000001" title=" " alt="" coords="414,13,639,40"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1anim_1_1c_anim_system.html#a0a35098c9165bcf4720ccfd500467e9d" title=" " alt="" coords="198,5,366,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="398,29,366,29,366,24,398,24"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,13,150,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+</map>

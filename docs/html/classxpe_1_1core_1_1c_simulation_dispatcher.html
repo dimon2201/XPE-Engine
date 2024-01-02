@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classxpe_1_1core_1_1c_simulation_dispatcher.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1core.html">core</a></li><li class="navelem"><a class="el" href="classxpe_1_1core_1_1c_simulation_dispatcher.html">cSimulationDispatcher</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -86,13 +104,34 @@ $(function() {
 <div class="dynheader">
 Inheritance diagram for xpe::core::cSimulationDispatcher:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classxpe_1_1core_1_1c_simulation_dispatcher.png" usemap="#xpe::core::cSimulationDispatcher_map" alt=""/>
-  <map id="xpe::core::cSimulationDispatcher_map" name="xpe::core::cSimulationDispatcher_map">
-<area href="classxpe_1_1core_1_1c_task_dispatcher.html" alt="xpe::core::cTaskDispatcher" shape="rect" coords="0,56,195,80"/>
-<area href="classxpe_1_1core_1_1c_object.html" alt="xpe::core::cObject" shape="rect" coords="0,0,195,24"/>
-  </map>
-</div></div>
+<div class="center"><img src="classxpe_1_1core_1_1c_simulation_dispatcher__inherit__graph.png" border="0" usemap="#axpe_1_1core_1_1c_simulation_dispatcher_inherit__map" alt="Inheritance graph"/></div>
+<map name="axpe_1_1core_1_1c_simulation_dispatcher_inherit__map" id="axpe_1_1core_1_1c_simulation_dispatcher_inherit__map">
+<area shape="rect" title=" " alt="" coords="88,155,301,181"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_task_dispatcher.html" title=" " alt="" coords="5,80,186,107"/>
+<area shape="poly" title=" " alt="" coords="126,114,179,152,176,156,123,118"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="31,5,160,32"/>
+<area shape="poly" title=" " alt="" coords="98,48,98,80,93,80,93,48"/>
+<area shape="rect" title=" " alt="" coords="210,80,376,107"/>
+<area shape="poly" title=" " alt="" coords="265,118,213,156,210,152,262,114"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for xpe::core::cSimulationDispatcher:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_simulation_dispatcher__coll__graph.png" border="0" usemap="#axpe_1_1core_1_1c_simulation_dispatcher_coll__map" alt="Collaboration graph"/></div>
+<map name="axpe_1_1core_1_1c_simulation_dispatcher_coll__map" id="axpe_1_1core_1_1c_simulation_dispatcher_coll__map">
+<area shape="rect" title=" " alt="" coords="88,264,301,291"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_task_dispatcher.html" title=" " alt="" coords="5,188,186,215"/>
+<area shape="poly" title=" " alt="" coords="126,222,179,262,176,266,123,226"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="26,5,154,32"/>
+<area shape="poly" title=" " alt="" coords="94,48,98,187,92,188,88,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_ring_buffer.html" title=" " alt="" coords="112,81,261,124"/>
+<area shape="poly" title=" " alt="" coords="118,40,164,79,160,83,115,44"/>
+<area shape="poly" title=" " alt="" coords="158,137,109,189,105,186,155,134"/>
+<area shape="rect" title=" " alt="" coords="210,188,376,215"/>
+<area shape="poly" title=" " alt="" coords="265,226,212,266,209,262,262,222"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -144,7 +183,10 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a932baf4d6c1c03c8968a8129da4ab6d1 inherit pro_attribs_classxpe_1_1core_1_1c_task_dispatcher" id="r_a932baf4d6c1c03c8968a8129da4ab6d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacexpe_1_1core.html#aa507c1ad5e6e22c6561d60671555dafc">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxpe_1_1core_1_1c_task_dispatcher.html#a932baf4d6c1c03c8968a8129da4ab6d1">m_WorkerCount</a></td></tr>
 <tr class="separator:a932baf4d6c1c03c8968a8129da4ab6d1 inherit pro_attribs_classxpe_1_1core_1_1c_task_dispatcher"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="task__manager_8hpp_source.html#l00072">72</a> of file <a class="el" href="task__manager_8hpp_source.html">task_manager.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a03402af9a4692af19df4f4cf1fb06f69" name="a03402af9a4692af19df4f4cf1fb06f69"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a03402af9a4692af19df4f4cf1fb06f69">&#9670;&#160;</a></span>cSimulationDispatcher()</h2>
 
@@ -181,6 +223,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="task__manager_8hpp_source.html#l00075">75</a> of file <a class="el" href="task__manager_8hpp_source.html">task_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -233,6 +277,18 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="task__manager_8cpp_source.html#l00134">134</a> of file <a class="el" href="task__manager_8cpp_source.html">task_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_simulation_dispatcher_a6e43096a7f0c9dbaad09a67ee017328a_cgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_simulation_dispatcher_a6e43096a7f0c9dbaad09a67ee017328a_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_simulation_dispatcher_a6e43096a7f0c9dbaad09a67ee017328a_cgraph" id="aclassxpe_1_1core_1_1c_simulation_dispatcher_a6e43096a7f0c9dbaad09a67ee017328a_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,219,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_task_dispatcher.html#a49bf69fb2bde1506378fb05c6c9442a7" title=" " alt="" coords="267,5,447,48"/>
+<area shape="poly" title=" " alt="" coords="219,24,251,24,251,29,219,29"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a5325d7dece59cf7a08b8dbef17764317" name="a5325d7dece59cf7a08b8dbef17764317"></a>
@@ -258,16 +314,34 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="task__manager_8cpp_source.html#l00123">123</a> of file <a class="el" href="task__manager_8cpp_source.html">task_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_simulation_dispatcher_a5325d7dece59cf7a08b8dbef17764317_cgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_simulation_dispatcher_a5325d7dece59cf7a08b8dbef17764317_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_simulation_dispatcher_a5325d7dece59cf7a08b8dbef17764317_cgraph" id="aclassxpe_1_1core_1_1c_simulation_dispatcher_a5325d7dece59cf7a08b8dbef17764317_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,219,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_task_dispatcher.html#a9c0c18dbf564186d946ca962fea4b898" title=" " alt="" coords="267,5,447,48"/>
+<area shape="poly" title=" " alt="" coords="219,24,251,24,251,29,219,29"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_task_dispatcher.html#a65dcf432e2c479da29f08ae128cee2b4" title=" " alt="" coords="495,5,675,48"/>
+<area shape="poly" title=" " alt="" coords="447,24,479,24,479,29,447,29"/>
+</map>
+</div>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>engine/src/core/<a class="el" href="task__manager_8hpp_source.html">task_manager.hpp</a></li>
-<li>engine/src/core/<a class="el" href="task__manager_8cpp.html">task_manager.cpp</a></li>
+<li>engine/src/core/<a class="el" href="task__manager_8cpp_source.html">task_manager.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1core.html">core</a></li><li class="navelem"><a class="el" href="classxpe_1_1core_1_1c_simulation_dispatcher.html">cSimulationDispatcher</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -1,0 +1,7 @@
+<map id="xpe::anim::cSkeletonManager::AddSkeleton" name="xpe::anim::cSkeletonManager::AddSkeleton">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,39,200,81"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1render_1_1s_list_buffer.html#a05386fd8b9858ceda35f9f17d4de0cc1" title=" " alt="" coords="248,5,403,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,43,232,38,233,43,200,48"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1render_1_1s_list_buffer.html#af1b78e374e912c0f7ea9363d579553c5" title=" " alt="" coords="248,72,403,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="200,72,233,77,232,82,199,77"/>
+</map>

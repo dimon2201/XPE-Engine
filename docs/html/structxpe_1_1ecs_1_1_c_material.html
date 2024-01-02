@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('structxpe_1_1ecs_1_1_c_material.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1ecs.html">ecs</a></li><li class="navelem"><a class="el" href="structxpe_1_1ecs_1_1_c_material.html">CMaterial</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -86,14 +104,35 @@ $(function() {
 <div class="dynheader">
 Inheritance diagram for xpe::ecs::CMaterial:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="structxpe_1_1ecs_1_1_c_material.png" usemap="#xpe::ecs::CMaterial_map" alt=""/>
-  <map id="xpe::ecs::CMaterial_map" name="xpe::ecs::CMaterial_map">
-<area href="classxpe_1_1res_1_1c_json.html" alt="xpe::res::cJson" shape="rect" coords="0,56,160,80"/>
-<area href="structxpe_1_1render_1_1s_material.html" alt="xpe::render::sMaterial" shape="rect" coords="170,56,330,80"/>
-<area href="structxpe_1_1render_1_1s_material_data.html" alt="xpe::render::sMaterialData" shape="rect" coords="170,0,330,24"/>
-  </map>
-</div></div>
+<div class="center"><img src="structxpe_1_1ecs_1_1_c_material__inherit__graph.png" border="0" usemap="#axpe_1_1ecs_1_1_c_material_inherit__map" alt="Inheritance graph"/></div>
+<map name="axpe_1_1ecs_1_1_c_material_inherit__map" id="axpe_1_1ecs_1_1_c_material_inherit__map">
+<area shape="rect" title=" " alt="" coords="69,155,204,181"/>
+<area shape="rect" href="classxpe_1_1res_1_1c_json.html" title=" " alt="" coords="5,80,116,107"/>
+<area shape="poly" title=" " alt="" coords="86,116,125,152,122,156,83,119"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_material.html" title=" " alt="" coords="140,80,288,107"/>
+<area shape="poly" title=" " alt="" coords="191,119,152,156,148,152,187,116"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_material_data.html" title=" " alt="" coords="127,5,301,32"/>
+<area shape="poly" title=" " alt="" coords="217,48,217,80,211,80,211,48"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for xpe::ecs::CMaterial:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1ecs_1_1_c_material__coll__graph.png" border="0" usemap="#axpe_1_1ecs_1_1_c_material_coll__map" alt="Collaboration graph"/></div>
+<map name="axpe_1_1ecs_1_1_c_material_coll__map" id="axpe_1_1ecs_1_1_c_material_coll__map">
+<area shape="rect" title=" " alt="" coords="93,268,228,295"/>
+<area shape="rect" href="classxpe_1_1res_1_1c_json.html" title=" " alt="" coords="89,192,200,219"/>
+<area shape="poly" title=" " alt="" coords="153,233,160,267,155,268,148,234"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_material.html" title=" " alt="" coords="224,192,372,219"/>
+<area shape="poly" title=" " alt="" coords="262,229,185,270,183,265,260,224"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_material_data.html" title=" " alt="" coords="5,5,180,32"/>
+<area shape="poly" title=" " alt="" coords="119,41,286,190,282,194,116,45"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_material_format.html" title=" " alt="" coords="204,5,392,32"/>
+<area shape="poly" title=" " alt="" coords="301,48,301,192,295,192,295,48"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_texture_layer.html" title=" " alt="" coords="416,5,593,32"/>
+<area shape="poly" title=" " alt="" coords="499,48,473,109,452,142,425,170,400,185,373,195,371,190,398,180,421,166,448,139,468,107,494,46"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -173,7 +212,10 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a521990eae276dd1ccbca8488fe05b975 inherit pub_static_attribs_structxpe_1_1render_1_1s_material" id="r_a521990eae276dd1ccbca8488fe05b975"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">static</a> <a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">const</a> <a class="el" href="structxpe_1_1render_1_1s_material_format.html">sMaterialFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxpe_1_1render_1_1s_material.html#a521990eae276dd1ccbca8488fe05b975">k_EmissionFormat</a> = {<a class="el" href="namespacexpe_1_1render.html#a46d0dfa0f134db6b834ccc2b921e2da2aad2ecedf63a30a8f4201f44431d3e2f3">eTextureFormat::SRGBA8</a>, 2048, 2048, <a class="el" href="macro__constants_8hpp.html#a6f2ebfba73bfdc52330d43b7bf94c6f7">K_SLOT_EMISSION</a> }</td></tr>
 <tr class="separator:a521990eae276dd1ccbca8488fe05b975 inherit pub_static_attribs_structxpe_1_1render_1_1s_material"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="components_8hpp_source.html#l00105">105</a> of file <a class="el" href="components_8hpp_source.html">components.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a95dbd853a07f57cdaf65db71517dd838" name="a95dbd853a07f57cdaf65db71517dd838"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a95dbd853a07f57cdaf65db71517dd838">&#9670;&#160;</a></span>CMaterial() <span class="overload">[1/2]</span></h2>
 
@@ -196,6 +238,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="components_8hpp_source.html#l00107">107</a> of file <a class="el" href="components_8hpp_source.html">components.hpp</a>.</p>
 
 </div>
 </div>
@@ -222,15 +266,21 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="components_8hpp_source.html#l00108">108</a> of file <a class="el" href="components_8hpp_source.html">components.hpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>engine/src/ecs/<a class="el" href="components_8hpp_source.html">components.hpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1ecs.html">ecs</a></li><li class="navelem"><a class="el" href="structxpe_1_1ecs_1_1_c_material.html">CMaterial</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

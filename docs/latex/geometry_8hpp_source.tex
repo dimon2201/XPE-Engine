@@ -2,92 +2,92 @@
 \hypertarget{geometry_8hpp_source}{}\label{geometry_8hpp_source}\index{engine/src/rendering/geometry/geometry.hpp@{engine/src/rendering/geometry/geometry.hpp}}
 \mbox{\hyperlink{geometry_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{buffers_8hpp}{rendering/buffers.hpp}}>}}
-\DoxyCodeLine{00004\ }
-\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
-\DoxyCodeLine{00006\ }
-\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{namespace\ }render\ \{}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }core;}
-\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }render;}
-\DoxyCodeLine{00011\ }
-\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ InitUV(sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}},\ sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v1}},\ sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v2}},\ sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v3}})}
-\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}}-\/>UV\ =\ \{\ 0,\ 0\ \};}
-\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v1}}-\/>UV\ =\ \{\ 0,\ 1\ \};}
-\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v2}}-\/>UV\ =\ \{\ 1,\ 1\ \};}
-\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v3}}-\/>UV\ =\ \{\ 1,\ 0\ \};}
-\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00019\ }
-\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ InitNormal(sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}},\ sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v1}},\ sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v2}})}
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{x1}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v1}}-\/>Position\ -\/\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}}-\/>Position;}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{x2}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v2}}-\/>Position\ -\/\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}}-\/>Position;}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{normal}}\ =\ -\/glm::normalize(glm::cross(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{x1}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{x2}}));}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}}-\/>Normal\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{normal}};}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v1}}-\/>Normal\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{normal}};}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v2}}-\/>Normal\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{normal}};}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00029\ }
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ InitNormal(sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}},\ sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v1}},\ sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v2}},\ sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v3}})}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{x1}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v1}}-\/>Position\ -\/\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}}-\/>Position;}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{x2}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v3}}-\/>Position\ -\/\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}}-\/>Position;}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{normal}}\ =\ -\/glm::normalize(glm::cross(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{x1}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{x2}}));}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}}-\/>Normal\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{normal}};}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v1}}-\/>Normal\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{normal}};}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v2}}-\/>Normal\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{normal}};}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v3}}-\/>Normal\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{normal}};}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ InitTangent(sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}},\ sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v1}},\ sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v2}},\ sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v3}})}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pos0}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}}-\/>Position;}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pos1}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v1}}-\/>Position;}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pos2}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v2}}-\/>Position;}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec2\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{uv0}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}}-\/>UV;}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec2\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{uv1}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v1}}-\/>UV;}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec2\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{uv2}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v2}}-\/>UV;}
-\DoxyCodeLine{00050\ }
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ sTriangle\ edges}}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{dpos\_1}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pos1}}\ -\/\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pos0}};}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{dpos\_2}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pos2}}\ -\/\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pos0}};}
-\DoxyCodeLine{00054\ }
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ delta\ UV}}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec2\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{duv\_1}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{uv1}}\ -\/\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{uv0}};}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec2\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{duv\_2}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{uv2}}\ -\/\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{uv0}};}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ Tangents}}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{r}}\ =\ 1.0f\ /\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{duv\_1}}.x\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{duv\_2}}.y\ -\/\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{duv\_1}}.y\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{duv\_2}}.x);}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tangent}}\ =\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{dpos\_1}}\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{duv\_2}}.y\ -\/\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{dpos\_2}}\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{duv\_1}}.y)\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{r}};}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}}-\/>Tangent\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tangent}};}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v1}}-\/>Tangent\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tangent}};}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v2}}-\/>Tangent\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tangent}};}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v3}}-\/>Tangent\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tangent}};}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry}{sGeometry}}}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a1ed914ac1656a886e026259749d31100}{ePrimitiveTopology}}\ \mbox{\hyperlink{namespacexpe_1_1render_a0829045bba88bd2197a49b7c5226531a}{PrimitiveTopology}}\ =\ ePrimitiveTopology::DEFAULT;}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<sVertex>}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_a8d830374768f5294dd56e98eb7a4dcb2}{Vertices}};}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<u32>}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_ac9add3011709810d7c76883a6c604a69}{Indices}};}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00074\ }
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_info}{sGeometryInfo}}}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a1ed914ac1656a886e026259749d31100}{ePrimitiveTopology}}\ \mbox{\hyperlink{namespacexpe_1_1render_a0829045bba88bd2197a49b7c5226531a}{PrimitiveTopology}}\ =\ ePrimitiveTopology::DEFAULT;}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ VertexOffset\ =\ 0;}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ IndexOffset\ =\ 0;}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ VertexCount\ =\ 0;}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ IndexCount\ =\ 0;}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<EntityID>}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_info_a15819dd9d5922bdecb2101c7387ee006}{Entities}};}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00084\ }
-\DoxyCodeLine{00085\ \ \ \ \ \}}
-\DoxyCodeLine{00086\ }
-\DoxyCodeLine{00087\ \}}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{buffers_8hpp}{rendering/buffers.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00005}00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00007}00007\ \ \ \ \ \textcolor{keyword}{namespace\ }render\ \{}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00009}00009\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }core;}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00010}00010\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }render;}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ InitUV(sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}},\ sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v1}},\ sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v2}},\ sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v3}})}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00013}00013\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}}-\/>UV\ =\ \{\ 0,\ 0\ \};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v1}}-\/>UV\ =\ \{\ 0,\ 1\ \};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v2}}-\/>UV\ =\ \{\ 1,\ 1\ \};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v3}}-\/>UV\ =\ \{\ 1,\ 0\ \};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ InitNormal(sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}},\ sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v1}},\ sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v2}})}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{x1}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v1}}-\/>Position\ -\/\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}}-\/>Position;}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{x2}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v2}}-\/>Position\ -\/\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}}-\/>Position;}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{normal}}\ =\ -\/glm::normalize(glm::cross(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{x1}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{x2}}));}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}}-\/>Normal\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{normal}};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v1}}-\/>Normal\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{normal}};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v2}}-\/>Normal\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{normal}};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ InitNormal(sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}},\ sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v1}},\ sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v2}},\ sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v3}})}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{x1}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v1}}-\/>Position\ -\/\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}}-\/>Position;}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{x2}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v3}}-\/>Position\ -\/\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}}-\/>Position;}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{normal}}\ =\ -\/glm::normalize(glm::cross(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{x1}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{x2}}));}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}}-\/>Normal\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{normal}};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v1}}-\/>Normal\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{normal}};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v2}}-\/>Normal\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{normal}};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v3}}-\/>Normal\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{normal}};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ InitTangent(sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}},\ sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v1}},\ sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v2}},\ sVertex*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v3}})}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pos0}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}}-\/>Position;}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pos1}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v1}}-\/>Position;}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pos2}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v2}}-\/>Position;}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec2\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{uv0}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}}-\/>UV;}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec2\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{uv1}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v1}}-\/>UV;}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec2\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{uv2}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v2}}-\/>UV;}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ sTriangle\ edges}}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{dpos\_1}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pos1}}\ -\/\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pos0}};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{dpos\_2}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pos2}}\ -\/\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pos0}};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ delta\ UV}}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec2\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{duv\_1}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{uv1}}\ -\/\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{uv0}};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec2\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{duv\_2}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{uv2}}\ -\/\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{uv0}};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ Tangents}}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{r}}\ =\ 1.0f\ /\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{duv\_1}}.x\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{duv\_2}}.y\ -\/\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{duv\_1}}.y\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{duv\_2}}.x);}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tangent}}\ =\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{dpos\_1}}\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{duv\_2}}.y\ -\/\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{dpos\_2}}\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{duv\_1}}.y)\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{r}};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v0}}-\/>Tangent\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tangent}};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v1}}-\/>Tangent\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tangent}};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v2}}-\/>Tangent\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tangent}};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{v3}}-\/>Tangent\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{tangent}};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00068}\mbox{\hyperlink{structxpe_1_1render_1_1s_geometry}{00068}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry}{sGeometry}}}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00070}\mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_a379b899d1d5cf643d32c40aff02461bc}{00070}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a1ed914ac1656a886e026259749d31100}{ePrimitiveTopology}}\ \mbox{\hyperlink{namespacexpe_1_1render_a0829045bba88bd2197a49b7c5226531a}{PrimitiveTopology}}\ =\ ePrimitiveTopology::DEFAULT;}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00071}\mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_a8d830374768f5294dd56e98eb7a4dcb2}{00071}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<sVertex>}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_a8d830374768f5294dd56e98eb7a4dcb2}{Vertices}};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00072}\mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_ac9add3011709810d7c76883a6c604a69}{00072}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<u32>}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_ac9add3011709810d7c76883a6c604a69}{Indices}};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00075}\mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_info}{00075}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_info}{sGeometryInfo}}}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00077}\mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_info_a9312c855bfe65f73db55cee0182c64f6}{00077}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_a1ed914ac1656a886e026259749d31100}{ePrimitiveTopology}}\ \mbox{\hyperlink{namespacexpe_1_1render_a0829045bba88bd2197a49b7c5226531a}{PrimitiveTopology}}\ =\ ePrimitiveTopology::DEFAULT;}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00078}\mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_info_a598b0bd2c9c16d9f2a9567be51c258b2}{00078}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ VertexOffset\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00079}\mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_info_a7b99f88471db9da763de77cb33747181}{00079}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ IndexOffset\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00080}\mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_info_a057fd20f951d01093445e05b750402f2}{00080}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ VertexCount\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00081}\mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_info_a849b825891604d340adc2c567a6d4a61}{00081}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ IndexCount\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00082}\mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_info_a15819dd9d5922bdecb2101c7387ee006}{00082}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<EntityID>}}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_info_a15819dd9d5922bdecb2101c7387ee006}{Entities}};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00085}00085\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{geometry_8hpp_source_l00087}00087\ \}}
 
 \end{DoxyCode}

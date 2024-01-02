@@ -1,0 +1,9 @@
+<map id="xpe::ecs::CStreamAudio" name="xpe::ecs::CStreamAudio">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,172,169,199"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1res_1_1c_json.html" title=" " alt="" coords="11,81,121,108"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,123,87,171,81,172,70,124"/>
+<area shape="rect" id="Node000003" href="$structxpe_1_1audio_1_1s_audio_file.html" title=" " alt="" coords="145,81,296,108"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="190,119,108,174,105,169,187,115"/>
+<area shape="rect" id="Node000004" href="$classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="156,5,285,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="223,47,223,81,218,81,218,47"/>
+</map>

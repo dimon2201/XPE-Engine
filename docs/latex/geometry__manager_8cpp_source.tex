@@ -1,0 +1,41 @@
+\doxysection{geometry\+\_\+manager.\+cpp}
+\hypertarget{geometry__manager_8cpp_source}{}\label{geometry__manager_8cpp_source}\index{engine/src/rendering/geometry/geometry\_manager.cpp@{engine/src/rendering/geometry/geometry\_manager.cpp}}
+\mbox{\hyperlink{geometry__manager_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{geometry__manager_8hpp}{rendering/geometry/geometry\_manager.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{bindings_8hpp}{rendering/bindings.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00004}00004\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00006}00006\ \ \ \ \ \textcolor{keyword}{namespace\ }render\ \{}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00008}\mbox{\hyperlink{classxpe_1_1render_1_1c_geometry_manager_aff16fdc19b1ed7d7e0874aa661c43a8e}{00008}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_geometry_manager_aff16fdc19b1ed7d7e0874aa661c43a8e}{cGeometryManager::Init}}()}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00009}00009\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00010}00010\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_a17e78b5995040ce0922bb6e86b9ac029}{Buffers::Vertex}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_buffer}{sVertexBuffer}}();}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00011}00011\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_a5c7fbcce9a91a8cade08dc58bc6bf0cd}{Buffers::Index}}\ \ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_index_buffer}{sIndexBuffer}}();}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00014}\mbox{\hyperlink{classxpe_1_1render_1_1c_geometry_manager_a04a757973e28c7a4b0bfb8bdce114ec7}{00014}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_geometry_manager_a04a757973e28c7a4b0bfb8bdce114ec7}{cGeometryManager::Free}}()}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_a17e78b5995040ce0922bb6e86b9ac029}{Buffers::Vertex}};}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_a5c7fbcce9a91a8cade08dc58bc6bf0cd}{Buffers::Index}};}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00020}\mbox{\hyperlink{classxpe_1_1render_1_1c_geometry_manager_afcab89931d34518de9c76ff962e6a5b9}{00020}}\ \ \ \ \ \ \ \ \ std::pair<sGeometry,\ sGeometryInfo>\ \mbox{\hyperlink{classxpe_1_1render_1_1c_geometry_manager_afcab89931d34518de9c76ff962e6a5b9}{cGeometryManager::AddGeometry}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry}{sGeometry}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{geometry}})}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_info}{sGeometryInfo}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{geometryInfo}};}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{geometryInfo}}.\mbox{\hyperlink{structxpe_1_1render_1_1s_geometry_info_a9312c855bfe65f73db55cee0182c64f6}{PrimitiveTopology}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{geometry}}.PrimitiveTopology;}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{geometryInfo}}.VertexOffset\ =\ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_a17e78b5995040ce0922bb6e86b9ac029}{Buffers::Vertex}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_buffer_a51156ba60b131894740fcda87d91459d}{AddVertices}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{geometry}}.Vertices);}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{geometryInfo}}.IndexOffset\ =\ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_a5c7fbcce9a91a8cade08dc58bc6bf0cd}{Buffers::Index}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_index_buffer_ae66af1dc4e7fdb4e9b68681f840ce088}{AddIndices}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{geometry}}.Indices);}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{geometryInfo}}.VertexCount\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{geometry}}.Vertices.size();}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{geometryInfo}}.IndexCount\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{geometry}}.Indices.size();}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_a17e78b5995040ce0922bb6e86b9ac029}{Buffers::Vertex}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_vertex_buffer_a896c35b36d1987189db78fbca0a81a19}{Flush}}();}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_a5c7fbcce9a91a8cade08dc58bc6bf0cd}{Buffers::Index}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_index_buffer_aaa6c6f473ab50ee10652c85dd2bbfdb0}{Flush}}();}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{geometry}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{geometryInfo}}\ \};}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00033}00033\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{geometry__manager_8cpp_source_l00035}00035\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,14 @@
+<map id="engine/src/rendering/core/core.cpp" name="engine/src/rendering/core/core.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="16,5,155,48"/>
+<area shape="rect" id="Node000002" href="$rendering_2core_2core_8hpp.html" title=" " alt="" coords="5,411,163,437"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,50,42,108,30,145,25,183,25,268,27,295,32,316,50,362,69,396,64,399,46,364,26,317,22,296,20,268,20,182,25,143,38,106,69,47"/>
+<area shape="rect" id="Node000003" href="$rendering_2core_2context_8hpp.html" title=" " alt="" coords="60,96,236,123"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="104,47,131,82,127,85,99,50"/>
+<area shape="rect" id="Node000004" href="$shader_8hpp.html" title=" " alt="" coords="61,171,232,197"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="150,123,150,155,145,155,145,123"/>
+<area shape="rect" id="Node000005" href="$render__target_8hpp.html" title=" " alt="" coords="75,245,218,288"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="149,198,149,230,144,230,144,198"/>
+<area shape="rect" id="Node000006" href="$texture_8hpp.html" title=" " alt="" coords="61,336,233,363"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="149,289,149,320,144,320,144,289"/>
+<area shape="poly" id="edge6_Node000006_Node000002" title=" " alt="" coords="138,365,107,401,103,397,134,361"/>
+</map>

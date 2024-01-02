@@ -1,0 +1,172 @@
+\doxysection{dx11\+\_\+debugger.\+cpp}
+\hypertarget{dx11__debugger_8cpp_source}{}\label{dx11__debugger_8cpp_source}\index{engine/src/rendering/dx11/dx11\_debugger.cpp@{engine/src/rendering/dx11/dx11\_debugger.cpp}}
+\mbox{\hyperlink{dx11__debugger_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#ifdef\ DX11}}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{debugger_8hpp}{rendering/core/debugger.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <d3d11.h>}}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00007}00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00009}00009\ \ \ \ \ \textcolor{keyword}{namespace\ }render\ \{}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00011}00011\ \ \ \ \ \ \ \ \ \textcolor{keyword}{namespace\ }context\ \{}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00013}00013\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ID3D11Debug}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{s\_Debug}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ID3D11InfoQueue}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{s\_InfoQueue}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ sDebugMessage\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ToDebugMessage}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{D3D11\_MESSAGE}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{d3D11Message}})}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sDebugMessage\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}.ID\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{d3D11Message}}.ID;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{severity}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{d3D11Message}}.Severity;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{category}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{d3D11Message}}.Category;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}.Description.reserve(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{d3D11Message}}.DescriptionByteLength);}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{memmove}}((\textcolor{keywordtype}{char}*)\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}.Description.data(),}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{d3D11Message}}.pDescription,}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{d3D11Message}}.DescriptionByteLength);}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{severity}})\ \{}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ D3D11\_MESSAGE\_SEVERITY::D3D11\_MESSAGE\_SEVERITY\_CORRUPTION:}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}.Severity\ =\ eDebugSeverity::D\_HIGH;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}.Type\ =\ eDebugType::D\_ERROR;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}.ErrorType\ =\ eDebugErrorType::D\_OTHER\_ERROR\_TYPE;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ D3D11\_MESSAGE\_SEVERITY::D3D11\_MESSAGE\_SEVERITY\_MESSAGE:}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}.Severity\ =\ eDebugSeverity::D\_NOTIFICATION;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ D3D11\_MESSAGE\_SEVERITY::D3D11\_MESSAGE\_SEVERITY\_INFO:}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}.Severity\ =\ eDebugSeverity::D\_LOW;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ D3D11\_MESSAGE\_SEVERITY::D3D11\_MESSAGE\_SEVERITY\_WARNING:}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}.Severity\ =\ eDebugSeverity::D\_MEDIUM;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}.Type\ =\ eDebugType::D\_WARNING;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ D3D11\_MESSAGE\_SEVERITY::D3D11\_MESSAGE\_SEVERITY\_ERROR:}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}.Severity\ =\ eDebugSeverity::D\_HIGH;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}.Type\ =\ eDebugType::D\_ERROR;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}.ErrorType\ =\ eDebugErrorType::D\_OTHER\_ERROR\_TYPE;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{category}})\ \{}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ D3D11\_MESSAGE\_CATEGORY::D3D11\_MESSAGE\_CATEGORY\_APPLICATION\_DEFINED:}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}.Category\ =\ eDebugCategory::D\_APPLICATION;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ D3D11\_MESSAGE\_CATEGORY::D3D11\_MESSAGE\_CATEGORY\_CLEANUP:}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}.Category\ =\ eDebugCategory::D\_API;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ D3D11\_MESSAGE\_CATEGORY::D3D11\_MESSAGE\_CATEGORY\_COMPILATION:}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}.Category\ =\ eDebugCategory::D\_SHADER\_COMPILER;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ D3D11\_MESSAGE\_CATEGORY::D3D11\_MESSAGE\_CATEGORY\_EXECUTION:}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}.Category\ =\ eDebugCategory::D\_API;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ D3D11\_MESSAGE\_CATEGORY::D3D11\_MESSAGE\_CATEGORY\_INITIALIZATION:}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}.Category\ =\ eDebugCategory::D\_API;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ D3D11\_MESSAGE\_CATEGORY::D3D11\_MESSAGE\_CATEGORY\_MISCELLANEOUS:}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}.Category\ =\ eDebugCategory::D\_API;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ D3D11\_MESSAGE\_CATEGORY::D3D11\_MESSAGE\_CATEGORY\_RESOURCE\_MANIPULATION:}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}.Category\ =\ eDebugCategory::D\_API;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ D3D11\_MESSAGE\_CATEGORY::D3D11\_MESSAGE\_CATEGORY\_SHADER:}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}.Category\ =\ eDebugCategory::D\_SHADER\_COMPILER;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ D3D11\_MESSAGE\_CATEGORY::D3D11\_MESSAGE\_CATEGORY\_STATE\_CREATION:}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}.Category\ =\ eDebugCategory::D\_API;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ D3D11\_MESSAGE\_CATEGORY::D3D11\_MESSAGE\_CATEGORY\_STATE\_GETTING:}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}.Category\ =\ eDebugCategory::D\_API;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ D3D11\_MESSAGE\_CATEGORY::D3D11\_MESSAGE\_CATEGORY\_STATE\_SETTING:}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}.Category\ =\ eDebugCategory::D\_API;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ sDebugMessage\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{GetDebugMessage}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{index}})}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{SIZE\_T}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{messageSize}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{s\_InfoQueue}}-\/>GetMessageA(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{index}},\ \textcolor{keyword}{nullptr},\ \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{messageSize}});}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{D3D11\_MESSAGE}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}\ =\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{D3D11\_MESSAGE}}*)\ \mbox{\hyperlink{core_2allocators_8hpp_a8cf9fa12fa5eb5f94831f79c7bc47caf}{salloc}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{messageSize}});}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{s\_InfoQueue}}-\/>GetMessageA(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{index}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}},\ \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{messageSize}});}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sDebugMessage\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{debugMessage}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ToDebugMessage}}(*\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}});}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{debugMessage}};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacexpe_1_1render_1_1context_ab07e491fd3e0aab42a3f789e6b8ae0e0}{InitDebug}}()\ \{}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{device}}\ =\ \textcolor{keyword}{reinterpret\_cast<}\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ID3D11Device}}*\textcolor{keyword}{>}(\mbox{\hyperlink{namespacexpe_1_1render_1_1context_a4770c3b88d5bef0a68772ee87d9a1cdc}{context::GetDevice}}());}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{device}}-\/>QueryInterface(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{\_\_uuidof}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ID3D11Debug}}),\ (\textcolor{keywordtype}{void}**)\&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{s\_Debug}});}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{device}}-\/>QueryInterface(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{\_\_uuidof}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ID3D11InfoQueue}}),\ (\textcolor{keywordtype}{void}**)\&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{s\_InfoQueue}});}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacexpe_1_1render_1_1context_a5ea9ec23acfb3fa644c5e7ad2cf5c93c}{FreeDebug}}()\ \{}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{s\_Debug}}-\/>Release();}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{s\_InfoQueue}}-\/>Release();}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1render_1_1context_ae09aecc509f2be59b6a226888404ba55}{GetLastMessage}}(sDebugMessage\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}})\ \{}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{messageCount}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{s\_InfoQueue}}-\/>GetNumStoredMessages();}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{messageCount}}\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{GetDebugMessage}}(0);}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{s\_InfoQueue}}-\/>ClearStoredMessages();}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<sDebugMessage>}}\ \mbox{\hyperlink{namespacexpe_1_1render_1_1context_aa521e4c0300ff7c0eafb72228a0fa160}{GetMessageQueue}}()\ \{}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{messageCount}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{s\_InfoQueue}}-\/>GetNumStoredMessages();}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vector<sDebugMessage>}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{messages}};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{messages}}.resize(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{messageCount}});}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{i}}\ =\ 0;\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{i}}\ <\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{messageCount}};\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{i}}++)\ \{}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{messages}}.emplace\_back(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{GetDebugMessage}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{i}}));}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{s\_InfoQueue}}-\/>ClearStoredMessages();}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{messages}};}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacexpe_1_1render_1_1context_a223e186d2db510296c00f1fa836f5c36}{ClearMessageQueue}}()\ \{}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{s\_InfoQueue}}-\/>ClearStoredMessages();}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00162}00162\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00164}00164\ \}}
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{dx11__debugger_8cpp_source_l00166}00166\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ DX11}}
+
+\end{DoxyCode}

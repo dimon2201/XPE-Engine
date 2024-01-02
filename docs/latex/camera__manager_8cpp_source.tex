@@ -1,0 +1,92 @@
+\doxysection{camera\+\_\+manager.\+cpp}
+\hypertarget{camera__manager_8cpp_source}{}\label{camera__manager_8cpp_source}\index{engine/src/rendering/camera\_manager.cpp@{engine/src/rendering/camera\_manager.cpp}}
+\mbox{\hyperlink{camera__manager_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{camera__manager_8hpp}{rendering/camera\_manager.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{bindings_8hpp}{rendering/bindings.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00004}00004\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00006}00006\ \ \ \ \ \textcolor{keyword}{namespace\ }render\ \{}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00008}00008\ \ \ \ \ \ \ \ \ cCamera*\ cCameraManager::s\_Camera\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00010}\mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_a6129ad4a0dd72367141a83a9ca9c069f}{00010}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_a6129ad4a0dd72367141a83a9ca9c069f}{cCameraManager::Init}}()}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00011}00011\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_camera_buffer}{sCameraBuffer}}();}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00013}00013\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00015}\mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_a08d7a77c9d82e1f4c3917df437bcfbb4}{00015}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_a08d7a77c9d82e1f4c3917df437bcfbb4}{cCameraManager::Free}}()}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}};}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ s\_Camera;}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00021}\mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_a58279b3cb239ca16a76b8d04eacb93cc}{00021}}\ \ \ \ \ \ \ \ \ glm::mat4\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_a58279b3cb239ca16a76b8d04eacb93cc}{cCameraManager::GetViewProjection}}()}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a3cf0d01b28c943dc5fbfb8d51f9d04e0}{Item}}.\mbox{\hyperlink{structxpe_1_1render_1_1s_camera_data_a191d0f1815561855dcf294c8ce3cbe7d}{Projection}}\ *\ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a3cf0d01b28c943dc5fbfb8d51f9d04e0}{Item}}.\mbox{\hyperlink{structxpe_1_1render_1_1s_camera_data_a5aac4ac1e531d6962e12165f74d4c6fe}{View}};}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00026}\mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_af424d0046e0de26200627a11e1051303}{00026}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_af424d0046e0de26200627a11e1051303}{cCameraManager::Flush}}()}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a36748548161b72588ad888d58a2aa163}{Flush}}();}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00031}\mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_a4ec78fc1eb083cc913d65b7186234a46}{00031}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_a4ec78fc1eb083cc913d65b7186234a46}{cCameraManager::Bind}}()}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_1_1context_ad9d47407f33b3d590885b9f5a997a78c}{context::VSBindBuffer}}(*\mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}});}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00036}\mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_ab38f9226063fb11f68d032c2bf9d69d7}{00036}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_ab38f9226063fb11f68d032c2bf9d69d7}{cCameraManager::Unbind}}()}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1render_1_1context_a14b40b432d37f92276a1766f9e1a39a2}{context::VSUnbindBuffer}}(*\mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}});}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00041}\mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_aba0502682c716b06e9b0b8e69bb18878}{00041}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_aba0502682c716b06e9b0b8e69bb18878}{cCameraManager::SetExposure}}(\textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{exposure}})}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a3cf0d01b28c943dc5fbfb8d51f9d04e0}{Item}}.\mbox{\hyperlink{structxpe_1_1render_1_1s_camera_data_a7ab3a9ff57ec3d6f686ba1bfe816277c}{Exposure}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{exposure}};}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a36748548161b72588ad888d58a2aa163}{Flush}}();}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00047}\mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_ac36b65d33a2ff4f2624492b3733fab11}{00047}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_ac36b65d33a2ff4f2624492b3733fab11}{cCameraManager::SetGamma}}(\textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{gamma}})}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a3cf0d01b28c943dc5fbfb8d51f9d04e0}{Item}}.\mbox{\hyperlink{structxpe_1_1render_1_1s_camera_data_ade38368e722be3cc96e24e4edd26ef8a}{Gamma}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{gamma}};}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a36748548161b72588ad888d58a2aa163}{Flush}}();}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00053}\mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_a3932ce0796389e9a760bd4066a649fee}{00053}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_a3932ce0796389e9a760bd4066a649fee}{cCameraManager::GetExposure}}()}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a3cf0d01b28c943dc5fbfb8d51f9d04e0}{Item}}.\mbox{\hyperlink{structxpe_1_1render_1_1s_camera_data_a7ab3a9ff57ec3d6f686ba1bfe816277c}{Exposure}};}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00058}\mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_a97831d722e6440122a5066e774c0e074}{00058}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_a97831d722e6440122a5066e774c0e074}{cCameraManager::GetGamma}}()}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a3cf0d01b28c943dc5fbfb8d51f9d04e0}{Item}}.\mbox{\hyperlink{structxpe_1_1render_1_1s_camera_data_ade38368e722be3cc96e24e4edd26ef8a}{Gamma}};}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00063}\mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_a9c0c4c39c990785bf9a1872668e034d4}{00063}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_a9c0c4c39c990785bf9a1872668e034d4}{cCameraManager::SetViewport}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1render_1_1s_viewport}{sViewport}}\ \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewport}})}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a3cf0d01b28c943dc5fbfb8d51f9d04e0}{Item}}.\mbox{\hyperlink{structxpe_1_1render_1_1s_camera_data_a17efea803d511e108323cdb9b372a342}{Viewport}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{viewport}};}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a36748548161b72588ad888d58a2aa163}{Flush}}();}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00069}\mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_abe3b469b340e88d3b463a76164e5f308}{00069}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1s_viewport}{sViewport}}*\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_abe3b469b340e88d3b463a76164e5f308}{cCameraManager::GetViewport}}()}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&\mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}-\/>\mbox{\hyperlink{structxpe_1_1render_1_1s_item_buffer_a3cf0d01b28c943dc5fbfb8d51f9d04e0}{Item}}.\mbox{\hyperlink{structxpe_1_1render_1_1s_camera_data_a17efea803d511e108323cdb9b372a342}{Viewport}};}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00074}\mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_a6b5bbab70d75a6ed0912f61a69bb93e2}{00074}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera}{cCamera}}*\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_a6b5bbab70d75a6ed0912f61a69bb93e2}{cCameraManager::GetCamera}}()}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ s\_Camera;}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00079}\mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_a05a77a33e76294d2525aa4f638ba3b76}{00079}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1render_1_1c_camera_manager_a05a77a33e76294d2525aa4f638ba3b76}{cCameraManager::SetCamera}}(\mbox{\hyperlink{classxpe_1_1render_1_1c_camera}{cCamera}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{camera}})}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ s\_Camera\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{camera}};}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00084}00084\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{camera__manager_8cpp_source_l00086}00086\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,154 @@
+\doxysection{callbacks.\+cpp}
+\hypertarget{callbacks_8cpp_source}{}\label{callbacks_8cpp_source}\index{engine/src/physics/callbacks.cpp@{engine/src/physics/callbacks.cpp}}
+\mbox{\hyperlink{callbacks_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{callbacks_8hpp}{physics/callbacks.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00003}00003\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00005}00005\ \ \ \ \ \textcolor{keyword}{namespace\ }physics\ \{}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00007}\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_error_callback_aec7ed480c859f36f20d20a9f888547f9}{00007}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_error_callback_aec7ed480c859f36f20d20a9f888547f9}{cPhysicsErrorCallback::cPhysicsErrorCallback}}(\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enableInfo}},\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enableWarning}},\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enableError}})}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00008}00008\ \ \ \ \ \ \ \ \ \ \ \ \ :\ EnableInfo(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enableInfo}}),\ EnableWarning(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enableWarning}}),\ EnableError(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{enableError}})}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00009}00009\ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00011}\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_error_callback_a1ceeae410021c3b968ef34e17d390b64}{00011}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_error_callback_a1ceeae410021c3b968ef34e17d390b64}{cPhysicsErrorCallback::\string~cPhysicsErrorCallback}}()}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00014}\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_error_callback_aa3ec24246144136cc5a4ca76d2a72960}{00014}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_error_callback_aa3ec24246144136cc5a4ca76d2a72960}{cPhysicsErrorCallback::reportError}}(}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ PxErrorCode::Enum\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{code}},}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}},}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}},}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{line}}}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ )\ \{}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ad25fb3781440baa5b332afa17ddfa6db}{hstringstream}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ss}};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ss}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ PhysX\ cDebugManager\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\(\backslash\)n\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{logInfo}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{logWarn}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{logError}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_error_callback_a34a3f282f5bd81e9cee52f8986750fb8}{EnableInfo}})\ \{}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{code}})\ \{}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PxErrorCode::Enum::eNO\_ERROR:}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ss}}\ <<\ \textcolor{stringliteral}{"{}Type:\ "{}}\ <<\ \textcolor{stringliteral}{"{}NO\_ERROR"{}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{logInfo}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PxErrorCode::Enum::eDEBUG\_INFO:}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ss}}\ <<\ \textcolor{stringliteral}{"{}Type:\ "{}}\ <<\ \textcolor{stringliteral}{"{}DEBUG\_INFO"{}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{logInfo}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PxErrorCode::Enum::eMASK\_ALL:}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ss}}\ <<\ \textcolor{stringliteral}{"{}Type:\ "{}}\ <<\ \textcolor{stringliteral}{"{}MASK\_ALL"{}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{logInfo}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_error_callback_abbeeb19aa0fa65b36ffb21d9f80086a9}{EnableWarning}})\ \{}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{code}})\ \{}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PxErrorCode::Enum::eDEBUG\_WARNING:}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ss}}\ <<\ \textcolor{stringliteral}{"{}Type:\ "{}}\ <<\ \textcolor{stringliteral}{"{}DEBUG\_WARNING"{}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{logWarn}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PxErrorCode::Enum::ePERF\_WARNING:}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ss}}\ <<\ \textcolor{stringliteral}{"{}Type:\ "{}}\ <<\ \textcolor{stringliteral}{"{}PERF\_WARNING"{}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{logWarn}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_error_callback_a6eb8c3499057b2191f0fb4f2a46f00e6}{EnableError}})\ \{}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{code}})\ \{}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PxErrorCode::Enum::eABORT:}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ss}}\ <<\ \textcolor{stringliteral}{"{}Type:\ "{}}\ <<\ \textcolor{stringliteral}{"{}ABORT"{}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{logError}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PxErrorCode::Enum::eINTERNAL\_ERROR:}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ss}}\ <<\ \textcolor{stringliteral}{"{}Type:\ "{}}\ <<\ \textcolor{stringliteral}{"{}INTERNAL\_ERROR"{}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{logError}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PxErrorCode::Enum::eINVALID\_OPERATION:}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ss}}\ <<\ \textcolor{stringliteral}{"{}Type:\ "{}}\ <<\ \textcolor{stringliteral}{"{}INVALID\_OPERATION"{}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{logError}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PxErrorCode::Enum::eINVALID\_PARAMETER:}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ss}}\ <<\ \textcolor{stringliteral}{"{}Type:\ "{}}\ <<\ \textcolor{stringliteral}{"{}INVALID\_PARAMETER"{}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{logError}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PxErrorCode::Enum::eOUT\_OF\_MEMORY:}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ss}}\ <<\ \textcolor{stringliteral}{"{}Type:\ "{}}\ <<\ \textcolor{stringliteral}{"{}OUT\_OF\_MEMORY"{}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{logError}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ss}}\ <<\ \textcolor{stringliteral}{"{}File:\ "{}}\ <<\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ss}}\ <<\ \textcolor{stringliteral}{"{}sLine:\ "{}}\ <<\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{line}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ss}}\ <<\ \textcolor{stringliteral}{"{}Message:\ "{}}\ <<\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{message}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ss}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{logInfo}})\ \{}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log__manager_8hpp_a57eb3ffc98e6ad1bdbed0a980a54c484}{LogInfo}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ss}}.str());}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{logWarn}})\ \{}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log__manager_8hpp_a2c6c3e9c356e14fb4a7139acf4fa7b18}{LogWarning}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ss}}.str());}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{logError}})\ \{}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log__manager_8hpp_a611dbbfa5c2f148b7190b97a12835b5e}{LogError}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ss}}.str());}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{debug\_break}}();}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00122}\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_simulation_event_callback_a046017393adf432a13f88f4bd3b26e21}{00122}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_simulation_event_callback_a046017393adf432a13f88f4bd3b26e21}{cPhysicsSimulationEventCallback::onConstraintBreak}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxConstraintInfo}}*,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxU32}})}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00126}\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_simulation_event_callback_a1ac125e903701784c351bc07f777ed0a}{00126}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_simulation_event_callback_a1ac125e903701784c351bc07f777ed0a}{cPhysicsSimulationEventCallback::onWake}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxActor}}**,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxU32}})}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00130}\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_simulation_event_callback_ae3bb12c8615583f4fb199efa186a03cd}{00130}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_simulation_event_callback_ae3bb12c8615583f4fb199efa186a03cd}{cPhysicsSimulationEventCallback::onSleep}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxActor}}**,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxU32}})}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00134}\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_simulation_event_callback_aa7cc466577d3d41031a4309f985ff69c}{00134}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_simulation_event_callback_aa7cc466577d3d41031a4309f985ff69c}{cPhysicsSimulationEventCallback::onContact}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxContactPairHeader}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pairHeader}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxContactPair}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{pairs}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxU32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{nbPairs}})}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log__manager_8hpp_a57eb3ffc98e6ad1bdbed0a980a54c484}{LogInfo}}(\textcolor{stringliteral}{"{}onContact"{}});}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00139}\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_simulation_event_callback_a0e15d7927fa0c80a3d805c08897dbff4}{00139}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_simulation_event_callback_a0e15d7927fa0c80a3d805c08897dbff4}{cPhysicsSimulationEventCallback::onTrigger}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxTriggerPair}}*,\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxU32}})}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00143}\mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_simulation_event_callback_a73c477f354afb64d54a624c2349d4d0c}{00143}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1physics_1_1c_physics_simulation_event_callback_a73c477f354afb64d54a624c2349d4d0c}{cPhysicsSimulationEventCallback::onAdvance}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxRigidBody}}*\ \textcolor{keyword}{const}*,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxTransform}}*,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{PxU32}})}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00146}00146\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{callbacks_8cpp_source_l00148}00148\ \}}
+
+\end{DoxyCode}

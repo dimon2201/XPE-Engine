@@ -2,98 +2,98 @@
 \hypertarget{pch_8hpp_source}{}\label{pch_8hpp_source}\index{engine/src/pch.hpp@{engine/src/pch.hpp}}
 \mbox{\hyperlink{pch_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{comment}{//\ skip\ non-\/critical\ Win\ API\ warnings}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4081)}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4103)}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4067)}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)\ }\textcolor{comment}{//\ dll-\/interface\ warning}}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{comment}{//\ Macros}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{macro__platform_8hpp}{core/macro\_platform.hpp}}>}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{macro__build_8hpp}{core/macro\_build.hpp}}>}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{macro__constants_8hpp}{core/macro\_constants.hpp}}>}}
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{macro__debugbreak_8hpp}{core/macro\_debugbreak.hpp}}>}}
-\DoxyCodeLine{00014\ }
-\DoxyCodeLine{00015\ \textcolor{comment}{//\ STL}}
-\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ \_ENFORCE\_MATCHING\_ALLOCATORS\ 0}}
-\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <random>}}
-\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <string>}}
-\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <algorithm>}}
-\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <functional>}}
-\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <array>}}
-\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <vector>}}
-\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <thread>}}
-\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <future>}}
-\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <map>}}
-\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
-\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <unordered\_set>}}
-\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <set>}}
-\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <queue>}}
-\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <memory>}}
-\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <mutex>}}
-\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <filesystem>}}
-\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <fstream>}}
-\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ <sstream>}}
-\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ <cstdint>}}
-\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ <cassert>}}
-\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ <cstdarg>}}
-\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ <ctime>}}
-\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ <utility>}}
-\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#include\ <chrono>}}
-\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ <iostream>}}
-\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ <regex>}}
-\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ <atomic>}}
-\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ <condition\_variable>}}
-\DoxyCodeLine{00045\ }
-\DoxyCodeLine{00046\ \textcolor{comment}{//\ GLM}}
-\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ <glm.hpp>}}
-\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ <gtx/quaternion.hpp>}}
-\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ <gtc/type\_ptr.hpp>}}
-\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#include\ <gtc/matrix\_transform.hpp>}}
-\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ <gtx/matrix\_transform\_2d.hpp>}}
-\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ GLM\_ENABLE\_EXPERIMENTAL}}
-\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#include\ <gtx/string\_cast.hpp>}}
-\DoxyCodeLine{00054\ }
-\DoxyCodeLine{00055\ \textcolor{comment}{//\ Core}}
-\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{types_8hpp}{core/types.hpp}}>}}
-\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{memory__manager_8hpp}{core/memory\_manager.hpp}}>}}
-\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{core_2allocators_8hpp}{core/allocators.hpp}}>}}
-\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{smart__pointers_8hpp}{core/smart\_pointers.hpp}}>}}
-\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{codes__keyboard_8hpp}{core/codes\_keyboard.hpp}}>}}
-\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{codes__mouse_8hpp}{core/codes\_mouse.hpp}}>}}
-\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{codes__gamepad_8hpp}{core/codes\_gamepad.hpp}}>}}
-\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{json_8hpp}{res/json.hpp}}>}}
-\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{xml_8hpp}{res/xml.hpp}}>}}
-\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{app__config_8hpp}{core/app\_config.hpp}}>}}
-\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{hardware__manager_8hpp}{core/hardware\_manager.hpp}}>}}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00068\ \textcolor{comment}{//\ STL\ customization}}
-\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{stl_8hpp}{stl/stl.hpp}}>}}
-\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{ring__buffer_8hpp}{stl/ring\_buffer.hpp}}>}}
-\DoxyCodeLine{00071\ }
-\DoxyCodeLine{00072\ \textcolor{comment}{//\ Core}}
-\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{time__manager_8hpp}{core/time\_manager.hpp}}>}}
-\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{log__manager_8hpp}{core/log\_manager.hpp}}>}}
-\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{thread_8hpp}{core/thread.hpp}}>}}
-\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{task__manager_8hpp}{core/task\_manager.hpp}}>}}
-\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{event__manager_8hpp}{core/event\_manager.hpp}}>}}
-\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{observers_8hpp}{core/observers.hpp}}>}}
-\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{file__manager_8hpp}{core/file\_manager.hpp}}>}}
-\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{window__manager_8hpp}{core/window\_manager.hpp}}>}}
-\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{input__manager_8hpp}{core/input\_manager.hpp}}>}}
-\DoxyCodeLine{00082\ }
-\DoxyCodeLine{00083\ \textcolor{comment}{//\ Physics}}
-\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{physics__manager_8hpp}{physics/physics\_manager.hpp}}>}}
-\DoxyCodeLine{00085\ }
-\DoxyCodeLine{00086\ \textcolor{comment}{//\ Math}}
-\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{math__manager_8hpp}{math/math\_manager.hpp}}>}}
-\DoxyCodeLine{00088\ }
-\DoxyCodeLine{00089\ \textcolor{comment}{//\ ECS}}
-\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{ecs_8hpp}{ecs/ecs.hpp}}>}}
-\DoxyCodeLine{00091\ }
-\DoxyCodeLine{00092\ \textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespacexpe_1_1core}{xpe::core}};}
-\DoxyCodeLine{00093\ \textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespacexpe_1_1ecs}{xpe::ecs}};}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00003}00003\ \textcolor{comment}{//\ skip\ non-\/critical\ Win\ API\ warnings}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00004}00004\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4081)}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00005}00005\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4103)}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00006}00006\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4067)}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00007}00007\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4251)\ }\textcolor{comment}{//\ dll-\/interface\ warning}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00009}00009\ \textcolor{comment}{//\ Macros}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{macro__platform_8hpp}{core/macro\_platform.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{macro__build_8hpp}{core/macro\_build.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{macro__constants_8hpp}{core/macro\_constants.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{macro__debugbreak_8hpp}{core/macro\_debugbreak.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00015}00015\ \textcolor{comment}{//\ STL}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00016}\mbox{\hyperlink{pch_8hpp_a5c7fdfd3782b3a78f43daa36c4522a32}{00016}}\ \textcolor{preprocessor}{\#define\ \_ENFORCE\_MATCHING\_ALLOCATORS\ 0}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ <future>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00025}00025\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00026}00026\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00027}00027\ \textcolor{preprocessor}{\#include\ <unordered\_set>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00028}00028\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00029}00029\ \textcolor{preprocessor}{\#include\ <queue>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00030}00030\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00031}00031\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00032}00032\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00033}00033\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00034}00034\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00035}00035\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00036}00036\ \textcolor{preprocessor}{\#include\ <cassert>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00037}00037\ \textcolor{preprocessor}{\#include\ <cstdarg>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00038}00038\ \textcolor{preprocessor}{\#include\ <ctime>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00039}00039\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00040}00040\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00041}00041\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00042}00042\ \textcolor{preprocessor}{\#include\ <regex>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00043}00043\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00044}00044\ \textcolor{preprocessor}{\#include\ <condition\_variable>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00046}00046\ \textcolor{comment}{//\ GLM}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00047}00047\ \textcolor{preprocessor}{\#include\ <glm.hpp>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00048}00048\ \textcolor{preprocessor}{\#include\ <gtx/quaternion.hpp>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00049}00049\ \textcolor{preprocessor}{\#include\ <gtc/type\_ptr.hpp>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00050}00050\ \textcolor{preprocessor}{\#include\ <gtc/matrix\_transform.hpp>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00051}00051\ \textcolor{preprocessor}{\#include\ <gtx/matrix\_transform\_2d.hpp>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00052}\mbox{\hyperlink{pch_8hpp_abd75661fe7969e19439052a5f69ba5d1}{00052}}\ \textcolor{preprocessor}{\#define\ GLM\_ENABLE\_EXPERIMENTAL}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00053}00053\ \textcolor{preprocessor}{\#include\ <gtx/string\_cast.hpp>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00055}00055\ \textcolor{comment}{//\ Core}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00056}00056\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{types_8hpp}{core/types.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00057}00057\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{memory__manager_8hpp}{core/memory\_manager.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00058}00058\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{core_2allocators_8hpp}{core/allocators.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00059}00059\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{smart__pointers_8hpp}{core/smart\_pointers.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00060}00060\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{codes__keyboard_8hpp}{core/codes\_keyboard.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00061}00061\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{codes__mouse_8hpp}{core/codes\_mouse.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00062}00062\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{codes__gamepad_8hpp}{core/codes\_gamepad.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00063}00063\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{json_8hpp}{res/json.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00064}00064\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{xml_8hpp}{res/xml.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00065}00065\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{app__config_8hpp}{core/app\_config.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00066}00066\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{hardware__manager_8hpp}{core/hardware\_manager.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00068}00068\ \textcolor{comment}{//\ STL\ customization}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00069}00069\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{stl_8hpp}{stl/stl.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00070}00070\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{ring__buffer_8hpp}{stl/ring\_buffer.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00072}00072\ \textcolor{comment}{//\ Core}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00073}00073\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{time__manager_8hpp}{core/time\_manager.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00074}00074\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{log__manager_8hpp}{core/log\_manager.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00075}00075\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{thread_8hpp}{core/thread.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00076}00076\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{task__manager_8hpp}{core/task\_manager.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00077}00077\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{event__manager_8hpp}{core/event\_manager.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00078}00078\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{observers_8hpp}{core/observers.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00079}00079\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{file__manager_8hpp}{core/file\_manager.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00080}00080\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{window__manager_8hpp}{core/window\_manager.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00081}00081\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{input__manager_8hpp}{core/input\_manager.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00083}00083\ \textcolor{comment}{//\ Physics}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00084}00084\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{physics__manager_8hpp}{physics/physics\_manager.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00086}00086\ \textcolor{comment}{//\ Math}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00087}00087\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{math__manager_8hpp}{math/math\_manager.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00089}00089\ \textcolor{comment}{//\ ECS}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00090}00090\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{ecs_8hpp}{ecs/ecs.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00092}00092\ \textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespacexpe_1_1core}{xpe::core}};}
+\DoxyCodeLine{\Hypertarget{pch_8hpp_source_l00093}00093\ \textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespacexpe_1_1ecs}{xpe::ecs}};}
 
 \end{DoxyCode}

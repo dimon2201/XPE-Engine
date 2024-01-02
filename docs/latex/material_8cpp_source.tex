@@ -1,0 +1,23 @@
+\doxysection{material.\+cpp}
+\hypertarget{material_8cpp_source}{}\label{material_8cpp_source}\index{engine/src/rendering/material/material.cpp@{engine/src/rendering/material/material.cpp}}
+\mbox{\hyperlink{material_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{material_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{material_8hpp}{rendering/material/material.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{material_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{material_8cpp_source_l00003}00003\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{material_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{material_8cpp_source_l00005}00005\ \ \ \ \ \textcolor{keyword}{namespace\ }render\ \{}
+\DoxyCodeLine{\Hypertarget{material_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{material_8cpp_source_l00007}00007\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ sMaterialFormat\ \mbox{\hyperlink{structxpe_1_1render_1_1s_material_a0d94b1e860dc2325e2a44d5a74236c69}{sMaterial::k\_AlbedoFormat}}\ =\ \{\mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2aad2ecedf63a30a8f4201f44431d3e2f3}{eTextureFormat::SRGBA8}},\ 2048,\ 2048,\ \mbox{\hyperlink{macro__constants_8hpp_aa42ea15a2dd8e8db222f0ef5b41b382a}{K\_SLOT\_ALBEDO}}\ \};}
+\DoxyCodeLine{\Hypertarget{material_8cpp_source_l00008}00008\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ sMaterialFormat\ \mbox{\hyperlink{structxpe_1_1render_1_1s_material_a988b64f18a21642da269713bcea946d3}{sMaterial::k\_NormalFormat}}\ \ \ =\ \{\mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2ab4b279046a02077466fa26cabb00c642}{eTextureFormat::RGBA8}},\ 2048,\ 2048,\ \mbox{\hyperlink{macro__constants_8hpp_a1995ccbf83e8506089d9cf4b5516fc01}{K\_SLOT\_BUMPING}}\ \};}
+\DoxyCodeLine{\Hypertarget{material_8cpp_source_l00009}00009\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ sMaterialFormat\ \mbox{\hyperlink{structxpe_1_1render_1_1s_material_a5c63aeff2d60d9097bf4bfe22a1ea0fe}{sMaterial::k\_ParallaxFormat}}\ =\ \{\mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90}{eTextureFormat::R8}},\ 2048,\ 2048,\ \mbox{\hyperlink{macro__constants_8hpp_a50d0d26800e7825664a38c16f334f5e6}{K\_SLOT\_PARALLAX}}\ \};}
+\DoxyCodeLine{\Hypertarget{material_8cpp_source_l00010}00010\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ sMaterialFormat\ \mbox{\hyperlink{structxpe_1_1render_1_1s_material_a778de9af6fe0c5d9bad03e3507df848d}{sMaterial::k\_MetalFormat}}\ =\ \{\mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90}{eTextureFormat::R8}},\ 2048,\ 2048,\ \mbox{\hyperlink{macro__constants_8hpp_aa5c2bd81300aa2f35c1bbfefe8e22fc9}{K\_SLOT\_METALLIC}}\ \};}
+\DoxyCodeLine{\Hypertarget{material_8cpp_source_l00011}00011\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ sMaterialFormat\ \mbox{\hyperlink{structxpe_1_1render_1_1s_material_a3d8f9c4231009e6e6c3456daed421770}{sMaterial::k\_RoughnessFormat}}\ =\ \{\mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90}{eTextureFormat::R8}},\ 2048,\ 2048,\ \mbox{\hyperlink{macro__constants_8hpp_a28be33e3843004d307f2943cd7238612}{K\_SLOT\_ROUGHNESS}}\ \};}
+\DoxyCodeLine{\Hypertarget{material_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ sMaterialFormat\ \mbox{\hyperlink{structxpe_1_1render_1_1s_material_a06cf1a4b230a8eb966444e960f58c739}{sMaterial::k\_AoFormat}}\ =\ \{\mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2acfff813d86d447fa2a9c858650ebbb90}{eTextureFormat::R8}},\ 2048,\ 2048,\ \mbox{\hyperlink{macro__constants_8hpp_a49221d34edf7442d66b433967b2dcc21}{K\_SLOT\_AO}}\ \};}
+\DoxyCodeLine{\Hypertarget{material_8cpp_source_l00013}00013\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ sMaterialFormat\ \mbox{\hyperlink{structxpe_1_1render_1_1s_material_a521990eae276dd1ccbca8488fe05b975}{sMaterial::k\_EmissionFormat}}\ =\ \{\mbox{\hyperlink{namespacexpe_1_1render_a46d0dfa0f134db6b834ccc2b921e2da2aad2ecedf63a30a8f4201f44431d3e2f3}{eTextureFormat::SRGBA8}},\ 2048,\ 2048,\ \mbox{\hyperlink{macro__constants_8hpp_a6f2ebfba73bfdc52330d43b7bf94c6f7}{K\_SLOT\_EMISSION}}\ \};}
+\DoxyCodeLine{\Hypertarget{material_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{material_8cpp_source_l00015}00015\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{material_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{material_8cpp_source_l00017}00017\ \}}
+
+\end{DoxyCode}

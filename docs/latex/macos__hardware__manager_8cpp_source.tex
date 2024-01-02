@@ -1,0 +1,42 @@
+\doxysection{macos\+\_\+hardware\+\_\+manager.\+cpp}
+\hypertarget{macos__hardware__manager_8cpp_source}{}\label{macos__hardware__manager_8cpp_source}\index{engine/src/platform/macos/macos\_hardware\_manager.cpp@{engine/src/platform/macos/macos\_hardware\_manager.cpp}}
+\mbox{\hyperlink{macos__hardware__manager_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#ifdef\ MACOS}}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00003}00003\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00005}00005\ \ \ \ \ \textcolor{keyword}{namespace\ }core\ \{}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00007}00007\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_a28e6013e329654423e5793bab22507f5}{cHardwareManager::UpdateCpuStats}}()}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00008}00008\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00009}00009\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{mib}}[4];}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00010}00010\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{numCPU}};}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00011}00011\ \ \ \ \ \ \ \ \ \ \ \ \ std::size\_t\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{len}}\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{numCPU}});}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00013}00013\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ set\ the\ mib\ for\ hw.ncpu\ */}}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{mib}}[0]\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{CTL\_HW}};}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{mib}}[1]\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{HW\_AVAILCPU}};\ \ \textcolor{comment}{//\ alternatively,\ try\ HW\_NCPU;}}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ get\ the\ number\ of\ CPUs\ from\ the\ system\ */}}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sysctl}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{mib}},\ 2,\ \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{numCPU}},\ \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{len}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{NULL}},\ 0);}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{numCPU}}\ <\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{mib}}[1]\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{HW\_NCPU}};}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sysctl}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{mib}},\ 2,\ \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{numCPU}},\ \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{len}},\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{NULL}},\ 0);}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{numCPU}}\ <\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{numCPU}}\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_a862c8f425b7c7fb53f5598f68247fef2}{CPU}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_cpu_stats_a92593625c5c576608457355a36efa268}{Threads}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{numCPU}};}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_a862c8f425b7c7fb53f5598f68247fef2}{CPU}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_cpu_stats_aa9f742abf986cc7a944b75ba141df48a}{Cores}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{numCPU}}\ /\ 2;}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00032}00032\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00034}00034\ \}}
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{macos__hardware__manager_8cpp_source_l00036}00036\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MACOS}}
+
+\end{DoxyCode}

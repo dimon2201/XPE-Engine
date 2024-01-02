@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('structxpe_1_1render_1_1s_sampler.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li><li class="navelem"><a class="el" href="structxpe_1_1render_1_1s_sampler.html">sSampler</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
@@ -88,13 +106,27 @@ $(function() {
 <div class="dynheader">
 Inheritance diagram for xpe::render::sSampler:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="structxpe_1_1render_1_1s_sampler.png" usemap="#xpe::render::sSampler_map" alt=""/>
-  <map id="xpe::render::sSampler_map" name="xpe::render::sSampler_map">
-<area href="structxpe_1_1render_1_1s_resource.html" alt="xpe::render::sResource" shape="rect" coords="0,56,142,80"/>
-<area href="classxpe_1_1core_1_1c_object.html" alt="xpe::core::cObject" shape="rect" coords="0,0,142,24"/>
-  </map>
-</div></div>
+<div class="center"><img src="structxpe_1_1render_1_1s_sampler__inherit__graph.png" border="0" usemap="#axpe_1_1render_1_1s_sampler_inherit__map" alt="Inheritance graph"/></div>
+<map name="axpe_1_1render_1_1s_sampler_inherit__map" id="axpe_1_1render_1_1s_sampler_inherit__map">
+<area shape="rect" title=" " alt="" coords="9,155,158,181"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_resource.html" title=" " alt="" coords="5,80,162,107"/>
+<area shape="poly" title=" " alt="" coords="86,122,86,154,81,154,81,122"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="19,5,148,32"/>
+<area shape="poly" title=" " alt="" coords="86,48,86,80,81,80,81,48"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for xpe::render::sSampler:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_sampler__coll__graph.png" border="0" usemap="#axpe_1_1render_1_1s_sampler_coll__map" alt="Collaboration graph"/></div>
+<map name="axpe_1_1render_1_1s_sampler_coll__map" id="axpe_1_1render_1_1s_sampler_coll__map">
+<area shape="rect" title=" " alt="" coords="9,155,158,181"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_resource.html" title=" " alt="" coords="5,80,162,107"/>
+<area shape="poly" title=" " alt="" coords="86,122,86,154,81,154,81,122"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="19,5,148,32"/>
+<area shape="poly" title=" " alt="" coords="86,48,86,80,81,80,81,48"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -194,7 +226,10 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a92908e592469d360bed7d9526fb59b69 inherit pub_attribs_structxpe_1_1render_1_1s_resource" id="r_a92908e592469d360bed7d9526fb59b69"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structxpe_1_1render_1_1s_resource.html#a93eeddbfb45d323aeb270cedb8ed20e4">eViewType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxpe_1_1render_1_1s_resource.html#a92908e592469d360bed7d9526fb59b69">ViewType</a> = <a class="el" href="structxpe_1_1render_1_1s_resource.html#a93eeddbfb45d323aeb270cedb8ed20e4ab50339a10e1de285ac99d4c3990b8693">eViewType::NONE</a></td></tr>
 <tr class="separator:a92908e592469d360bed7d9526fb59b69 inherit pub_attribs_structxpe_1_1render_1_1s_resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00290">290</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="ab0e8e2699d503fbfea12d7150c685f4d" name="ab0e8e2699d503fbfea12d7150c685f4d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab0e8e2699d503fbfea12d7150c685f4d">&#9670;&#160;</a></span>eAddress</h2>
 
@@ -221,6 +256,8 @@ Public Attributes</h2></td></tr>
 <tr><td class="fieldname"><a id="ab0e8e2699d503fbfea12d7150c685f4daab279ad24b23820ab47758389353c178" name="ab0e8e2699d503fbfea12d7150c685f4daab279ad24b23820ab47758389353c178"></a>BORDER&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ab0e8e2699d503fbfea12d7150c685f4daa3a9901f7f844b6c8835d5b002600edb" name="ab0e8e2699d503fbfea12d7150c685f4daa3a9901f7f844b6c8835d5b002600edb"></a>MIRROR_ONCE&#160;</td><td class="fielddoc"></td></tr>
 </table>
+
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00304">304</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
 
 </div>
 </div>
@@ -254,6 +291,8 @@ Public Attributes</h2></td></tr>
 <tr><td class="fieldname"><a id="ae7484a0042c11b348127faeccae46ef2af3fc827ade4b968e50406496907ef962" name="ae7484a0042c11b348127faeccae46ef2af3fc827ade4b968e50406496907ef962"></a>ALWAYS&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00292">292</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a9a8d696e711426896c0a151ba1f5f625" name="a9a8d696e711426896c0a151ba1f5f625"></a>
@@ -281,6 +320,8 @@ Public Attributes</h2></td></tr>
 <tr><td class="fieldname"><a id="a9a8d696e711426896c0a151ba1f5f625a5c56bb1e22b336ee67d2b1612b46dd1d" name="a9a8d696e711426896c0a151ba1f5f625a5c56bb1e22b336ee67d2b1612b46dd1d"></a>ANISOTROPIC&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00313">313</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -299,6 +340,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8cpp_source.html#l00463">463</a> of file <a class="el" href="texture_8cpp_source.html">texture.cpp</a>.</p>
+
 </div>
 </div>
 <a id="ab8032ad07bbd55f5a3f4ff26770d0a95" name="ab8032ad07bbd55f5a3f4ff26770d0a95"></a>
@@ -315,6 +358,22 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="texture_8cpp_source.html#l00468">468</a> of file <a class="el" href="texture_8cpp_source.html">texture.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_sampler_ab8032ad07bbd55f5a3f4ff26770d0a95_cgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_sampler_ab8032ad07bbd55f5a3f4ff26770d0a95_cgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_sampler_ab8032ad07bbd55f5a3f4ff26770d0a95_cgraph" id="astructxpe_1_1render_1_1s_sampler_ab8032ad07bbd55f5a3f4ff26770d0a95_cgraph">
+<area shape="rect" title=" " alt="" coords="5,29,155,72"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a0c4e54c334bcc8310052808f27ade231" title=" " alt="" coords="203,29,340,72"/>
+<area shape="poly" title=" " alt="" coords="155,48,187,48,187,53,155,53"/>
+<area shape="poly" title=" " alt="" coords="236,29,234,19,240,10,253,5,271,3,291,5,303,11,301,16,290,10,271,8,254,10,244,15,239,21,241,28"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a378adc3598118f270308a9c303641443" title=" " alt="" coords="388,29,525,72"/>
+<area shape="poly" title=" " alt="" coords="340,48,372,48,372,53,340,53"/>
+<area shape="poly" title=" " alt="" coords="421,29,420,19,426,10,438,5,457,3,477,5,489,11,486,16,475,10,457,8,439,10,429,15,425,21,426,28"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -334,6 +393,35 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8cpp_source.html#l00473">473</a> of file <a class="el" href="texture_8cpp_source.html">texture.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_sampler_afb7fae3cf8ede538ecf2c087de227340_cgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_sampler_afb7fae3cf8ede538ecf2c087de227340_cgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_sampler_afb7fae3cf8ede538ecf2c087de227340_cgraph" id="astructxpe_1_1render_1_1s_sampler_afb7fae3cf8ede538ecf2c087de227340_cgraph">
+<area shape="rect" title=" " alt="" coords="5,29,155,72"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a2d12f0a90f5571c66c4353aab0d7d11b" title=" " alt="" coords="203,29,340,72"/>
+<area shape="poly" title=" " alt="" coords="155,48,187,48,187,53,155,53"/>
+<area shape="poly" title=" " alt="" coords="235,29,233,19,239,10,252,5,271,3,292,5,304,11,302,16,290,10,271,8,253,10,243,15,238,21,240,28"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_sampler_afb7fae3cf8ede538ecf2c087de227340_icgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_sampler_afb7fae3cf8ede538ecf2c087de227340_icgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_sampler_afb7fae3cf8ede538ecf2c087de227340_icgraph" id="astructxpe_1_1render_1_1s_sampler_afb7fae3cf8ede538ecf2c087de227340_icgraph">
+<area shape="rect" title=" " alt="" coords="251,105,400,148"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_skybox_shader.html#a04b262012d3aeb73e97c1ccb095675c7" title=" " alt="" coords="11,5,197,48"/>
+<area shape="poly" title=" " alt="" coords="274,100,202,62,173,51,175,46,204,58,276,95"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_text_shader.html#ad8b58ce40667013c62bc85cb9ae913fa" title=" " alt="" coords="20,72,188,115"/>
+<area shape="poly" title=" " alt="" coords="235,116,188,109,188,103,236,111"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_shadow_manager.html#ab48f2f89acf430f23bd847d1d6522702" title=" " alt="" coords="5,139,203,181"/>
+<area shape="poly" title=" " alt="" coords="236,143,203,148,203,142,235,138"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_widget_manager.html#a4d08e3ea21dc782147a000446ff780c7" title=" " alt="" coords="8,205,200,248"/>
+<area shape="poly" title=" " alt="" coords="276,158,204,196,175,207,173,202,202,191,274,154"/>
+</map>
+</div>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -349,6 +437,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00334">334</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a101c6c8edcb9e9b127fdd2bcfb2e5056" name="a101c6c8edcb9e9b127fdd2bcfb2e5056"></a>
@@ -362,6 +452,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00335">335</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
 
 </div>
 </div>
@@ -377,6 +469,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00336">336</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a3288fae8b851ef315ce0ed38335f81ab" name="a3288fae8b851ef315ce0ed38335f81ab"></a>
@@ -390,6 +484,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00328">328</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
 
 </div>
 </div>
@@ -405,6 +501,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00330">330</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a710c367e680b414785b30e10a920700d" name="a710c367e680b414785b30e10a920700d"></a>
@@ -418,6 +516,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00332">332</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
 
 </div>
 </div>
@@ -433,6 +533,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00322">322</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a5e9464b790d5402c218155c2319484d1" name="a5e9464b790d5402c218155c2319484d1"></a>
@@ -446,6 +548,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00325">325</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
 
 </div>
 </div>
@@ -461,6 +565,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00324">324</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a2686b1fea063256568cd3fa3b8c87c90" name="a2686b1fea063256568cd3fa3b8c87c90"></a>
@@ -474,6 +580,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00326">326</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
 
 </div>
 </div>
@@ -489,16 +597,22 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="texture_8hpp_source.html#l00320">320</a> of file <a class="el" href="texture_8hpp_source.html">texture.hpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following files:<ul>
 <li>engine/src/rendering/core/<a class="el" href="texture_8hpp_source.html">texture.hpp</a></li>
-<li>engine/src/rendering/core/<a class="el" href="texture_8cpp.html">texture.cpp</a></li>
+<li>engine/src/rendering/core/<a class="el" href="texture_8cpp_source.html">texture.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li><li class="navelem"><a class="el" href="structxpe_1_1render_1_1s_sampler.html">sSampler</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

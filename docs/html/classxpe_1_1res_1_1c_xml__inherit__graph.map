@@ -1,0 +1,17 @@
+<map id="xpe::res::cXml" name="xpe::res::cXml">
+<area shape="rect" id="Node000001" title=" " alt="" coords="159,5,263,32"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1ecs_1_1c_entity.html" title=" " alt="" coords="5,80,126,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,42,92,82,90,77,171,37"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1ecs_1_1c_scene.html" title=" " alt="" coords="149,80,273,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="214,48,214,80,208,80,208,48"/>
+<area shape="rect" id="Node000004" href="$structxpe_1_1render_1_1s_widget.html" title=" " alt="" coords="297,80,439,107"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="253,36,342,77,339,82,251,41"/>
+<area shape="rect" id="Node000005" href="$structxpe_1_1ecs_1_1_c_button.html" title=" " alt="" coords="69,155,195,181"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="313,114,174,157,173,151,312,109"/>
+<area shape="rect" id="Node000006" href="$structxpe_1_1ecs_1_1_c_container.html" title=" " alt="" coords="219,155,363,181"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="345,119,306,156,302,152,342,116"/>
+<area shape="rect" id="Node000007" href="$structxpe_1_1ecs_1_1_c_field.html" title=" " alt="" coords="386,155,502,181"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="394,116,433,152,429,156,390,119"/>
+<area shape="rect" id="Node000008" href="$structxpe_1_1ecs_1_1_c_label.html" title=" " alt="" coords="526,155,645,181"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="421,109,548,151,547,157,419,114"/>
+</map>

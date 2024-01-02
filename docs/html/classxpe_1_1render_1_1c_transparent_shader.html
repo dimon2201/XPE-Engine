@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classxpe_1_1render_1_1c_transparent_shader.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li><li class="navelem"><a class="el" href="classxpe_1_1render_1_1c_transparent_shader.html">cTransparentShader</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -86,15 +104,72 @@ $(function() {
 <div class="dynheader">
 Inheritance diagram for xpe::render::cTransparentShader:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classxpe_1_1render_1_1c_transparent_shader.png" usemap="#xpe::render::cTransparentShader_map" alt=""/>
-  <map id="xpe::render::cTransparentShader_map" name="xpe::render::cTransparentShader_map">
-<area href="classxpe_1_1render_1_1c_instancing_shader.html" alt="xpe::render::cInstancingShader" shape="rect" coords="0,168,198,192"/>
-<area href="classxpe_1_1render_1_1c_default_shader.html" alt="xpe::render::cDefaultShader" shape="rect" coords="0,112,198,136"/>
-<area href="classxpe_1_1render_1_1c_shader.html" alt="xpe::render::cShader" shape="rect" coords="0,56,198,80"/>
-<area href="classxpe_1_1core_1_1c_object.html" alt="xpe::core::cObject" shape="rect" coords="0,0,198,24"/>
-  </map>
-</div></div>
+<div class="center"><img src="classxpe_1_1render_1_1c_transparent_shader__inherit__graph.png" border="0" usemap="#axpe_1_1render_1_1c_transparent_shader_inherit__map" alt="Inheritance graph"/></div>
+<map name="axpe_1_1render_1_1c_transparent_shader_inherit__map" id="axpe_1_1render_1_1c_transparent_shader_inherit__map">
+<area shape="rect" title=" " alt="" coords="12,320,181,363"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_instancing_shader.html" title=" " alt="" coords="16,229,177,272"/>
+<area shape="poly" title=" " alt="" coords="99,288,99,320,94,320,94,288"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_default_shader.html" title=" " alt="" coords="5,155,188,181"/>
+<area shape="poly" title=" " alt="" coords="99,197,99,229,94,229,94,197"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_shader.html" title=" " alt="" coords="25,80,168,107"/>
+<area shape="poly" title=" " alt="" coords="99,122,99,154,94,154,94,122"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="32,5,161,32"/>
+<area shape="poly" title=" " alt="" coords="99,48,99,80,94,80,94,48"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for xpe::render::cTransparentShader:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_transparent_shader__coll__graph.png" border="0" usemap="#axpe_1_1render_1_1c_transparent_shader_coll__map" alt="Collaboration graph"/></div>
+<map name="axpe_1_1render_1_1c_transparent_shader_coll__map" id="axpe_1_1render_1_1c_transparent_shader_coll__map">
+<area shape="rect" title=" " alt="" coords="1832,267,2001,309"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_instancing_shader.html" title=" " alt="" coords="1622,267,1782,309"/>
+<area shape="poly" title=" " alt="" coords="1798,285,1831,285,1831,291,1798,291"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_default_shader.html" title=" " alt="" coords="1287,203,1470,229"/>
+<area shape="poly" title=" " alt="" coords="1458,231,1622,267,1621,273,1456,236"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_shader.html" title=" " alt="" coords="804,100,946,127"/>
+<area shape="poly" title=" " alt="" coords="962,106,1029,106,1105,110,1185,122,1264,141,1292,154,1320,169,1362,200,1359,204,1317,174,1290,158,1262,146,1184,127,1105,116,1028,111,962,111"/>
+<area shape="poly" title=" " alt="" coords="840,82,852,76,875,73,897,75,910,81,914,91,908,101,904,98,909,91,906,85,895,80,875,79,854,81,842,87"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="5,233,134,260"/>
+<area shape="poly" title=" " alt="" coords="87,219,127,175,153,153,182,136,264,106,350,87,438,76,524,72,607,74,683,80,805,97,804,102,682,85,607,79,524,78,438,81,351,92,265,111,184,141,156,157,131,178,91,222"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_resource.html" title=" " alt="" coords="188,393,344,420"/>
+<area shape="poly" title=" " alt="" coords="87,272,116,319,136,343,159,364,184,379,210,390,208,395,181,384,156,369,133,347,112,322,82,275"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_blob.html" title=" " alt="" coords="203,284,330,311"/>
+<area shape="poly" title=" " alt="" coords="140,262,212,281,211,286,138,267"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_render_target.html" title=" " alt="" coords="979,360,1158,387"/>
+<area shape="poly" title=" " alt="" coords="98,268,137,297,184,320,256,337,348,349,454,355,566,359,785,361,955,364,979,365,979,371,955,369,785,366,566,364,454,361,348,354,255,342,182,325,134,301,95,272"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_viewport.html" title=" " alt="" coords="381,479,532,505"/>
+<area shape="poly" title=" " alt="" coords="82,274,97,310,118,353,148,395,185,430,231,456,282,473,334,483,381,488,380,494,333,489,281,478,229,460,181,434,144,398,114,355,92,312,77,276"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_rasterizer.html" title=" " alt="" coords="795,27,955,53"/>
+<area shape="poly" title=" " alt="" coords="81,217,119,154,148,121,182,94,260,54,344,28,431,12,517,4,601,3,679,8,804,23,803,29,678,13,601,9,518,9,431,17,345,33,262,59,184,98,151,125,124,157,86,220"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_depth_stencil_mode.html" title=" " alt="" coords="564,203,771,229"/>
+<area shape="poly" title=" " alt="" coords="149,240,563,218,564,224,149,245"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_stencil_test.html" title=" " alt="" coords="183,183,349,209"/>
+<area shape="poly" title=" " alt="" coords="138,226,211,207,212,212,140,231"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_blend_mode.html" title=" " alt="" coords="373,133,540,160"/>
+<area shape="poly" title=" " alt="" coords="96,221,135,192,182,168,230,154,280,146,373,140,373,146,281,151,231,160,184,173,137,197,99,225"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_shader_stage.html" title=" " alt="" coords="579,284,756,311"/>
+<area shape="poly" title=" " alt="" coords="771,294,952,287,1055,279,1157,267,1250,248,1330,227,1331,232,1251,253,1158,272,1056,284,952,292,771,299"/>
+<area shape="poly" title=" " alt="" coords="332,386,615,308,616,314,334,391"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_texture.html" title=" " alt="" coords="595,385,740,412"/>
+<area shape="poly" title=" " alt="" coords="360,402,595,397,595,403,360,407"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_buffer.html" title=" " alt="" coords="600,436,735,463"/>
+<area shape="poly" title=" " alt="" coords="360,414,600,439,600,445,360,419"/>
+<area shape="poly" title=" " alt="" coords="345,295,579,295,579,300,345,300"/>
+<area shape="poly" title=" " alt="" coords="1173,370,1218,361,1261,344,1297,318,1327,286,1367,228,1372,231,1332,290,1301,322,1264,349,1220,366,1174,375"/>
+<area shape="poly" title=" " alt="" coords="755,392,955,380,978,378,979,383,956,385,755,397"/>
+<area shape="poly" title=" " alt="" coords="548,498,655,501,714,497,770,488,831,470,875,447,919,422,978,396,1013,385,1015,390,980,401,922,427,878,452,833,475,772,493,714,502,655,506,548,504"/>
+<area shape="poly" title=" " alt="" coords="971,42,1038,50,1113,63,1190,84,1264,113,1296,133,1325,157,1368,200,1364,204,1322,161,1293,137,1261,118,1188,89,1112,69,1037,55,971,47"/>
+<area shape="poly" title=" " alt="" coords="787,213,1287,213,1287,219,787,219"/>
+<area shape="poly" title=" " alt="" coords="365,201,373,201,563,210,563,215,373,207,364,206"/>
+<area shape="poly" title=" " alt="" coords="556,147,871,162,1066,176,1263,195,1298,199,1297,205,1262,200,1066,181,870,167,555,152"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_instance_buffer.html" title=" " alt="" coords="1287,345,1470,372"/>
+<area shape="poly" title=" " alt="" coords="1457,339,1621,303,1622,308,1459,344"/>
+<area shape="rect" href="classxpe_1_1render_1_1s_list_buffer.html" title=" " alt="" coords="991,411,1146,453"/>
+<area shape="poly" title=" " alt="" coords="1161,408,1262,384,1320,370,1321,375,1263,389,1162,413"/>
+<area shape="poly" title=" " alt="" coords="750,443,990,433,990,438,750,448"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -191,7 +266,10 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a70b3f1e8e8ca450f06a4127e0793704e inherit pro_attribs_classxpe_1_1render_1_1c_instancing_shader" id="r_a70b3f1e8e8ca450f06a4127e0793704e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structxpe_1_1render_1_1s_instance_buffer.html">sInstanceBuffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxpe_1_1render_1_1c_instancing_shader.html#a70b3f1e8e8ca450f06a4127e0793704e">m_InstanceBuffer</a></td></tr>
 <tr class="separator:a70b3f1e8e8ca450f06a4127e0793704e inherit pro_attribs_classxpe_1_1render_1_1c_instancing_shader"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="shaders_8hpp_source.html#l00036">36</a> of file <a class="el" href="shaders_8hpp_source.html">shaders.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a06b2efa059709fd73f449e80f289e02a" name="a06b2efa059709fd73f449e80f289e02a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a06b2efa059709fd73f449e80f289e02a">&#9670;&#160;</a></span>cTransparentShader()</h2>
 
@@ -206,6 +284,63 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="shaders_8cpp_source.html#l00119">119</a> of file <a class="el" href="shaders_8cpp_source.html">shaders.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_transparent_shader_a06b2efa059709fd73f449e80f289e02a_cgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_transparent_shader_a06b2efa059709fd73f449e80f289e02a_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_transparent_shader_a06b2efa059709fd73f449e80f289e02a_cgraph" id="aclassxpe_1_1render_1_1c_transparent_shader_a06b2efa059709fd73f449e80f289e02a_cgraph">
+<area shape="rect" title=" " alt="" coords="5,707,192,749"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_shader_manager.html#a97a6e32b351d6afb063039f115b55ae7" title=" " alt="" coords="240,211,432,253"/>
+<area shape="poly" title=" " alt="" coords="108,705,315,266,320,268,113,707"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_default_shader.html#ab70979a918380ad6b90ac6d020e23e56" title=" " alt="" coords="245,640,427,683"/>
+<area shape="poly" title=" " alt="" coords="176,704,242,685,244,690,177,709"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_shader_stage.html#acf471dfdf127b77268e9bcab19f8a6ba" title=" " alt="" coords="248,707,424,749"/>
+<area shape="poly" title=" " alt="" coords="192,725,232,725,232,731,192,731"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_shader_stage.html#a93f171a836a5716cd48b332327de8675" title=" " alt="" coords="248,773,424,816"/>
+<area shape="poly" title=" " alt="" coords="177,747,244,766,242,771,176,752"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_shader_stage.html#a94e63af7ae74675f7fcb248f99dadca8" title=" " alt="" coords="248,840,424,883"/>
+<area shape="poly" title=" " alt="" coords="127,748,178,787,241,826,252,831,250,836,238,830,175,791,124,752"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_shader_manager.html#a118920e0723385c43912ddc9ac7441d7" title=" " alt="" coords="480,120,672,163"/>
+<area shape="poly" title=" " alt="" coords="389,208,479,172,496,166,498,171,481,177,391,213"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_file_manager.html#a3026d07fbdb1dc19bc823cf2e474ba7d" title=" " alt="" coords="496,211,657,253"/>
+<area shape="poly" title=" " alt="" coords="432,229,480,229,480,235,432,235"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a816f76047d559204c31d48f1d3d443db" title=" " alt="" coords="720,29,872,72"/>
+<area shape="poly" title=" " alt="" coords="629,117,727,76,729,81,631,122"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ac9189ce9a5381facd88c5277f912f364" title=" " alt="" coords="725,120,867,163"/>
+<area shape="poly" title=" " alt="" coords="673,139,709,139,709,144,673,144"/>
+<area shape="rect" href="namespacexpe_1_1core.html#a21084dba4baabe2a8da4ee568572f6da" title=" " alt="" coords="739,187,853,213"/>
+<area shape="poly" title=" " alt="" coords="659,161,729,180,728,185,658,166"/>
+<area shape="poly" title=" " alt="" coords="754,29,752,19,760,10,774,5,796,3,820,5,834,11,832,16,818,10,796,8,775,10,763,15,758,21,759,28"/>
+<area shape="poly" title=" " alt="" coords="754,120,752,110,760,101,774,95,796,93,820,96,834,102,832,107,818,101,796,99,775,101,763,105,758,111,759,119"/>
+<area shape="poly" title=" " alt="" coords="534,211,533,201,540,192,554,186,576,184,600,186,614,193,612,197,598,192,576,189,555,191,543,196,538,202,540,210"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a6e395d4437f8c080f645a8437deef74b" title=" " alt="" coords="508,301,645,344"/>
+<area shape="poly" title=" " alt="" coords="339,639,353,582,379,506,398,465,420,425,447,387,478,354,492,344,495,348,482,358,451,391,425,428,402,468,384,508,358,584,344,640"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a43e5278217efb8187a5cb8334b1757b1" title=" " alt="" coords="490,392,663,435"/>
+<area shape="poly" title=" " alt="" coords="343,639,363,598,392,546,431,492,478,445,484,441,487,445,482,449,435,495,396,549,367,600,348,641"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a8e934d5748d4d33b0280d303edacac7c" title=" " alt="" coords="508,483,645,525"/>
+<area shape="poly" title=" " alt="" coords="355,638,408,587,442,559,479,535,492,528,494,533,481,540,445,564,412,591,359,642"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a2d6162b82c3516e13585717877cdd810" title=" " alt="" coords="508,573,645,616"/>
+<area shape="poly" title=" " alt="" coords="414,637,492,615,493,620,416,642"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_default_shader.html#a94c9420cc3cee18454c9b0381a0c8303" title=" " alt="" coords="485,640,667,683"/>
+<area shape="poly" title=" " alt="" coords="427,659,470,659,470,664,427,664"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_default_shader.html#a432663a9956bbd6b79fb46b6c5f70b92" title=" " alt="" coords="485,707,667,749"/>
+<area shape="poly" title=" " alt="" coords="416,681,483,699,481,705,414,686"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_default_shader.html#ae7eae67faabb5d18b014aebbf9fef3f5" title=" " alt="" coords="485,773,667,816"/>
+<area shape="poly" title=" " alt="" coords="415,681,434,693,450,710,458,727,466,743,482,759,487,763,484,767,478,763,462,746,454,729,446,713,430,697,412,686"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_default_shader.html#a113c277f6a3d283c6ace4e7fda913853" title=" " alt="" coords="485,840,667,883"/>
+<area shape="poly" title=" " alt="" coords="419,681,434,693,447,710,455,727,459,761,463,794,469,810,482,826,485,829,481,833,478,830,465,813,457,795,453,762,449,729,443,713,430,697,415,685"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_default_shader.html#ad4f9480afbaccfd7f785e564b187c052" title=" " alt="" coords="485,907,667,949"/>
+<area shape="poly" title=" " alt="" coords="420,681,434,693,452,719,459,745,461,770,459,795,457,819,458,844,465,868,482,893,484,895,480,899,478,896,460,871,453,845,451,819,453,794,455,770,454,745,447,721,430,696,417,685"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_default_shader.html#a5b9b2cb08e062a41083e5df13738f6be" title=" " alt="" coords="485,973,667,1016"/>
+<area shape="poly" title=" " alt="" coords="421,681,434,693,456,728,464,762,464,795,459,828,454,861,453,894,461,926,482,960,483,961,479,965,478,963,456,928,448,894,448,861,453,828,458,795,459,762,451,730,430,696,417,685"/>
+<area shape="poly" title=" " alt="" coords="534,301,533,291,540,282,554,277,576,275,600,277,614,283,612,288,598,282,576,280,555,282,543,287,538,293,540,300"/>
+<area shape="poly" title=" " alt="" coords="534,392,533,382,540,373,554,367,576,365,600,368,614,374,612,379,598,373,576,371,555,373,543,377,538,383,540,391"/>
+<area shape="poly" title=" " alt="" coords="534,483,533,473,540,464,554,458,576,456,600,458,614,465,612,469,598,464,576,461,555,463,543,468,538,474,540,482"/>
+<area shape="poly" title=" " alt="" coords="534,573,533,563,540,554,554,549,576,547,600,549,614,555,612,560,598,554,576,552,555,554,543,559,538,565,540,572"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -235,16 +370,67 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classxpe_1_1render_1_1c_shader.html#ac2fb10c43abc3823aa6dc466b1f3ed56">xpe::render::cShader</a>.</p>
 
+<p class="definition">Definition at line <a class="el" href="shaders_8cpp_source.html#l00151">151</a> of file <a class="el" href="shaders_8cpp_source.html">shaders.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_transparent_shader_a41136b4dbad82e1306bed55c264f3772_cgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_transparent_shader_a41136b4dbad82e1306bed55c264f3772_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_transparent_shader_a41136b4dbad82e1306bed55c264f3772_cgraph" id="aclassxpe_1_1render_1_1c_transparent_shader_a41136b4dbad82e1306bed55c264f3772_cgraph">
+<area shape="rect" title=" " alt="" coords="5,361,175,404"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_instancing_shader.html#a8aff797e93842eabe1565da005bad1f9" title=" " alt="" coords="223,361,383,404"/>
+<area shape="poly" title=" " alt="" coords="175,380,207,380,207,385,175,385"/>
+<area shape="rect" href="classxpe_1_1render_1_1s_list_buffer.html#a915d07581a0582453afaa6057d734476" title=" " alt="" coords="431,5,617,32"/>
+<area shape="poly" title=" " alt="" coords="303,360,311,298,332,212,348,166,369,121,396,79,429,42,433,39,437,43,433,46,400,82,374,124,353,168,337,214,317,299,308,361"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a57085dc2ff5ca279f149c984962121c1" title=" " alt="" coords="446,80,602,123"/>
+<area shape="poly" title=" " alt="" coords="307,360,321,313,346,252,381,189,404,159,429,133,433,129,437,134,433,137,408,162,386,192,350,255,326,315,312,362"/>
+<area shape="rect" href="classxpe_1_1render_1_1s_list_buffer.html#aa314c4a7aca6c0623cd4ac495925eae7" title=" " alt="" coords="447,147,602,189"/>
+<area shape="poly" title=" " alt="" coords="311,360,329,325,355,282,389,238,429,199,435,195,438,200,433,203,393,241,360,285,334,328,316,362"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a535d65fcd9491e2ec65cf429ca2a78f2" title=" " alt="" coords="456,237,593,280"/>
+<area shape="poly" title=" " alt="" coords="328,359,374,324,430,290,441,284,443,289,432,294,377,329,332,363"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a35565aa9f1c079d979b1d23b103134a1" title=" " alt="" coords="456,328,593,371"/>
+<area shape="poly" title=" " alt="" coords="383,368,440,359,441,365,384,373"/>
+<area shape="rect" href="classxpe_1_1render_1_1s_list_buffer.html#ad9de1835e029836261d585eec95bedd5" title=" " alt="" coords="447,395,602,437"/>
+<area shape="poly" title=" " alt="" coords="384,392,431,399,430,405,383,397"/>
+<area shape="rect" href="classxpe_1_1math_1_1c_math_manager.html#a28fcdb1fcf8dfc293764646ecd419a82" title=" " alt="" coords="438,461,611,504"/>
+<area shape="poly" title=" " alt="" coords="344,402,432,447,446,453,444,458,430,452,341,407"/>
+<area shape="rect" href="classxpe_1_1math_1_1c_math_manager.html#aba300145da6a5beaf3d4b76b99ea5e50" title=" " alt="" coords="438,528,611,571"/>
+<area shape="poly" title=" " alt="" coords="322,403,368,458,399,488,433,514,440,518,437,523,429,518,395,492,364,461,318,406"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ad9d47407f33b3d590885b9f5a997a78c" title=" " alt="" coords="665,628,803,671"/>
+<area shape="poly" title=" " alt="" coords="314,403,330,442,355,490,389,540,410,562,432,580,470,598,525,613,650,636,649,641,524,618,468,603,430,585,406,565,385,543,350,493,325,444,309,405"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a14b40b432d37f92276a1766f9e1a39a2" title=" " alt="" coords="456,669,593,712"/>
+<area shape="poly" title=" " alt="" coords="314,404,331,448,356,505,391,567,433,625,472,658,469,663,429,628,386,570,352,507,326,450,309,406"/>
+<area shape="poly" title=" " alt="" coords="484,80,483,70,489,61,503,55,524,53,547,56,560,62,558,67,545,61,524,59,504,61,492,65,488,71,489,79"/>
+<area shape="poly" title=" " alt="" coords="484,237,483,227,489,218,503,213,524,211,547,213,560,219,558,224,545,218,524,216,504,218,492,223,488,229,489,236"/>
+<area shape="poly" title=" " alt="" coords="484,328,483,318,489,309,503,303,524,301,547,304,560,310,558,315,545,309,524,307,504,309,492,313,488,319,489,327"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a43a3526ddcb06eddda247d1457ae02b3" title=" " alt="" coords="665,395,803,437"/>
+<area shape="poly" title=" " alt="" coords="602,413,650,413,650,419,602,419"/>
+<area shape="poly" title=" " alt="" coords="695,395,694,385,700,376,714,370,734,368,756,370,769,377,766,381,754,376,734,373,715,375,704,380,699,386,701,394"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a4307865df88da4fb54e36f929b6f88a5" title=" " alt="" coords="851,361,1021,388"/>
+<area shape="poly" title=" " alt="" coords="803,399,852,389,853,394,804,405"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a32b89671df27bd47193c116873b60f3e" title=" " alt="" coords="867,436,1005,479"/>
+<area shape="poly" title=" " alt="" coords="804,427,853,438,852,443,803,433"/>
+<area shape="poly" title=" " alt="" coords="902,362,895,353,900,343,913,337,936,335,960,337,973,344,970,348,958,342,936,340,915,342,903,347,901,352,906,359"/>
+<area shape="poly" title=" " alt="" coords="897,436,896,426,902,417,916,411,936,409,958,412,971,418,968,423,956,417,936,415,917,417,905,421,901,427,902,435"/>
+<area shape="poly" title=" " alt="" coords="695,628,694,618,700,609,714,603,734,601,756,604,769,610,766,615,754,609,734,607,715,609,704,613,699,619,701,627"/>
+<area shape="poly" title=" " alt="" coords="593,675,649,663,650,668,594,680"/>
+<area shape="poly" title=" " alt="" coords="484,669,483,659,489,650,503,645,524,643,547,645,560,651,558,656,545,650,524,648,504,650,492,655,488,661,489,668"/>
+</map>
+</div>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>engine/src/rendering/<a class="el" href="shaders_8hpp_source.html">shaders.hpp</a></li>
-<li>engine/src/rendering/<a class="el" href="shaders_8cpp.html">shaders.cpp</a></li>
+<li>engine/src/rendering/<a class="el" href="shaders_8cpp_source.html">shaders.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li><li class="navelem"><a class="el" href="classxpe_1_1render_1_1c_transparent_shader.html">cTransparentShader</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

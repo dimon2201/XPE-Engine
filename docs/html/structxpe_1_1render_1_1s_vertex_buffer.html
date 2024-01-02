@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('structxpe_1_1render_1_1s_vertex_buffer.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li><li class="navelem"><a class="el" href="structxpe_1_1render_1_1s_vertex_buffer.html">sVertexBuffer</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -87,14 +105,31 @@ $(function() {
 <div class="dynheader">
 Inheritance diagram for xpe::render::sVertexBuffer:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="structxpe_1_1render_1_1s_vertex_buffer.png" usemap="#xpe::render::sVertexBuffer_map" alt=""/>
-  <map id="xpe::render::sVertexBuffer_map" name="xpe::render::sVertexBuffer_map">
-<area href="structxpe_1_1render_1_1s_buffer.html" alt="xpe::render::sBuffer" shape="rect" coords="0,112,160,136"/>
-<area href="structxpe_1_1render_1_1s_resource.html" alt="xpe::render::sResource" shape="rect" coords="0,56,160,80"/>
-<area href="classxpe_1_1core_1_1c_object.html" alt="xpe::core::cObject" shape="rect" coords="0,0,160,24"/>
-  </map>
-</div></div>
+<div class="center"><img src="structxpe_1_1render_1_1s_vertex_buffer__inherit__graph.png" border="0" usemap="#axpe_1_1render_1_1s_vertex_buffer_inherit__map" alt="Inheritance graph"/></div>
+<map name="axpe_1_1render_1_1s_vertex_buffer_inherit__map" id="axpe_1_1render_1_1s_vertex_buffer_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,229,178,256"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_buffer.html" title=" " alt="" coords="24,155,159,181"/>
+<area shape="poly" title=" " alt="" coords="94,197,94,229,89,229,89,197"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_resource.html" title=" " alt="" coords="13,80,170,107"/>
+<area shape="poly" title=" " alt="" coords="94,122,94,154,89,154,89,122"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="27,5,156,32"/>
+<area shape="poly" title=" " alt="" coords="94,48,94,80,89,80,89,48"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for xpe::render::sVertexBuffer:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_vertex_buffer__coll__graph.png" border="0" usemap="#axpe_1_1render_1_1s_vertex_buffer_coll__map" alt="Collaboration graph"/></div>
+<map name="axpe_1_1render_1_1s_vertex_buffer_coll__map" id="axpe_1_1render_1_1s_vertex_buffer_coll__map">
+<area shape="rect" title=" " alt="" coords="5,229,178,256"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_buffer.html" title=" " alt="" coords="24,155,159,181"/>
+<area shape="poly" title=" " alt="" coords="94,197,94,229,89,229,89,197"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_resource.html" title=" " alt="" coords="13,80,170,107"/>
+<area shape="poly" title=" " alt="" coords="94,122,94,154,89,154,89,122"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="27,5,156,32"/>
+<area shape="poly" title=" " alt="" coords="94,48,94,80,89,80,89,48"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -209,7 +244,10 @@ Additional Inherited Members</h2></td></tr>
  }</td></tr>
 <tr class="separator:ad7ce5f809b1aaf3874fd64deebef7295 inherit pub_types_structxpe_1_1render_1_1s_resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="buffers_8hpp_source.html#l00047">47</a> of file <a class="el" href="buffers_8hpp_source.html">buffers.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4ec97886e7384db63d9db85c75ccfc29" name="a4ec97886e7384db63d9db85c75ccfc29"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4ec97886e7384db63d9db85c75ccfc29">&#9670;&#160;</a></span>sVertexBuffer() <span class="overload">[1/2]</span></h2>
 
@@ -233,6 +271,19 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="buffers_8cpp_source.html#l00099">99</a> of file <a class="el" href="buffers_8cpp_source.html">buffers.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_vertex_buffer_a4ec97886e7384db63d9db85c75ccfc29_cgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_vertex_buffer_a4ec97886e7384db63d9db85c75ccfc29_cgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_vertex_buffer_a4ec97886e7384db63d9db85c75ccfc29_cgraph" id="astructxpe_1_1render_1_1s_vertex_buffer_a4ec97886e7384db63d9db85c75ccfc29_cgraph">
+<area shape="rect" title=" " alt="" coords="5,29,178,72"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a55a0590129a19f52e243dc67094efaf5" title=" " alt="" coords="226,29,363,72"/>
+<area shape="poly" title=" " alt="" coords="178,48,210,48,210,53,178,53"/>
+<area shape="poly" title=" " alt="" coords="255,29,254,19,260,10,274,5,294,3,316,5,329,11,327,16,315,10,294,8,275,10,264,15,259,21,261,28"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -260,6 +311,40 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="buffers_8cpp_source.html#l00113">113</a> of file <a class="el" href="buffers_8cpp_source.html">buffers.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_vertex_buffer_aeba0348f9a7328e3b6d9711dd4a6b5b2_cgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_vertex_buffer_aeba0348f9a7328e3b6d9711dd4a6b5b2_cgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_vertex_buffer_aeba0348f9a7328e3b6d9711dd4a6b5b2_cgraph" id="astructxpe_1_1render_1_1s_vertex_buffer_aeba0348f9a7328e3b6d9711dd4a6b5b2_cgraph">
+<area shape="rect" title=" " alt="" coords="5,92,178,135"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a55a0590129a19f52e243dc67094efaf5" title=" " alt="" coords="666,29,804,72"/>
+<area shape="poly" title=" " alt="" coords="178,102,650,56,651,61,178,108"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_vertex_buffer.html#a896c35b36d1987189db78fbca0a81a19" title=" " alt="" coords="226,121,398,164"/>
+<area shape="poly" title=" " alt="" coords="179,122,211,127,210,132,178,127"/>
+<area shape="poly" title=" " alt="" coords="696,29,695,19,701,10,715,5,735,3,757,5,770,11,767,16,755,10,735,8,716,10,705,15,700,21,702,28"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a43a3526ddcb06eddda247d1457ae02b3" title=" " alt="" coords="666,277,804,320"/>
+<area shape="poly" title=" " alt="" coords="354,162,447,207,553,245,652,274,650,279,551,250,445,212,351,167"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_buffer.html#a2f14b04e600f8e56b9651a1e8ee32fb9" title=" " alt="" coords="668,96,802,139"/>
+<area shape="poly" title=" " alt="" coords="398,135,652,120,652,125,398,140"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_vertex_buffer.html#a1e35d4d007d4707711bd3e42c0d8ae4f" title=" " alt="" coords="446,155,618,197"/>
+<area shape="poly" title=" " alt="" coords="399,153,431,158,430,163,398,158"/>
+<area shape="poly" title=" " alt="" coords="696,277,695,267,701,258,715,253,735,251,757,253,770,259,767,264,755,258,735,256,716,258,705,263,700,269,702,276"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a4307865df88da4fb54e36f929b6f88a5" title=" " alt="" coords="852,244,1022,271"/>
+<area shape="poly" title=" " alt="" coords="804,282,853,272,854,277,805,287"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a32b89671df27bd47193c116873b60f3e" title=" " alt="" coords="868,319,1006,361"/>
+<area shape="poly" title=" " alt="" coords="805,310,854,320,853,326,804,315"/>
+<area shape="poly" title=" " alt="" coords="903,245,896,235,901,226,914,219,937,217,961,220,974,226,971,231,959,225,937,223,916,225,904,229,902,235,907,242"/>
+<area shape="poly" title=" " alt="" coords="898,319,897,309,903,300,917,294,937,292,959,294,972,301,969,305,957,300,937,297,918,299,906,304,902,310,903,318"/>
+<area shape="poly" title=" " alt="" coords="561,152,665,82,673,77,675,82,668,86,564,156"/>
+<area shape="poly" title=" " alt="" coords="571,196,686,266,683,271,568,200"/>
+<area shape="poly" title=" " alt="" coords="607,152,652,138,654,144,609,157"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#aabfe2d29425d231b5bcb38398009e73c" title=" " alt="" coords="666,187,804,229"/>
+<area shape="poly" title=" " alt="" coords="619,187,652,192,651,197,619,192"/>
+<area shape="poly" title=" " alt="" coords="696,187,695,177,701,168,715,162,735,160,757,162,770,169,767,173,755,168,735,165,716,167,705,172,700,178,702,186"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a84736a7ff093e3c38e72fbc37bb9691b" name="a84736a7ff093e3c38e72fbc37bb9691b"></a>
@@ -276,6 +361,19 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="buffers_8cpp_source.html#l00128">128</a> of file <a class="el" href="buffers_8cpp_source.html">buffers.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_vertex_buffer_a84736a7ff093e3c38e72fbc37bb9691b_cgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_vertex_buffer_a84736a7ff093e3c38e72fbc37bb9691b_cgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_vertex_buffer_a84736a7ff093e3c38e72fbc37bb9691b_cgraph" id="astructxpe_1_1render_1_1s_vertex_buffer_a84736a7ff093e3c38e72fbc37bb9691b_cgraph">
+<area shape="rect" title=" " alt="" coords="5,29,178,72"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#aabfe2d29425d231b5bcb38398009e73c" title=" " alt="" coords="226,29,363,72"/>
+<area shape="poly" title=" " alt="" coords="178,48,210,48,210,53,178,53"/>
+<area shape="poly" title=" " alt="" coords="255,29,254,19,260,10,274,5,294,3,316,5,329,11,327,16,315,10,294,8,275,10,264,15,259,21,261,28"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -295,6 +393,22 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="buffers_8cpp_source.html#l00187">187</a> of file <a class="el" href="buffers_8cpp_source.html">buffers.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_vertex_buffer_a51156ba60b131894740fcda87d91459d_icgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_vertex_buffer_a51156ba60b131894740fcda87d91459d_icgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_vertex_buffer_a51156ba60b131894740fcda87d91459d_icgraph" id="astructxpe_1_1render_1_1s_vertex_buffer_a51156ba60b131894740fcda87d91459d_icgraph">
+<area shape="rect" title=" " alt="" coords="493,39,665,81"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_geometry_manager.html#afcab89931d34518de9c76ff962e6a5b9" title=" " alt="" coords="237,39,445,81"/>
+<area shape="poly" title=" " alt="" coords="477,63,445,63,445,57,477,57"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_text_shader.html#ad8b58ce40667013c62bc85cb9ae913fa" title=" " alt="" coords="13,5,181,48"/>
+<area shape="poly" title=" " alt="" coords="221,46,181,41,181,35,221,41"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_widget_shader.html#ac6d0a01c7e25a93a16e38d9642dfe0f2" title=" " alt="" coords="5,72,189,115"/>
+<area shape="poly" title=" " alt="" coords="221,79,190,83,189,78,221,74"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="aa56240713704162563ad0604561e09fd" name="aa56240713704162563ad0604561e09fd"></a>
@@ -311,6 +425,8 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="buffers_8cpp_source.html#l00182">182</a> of file <a class="el" href="buffers_8cpp_source.html">buffers.cpp</a>.</p>
 
 </div>
 </div>
@@ -337,6 +453,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="buffers_8hpp_source.html#l00078">78</a> of file <a class="el" href="buffers_8hpp_source.html">buffers.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a896c35b36d1987189db78fbca0a81a19" name="a896c35b36d1987189db78fbca0a81a19"></a>
@@ -353,6 +471,55 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="buffers_8cpp_source.html#l00133">133</a> of file <a class="el" href="buffers_8cpp_source.html">buffers.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_vertex_buffer_a896c35b36d1987189db78fbca0a81a19_cgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_vertex_buffer_a896c35b36d1987189db78fbca0a81a19_cgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_vertex_buffer_a896c35b36d1987189db78fbca0a81a19_cgraph" id="astructxpe_1_1render_1_1s_vertex_buffer_a896c35b36d1987189db78fbca0a81a19_cgraph">
+<area shape="rect" title=" " alt="" coords="5,121,178,164"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a43a3526ddcb06eddda247d1457ae02b3" title=" " alt="" coords="446,63,583,105"/>
+<area shape="poly" title=" " alt="" coords="178,128,430,93,431,98,178,133"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_buffer.html#a2f14b04e600f8e56b9651a1e8ee32fb9" title=" " alt="" coords="448,129,582,172"/>
+<area shape="poly" title=" " alt="" coords="178,142,432,146,432,152,178,147"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_vertex_buffer.html#a1e35d4d007d4707711bd3e42c0d8ae4f" title=" " alt="" coords="226,180,398,223"/>
+<area shape="poly" title=" " alt="" coords="175,162,215,173,214,178,173,167"/>
+<area shape="poly" title=" " alt="" coords="476,63,475,53,481,44,494,38,515,36,536,38,549,45,547,49,535,44,515,41,496,43,484,48,480,54,481,62"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a4307865df88da4fb54e36f929b6f88a5" title=" " alt="" coords="631,29,802,56"/>
+<area shape="poly" title=" " alt="" coords="583,67,633,57,634,62,585,73"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a32b89671df27bd47193c116873b60f3e" title=" " alt="" coords="648,104,785,147"/>
+<area shape="poly" title=" " alt="" coords="585,95,633,106,632,111,583,101"/>
+<area shape="poly" title=" " alt="" coords="682,30,676,21,680,11,694,5,717,3,741,5,753,12,751,16,739,10,716,8,695,10,684,15,681,20,687,27"/>
+<area shape="poly" title=" " alt="" coords="678,104,676,94,683,85,696,79,717,77,738,80,751,86,749,91,737,85,716,83,698,85,686,89,682,95,683,103"/>
+<area shape="poly" title=" " alt="" coords="344,177,445,115,453,111,455,115,447,120,347,182"/>
+<area shape="poly" title=" " alt="" coords="398,177,431,169,433,174,399,182"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a55a0590129a19f52e243dc67094efaf5" title=" " alt="" coords="446,220,583,263"/>
+<area shape="poly" title=" " alt="" coords="399,216,431,222,430,227,398,221"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#aabfe2d29425d231b5bcb38398009e73c" title=" " alt="" coords="446,311,583,353"/>
+<area shape="poly" title=" " alt="" coords="348,221,469,300,466,304,345,225"/>
+<area shape="poly" title=" " alt="" coords="476,220,475,210,481,201,494,195,515,193,536,196,549,202,547,207,535,201,515,199,496,201,484,205,480,211,481,219"/>
+<area shape="poly" title=" " alt="" coords="476,311,475,301,481,292,494,286,515,284,536,286,549,293,547,297,535,292,515,289,496,291,484,296,480,302,481,310"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_vertex_buffer_a896c35b36d1987189db78fbca0a81a19_icgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_vertex_buffer_a896c35b36d1987189db78fbca0a81a19_icgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_vertex_buffer_a896c35b36d1987189db78fbca0a81a19_icgraph" id="astructxpe_1_1render_1_1s_vertex_buffer_a896c35b36d1987189db78fbca0a81a19_icgraph">
+<area shape="rect" title=" " alt="" coords="493,105,665,148"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_geometry_manager.html#afcab89931d34518de9c76ff962e6a5b9" title=" " alt="" coords="237,39,445,81"/>
+<area shape="poly" title=" " alt="" coords="486,103,419,85,421,79,487,98"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_vertex_buffer.html#aa4f339fcf483993cf3f770ac2ca58044" title=" " alt="" coords="255,105,427,148"/>
+<area shape="poly" title=" " alt="" coords="477,129,427,129,427,124,477,124"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_vertex_buffer.html#aeba0348f9a7328e3b6d9711dd4a6b5b2" title=" " alt="" coords="255,172,427,215"/>
+<area shape="poly" title=" " alt="" coords="487,155,421,174,419,169,486,150"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_text_shader.html#ad8b58ce40667013c62bc85cb9ae913fa" title=" " alt="" coords="13,5,181,48"/>
+<area shape="poly" title=" " alt="" coords="221,46,181,41,181,35,221,41"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_widget_shader.html#ac6d0a01c7e25a93a16e38d9642dfe0f2" title=" " alt="" coords="5,72,189,115"/>
+<area shape="poly" title=" " alt="" coords="221,79,190,83,189,78,221,74"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -375,6 +542,27 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="buffers_8cpp_source.html#l00144">144</a> of file <a class="el" href="buffers_8cpp_source.html">buffers.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_vertex_buffer_ab319de361de407e89c7b62eb8874a96a_cgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_vertex_buffer_ab319de361de407e89c7b62eb8874a96a_cgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_vertex_buffer_ab319de361de407e89c7b62eb8874a96a_cgraph" id="astructxpe_1_1render_1_1s_vertex_buffer_ab319de361de407e89c7b62eb8874a96a_cgraph">
+<area shape="rect" title=" " alt="" coords="5,96,178,139"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#af0816f9058a84f88babfed20ccbc2e96" title=" " alt="" coords="243,63,381,105"/>
+<area shape="poly" title=" " alt="" coords="178,102,228,94,229,99,179,107"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_vertex_buffer.html#adf06fa5021b71e7a986cb12b1c6f82a0" title=" " alt="" coords="226,129,398,172"/>
+<area shape="poly" title=" " alt="" coords="179,128,211,133,210,138,178,133"/>
+<area shape="poly" title=" " alt="" coords="270,63,268,53,275,44,290,38,312,36,335,38,349,45,347,49,334,44,312,41,291,43,279,48,274,54,275,62"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a4307865df88da4fb54e36f929b6f88a5" title=" " alt="" coords="446,29,616,56"/>
+<area shape="poly" title=" " alt="" coords="381,68,441,57,442,62,382,74"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a32b89671df27bd47193c116873b60f3e" title=" " alt="" coords="463,104,600,147"/>
+<area shape="poly" title=" " alt="" coords="382,94,448,107,447,112,381,100"/>
+<area shape="poly" title=" " alt="" coords="494,30,487,21,492,11,507,5,531,3,557,5,571,12,569,16,556,10,531,8,508,10,496,15,493,20,498,27"/>
+<area shape="poly" title=" " alt="" coords="489,104,488,94,495,85,509,79,531,77,555,80,569,86,567,91,553,85,531,83,511,85,498,89,493,95,495,103"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="aa4f339fcf483993cf3f770ac2ca58044" name="aa4f339fcf483993cf3f770ac2ca58044"></a>
@@ -391,6 +579,42 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="buffers_8cpp_source.html#l00153">153</a> of file <a class="el" href="buffers_8cpp_source.html">buffers.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_vertex_buffer_aa4f339fcf483993cf3f770ac2ca58044_cgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_vertex_buffer_aa4f339fcf483993cf3f770ac2ca58044_cgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_vertex_buffer_aa4f339fcf483993cf3f770ac2ca58044_cgraph" id="astructxpe_1_1render_1_1s_vertex_buffer_aa4f339fcf483993cf3f770ac2ca58044_cgraph">
+<area shape="rect" title=" " alt="" coords="5,89,178,132"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_vertex_buffer.html#a896c35b36d1987189db78fbca0a81a19" title=" " alt="" coords="226,89,398,132"/>
+<area shape="poly" title=" " alt="" coords="178,108,210,108,210,113,178,113"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_buffer.html#a2f14b04e600f8e56b9651a1e8ee32fb9" title=" " alt="" coords="668,5,802,48"/>
+<area shape="poly" title=" " alt="" coords="173,86,225,75,341,56,457,43,652,28,653,33,457,48,341,62,226,80,175,91"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_vertex_buffer.html#adf06fa5021b71e7a986cb12b1c6f82a0" title=" " alt="" coords="226,156,398,199"/>
+<area shape="poly" title=" " alt="" coords="165,130,225,148,224,154,163,135"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a43a3526ddcb06eddda247d1457ae02b3" title=" " alt="" coords="666,277,804,320"/>
+<area shape="poly" title=" " alt="" coords="373,130,399,142,447,167,670,268,667,273,445,172,397,146,370,135"/>
+<area shape="poly" title=" " alt="" coords="398,91,652,40,653,46,399,96"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_vertex_buffer.html#a1e35d4d007d4707711bd3e42c0d8ae4f" title=" " alt="" coords="446,115,618,157"/>
+<area shape="poly" title=" " alt="" coords="399,118,431,122,430,127,398,123"/>
+<area shape="poly" title=" " alt="" coords="696,277,695,267,701,258,715,253,735,251,757,253,770,259,767,264,755,258,735,256,716,258,705,263,700,269,702,276"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a4307865df88da4fb54e36f929b6f88a5" title=" " alt="" coords="852,244,1022,271"/>
+<area shape="poly" title=" " alt="" coords="804,282,853,272,854,277,805,287"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a32b89671df27bd47193c116873b60f3e" title=" " alt="" coords="868,319,1006,361"/>
+<area shape="poly" title=" " alt="" coords="805,310,854,320,853,326,804,315"/>
+<area shape="poly" title=" " alt="" coords="903,245,896,235,901,226,914,219,937,217,961,220,974,226,971,231,959,225,937,223,916,225,904,229,902,235,907,242"/>
+<area shape="poly" title=" " alt="" coords="898,319,897,309,903,300,917,294,937,292,959,294,972,301,969,305,957,300,937,297,918,299,906,304,902,310,903,318"/>
+<area shape="poly" title=" " alt="" coords="562,156,697,266,694,270,559,160"/>
+<area shape="poly" title=" " alt="" coords="583,112,617,94,641,76,665,58,672,53,675,58,668,62,644,80,620,98,585,117"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a55a0590129a19f52e243dc67094efaf5" title=" " alt="" coords="666,96,804,139"/>
+<area shape="poly" title=" " alt="" coords="619,125,651,122,651,128,619,131"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#aabfe2d29425d231b5bcb38398009e73c" title=" " alt="" coords="666,187,804,229"/>
+<area shape="poly" title=" " alt="" coords="596,155,659,178,657,183,594,161"/>
+<area shape="poly" title=" " alt="" coords="696,96,695,86,701,77,715,71,735,69,757,72,770,78,767,83,755,77,735,75,716,77,705,81,700,87,702,95"/>
+<area shape="poly" title=" " alt="" coords="696,187,695,177,701,168,715,162,735,160,757,162,770,169,767,173,755,168,735,165,716,167,705,172,700,178,702,186"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -417,6 +641,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="buffers_8hpp_source.html#l00068">68</a> of file <a class="el" href="buffers_8hpp_source.html">buffers.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a1e35d4d007d4707711bd3e42c0d8ae4f" name="a1e35d4d007d4707711bd3e42c0d8ae4f"></a>
@@ -433,6 +659,53 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="buffers_8cpp_source.html#l00162">162</a> of file <a class="el" href="buffers_8cpp_source.html">buffers.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_vertex_buffer_a1e35d4d007d4707711bd3e42c0d8ae4f_cgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_vertex_buffer_a1e35d4d007d4707711bd3e42c0d8ae4f_cgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_vertex_buffer_a1e35d4d007d4707711bd3e42c0d8ae4f_cgraph" id="astructxpe_1_1render_1_1s_vertex_buffer_a1e35d4d007d4707711bd3e42c0d8ae4f_cgraph">
+<area shape="rect" title=" " alt="" coords="5,199,178,241"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a43a3526ddcb06eddda247d1457ae02b3" title=" " alt="" coords="226,63,363,105"/>
+<area shape="poly" title=" " alt="" coords="116,196,165,157,224,115,231,111,234,116,227,120,168,161,119,200"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a55a0590129a19f52e243dc67094efaf5" title=" " alt="" coords="226,153,363,196"/>
+<area shape="poly" title=" " alt="" coords="178,198,210,191,211,196,179,203"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#aabfe2d29425d231b5bcb38398009e73c" title=" " alt="" coords="226,244,363,287"/>
+<area shape="poly" title=" " alt="" coords="179,237,211,244,210,249,178,242"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_buffer.html#a2f14b04e600f8e56b9651a1e8ee32fb9" title=" " alt="" coords="227,311,362,353"/>
+<area shape="poly" title=" " alt="" coords="129,239,227,296,235,301,233,305,224,301,127,244"/>
+<area shape="poly" title=" " alt="" coords="256,63,254,53,261,44,274,38,294,36,316,38,329,45,327,49,315,44,294,41,275,43,264,48,259,54,261,62"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a4307865df88da4fb54e36f929b6f88a5" title=" " alt="" coords="411,29,581,56"/>
+<area shape="poly" title=" " alt="" coords="363,67,412,57,413,62,364,73"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a32b89671df27bd47193c116873b60f3e" title=" " alt="" coords="428,104,565,147"/>
+<area shape="poly" title=" " alt="" coords="364,95,413,106,412,111,363,101"/>
+<area shape="poly" title=" " alt="" coords="462,30,456,21,460,11,474,5,496,3,520,5,533,12,531,16,519,10,496,8,475,10,464,15,461,20,466,27"/>
+<area shape="poly" title=" " alt="" coords="458,104,456,94,462,85,476,79,496,77,518,80,531,86,529,91,516,85,496,83,477,85,466,89,461,95,463,103"/>
+<area shape="poly" title=" " alt="" coords="256,153,254,143,261,134,274,129,294,127,316,129,329,135,327,140,315,134,294,132,275,134,264,139,259,145,261,152"/>
+<area shape="poly" title=" " alt="" coords="256,244,254,234,261,225,274,219,294,217,316,220,329,226,327,231,315,225,294,223,275,225,264,229,259,235,261,243"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_vertex_buffer_a1e35d4d007d4707711bd3e42c0d8ae4f_icgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_vertex_buffer_a1e35d4d007d4707711bd3e42c0d8ae4f_icgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_vertex_buffer_a1e35d4d007d4707711bd3e42c0d8ae4f_icgraph" id="astructxpe_1_1render_1_1s_vertex_buffer_a1e35d4d007d4707711bd3e42c0d8ae4f_icgraph">
+<area shape="rect" title=" " alt="" coords="713,105,886,148"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_vertex_buffer.html#a896c35b36d1987189db78fbca0a81a19" title=" " alt="" coords="493,105,665,148"/>
+<area shape="poly" title=" " alt="" coords="698,129,666,129,666,124,698,124"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_geometry_manager.html#afcab89931d34518de9c76ff962e6a5b9" title=" " alt="" coords="237,39,445,81"/>
+<area shape="poly" title=" " alt="" coords="486,103,419,85,421,79,487,98"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_vertex_buffer.html#aa4f339fcf483993cf3f770ac2ca58044" title=" " alt="" coords="255,105,427,148"/>
+<area shape="poly" title=" " alt="" coords="477,129,427,129,427,124,477,124"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_vertex_buffer.html#aeba0348f9a7328e3b6d9711dd4a6b5b2" title=" " alt="" coords="255,172,427,215"/>
+<area shape="poly" title=" " alt="" coords="487,155,421,174,419,169,486,150"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_text_shader.html#ad8b58ce40667013c62bc85cb9ae913fa" title=" " alt="" coords="13,5,181,48"/>
+<area shape="poly" title=" " alt="" coords="221,46,181,41,181,35,221,41"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_widget_shader.html#ac6d0a01c7e25a93a16e38d9642dfe0f2" title=" " alt="" coords="5,72,189,115"/>
+<area shape="poly" title=" " alt="" coords="221,79,190,83,189,78,221,74"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -451,6 +724,8 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="buffers_8cpp_source.html#l00177">177</a> of file <a class="el" href="buffers_8cpp_source.html">buffers.cpp</a>.</p>
+
 </div>
 </div>
 <a id="adf06fa5021b71e7a986cb12b1c6f82a0" name="adf06fa5021b71e7a986cb12b1c6f82a0"></a>
@@ -468,6 +743,20 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="buffers_8cpp_source.html#l00172">172</a> of file <a class="el" href="buffers_8cpp_source.html">buffers.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_vertex_buffer_adf06fa5021b71e7a986cb12b1c6f82a0_icgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_vertex_buffer_adf06fa5021b71e7a986cb12b1c6f82a0_icgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_vertex_buffer_adf06fa5021b71e7a986cb12b1c6f82a0_icgraph" id="astructxpe_1_1render_1_1s_vertex_buffer_adf06fa5021b71e7a986cb12b1c6f82a0_icgraph">
+<area shape="rect" title=" " alt="" coords="226,39,398,81"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_vertex_buffer.html#ab319de361de407e89c7b62eb8874a96a" title=" " alt="" coords="5,5,178,48"/>
+<area shape="poly" title=" " alt="" coords="210,47,178,42,178,37,210,42"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_vertex_buffer.html#aa4f339fcf483993cf3f770ac2ca58044" title=" " alt="" coords="5,72,178,115"/>
+<area shape="poly" title=" " alt="" coords="210,78,178,83,178,78,210,73"/>
+</map>
+</div>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -483,16 +772,22 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="buffers_8hpp_source.html#l00049">49</a> of file <a class="el" href="buffers_8hpp_source.html">buffers.hpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following files:<ul>
 <li>engine/src/rendering/<a class="el" href="buffers_8hpp_source.html">buffers.hpp</a></li>
-<li>engine/src/rendering/<a class="el" href="buffers_8cpp.html">buffers.cpp</a></li>
+<li>engine/src/rendering/<a class="el" href="buffers_8cpp_source.html">buffers.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li><li class="navelem"><a class="el" href="structxpe_1_1render_1_1s_vertex_buffer.html">sVertexBuffer</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -2,31 +2,31 @@
 \hypertarget{sndfile__context_8hpp_source}{}\label{sndfile__context_8hpp_source}\index{engine/src/audio/core/sndfile\_context.hpp@{engine/src/audio/core/sndfile\_context.hpp}}
 \mbox{\hyperlink{sndfile__context_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <sndfile.h>}}
-\DoxyCodeLine{00004\ }
-\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
-\DoxyCodeLine{00006\ }
-\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{namespace\ }audio\ \{}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }core;}
-\DoxyCodeLine{00010\ }
-\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1audio_1_1s_audio_file}{sAudioFile}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_object}{cObject}}}
-\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{SNDFILE}}*\ File\ =\ \textcolor{keyword}{nullptr};}
-\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{SF\_INFO}}\ \mbox{\hyperlink{structxpe_1_1audio_1_1s_audio_file_a2908dd2626ece9dc05fe9b88d04e2ada}{Info}};}
-\DoxyCodeLine{00015\ }
-\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1audio_1_1s_audio_file_a0fd2de6b5392a4b34dee51934daee8ed}{sAudioFile}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1audio_1_1s_audio_file}{\string~sAudioFile}}();}
-\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00019\ }
-\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{namespace\ }context\ \{}
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a441e3db4c0c07452df254a5b649b7935}{SetCurrentFrame}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{SNDFILE}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}},\ \mbox{\hyperlink{namespacexpe_1_1core_a37a5a683d03a765d1a97c0984dd65771}{s64}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{frame}});}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{namespacexpe_1_1core_a37a5a683d03a765d1a97c0984dd65771}{s64}}\ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a7c97f85c585f9e3b795db945c5581d52}{ReadChunk}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{SNDFILE}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{m\_File}},\ \textcolor{keywordtype}{short}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{data}},\ \mbox{\hyperlink{namespacexpe_1_1core_a37a5a683d03a765d1a97c0984dd65771}{s64}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{num\_frames}});}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a91f3ee3b32d5bd17626a0eb696aba5a2}{isAmbisonic}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1audio_1_1s_audio_file}{sAudioFile}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}});}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00025\ \ \ \ \ \}}
-\DoxyCodeLine{00026\ \}}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <sndfile.h>}}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00005}00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00007}00007\ \ \ \ \ \textcolor{keyword}{namespace\ }audio\ \{}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00009}00009\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }core;}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00011}\mbox{\hyperlink{structxpe_1_1audio_1_1s_audio_file}{00011}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1audio_1_1s_audio_file}{sAudioFile}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_object}{cObject}}}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00013}\mbox{\hyperlink{structxpe_1_1audio_1_1s_audio_file_a97675b10e8a1029dd95bad890948f0bf}{00013}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{SNDFILE}}*\ File\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00014}\mbox{\hyperlink{structxpe_1_1audio_1_1s_audio_file_a2908dd2626ece9dc05fe9b88d04e2ada}{00014}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{SF\_INFO}}\ \mbox{\hyperlink{structxpe_1_1audio_1_1s_audio_file_a2908dd2626ece9dc05fe9b88d04e2ada}{Info}};}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00016}\mbox{\hyperlink{structxpe_1_1audio_1_1s_audio_file_a0fd2de6b5392a4b34dee51934daee8ed}{00016}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1audio_1_1s_audio_file_a0fd2de6b5392a4b34dee51934daee8ed}{sAudioFile}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1audio_1_1s_audio_file}{\string~sAudioFile}}();}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{namespace\ }context\ \{}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a441e3db4c0c07452df254a5b649b7935}{SetCurrentFrame}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{SNDFILE}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}},\ \mbox{\hyperlink{namespacexpe_1_1core_a37a5a683d03a765d1a97c0984dd65771}{s64}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{frame}});}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{namespacexpe_1_1core_a37a5a683d03a765d1a97c0984dd65771}{s64}}\ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a7c97f85c585f9e3b795db945c5581d52}{ReadChunk}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{SNDFILE}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{m\_File}},\ \textcolor{keywordtype}{short}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{data}},\ \mbox{\hyperlink{namespacexpe_1_1core_a37a5a683d03a765d1a97c0984dd65771}{s64}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{num\_frames}});}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a91f3ee3b32d5bd17626a0eb696aba5a2}{isAmbisonic}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1audio_1_1s_audio_file}{sAudioFile}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{file}});}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00025}00025\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sndfile__context_8hpp_source_l00026}00026\ \}}
 
 \end{DoxyCode}

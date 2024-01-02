@@ -2,73 +2,73 @@
 \hypertarget{audio_2core_2core_8hpp_source}{}\label{audio_2core_2core_8hpp_source}\index{engine/src/audio/core/core.hpp@{engine/src/audio/core/core.hpp}}
 \mbox{\hyperlink{audio_2core_2core_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
-\DoxyCodeLine{00004\ }
-\DoxyCodeLine{00005\ \ \ \ \ \textcolor{keyword}{namespace\ }audio\ \{}
-\DoxyCodeLine{00006\ }
-\DoxyCodeLine{00007\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }core;}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016ae}{eAudioState}}\ \{}
-\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea35613ba4e10128a91ab652ee7fa26164}{INITIAL}},}
-\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea875587098dc97678c4f5bc80f8cac127}{PLAYING}},}
-\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aeaeb58ffe6530007eea0b50e296ff45651}{PAUSED}},}
-\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea596e93b346295a6bc7e7fd514fa5a662}{STOPPED}}}
-\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a85a6dfc31ce6b1db814a5641eee98a59}{JSON\_ENUM}}(\mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016ae}{eAudioState}},\ \{}
-\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea35613ba4e10128a91ab652ee7fa26164}{eAudioState::INITIAL}},\ \textcolor{stringliteral}{"{}INITIAL"{}}\ \},}
-\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea875587098dc97678c4f5bc80f8cac127}{eAudioState::PLAYING}},\ \textcolor{stringliteral}{"{}PLAYING"{}}\ \},}
-\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aeaeb58ffe6530007eea0b50e296ff45651}{eAudioState::PAUSED}},\ \ \textcolor{stringliteral}{"{}PAUSED"{}}\ \},}
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea596e93b346295a6bc7e7fd514fa5a662}{eAudioState::STOPPED}},\ \textcolor{stringliteral}{"{}STOPPED"{}}\ \},}
-\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \})}
-\DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{eAudioError}}\ \{}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438eab50339a10e1de285ac99d4c3990b8693}{NONE}},}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{INVALID\_NAME}},}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{INVALID\_ENUM}},}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{INVALID\_VALUE}},}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{INVALID\_OPERATION}},}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{OUT\_OF\_MEMORY}}}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a85a6dfc31ce6b1db814a5641eee98a59}{JSON\_ENUM}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{eAudioError}},\ \{}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ eAudioError::NONE,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}INITIAL"{}}\ \},}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ eAudioError::INVALID\_NAME,\ \ \ \ \ \ \textcolor{stringliteral}{"{}INVALID\_NAME"{}}\ \},}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ eAudioError::INVALID\_ENUM,\ \ \ \ \ \ \textcolor{stringliteral}{"{}INVALID\_ENUM"{}}\ \},}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ eAudioError::INVALID\_VALUE,\ \ \ \ \ \textcolor{stringliteral}{"{}INVALID\_VALUE"{}}\ \},}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ eAudioError::INVALID\_OPERATION,\ \textcolor{stringliteral}{"{}INVALID\_OPERATION"{}}\ \},}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ eAudioError::OUT\_OF\_MEMORY,\ \ \ \ \ \textcolor{stringliteral}{"{}OUT\_OF\_MEMORY"{}}\ \},}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \})}
-\DoxyCodeLine{00038\ }
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct}\ \mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sAudioSource}}}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Id}}\ =\ 0;}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016ae}{eAudioState}}\ State\ =\ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea35613ba4e10128a91ab652ee7fa26164}{eAudioState::INITIAL}};}
-\DoxyCodeLine{00044\ }
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Gain}}\ =\ 1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ affects\ audio\ volume}}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ Pitch\ =\ 1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ affects\ playback\ speed}}
-\DoxyCodeLine{00047\ }
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{RefDistance}}\ =\ 1.0f;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Distance\ at\ which\ the\ sound\ is\ heard\ clearly}}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{MaxDistance}}\ =\ 100.0f;\ \ \ \ \ \ \ \textcolor{comment}{//\ Maximum\ distance\ at\ which\ the\ sound\ is\ heard}}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{RollOffFactor}}\ =\ 1.0f;\ \ \ \ \ \ \ \textcolor{comment}{//\ Volume\ reduction\ factor\ with\ distance}}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ConeInnerAngle}}\ =\ 180.0f;\ \ \ \ \textcolor{comment}{//\ Angle\ of\ the\ inner\ zone\ of\ the\ cone}}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ConeOuterAngle}}\ =\ 180.0f;\ \ \ \ \textcolor{comment}{//\ Angle\ of\ the\ outer\ zone\ of\ the\ cone}}
-\DoxyCodeLine{00053\ }
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Looping}}\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00056\ }
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sAudioSource}},}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Id}},}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ State,}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Gain}},}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ Pitch,}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{RefDistance}},}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{MaxDistance}}}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ )}
-\DoxyCodeLine{00066\ \ \ \ \ \}}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00068\ \}}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00003}00003\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00005}00005\ \ \ \ \ \textcolor{keyword}{namespace\ }audio\ \{}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00007}00007\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }core;}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00009}\mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016ae}{00009}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016ae}{eAudioState}}\ \{}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00010}\mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea35613ba4e10128a91ab652ee7fa26164}{00010}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea35613ba4e10128a91ab652ee7fa26164}{INITIAL}},}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00011}\mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea875587098dc97678c4f5bc80f8cac127}{00011}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea875587098dc97678c4f5bc80f8cac127}{PLAYING}},}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00012}\mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aeaeb58ffe6530007eea0b50e296ff45651}{00012}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aeaeb58ffe6530007eea0b50e296ff45651}{PAUSED}},}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00013}00013\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea596e93b346295a6bc7e7fd514fa5a662}{STOPPED}}}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00014}\mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea596e93b346295a6bc7e7fd514fa5a662}{00014}}\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00015}\mbox{\hyperlink{namespacexpe_1_1audio_a625cc9157c4ade9b2c9f7d5063de4c57}{00015}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a85a6dfc31ce6b1db814a5641eee98a59}{JSON\_ENUM}}(\mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016ae}{eAudioState}},\ \{}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea35613ba4e10128a91ab652ee7fa26164}{eAudioState::INITIAL}},\ \textcolor{stringliteral}{"{}INITIAL"{}}\ \},}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea875587098dc97678c4f5bc80f8cac127}{eAudioState::PLAYING}},\ \textcolor{stringliteral}{"{}PLAYING"{}}\ \},}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aeaeb58ffe6530007eea0b50e296ff45651}{eAudioState::PAUSED}},\ \ \textcolor{stringliteral}{"{}PAUSED"{}}\ \},}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea596e93b346295a6bc7e7fd514fa5a662}{eAudioState::STOPPED}},\ \textcolor{stringliteral}{"{}STOPPED"{}}\ \},}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{eAudioError}}\ \{}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1physics_a11de4146993380edd87e664894f5438eab50339a10e1de285ac99d4c3990b8693}{NONE}},}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{INVALID\_NAME}},}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{INVALID\_ENUM}},}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{INVALID\_VALUE}},}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{INVALID\_OPERATION}},}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{OUT\_OF\_MEMORY}}}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00030}\mbox{\hyperlink{namespacexpe_1_1audio_ad66a3467529468e9ba04a3dfb8433e97}{00030}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a85a6dfc31ce6b1db814a5641eee98a59}{JSON\_ENUM}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{eAudioError}},\ \{}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ eAudioError::NONE,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}INITIAL"{}}\ \},}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ eAudioError::INVALID\_NAME,\ \ \ \ \ \ \textcolor{stringliteral}{"{}INVALID\_NAME"{}}\ \},}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ eAudioError::INVALID\_ENUM,\ \ \ \ \ \ \textcolor{stringliteral}{"{}INVALID\_ENUM"{}}\ \},}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ eAudioError::INVALID\_VALUE,\ \ \ \ \ \textcolor{stringliteral}{"{}INVALID\_VALUE"{}}\ \},}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ eAudioError::INVALID\_OPERATION,\ \textcolor{stringliteral}{"{}INVALID\_OPERATION"{}}\ \},}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ eAudioError::OUT\_OF\_MEMORY,\ \ \ \ \ \textcolor{stringliteral}{"{}OUT\_OF\_MEMORY"{}}\ \},}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct}\ \mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sAudioSource}}}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Id}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016ae}{eAudioState}}\ State\ =\ \mbox{\hyperlink{namespacexpe_1_1audio_ab2de5b026314e5fade6726443fe016aea35613ba4e10128a91ab652ee7fa26164}{eAudioState::INITIAL}};}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Gain}}\ =\ 1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ affects\ audio\ volume}}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ Pitch\ =\ 1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ affects\ playback\ speed}}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{RefDistance}}\ =\ 1.0f;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Distance\ at\ which\ the\ sound\ is\ heard\ clearly}}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{MaxDistance}}\ =\ 100.0f;\ \ \ \ \ \ \ \textcolor{comment}{//\ Maximum\ distance\ at\ which\ the\ sound\ is\ heard}}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{RollOffFactor}}\ =\ 1.0f;\ \ \ \ \ \ \ \textcolor{comment}{//\ Volume\ reduction\ factor\ with\ distance}}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ConeInnerAngle}}\ =\ 180.0f;\ \ \ \ \textcolor{comment}{//\ Angle\ of\ the\ inner\ zone\ of\ the\ cone}}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ConeOuterAngle}}\ =\ 180.0f;\ \ \ \ \textcolor{comment}{//\ Angle\ of\ the\ outer\ zone\ of\ the\ cone}}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Looping}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sAudioSource}},}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Id}},}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ State,}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Gain}},}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ Pitch,}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{RefDistance}},}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{MaxDistance}}}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00065}00065\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00066}00066\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{audio_2core_2core_8hpp_source_l00068}00068\ \}}
 
 \end{DoxyCode}

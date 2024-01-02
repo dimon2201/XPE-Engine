@@ -1,0 +1,29 @@
+<map id="xpe::render::sIndexBuffer::FlushIndices" name="xpe::render::sIndexBuffer::FlushIndices">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,89,171,132"/>
+<area shape="rect" id="Node000002" href="$structxpe_1_1render_1_1s_index_buffer.html#aaa6c6f473ab50ee10652c85dd2bbfdb0" title=" " alt="" coords="219,89,384,132"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,108,203,108,203,113,171,113"/>
+<area shape="rect" id="Node000006" href="$structxpe_1_1render_1_1s_buffer.html#a2f14b04e600f8e56b9651a1e8ee32fb9" title=" " alt="" coords="647,5,781,48"/>
+<area shape="poly" id="edge16_Node000001_Node000006" title=" " alt="" coords="168,86,218,75,329,56,441,43,631,28,631,33,442,48,330,62,219,80,169,91"/>
+<area shape="rect" id="Node000010" href="$structxpe_1_1render_1_1s_index_buffer.html#a1834ee571f4f66830443b949454c2d74" title=" " alt="" coords="219,156,384,199"/>
+<area shape="poly" id="edge17_Node000001_Node000010" title=" " alt="" coords="159,130,217,148,215,153,158,135"/>
+<area shape="rect" id="Node000003" href="$namespacexpe_1_1render_1_1context.html#a43a3526ddcb06eddda247d1457ae02b3" title=" " alt="" coords="645,277,783,320"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="359,130,385,142,433,167,650,268,648,273,431,172,383,146,357,135"/>
+<area shape="poly" id="edge8_Node000002_Node000006" title=" " alt="" coords="384,91,631,41,632,46,385,96"/>
+<area shape="rect" id="Node000007" href="$structxpe_1_1render_1_1s_index_buffer.html#a7cc39f24072b907a5b007037b457c3ae" title=" " alt="" coords="432,115,597,157"/>
+<area shape="poly" id="edge9_Node000002_Node000007" title=" " alt="" coords="384,118,417,122,416,127,384,123"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="676,277,674,267,681,258,694,253,714,251,736,253,748,259,746,264,734,258,714,256,695,258,684,263,679,269,681,276"/>
+<area shape="rect" id="Node000004" href="$namespacexpe_1_1render_1_1context.html#a4307865df88da4fb54e36f929b6f88a5" title=" " alt="" coords="831,244,1001,271"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="783,282,832,272,833,277,784,287"/>
+<area shape="rect" id="Node000005" href="$namespacexpe_1_1render_1_1context.html#a32b89671df27bd47193c116873b60f3e" title=" " alt="" coords="847,319,985,361"/>
+<area shape="poly" id="edge6_Node000003_Node000005" title=" " alt="" coords="784,310,833,320,832,326,783,315"/>
+<area shape="poly" id="edge5_Node000004_Node000004" title=" " alt="" coords="882,245,875,235,880,226,893,219,916,217,940,220,953,226,950,231,938,225,916,223,895,225,883,229,881,235,886,242"/>
+<area shape="poly" id="edge7_Node000005_Node000005" title=" " alt="" coords="877,319,876,309,882,300,896,294,916,292,938,294,951,301,948,305,936,300,916,297,897,299,885,304,881,310,882,318"/>
+<area shape="poly" id="edge10_Node000007_Node000003" title=" " alt="" coords="544,156,676,265,673,269,541,160"/>
+<area shape="poly" id="edge15_Node000007_Node000006" title=" " alt="" coords="563,112,596,94,644,58,651,53,654,58,647,62,599,98,565,117"/>
+<area shape="rect" id="Node000008" href="$namespacexpe_1_1render_1_1context.html#a55a0590129a19f52e243dc67094efaf5" title=" " alt="" coords="645,96,783,139"/>
+<area shape="poly" id="edge11_Node000007_Node000008" title=" " alt="" coords="597,126,630,123,631,128,598,131"/>
+<area shape="rect" id="Node000009" href="$namespacexpe_1_1render_1_1context.html#aabfe2d29425d231b5bcb38398009e73c" title=" " alt="" coords="645,187,783,229"/>
+<area shape="poly" id="edge13_Node000007_Node000009" title=" " alt="" coords="577,155,640,178,638,183,575,160"/>
+<area shape="poly" id="edge12_Node000008_Node000008" title=" " alt="" coords="676,96,674,86,681,77,694,71,714,69,736,72,748,78,746,83,734,77,714,75,695,77,684,81,679,87,681,95"/>
+<area shape="poly" id="edge14_Node000009_Node000009" title=" " alt="" coords="676,187,674,177,681,168,694,162,714,160,736,162,748,169,746,173,734,168,714,165,695,167,684,172,679,178,681,186"/>
+</map>

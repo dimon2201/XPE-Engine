@@ -1,0 +1,225 @@
+\doxysection{anim\+\_\+system.\+cpp}
+\hypertarget{anim__system_8cpp_source}{}\label{anim__system_8cpp_source}\index{engine/src/anim/anim\_system.cpp@{engine/src/anim/anim\_system.cpp}}
+\mbox{\hyperlink{anim__system_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{anim__system_8hpp}{anim/anim\_system.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{skeleton__manager_8hpp}{anim/skeleton\_manager.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{components_8hpp}{ecs/components.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00006}00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00008}00008\ \ \ \ \ \textcolor{keyword}{namespace\ }anim\ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00010}\mbox{\hyperlink{classxpe_1_1anim_1_1c_anim_system_a0a35098c9165bcf4720ccfd500467e9d}{00010}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1anim_1_1c_anim_system_a0a35098c9165bcf4720ccfd500467e9d}{cAnimSystem::Update}}(\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene}{cScene}}*\ scene,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_time}{cTime}}\&\ dt)}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00011}00011\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ components\ =\ scene-\/>\mbox{\hyperlink{classxpe_1_1ecs_1_1c_scene_a09f2e93dae557058af5ea5d69fcdf639}{GetComponents}}<\mbox{\hyperlink{structxpe_1_1ecs_1_1_c_animation}{CAnimation}},\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_skeleton}{CSkeleton}},\ \mbox{\hyperlink{structxpe_1_1ecs_1_1_c_skeleton_info}{CSkeletonInfo}}>();}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00013}00013\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ [entity,\ animation,\ skeleton,\ skeletonInfo]\ :\ components.each())}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ subAnimation\ :\ animation.Animations)\ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (subAnimation.Play)\ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AnimateSkeleton(subAnimation,\ skeleton,\ skeletonInfo.SkeletonIndex,\ dt);}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cAnimSystem::AnimateSkeleton(\textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1anim_1_1s_animation}{sAnimation}}\ \&animation,\ \mbox{\hyperlink{structxpe_1_1anim_1_1s_skeleton}{sSkeleton}}\ \&skeleton,\ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ skeletonIndex,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_time}{cTime}}\&\ dt)}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ m\_DeltaSeconds\ =\ dt.\mbox{\hyperlink{classxpe_1_1core_1_1c_time_a9ef071be238e4c1adb24bc48e9b990b3}{Seconds}}();}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ m\_CurrentSeconds\ +=\ animation.\mbox{\hyperlink{structxpe_1_1anim_1_1s_animation_a523299c781dbf2988aa09cf1f3fd0c33}{TicksPerSecond}}\ *\ m\_DeltaSeconds;}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ m\_CurrentSeconds\ =\ fmod(m\_CurrentSeconds,\ animation.\mbox{\hyperlink{structxpe_1_1anim_1_1s_animation_ab5a23d272a0e96fcf2c83b2e1e8fc21c}{Duration}});}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ UpdateSkeletonTransform(animation.\mbox{\hyperlink{structxpe_1_1anim_1_1s_animation_ad0aba240ec3b0d6f1a1af300a4318132}{Root}},\ skeleton,\ *\mbox{\hyperlink{structxpe_1_1render_1_1_buffers_a40c3f91f9d60532775f460dccd7d254d}{Buffers::Skeleton}},\ skeletonIndex,\ glm::mat4(1.0f));}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cAnimSystem::AnimateBone(\mbox{\hyperlink{structxpe_1_1anim_1_1s_bone}{sBone}}\ \&bone,\ \textcolor{keywordtype}{float}\ time)}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ translation\ =\ InterpolatePosition(bone,\ time);}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ rotation\ =\ InterpolateRotation(bone,\ time);}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ scale\ =\ InterpolateScale(bone,\ time);}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ bone.\mbox{\hyperlink{structxpe_1_1anim_1_1s_bone_a328da8a21d179f267779ac55869e943d}{Transform}}\ =\ translation\ *\ rotation\ *\ scale;}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ cAnimSystem::GetPositionIndex(sBone\ \&bone,\ \textcolor{keywordtype}{float}\ time)}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ usize\ count\ =\ bone.KeyPositions.size();}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ count;\ ++i)}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (time\ <\ bone.KeyPositions[i\ +\ 1].Timestamp)\ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ i;}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ cAnimSystem::GetRotationIndex(sBone\ \&bone,\ \textcolor{keywordtype}{float}\ time)}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ usize\ count\ =\ bone.KeyRotations.size();}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ count;\ ++i)}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (time\ <\ bone.KeyRotations[i\ +\ 1].Timestamp)\ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ i;}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ cAnimSystem::GetScaleIndex(sBone\ \&bone,\ \textcolor{keywordtype}{float}\ time)}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ usize\ count\ =\ bone.KeyScales.size();}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ count;\ ++i)}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (time\ <\ bone.KeyScales[i\ +\ 1].Timestamp)\ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ i;}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ cAnimSystem::GetScaleFactor(\textcolor{keywordtype}{float}\ lastTimestamp,\ \textcolor{keywordtype}{float}\ nextTimestamp,\ \textcolor{keywordtype}{float}\ time)}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ scaleFactor;}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ midWayLength\ =\ time\ -\/\ lastTimestamp;}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ framesDiff\ =\ nextTimestamp\ -\/\ lastTimestamp;}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ scaleFactor\ =\ midWayLength\ /\ framesDiff;}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ scaleFactor;}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ glm::mat4\ cAnimSystem::InterpolatePosition(sBone\ \&bone,\ \textcolor{keywordtype}{float}\ time)}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ positions\ =\ bone.KeyPositions;}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (positions.empty())\ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ glm::mat4(1.0f);}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (positions.size()\ ==\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ glm::translate(glm::mat4(1.0f),\ positions[0].Position);}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ p0Index\ =\ GetPositionIndex(bone,\ time);}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ p1Index\ =\ p0Index\ +\ 1;}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ scaleFactor\ =\ GetScaleFactor(}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ positions[p0Index].Timestamp,}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ positions[p1Index].Timestamp,}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ time}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ finalPosition\ =\ glm::mix(}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ positions[p0Index].Position,}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ positions[p1Index].Position,}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scaleFactor}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ glm::translate(glm::mat4(1.0f),\ finalPosition);}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ glm::mat4\ cAnimSystem::InterpolateRotation(sBone\ \&bone,\ \textcolor{keywordtype}{float}\ time)}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ rotations\ =\ bone.KeyRotations;}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rotations.empty())\ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ glm::mat4(1.0f);}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rotations.size()\ ==\ 1)}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ rotation\ =\ glm::normalize(rotations[0].Orientation);}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ glm::toMat4(rotation);}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ p0Index\ =\ GetRotationIndex(bone,\ time);}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ p1Index\ =\ p0Index\ +\ 1;}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ scaleFactor\ =\ GetScaleFactor(}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rotations[p0Index].Timestamp,}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rotations[p1Index].Timestamp,}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ time}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ glm::quat\ finalRotation\ =\ glm::slerp(}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rotations[p0Index].Orientation,}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rotations[p1Index].Orientation,}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scaleFactor}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ finalRotation\ =\ glm::normalize(finalRotation);}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ glm::toMat4(finalRotation);}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ glm::mat4\ cAnimSystem::InterpolateScale(sBone\ \&bone,\ \textcolor{keywordtype}{float}\ time)}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ scales\ =\ bone.KeyScales;}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (scales.empty())\ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ glm::mat4(1.0f);}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (scales.size()\ ==\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ glm::scale(glm::mat4(1.0f),\ scales[0].Scale);}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ p0Index\ =\ GetScaleIndex(bone,\ time);}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ p1Index\ =\ p0Index\ +\ 1;}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ scaleFactor\ =\ GetScaleFactor(}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scales[p0Index].Timestamp,}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scales[p1Index].Timestamp,}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ time}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ finalScale\ =\ glm::mix(}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scales[p0Index].Scale,}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scales[p1Index].Scale,}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scaleFactor}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ glm::scale(glm::mat4(1.0f),\ finalScale);}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00183}00183\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ cAnimSystem::UpdateSkeletonTransform(}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ sAnimationNode\&\ animationNode,}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sSkeleton\ \&skeleton,}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sSkeletonBuffer\&\ skeletonBuffer,}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa507c1ad5e6e22c6561d60671555dafc}{u32}}\ skeletonIndex,}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ glm::mat4\ \&parentTransform}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00190}00190\ \ \ \ \ \ \ \ \ )\ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ nodeName\ =\ animationNode.Name;}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ nodeTransform\ =\ animationNode.Transform;}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ sBone*\ bone\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ skeleton.Bones.find(nodeName);}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it\ !=\ skeleton.Bones.end())\ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bone\ =\ \&it-\/>second;}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00199}00199\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bone\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AnimateBone(*bone,\ m\_CurrentSeconds);}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeTransform\ =\ bone-\/>Transform;}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00204}00204\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ globalTransformation\ =\ parentTransform\ *\ nodeTransform;}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00206}00206\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bone\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *skeletonBuffer[bone-\/>ID\ +\ skeletonIndex]\ =\ \{\ globalTransformation\ *\ bone-\/>Offset\ \};}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00210}00210\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ node\ :\ animationNode.Children)}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UpdateSkeletonTransform(node,\ skeleton,\ skeletonBuffer,\ skeletonIndex,\ globalTransformation);}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00215}00215\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00216}00216\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00217}00217\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00218}00218\ }
+\DoxyCodeLine{\Hypertarget{anim__system_8cpp_source_l00219}00219\ \}}
+
+\end{DoxyCode}

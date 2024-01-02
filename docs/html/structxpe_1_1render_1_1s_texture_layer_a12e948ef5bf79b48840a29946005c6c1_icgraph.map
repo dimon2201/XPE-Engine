@@ -1,0 +1,7 @@
+<map id="xpe::render::sTextureLayer::CopyFrom" name="xpe::render::sTextureLayer::CopyFrom">
+<area shape="rect" id="Node000001" title=" " alt="" coords="409,5,585,48"/>
+<area shape="rect" id="Node000002" href="$structxpe_1_1render_1_1s_texture_layer.html#a569be24358e889b9b52802dea3fd4155" title=" " alt="" coords="185,5,361,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="394,29,362,29,362,24,394,24"/>
+<area shape="rect" id="Node000003" href="$structxpe_1_1render_1_1s_atlas.html#aadddcc49677815c6ff7169e7cb8b9f5a" title=" " alt="" coords="5,5,137,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="169,29,137,29,137,24,169,24"/>
+</map>

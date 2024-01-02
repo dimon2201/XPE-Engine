@@ -1,0 +1,61 @@
+\doxysection{audio\+\_\+manager.\+cpp}
+\hypertarget{audio__manager_8cpp_source}{}\label{audio__manager_8cpp_source}\index{engine/src/audio/audio\_manager.cpp@{engine/src/audio/audio\_manager.cpp}}
+\mbox{\hyperlink{audio__manager_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{audio__manager_8hpp}{audio/audio\_manager.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{audio_2core_2context_8hpp}{audio/core/context.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00004}00004\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00006}\mbox{\hyperlink{namespacexpe_1_1audio}{00006}}\ \ \ \ \ \textcolor{keyword}{namespace\ }audio\ \{}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00008}00008\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ cAudioManager::s\_Recording\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00010}\mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_manager_ae9894202640e400278bcdccfae96d05c}{00010}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_manager_ae9894202640e400278bcdccfae96d05c}{cAudioManager::SetListenerPosition}}(glm::vec3\ position)}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00011}00011\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_aaf3004496e351a239bea9d0ade024160}{context::SetListenerPosition}}(position);}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00013}00013\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00015}\mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_manager_a50edbadc1d670c7820e88de7b24bc2ec}{00015}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_manager_a50edbadc1d670c7820e88de7b24bc2ec}{cAudioManager::SetListenerVelocity}}(glm::vec3\ velocity)}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a78092fb106e2211efc0ca702d64fb824}{context::SetListenerVelocity}}(velocity);}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00020}\mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_manager_ad0a17d0c1c6615dc6104074ba28947d9}{00020}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_manager_ad0a17d0c1c6615dc6104074ba28947d9}{cAudioManager::SetListenerOrientation}}(\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ pitch,\ \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ yaw,\ \mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ roll,\ glm::vec3\ up)}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ orientation\ =\ glm::quat(glm::vec3(-\/pitch,\ -\/yaw,\ roll));}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ front\ =\ glm::normalize(glm::rotate(orientation,\ glm::vec3(0.0f,\ 0.0f,\ -\/1.0f)));}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_ab9f35ee9cee876aeb42e8a0ed27c1809}{context::SetListenerOrientation}}(front,\ up);}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00028}\mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_manager_aa428335afa984d8ee94cb6c81fb94ca9}{00028}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_manager_aa428335afa984d8ee94cb6c81fb94ca9}{cAudioManager::SetListenerGain}}(\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ volume)}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_aa4e46e3b5de7ef2f5754efb8c01abd07}{context::SetListenerGain}}(volume);}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00033}\mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_manager_ad2f1b247396c8a28f7a5d17e4d566b58}{00033}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_manager_ad2f1b247396c8a28f7a5d17e4d566b58}{cAudioManager::SetListenerDopplerFactor}}(\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ factor)}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_aeceeba937bb35833645046c39a19ce5b}{context::SetListenerDopplerFactor}}(factor);}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00038}\mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_manager_ac6b617370e6fd0202be11c694debf6ed}{00038}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_manager_ac6b617370e6fd0202be11c694debf6ed}{cAudioManager::SetListenerSpeedOfSound}}(\mbox{\hyperlink{namespacexpe_1_1core_ac96cda3a207e0a6466eefd15632420f7}{f32}}\ speed)}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a03fd23c618ef38a1577c991ce42d344a}{context::SetListenerSpeedOfSound}}(speed);}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00043}\mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_manager_a8717798d1dead084694903fac1ef487d}{00043}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1audio_1_1c_audio_manager_a8717798d1dead084694903fac1ef487d}{cAudioManager::VoiceRecord}}()}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ s\_Recording\ =\ !s\_Recording;}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(s\_Recording)\ \{}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a7e3e7b78e61c8ea463a52d480e97f6e8}{context::StartRecord}}();}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1audio_1_1context_a34835d068264a28789ce49ca78172edb}{context::StopRecord}}();}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00054}00054\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{audio__manager_8cpp_source_l00055}00055\ \}}
+
+\end{DoxyCode}

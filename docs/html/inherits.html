@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -49,6 +55,22 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('hierarchy.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -78,198 +100,790 @@ $(function() {
 <p><a href="hierarchy.html">Go to the textual class hierarchy</a></p>
 </div><table border="0" cellspacing="10" cellpadding="0">
 <tr><td><img src="inherit_graph_0.png" border="0" usemap="#aphysx_1_1_px_allocator_callback" alt=""/>
+<map name="aphysx_1_1_px_allocator_callback" id="aphysx_1_1_px_allocator_callback">
+<area shape="rect" title=" " alt="" coords="5,5,187,32"/>
+<area shape="rect" href="classxpe_1_1physics_1_1c_physics_allocator.html" title=" " alt="" coords="235,5,443,32"/>
+<area shape="poly" title=" " alt="" coords="202,16,234,16,234,21,202,21"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_1.png" border="0" usemap="#a_px_error_callback" alt=""/>
+<map name="a_px_error_callback" id="a_px_error_callback">
+<area shape="rect" title=" " alt="" coords="5,13,121,40"/>
+<area shape="rect" href="classxpe_1_1physics_1_1c_physics_error_callback.html" title=" " alt="" coords="169,5,354,48"/>
+<area shape="poly" title=" " alt="" coords="136,24,168,24,168,29,136,29"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_2.png" border="0" usemap="#a_px_simulation_event_callback" alt=""/>
+<map name="a_px_simulation_event_callback" id="a_px_simulation_event_callback">
+<area shape="rect" title=" " alt="" coords="5,13,186,40"/>
+<area shape="rect" href="classxpe_1_1physics_1_1c_physics_simulation_event_callback.html" title=" " alt="" coords="234,5,452,48"/>
+<area shape="poly" title=" " alt="" coords="201,24,233,24,233,29,201,29"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_3.png" border="0" usemap="#as_shape_descriptor" alt=""/>
+<map name="as_shape_descriptor" id="as_shape_descriptor">
+<area shape="rect" title=" " alt="" coords="5,97,130,124"/>
+<area shape="rect" href="structxpe_1_1physics_1_1s_box_shape_descriptor.html" title=" " alt="" coords="178,5,407,32"/>
+<area shape="poly" title=" " alt="" coords="98,86,134,63,177,42,212,30,213,35,179,46,137,67,100,91"/>
+<area shape="rect" href="structxpe_1_1physics_1_1s_capsule_shape_descriptor.html" title=" " alt="" coords="195,56,390,99"/>
+<area shape="poly" title=" " alt="" coords="145,97,194,89,195,94,146,102"/>
+<area shape="rect" href="structxpe_1_1physics_1_1s_plane_shape_descriptor.html" title=" " alt="" coords="202,123,383,165"/>
+<area shape="poly" title=" " alt="" coords="145,119,202,128,201,133,145,125"/>
+<area shape="rect" href="structxpe_1_1physics_1_1s_sphere_shape_descriptor.html" title=" " alt="" coords="198,189,387,232"/>
+<area shape="poly" title=" " alt="" coords="102,131,138,154,179,175,208,186,206,191,177,180,136,158,99,136"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_4.png" border="0" usemap="#axpe_1_1anim_1_1c_skeleton_manager" alt=""/>
+<map name="axpe_1_1anim_1_1c_skeleton_manager" id="axpe_1_1anim_1_1c_skeleton_manager">
+<area shape="rect" href="classxpe_1_1anim_1_1c_skeleton_manager.html" title=" " alt="" coords="5,5,200,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_5.png" border="0" usemap="#axpe_1_1anim_1_1s_animation" alt=""/>
+<map name="axpe_1_1anim_1_1s_animation" id="axpe_1_1anim_1_1s_animation">
+<area shape="rect" href="structxpe_1_1anim_1_1s_animation.html" title=" " alt="" coords="5,5,157,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_6.png" border="0" usemap="#axpe_1_1anim_1_1s_animation_node" alt=""/>
+<map name="axpe_1_1anim_1_1s_animation_node" id="axpe_1_1anim_1_1s_animation_node">
+<area shape="rect" href="structxpe_1_1anim_1_1s_animation_node.html" title=" " alt="" coords="5,5,187,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_7.png" border="0" usemap="#axpe_1_1anim_1_1s_bone" alt=""/>
+<map name="axpe_1_1anim_1_1s_bone" id="axpe_1_1anim_1_1s_bone">
+<area shape="rect" href="structxpe_1_1anim_1_1s_bone.html" title=" " alt="" coords="5,5,129,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_8.png" border="0" usemap="#axpe_1_1anim_1_1s_key_position" alt=""/>
+<map name="axpe_1_1anim_1_1s_key_position" id="axpe_1_1anim_1_1s_key_position">
+<area shape="rect" href="structxpe_1_1anim_1_1s_key_position.html" title=" " alt="" coords="5,5,169,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_9.png" border="0" usemap="#axpe_1_1anim_1_1s_key_rotate" alt=""/>
+<map name="axpe_1_1anim_1_1s_key_rotate" id="axpe_1_1anim_1_1s_key_rotate">
+<area shape="rect" href="structxpe_1_1anim_1_1s_key_rotate.html" title=" " alt="" coords="5,5,160,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_10.png" border="0" usemap="#axpe_1_1anim_1_1s_key_scale" alt=""/>
+<map name="axpe_1_1anim_1_1s_key_scale" id="axpe_1_1anim_1_1s_key_scale">
+<area shape="rect" href="structxpe_1_1anim_1_1s_key_scale.html" title=" " alt="" coords="5,5,155,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_11.png" border="0" usemap="#axpe_1_1anim_1_1s_skeleton_info" alt=""/>
+<map name="axpe_1_1anim_1_1s_skeleton_info" id="axpe_1_1anim_1_1s_skeleton_info">
+<area shape="rect" href="structxpe_1_1anim_1_1s_skeleton_info.html" title=" " alt="" coords="5,5,170,32"/>
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_skeleton_info.html" title=" " alt="" coords="218,5,377,32"/>
+<area shape="poly" title=" " alt="" coords="185,16,217,16,217,21,185,21"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_12.png" border="0" usemap="#axpe_1_1audio_1_1c_audio_manager" alt=""/>
+<map name="axpe_1_1audio_1_1c_audio_manager" id="axpe_1_1audio_1_1c_audio_manager">
+<area shape="rect" href="classxpe_1_1audio_1_1c_audio_manager.html" title=" " alt="" coords="5,5,185,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_13.png" border="0" usemap="#axpe_1_1core_1_1c_event_manager" alt=""/>
+<map name="axpe_1_1core_1_1c_event_manager" id="axpe_1_1core_1_1c_event_manager">
+<area shape="rect" href="classxpe_1_1core_1_1c_event_manager.html" title=" " alt="" coords="5,5,178,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_14.png" border="0" usemap="#axpe_1_1core_1_1c_file_manager" alt=""/>
+<map name="axpe_1_1core_1_1c_file_manager" id="axpe_1_1core_1_1c_file_manager">
+<area shape="rect" href="classxpe_1_1core_1_1c_file_manager.html" title=" " alt="" coords="5,5,167,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_15.png" border="0" usemap="#axpe_1_1core_1_1c_hardware_manager" alt=""/>
+<map name="axpe_1_1core_1_1c_hardware_manager" id="axpe_1_1core_1_1c_hardware_manager">
+<area shape="rect" href="classxpe_1_1core_1_1c_hardware_manager.html" title=" " alt="" coords="5,5,200,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_16.png" border="0" usemap="#axpe_1_1core_1_1c_hot_allocator_3_01_t_01_4" alt=""/>
+<map name="axpe_1_1core_1_1c_hot_allocator_3_01_t_01_4" id="axpe_1_1core_1_1c_hot_allocator_3_01_t_01_4">
+<area shape="rect" href="classxpe_1_1core_1_1c_hot_allocator.html" title=" " alt="" coords="5,5,198,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_17.png" border="0" usemap="#axpe_1_1core_1_1c_hot_object" alt=""/>
+<map name="axpe_1_1core_1_1c_hot_object" id="axpe_1_1core_1_1c_hot_object">
+<area shape="rect" href="classxpe_1_1core_1_1c_hot_object.html" title=" " alt="" coords="5,5,154,32"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_hot_scope.html" title=" " alt="" coords="202,5,380,32"/>
+<area shape="poly" title=" " alt="" coords="169,16,201,16,201,21,169,21"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_18.png" border="0" usemap="#axpe_1_1core_1_1c_input_manager" alt=""/>
+<map name="axpe_1_1core_1_1c_input_manager" id="axpe_1_1core_1_1c_input_manager">
+<area shape="rect" href="classxpe_1_1core_1_1c_input_manager.html" title=" " alt="" coords="5,5,174,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_19.png" border="0" usemap="#axpe_1_1core_1_1c_log_manager" alt=""/>
+<map name="axpe_1_1core_1_1c_log_manager" id="axpe_1_1core_1_1c_log_manager">
+<area shape="rect" href="classxpe_1_1core_1_1c_log_manager.html" title=" " alt="" coords="5,5,167,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_20.png" border="0" usemap="#axpe_1_1core_1_1c_main_allocator_3_01_t_01_4" alt=""/>
+<map name="axpe_1_1core_1_1c_main_allocator_3_01_t_01_4" id="axpe_1_1core_1_1c_main_allocator_3_01_t_01_4">
+<area shape="rect" href="classxpe_1_1core_1_1c_main_allocator.html" title=" " alt="" coords="5,5,206,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_21.png" border="0" usemap="#axpe_1_1core_1_1c_memory_manager" alt=""/>
+<map name="axpe_1_1core_1_1c_memory_manager" id="axpe_1_1core_1_1c_memory_manager">
+<area shape="rect" href="classxpe_1_1core_1_1c_memory_manager.html" title=" " alt="" coords="5,5,193,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_22.png" border="0" usemap="#axpe_1_1core_1_1c_memory_pool" alt=""/>
+<map name="axpe_1_1core_1_1c_memory_pool" id="axpe_1_1core_1_1c_memory_pool">
+<area shape="rect" href="classxpe_1_1core_1_1c_memory_pool.html" title=" " alt="" coords="5,5,169,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_23.png" border="0" usemap="#axpe_1_1core_1_1c_memory_pool_stack" alt=""/>
+<map name="axpe_1_1core_1_1c_memory_pool_stack" id="axpe_1_1core_1_1c_memory_pool_stack">
+<area shape="rect" href="classxpe_1_1core_1_1c_memory_pool_stack.html" title=" " alt="" coords="5,5,203,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_24.png" border="0" usemap="#axpe_1_1core_1_1c_memory_stack_manager" alt=""/>
+<map name="axpe_1_1core_1_1c_memory_stack_manager" id="axpe_1_1core_1_1c_memory_stack_manager">
+<area shape="rect" href="classxpe_1_1core_1_1c_memory_stack_manager.html" title=" " alt="" coords="5,5,227,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_25.png" border="0" usemap="#axpe_1_1core_1_1c_task_manager" alt=""/>
+<map name="axpe_1_1core_1_1c_task_manager" id="axpe_1_1core_1_1c_task_manager">
+<area shape="rect" href="classxpe_1_1core_1_1c_task_manager.html" title=" " alt="" coords="5,5,174,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_26.png" border="0" usemap="#axpe_1_1core_1_1c_thread" alt=""/>
+<map name="axpe_1_1core_1_1c_thread" id="axpe_1_1core_1_1c_thread">
+<area shape="rect" href="classxpe_1_1core_1_1c_thread.html" title=" " alt="" coords="5,5,135,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_27.png" border="0" usemap="#axpe_1_1core_1_1c_time" alt=""/>
+<map name="axpe_1_1core_1_1c_time" id="axpe_1_1core_1_1c_time">
+<area shape="rect" href="classxpe_1_1core_1_1c_time.html" title=" " alt="" coords="5,5,124,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_28.png" border="0" usemap="#axpe_1_1core_1_1c_time_manager" alt=""/>
+<map name="axpe_1_1core_1_1c_time_manager" id="axpe_1_1core_1_1c_time_manager">
+<area shape="rect" href="classxpe_1_1core_1_1c_time_manager.html" title=" " alt="" coords="5,5,174,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_29.png" border="0" usemap="#axpe_1_1core_1_1c_window_manager" alt=""/>
+<map name="axpe_1_1core_1_1c_window_manager" id="axpe_1_1core_1_1c_window_manager">
+<area shape="rect" href="classxpe_1_1core_1_1c_window_manager.html" title=" " alt="" coords="5,5,192,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_30.png" border="0" usemap="#axpe_1_1core_1_1s_cpu_stats" alt=""/>
+<map name="axpe_1_1core_1_1s_cpu_stats" id="axpe_1_1core_1_1s_cpu_stats">
+<area shape="rect" href="structxpe_1_1core_1_1s_cpu_stats.html" title=" " alt="" coords="5,5,150,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_31.png" border="0" usemap="#axpe_1_1core_1_1s_event_3_01_event_function_01_4" alt=""/>
+<map name="axpe_1_1core_1_1s_event_3_01_event_function_01_4" id="axpe_1_1core_1_1s_event_3_01_event_function_01_4">
+<area shape="rect" href="structxpe_1_1core_1_1s_event.html" title=" " alt="" coords="5,5,136,48"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_32.png" border="0" usemap="#axpe_1_1core_1_1s_gamepad_state" alt=""/>
+<map name="axpe_1_1core_1_1s_gamepad_state" id="axpe_1_1core_1_1s_gamepad_state">
+<area shape="rect" href="structxpe_1_1core_1_1s_gamepad_state.html" title=" " alt="" coords="5,5,183,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_33.png" border="0" usemap="#axpe_1_1core_1_1s_gpu_stats" alt=""/>
+<map name="axpe_1_1core_1_1s_gpu_stats" id="axpe_1_1core_1_1s_gpu_stats">
+<area shape="rect" href="structxpe_1_1core_1_1s_gpu_stats.html" title=" " alt="" coords="5,5,151,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_34.png" border="0" usemap="#axpe_1_1core_1_1s_key_state" alt=""/>
+<map name="axpe_1_1core_1_1s_key_state" id="axpe_1_1core_1_1s_key_state">
+<area shape="rect" href="structxpe_1_1core_1_1s_key_state.html" title=" " alt="" coords="5,5,150,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_35.png" border="0" usemap="#axpe_1_1core_1_1s_logger_descriptor" alt=""/>
+<map name="axpe_1_1core_1_1s_logger_descriptor" id="axpe_1_1core_1_1s_logger_descriptor">
+<area shape="rect" href="structxpe_1_1core_1_1s_logger_descriptor.html" title=" " alt="" coords="5,5,194,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_36.png" border="0" usemap="#axpe_1_1core_1_1s_memory_pool_allocation" alt=""/>
+<map name="axpe_1_1core_1_1s_memory_pool_allocation" id="axpe_1_1core_1_1s_memory_pool_allocation">
+<area shape="rect" href="structxpe_1_1core_1_1s_memory_pool_allocation.html" title=" " alt="" coords="5,5,226,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_37.png" border="0" usemap="#axpe_1_1core_1_1s_memory_stats" alt=""/>
+<map name="axpe_1_1core_1_1s_memory_stats" id="axpe_1_1core_1_1s_memory_stats">
+<area shape="rect" href="structxpe_1_1core_1_1s_memory_stats.html" title=" " alt="" coords="5,5,174,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_38.png" border="0" usemap="#axpe_1_1core_1_1s_mouse_cursor" alt=""/>
+<map name="axpe_1_1core_1_1s_mouse_cursor" id="axpe_1_1core_1_1s_mouse_cursor">
+<area shape="rect" href="structxpe_1_1core_1_1s_mouse_cursor.html" title=" " alt="" coords="5,5,173,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_39.png" border="0" usemap="#axpe_1_1core_1_1s_mouse_state" alt=""/>
+<map name="axpe_1_1core_1_1s_mouse_state" id="axpe_1_1core_1_1s_mouse_state">
+<area shape="rect" href="structxpe_1_1core_1_1s_mouse_state.html" title=" " alt="" coords="5,5,166,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_40.png" border="0" usemap="#axpe_1_1core_1_1s_observer_3_01float_01_4" alt=""/>
+<map name="axpe_1_1core_1_1s_observer_3_01float_01_4" id="axpe_1_1core_1_1s_observer_3_01float_01_4">
+<area shape="rect" href="structxpe_1_1core_1_1s_observer.html" title=" " alt="" coords="5,5,147,48"/>
+<area shape="rect" href="structxpe_1_1core_1_1s_observer_window_ratio.html" title=" " alt="" coords="195,5,382,48"/>
+<area shape="poly" title=" " alt="" coords="162,24,194,24,194,29,162,29"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_41.png" border="0" usemap="#axpe_1_1core_1_1s_observer_3_01_t_01_4" alt=""/>
+<map name="axpe_1_1core_1_1s_observer_3_01_t_01_4" id="axpe_1_1core_1_1s_observer_3_01_t_01_4">
+<area shape="rect" href="structxpe_1_1core_1_1s_observer.html" title=" " alt="" coords="5,5,178,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_42.png" border="0" usemap="#axpe_1_1core_1_1s_observer_3_01u32_01_4" alt=""/>
+<map name="axpe_1_1core_1_1s_observer_3_01u32_01_4" id="axpe_1_1core_1_1s_observer_3_01u32_01_4">
+<area shape="rect" href="structxpe_1_1core_1_1s_observer.html" title=" " alt="" coords="5,5,147,48"/>
+<area shape="rect" href="structxpe_1_1core_1_1s_observer_sample_count.html" title=" " alt="" coords="195,5,380,48"/>
+<area shape="poly" title=" " alt="" coords="162,24,194,24,194,29,162,29"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_43.png" border="0" usemap="#axpe_1_1core_1_1s_stack_allocator" alt=""/>
+<map name="axpe_1_1core_1_1s_stack_allocator" id="axpe_1_1core_1_1s_stack_allocator">
+<area shape="rect" href="structxpe_1_1core_1_1s_stack_allocator.html" title=" " alt="" coords="5,5,181,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_44.png" border="0" usemap="#axpe_1_1core_1_1s_stack_typed_allocator_3_01_t_01_4" alt=""/>
+<map name="axpe_1_1core_1_1s_stack_typed_allocator_3_01_t_01_4" id="axpe_1_1core_1_1s_stack_typed_allocator_3_01_t_01_4">
+<area shape="rect" href="structxpe_1_1core_1_1s_stack_typed_allocator.html" title=" " alt="" coords="5,5,247,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_45.png" border="0" usemap="#axpe_1_1core_1_1s_window" alt=""/>
+<map name="axpe_1_1core_1_1s_window" id="axpe_1_1core_1_1s_window">
+<area shape="rect" href="structxpe_1_1core_1_1s_window.html" title=" " alt="" coords="5,5,142,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_46.png" border="0" usemap="#axpe_1_1core_1_1s_window_descriptor" alt=""/>
+<map name="axpe_1_1core_1_1s_window_descriptor" id="axpe_1_1core_1_1s_window_descriptor">
+<area shape="rect" href="structxpe_1_1core_1_1s_window_descriptor.html" title=" " alt="" coords="5,5,201,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_47.png" border="0" usemap="#axpe_1_1ecs_1_1_c_has_shadow" alt=""/>
+<map name="axpe_1_1ecs_1_1_c_has_shadow" id="axpe_1_1ecs_1_1_c_has_shadow">
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_has_shadow.html" title=" " alt="" coords="5,5,163,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_48.png" border="0" usemap="#axpe_1_1ecs_1_1_c_opaque" alt=""/>
+<map name="axpe_1_1ecs_1_1_c_opaque" id="axpe_1_1ecs_1_1_c_opaque">
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_opaque.html" title=" " alt="" coords="5,5,139,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_49.png" border="0" usemap="#axpe_1_1ecs_1_1_c_space2_d" alt=""/>
+<map name="axpe_1_1ecs_1_1_c_space2_d" id="axpe_1_1ecs_1_1_c_space2_d">
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_space2_d.html" title=" " alt="" coords="5,5,147,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_50.png" border="0" usemap="#axpe_1_1ecs_1_1_c_space3_d" alt=""/>
+<map name="axpe_1_1ecs_1_1_c_space3_d" id="axpe_1_1ecs_1_1_c_space3_d">
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_space3_d.html" title=" " alt="" coords="5,5,147,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_51.png" border="0" usemap="#axpe_1_1ecs_1_1_c_tag" alt=""/>
+<map name="axpe_1_1ecs_1_1_c_tag" id="axpe_1_1ecs_1_1_c_tag">
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_tag.html" title=" " alt="" coords="5,5,115,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_52.png" border="0" usemap="#axpe_1_1ecs_1_1_c_transparent" alt=""/>
+<map name="axpe_1_1ecs_1_1_c_transparent" id="axpe_1_1ecs_1_1_c_transparent">
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_transparent.html" title=" " alt="" coords="5,5,162,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_53.png" border="0" usemap="#axpe_1_1ecs_1_1_c_visible" alt=""/>
+<map name="axpe_1_1ecs_1_1_c_visible" id="axpe_1_1ecs_1_1_c_visible">
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_visible.html" title=" " alt="" coords="5,5,133,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_54.png" border="0" usemap="#axpe_1_1math_1_1c_math_manager" alt=""/>
+<map name="axpe_1_1math_1_1c_math_manager" id="axpe_1_1math_1_1c_math_manager">
+<area shape="rect" href="classxpe_1_1math_1_1c_math_manager.html" title=" " alt="" coords="5,5,179,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_55.png" border="0" usemap="#axpe_1_1math_1_1s_model_matrix" alt=""/>
+<map name="axpe_1_1math_1_1s_model_matrix" id="axpe_1_1math_1_1s_model_matrix">
+<area shape="rect" href="structxpe_1_1math_1_1s_model_matrix.html" title=" " alt="" coords="5,5,171,32"/>
+<area shape="rect" href="structxpe_1_1math_1_1s_transform.html" title=" " alt="" coords="219,5,370,32"/>
+<area shape="poly" title=" " alt="" coords="186,16,219,16,219,21,186,21"/>
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_transform.html" title=" " alt="" coords="418,5,563,32"/>
+<area shape="poly" title=" " alt="" coords="386,16,418,16,418,21,386,21"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_56.png" border="0" usemap="#axpe_1_1math_1_1s_ray" alt=""/>
+<map name="axpe_1_1math_1_1s_ray" id="axpe_1_1math_1_1s_ray">
+<area shape="rect" href="structxpe_1_1math_1_1s_ray.html" title=" " alt="" coords="5,5,123,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_57.png" border="0" usemap="#axpe_1_1physics_1_1c_physics_manager" alt=""/>
+<map name="axpe_1_1physics_1_1c_physics_manager" id="axpe_1_1physics_1_1c_physics_manager">
+<area shape="rect" href="classxpe_1_1physics_1_1c_physics_manager.html" title=" " alt="" coords="5,5,213,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_58.png" border="0" usemap="#axpe_1_1render_1_1_buffers" alt=""/>
+<map name="axpe_1_1render_1_1_buffers" id="axpe_1_1render_1_1_buffers">
+<area shape="rect" href="structxpe_1_1render_1_1_buffers.html" title=" " alt="" coords="5,5,140,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_59.png" border="0" usemap="#axpe_1_1render_1_1c_camera_manager" alt=""/>
+<map name="axpe_1_1render_1_1c_camera_manager" id="axpe_1_1render_1_1c_camera_manager">
+<area shape="rect" href="classxpe_1_1render_1_1c_camera_manager.html" title=" " alt="" coords="5,5,202,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_60.png" border="0" usemap="#axpe_1_1render_1_1c_debug_manager" alt=""/>
+<map name="axpe_1_1render_1_1c_debug_manager" id="axpe_1_1render_1_1c_debug_manager">
+<area shape="rect" href="classxpe_1_1render_1_1c_debug_manager.html" title=" " alt="" coords="5,5,194,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_61.png" border="0" usemap="#axpe_1_1render_1_1c_geometry_manager" alt=""/>
+<map name="axpe_1_1render_1_1c_geometry_manager" id="axpe_1_1render_1_1c_geometry_manager">
+<area shape="rect" href="classxpe_1_1render_1_1c_geometry_manager.html" title=" " alt="" coords="5,5,214,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_62.png" border="0" usemap="#axpe_1_1render_1_1c_material_manager" alt=""/>
+<map name="axpe_1_1render_1_1c_material_manager" id="axpe_1_1render_1_1c_material_manager">
+<area shape="rect" href="classxpe_1_1render_1_1c_material_manager.html" title=" " alt="" coords="5,5,203,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_63.png" border="0" usemap="#axpe_1_1render_1_1c_shader_manager" alt=""/>
+<map name="axpe_1_1render_1_1c_shader_manager" id="axpe_1_1render_1_1c_shader_manager">
+<area shape="rect" href="classxpe_1_1render_1_1c_shader_manager.html" title=" " alt="" coords="5,5,198,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_64.png" border="0" usemap="#axpe_1_1render_1_1c_shadow_manager" alt=""/>
+<map name="axpe_1_1render_1_1c_shadow_manager" id="axpe_1_1render_1_1c_shadow_manager">
+<area shape="rect" href="classxpe_1_1render_1_1c_shadow_manager.html" title=" " alt="" coords="5,5,203,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_65.png" border="0" usemap="#axpe_1_1render_1_1c_skybox_manager" alt=""/>
+<map name="axpe_1_1render_1_1c_skybox_manager" id="axpe_1_1render_1_1c_skybox_manager">
+<area shape="rect" href="classxpe_1_1render_1_1c_skybox_manager.html" title=" " alt="" coords="5,5,201,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_66.png" border="0" usemap="#axpe_1_1render_1_1c_widget_manager" alt=""/>
+<map name="axpe_1_1render_1_1c_widget_manager" id="axpe_1_1render_1_1c_widget_manager">
+<area shape="rect" href="classxpe_1_1render_1_1c_widget_manager.html" title=" " alt="" coords="5,5,198,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_67.png" border="0" usemap="#axpe_1_1render_1_1_render_targets" alt=""/>
+<map name="axpe_1_1render_1_1_render_targets" id="axpe_1_1render_1_1_render_targets">
+<area shape="rect" href="structxpe_1_1render_1_1_render_targets.html" title=" " alt="" coords="5,5,184,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_68.png" border="0" usemap="#axpe_1_1render_1_1_samplers" alt=""/>
+<map name="axpe_1_1render_1_1_samplers" id="axpe_1_1render_1_1_samplers">
+<area shape="rect" href="structxpe_1_1render_1_1_samplers.html" title=" " alt="" coords="5,5,155,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_69.png" border="0" usemap="#axpe_1_1render_1_1s_atlas_1_1s_cell" alt=""/>
+<map name="axpe_1_1render_1_1s_atlas_1_1s_cell" id="axpe_1_1render_1_1s_atlas_1_1s_cell">
+<area shape="rect" href="structxpe_1_1render_1_1s_atlas_1_1s_cell.html" title=" " alt="" coords="5,5,137,48"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_70.png" border="0" usemap="#axpe_1_1render_1_1s_atlas_1_1s_location" alt=""/>
+<map name="axpe_1_1render_1_1s_atlas_1_1s_location" id="axpe_1_1render_1_1s_atlas_1_1s_location">
+<area shape="rect" href="structxpe_1_1render_1_1s_atlas_1_1s_location.html" title=" " alt="" coords="5,5,137,48"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_71.png" border="0" usemap="#axpe_1_1render_1_1s_attributes" alt=""/>
+<map name="axpe_1_1render_1_1s_attributes" id="axpe_1_1render_1_1s_attributes">
+<area shape="rect" href="structxpe_1_1render_1_1s_attributes.html" title=" " alt="" coords="5,5,163,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_72.png" border="0" usemap="#axpe_1_1render_1_1s_char" alt=""/>
+<map name="axpe_1_1render_1_1s_char" id="axpe_1_1render_1_1s_char">
+<area shape="rect" href="structxpe_1_1render_1_1s_char.html" title=" " alt="" coords="5,5,134,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_73.png" border="0" usemap="#axpe_1_1render_1_1s_debug_message" alt=""/>
+<map name="axpe_1_1render_1_1s_debug_message" id="axpe_1_1render_1_1s_debug_message">
+<area shape="rect" href="structxpe_1_1render_1_1s_debug_message.html" title=" " alt="" coords="5,5,197,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_74.png" border="0" usemap="#axpe_1_1render_1_1s_direct_light_data" alt=""/>
+<map name="axpe_1_1render_1_1s_direct_light_data" id="axpe_1_1render_1_1s_direct_light_data">
+<area shape="rect" href="structxpe_1_1render_1_1s_direct_light_data.html" title=" " alt="" coords="5,5,196,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_75.png" border="0" usemap="#axpe_1_1render_1_1s_font_1_1s_glyph" alt=""/>
+<map name="axpe_1_1render_1_1s_font_1_1s_glyph" id="axpe_1_1render_1_1s_font_1_1s_glyph">
+<area shape="rect" href="structxpe_1_1render_1_1s_font_1_1s_glyph.html" title=" " alt="" coords="5,5,133,48"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_76.png" border="0" usemap="#axpe_1_1render_1_1s_geometry_info" alt=""/>
+<map name="axpe_1_1render_1_1s_geometry_info" id="axpe_1_1render_1_1s_geometry_info">
+<area shape="rect" href="structxpe_1_1render_1_1s_geometry_info.html" title=" " alt="" coords="5,5,184,32"/>
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_geometry_info.html" title=" " alt="" coords="232,5,397,32"/>
+<area shape="poly" title=" " alt="" coords="199,16,231,16,231,21,199,21"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_77.png" border="0" usemap="#axpe_1_1render_1_1s_material_format" alt=""/>
+<map name="axpe_1_1render_1_1s_material_format" id="axpe_1_1render_1_1s_material_format">
+<area shape="rect" href="structxpe_1_1render_1_1s_material_format.html" title=" " alt="" coords="5,5,194,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_78.png" border="0" usemap="#axpe_1_1render_1_1s_mip" alt=""/>
+<map name="axpe_1_1render_1_1s_mip" id="axpe_1_1render_1_1s_mip">
+<area shape="rect" href="structxpe_1_1render_1_1s_mip.html" title=" " alt="" coords="5,5,128,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_79.png" border="0" usemap="#axpe_1_1render_1_1s_render_instance" alt=""/>
+<map name="axpe_1_1render_1_1s_render_instance" id="axpe_1_1render_1_1s_render_instance">
+<area shape="rect" href="structxpe_1_1render_1_1s_render_instance.html" title=" " alt="" coords="5,5,197,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_80.png" border="0" usemap="#axpe_1_1render_1_1s_shadow_pcf" alt=""/>
+<map name="axpe_1_1render_1_1s_shadow_pcf" id="axpe_1_1render_1_1s_shadow_pcf">
+<area shape="rect" href="structxpe_1_1render_1_1s_shadow_pcf.html" title=" " alt="" coords="5,5,172,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_81.png" border="0" usemap="#axpe_1_1render_1_1s_skeleton_data" alt=""/>
+<map name="axpe_1_1render_1_1s_skeleton_data" id="axpe_1_1render_1_1s_skeleton_data">
+<area shape="rect" href="structxpe_1_1render_1_1s_skeleton_data.html" title=" " alt="" coords="5,5,185,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_82.png" border="0" usemap="#axpe_1_1render_1_1s_skybox" alt=""/>
+<map name="axpe_1_1render_1_1s_skybox" id="axpe_1_1render_1_1s_skybox">
+<area shape="rect" href="structxpe_1_1render_1_1s_skybox.html" title=" " alt="" coords="5,5,151,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_83.png" border="0" usemap="#axpe_1_1render_1_1s_spot_light_data" alt=""/>
+<map name="axpe_1_1render_1_1s_spot_light_data" id="axpe_1_1render_1_1s_spot_light_data">
+<area shape="rect" href="structxpe_1_1render_1_1s_spot_light_data.html" title=" " alt="" coords="5,5,189,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_84.png" border="0" usemap="#axpe_1_1render_1_1s_ssao_data" alt=""/>
+<map name="axpe_1_1render_1_1s_ssao_data" id="axpe_1_1render_1_1s_ssao_data">
+<area shape="rect" href="structxpe_1_1render_1_1s_ssao_data.html" title=" " alt="" coords="5,5,164,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_85.png" border="0" usemap="#axpe_1_1render_1_1s_text" alt=""/>
+<map name="axpe_1_1render_1_1s_text" id="axpe_1_1render_1_1s_text">
+<area shape="rect" href="structxpe_1_1render_1_1s_text.html" title=" " alt="" coords="5,5,132,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_86.png" border="0" usemap="#axpe_1_1render_1_1s_texture_layer" alt=""/>
+<map name="axpe_1_1render_1_1s_texture_layer" id="axpe_1_1render_1_1s_texture_layer">
+<area shape="rect" href="structxpe_1_1render_1_1s_texture_layer.html" title=" " alt="" coords="5,5,182,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_87.png" border="0" usemap="#axpe_1_1render_1_1s_vertex" alt=""/>
+<map name="axpe_1_1render_1_1s_vertex" id="axpe_1_1render_1_1s_vertex">
+<area shape="rect" href="structxpe_1_1render_1_1s_vertex.html" title=" " alt="" coords="5,5,145,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_88.png" border="0" usemap="#axpe_1_1render_1_1s_vertex_format" alt=""/>
+<map name="axpe_1_1render_1_1s_vertex_format" id="axpe_1_1render_1_1s_vertex_format">
+<area shape="rect" href="structxpe_1_1render_1_1s_vertex_format.html" title=" " alt="" coords="5,5,186,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_89.png" border="0" usemap="#axpe_1_1render_1_1s_vertex_format_1_1s_attribute" alt=""/>
+<map name="axpe_1_1render_1_1s_vertex_format_1_1s_attribute" id="axpe_1_1render_1_1s_vertex_format_1_1s_attribute">
+<area shape="rect" href="structxpe_1_1render_1_1s_vertex_format_1_1s_attribute.html" title=" " alt="" coords="5,5,186,48"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_90.png" border="0" usemap="#axpe_1_1render_1_1s_widget_data" alt=""/>
+<map name="axpe_1_1render_1_1s_widget_data" id="axpe_1_1render_1_1s_widget_data">
+<area shape="rect" href="structxpe_1_1render_1_1s_widget_data.html" title=" " alt="" coords="5,5,175,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_91.png" border="0" usemap="#axpe_1_1render_1_1_textures" alt=""/>
+<map name="axpe_1_1render_1_1_textures" id="axpe_1_1render_1_1_textures">
+<area shape="rect" href="structxpe_1_1render_1_1_textures.html" title=" " alt="" coords="5,5,150,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_92.png" border="0" usemap="#axpe_1_1render_1_1_viewports" alt=""/>
+<map name="axpe_1_1render_1_1_viewports" id="axpe_1_1render_1_1_viewports">
+<area shape="rect" href="structxpe_1_1render_1_1_viewports.html" title=" " alt="" coords="5,5,157,32"/>
+</map>
 </td></tr>
 <tr><td><img src="inherit_graph_93.png" border="0" usemap="#axpe_1_1res_1_1c_json" alt=""/>
+<map name="axpe_1_1res_1_1c_json" id="axpe_1_1res_1_1c_json">
+<area shape="rect" href="classxpe_1_1res_1_1c_json.html" title=" " alt="" coords="266,791,376,817"/>
+<area shape="rect" href="structxpe_1_1core_1_1s_app_config.html" title=" " alt="" coords="491,715,640,741"/>
+<area shape="poly" title=" " alt="" coords="371,782,461,751,503,739,504,745,463,756,372,787"/>
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_animation.html" title=" " alt="" coords="493,765,639,792"/>
+<area shape="poly" title=" " alt="" coords="391,794,492,784,493,789,392,799"/>
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_audio.html" title=" " alt="" coords="505,816,626,843"/>
+<area shape="poly" title=" " alt="" coords="392,809,505,820,504,826,391,814"/>
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_camera.html" title=" " alt="" coords="499,613,632,640"/>
+<area shape="poly" title=" " alt="" coords="337,776,387,712,422,678,461,650,498,634,500,639,463,654,425,682,391,716,341,779"/>
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_directional_light.html" title=" " alt="" coords="477,664,654,691"/>
+<area shape="poly" title=" " alt="" coords="347,778,397,738,461,700,492,689,494,694,463,705,400,743,350,782"/>
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_geometry.html" title=" " alt="" coords="493,360,638,387"/>
+<area shape="poly" title=" " alt="" coords="320,775,328,700,349,597,367,543,391,490,422,440,460,397,491,379,494,384,464,401,426,443,396,492,372,545,354,599,333,700,326,776"/>
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_material.html" title=" " alt="" coords="499,411,633,437"/>
+<area shape="poly" title=" " alt="" coords="322,775,333,707,356,619,374,572,397,526,425,484,460,447,478,436,497,428,499,433,480,440,464,451,430,487,402,529,379,574,361,621,338,708,327,775"/>
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_physics_actor.html" title=" " alt="" coords="483,1019,649,1045"/>
+<area shape="poly" title=" " alt="" coords="336,830,355,870,383,917,419,965,464,1004,485,1016,482,1020,460,1009,415,968,378,920,350,873,331,833"/>
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_point_light.html" title=" " alt="" coords="493,1069,639,1096"/>
+<area shape="poly" title=" " alt="" coords="336,830,395,954,431,1016,448,1040,464,1055,493,1070,491,1075,460,1059,444,1043,427,1019,390,956,331,833"/>
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_skeleton.html" title=" " alt="" coords="496,1120,635,1147"/>
+<area shape="poly" title=" " alt="" coords="337,830,464,1106,497,1123,494,1128,460,1110,332,833"/>
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_spot_light.html" title=" " alt="" coords="494,968,637,995"/>
+<area shape="poly" title=" " alt="" coords="341,829,391,892,425,926,463,954,494,967,492,972,461,958,422,930,387,896,337,832"/>
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_stream_audio.html" title=" " alt="" coords="484,461,647,488"/>
+<area shape="poly" title=" " alt="" coords="324,775,338,716,363,642,381,602,403,564,429,529,460,498,482,485,485,489,464,502,433,532,407,567,386,605,368,644,343,718,329,776"/>
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_voice.html" title=" " alt="" coords="505,512,626,539"/>
+<area shape="poly" title=" " alt="" coords="327,775,343,726,370,664,409,602,433,573,460,549,481,537,503,529,505,534,483,541,464,553,437,577,413,605,375,667,348,728,332,777"/>
+<area shape="rect" href="classxpe_1_1ecs_1_1c_entity.html" title=" " alt="" coords="506,1171,626,1197"/>
+<area shape="poly" title=" " alt="" coords="338,830,375,908,417,1006,428,1051,431,1089,439,1123,448,1139,464,1157,483,1170,506,1177,504,1182,481,1174,460,1161,444,1142,434,1125,425,1090,422,1052,411,1008,370,910,333,832"/>
+<area shape="rect" href="classxpe_1_1ecs_1_1c_scene.html" title=" " alt="" coords="504,1272,627,1299"/>
+<area shape="poly" title=" " alt="" coords="339,830,378,908,417,1006,425,1045,428,1081,424,1143,424,1172,429,1200,441,1228,464,1258,482,1272,505,1279,503,1284,480,1276,460,1262,436,1231,424,1201,419,1172,419,1143,422,1081,420,1046,411,1007,373,910,335,832"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_camera.html" title=" " alt="" coords="493,917,639,944"/>
+<area shape="poly" title=" " alt="" coords="350,826,400,865,463,903,494,914,492,919,461,908,397,870,347,830"/>
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_ortho_camera.html" title=" " alt="" coords="741,588,907,615"/>
+<area shape="poly" title=" " alt="" coords="648,616,741,607,741,612,648,621"/>
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_perspective_camera.html" title=" " alt="" coords="724,740,924,767"/>
+<area shape="poly" title=" " alt="" coords="648,641,670,650,711,670,749,694,807,737,804,742,746,699,708,675,668,654,646,646"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_ortho_camera.html" title=" " alt="" coords="735,917,913,944"/>
+<area shape="poly" title=" " alt="" coords="654,928,734,928,734,933,654,933"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="257,2601,385,2628"/>
+<area shape="poly" title=" " alt="" coords="321,2586,333,2323,360,1917,379,1709,402,1526,429,1386,444,1338,460,1309,480,1294,503,1286,505,1291,482,1299,464,1312,449,1340,434,1387,407,1527,385,1710,366,1917,339,2323,326,2586"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="488,3387,643,3429"/>
+<area shape="poly" title=" " alt="" coords="326,2643,337,2795,361,3014,379,3126,402,3230,431,3315,447,3348,464,3373,489,3391,486,3396,460,3377,442,3351,426,3317,397,3231,374,3127,356,3014,332,2795,321,2644"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="488,3453,643,3496"/>
+<area shape="poly" title=" " alt="" coords="326,2644,335,2806,357,3045,375,3169,399,3282,428,3376,445,3412,464,3439,489,3458,486,3462,460,3443,441,3415,423,3378,393,3284,370,3170,352,3046,329,2807,320,2644"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="477,3520,655,3563"/>
+<area shape="poly" title=" " alt="" coords="325,2643,332,2817,341,2942,353,3076,371,3211,395,3335,426,3437,444,3476,464,3506,478,3519,474,3523,460,3510,439,3479,421,3439,390,3336,366,3212,348,3077,335,2942,327,2818,320,2643"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="488,3587,643,3629"/>
+<area shape="poly" title=" " alt="" coords="325,2644,330,2829,338,2963,349,3108,367,3254,391,3387,406,3446,423,3498,443,3540,464,3573,489,3592,486,3596,460,3576,438,3543,418,3500,401,3448,386,3388,362,3254,344,3109,332,2963,325,2830,320,2644"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="488,3704,643,3747"/>
+<area shape="poly" title=" " alt="" coords="325,2644,327,2849,332,3000,343,3163,360,3328,385,3479,400,3546,419,3605,440,3653,464,3690,489,3709,486,3713,460,3694,435,3656,414,3607,395,3548,379,3481,354,3329,337,3164,327,3000,321,2849,319,2644"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="488,3771,643,3813"/>
+<area shape="poly" title=" " alt="" coords="324,2643,325,2860,329,3020,339,3194,356,3370,381,3532,397,3603,417,3666,439,3717,464,3757,489,3776,486,3780,460,3760,434,3720,411,3667,392,3604,376,3533,350,3370,334,3195,324,3020,319,2860,319,2643"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="488,3837,643,3880"/>
+<area shape="poly" title=" " alt="" coords="326,2643,341,2888,370,3264,389,3455,412,3625,437,3754,450,3797,464,3824,489,3843,486,3847,460,3827,445,3799,432,3755,406,3625,384,3456,365,3264,336,2888,321,2643"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="488,1323,643,1365"/>
+<area shape="poly" title=" " alt="" coords="321,2585,335,2335,364,1951,383,1755,406,1582,431,1449,445,1404,460,1376,486,1356,489,1360,464,1379,450,1406,436,1450,411,1582,388,1756,369,1951,341,2336,326,2586"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="488,1389,643,1432"/>
+<area shape="poly" title=" " alt="" coords="321,2585,336,2347,366,1984,385,1800,408,1636,432,1512,446,1469,460,1442,486,1422,489,1427,464,1446,451,1471,438,1513,413,1637,391,1800,371,1985,342,2348,326,2586"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="488,1456,643,1499"/>
+<area shape="poly" title=" " alt="" coords="319,2586,321,2376,326,2222,336,2053,353,1884,378,1728,394,1659,413,1598,435,1548,460,1509,486,1489,489,1493,464,1512,440,1550,418,1600,399,1660,383,1729,358,1885,341,2054,331,2222,326,2376,324,2586"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="488,1523,643,1565"/>
+<area shape="poly" title=" " alt="" coords="319,2586,323,2387,329,2242,340,2084,357,1926,382,1780,397,1716,415,1659,436,1612,460,1576,486,1556,489,1560,464,1579,441,1614,420,1661,402,1717,387,1781,362,1927,345,2085,334,2242,328,2387,325,2586"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="488,1589,643,1632"/>
+<area shape="poly" title=" " alt="" coords="320,2586,325,2399,332,2264,343,2116,361,1969,385,1833,400,1773,418,1720,438,1676,460,1642,486,1623,489,1627,464,1646,442,1679,423,1722,406,1774,390,1834,366,1970,349,2117,337,2264,330,2399,325,2586"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="488,1656,643,1699"/>
+<area shape="poly" title=" " alt="" coords="320,2586,327,2409,335,2283,347,2147,365,2010,389,1885,420,1781,439,1740,460,1709,486,1690,489,1694,464,1713,444,1743,425,1783,394,1886,370,2011,353,2147,340,2284,332,2410,325,2586"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="488,1723,643,1765"/>
+<area shape="poly" title=" " alt="" coords="320,2586,329,2421,351,2178,369,2053,393,1937,423,1842,440,1804,460,1775,486,1756,489,1761,464,1779,445,1807,428,1844,398,1939,374,2054,356,2179,334,2421,326,2586"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="488,1789,643,1832"/>
+<area shape="poly" title=" " alt="" coords="321,2586,331,2433,355,2210,373,2095,397,1990,425,1903,442,1868,460,1842,486,1823,489,1827,464,1846,446,1871,430,1905,402,1991,379,2096,360,2211,337,2433,326,2586"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="488,1907,643,1949"/>
+<area shape="poly" title=" " alt="" coords="322,2586,336,2454,362,2267,381,2170,403,2082,429,2010,444,1981,460,1959,486,1941,489,1945,464,1963,449,1984,434,2012,408,2084,386,2172,367,2267,341,2455,327,2586"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="488,1973,643,2016"/>
+<area shape="poly" title=" " alt="" coords="323,2585,338,2465,367,2298,385,2213,407,2135,432,2071,460,2026,486,2008,489,2012,464,2030,437,2073,412,2136,390,2214,372,2299,344,2466,328,2586"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="488,2040,643,2083"/>
+<area shape="poly" title=" " alt="" coords="324,2586,341,2478,371,2330,390,2256,411,2188,434,2132,460,2093,486,2074,489,2079,464,2097,439,2134,416,2189,395,2257,376,2332,346,2479,329,2586"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="477,2107,654,2149"/>
+<area shape="poly" title=" " alt="" coords="320,2586,326,2503,333,2449,345,2389,363,2328,387,2267,419,2210,460,2159,475,2148,478,2152,464,2163,424,2213,392,2269,368,2329,350,2390,338,2450,331,2504,325,2586"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="478,2173,653,2216"/>
+<area shape="poly" title=" " alt="" coords="322,2585,331,2513,354,2417,372,2366,395,2315,424,2268,460,2226,476,2214,479,2218,464,2230,429,2271,400,2318,377,2368,359,2419,336,2514,327,2586"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_ring_buffer.html" title=" " alt="" coords="491,2240,640,2283"/>
+<area shape="poly" title=" " alt="" coords="324,2585,337,2525,363,2446,380,2405,402,2364,429,2326,460,2293,489,2275,492,2279,464,2297,433,2330,407,2367,385,2407,368,2448,343,2526,329,2587"/>
+<area shape="rect" href="structxpe_1_1audio_1_1s_audio_file.html" title=" " alt="" coords="491,2307,641,2333"/>
+<area shape="poly" title=" " alt="" coords="326,2586,342,2533,368,2468,407,2400,432,2370,460,2343,489,2328,492,2333,464,2348,436,2373,411,2403,373,2470,347,2535,331,2587"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html" title=" " alt="" coords="509,2357,622,2384"/>
+<area shape="poly" title=" " alt="" coords="330,2586,348,2543,376,2491,413,2438,436,2414,461,2394,483,2382,508,2374,509,2379,485,2386,463,2398,439,2418,417,2442,380,2494,353,2545,334,2588"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_event_buffer.html" title=" " alt="" coords="488,2408,643,2451"/>
+<area shape="poly" title=" " alt="" coords="338,2587,388,2524,422,2490,461,2460,486,2447,489,2452,463,2465,426,2494,392,2527,342,2590"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_ring_buffer.html" title=" " alt="" coords="476,2475,656,2501"/>
+<area shape="poly" title=" " alt="" coords="347,2589,397,2549,461,2511,492,2499,494,2504,463,2516,400,2553,350,2593"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_scope.html" title=" " alt="" coords="487,2525,645,2552"/>
+<area shape="poly" title=" " alt="" coords="371,2593,461,2561,503,2550,504,2555,463,2567,372,2598"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_task_dispatcher.html" title=" " alt="" coords="476,2677,656,2704"/>
+<area shape="poly" title=" " alt="" coords="372,2631,463,2663,504,2674,503,2679,461,2668,371,2636"/>
+<area shape="rect" href="structxpe_1_1core_1_1s_task.html" title=" " alt="" coords="507,1856,625,1883"/>
+<area shape="poly" title=" " alt="" coords="321,2586,332,2441,356,2233,375,2126,398,2028,426,1948,442,1917,460,1893,481,1878,505,1870,507,1875,483,1883,464,1897,447,1919,431,1950,403,2030,380,2127,362,2234,337,2441,326,2586"/>
+<area shape="rect" href="classxpe_1_1ecs_1_1c_system.html" title=" " alt="" coords="500,2576,631,2603"/>
+<area shape="poly" title=" " alt="" coords="400,2604,499,2593,500,2599,400,2609"/>
+<area shape="rect" href="structxpe_1_1physics_1_1s_ragdoll.html" title=" " alt="" coords="489,2728,642,2755"/>
+<area shape="poly" title=" " alt="" coords="350,2636,400,2676,463,2714,494,2725,492,2730,461,2718,397,2680,347,2640"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_canvas.html" title=" " alt="" coords="494,2779,637,2805"/>
+<area shape="poly" title=" " alt="" coords="341,2639,391,2703,425,2736,463,2764,494,2778,492,2783,461,2769,422,2740,387,2707,337,2643"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_shader.html" title=" " alt="" coords="495,2627,637,2653"/>
+<area shape="poly" title=" " alt="" coords="400,2620,494,2630,494,2635,400,2625"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_blend_mode.html" title=" " alt="" coords="483,2829,649,2856"/>
+<area shape="poly" title=" " alt="" coords="336,2641,355,2681,383,2728,419,2775,464,2815,485,2826,482,2831,460,2820,415,2779,378,2731,350,2683,331,2643"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_blend_target.html" title=" " alt="" coords="481,2880,651,2907"/>
+<area shape="poly" title=" " alt="" coords="332,2642,348,2691,375,2752,413,2814,437,2842,464,2866,483,2877,480,2882,460,2870,433,2845,409,2817,370,2754,343,2693,327,2644"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_blob.html" title=" " alt="" coords="502,2931,629,2957"/>
+<area shape="poly" title=" " alt="" coords="329,2643,343,2701,368,2775,386,2814,407,2852,433,2887,464,2917,482,2928,503,2935,501,2940,480,2933,460,2921,429,2890,403,2855,381,2816,363,2777,338,2702,324,2644"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_camera_data.html" title=" " alt="" coords="479,2981,652,3008"/>
+<area shape="poly" title=" " alt="" coords="327,2643,338,2710,361,2798,379,2844,402,2890,430,2931,464,2967,481,2979,478,2983,460,2971,425,2935,397,2892,374,2847,356,2800,333,2711,322,2644"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_depth_stencil_mode.html" title=" " alt="" coords="462,3032,669,3059"/>
+<area shape="poly" title=" " alt="" coords="326,2643,333,2718,354,2820,372,2874,396,2927,426,2976,464,3018,480,3029,477,3034,460,3022,422,2979,391,2929,367,2876,349,2821,328,2719,320,2643"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_font.html" title=" " alt="" coords="502,3083,629,3109"/>
+<area shape="poly" title=" " alt="" coords="325,2643,329,2727,336,2782,348,2842,365,2904,390,2964,422,3020,464,3069,482,3081,502,3088,500,3093,479,3086,460,3073,418,3023,385,2966,360,2905,343,2843,331,2783,324,2728,319,2644"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_rasterizer.html" title=" " alt="" coords="486,3133,646,3160"/>
+<area shape="poly" title=" " alt="" coords="329,2643,346,2749,376,2892,394,2965,416,3030,439,3084,464,3119,486,3134,483,3138,460,3123,434,3086,411,3032,389,2966,370,2894,341,2750,324,2644"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_render_target.html" title=" " alt="" coords="477,3184,655,3211"/>
+<area shape="poly" title=" " alt="" coords="328,2643,344,2758,372,2917,391,2997,412,3071,437,3130,464,3170,479,3181,476,3186,460,3174,432,3133,407,3072,386,2999,367,2918,339,2758,323,2643"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_resource.html" title=" " alt="" coords="488,3653,644,3680"/>
+<area shape="poly" title=" " alt="" coords="325,2643,327,2841,332,2985,343,3141,360,3298,385,3442,401,3505,419,3560,440,3605,464,3639,489,3656,486,3661,460,3643,436,3608,414,3562,396,3506,380,3443,355,3299,338,3142,327,2985,322,2841,319,2643"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_stencil_test.html" title=" " alt="" coords="483,3285,649,3312"/>
+<area shape="poly" title=" " alt="" coords="327,2643,340,2777,366,2966,384,3063,406,3151,433,3223,448,3251,464,3271,484,3285,481,3290,460,3275,444,3254,428,3225,401,3153,379,3064,360,2967,334,2778,322,2644"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_viewport.html" title=" " alt="" coords="490,3336,641,3363"/>
+<area shape="poly" title=" " alt="" coords="326,2643,338,2786,362,2991,381,3095,403,3191,431,3270,447,3300,464,3322,491,3339,488,3344,460,3326,442,3302,426,3272,398,3193,375,3097,357,2991,332,2786,321,2644"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_simulation_dispatcher.html" title=" " alt="" coords="717,2995,931,3021"/>
+<area shape="poly" title=" " alt="" coords="665,2709,671,2714,705,2746,734,2783,759,2824,779,2865,808,2941,822,2993,817,2995,803,2942,774,2867,754,2826,730,2786,701,2750,668,2718,661,2714"/>
+<area shape="rect" href="structxpe_1_1core_1_1s_task_queue.html" title=" " alt="" coords="746,1856,902,1883"/>
+<area shape="poly" title=" " alt="" coords="640,1867,745,1867,745,1872,640,1872"/>
+<area shape="rect" href="classxpe_1_1anim_1_1c_anim_system.html" title=" " alt="" coords="740,2601,908,2628"/>
+<area shape="poly" title=" " alt="" coords="647,2595,740,2604,739,2609,646,2600"/>
+<area shape="rect" href="classxpe_1_1audio_1_1c_audio_system.html" title=" " alt="" coords="737,2449,911,2476"/>
+<area shape="poly" title=" " alt="" coords="645,2574,668,2562,684,2544,691,2525,698,2505,716,2486,737,2474,740,2479,719,2490,703,2508,696,2527,688,2547,671,2566,647,2579"/>
+<area shape="rect" href="classxpe_1_1physics_1_1c_physics_system.html" title=" " alt="" coords="723,2500,925,2527"/>
+<area shape="poly" title=" " alt="" coords="645,2569,668,2562,692,2549,716,2536,753,2525,755,2530,718,2541,695,2554,670,2566,647,2574"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_render_system.html" title=" " alt="" coords="730,2551,918,2577"/>
+<area shape="poly" title=" " alt="" coords="646,2579,729,2571,730,2576,647,2584"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_compute_shader.html" title=" " alt="" coords="727,2703,921,2729"/>
+<area shape="poly" title=" " alt="" coords="648,2655,670,2663,695,2676,718,2688,755,2700,753,2705,716,2693,692,2680,668,2668,647,2660"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_default_shader.html" title=" " alt="" coords="733,2652,915,2679"/>
+<area shape="poly" title=" " alt="" coords="653,2646,733,2654,732,2659,652,2651"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_composite_transparent_shader.html" title=" " alt="" coords="979,2804,1210,2847"/>
+<area shape="poly" title=" " alt="" coords="927,2684,932,2689,944,2701,952,2714,958,2740,963,2766,969,2778,980,2790,997,2801,994,2806,977,2794,965,2781,958,2768,952,2742,947,2716,940,2704,929,2693,924,2689"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_final_shader.html" title=" " alt="" coords="1009,2484,1180,2511"/>
+<area shape="poly" title=" " alt="" coords="924,2642,929,2638,941,2624,948,2611,952,2581,956,2550,964,2535,977,2521,1007,2504,1010,2508,980,2525,968,2538,962,2552,957,2582,953,2612,945,2627,932,2642,928,2646"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_instancing_shader.html" title=" " alt="" coords="1014,2535,1175,2577"/>
+<area shape="poly" title=" " alt="" coords="918,2644,929,2638,944,2626,953,2613,962,2600,977,2587,1013,2571,1015,2576,980,2592,966,2604,957,2616,948,2630,932,2642,920,2648"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_skybox_shader.html" title=" " alt="" coords="1001,2601,1188,2628"/>
+<area shape="poly" title=" " alt="" coords="914,2646,1019,2626,1020,2631,915,2651"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_ssao_shader.html" title=" " alt="" coords="1008,2652,1181,2679"/>
+<area shape="poly" title=" " alt="" coords="931,2663,1008,2663,1008,2668,931,2668"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_text_shader.html" title=" " alt="" coords="1011,2703,1178,2729"/>
+<area shape="poly" title=" " alt="" coords="915,2680,1020,2699,1019,2705,914,2685"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_widget_shader.html" title=" " alt="" coords="1003,2753,1186,2780"/>
+<area shape="poly" title=" " alt="" coords="920,2682,932,2688,948,2701,957,2715,966,2727,980,2739,1006,2750,1004,2755,977,2744,962,2731,952,2718,944,2705,929,2693,918,2687"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_opaque_shader.html" title=" " alt="" coords="1264,2492,1451,2519"/>
+<area shape="poly" title=" " alt="" coords="1189,2535,1284,2517,1285,2522,1190,2540"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_shadow_shader.html" title=" " alt="" coords="1264,2543,1452,2569"/>
+<area shape="poly" title=" " alt="" coords="1190,2553,1263,2553,1263,2559,1190,2559"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_transparent_shader.html" title=" " alt="" coords="1273,2593,1442,2636"/>
+<area shape="poly" title=" " alt="" coords="1190,2575,1273,2593,1272,2598,1189,2580"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_directional_shadow_shader.html" title=" " alt="" coords="1513,2468,1675,2511"/>
+<area shape="poly" title=" " alt="" coords="1429,2536,1457,2528,1522,2509,1524,2514,1458,2533,1430,2541"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_point_shadow_shader.html" title=" " alt="" coords="1505,2535,1683,2577"/>
+<area shape="poly" title=" " alt="" coords="1467,2553,1505,2553,1505,2559,1467,2559"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_spot_shadow_shader.html" title=" " alt="" coords="1507,2601,1681,2644"/>
+<area shape="poly" title=" " alt="" coords="1430,2571,1458,2579,1524,2598,1522,2603,1457,2584,1429,2576"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_buffer.html" title=" " alt="" coords="757,3520,891,3547"/>
+<area shape="poly" title=" " alt="" coords="652,3646,668,3639,709,3617,748,3591,806,3545,809,3549,751,3596,712,3621,670,3644,654,3651"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_sampler.html" title=" " alt="" coords="749,3628,899,3655"/>
+<area shape="poly" title=" " alt="" coords="659,3655,749,3646,749,3651,660,3660"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_shader_stage.html" title=" " alt="" coords="736,3679,912,3705"/>
+<area shape="poly" title=" " alt="" coords="660,3673,736,3681,735,3686,659,3678"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_texture.html" title=" " alt="" coords="752,3935,896,3961"/>
+<area shape="poly" title=" " alt="" coords="660,3683,671,3690,703,3718,730,3750,775,3820,805,3887,821,3933,816,3935,800,3889,770,3823,726,3753,699,3721,668,3694,657,3687"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_item_buffer.html" title=" " alt="" coords="1015,2979,1174,3021"/>
+<area shape="poly" title=" " alt="" coords="823,3504,828,3413,836,3353,849,3287,868,3218,895,3150,931,3087,977,3031,994,3018,1013,3009,1015,3014,997,3023,981,3035,935,3090,900,3153,873,3220,854,3288,841,3354,833,3414,828,3504"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_item_buffer.html" title=" " alt="" coords="1015,3045,1174,3088"/>
+<area shape="poly" title=" " alt="" coords="824,3504,833,3424,857,3315,877,3257,903,3199,936,3145,977,3098,994,3085,1013,3076,1016,3081,997,3090,980,3102,940,3148,907,3202,882,3259,862,3317,839,3425,829,3505"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_item_buffer.html" title=" " alt="" coords="1015,3112,1174,3155"/>
+<area shape="poly" title=" " alt="" coords="826,3504,839,3435,866,3344,886,3295,910,3248,941,3203,977,3165,994,3152,1013,3144,1015,3149,997,3157,980,3169,945,3207,915,3250,891,3297,871,3346,845,3436,832,3505"/>
+<area shape="rect" href="classxpe_1_1render_1_1s_list_buffer.html" title=" " alt="" coords="1017,3179,1172,3221"/>
+<area shape="poly" title=" " alt="" coords="829,3504,846,3447,875,3373,895,3335,918,3297,945,3262,977,3231,995,3219,1015,3211,1017,3215,998,3224,980,3235,949,3265,922,3300,899,3337,880,3376,851,3449,834,3506"/>
+<area shape="rect" href="classxpe_1_1render_1_1s_list_buffer.html" title=" " alt="" coords="1017,3245,1172,3288"/>
+<area shape="poly" title=" " alt="" coords="833,3505,854,3460,885,3404,926,3347,950,3321,977,3298,1015,3279,1017,3283,980,3302,954,3325,930,3350,889,3407,858,3462,838,3507"/>
+<area shape="rect" href="classxpe_1_1render_1_1s_list_buffer.html" title=" " alt="" coords="1017,3312,1172,3355"/>
+<area shape="poly" title=" " alt="" coords="840,3506,896,3435,934,3397,977,3364,1015,3347,1017,3352,980,3369,937,3401,900,3439,844,3509"/>
+<area shape="rect" href="classxpe_1_1render_1_1s_list_buffer.html" title=" " alt="" coords="1017,3379,1172,3421"/>
+<area shape="poly" title=" " alt="" coords="853,3508,909,3469,978,3431,1015,3417,1017,3421,980,3436,912,3474,856,3513"/>
+<area shape="rect" href="classxpe_1_1render_1_1s_list_buffer.html" title=" " alt="" coords="1017,3445,1172,3488"/>
+<area shape="poly" title=" " alt="" coords="896,3513,1016,3483,1017,3488,897,3518"/>
+<area shape="rect" href="classxpe_1_1render_1_1s_list_buffer.html" title=" " alt="" coords="1017,3512,1172,3555"/>
+<area shape="poly" title=" " alt="" coords="907,3531,1016,3531,1016,3536,907,3536"/>
+<area shape="rect" href="classxpe_1_1render_1_1s_list_buffer.html" title=" " alt="" coords="1017,3579,1172,3621"/>
+<area shape="poly" title=" " alt="" coords="897,3548,1017,3578,1016,3583,896,3554"/>
+<area shape="rect" href="classxpe_1_1render_1_1s_list_buffer.html" title=" " alt="" coords="1017,3645,1172,3688"/>
+<area shape="poly" title=" " alt="" coords="856,3554,912,3593,980,3631,1017,3645,1015,3650,978,3636,909,3597,853,3558"/>
+<area shape="rect" href="classxpe_1_1render_1_1s_list_buffer.html" title=" " alt="" coords="1017,3712,1172,3755"/>
+<area shape="poly" title=" " alt="" coords="861,3553,897,3580,933,3614,948,3638,955,3659,963,3679,980,3698,1018,3718,1015,3722,977,3702,959,3682,950,3661,943,3640,929,3618,894,3584,858,3557"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_index_buffer.html" title=" " alt="" coords="1012,3779,1177,3805"/>
+<area shape="poly" title=" " alt="" coords="865,3553,901,3580,933,3614,945,3636,950,3657,953,3695,957,3730,966,3747,980,3765,995,3775,1013,3783,1011,3788,993,3780,977,3769,961,3750,952,3732,948,3695,945,3658,940,3638,928,3618,897,3583,862,3557"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_item_buffer.html" title=" " alt="" coords="999,3829,1190,3856"/>
+<area shape="poly" title=" " alt="" coords="866,3553,902,3579,933,3615,947,3643,953,3671,951,3722,950,3746,953,3769,962,3792,980,3815,1000,3829,997,3833,977,3819,958,3795,948,3770,945,3746,946,3721,947,3671,942,3645,928,3617,898,3583,863,3557"/>
+<area shape="rect" href="classxpe_1_1render_1_1s_list_buffer.html" title=" " alt="" coords="1001,3880,1188,3907"/>
+<area shape="poly" title=" " alt="" coords="867,3553,902,3579,933,3615,949,3651,955,3685,954,3717,950,3748,947,3778,949,3807,959,3836,981,3866,1003,3881,999,3886,977,3870,954,3839,943,3808,942,3778,944,3748,948,3717,949,3685,944,3652,928,3617,899,3583,864,3557"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_vertex_buffer.html" title=" " alt="" coords="1008,3931,1181,3957"/>
+<area shape="poly" title=" " alt="" coords="867,3553,903,3579,933,3615,951,3658,957,3699,954,3738,948,3775,943,3810,944,3846,955,3881,981,3917,993,3927,1009,3935,1006,3940,991,3932,977,3920,950,3883,939,3846,938,3810,943,3774,949,3737,951,3699,946,3659,928,3617,899,3583,864,3557"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_camera_buffer.html" title=" " alt="" coords="1268,2987,1447,3013"/>
+<area shape="poly" title=" " alt="" coords="1190,2997,1268,2997,1268,3003,1190,3003"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_shadow_pcf_buffer.html" title=" " alt="" coords="1258,3053,1457,3080"/>
+<area shape="poly" title=" " alt="" coords="1190,3064,1257,3064,1257,3069,1190,3069"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_ssao_buffer.html" title=" " alt="" coords="1276,3120,1440,3147"/>
+<area shape="poly" title=" " alt="" coords="1190,3131,1275,3131,1275,3136,1190,3136"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_char_buffer.html" title=" " alt="" coords="1277,3187,1438,3213"/>
+<area shape="poly" title=" " alt="" coords="1188,3197,1276,3197,1276,3203,1188,3203"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_direct_light_buffer.html" title=" " alt="" coords="1276,3245,1439,3288"/>
+<area shape="poly" title=" " alt="" coords="1188,3264,1276,3264,1276,3269,1188,3269"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_instance_buffer.html" title=" " alt="" coords="1266,3320,1449,3347"/>
+<area shape="poly" title=" " alt="" coords="1187,3331,1265,3331,1265,3336,1187,3336"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_material_data_buffer.html" title=" " alt="" coords="1271,3379,1445,3421"/>
+<area shape="poly" title=" " alt="" coords="1188,3397,1270,3397,1270,3403,1188,3403"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_point_light_buffer.html" title=" " alt="" coords="1278,3445,1437,3488"/>
+<area shape="poly" title=" " alt="" coords="1188,3464,1277,3464,1277,3469,1188,3469"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_skeleton_buffer.html" title=" " alt="" coords="1265,3520,1450,3547"/>
+<area shape="poly" title=" " alt="" coords="1188,3531,1264,3531,1264,3536,1188,3536"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_spot_light_buffer.html" title=" " alt="" coords="1263,3587,1452,3613"/>
+<area shape="poly" title=" " alt="" coords="1188,3597,1263,3597,1263,3603,1188,3603"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_text_buffer.html" title=" " alt="" coords="1278,3653,1437,3680"/>
+<area shape="poly" title=" " alt="" coords="1188,3664,1277,3664,1277,3669,1188,3669"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_widget_buffer.html" title=" " alt="" coords="1270,3720,1445,3747"/>
+<area shape="poly" title=" " alt="" coords="1188,3731,1270,3731,1270,3736,1188,3736"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_atlas.html" title=" " alt="" coords="1029,3981,1160,4008"/>
+<area shape="poly" title=" " alt="" coords="912,3960,1029,3981,1028,3986,911,3966"/>
+<area shape="rect" href="classxpe_1_1res_1_1c_xml.html" title=" " alt="" coords="269,1221,373,1248"/>
+<area shape="poly" title=" " alt="" coords="388,1218,504,1194,505,1199,389,1223"/>
+<area shape="poly" title=" " alt="" coords="389,1246,504,1270,503,1275,388,1251"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_widget.html" title=" " alt="" coords="495,1221,637,1248"/>
+<area shape="poly" title=" " alt="" coords="389,1232,494,1232,494,1237,389,1237"/>
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_button.html" title=" " alt="" coords="761,1145,887,1172"/>
+<area shape="poly" title=" " alt="" coords="647,1214,668,1207,692,1194,716,1182,760,1168,761,1173,718,1186,695,1199,670,1212,648,1219"/>
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_container.html" title=" " alt="" coords="752,1196,896,1223"/>
+<area shape="poly" title=" " alt="" coords="652,1224,751,1214,752,1219,652,1229"/>
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_field.html" title=" " alt="" coords="766,1247,882,1273"/>
+<area shape="poly" title=" " alt="" coords="653,1240,766,1252,765,1257,652,1246"/>
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_label.html" title=" " alt="" coords="764,1297,884,1324"/>
+<area shape="poly" title=" " alt="" coords="648,1250,670,1258,695,1270,718,1283,765,1297,763,1302,716,1288,692,1275,668,1262,647,1255"/>
+<area shape="rect" title=" " alt="" coords="483,3235,648,3261"/>
+<area shape="poly" title=" " alt="" coords="659,3226,668,3220,696,3198,721,3172,764,3115,796,3060,815,3020,819,3023,801,3063,769,3118,726,3176,700,3202,671,3225,662,3230"/>
+<area shape="rect" href="structxpe_1_1physics_1_1s_actor.html" title=" " alt="" coords="250,1019,392,1045"/>
+<area shape="poly" title=" " alt="" coords="407,1029,482,1029,482,1035,407,1035"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_geometry.html" title=" " alt="" coords="242,183,400,209"/>
+<area shape="poly" title=" " alt="" coords="341,221,391,284,425,318,463,346,494,359,492,364,461,350,422,322,387,288,337,224"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_cube.html" title=" " alt="" coords="500,5,631,32"/>
+<area shape="poly" title=" " alt="" coords="337,168,387,104,422,70,461,42,499,26,501,31,463,46,425,74,391,108,341,171"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_line.html" title=" " alt="" coords="503,56,628,83"/>
+<area shape="poly" title=" " alt="" coords="347,170,397,130,461,92,502,78,503,83,463,97,400,135,350,174"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_model.html" title=" " alt="" coords="498,107,634,133"/>
+<area shape="poly" title=" " alt="" coords="371,174,461,143,503,131,504,137,463,148,372,179"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_plane.html" title=" " alt="" coords="499,157,633,184"/>
+<area shape="poly" title=" " alt="" coords="415,184,498,175,498,180,416,189"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_quad.html" title=" " alt="" coords="500,208,632,235"/>
+<area shape="poly" title=" " alt="" coords="416,203,499,212,499,217,415,208"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_sphere.html" title=" " alt="" coords="495,259,637,285"/>
+<area shape="poly" title=" " alt="" coords="372,213,463,244,504,255,503,261,461,249,371,218"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_triangle.html" title=" " alt="" coords="493,309,639,336"/>
+<area shape="poly" title=" " alt="" coords="350,218,400,257,463,295,494,306,492,311,461,300,397,262,347,222"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_material_data.html" title=" " alt="" coords="5,411,180,437"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_material.html" title=" " alt="" coords="247,411,395,437"/>
+<area shape="poly" title=" " alt="" coords="195,421,247,421,247,427,195,427"/>
+<area shape="poly" title=" " alt="" coords="410,421,498,421,498,427,410,427"/>
+<area shape="rect" title=" " alt="" coords="518,563,614,589"/>
+<area shape="poly" title=" " alt="" coords="630,580,741,591,740,596,629,585"/>
+<area shape="rect" title=" " alt="" coords="500,867,631,893"/>
+<area shape="poly" title=" " alt="" coords="645,861,668,852,708,832,746,808,804,765,807,769,749,812,711,836,670,857,647,866"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_point_light_data.html" title=" " alt="" coords="228,1069,414,1096"/>
+<area shape="poly" title=" " alt="" coords="430,1080,492,1080,492,1085,430,1085"/>
+<area shape="rect" href="structxpe_1_1anim_1_1s_skeleton.html" title=" " alt="" coords="249,1120,393,1147"/>
+<area shape="poly" title=" " alt="" coords="409,1131,496,1131,496,1136,409,1136"/>
+</map>
 </td></tr>
 </table>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

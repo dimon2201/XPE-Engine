@@ -1,0 +1,38 @@
+\doxysection{dx11\+\_\+hardware.\+cpp}
+\hypertarget{dx11__hardware_8cpp_source}{}\label{dx11__hardware_8cpp_source}\index{engine/src/rendering/dx11/dx11\_hardware.cpp@{engine/src/rendering/dx11/dx11\_hardware.cpp}}
+\mbox{\hyperlink{dx11__hardware_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#ifdef\ DX11}}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <d3d11.h>}}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00005}00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00007}00007\ \ \ \ \ \textcolor{keyword}{namespace\ }core\ \{}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00009}00009\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_a26135be8d001753cbfb9622f93a12c9f}{cHardwareManager::UpdateGpuStats}}(\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{device}})}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00010}00010\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00011}00011\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_ab988f1bc59fb9c997208683d9a2d1df8}{GPU}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_gpu_stats_a04bb8408fdad1e093683eae2053848e4}{MaxTexture2dArray}}\ \ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{D3D11\_REQ\_TEXTURE2D\_ARRAY\_AXIS\_DIMENSION}};}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_ab988f1bc59fb9c997208683d9a2d1df8}{GPU}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_gpu_stats_a27aeff7eef78343e29745b1dd217e00f}{MaxAnisotropyLevel}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{D3D11\_REQ\_MAXANISOTROPY}};}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00013}00013\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_ab988f1bc59fb9c997208683d9a2d1df8}{GPU}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_gpu_stats_a1fbe71af53831c4b4981f753acc63452}{MaxRenderTargetsPerStage}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{D3D11\_SIMULTANEOUS\_RENDER\_TARGET\_COUNT}};}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{D3D11\_FEATURE\_DATA\_THREADING}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{featureThreading}}\ =\ \{\};}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{ID3D11Device}}*)\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{device}})-\/>CheckFeatureSupport(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{D3D11\_FEATURE\_THREADING}},\ \&\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{featureThreading}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{featureThreading}}));}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_ab988f1bc59fb9c997208683d9a2d1df8}{GPU}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_gpu_stats_a38e0fc0f9ffd93262798bd6021b8a5d6}{IsConcurrentCreatesSupported}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{featureThreading}}.DriverConcurrentCreates\ ==\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{TRUE}};}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_ab988f1bc59fb9c997208683d9a2d1df8}{GPU}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_gpu_stats_aba1dd7aa3b91675fbb7c8acac14b9875}{IsCommandListSupported}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{featureThreading}}.DriverCommandLists\ ==\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{TRUE}};}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_ab988f1bc59fb9c997208683d9a2d1df8}{GPU}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_gpu_stats_af50ad45f9a3d684bc059fba31268021a}{MaxThreadGroupsPerDimension}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{D3D11\_CS\_DISPATCH\_MAX\_THREAD\_GROUPS\_PER\_DIMENSION}};}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_ab988f1bc59fb9c997208683d9a2d1df8}{GPU}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_gpu_stats_afbe10a656c5503e7bee21650795bdd1d}{MaxThreadsPerGroup}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{D3D11\_CS\_THREAD\_GROUP\_MAX\_THREADS\_PER\_GROUP}};}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_ab988f1bc59fb9c997208683d9a2d1df8}{GPU}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_gpu_stats_a6ec4a8ef455d8fdfb3514e0afa696e82}{MaxThreadGroup}}\ =\ \{}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{D3D11\_CS\_THREAD\_GROUP\_MAX\_X}},}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{D3D11\_CS\_THREAD\_GROUP\_MAX\_Y}},}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{D3D11\_CS\_THREAD\_GROUP\_MAX\_Z}}}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_hardware_manager_ab988f1bc59fb9c997208683d9a2d1df8}{GPU}}.\mbox{\hyperlink{structxpe_1_1core_1_1s_gpu_stats_a8dfe4eafc6df0b061554a24d6797c4a4}{MaxUnorderedAccessViews}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{D3D11\_PS\_CS\_UAV\_REGISTER\_COUNT}};}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00028}00028\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00030}00030\ \}}
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{dx11__hardware_8cpp_source_l00032}00032\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ DX11}}
+
+\end{DoxyCode}

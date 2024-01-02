@@ -1,0 +1,54 @@
+\doxysection{bindings.\+cpp}
+\hypertarget{bindings_8cpp_source}{}\label{bindings_8cpp_source}\index{engine/src/rendering/bindings.cpp@{engine/src/rendering/bindings.cpp}}
+\mbox{\hyperlink{bindings_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{bindings_8hpp}{rendering/bindings.hpp}}>}}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00003}00003\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00005}00005\ \ \ \ \ \textcolor{keyword}{namespace\ }render\ \{}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00007}00007\ \ \ \ \ \ \ \ \ sViewport*\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_viewports_a60607f8ab14087213db8cf51a1f551ca}{Viewports::Shadow}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00008}00008\ \ \ \ \ \ \ \ \ sViewport*\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_viewports_a55ad78863265d0dc3fc64545d9a34ba8}{Viewports::SSAO}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00010}00010\ \ \ \ \ \ \ \ \ sRenderTarget*\ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_render_targets_a3e0b156922708dd54243ed92be4933d3}{RenderTargets::Scene}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00011}00011\ \ \ \ \ \ \ \ \ sRenderTarget*\ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_render_targets_aea80a7365d3fe9bfc78d3e67c62241c5}{RenderTargets::Opaque}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \ sRenderTarget*\ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_render_targets_a5707635fef6e8157ed49abe40dfdc9a5}{RenderTargets::Transparent}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00013}00013\ \ \ \ \ \ \ \ \ sRenderTarget*\ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_render_targets_a759abfd2d5c9358d9ccab484be76e894}{RenderTargets::UI}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ sRenderTarget*\ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_render_targets_a10d0b8f685b7427e4f36d8e1b490e07e}{RenderTargets::Final}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ sRenderTarget*\ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_render_targets_a82b348c7ad59494ecc7fb5e06ea4b238}{RenderTargets::Shadow}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ sRenderTarget*\ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_render_targets_a4edea5878877cdda968bc46eb9da6707}{RenderTargets::SSAO}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ sVertexBuffer*\ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_a17e78b5995040ce0922bb6e86b9ac029}{Buffers::Vertex}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ sIndexBuffer*\ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_a5c7fbcce9a91a8cade08dc58bc6bf0cd}{Buffers::Index}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ sCameraBuffer*\ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_adefa07e479401aa7e6379b488541f2e0}{Buffers::Camera}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ sDirectLightBuffer*\ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_a94d3d6f9e64f630efe3ac23217f2f2af}{Buffers::DirectLight}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ sPointLightBuffer*\ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_a0fb2fcbbd6c7d5ba08fd356d105b56c3}{Buffers::PointLight}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ sSpotLightBuffer*\ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_a900d3d0915251c0dd9ba6998465b181e}{Buffers::SpotLight}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ sMaterialDataBuffer*\ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_af61f00806c13311b489ee4f5abc0a12d}{Buffers::Material}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ sShadowPcfBuffer*\ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_a82f8224c0b7a0ae9eea8005b65161fe2}{Buffers::ShadowPCF}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ sSkeletonBuffer*\ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_a40c3f91f9d60532775f460dccd7d254d}{Buffers::Skeleton}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ sSsaoBuffer*\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_buffers_a73581045decae2218c24ff436cfa1699}{Buffers::SSAO}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ sTexture*\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_textures_ad899c5ceab4e39079770ff8b238f1b82}{Textures::Canvas}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ sTexture*\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_textures_ac93872fd21faffa72c22f0ab4acfc88c}{Textures::SharedDepth}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ sTexture*\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_textures_a42292b1dc7b07a324b4e23d567a9bfd7}{Textures::AlbedoAtlas}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ sTexture*\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_textures_a6ef1ffedc5f27b970a4f7c2bfbe06194}{Textures::NormalAtlas}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ sTexture*\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_textures_aa122a27de0ed7cbea22357dad2f23f11}{Textures::ParallaxAtlas}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ sTexture*\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_textures_a02d35766e8095f673f878003eb765b35}{Textures::MetalAtlas}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ sTexture*\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_textures_adf5081ac8b7892c619b284fdefccdff3}{Textures::RoughnessAtlas}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ sTexture*\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_textures_a23d603423d753c8df77368b4a62aac4c}{Textures::AOAtlas}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ sTexture*\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_textures_acc343398897ff2e4334c241c7fb83f58}{Textures::EmissionAtlas}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ sAtlas*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_textures_ac6f1fb7834d145a999d6fe567d8b0ba1}{Textures::WidgetAtlas}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ sSampler*\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_samplers_a4d9fb16bf8ee515af1e578fce358875f}{Samplers::Material}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ sSampler*\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_samplers_a4c8c9343e7e77fb726c7a3978abc24cc}{Samplers::Shadow}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ sSampler*\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_samplers_a9d18d6bcb797e4eb03de7fcb3f96fe17}{Samplers::Widget}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ sSampler*\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_samplers_a93ba934421e022fb7244c2be860f802d}{Samplers::Skybox}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ sSampler*\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1render_1_1_samplers_aab0b61293036f76f5bb59c0771afbc35}{Samplers::Font}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00046}00046\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{bindings_8cpp_source_l00048}00048\ \}}
+
+\end{DoxyCode}

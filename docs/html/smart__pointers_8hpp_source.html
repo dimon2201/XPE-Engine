@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -53,6 +59,23 @@ $(function() {
 $(function() { codefold.init(0); });
 /* @license-end */
 </script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('smart__pointers_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -74,11 +97,6 @@ $(function() { codefold.init(0); });
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li><li class="navelem"><a class="el" href="dir_5e835386694ce392648cfcf102577fe3.html">core</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle"><div class="title">smart_pointers.hpp</div></div>
 </div><!--header-->
@@ -212,42 +230,46 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    }</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>}</div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_hot_object_html"><div class="ttname"><a href="classxpe_1_1core_1_1c_hot_object.html">xpe::core::cHotObject</a></div><div class="ttdef"><b>Definition</b> types.hpp:46</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_hot_scope_html"><div class="ttname"><a href="classxpe_1_1core_1_1c_hot_scope.html">xpe::core::cHotScope</a></div><div class="ttdef"><b>Definition</b> smart_pointers.hpp:60</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_hot_scope_html_a2a62116c69a134351c90e1169fd73682"><div class="ttname"><a href="classxpe_1_1core_1_1c_hot_scope.html#a2a62116c69a134351c90e1169fd73682">xpe::core::cHotScope::Get</a></div><div class="ttdeci">T * Get() const noexcept</div><div class="ttdef"><b>Definition</b> smart_pointers.hpp:81</div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_hot_object_html"><div class="ttname"><a href="classxpe_1_1core_1_1c_hot_object.html">xpe::core::cHotObject</a></div><div class="ttdef"><b>Definition</b> <a href="types_8hpp_source.html#l00045">types.hpp:46</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_hot_scope_html"><div class="ttname"><a href="classxpe_1_1core_1_1c_hot_scope.html">xpe::core::cHotScope</a></div><div class="ttdef"><b>Definition</b> <a href="#l00059">smart_pointers.hpp:60</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_hot_scope_html_a2a62116c69a134351c90e1169fd73682"><div class="ttname"><a href="classxpe_1_1core_1_1c_hot_scope.html#a2a62116c69a134351c90e1169fd73682">xpe::core::cHotScope::Get</a></div><div class="ttdeci">T * Get() const noexcept</div><div class="ttdef"><b>Definition</b> <a href="#l00081">smart_pointers.hpp:81</a></div></div>
 <div class="ttc" id="aclassxpe_1_1core_1_1c_hot_scope_html_a519eaf858e4e75949cba94839b6f4d5c"><div class="ttname"><a href="classxpe_1_1core_1_1c_hot_scope.html#a519eaf858e4e75949cba94839b6f4d5c">xpe::core::cHotScope::cHotScope</a></div><div class="ttdeci">cHotScope(cHotScope&lt; T &gt; &amp;&amp;other) noexcept=delete</div></div>
 <div class="ttc" id="aclassxpe_1_1core_1_1c_hot_scope_html_a59944ac515046ab236588c517491dba3"><div class="ttname"><a href="classxpe_1_1core_1_1c_hot_scope.html#a59944ac515046ab236588c517491dba3">xpe::core::cHotScope::cHotScope</a></div><div class="ttdeci">cHotScope(cHotScope&lt; T &gt; &amp;other)=delete</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_hot_scope_html_a72fb3356b926fa6ff7b6a886a92ec3f5"><div class="ttname"><a href="classxpe_1_1core_1_1c_hot_scope.html#a72fb3356b926fa6ff7b6a886a92ec3f5">xpe::core::cHotScope::operator*</a></div><div class="ttdeci">T &amp; operator*() const noexcept</div><div class="ttdef"><b>Definition</b> smart_pointers.hpp:82</div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_hot_scope_html_a72fb3356b926fa6ff7b6a886a92ec3f5"><div class="ttname"><a href="classxpe_1_1core_1_1c_hot_scope.html#a72fb3356b926fa6ff7b6a886a92ec3f5">xpe::core::cHotScope::operator*</a></div><div class="ttdeci">T &amp; operator*() const noexcept</div><div class="ttdef"><b>Definition</b> <a href="#l00082">smart_pointers.hpp:82</a></div></div>
 <div class="ttc" id="aclassxpe_1_1core_1_1c_hot_scope_html_a869b56d4d1cf67e97810fe58615c5a7a"><div class="ttname"><a href="classxpe_1_1core_1_1c_hot_scope.html#a869b56d4d1cf67e97810fe58615c5a7a">xpe::core::cHotScope::operator=</a></div><div class="ttdeci">cHotScope&lt; T &gt; &amp; operator=(const cHotScope&lt; T &gt; &amp;other)=delete</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_hot_scope_html_a91935b841912dd028ef353248f912553"><div class="ttname"><a href="classxpe_1_1core_1_1c_hot_scope.html#a91935b841912dd028ef353248f912553">xpe::core::cHotScope::Destroy</a></div><div class="ttdeci">void Destroy()</div><div class="ttdef"><b>Definition</b> smart_pointers.hpp:106</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_hot_scope_html_ab1ac1d0fbac22c3092598b6940d4e2d7"><div class="ttname"><a href="classxpe_1_1core_1_1c_hot_scope.html#ab1ac1d0fbac22c3092598b6940d4e2d7">xpe::core::cHotScope::operator-&gt;</a></div><div class="ttdeci">T * operator-&gt;() const noexcept</div><div class="ttdef"><b>Definition</b> smart_pointers.hpp:83</div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_hot_scope_html_a91935b841912dd028ef353248f912553"><div class="ttname"><a href="classxpe_1_1core_1_1c_hot_scope.html#a91935b841912dd028ef353248f912553">xpe::core::cHotScope::Destroy</a></div><div class="ttdeci">void Destroy()</div><div class="ttdef"><b>Definition</b> <a href="#l00106">smart_pointers.hpp:106</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_hot_scope_html_ab1ac1d0fbac22c3092598b6940d4e2d7"><div class="ttname"><a href="classxpe_1_1core_1_1c_hot_scope.html#ab1ac1d0fbac22c3092598b6940d4e2d7">xpe::core::cHotScope::operator-&gt;</a></div><div class="ttdeci">T * operator-&gt;() const noexcept</div><div class="ttdef"><b>Definition</b> <a href="#l00083">smart_pointers.hpp:83</a></div></div>
 <div class="ttc" id="aclassxpe_1_1core_1_1c_hot_scope_html_abca4a17fbb9eb42194006a7de5023a1b"><div class="ttname"><a href="classxpe_1_1core_1_1c_hot_scope.html#abca4a17fbb9eb42194006a7de5023a1b">xpe::core::cHotScope::cHotScope</a></div><div class="ttdeci">cHotScope()=default</div></div>
 <div class="ttc" id="aclassxpe_1_1core_1_1c_hot_scope_html_ae12db7665a8b5fc373911366f3f2b2c4"><div class="ttname"><a href="classxpe_1_1core_1_1c_hot_scope.html#ae12db7665a8b5fc373911366f3f2b2c4">xpe::core::cHotScope::cHotScope</a></div><div class="ttdeci">cHotScope(const cHotScope&lt; T &gt; &amp;other)=delete</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_hot_scope_html_af6af2e8c04349254627884ecacb9b02c"><div class="ttname"><a href="classxpe_1_1core_1_1c_hot_scope.html#af6af2e8c04349254627884ecacb9b02c">xpe::core::cHotScope::~cHotScope</a></div><div class="ttdeci">~cHotScope()</div><div class="ttdef"><b>Definition</b> smart_pointers.hpp:91</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_hot_scope_html_afd86c65942f45e49844531c6b9b6ae15"><div class="ttname"><a href="classxpe_1_1core_1_1c_hot_scope.html#afd86c65942f45e49844531c6b9b6ae15">xpe::core::cHotScope::Create</a></div><div class="ttdeci">void Create(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> smart_pointers.hpp:100</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_object_html"><div class="ttname"><a href="classxpe_1_1core_1_1c_object.html">xpe::core::cObject</a></div><div class="ttdef"><b>Definition</b> types.hpp:39</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_scope_html"><div class="ttname"><a href="classxpe_1_1core_1_1c_scope.html">xpe::core::cScope</a></div><div class="ttdef"><b>Definition</b> smart_pointers.hpp:9</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_scope_html_a183cd2c81754a3e278e5011b73e3150d"><div class="ttname"><a href="classxpe_1_1core_1_1c_scope.html#a183cd2c81754a3e278e5011b73e3150d">xpe::core::cScope::~cScope</a></div><div class="ttdeci">~cScope()</div><div class="ttdef"><b>Definition</b> smart_pointers.hpp:38</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_scope_html_a1b20d1fd6cca601d90cc2ce17c4c57cb"><div class="ttname"><a href="classxpe_1_1core_1_1c_scope.html#a1b20d1fd6cca601d90cc2ce17c4c57cb">xpe::core::cScope::operator*</a></div><div class="ttdeci">T &amp; operator*() const noexcept</div><div class="ttdef"><b>Definition</b> smart_pointers.hpp:29</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_scope_html_a456cbc006f737f27377bd80a0fae564a"><div class="ttname"><a href="classxpe_1_1core_1_1c_scope.html#a456cbc006f737f27377bd80a0fae564a">xpe::core::cScope::Create</a></div><div class="ttdeci">void Create(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> smart_pointers.hpp:47</div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_hot_scope_html_af6af2e8c04349254627884ecacb9b02c"><div class="ttname"><a href="classxpe_1_1core_1_1c_hot_scope.html#af6af2e8c04349254627884ecacb9b02c">xpe::core::cHotScope::~cHotScope</a></div><div class="ttdeci">~cHotScope()</div><div class="ttdef"><b>Definition</b> <a href="#l00091">smart_pointers.hpp:91</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_hot_scope_html_afd86c65942f45e49844531c6b9b6ae15"><div class="ttname"><a href="classxpe_1_1core_1_1c_hot_scope.html#afd86c65942f45e49844531c6b9b6ae15">xpe::core::cHotScope::Create</a></div><div class="ttdeci">void Create(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> <a href="#l00100">smart_pointers.hpp:100</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_object_html"><div class="ttname"><a href="classxpe_1_1core_1_1c_object.html">xpe::core::cObject</a></div><div class="ttdef"><b>Definition</b> <a href="types_8hpp_source.html#l00038">types.hpp:39</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_scope_html"><div class="ttname"><a href="classxpe_1_1core_1_1c_scope.html">xpe::core::cScope</a></div><div class="ttdef"><b>Definition</b> <a href="#l00008">smart_pointers.hpp:9</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_scope_html_a183cd2c81754a3e278e5011b73e3150d"><div class="ttname"><a href="classxpe_1_1core_1_1c_scope.html#a183cd2c81754a3e278e5011b73e3150d">xpe::core::cScope::~cScope</a></div><div class="ttdeci">~cScope()</div><div class="ttdef"><b>Definition</b> <a href="#l00038">smart_pointers.hpp:38</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_scope_html_a1b20d1fd6cca601d90cc2ce17c4c57cb"><div class="ttname"><a href="classxpe_1_1core_1_1c_scope.html#a1b20d1fd6cca601d90cc2ce17c4c57cb">xpe::core::cScope::operator*</a></div><div class="ttdeci">T &amp; operator*() const noexcept</div><div class="ttdef"><b>Definition</b> <a href="#l00029">smart_pointers.hpp:29</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_scope_html_a456cbc006f737f27377bd80a0fae564a"><div class="ttname"><a href="classxpe_1_1core_1_1c_scope.html#a456cbc006f737f27377bd80a0fae564a">xpe::core::cScope::Create</a></div><div class="ttdeci">void Create(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> <a href="#l00047">smart_pointers.hpp:47</a></div></div>
 <div class="ttc" id="aclassxpe_1_1core_1_1c_scope_html_a847008b9446aebb8d416601d3fd4ef6c"><div class="ttname"><a href="classxpe_1_1core_1_1c_scope.html#a847008b9446aebb8d416601d3fd4ef6c">xpe::core::cScope::cScope</a></div><div class="ttdeci">cScope()=default</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_scope_html_a947107ff2f229a52c5ea1071b10a627e"><div class="ttname"><a href="classxpe_1_1core_1_1c_scope.html#a947107ff2f229a52c5ea1071b10a627e">xpe::core::cScope::operator-&gt;</a></div><div class="ttdeci">T * operator-&gt;() const noexcept</div><div class="ttdef"><b>Definition</b> smart_pointers.hpp:30</div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_scope_html_a947107ff2f229a52c5ea1071b10a627e"><div class="ttname"><a href="classxpe_1_1core_1_1c_scope.html#a947107ff2f229a52c5ea1071b10a627e">xpe::core::cScope::operator-&gt;</a></div><div class="ttdeci">T * operator-&gt;() const noexcept</div><div class="ttdef"><b>Definition</b> <a href="#l00030">smart_pointers.hpp:30</a></div></div>
 <div class="ttc" id="aclassxpe_1_1core_1_1c_scope_html_a9c76b3408c8c6647dc86e8ada2124eb7"><div class="ttname"><a href="classxpe_1_1core_1_1c_scope.html#a9c76b3408c8c6647dc86e8ada2124eb7">xpe::core::cScope::cScope</a></div><div class="ttdeci">cScope(cScope&lt; T &gt; &amp;&amp;other) noexcept=delete</div></div>
 <div class="ttc" id="aclassxpe_1_1core_1_1c_scope_html_ab7da9d3d46c6e1ad4fb00c0eff19b51c"><div class="ttname"><a href="classxpe_1_1core_1_1c_scope.html#ab7da9d3d46c6e1ad4fb00c0eff19b51c">xpe::core::cScope::cScope</a></div><div class="ttdeci">cScope(const cScope&lt; T &gt; &amp;other)=delete</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_scope_html_ac972f84b5bfb3ddde181ce7ea797d18f"><div class="ttname"><a href="classxpe_1_1core_1_1c_scope.html#ac972f84b5bfb3ddde181ce7ea797d18f">xpe::core::cScope::Get</a></div><div class="ttdeci">T * Get() const noexcept</div><div class="ttdef"><b>Definition</b> smart_pointers.hpp:28</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_scope_html_ae63cf04b601b6ef8bcacb7d781b53c56"><div class="ttname"><a href="classxpe_1_1core_1_1c_scope.html#ae63cf04b601b6ef8bcacb7d781b53c56">xpe::core::cScope::Destroy</a></div><div class="ttdeci">void Destroy()</div><div class="ttdef"><b>Definition</b> smart_pointers.hpp:53</div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_scope_html_ac972f84b5bfb3ddde181ce7ea797d18f"><div class="ttname"><a href="classxpe_1_1core_1_1c_scope.html#ac972f84b5bfb3ddde181ce7ea797d18f">xpe::core::cScope::Get</a></div><div class="ttdeci">T * Get() const noexcept</div><div class="ttdef"><b>Definition</b> <a href="#l00028">smart_pointers.hpp:28</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_scope_html_ae63cf04b601b6ef8bcacb7d781b53c56"><div class="ttname"><a href="classxpe_1_1core_1_1c_scope.html#ae63cf04b601b6ef8bcacb7d781b53c56">xpe::core::cScope::Destroy</a></div><div class="ttdeci">void Destroy()</div><div class="ttdef"><b>Definition</b> <a href="#l00053">smart_pointers.hpp:53</a></div></div>
 <div class="ttc" id="aclassxpe_1_1core_1_1c_scope_html_ae9fca8ebfe8f4cccd2bc11d4fa84a352"><div class="ttname"><a href="classxpe_1_1core_1_1c_scope.html#ae9fca8ebfe8f4cccd2bc11d4fa84a352">xpe::core::cScope::operator=</a></div><div class="ttdeci">cScope&lt; T &gt; &amp; operator=(const cScope&lt; T &gt; &amp;other)=delete</div></div>
-<div class="ttc" id="acore_2allocators_8hpp_html_a1141b5be50573f8004090ec0346d4cec"><div class="ttname"><a href="core_2allocators_8hpp.html#a1141b5be50573f8004090ec0346d4cec">main_destruct</a></div><div class="ttdeci">#define main_destruct(T, addr)</div><div class="ttdef"><b>Definition</b> allocators.hpp:17</div></div>
-<div class="ttc" id="acore_2allocators_8hpp_html_a375348b94c144f7dd96baac0e308ef4e"><div class="ttname"><a href="core_2allocators_8hpp.html#a375348b94c144f7dd96baac0e308ef4e">hot_destruct</a></div><div class="ttdeci">#define hot_destruct(T, addr)</div><div class="ttdef"><b>Definition</b> allocators.hpp:8</div></div>
-<div class="ttc" id="acore_2allocators_8hpp_html_ac67ca42f522dd054da17196865395fc2"><div class="ttname"><a href="core_2allocators_8hpp.html#ac67ca42f522dd054da17196865395fc2">hot_construct_args</a></div><div class="ttdeci">#define hot_construct_args(T,...)</div><div class="ttdef"><b>Definition</b> allocators.hpp:6</div></div>
-<div class="ttc" id="acore_2allocators_8hpp_html_af6f8111492d698bb692248ef013f538a"><div class="ttname"><a href="core_2allocators_8hpp.html#af6f8111492d698bb692248ef013f538a">main_construct_args</a></div><div class="ttdeci">#define main_construct_args(T,...)</div><div class="ttdef"><b>Definition</b> allocators.hpp:15</div></div>
-<div class="ttc" id="anamespacexpe_1_1core_html_a7a9b1d92471db2af59acf8c301267fde"><div class="ttname"><a href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">xpe::core::vector</a></div><div class="ttdeci">std::vector&lt; T, cMainAllocator&lt; T &gt; &gt; vector</div><div class="ttdef"><b>Definition</b> stl.hpp:17</div></div>
-<div class="ttc" id="anamespacexpe_1_1core_html_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b"><div class="ttname"><a href="namespacexpe_1_1core.html#ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">xpe::core::T</a></div><div class="ttdeci">@ T</div><div class="ttdef"><b>Definition</b> codes_keyboard.hpp:57</div></div>
-<div class="ttc" id="anamespacexpe_html"><div class="ttname"><a href="namespacexpe.html">xpe</a></div><div class="ttdef"><b>Definition</b> anim.hpp:3</div></div>
+<div class="ttc" id="acore_2allocators_8hpp_html_a1141b5be50573f8004090ec0346d4cec"><div class="ttname"><a href="core_2allocators_8hpp.html#a1141b5be50573f8004090ec0346d4cec">main_destruct</a></div><div class="ttdeci">#define main_destruct(T, addr)</div><div class="ttdef"><b>Definition</b> <a href="core_2allocators_8hpp_source.html#l00017">allocators.hpp:17</a></div></div>
+<div class="ttc" id="acore_2allocators_8hpp_html_a375348b94c144f7dd96baac0e308ef4e"><div class="ttname"><a href="core_2allocators_8hpp.html#a375348b94c144f7dd96baac0e308ef4e">hot_destruct</a></div><div class="ttdeci">#define hot_destruct(T, addr)</div><div class="ttdef"><b>Definition</b> <a href="core_2allocators_8hpp_source.html#l00008">allocators.hpp:8</a></div></div>
+<div class="ttc" id="acore_2allocators_8hpp_html_ac67ca42f522dd054da17196865395fc2"><div class="ttname"><a href="core_2allocators_8hpp.html#ac67ca42f522dd054da17196865395fc2">hot_construct_args</a></div><div class="ttdeci">#define hot_construct_args(T,...)</div><div class="ttdef"><b>Definition</b> <a href="core_2allocators_8hpp_source.html#l00006">allocators.hpp:6</a></div></div>
+<div class="ttc" id="acore_2allocators_8hpp_html_af6f8111492d698bb692248ef013f538a"><div class="ttname"><a href="core_2allocators_8hpp.html#af6f8111492d698bb692248ef013f538a">main_construct_args</a></div><div class="ttdeci">#define main_construct_args(T,...)</div><div class="ttdef"><b>Definition</b> <a href="core_2allocators_8hpp_source.html#l00015">allocators.hpp:15</a></div></div>
+<div class="ttc" id="anamespacexpe_1_1core_html_a7a9b1d92471db2af59acf8c301267fde"><div class="ttname"><a href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">xpe::core::vector</a></div><div class="ttdeci">std::vector&lt; T, cMainAllocator&lt; T &gt; &gt; vector</div><div class="ttdef"><b>Definition</b> <a href="stl_8hpp_source.html#l00017">stl.hpp:17</a></div></div>
+<div class="ttc" id="anamespacexpe_1_1core_html_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b"><div class="ttname"><a href="namespacexpe_1_1core.html#ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b">xpe::core::T</a></div><div class="ttdeci">@ T</div><div class="ttdef"><b>Definition</b> <a href="codes__keyboard_8hpp_source.html#l00057">codes_keyboard.hpp:57</a></div></div>
+<div class="ttc" id="anamespacexpe_html"><div class="ttname"><a href="namespacexpe.html">xpe</a></div><div class="ttdef"><b>Definition</b> <a href="anim_8hpp_source.html#l00003">anim.hpp:3</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li><li class="navelem"><a class="el" href="dir_5e835386694ce392648cfcf102577fe3.html">core</a></li><li class="navelem"><a class="el" href="smart__pointers_8hpp.html">smart_pointers.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

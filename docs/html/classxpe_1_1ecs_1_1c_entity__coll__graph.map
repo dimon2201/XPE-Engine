@@ -1,0 +1,13 @@
+<map id="xpe::ecs::cEntity" name="xpe::ecs::cEntity">
+<area shape="rect" id="Node000001" title=" " alt="" coords="144,172,265,199"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1res_1_1c_json.html" title=" " alt="" coords="5,5,116,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,42,133,106,194,170,190,173,129,110,77,46"/>
+<area shape="rect" id="Node000004" href="$classxpe_1_1ecs_1_1c_scene.html" title=" " alt="" coords="143,81,266,108"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="100,37,181,78,179,83,97,42"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1res_1_1c_xml.html" title=" " alt="" coords="292,5,397,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="336,48,310,98,292,125,270,150,236,174,233,169,267,146,288,122,306,95,331,45"/>
+<area shape="poly" id="edge6_Node000004_Node000003" title=" " alt="" coords="309,42,230,83,227,78,306,37"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="207,124,207,171,202,171,202,124"/>
+<area shape="rect" id="Node000005" href="$classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="140,5,269,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="207,47,207,81,202,81,202,47"/>
+</map>

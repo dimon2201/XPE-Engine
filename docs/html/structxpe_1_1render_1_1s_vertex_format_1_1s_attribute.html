@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('structxpe_1_1render_1_1s_vertex_format_1_1s_attribute.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li><li class="navelem"><a class="el" href="structxpe_1_1render_1_1s_vertex_format.html">sVertexFormat</a></li><li class="navelem"><a class="el" href="structxpe_1_1render_1_1s_vertex_format_1_1s_attribute.html">sAttribute</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
@@ -126,7 +144,10 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a1b91ec0397c777a944820dca36b6ab72" id="r_a1b91ec0397c777a944820dca36b6ab72"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacexpe_1_1core.html#a13fec7f69dcb34583a9c88a8c2d85ab6">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b91ec0397c777a944820dca36b6ab72">ByteSize</a> = 0</td></tr>
 <tr class="separator:a1b91ec0397c777a944820dca36b6ab72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="rendering_2core_2core_8hpp_source.html#l00110">110</a> of file <a class="el" href="rendering_2core_2core_8hpp_source.html">core.hpp</a>.</p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="aa1857e3d9b792c3ffcc5df4c97c7f558" name="aa1857e3d9b792c3ffcc5df4c97c7f558"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa1857e3d9b792c3ffcc5df4c97c7f558">&#9670;&#160;</a></span>eType</h2>
 
@@ -168,6 +189,8 @@ Public Attributes</h2></td></tr>
 <tr><td class="fieldname"><a id="aa1857e3d9b792c3ffcc5df4c97c7f558ab5e34a84dd709bfc4c73c57deb5d0edf" name="aa1857e3d9b792c3ffcc5df4c97c7f558ab5e34a84dd709bfc4c73c57deb5d0edf"></a>MAT4X4&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
+<p class="definition">Definition at line <a class="el" href="rendering_2core_2core_8hpp_source.html#l00113">113</a> of file <a class="el" href="rendering_2core_2core_8hpp_source.html">core.hpp</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -183,6 +206,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="rendering_2core_2core_8hpp_source.html#l00145">145</a> of file <a class="el" href="rendering_2core_2core_8hpp_source.html">core.hpp</a>.</p>
+
 </div>
 </div>
 <a id="aacbad07880eb7032bf022569b19eeb02" name="aacbad07880eb7032bf022569b19eeb02"></a>
@@ -196,6 +221,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="rendering_2core_2core_8hpp_source.html#l00144">144</a> of file <a class="el" href="rendering_2core_2core_8hpp_source.html">core.hpp</a>.</p>
 
 </div>
 </div>
@@ -211,6 +238,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="rendering_2core_2core_8hpp_source.html#l00142">142</a> of file <a class="el" href="rendering_2core_2core_8hpp_source.html">core.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a8695c54214861a5ec52c04cc7760a9ba" name="a8695c54214861a5ec52c04cc7760a9ba"></a>
@@ -225,15 +254,21 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="rendering_2core_2core_8hpp_source.html#l00143">143</a> of file <a class="el" href="rendering_2core_2core_8hpp_source.html">core.hpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>engine/src/rendering/core/<a class="el" href="rendering_2core_2core_8hpp_source.html">core.hpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li><li class="navelem"><a class="el" href="structxpe_1_1render_1_1s_vertex_format.html">sVertexFormat</a></li><li class="navelem"><a class="el" href="structxpe_1_1render_1_1s_vertex_format_1_1s_attribute.html">sAttribute</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

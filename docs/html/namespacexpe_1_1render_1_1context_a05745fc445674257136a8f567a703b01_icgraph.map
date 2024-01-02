@@ -1,0 +1,8 @@
+<map id="xpe::render::context::BindVertexBuffer" name="xpe::render::context::BindVertexBuffer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="433,29,570,72"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="536,16,523,10,502,8,482,10,470,15,465,21,467,28,461,29,460,19,467,10,481,5,502,3,524,5,538,11"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1render_1_1c_render_system.html#ac2834a58be8933708392e7d92a79e43e" title=" " alt="" coords="198,29,385,72"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="417,53,385,53,385,48,417,48"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,37,150,64"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="182,53,150,53,150,48,182,48"/>
+</map>

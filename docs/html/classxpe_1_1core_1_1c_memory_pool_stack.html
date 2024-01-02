@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classxpe_1_1core_1_1c_memory_pool_stack.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1core.html">core</a></li><li class="navelem"><a class="el" href="classxpe_1_1core_1_1c_memory_pool_stack.html">cMemoryPoolStack</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -133,7 +151,10 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:af1c4fd5a893d87e3054b30de9f63bf8b" id="r_af1c4fd5a893d87e3054b30de9f63bf8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">const</a> <a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">char</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1c4fd5a893d87e3054b30de9f63bf8b">USID</a> = <a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">nullptr</a></td></tr>
 <tr class="separator:af1c4fd5a893d87e3054b30de9f63bf8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="memory__manager_8hpp_source.html#l00068">68</a> of file <a class="el" href="memory__manager_8hpp_source.html">memory_manager.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ace90e70bb73ad1ad7cad09b7bd28318d" name="ace90e70bb73ad1ad7cad09b7bd28318d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ace90e70bb73ad1ad7cad09b7bd28318d">&#9670;&#160;</a></span>cMemoryPoolStack()</h2>
 
@@ -168,6 +189,18 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="memory__manager_8cpp_source.html#l00101">101</a> of file <a class="el" href="memory__manager_8cpp_source.html">memory_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_memory_pool_stack_ace90e70bb73ad1ad7cad09b7bd28318d_cgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_memory_pool_stack_ace90e70bb73ad1ad7cad09b7bd28318d_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_memory_pool_stack_ace90e70bb73ad1ad7cad09b7bd28318d_cgraph" id="aclassxpe_1_1core_1_1c_memory_pool_stack_ace90e70bb73ad1ad7cad09b7bd28318d_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,203,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_memory_pool.html#a758ddd40c10e6e5b8bfebd17245dac75" title=" " alt="" coords="251,5,414,48"/>
+<area shape="poly" title=" " alt="" coords="203,24,235,24,235,29,203,29"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a49aa70c1b4f127c2896937941ad6d450" name="a49aa70c1b4f127c2896937941ad6d450"></a>
@@ -184,6 +217,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="memory__manager_8cpp_source.html#l00120">120</a> of file <a class="el" href="memory__manager_8cpp_source.html">memory_manager.cpp</a>.</p>
 
 </div>
 </div>
@@ -202,6 +237,30 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="memory__manager_8cpp_source.html#l00129">129</a> of file <a class="el" href="memory__manager_8cpp_source.html">memory_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_memory_pool_stack_ae688cd1d27bb1cf64dec6c6824e156aa_cgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_memory_pool_stack_ae688cd1d27bb1cf64dec6c6824e156aa_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_memory_pool_stack_ae688cd1d27bb1cf64dec6c6824e156aa_cgraph" id="aclassxpe_1_1core_1_1c_memory_pool_stack_ae688cd1d27bb1cf64dec6c6824e156aa_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,203,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_memory_pool.html#a758ddd40c10e6e5b8bfebd17245dac75" title=" " alt="" coords="251,5,414,48"/>
+<area shape="poly" title=" " alt="" coords="203,24,235,24,235,29,203,29"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_memory_pool_stack_ae688cd1d27bb1cf64dec6c6824e156aa_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_memory_pool_stack_ae688cd1d27bb1cf64dec6c6824e156aa_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_memory_pool_stack_ae688cd1d27bb1cf64dec6c6824e156aa_icgraph" id="aclassxpe_1_1core_1_1c_memory_pool_stack_ae688cd1d27bb1cf64dec6c6824e156aa_icgraph">
+<area shape="rect" title=" " alt="" coords="251,39,448,81"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_memory_pool_stack.html#a0a2b778334b1190ace97d88626a74c6a" title=" " alt="" coords="5,5,203,48"/>
+<area shape="poly" title=" " alt="" coords="235,47,203,43,204,37,236,42"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_memory_pool_stack.html#aa6ae78170d3ddcc6d8b0760f61c417a5" title=" " alt="" coords="5,72,203,115"/>
+<area shape="poly" title=" " alt="" coords="236,78,204,83,203,77,235,73"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -222,6 +281,20 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="memory__manager_8hpp_source.html#l00114">114</a> of file <a class="el" href="memory__manager_8hpp_source.html">memory_manager.hpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_memory_pool_stack_a0a2b778334b1190ace97d88626a74c6a_cgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_memory_pool_stack_a0a2b778334b1190ace97d88626a74c6a_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_memory_pool_stack_a0a2b778334b1190ace97d88626a74c6a_cgraph" id="aclassxpe_1_1core_1_1c_memory_pool_stack_a0a2b778334b1190ace97d88626a74c6a_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,203,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_memory_pool_stack.html#ae688cd1d27bb1cf64dec6c6824e156aa" title=" " alt="" coords="251,5,448,48"/>
+<area shape="poly" title=" " alt="" coords="203,24,235,24,235,29,203,29"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_memory_pool.html#a758ddd40c10e6e5b8bfebd17245dac75" title=" " alt="" coords="496,5,659,48"/>
+<area shape="poly" title=" " alt="" coords="448,24,480,24,480,29,448,29"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="aa6ae78170d3ddcc6d8b0760f61c417a5" name="aa6ae78170d3ddcc6d8b0760f61c417a5"></a>
@@ -241,6 +314,20 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="memory__manager_8hpp_source.html#l00122">122</a> of file <a class="el" href="memory__manager_8hpp_source.html">memory_manager.hpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_memory_pool_stack_aa6ae78170d3ddcc6d8b0760f61c417a5_cgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_memory_pool_stack_aa6ae78170d3ddcc6d8b0760f61c417a5_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_memory_pool_stack_aa6ae78170d3ddcc6d8b0760f61c417a5_cgraph" id="aclassxpe_1_1core_1_1c_memory_pool_stack_aa6ae78170d3ddcc6d8b0760f61c417a5_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,203,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_memory_pool_stack.html#ae688cd1d27bb1cf64dec6c6824e156aa" title=" " alt="" coords="251,5,448,48"/>
+<area shape="poly" title=" " alt="" coords="203,24,235,24,235,29,203,29"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_memory_pool.html#a758ddd40c10e6e5b8bfebd17245dac75" title=" " alt="" coords="496,5,659,48"/>
+<area shape="poly" title=" " alt="" coords="448,24,480,24,480,29,448,29"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="ab2837b4bac91331c423dd3865e569745" name="ab2837b4bac91331c423dd3865e569745"></a>
@@ -257,6 +344,8 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="memory__manager_8cpp_source.html#l00156">156</a> of file <a class="el" href="memory__manager_8cpp_source.html">memory_manager.cpp</a>.</p>
 
 </div>
 </div>
@@ -283,6 +372,8 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="memory__manager_8hpp_source.html#l00091">91</a> of file <a class="el" href="memory__manager_8hpp_source.html">memory_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a50d3dbf3d026ffcd6c690ec25c9d08cd" name="a50d3dbf3d026ffcd6c690ec25c9d08cd"></a>
@@ -307,6 +398,8 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="memory__manager_8hpp_source.html#l00086">86</a> of file <a class="el" href="memory__manager_8hpp_source.html">memory_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -333,6 +426,8 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="memory__manager_8hpp_source.html#l00096">96</a> of file <a class="el" href="memory__manager_8hpp_source.html">memory_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a04cba795278eeeba4c8a5899f30e852f" name="a04cba795278eeeba4c8a5899f30e852f"></a>
@@ -350,6 +445,18 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="memory__manager_8cpp_source.html#l00168">168</a> of file <a class="el" href="memory__manager_8cpp_source.html">memory_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_memory_pool_stack_a04cba795278eeeba4c8a5899f30e852f_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_memory_pool_stack_a04cba795278eeeba4c8a5899f30e852f_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_memory_pool_stack_a04cba795278eeeba4c8a5899f30e852f_icgraph" id="aclassxpe_1_1core_1_1c_memory_pool_stack_a04cba795278eeeba4c8a5899f30e852f_icgraph">
+<area shape="rect" title=" " alt="" coords="241,5,438,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_memory_manager.html#a9161b53f8fcba7f29c5035d6177b52cf" title=" " alt="" coords="5,5,193,48"/>
+<area shape="poly" title=" " alt="" coords="225,29,193,29,193,24,225,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -365,6 +472,8 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="memory__manager_8hpp_source.html#l00079">79</a> of file <a class="el" href="memory__manager_8hpp_source.html">memory_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="ad45746f1e29be44c286cba51bf8517f0" name="ad45746f1e29be44c286cba51bf8517f0"></a>
@@ -378,6 +487,8 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="memory__manager_8hpp_source.html#l00073">73</a> of file <a class="el" href="memory__manager_8hpp_source.html">memory_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -393,6 +504,8 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="memory__manager_8hpp_source.html#l00072">72</a> of file <a class="el" href="memory__manager_8hpp_source.html">memory_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a59e2991d246f8b82eea77534f8adc5dd" name="a59e2991d246f8b82eea77534f8adc5dd"></a>
@@ -406,6 +519,8 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="memory__manager_8hpp_source.html#l00071">71</a> of file <a class="el" href="memory__manager_8hpp_source.html">memory_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -421,6 +536,8 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="memory__manager_8hpp_source.html#l00074">74</a> of file <a class="el" href="memory__manager_8hpp_source.html">memory_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a0511f9b25e79efcf1e1d62aa2c4a1050" name="a0511f9b25e79efcf1e1d62aa2c4a1050"></a>
@@ -434,6 +551,8 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="memory__manager_8hpp_source.html#l00076">76</a> of file <a class="el" href="memory__manager_8hpp_source.html">memory_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -449,6 +568,8 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="memory__manager_8hpp_source.html#l00078">78</a> of file <a class="el" href="memory__manager_8hpp_source.html">memory_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a9a972787ece7aa6ba62d3aa53a11edde" name="a9a972787ece7aa6ba62d3aa53a11edde"></a>
@@ -462,6 +583,8 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="memory__manager_8hpp_source.html#l00077">77</a> of file <a class="el" href="memory__manager_8hpp_source.html">memory_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -477,6 +600,8 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="memory__manager_8hpp_source.html#l00075">75</a> of file <a class="el" href="memory__manager_8hpp_source.html">memory_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="af1c4fd5a893d87e3054b30de9f63bf8b" name="af1c4fd5a893d87e3054b30de9f63bf8b"></a>
@@ -491,16 +616,22 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="memory__manager_8hpp_source.html#l00080">80</a> of file <a class="el" href="memory__manager_8hpp_source.html">memory_manager.hpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>engine/src/core/<a class="el" href="memory__manager_8hpp_source.html">memory_manager.hpp</a></li>
-<li>engine/src/core/<a class="el" href="memory__manager_8cpp.html">memory_manager.cpp</a></li>
+<li>engine/src/core/<a class="el" href="memory__manager_8cpp_source.html">memory_manager.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1core.html">core</a></li><li class="navelem"><a class="el" href="classxpe_1_1core_1_1c_memory_pool_stack.html">cMemoryPoolStack</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

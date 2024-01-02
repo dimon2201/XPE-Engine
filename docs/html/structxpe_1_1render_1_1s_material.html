@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('structxpe_1_1render_1_1s_material.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li><li class="navelem"><a class="el" href="structxpe_1_1render_1_1s_material.html">sMaterial</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Public Attributes</a> &#124;
@@ -87,13 +105,29 @@ $(function() {
 <div class="dynheader">
 Inheritance diagram for xpe::render::sMaterial:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="structxpe_1_1render_1_1s_material.png" usemap="#xpe::render::sMaterial_map" alt=""/>
-  <map id="xpe::render::sMaterial_map" name="xpe::render::sMaterial_map">
-<area href="structxpe_1_1render_1_1s_material_data.html" alt="xpe::render::sMaterialData" shape="rect" coords="0,0,160,24"/>
-<area href="structxpe_1_1ecs_1_1_c_material.html" alt="xpe::ecs::CMaterial" shape="rect" coords="0,112,160,136"/>
-  </map>
-</div></div>
+<div class="center"><img src="structxpe_1_1render_1_1s_material__inherit__graph.png" border="0" usemap="#axpe_1_1render_1_1s_material_inherit__map" alt="Inheritance graph"/></div>
+<map name="axpe_1_1render_1_1s_material_inherit__map" id="axpe_1_1render_1_1s_material_inherit__map">
+<area shape="rect" title=" " alt="" coords="19,80,166,107"/>
+<area shape="rect" href="structxpe_1_1ecs_1_1_c_material.html" title=" " alt="" coords="25,155,160,181"/>
+<area shape="poly" title=" " alt="" coords="95,122,95,154,90,154,90,122"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_material_data.html" title=" " alt="" coords="5,5,180,32"/>
+<area shape="poly" title=" " alt="" coords="95,48,95,80,90,80,90,48"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for xpe::render::sMaterial:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_material__coll__graph.png" border="0" usemap="#axpe_1_1render_1_1s_material_coll__map" alt="Collaboration graph"/></div>
+<map name="axpe_1_1render_1_1s_material_coll__map" id="axpe_1_1render_1_1s_material_coll__map">
+<area shape="rect" title=" " alt="" coords="224,192,372,219"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_material_data.html" title=" " alt="" coords="5,5,180,32"/>
+<area shape="poly" title=" " alt="" coords="119,41,286,190,282,194,116,45"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_material_format.html" title=" " alt="" coords="204,5,392,32"/>
+<area shape="poly" title=" " alt="" coords="301,48,301,192,295,192,295,48"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_texture_layer.html" title=" " alt="" coords="416,5,593,32"/>
+<area shape="poly" title=" " alt="" coords="499,48,473,109,452,142,425,170,400,185,373,195,371,190,398,180,421,166,448,139,468,107,494,46"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -162,7 +196,10 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:a521990eae276dd1ccbca8488fe05b975" id="r_a521990eae276dd1ccbca8488fe05b975"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">static</a> <a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">const</a> <a class="el" href="structxpe_1_1render_1_1s_material_format.html">sMaterialFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a521990eae276dd1ccbca8488fe05b975">k_EmissionFormat</a> = {<a class="el" href="namespacexpe_1_1render.html#a46d0dfa0f134db6b834ccc2b921e2da2aad2ecedf63a30a8f4201f44431d3e2f3">eTextureFormat::SRGBA8</a>, 2048, 2048, <a class="el" href="macro__constants_8hpp.html#a6f2ebfba73bfdc52330d43b7bf94c6f7">K_SLOT_EMISSION</a> }</td></tr>
 <tr class="separator:a521990eae276dd1ccbca8488fe05b975"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Data Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="material_8hpp_source.html#l00019">19</a> of file <a class="el" href="material_8hpp_source.html">material.hpp</a>.</p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="ab88689d44e7b88eff39fd0c83fff2280" name="ab88689d44e7b88eff39fd0c83fff2280"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab88689d44e7b88eff39fd0c83fff2280">&#9670;&#160;</a></span>AlbedoMap</h2>
 
@@ -174,6 +211,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="material_8hpp_source.html#l00031">31</a> of file <a class="el" href="material_8hpp_source.html">material.hpp</a>.</p>
 
 </div>
 </div>
@@ -189,6 +228,8 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="material_8hpp_source.html#l00036">36</a> of file <a class="el" href="material_8hpp_source.html">material.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a7cd3b8226a2b8be9b9734ef6de6e1206" name="a7cd3b8226a2b8be9b9734ef6de6e1206"></a>
@@ -203,6 +244,8 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="material_8hpp_source.html#l00037">37</a> of file <a class="el" href="material_8hpp_source.html">material.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a757b22aed38e6861f412eafcc2f28da9" name="a757b22aed38e6861f412eafcc2f28da9"></a>
@@ -216,6 +259,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="material_8hpp_source.html#l00029">29</a> of file <a class="el" href="material_8hpp_source.html">material.hpp</a>.</p>
 
 </div>
 </div>
@@ -239,6 +284,8 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="material_8hpp_source.html#l00021">21</a> of file <a class="el" href="material_8hpp_source.html">material.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a06cf1a4b230a8eb966444e960f58c739" name="a06cf1a4b230a8eb966444e960f58c739"></a>
@@ -260,6 +307,8 @@ Static Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="material_8hpp_source.html#l00026">26</a> of file <a class="el" href="material_8hpp_source.html">material.hpp</a>.</p>
 
 </div>
 </div>
@@ -283,6 +332,8 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="material_8hpp_source.html#l00027">27</a> of file <a class="el" href="material_8hpp_source.html">material.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a778de9af6fe0c5d9bad03e3507df848d" name="a778de9af6fe0c5d9bad03e3507df848d"></a>
@@ -304,6 +355,8 @@ Static Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="material_8hpp_source.html#l00024">24</a> of file <a class="el" href="material_8hpp_source.html">material.hpp</a>.</p>
 
 </div>
 </div>
@@ -327,6 +380,8 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="material_8hpp_source.html#l00022">22</a> of file <a class="el" href="material_8hpp_source.html">material.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a5c63aeff2d60d9097bf4bfe22a1ea0fe" name="a5c63aeff2d60d9097bf4bfe22a1ea0fe"></a>
@@ -348,6 +403,8 @@ Static Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="material_8hpp_source.html#l00023">23</a> of file <a class="el" href="material_8hpp_source.html">material.hpp</a>.</p>
 
 </div>
 </div>
@@ -371,6 +428,8 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="material_8hpp_source.html#l00025">25</a> of file <a class="el" href="material_8hpp_source.html">material.hpp</a>.</p>
+
 </div>
 </div>
 <a id="aca8f684ea2e6dc26d6b9dd8fca2f32e6" name="aca8f684ea2e6dc26d6b9dd8fca2f32e6"></a>
@@ -384,6 +443,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="material_8hpp_source.html#l00034">34</a> of file <a class="el" href="material_8hpp_source.html">material.hpp</a>.</p>
 
 </div>
 </div>
@@ -399,6 +460,8 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="material_8hpp_source.html#l00032">32</a> of file <a class="el" href="material_8hpp_source.html">material.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a5246278aec0eaa97daeec3c7af2a246e" name="a5246278aec0eaa97daeec3c7af2a246e"></a>
@@ -412,6 +475,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="material_8hpp_source.html#l00033">33</a> of file <a class="el" href="material_8hpp_source.html">material.hpp</a>.</p>
 
 </div>
 </div>
@@ -427,16 +492,22 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="material_8hpp_source.html#l00035">35</a> of file <a class="el" href="material_8hpp_source.html">material.hpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following files:<ul>
 <li>engine/src/rendering/material/<a class="el" href="material_8hpp_source.html">material.hpp</a></li>
-<li>engine/src/rendering/material/<a class="el" href="material_8cpp.html">material.cpp</a></li>
+<li>engine/src/rendering/material/<a class="el" href="material_8cpp_source.html">material.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li><li class="navelem"><a class="el" href="structxpe_1_1render_1_1s_material.html">sMaterial</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

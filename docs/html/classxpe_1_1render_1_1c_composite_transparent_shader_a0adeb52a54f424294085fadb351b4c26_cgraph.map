@@ -1,0 +1,6 @@
+<map id="xpe::render::cCompositeTransparentShader::Draw" name="xpe::render::cCompositeTransparentShader::Draw">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,29,237,72"/>
+<area shape="rect" id="Node000002" href="$namespacexpe_1_1render_1_1context.html#a87a2da77de2bea05f299145aa58d7ca5" title=" " alt="" coords="285,29,422,72"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="237,48,269,48,269,53,237,53"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="309,29,308,19,315,10,330,5,353,3,378,5,393,11,391,16,377,10,353,8,331,10,318,15,313,21,314,28"/>
+</map>

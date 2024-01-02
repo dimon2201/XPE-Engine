@@ -1,0 +1,9 @@
+<map id="xpe::render::sListBuffer::Reserve" name="xpe::render::sListBuffer::Reserve">
+<area shape="rect" id="Node000001" title=" " alt="" coords="237,72,392,115"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1render_1_1c_instancing_shader.html#aa07434479537490283672f91f660c4d5" title=" " alt="" coords="8,5,186,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="228,70,168,51,170,46,229,65"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1render_1_1c_text_shader.html#ad8b58ce40667013c62bc85cb9ae913fa" title=" " alt="" coords="13,72,181,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="221,96,181,96,181,91,221,91"/>
+<area shape="rect" id="Node000004" href="$classxpe_1_1render_1_1c_widget_shader.html#ac6d0a01c7e25a93a16e38d9642dfe0f2" title=" " alt="" coords="5,139,189,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="229,122,170,141,168,135,228,117"/>
+</map>

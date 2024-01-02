@@ -1,0 +1,10 @@
+<map id="xpe::render::context::ResizeRenderTarget" name="xpe::render::context::ResizeRenderTarget">
+<area shape="rect" id="Node000001" title=" " alt="" coords="467,39,613,81"/>
+<area shape="poly" id="edge4_Node000001_Node000001" title=" " alt="" coords="574,25,561,20,540,17,520,19,508,24,504,30,505,38,500,39,498,29,505,20,519,14,540,12,563,14,576,21"/>
+<area shape="rect" id="Node000002" href="$structxpe_1_1render_1_1s_render_target.html#a13cc34a42448dc14bdfbeef99f79a196" title=" " alt="" coords="241,39,419,81"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="452,63,420,63,420,57,452,57"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1render_1_1c_render_system.html#a7b60a7e2b3cfc9089bfda515a12f7984" title=" " alt="" coords="5,5,193,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="225,48,193,43,194,38,226,42"/>
+<area shape="rect" id="Node000004" href="$structxpe_1_1render_1_1s_render_target.html#a7880528c246353f51a7cb3fd1953226b" title=" " alt="" coords="10,72,188,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="226,78,189,83,188,78,225,72"/>
+</map>

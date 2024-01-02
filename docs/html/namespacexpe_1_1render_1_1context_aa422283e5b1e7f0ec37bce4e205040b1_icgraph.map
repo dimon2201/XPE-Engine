@@ -1,0 +1,18 @@
+<map id="xpe::render::context::PSBindSampler" name="xpe::render::context::PSBindSampler">
+<area shape="rect" id="Node000001" title=" " alt="" coords="599,105,737,148"/>
+<area shape="poly" id="edge4_Node000001_Node000001" title=" " alt="" coords="698,92,687,86,668,84,650,86,640,91,636,97,637,104,632,105,630,95,636,86,649,81,668,79,688,81,701,87"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1render_1_1c_canvas.html#a220c846d34dca49160b1d1af669cba2a" title=" " alt="" coords="408,5,551,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="611,100,520,51,523,46,614,95"/>
+<area shape="rect" id="Node000005" href="$namespacexpe_1_1render_1_1context.html#a11692afbf418abafb865636a7ed80cf3" title=" " alt="" coords="210,105,348,148"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="584,116,551,113,480,110,408,113,348,119,347,114,408,108,480,105,552,108,584,111"/>
+<area shape="rect" id="Node000006" href="$namespacexpe_1_1render_1_1context.html#a22b0c731df1b519dea8c891d6cee0494" title=" " alt="" coords="411,147,548,189"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="585,148,549,156,548,150,584,142"/>
+<area shape="rect" id="Node000007" href="$namespacexpe_1_1render_1_1context.html#a40cc0ee299ea30499d4b9c1bab2c75ad" title=" " alt="" coords="411,213,548,256"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="624,159,553,204,531,215,528,210,550,199,622,155"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1core_1_1c_app.html#a1b8ab19056f84742e5fa02c488cf3f52" title=" " alt="" coords="198,13,360,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="392,29,360,29,360,24,392,24"/>
+<area shape="rect" id="Node000004" href="$classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,13,150,40"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="396,153,347,143,348,138,397,148"/>
+<area shape="poly" id="edge8_Node000006_Node000006" title=" " alt="" coords="510,133,499,128,480,125,462,127,451,132,447,138,449,146,443,147,442,137,448,128,461,122,480,120,500,122,512,129"/>
+</map>

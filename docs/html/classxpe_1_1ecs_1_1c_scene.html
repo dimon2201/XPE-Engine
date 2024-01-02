@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classxpe_1_1ecs_1_1c_scene.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1ecs.html">ecs</a></li><li class="navelem"><a class="el" href="classxpe_1_1ecs_1_1c_scene.html">cScene</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -87,14 +105,31 @@ $(function() {
 <div class="dynheader">
 Inheritance diagram for xpe::ecs::cScene:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classxpe_1_1ecs_1_1c_scene.png" usemap="#xpe::ecs::cScene_map" alt=""/>
-  <map id="xpe::ecs::cScene_map" name="xpe::ecs::cScene_map">
-<area href="classxpe_1_1core_1_1c_object.html" alt="xpe::core::cObject" shape="rect" coords="0,0,114,24"/>
-<area href="classxpe_1_1res_1_1c_json.html" alt="xpe::res::cJson" shape="rect" coords="124,0,238,24"/>
-<area href="classxpe_1_1res_1_1c_xml.html" alt="xpe::res::cXml" shape="rect" coords="248,0,362,24"/>
-  </map>
-</div></div>
+<div class="center"><img src="classxpe_1_1ecs_1_1c_scene__inherit__graph.png" border="0" usemap="#axpe_1_1ecs_1_1c_scene_inherit__map" alt="Inheritance graph"/></div>
+<map name="axpe_1_1ecs_1_1c_scene_inherit__map" id="axpe_1_1ecs_1_1c_scene_inherit__map">
+<area shape="rect" title=" " alt="" coords="152,80,275,107"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="5,5,134,32"/>
+<area shape="poly" title=" " alt="" coords="109,37,189,77,187,82,107,42"/>
+<area shape="rect" href="classxpe_1_1res_1_1c_json.html" title=" " alt="" coords="158,5,269,32"/>
+<area shape="poly" title=" " alt="" coords="216,48,216,80,211,80,211,48"/>
+<area shape="rect" href="classxpe_1_1res_1_1c_xml.html" title=" " alt="" coords="293,5,398,32"/>
+<area shape="poly" title=" " alt="" coords="311,42,238,82,235,77,308,37"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for xpe::ecs::cScene:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1ecs_1_1c_scene__coll__graph.png" border="0" usemap="#axpe_1_1ecs_1_1c_scene_coll__map" alt="Collaboration graph"/></div>
+<map name="axpe_1_1ecs_1_1c_scene_coll__map" id="axpe_1_1ecs_1_1c_scene_coll__map">
+<area shape="rect" title=" " alt="" coords="152,80,275,107"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="5,5,134,32"/>
+<area shape="poly" title=" " alt="" coords="109,37,189,77,187,82,107,42"/>
+<area shape="rect" href="classxpe_1_1res_1_1c_json.html" title=" " alt="" coords="158,5,269,32"/>
+<area shape="poly" title=" " alt="" coords="216,48,216,80,211,80,211,48"/>
+<area shape="rect" href="classxpe_1_1res_1_1c_xml.html" title=" " alt="" coords="293,5,398,32"/>
+<area shape="poly" title=" " alt="" coords="311,42,238,82,235,77,308,37"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -154,7 +189,10 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a08a445f8a61afef6e5b4221d4ed45c36" id="r_a08a445f8a61afef6e5b4221d4ed45c36"><td class="memItemLeft" align="right" valign="top">physx::PxScene *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08a445f8a61afef6e5b4221d4ed45c36">PhysicsScene</a></td></tr>
 <tr class="separator:a08a445f8a61afef6e5b4221d4ed45c36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="ecs_8hpp_source.html#l00026">26</a> of file <a class="el" href="ecs_8hpp_source.html">ecs.hpp</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="af10ade81ca093d8c007444182173209c" name="af10ade81ca093d8c007444182173209c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af10ade81ca093d8c007444182173209c">&#9670;&#160;</a></span>AddComponent()</h2>
 
@@ -176,6 +214,18 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="ecs_8hpp_source.html#l00081">81</a> of file <a class="el" href="ecs_8hpp_source.html">ecs.hpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1ecs_1_1c_scene_af10ade81ca093d8c007444182173209c_icgraph.png" border="0" usemap="#aclassxpe_1_1ecs_1_1c_scene_af10ade81ca093d8c007444182173209c_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1ecs_1_1c_scene_af10ade81ca093d8c007444182173209c_icgraph" id="aclassxpe_1_1ecs_1_1c_scene_af10ade81ca093d8c007444182173209c_icgraph">
+<area shape="rect" title=" " alt="" coords="205,5,425,32"/>
+<area shape="rect" href="classxpe_1_1ecs_1_1c_entity.html#a1368be7cdcee488845a75e7742e2eea3" title=" " alt="" coords="5,5,157,32"/>
+<area shape="poly" title=" " alt="" coords="189,21,157,21,157,16,189,16"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="ab39105edd3f4294de8bfb4f97369259f" name="ab39105edd3f4294de8bfb4f97369259f"></a>
@@ -195,6 +245,8 @@ template&lt;typename... T&gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="ecs_8hpp_source.html#l00137">137</a> of file <a class="el" href="ecs_8hpp_source.html">ecs.hpp</a>.</p>
+
 </div>
 </div>
 <a id="aa47283de7ae110700943b75258d1c988" name="aa47283de7ae110700943b75258d1c988"></a>
@@ -212,6 +264,8 @@ template&lt;typename... T&gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="ecs_8cpp_source.html#l00023">23</a> of file <a class="el" href="ecs_8cpp_source.html">ecs.cpp</a>.</p>
+
 </div>
 </div>
 <a id="ab2842bd0b2bd2789068e9ac82eaa11a6" name="ab2842bd0b2bd2789068e9ac82eaa11a6"></a>
@@ -228,6 +282,18 @@ template&lt;typename... T&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ecs_8cpp_source.html#l00008">8</a> of file <a class="el" href="ecs_8cpp_source.html">ecs.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1ecs_1_1c_scene_ab2842bd0b2bd2789068e9ac82eaa11a6_icgraph.png" border="0" usemap="#aclassxpe_1_1ecs_1_1c_scene_ab2842bd0b2bd2789068e9ac82eaa11a6_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1ecs_1_1c_scene_ab2842bd0b2bd2789068e9ac82eaa11a6_icgraph" id="aclassxpe_1_1ecs_1_1c_scene_ab2842bd0b2bd2789068e9ac82eaa11a6_icgraph">
+<area shape="rect" title=" " alt="" coords="182,5,351,48"/>
+<area shape="rect" href="classxpe_1_1ecs_1_1c_entity.html#a7705012a6e76c255ac1d8633e53ed745" title=" " alt="" coords="5,5,134,48"/>
+<area shape="poly" title=" " alt="" coords="166,29,134,29,134,24,166,24"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -256,6 +322,8 @@ template&lt;typename... T&gt; </div>
 
 <p>Implements <a class="el" href="classxpe_1_1res_1_1c_json.html#ac1f545d15f6d5162d765f9c8eb9b336b">xpe::res::cJson</a>.</p>
 
+<p class="definition">Definition at line <a class="el" href="ecs_8cpp_source.html#l00050">50</a> of file <a class="el" href="ecs_8cpp_source.html">ecs.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a1a742c4d2f714632fdb3dd10b933db75" name="a1a742c4d2f714632fdb3dd10b933db75"></a>
@@ -283,6 +351,18 @@ template&lt;typename... T&gt; </div>
 
 <p>Implements <a class="el" href="classxpe_1_1res_1_1c_xml.html#ad40ae73f421e5655d44fe871cdfe808f">xpe::res::cXml</a>.</p>
 
+<p class="definition">Definition at line <a class="el" href="ecs_8cpp_source.html#l00075">75</a> of file <a class="el" href="ecs_8cpp_source.html">ecs.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1ecs_1_1c_scene_a1a742c4d2f714632fdb3dd10b933db75_cgraph.png" border="0" usemap="#aclassxpe_1_1ecs_1_1c_scene_a1a742c4d2f714632fdb3dd10b933db75_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1ecs_1_1c_scene_a1a742c4d2f714632fdb3dd10b933db75_cgraph" id="aclassxpe_1_1ecs_1_1c_scene_a1a742c4d2f714632fdb3dd10b933db75_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,188,32"/>
+<area shape="rect" href="namespacexpe_1_1res.html#ac5525e0fd8b81e865e788d9ee64021b5" title=" " alt="" coords="236,5,387,32"/>
+<area shape="poly" title=" " alt="" coords="188,16,220,16,220,21,188,21"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="adfe5448c670a7646b1b49f1698c0e965" name="adfe5448c670a7646b1b49f1698c0e965"></a>
@@ -301,6 +381,18 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ecs_8hpp_source.html#l00119">119</a> of file <a class="el" href="ecs_8hpp_source.html">ecs.hpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1ecs_1_1c_scene_adfe5448c670a7646b1b49f1698c0e965_icgraph.png" border="0" usemap="#aclassxpe_1_1ecs_1_1c_scene_adfe5448c670a7646b1b49f1698c0e965_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1ecs_1_1c_scene_adfe5448c670a7646b1b49f1698c0e965_icgraph" id="aclassxpe_1_1ecs_1_1c_scene_adfe5448c670a7646b1b49f1698c0e965_icgraph">
+<area shape="rect" title=" " alt="" coords="203,5,421,32"/>
+<area shape="rect" href="classxpe_1_1ecs_1_1c_entity.html#a6b56f191adb04a8f03422a665d591743" title=" " alt="" coords="5,5,155,32"/>
+<area shape="poly" title=" " alt="" coords="187,21,155,21,155,16,187,16"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -321,6 +413,20 @@ template&lt;typename... T&gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="ecs_8hpp_source.html#l00145">145</a> of file <a class="el" href="ecs_8hpp_source.html">ecs.hpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1ecs_1_1c_scene_a09f2e93dae557058af5ea5d69fcdf639_icgraph.png" border="0" usemap="#aclassxpe_1_1ecs_1_1c_scene_a09f2e93dae557058af5ea5d69fcdf639_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1ecs_1_1c_scene_a09f2e93dae557058af5ea5d69fcdf639_icgraph" id="aclassxpe_1_1ecs_1_1c_scene_a09f2e93dae557058af5ea5d69fcdf639_icgraph">
+<area shape="rect" title=" " alt="" coords="414,13,639,40"/>
+<area shape="rect" href="classxpe_1_1anim_1_1c_anim_system.html#a0a35098c9165bcf4720ccfd500467e9d" title=" " alt="" coords="198,5,366,48"/>
+<area shape="poly" title=" " alt="" coords="398,29,366,29,366,24,398,24"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,13,150,40"/>
+<area shape="poly" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="aab680a93dde6e0eced4194ad05622161" name="aab680a93dde6e0eced4194ad05622161"></a>
@@ -337,6 +443,20 @@ template&lt;typename... T&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ecs_8cpp_source.html#l00028">28</a> of file <a class="el" href="ecs_8cpp_source.html">ecs.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1ecs_1_1c_scene_aab680a93dde6e0eced4194ad05622161_icgraph.png" border="0" usemap="#aclassxpe_1_1ecs_1_1c_scene_aab680a93dde6e0eced4194ad05622161_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1ecs_1_1c_scene_aab680a93dde6e0eced4194ad05622161_icgraph" id="aclassxpe_1_1ecs_1_1c_scene_aab680a93dde6e0eced4194ad05622161_icgraph">
+<area shape="rect" title=" " alt="" coords="182,47,368,73"/>
+<area shape="rect" href="classxpe_1_1ecs_1_1c_entity.html#afa4533d7e2c0a989940fd5c7a1faaa88" title=" " alt="" coords="5,5,134,48"/>
+<area shape="poly" title=" " alt="" coords="173,46,134,40,135,34,174,41"/>
+<area shape="rect" href="classxpe_1_1ecs_1_1c_entity.html#ad457941d66381bee7335581ce40d6780" title=" " alt="" coords="5,72,134,115"/>
+<area shape="poly" title=" " alt="" coords="174,79,135,86,134,80,173,74"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -363,6 +483,8 @@ template&lt;typename... T&gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="ecs_8hpp_source.html#l00032">32</a> of file <a class="el" href="ecs_8hpp_source.html">ecs.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a2b882d4b7b0d933d04c7f2d72eda864e" name="a2b882d4b7b0d933d04c7f2d72eda864e"></a>
@@ -379,6 +501,20 @@ template&lt;typename... T&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ecs_8cpp_source.html#l00033">33</a> of file <a class="el" href="ecs_8cpp_source.html">ecs.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1ecs_1_1c_scene_a2b882d4b7b0d933d04c7f2d72eda864e_icgraph.png" border="0" usemap="#aclassxpe_1_1ecs_1_1c_scene_a2b882d4b7b0d933d04c7f2d72eda864e_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1ecs_1_1c_scene_a2b882d4b7b0d933d04c7f2d72eda864e_icgraph" id="aclassxpe_1_1ecs_1_1c_scene_a2b882d4b7b0d933d04c7f2d72eda864e_icgraph">
+<area shape="rect" title=" " alt="" coords="182,47,362,73"/>
+<area shape="rect" href="classxpe_1_1ecs_1_1c_entity.html#a09181b66bb5edce85a5806a9c491cb89" title=" " alt="" coords="5,5,134,48"/>
+<area shape="poly" title=" " alt="" coords="171,46,134,40,134,35,172,41"/>
+<area shape="rect" href="classxpe_1_1ecs_1_1c_entity.html#aa8d2a9569eb64fe9d1e43e4baccab29d" title=" " alt="" coords="5,72,134,115"/>
+<area shape="poly" title=" " alt="" coords="172,79,134,85,134,80,171,74"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -399,6 +535,18 @@ template&lt;typename... T&gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="ecs_8hpp_source.html#l00131">131</a> of file <a class="el" href="ecs_8hpp_source.html">ecs.hpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1ecs_1_1c_scene_a837ce789126d7aa510afb211f86b36da_icgraph.png" border="0" usemap="#aclassxpe_1_1ecs_1_1c_scene_a837ce789126d7aa510afb211f86b36da_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1ecs_1_1c_scene_a837ce789126d7aa510afb211f86b36da_icgraph" id="aclassxpe_1_1ecs_1_1c_scene_a837ce789126d7aa510afb211f86b36da_icgraph">
+<area shape="rect" title=" " alt="" coords="182,5,351,48"/>
+<area shape="rect" href="classxpe_1_1ecs_1_1c_entity.html#addda17a9e49912a9c25fa7304921e665" title=" " alt="" coords="5,5,134,48"/>
+<area shape="poly" title=" " alt="" coords="166,29,134,29,134,24,166,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="af8dda2e288dfd0505ee3d7bc545f8d85" name="af8dda2e288dfd0505ee3d7bc545f8d85"></a>
@@ -418,6 +566,18 @@ template&lt;typename... T&gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="ecs_8hpp_source.html#l00125">125</a> of file <a class="el" href="ecs_8hpp_source.html">ecs.hpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1ecs_1_1c_scene_af8dda2e288dfd0505ee3d7bc545f8d85_icgraph.png" border="0" usemap="#aclassxpe_1_1ecs_1_1c_scene_af8dda2e288dfd0505ee3d7bc545f8d85_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1ecs_1_1c_scene_af8dda2e288dfd0505ee3d7bc545f8d85_icgraph" id="aclassxpe_1_1ecs_1_1c_scene_af8dda2e288dfd0505ee3d7bc545f8d85_icgraph">
+<area shape="rect" title=" " alt="" coords="182,5,359,48"/>
+<area shape="rect" href="classxpe_1_1ecs_1_1c_entity.html#a072b7e4f5b9028802f0ea9630c54a3c5" title=" " alt="" coords="5,5,134,48"/>
+<area shape="poly" title=" " alt="" coords="166,29,134,29,134,24,166,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a383d018c0c2db44c44e1c06c35f67626" name="a383d018c0c2db44c44e1c06c35f67626"></a>
@@ -434,6 +594,8 @@ template&lt;typename... T&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ecs_8cpp_source.html#l00018">18</a> of file <a class="el" href="ecs_8cpp_source.html">ecs.cpp</a>.</p>
 
 </div>
 </div>
@@ -454,6 +616,18 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="ecs_8hpp_source.html#l00103">103</a> of file <a class="el" href="ecs_8hpp_source.html">ecs.hpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1ecs_1_1c_scene_a132ac580d0c04aa43d71fe827ca333da_icgraph.png" border="0" usemap="#aclassxpe_1_1ecs_1_1c_scene_a132ac580d0c04aa43d71fe827ca333da_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1ecs_1_1c_scene_a132ac580d0c04aa43d71fe827ca333da_icgraph" id="aclassxpe_1_1ecs_1_1c_scene_a132ac580d0c04aa43d71fe827ca333da_icgraph">
+<area shape="rect" title=" " alt="" coords="182,5,359,48"/>
+<area shape="rect" href="classxpe_1_1ecs_1_1c_entity.html#a4b76e7d0f1a2d7980cdfde0fd516418e" title=" " alt="" coords="5,5,134,48"/>
+<area shape="poly" title=" " alt="" coords="166,29,134,29,134,24,166,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="ad9913c4d0a11f519f5789eff1cc8ede9" name="ad9913c4d0a11f519f5789eff1cc8ede9"></a>
@@ -470,6 +644,8 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ecs_8cpp_source.html#l00013">13</a> of file <a class="el" href="ecs_8cpp_source.html">ecs.cpp</a>.</p>
 
 </div>
 </div>
@@ -495,6 +671,8 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ecs_8hpp_source.html#l00030">30</a> of file <a class="el" href="ecs_8hpp_source.html">ecs.hpp</a>.</p>
 
 </div>
 </div>
@@ -523,6 +701,8 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
 
 <p>Implements <a class="el" href="classxpe_1_1res_1_1c_json.html#ae9f2dda5c12658850632637c06868e88">xpe::res::cJson</a>.</p>
 
+<p class="definition">Definition at line <a class="el" href="ecs_8cpp_source.html#l00038">38</a> of file <a class="el" href="ecs_8cpp_source.html">ecs.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a069b678a1d459ec195a12cc982e22c1b" name="a069b678a1d459ec195a12cc982e22c1b"></a>
@@ -550,6 +730,18 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
 
 <p>Implements <a class="el" href="classxpe_1_1res_1_1c_xml.html#aecfd539665c2cc21965c15aa4f53b9e2">xpe::res::cXml</a>.</p>
 
+<p class="definition">Definition at line <a class="el" href="ecs_8cpp_source.html#l00062">62</a> of file <a class="el" href="ecs_8cpp_source.html">ecs.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1ecs_1_1c_scene_a069b678a1d459ec195a12cc982e22c1b_cgraph.png" border="0" usemap="#aclassxpe_1_1ecs_1_1c_scene_a069b678a1d459ec195a12cc982e22c1b_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1ecs_1_1c_scene_a069b678a1d459ec195a12cc982e22c1b_cgraph" id="aclassxpe_1_1ecs_1_1c_scene_a069b678a1d459ec195a12cc982e22c1b_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,172,32"/>
+<area shape="rect" href="namespacexpe_1_1res.html#ae8813487225b68b49312454bb143e202" title=" " alt="" coords="220,5,370,32"/>
+<area shape="poly" title=" " alt="" coords="172,16,204,16,204,21,172,21"/>
+</map>
+</div>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -565,16 +757,22 @@ template&lt;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="ecs_8hpp_source.html#l00071">71</a> of file <a class="el" href="ecs_8hpp_source.html">ecs.hpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>engine/src/ecs/<a class="el" href="ecs_8hpp_source.html">ecs.hpp</a></li>
-<li>engine/src/ecs/<a class="el" href="ecs_8cpp.html">ecs.cpp</a></li>
+<li>engine/src/ecs/<a class="el" href="ecs_8cpp_source.html">ecs.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1ecs.html">ecs</a></li><li class="navelem"><a class="el" href="classxpe_1_1ecs_1_1c_scene.html">cScene</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

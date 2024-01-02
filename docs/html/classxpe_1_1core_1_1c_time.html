@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classxpe_1_1core_1_1c_time.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1core.html">core</a></li><li class="navelem"><a class="el" href="classxpe_1_1core_1_1c_time.html">cTime</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -145,7 +163,10 @@ Friends</h2></td></tr>
 <tr class="memitem:ad06d1ba950dc90b0814d56e57fe26e1c" id="r_ad06d1ba950dc90b0814d56e57fe26e1c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad06d1ba950dc90b0814d56e57fe26e1c">operator/=</a> (<a class="el" href="classxpe_1_1core_1_1c_time.html">cTime</a> &amp;<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">t1</a>, <a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">float</a> <a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">t2</a>)</td></tr>
 <tr class="separator:ad06d1ba950dc90b0814d56e57fe26e1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00029">29</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aa564e0d344b49f98ed764be3d027822d" name="aa564e0d344b49f98ed764be3d027822d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa564e0d344b49f98ed764be3d027822d">&#9670;&#160;</a></span>cTime() <span class="overload">[1/3]</span></h2>
 
@@ -194,6 +215,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00034">34</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a001bf41a6b6d2a2a483aa953924e3566" name="a001bf41a6b6d2a2a483aa953924e3566"></a>
@@ -218,6 +241,8 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00038">38</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -245,6 +270,18 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00058">58</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_time_af639bb5b7e24e85652ddd5508db9fd9a_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_time_af639bb5b7e24e85652ddd5508db9fd9a_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_time_af639bb5b7e24e85652ddd5508db9fd9a_icgraph" id="aclassxpe_1_1core_1_1c_time_af639bb5b7e24e85652ddd5508db9fd9a_icgraph">
+<area shape="rect" title=" " alt="" coords="259,13,407,40"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#a3755f6a16cd4ffbf305714016a876383" title=" " alt="" coords="5,5,211,48"/>
+<area shape="poly" title=" " alt="" coords="243,29,211,29,211,24,243,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="aa5587c3ceb2fa2303bcf40bce626b3e2" name="aa5587c3ceb2fa2303bcf40bce626b3e2"></a>
@@ -269,6 +306,8 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00054">54</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -295,6 +334,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00042">42</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="ad5cbcd934f1d734d4e95d3333309ac80" name="ad5cbcd934f1d734d4e95d3333309ac80"></a>
@@ -319,6 +360,8 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00050">50</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -345,6 +388,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00137">137</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a84fed718d9b77f74b15080db519a9037" name="a84fed718d9b77f74b15080db519a9037"></a>
@@ -369,6 +414,8 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00131">131</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -395,6 +442,18 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00046">46</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_time_a9ef071be238e4c1adb24bc48e9b990b3_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_time_a9ef071be238e4c1adb24bc48e9b990b3_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_time_a9ef071be238e4c1adb24bc48e9b990b3_icgraph" id="aclassxpe_1_1core_1_1c_time_a9ef071be238e4c1adb24bc48e9b990b3_icgraph">
+<area shape="rect" title=" " alt="" coords="198,5,375,32"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,5,150,32"/>
+<area shape="poly" title=" " alt="" coords="182,21,150,21,150,16,182,16"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a7f748397ee483ce2bfdf6ce54e89992d" name="a7f748397ee483ce2bfdf6ce54e89992d"></a>
@@ -419,6 +478,20 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00062">62</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1core_1_1c_time_a7f748397ee483ce2bfdf6ce54e89992d_icgraph.png" border="0" usemap="#aclassxpe_1_1core_1_1c_time_a7f748397ee483ce2bfdf6ce54e89992d_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1core_1_1c_time_a7f748397ee483ce2bfdf6ce54e89992d_icgraph" id="aclassxpe_1_1core_1_1c_time_a7f748397ee483ce2bfdf6ce54e89992d_icgraph">
+<area shape="rect" title=" " alt="" coords="259,43,427,69"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#a3755f6a16cd4ffbf305714016a876383" title=" " alt="" coords="5,5,211,48"/>
+<area shape="poly" title=" " alt="" coords="243,46,211,42,211,37,244,41"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="36,72,180,99"/>
+<area shape="poly" title=" " alt="" coords="244,71,181,79,180,74,243,66"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -450,6 +523,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00075">75</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a00324b1a4fa1b06b57b017c7fafa5969" name="a00324b1a4fa1b06b57b017c7fafa5969"></a>
@@ -478,6 +553,8 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00107">107</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -508,6 +585,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00091">91</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a93135907f891f1b6f4193336119f6b05" name="a93135907f891f1b6f4193336119f6b05"></a>
@@ -536,6 +615,8 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00123">123</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -566,6 +647,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00067">67</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a6e12c34d3324959a210ff19f3695a0e8" name="a6e12c34d3324959a210ff19f3695a0e8"></a>
@@ -594,6 +677,8 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00099">99</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -624,6 +709,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00083">83</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a381ef89c4f1c21640dc9b92b3860b986" name="a381ef89c4f1c21640dc9b92b3860b986"></a>
@@ -652,6 +739,8 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00115">115</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -682,6 +771,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00071">71</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a20bdde0cef5c89d6188c7ad14c71505b" name="a20bdde0cef5c89d6188c7ad14c71505b"></a>
@@ -710,6 +801,8 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00103">103</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -740,6 +833,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00087">87</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a920c4a1d9b6f34490fe0441334947e57" name="a920c4a1d9b6f34490fe0441334947e57"></a>
@@ -768,6 +863,8 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00119">119</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -798,6 +895,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00079">79</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a6df053f59848641544359d256f02bbcc" name="a6df053f59848641544359d256f02bbcc"></a>
@@ -826,6 +925,8 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00111">111</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
 
 </div>
 </div>
@@ -856,6 +957,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00095">95</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
+
 </div>
 </div>
 <a id="ad06d1ba950dc90b0814d56e57fe26e1c" name="ad06d1ba950dc90b0814d56e57fe26e1c"></a>
@@ -885,15 +988,21 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="time__manager_8hpp_source.html#l00127">127</a> of file <a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>engine/src/core/<a class="el" href="time__manager_8hpp_source.html">time_manager.hpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1core.html">core</a></li><li class="navelem"><a class="el" href="classxpe_1_1core_1_1c_time.html">cTime</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

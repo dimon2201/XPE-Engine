@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -53,6 +59,23 @@ $(function() {
 $(function() { codefold.init(0); });
 /* @license-end */
 </script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('app_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -74,11 +97,6 @@ $(function() { codefold.init(0); });
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li><li class="navelem"><a class="el" href="dir_5e835386694ce392648cfcf102577fe3.html">core</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle"><div class="title">app.hpp</div></div>
 </div><!--header-->
@@ -173,37 +191,41 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="app_8hpp.html#ade387e7515f0f30adc9898924329982e">   80</a></span><a class="code hl_class" href="classxpe_1_1core_1_1c_app.html">xpe::core::cApp</a>* <a class="code hl_function" href="app_8hpp.html#ade387e7515f0f30adc9898924329982e">CreateApplication</a>();</div>
 <div class="ttc" id="aapp_8hpp_html_ade387e7515f0f30adc9898924329982e"><div class="ttname"><a href="app_8hpp.html#ade387e7515f0f30adc9898924329982e">CreateApplication</a></div><div class="ttdeci">xpe::core::cApp * CreateApplication()</div></div>
 <div class="ttc" id="acamera__manager_8hpp_html"><div class="ttname"><a href="camera__manager_8hpp.html">camera_manager.hpp</a></div></div>
-<div class="ttc" id="aclassxpe_1_1anim_1_1c_anim_system_html"><div class="ttname"><a href="classxpe_1_1anim_1_1c_anim_system.html">xpe::anim::cAnimSystem</a></div><div class="ttdef"><b>Definition</b> anim_system.hpp:14</div></div>
-<div class="ttc" id="aclassxpe_1_1audio_1_1c_audio_system_html"><div class="ttname"><a href="classxpe_1_1audio_1_1c_audio_system.html">xpe::audio::cAudioSystem</a></div><div class="ttdef"><b>Definition</b> audio_system.hpp:13</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_app_html"><div class="ttname"><a href="classxpe_1_1core_1_1c_app.html">xpe::core::cApp</a></div><div class="ttdef"><b>Definition</b> app.hpp:40</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_app_html_a0becddd38dd8bed4bada049b0e26e0ee"><div class="ttname"><a href="classxpe_1_1core_1_1c_app.html#a0becddd38dd8bed4bada049b0e26e0ee">xpe::core::cApp::cApp</a></div><div class="ttdeci">cApp()</div><div class="ttdef"><b>Definition</b> app.hpp:48</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_app_html_a0cc9fce34bf62c88a60d175f0a7f89bf"><div class="ttname"><a href="classxpe_1_1core_1_1c_app.html#a0cc9fce34bf62c88a60d175f0a7f89bf">xpe::core::cApp::Config</a></div><div class="ttdeci">sAppConfig Config</div><div class="ttdef"><b>Definition</b> app.hpp:46</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_app_html_a2024288747447bdb0a69a021fed66b2f"><div class="ttname"><a href="classxpe_1_1core_1_1c_app.html#a2024288747447bdb0a69a021fed66b2f">xpe::core::cApp::Free</a></div><div class="ttdeci">virtual void Free()</div><div class="ttdef"><b>Definition</b> app.hpp:57</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_app_html_a2e4a9bdbfb9563c041ab0447a108e26d"><div class="ttname"><a href="classxpe_1_1core_1_1c_app.html#a2e4a9bdbfb9563c041ab0447a108e26d">xpe::core::cApp::CurrentTime</a></div><div class="ttdeci">cTime CurrentTime</div><div class="ttdef"><b>Definition</b> app.hpp:45</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_app_html_a3b069d8cbc5de0646cc885b9ccc62d85"><div class="ttname"><a href="classxpe_1_1core_1_1c_app.html#a3b069d8cbc5de0646cc885b9ccc62d85">xpe::core::cApp::Update</a></div><div class="ttdeci">virtual void Update()</div><div class="ttdef"><b>Definition</b> app.hpp:56</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_app_html_a5ef55c63d56dfccfc7738b50cf5be70a"><div class="ttname"><a href="classxpe_1_1core_1_1c_app.html#a5ef55c63d56dfccfc7738b50cf5be70a">xpe::core::cApp::Init</a></div><div class="ttdeci">virtual void Init()</div><div class="ttdef"><b>Definition</b> app.hpp:55</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_app_html_aa093bbe02a4e655fa90d7c03459a8235"><div class="ttname"><a href="classxpe_1_1core_1_1c_app.html#aa093bbe02a4e655fa90d7c03459a8235">xpe::core::cApp::DeltaTime</a></div><div class="ttdeci">cTime DeltaTime</div><div class="ttdef"><b>Definition</b> app.hpp:44</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_app_html_aa5fbd2978189be084ded83cb82bce612"><div class="ttname"><a href="classxpe_1_1core_1_1c_app.html#aa5fbd2978189be084ded83cb82bce612">xpe::core::cApp::m_Viewport</a></div><div class="ttdeci">sViewport m_Viewport</div><div class="ttdef"><b>Definition</b> app.hpp:70</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_app_html_ae6a970175db088cf49d8fafa265bbefe"><div class="ttname"><a href="classxpe_1_1core_1_1c_app.html#ae6a970175db088cf49d8fafa265bbefe">xpe::core::cApp::~cApp</a></div><div class="ttdeci">~cApp()</div><div class="ttdef"><b>Definition</b> app.hpp:49</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_app_html_afa7bf2c8fb46d0ab2f731b097ad4e3a0"><div class="ttname"><a href="classxpe_1_1core_1_1c_app.html#afa7bf2c8fb46d0ab2f731b097ad4e3a0">xpe::core::cApp::CPUTime</a></div><div class="ttdeci">cTime CPUTime</div><div class="ttdef"><b>Definition</b> app.hpp:43</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_object_html"><div class="ttname"><a href="classxpe_1_1core_1_1c_object.html">xpe::core::cObject</a></div><div class="ttdef"><b>Definition</b> types.hpp:39</div></div>
-<div class="ttc" id="aclassxpe_1_1core_1_1c_time_html"><div class="ttname"><a href="classxpe_1_1core_1_1c_time.html">xpe::core::cTime</a></div><div class="ttdef"><b>Definition</b> time_manager.hpp:29</div></div>
-<div class="ttc" id="aclassxpe_1_1ecs_1_1c_scene_html"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_scene.html">xpe::ecs::cScene</a></div><div class="ttdef"><b>Definition</b> ecs.hpp:27</div></div>
-<div class="ttc" id="aclassxpe_1_1physics_1_1c_physics_system_html"><div class="ttname"><a href="classxpe_1_1physics_1_1c_physics_system.html">xpe::physics::cPhysicsSystem</a></div><div class="ttdef"><b>Definition</b> physics_system.hpp:8</div></div>
-<div class="ttc" id="aclassxpe_1_1render_1_1c_canvas_html"><div class="ttname"><a href="classxpe_1_1render_1_1c_canvas.html">xpe::render::cCanvas</a></div><div class="ttdef"><b>Definition</b> canvas.hpp:10</div></div>
-<div class="ttc" id="aclassxpe_1_1render_1_1c_render_system_html"><div class="ttname"><a href="classxpe_1_1render_1_1c_render_system.html">xpe::render::cRenderSystem</a></div><div class="ttdef"><b>Definition</b> render_system.hpp:13</div></div>
+<div class="ttc" id="aclassxpe_1_1anim_1_1c_anim_system_html"><div class="ttname"><a href="classxpe_1_1anim_1_1c_anim_system.html">xpe::anim::cAnimSystem</a></div><div class="ttdef"><b>Definition</b> <a href="anim__system_8hpp_source.html#l00013">anim_system.hpp:14</a></div></div>
+<div class="ttc" id="aclassxpe_1_1audio_1_1c_audio_system_html"><div class="ttname"><a href="classxpe_1_1audio_1_1c_audio_system.html">xpe::audio::cAudioSystem</a></div><div class="ttdef"><b>Definition</b> <a href="audio__system_8hpp_source.html#l00012">audio_system.hpp:13</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_app_html"><div class="ttname"><a href="classxpe_1_1core_1_1c_app.html">xpe::core::cApp</a></div><div class="ttdef"><b>Definition</b> <a href="#l00040">app.hpp:40</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_app_html_a0becddd38dd8bed4bada049b0e26e0ee"><div class="ttname"><a href="classxpe_1_1core_1_1c_app.html#a0becddd38dd8bed4bada049b0e26e0ee">xpe::core::cApp::cApp</a></div><div class="ttdeci">cApp()</div><div class="ttdef"><b>Definition</b> <a href="#l00048">app.hpp:48</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_app_html_a0cc9fce34bf62c88a60d175f0a7f89bf"><div class="ttname"><a href="classxpe_1_1core_1_1c_app.html#a0cc9fce34bf62c88a60d175f0a7f89bf">xpe::core::cApp::Config</a></div><div class="ttdeci">sAppConfig Config</div><div class="ttdef"><b>Definition</b> <a href="#l00046">app.hpp:46</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_app_html_a2024288747447bdb0a69a021fed66b2f"><div class="ttname"><a href="classxpe_1_1core_1_1c_app.html#a2024288747447bdb0a69a021fed66b2f">xpe::core::cApp::Free</a></div><div class="ttdeci">virtual void Free()</div><div class="ttdef"><b>Definition</b> <a href="#l00057">app.hpp:57</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_app_html_a2e4a9bdbfb9563c041ab0447a108e26d"><div class="ttname"><a href="classxpe_1_1core_1_1c_app.html#a2e4a9bdbfb9563c041ab0447a108e26d">xpe::core::cApp::CurrentTime</a></div><div class="ttdeci">cTime CurrentTime</div><div class="ttdef"><b>Definition</b> <a href="#l00045">app.hpp:45</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_app_html_a3b069d8cbc5de0646cc885b9ccc62d85"><div class="ttname"><a href="classxpe_1_1core_1_1c_app.html#a3b069d8cbc5de0646cc885b9ccc62d85">xpe::core::cApp::Update</a></div><div class="ttdeci">virtual void Update()</div><div class="ttdef"><b>Definition</b> <a href="#l00056">app.hpp:56</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_app_html_a5ef55c63d56dfccfc7738b50cf5be70a"><div class="ttname"><a href="classxpe_1_1core_1_1c_app.html#a5ef55c63d56dfccfc7738b50cf5be70a">xpe::core::cApp::Init</a></div><div class="ttdeci">virtual void Init()</div><div class="ttdef"><b>Definition</b> <a href="#l00055">app.hpp:55</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_app_html_aa093bbe02a4e655fa90d7c03459a8235"><div class="ttname"><a href="classxpe_1_1core_1_1c_app.html#aa093bbe02a4e655fa90d7c03459a8235">xpe::core::cApp::DeltaTime</a></div><div class="ttdeci">cTime DeltaTime</div><div class="ttdef"><b>Definition</b> <a href="#l00044">app.hpp:44</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_app_html_aa5fbd2978189be084ded83cb82bce612"><div class="ttname"><a href="classxpe_1_1core_1_1c_app.html#aa5fbd2978189be084ded83cb82bce612">xpe::core::cApp::m_Viewport</a></div><div class="ttdeci">sViewport m_Viewport</div><div class="ttdef"><b>Definition</b> <a href="#l00070">app.hpp:70</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_app_html_ae6a970175db088cf49d8fafa265bbefe"><div class="ttname"><a href="classxpe_1_1core_1_1c_app.html#ae6a970175db088cf49d8fafa265bbefe">xpe::core::cApp::~cApp</a></div><div class="ttdeci">~cApp()</div><div class="ttdef"><b>Definition</b> <a href="#l00049">app.hpp:49</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_app_html_afa7bf2c8fb46d0ab2f731b097ad4e3a0"><div class="ttname"><a href="classxpe_1_1core_1_1c_app.html#afa7bf2c8fb46d0ab2f731b097ad4e3a0">xpe::core::cApp::CPUTime</a></div><div class="ttdeci">cTime CPUTime</div><div class="ttdef"><b>Definition</b> <a href="#l00043">app.hpp:43</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_object_html"><div class="ttname"><a href="classxpe_1_1core_1_1c_object.html">xpe::core::cObject</a></div><div class="ttdef"><b>Definition</b> <a href="types_8hpp_source.html#l00038">types.hpp:39</a></div></div>
+<div class="ttc" id="aclassxpe_1_1core_1_1c_time_html"><div class="ttname"><a href="classxpe_1_1core_1_1c_time.html">xpe::core::cTime</a></div><div class="ttdef"><b>Definition</b> <a href="time__manager_8hpp_source.html#l00029">time_manager.hpp:29</a></div></div>
+<div class="ttc" id="aclassxpe_1_1ecs_1_1c_scene_html"><div class="ttname"><a href="classxpe_1_1ecs_1_1c_scene.html">xpe::ecs::cScene</a></div><div class="ttdef"><b>Definition</b> <a href="ecs_8hpp_source.html#l00026">ecs.hpp:27</a></div></div>
+<div class="ttc" id="aclassxpe_1_1physics_1_1c_physics_system_html"><div class="ttname"><a href="classxpe_1_1physics_1_1c_physics_system.html">xpe::physics::cPhysicsSystem</a></div><div class="ttdef"><b>Definition</b> <a href="physics__system_8hpp_source.html#l00007">physics_system.hpp:8</a></div></div>
+<div class="ttc" id="aclassxpe_1_1render_1_1c_canvas_html"><div class="ttname"><a href="classxpe_1_1render_1_1c_canvas.html">xpe::render::cCanvas</a></div><div class="ttdef"><b>Definition</b> <a href="canvas_8hpp_source.html#l00009">canvas.hpp:10</a></div></div>
+<div class="ttc" id="aclassxpe_1_1render_1_1c_render_system_html"><div class="ttname"><a href="classxpe_1_1render_1_1c_render_system.html">xpe::render::cRenderSystem</a></div><div class="ttdef"><b>Definition</b> <a href="render__system_8hpp_source.html#l00012">render_system.hpp:13</a></div></div>
 <div class="ttc" id="acomponents_8hpp_html"><div class="ttname"><a href="components_8hpp.html">components.hpp</a></div></div>
-<div class="ttc" id="amacro__build_8hpp_html_a0697ee40f69dc5dab56d13131f4c4835"><div class="ttname"><a href="macro__build_8hpp.html#a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</a></div><div class="ttdeci">#define ENGINE_API</div><div class="ttdef"><b>Definition</b> macro_build.hpp:17</div></div>
-<div class="ttc" id="anamespacexpe_html"><div class="ttname"><a href="namespacexpe.html">xpe</a></div><div class="ttdef"><b>Definition</b> anim.hpp:3</div></div>
+<div class="ttc" id="amacro__build_8hpp_html_a0697ee40f69dc5dab56d13131f4c4835"><div class="ttname"><a href="macro__build_8hpp.html#a0697ee40f69dc5dab56d13131f4c4835">ENGINE_API</a></div><div class="ttdeci">#define ENGINE_API</div><div class="ttdef"><b>Definition</b> <a href="macro__build_8hpp_source.html#l00017">macro_build.hpp:17</a></div></div>
+<div class="ttc" id="anamespacexpe_html"><div class="ttname"><a href="namespacexpe.html">xpe</a></div><div class="ttdef"><b>Definition</b> <a href="anim_8hpp_source.html#l00003">anim.hpp:3</a></div></div>
 <div class="ttc" id="ashadow__manager_8hpp_html"><div class="ttname"><a href="shadow__manager_8hpp.html">shadow_manager.hpp</a></div></div>
 <div class="ttc" id="askybox__manager_8hpp_html"><div class="ttname"><a href="skybox__manager_8hpp.html">skybox_manager.hpp</a></div></div>
-<div class="ttc" id="astructxpe_1_1core_1_1s_app_config_html"><div class="ttname"><a href="structxpe_1_1core_1_1s_app_config.html">xpe::core::sAppConfig</a></div><div class="ttdef"><b>Definition</b> app_config.hpp:10</div></div>
-<div class="ttc" id="astructxpe_1_1render_1_1s_render_target_html"><div class="ttname"><a href="structxpe_1_1render_1_1s_render_target.html">xpe::render::sRenderTarget</a></div><div class="ttdef"><b>Definition</b> render_target.hpp:10</div></div>
-<div class="ttc" id="astructxpe_1_1render_1_1s_viewport_html"><div class="ttname"><a href="structxpe_1_1render_1_1s_viewport.html">xpe::render::sViewport</a></div><div class="ttdef"><b>Definition</b> core.hpp:97</div></div>
+<div class="ttc" id="astructxpe_1_1core_1_1s_app_config_html"><div class="ttname"><a href="structxpe_1_1core_1_1s_app_config.html">xpe::core::sAppConfig</a></div><div class="ttdef"><b>Definition</b> <a href="app__config_8hpp_source.html#l00009">app_config.hpp:10</a></div></div>
+<div class="ttc" id="astructxpe_1_1render_1_1s_render_target_html"><div class="ttname"><a href="structxpe_1_1render_1_1s_render_target.html">xpe::render::sRenderTarget</a></div><div class="ttdef"><b>Definition</b> <a href="render__target_8hpp_source.html#l00009">render_target.hpp:10</a></div></div>
+<div class="ttc" id="astructxpe_1_1render_1_1s_viewport_html"><div class="ttname"><a href="structxpe_1_1render_1_1s_viewport.html">xpe::render::sViewport</a></div><div class="ttdef"><b>Definition</b> <a href="rendering_2core_2core_8hpp_source.html#l00096">core.hpp:97</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li><li class="navelem"><a class="el" href="dir_5e835386694ce392648cfcf102577fe3.html">core</a></li><li class="navelem"><a class="el" href="app_8hpp.html">app.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

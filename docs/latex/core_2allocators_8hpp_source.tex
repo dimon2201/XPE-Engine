@@ -2,153 +2,153 @@
 \hypertarget{core_2allocators_8hpp_source}{}\label{core_2allocators_8hpp_source}\index{engine/src/core/allocators.hpp@{engine/src/core/allocators.hpp}}
 \mbox{\hyperlink{core_2allocators_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ hot\_alloc(size)\ xpe::core::cMemoryManager::HotPools-\/>Allocate(size)}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ hot\_allocT(T,\ count)\ static\_cast<T*>(hot\_alloc(sizeof(T)\ *\ count))}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ hot\_construct(T)\ xpe::core::cMemoryManager::HotPools-\/>AllocateConstruct<T>()}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ hot\_construct\_args(T,\ ...)\ xpe::core::cMemoryManager::HotPools-\/>AllocateConstructArgs<T>(\_\_VA\_ARGS\_\_)}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ hot\_free(addr)\ xpe::core::cMemoryManager::HotPools-\/>Free(addr)}}
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ hot\_destruct(T,\ addr)\ \(\backslash\)}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{addr-\/>\string~T();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{hot\_free(addr)}}
-\DoxyCodeLine{00011\ }
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ main\_alloc(size)\ xpe::core::cMemoryManager::MainPools-\/>Allocate(size)}}
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ main\_allocT(T,\ count)\ static\_cast<T*>(main\_alloc(sizeof(T)\ *\ count))}}
-\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ main\_construct(T)\ xpe::core::cMemoryManager::MainPools-\/>AllocateConstruct<T>()}}
-\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ main\_construct\_args(T,\ ...)\ xpe::core::cMemoryManager::MainPools-\/>AllocateConstructArgs<T>(\_\_VA\_ARGS\_\_)}}
-\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ main\_free(addr)\ xpe::core::cMemoryManager::MainPools-\/>Free(addr)}}
-\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ main\_destruct(T,\ addr)\ \(\backslash\)}}
-\DoxyCodeLine{00018\ \textcolor{preprocessor}{addr-\/>\string~T();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00019\ \textcolor{preprocessor}{main\_free(addr)}}
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#ifdef\ DEBUG}}
-\DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ TOKENPASTE(x,\ y)\ x\ \#\#\ y}}
-\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ TOKENPASTE2(x,\ y)\ TOKENPASTE(x,\ y)}}
-\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ STACK(size)\ xpe::core::sStackAllocator\ TOKENPASTE2(s\_,\ \_\_LINE\_\_)(size)}}
-\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ STACKT(T,\ count)\ xpe::core::sStackTypedAllocator<T>\ TOKENPASTE2(s\_,\ \_\_LINE\_\_)(count)}}
-\DoxyCodeLine{00027\ }
-\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ salloc(size)\ alloca(size);\ STACK(size)}}
-\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ sallocT(T,\ count)\ static\_cast<T*>(alloca(sizeof(T)\ *\ count));\ STACKT(T,\ count)}}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ LogStackMemory()\ xpe::core::cMemoryStackManager::Log()}}
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#else}}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ salloc(size)\ alloca(size)}}
-\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ sallocT(T,\ count)\ static\_cast<T*>(alloca(sizeof(T)\ *\ count))}}
-\DoxyCodeLine{00037\ }
-\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ LogStackMemory()}}
-\DoxyCodeLine{00039\ }
-\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{00041\ }
-\DoxyCodeLine{00042\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{namespace\ }core\ \{}
-\DoxyCodeLine{00045\ }
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{namespacexpe_1_1core_ae5d0b54168ae6e02cf8c8b7d9327c96f}{align16\_malloc}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{size}});}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \textcolor{keywordtype}{void}\ \ \mbox{\hyperlink{namespacexpe_1_1core_a10508d83f4fe37b4a622196fe785a7b5}{align16\_free}}(\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{address}});}
-\DoxyCodeLine{00048\ }
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator}{cHotAllocator}}}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00052\ }
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator_ab5ecfcfe024492cddaaf83e1cf399e40}{value\_type}};}
-\DoxyCodeLine{00055\ }
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator_a56223db2c0e1b0547731616338d7127e}{cHotAllocator}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00057\ }
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator_a2bb628cfee24a72086a3dab9a2e4ef6c}{cHotAllocator}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cHotAllocator<U>}}\&)\ \textcolor{keyword}{noexcept}\ \{\}}
-\DoxyCodeLine{00060\ }
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ [[\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{nodiscard}}]]\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}}*\ \mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator_a83586b7354621fe8c38d09bdf7f715a2}{allocate}}(std::size\_t\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{count}})}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}}*\textcolor{keyword}{>}(\mbox{\hyperlink{core_2allocators_8hpp_a907c182cb7f92ee2064968fda57d6656}{hot\_alloc}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}})\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{count}}));}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00065\ }
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator_ac22b8b9b09101333e086e1b5c4878302}{deallocate}}(\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{element}},\ std::size\_t\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{count}})\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{core_2allocators_8hpp_a787bfb5b87d8abdec2e3c38601cf4a31}{hot\_free}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{element}});}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00071\ }
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U>}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a532904247c5a467c46d0af45f025fdd2}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cHotAllocator<T>}}\&,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cHotAllocator<U>}}\&)\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \}}
-\DoxyCodeLine{00074\ }
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U>}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a4e5ab867c8d0a0ed3fb0ac3ec7dd8caa}{operator!=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cHotAllocator<T>}}\&,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cHotAllocator<U>}}\&)\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classxpe_1_1core_1_1c_main_allocator}{cMainAllocator}}}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00081\ }
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_main_allocator_a855065a97a2bc149b3054b76b66d17ca}{value\_type}};}
-\DoxyCodeLine{00084\ }
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_main_allocator_aa150d0e4f524c33c8cb2b4d1949897b8}{cMainAllocator}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00086\ }
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_main_allocator_a9224359fd1505bf67899bc4f4d6a7959}{cMainAllocator}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cMainAllocator<U>}}\&)\ \textcolor{keyword}{noexcept}\ \{\}}
-\DoxyCodeLine{00089\ }
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ [[\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{nodiscard}}]]\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}}*\ \mbox{\hyperlink{classxpe_1_1core_1_1c_main_allocator_afbc9b354b3cbfc82c5993edef67a3539}{allocate}}(std::size\_t\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{count}})}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}}*\textcolor{keyword}{>}(\mbox{\hyperlink{core_2allocators_8hpp_a0b2c774a281f8d83b9add0b64bf4cff1}{main\_alloc}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}})\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{count}}));}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00094\ }
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_main_allocator_a682580bb1b6b9f607dc7cef8114a650c}{deallocate}}(\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{element}},\ std::size\_t\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{count}})\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{core_2allocators_8hpp_a998b108b08cd42f273b431e77afe83cc}{main\_free}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{element}});}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00100\ }
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U>}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a532904247c5a467c46d0af45f025fdd2}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cMainAllocator<T>}}\&,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cMainAllocator<U>}}\&)\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \}}
-\DoxyCodeLine{00103\ }
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U>}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a4e5ab867c8d0a0ed3fb0ac3ec7dd8caa}{operator!=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cMainAllocator<T>}}\&,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cMainAllocator<U>}}\&)\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
-\DoxyCodeLine{00106\ }
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_memory_stack_manager}{cMemoryStackManager}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}}
-\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_memory_stack_manager_a5859b3442e622e9b688291501d3af07c}{TotalAllocCount}};}
-\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_memory_stack_manager_a46c4ed527f799eefe7e6cd61b79919b6}{MemoryOccupiedBytes}};}
-\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Log();}
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00114\ }
-\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_stack_allocator}{sStackAllocator}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}}
-\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ Size\ =\ 0;}
-\DoxyCodeLine{00118\ }
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_stack_allocator}{sStackAllocator}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{size}});}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_stack_allocator}{\string~sStackAllocator}}();}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00122\ }
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structxpe_1_1core_1_1s_stack_typed_allocator}{sStackTypedAllocator}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}}
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_stack_typed_allocator_aed21b1e9ca7688dcec87e00bd857fbd9}{Size}}\ =\ 0;}
-\DoxyCodeLine{00127\ }
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_stack_typed_allocator_a63ca56f4ed115eee4ad13d2ff4b04ff7}{sStackTypedAllocator}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{count}});}
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_stack_typed_allocator_a0bf3824fb6bb58a7b1f0c3b57e20a43b}{\string~sStackTypedAllocator}}();}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00131\ }
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_stack_typed_allocator_a63ca56f4ed115eee4ad13d2ff4b04ff7}{sStackTypedAllocator<T>::sStackTypedAllocator}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{count}})\ :\ Size(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sizeof}}(\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}})\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{count}})}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_memory_stack_manager_a5859b3442e622e9b688291501d3af07c}{cMemoryStackManager::TotalAllocCount}}\ +=\ 1;}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_memory_stack_manager_a46c4ed527f799eefe7e6cd61b79919b6}{cMemoryStackManager::MemoryOccupiedBytes}}\ +=\ \mbox{\hyperlink{structxpe_1_1core_1_1s_stack_typed_allocator_aed21b1e9ca7688dcec87e00bd857fbd9}{Size}};}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00138\ }
-\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_stack_typed_allocator_a0bf3824fb6bb58a7b1f0c3b57e20a43b}{sStackTypedAllocator<T>::\string~sStackTypedAllocator}}()}
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_memory_stack_manager_a5859b3442e622e9b688291501d3af07c}{cMemoryStackManager::TotalAllocCount}}\ -\/=\ 1;}
-\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_memory_stack_manager_a46c4ed527f799eefe7e6cd61b79919b6}{cMemoryStackManager::MemoryOccupiedBytes}}\ -\/=\ Size;}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00145\ }
-\DoxyCodeLine{00146\ \ \ \ \ \}}
-\DoxyCodeLine{00147\ }
-\DoxyCodeLine{00148\ \}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00003}\mbox{\hyperlink{core_2allocators_8hpp_a907c182cb7f92ee2064968fda57d6656}{00003}}\ \textcolor{preprocessor}{\#define\ hot\_alloc(size)\ xpe::core::cMemoryManager::HotPools-\/>Allocate(size)}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00004}\mbox{\hyperlink{core_2allocators_8hpp_ab1b790797d76f5cdbf0071e7c6bd1f4f}{00004}}\ \textcolor{preprocessor}{\#define\ hot\_allocT(T,\ count)\ static\_cast<T*>(hot\_alloc(sizeof(T)\ *\ count))}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00005}\mbox{\hyperlink{core_2allocators_8hpp_a2bfcf8361a911e1d5f9356cea3ea74c8}{00005}}\ \textcolor{preprocessor}{\#define\ hot\_construct(T)\ xpe::core::cMemoryManager::HotPools-\/>AllocateConstruct<T>()}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00006}\mbox{\hyperlink{core_2allocators_8hpp_ac67ca42f522dd054da17196865395fc2}{00006}}\ \textcolor{preprocessor}{\#define\ hot\_construct\_args(T,\ ...)\ xpe::core::cMemoryManager::HotPools-\/>AllocateConstructArgs<T>(\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00007}\mbox{\hyperlink{core_2allocators_8hpp_a787bfb5b87d8abdec2e3c38601cf4a31}{00007}}\ \textcolor{preprocessor}{\#define\ hot\_free(addr)\ xpe::core::cMemoryManager::HotPools-\/>Free(addr)}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00008}\mbox{\hyperlink{core_2allocators_8hpp_a375348b94c144f7dd96baac0e308ef4e}{00008}}\ \textcolor{preprocessor}{\#define\ hot\_destruct(T,\ addr)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00009}00009\ \textcolor{preprocessor}{addr-\/>\string~T();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00010}00010\ \textcolor{preprocessor}{hot\_free(addr)}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00012}\mbox{\hyperlink{core_2allocators_8hpp_a0b2c774a281f8d83b9add0b64bf4cff1}{00012}}\ \textcolor{preprocessor}{\#define\ main\_alloc(size)\ xpe::core::cMemoryManager::MainPools-\/>Allocate(size)}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00013}\mbox{\hyperlink{core_2allocators_8hpp_a302f380460dc88796d2decc19478bf62}{00013}}\ \textcolor{preprocessor}{\#define\ main\_allocT(T,\ count)\ static\_cast<T*>(main\_alloc(sizeof(T)\ *\ count))}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00014}\mbox{\hyperlink{core_2allocators_8hpp_ad15daf8841b5c2684e797833d6d948ec}{00014}}\ \textcolor{preprocessor}{\#define\ main\_construct(T)\ xpe::core::cMemoryManager::MainPools-\/>AllocateConstruct<T>()}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00015}\mbox{\hyperlink{core_2allocators_8hpp_af6f8111492d698bb692248ef013f538a}{00015}}\ \textcolor{preprocessor}{\#define\ main\_construct\_args(T,\ ...)\ xpe::core::cMemoryManager::MainPools-\/>AllocateConstructArgs<T>(\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00016}\mbox{\hyperlink{core_2allocators_8hpp_a998b108b08cd42f273b431e77afe83cc}{00016}}\ \textcolor{preprocessor}{\#define\ main\_free(addr)\ xpe::core::cMemoryManager::MainPools-\/>Free(addr)}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00017}\mbox{\hyperlink{core_2allocators_8hpp_a1141b5be50573f8004090ec0346d4cec}{00017}}\ \textcolor{preprocessor}{\#define\ main\_destruct(T,\ addr)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00018}00018\ \textcolor{preprocessor}{addr-\/>\string~T();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00019}00019\ \textcolor{preprocessor}{main\_free(addr)}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00021}00021\ \textcolor{preprocessor}{\#ifdef\ DEBUG}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00023}00023\ \textcolor{preprocessor}{\#define\ TOKENPASTE(x,\ y)\ x\ \#\#\ y}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00024}00024\ \textcolor{preprocessor}{\#define\ TOKENPASTE2(x,\ y)\ TOKENPASTE(x,\ y)}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00025}00025\ \textcolor{preprocessor}{\#define\ STACK(size)\ xpe::core::sStackAllocator\ TOKENPASTE2(s\_,\ \_\_LINE\_\_)(size)}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00026}00026\ \textcolor{preprocessor}{\#define\ STACKT(T,\ count)\ xpe::core::sStackTypedAllocator<T>\ TOKENPASTE2(s\_,\ \_\_LINE\_\_)(count)}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00028}00028\ \textcolor{preprocessor}{\#define\ salloc(size)\ alloca(size);\ STACK(size)}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00029}00029\ \textcolor{preprocessor}{\#define\ sallocT(T,\ count)\ static\_cast<T*>(alloca(sizeof(T)\ *\ count));\ STACKT(T,\ count)}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00031}00031\ \textcolor{preprocessor}{\#define\ LogStackMemory()\ xpe::core::cMemoryStackManager::Log()}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00033}00033\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00035}\mbox{\hyperlink{core_2allocators_8hpp_a8cf9fa12fa5eb5f94831f79c7bc47caf}{00035}}\ \textcolor{preprocessor}{\#define\ salloc(size)\ alloca(size)}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00036}\mbox{\hyperlink{core_2allocators_8hpp_aec82d3215267096f8c99bd3378cba794}{00036}}\ \textcolor{preprocessor}{\#define\ sallocT(T,\ count)\ static\_cast<T*>(alloca(sizeof(T)\ *\ count))}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00038}\mbox{\hyperlink{core_2allocators_8hpp_abdfa33f12655d0a8f26a1fb077ee2f0a}{00038}}\ \textcolor{preprocessor}{\#define\ LogStackMemory()}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00040}00040\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00042}00042\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00044}00044\ \ \ \ \ \textcolor{keyword}{namespace\ }core\ \{}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{namespacexpe_1_1core_ae5d0b54168ae6e02cf8c8b7d9327c96f}{align16\_malloc}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{size}});}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \textcolor{keywordtype}{void}\ \ \mbox{\hyperlink{namespacexpe_1_1core_a10508d83f4fe37b4a622196fe785a7b5}{align16\_free}}(\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{address}});}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00050}\mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator}{00050}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator}{cHotAllocator}}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00054}\mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator_ab5ecfcfe024492cddaaf83e1cf399e40}{00054}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator_ab5ecfcfe024492cddaaf83e1cf399e40}{value\_type}};}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00056}\mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator_a56223db2c0e1b0547731616338d7127e}{00056}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator_a56223db2c0e1b0547731616338d7127e}{cHotAllocator}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00059}\mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator_a2bb628cfee24a72086a3dab9a2e4ef6c}{00059}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator_a2bb628cfee24a72086a3dab9a2e4ef6c}{cHotAllocator}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cHotAllocator<U>}}\&)\ \textcolor{keyword}{noexcept}\ \{\}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00061}\mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator_a83586b7354621fe8c38d09bdf7f715a2}{00061}}\ \ \ \ \ \ \ \ \ \ \ \ \ [[\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{nodiscard}}]]\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}}*\ \mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator_a83586b7354621fe8c38d09bdf7f715a2}{allocate}}(std::size\_t\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{count}})}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}}*\textcolor{keyword}{>}(\mbox{\hyperlink{core_2allocators_8hpp_a907c182cb7f92ee2064968fda57d6656}{hot\_alloc}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}})\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{count}}));}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00066}\mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator_ac22b8b9b09101333e086e1b5c4878302}{00066}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_hot_allocator_ac22b8b9b09101333e086e1b5c4878302}{deallocate}}(\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{element}},\ std::size\_t\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{count}})\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{core_2allocators_8hpp_a787bfb5b87d8abdec2e3c38601cf4a31}{hot\_free}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{element}});}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U>}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00073}\mbox{\hyperlink{namespacexpe_1_1core_a532904247c5a467c46d0af45f025fdd2}{00073}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a532904247c5a467c46d0af45f025fdd2}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cHotAllocator<T>}}\&,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cHotAllocator<U>}}\&)\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U>}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00076}\mbox{\hyperlink{namespacexpe_1_1core_a4e5ab867c8d0a0ed3fb0ac3ec7dd8caa}{00076}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a4e5ab867c8d0a0ed3fb0ac3ec7dd8caa}{operator!=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cHotAllocator<T>}}\&,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cHotAllocator<U>}}\&)\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00079}\mbox{\hyperlink{classxpe_1_1core_1_1c_main_allocator}{00079}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classxpe_1_1core_1_1c_main_allocator}{cMainAllocator}}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00083}\mbox{\hyperlink{classxpe_1_1core_1_1c_main_allocator_a855065a97a2bc149b3054b76b66d17ca}{00083}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_main_allocator_a855065a97a2bc149b3054b76b66d17ca}{value\_type}};}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00085}\mbox{\hyperlink{classxpe_1_1core_1_1c_main_allocator_aa150d0e4f524c33c8cb2b4d1949897b8}{00085}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_main_allocator_aa150d0e4f524c33c8cb2b4d1949897b8}{cMainAllocator}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00088}\mbox{\hyperlink{classxpe_1_1core_1_1c_main_allocator_a9224359fd1505bf67899bc4f4d6a7959}{00088}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_main_allocator_a9224359fd1505bf67899bc4f4d6a7959}{cMainAllocator}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cMainAllocator<U>}}\&)\ \textcolor{keyword}{noexcept}\ \{\}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00090}\mbox{\hyperlink{classxpe_1_1core_1_1c_main_allocator_afbc9b354b3cbfc82c5993edef67a3539}{00090}}\ \ \ \ \ \ \ \ \ \ \ \ \ [[\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{nodiscard}}]]\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}}*\ \mbox{\hyperlink{classxpe_1_1core_1_1c_main_allocator_afbc9b354b3cbfc82c5993edef67a3539}{allocate}}(std::size\_t\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{count}})}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}}*\textcolor{keyword}{>}(\mbox{\hyperlink{core_2allocators_8hpp_a0b2c774a281f8d83b9add0b64bf4cff1}{main\_alloc}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}})\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{count}}));}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00095}\mbox{\hyperlink{classxpe_1_1core_1_1c_main_allocator_a682580bb1b6b9f607dc7cef8114a650c}{00095}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_main_allocator_a682580bb1b6b9f607dc7cef8114a650c}{deallocate}}(\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{element}},\ std::size\_t\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{count}})\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{core_2allocators_8hpp_a998b108b08cd42f273b431e77afe83cc}{main\_free}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{element}});}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U>}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00102}\mbox{\hyperlink{namespacexpe_1_1core_ad6278e712d614cc282526c661f1a384c}{00102}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a532904247c5a467c46d0af45f025fdd2}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cMainAllocator<T>}}\&,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cMainAllocator<U>}}\&)\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U>}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00105}\mbox{\hyperlink{namespacexpe_1_1core_a6f7897a848f4c0cbdf34467fbec365f5}{00105}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a4e5ab867c8d0a0ed3fb0ac3ec7dd8caa}{operator!=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cMainAllocator<T>}}\&,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{cMainAllocator<U>}}\&)\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00107}\mbox{\hyperlink{classxpe_1_1core_1_1c_memory_stack_manager}{00107}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_memory_stack_manager}{cMemoryStackManager}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00110}\mbox{\hyperlink{classxpe_1_1core_1_1c_memory_stack_manager_a5859b3442e622e9b688291501d3af07c}{00110}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_memory_stack_manager_a5859b3442e622e9b688291501d3af07c}{TotalAllocCount}};}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00111}\mbox{\hyperlink{classxpe_1_1core_1_1c_memory_stack_manager_a46c4ed527f799eefe7e6cd61b79919b6}{00111}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_memory_stack_manager_a46c4ed527f799eefe7e6cd61b79919b6}{MemoryOccupiedBytes}};}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Log();}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00115}\mbox{\hyperlink{structxpe_1_1core_1_1s_stack_allocator}{00115}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_stack_allocator}{sStackAllocator}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00117}\mbox{\hyperlink{structxpe_1_1core_1_1s_stack_allocator_abd96ad59d71860593d1f27d00ded4f48}{00117}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ Size\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_stack_allocator}{sStackAllocator}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{size}});}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_stack_allocator}{\string~sStackAllocator}}();}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00124}\mbox{\hyperlink{structxpe_1_1core_1_1s_stack_typed_allocator}{00124}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structxpe_1_1core_1_1s_stack_typed_allocator}{sStackTypedAllocator}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00126}\mbox{\hyperlink{structxpe_1_1core_1_1s_stack_typed_allocator_aed21b1e9ca7688dcec87e00bd857fbd9}{00126}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_stack_typed_allocator_aed21b1e9ca7688dcec87e00bd857fbd9}{Size}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_stack_typed_allocator_a63ca56f4ed115eee4ad13d2ff4b04ff7}{sStackTypedAllocator}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{count}});}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_stack_typed_allocator_a0bf3824fb6bb58a7b1f0c3b57e20a43b}{\string~sStackTypedAllocator}}();}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00133}\mbox{\hyperlink{structxpe_1_1core_1_1s_stack_typed_allocator_a63ca56f4ed115eee4ad13d2ff4b04ff7}{00133}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_stack_typed_allocator_a63ca56f4ed115eee4ad13d2ff4b04ff7}{sStackTypedAllocator<T>::sStackTypedAllocator}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{usize}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{count}})\ :\ Size(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sizeof}}(\mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8af3764cd9d20fc009f54427329b8d297b}{T}})\ *\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{count}})}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_memory_stack_manager_a5859b3442e622e9b688291501d3af07c}{cMemoryStackManager::TotalAllocCount}}\ +=\ 1;}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_memory_stack_manager_a46c4ed527f799eefe7e6cd61b79919b6}{cMemoryStackManager::MemoryOccupiedBytes}}\ +=\ \mbox{\hyperlink{structxpe_1_1core_1_1s_stack_typed_allocator_aed21b1e9ca7688dcec87e00bd857fbd9}{Size}};}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00140}\mbox{\hyperlink{structxpe_1_1core_1_1s_stack_typed_allocator_a0bf3824fb6bb58a7b1f0c3b57e20a43b}{00140}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_stack_typed_allocator_a0bf3824fb6bb58a7b1f0c3b57e20a43b}{sStackTypedAllocator<T>::\string~sStackTypedAllocator}}()}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_memory_stack_manager_a5859b3442e622e9b688291501d3af07c}{cMemoryStackManager::TotalAllocCount}}\ -\/=\ 1;}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_memory_stack_manager_a46c4ed527f799eefe7e6cd61b79919b6}{cMemoryStackManager::MemoryOccupiedBytes}}\ -\/=\ Size;}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00146}00146\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{core_2allocators_8hpp_source_l00148}00148\ \}}
 
 \end{DoxyCode}

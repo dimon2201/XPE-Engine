@@ -1,0 +1,19 @@
+<map id="xpe::render::sGeometry" name="xpe::render::sGeometry">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,183,164,209"/>
+<area shape="rect" id="Node000002" href="$structxpe_1_1ecs_1_1_c_geometry.html" title=" " alt="" coords="212,5,358,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,168,144,105,175,71,210,42,231,30,234,35,213,46,179,75,148,108,104,171"/>
+<area shape="rect" id="Node000003" href="$structxpe_1_1render_1_1s_cube.html" title=" " alt="" coords="219,56,351,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="109,170,154,131,210,92,235,81,238,86,213,97,157,135,112,174"/>
+<area shape="rect" id="Node000004" href="$structxpe_1_1render_1_1s_line.html" title=" " alt="" coords="222,107,348,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="132,174,211,143,242,131,244,136,213,148,134,179"/>
+<area shape="rect" id="Node000005" href="$structxpe_1_1render_1_1s_model.html" title=" " alt="" coords="217,157,353,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="179,181,216,177,217,182,179,187"/>
+<area shape="rect" id="Node000006" href="$structxpe_1_1render_1_1s_plane.html" title=" " alt="" coords="218,208,352,235"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="179,205,218,210,217,216,179,211"/>
+<area shape="rect" id="Node000007" href="$structxpe_1_1render_1_1s_quad.html" title=" " alt="" coords="219,259,351,285"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="134,213,213,244,244,256,242,261,211,249,132,218"/>
+<area shape="rect" id="Node000008" href="$structxpe_1_1render_1_1s_sphere.html" title=" " alt="" coords="214,309,356,336"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="112,218,157,257,213,295,238,306,235,311,210,300,154,261,109,222"/>
+<area shape="rect" id="Node000009" href="$structxpe_1_1render_1_1s_triangle.html" title=" " alt="" coords="212,360,358,387"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="104,221,148,284,179,317,213,346,234,357,231,362,210,350,175,321,144,287,99,224"/>
+</map>

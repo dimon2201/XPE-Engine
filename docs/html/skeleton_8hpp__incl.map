@@ -1,0 +1,19 @@
+<map id="engine/src/anim/skeleton.hpp" name="engine/src/anim/skeleton.hpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="35,5,226,32"/>
+<area shape="rect" id="Node000002" href="$anim_8hpp.html" title=" " alt="" coords="5,88,112,115"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,34,81,79,77,75,117,31"/>
+<area shape="rect" id="Node000003" href="$geometry_8hpp.html" title=" " alt="" coords="136,80,269,123"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="144,31,176,67,172,70,140,34"/>
+<area shape="rect" id="Node000004" href="$buffers_8hpp.html" title=" " alt="" coords="132,171,273,197"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="205,123,205,155,200,155,200,123"/>
+<area shape="rect" id="Node000005" href="$rendering_2core_2context_8hpp.html" title=" " alt="" coords="115,245,290,272"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="205,198,205,230,200,230,200,198"/>
+<area shape="rect" id="Node000006" href="$shader_8hpp.html" title=" " alt="" coords="117,320,288,347"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="205,273,205,304,200,304,200,273"/>
+<area shape="rect" id="Node000007" href="$render__target_8hpp.html" title=" " alt="" coords="131,395,274,437"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="205,347,205,379,200,379,200,347"/>
+<area shape="rect" id="Node000008" href="$texture_8hpp.html" title=" " alt="" coords="116,485,289,512"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="205,438,205,469,200,469,200,438"/>
+<area shape="rect" id="Node000009" href="$rendering_2core_2core_8hpp.html" title=" " alt="" coords="124,560,281,587"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="205,513,205,544,200,544,200,513"/>
+</map>

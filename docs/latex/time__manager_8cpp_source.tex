@@ -1,0 +1,22 @@
+\doxysection{time\+\_\+manager.\+cpp}
+\hypertarget{time__manager_8cpp_source}{}\label{time__manager_8cpp_source}\index{engine/src/core/time\_manager.cpp@{engine/src/core/time\_manager.cpp}}
+\mbox{\hyperlink{time__manager_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{time__manager_8cpp_source_l00001}00001\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{time__manager_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{time__manager_8cpp_source_l00003}00003\ \ \ \ \ \textcolor{keyword}{namespace\ }core\ \{}
+\DoxyCodeLine{\Hypertarget{time__manager_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{time__manager_8cpp_source_l00005}\mbox{\hyperlink{classxpe_1_1core_1_1c_time_manager_ad4eee807afc073e9b6664251e5622f29}{00005}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_time}{cTime}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_time_manager_ad4eee807afc073e9b6664251e5622f29}{cTimeManager::Now}}()\ \{}
+\DoxyCodeLine{\Hypertarget{time__manager_8cpp_source_l00006}00006\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{time}}\ =\ system\_clock::now();}
+\DoxyCodeLine{\Hypertarget{time__manager_8cpp_source_l00007}00007\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_time_manager_aa45fb82e71fef143167e16ac124b1c03}{Cast}}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{time}});}
+\DoxyCodeLine{\Hypertarget{time__manager_8cpp_source_l00008}00008\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{time__manager_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{time__manager_8cpp_source_l00010}\mbox{\hyperlink{classxpe_1_1core_1_1c_time_manager_aa45fb82e71fef143167e16ac124b1c03}{00010}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classxpe_1_1core_1_1c_time}{cTime}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_time_manager_aa45fb82e71fef143167e16ac124b1c03}{cTimeManager::Cast}}(\textcolor{keyword}{const}\ system\_clock::time\_point\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{time}})\ \{}
+\DoxyCodeLine{\Hypertarget{time__manager_8cpp_source_l00011}00011\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{duration\_cast<duration<float>}}>(\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{time}}.time\_since\_epoch()).\mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{count}}()\ *\ 1000);}
+\DoxyCodeLine{\Hypertarget{time__manager_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{time__manager_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{time__manager_8cpp_source_l00014}00014\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{time__manager_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{time__manager_8cpp_source_l00016}00016\ \}}
+
+\end{DoxyCode}

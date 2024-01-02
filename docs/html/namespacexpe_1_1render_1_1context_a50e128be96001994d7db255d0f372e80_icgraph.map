@@ -1,0 +1,8 @@
+<map id="xpe::render::context::ResizeSwapchain" name="xpe::render::context::ResizeSwapchain">
+<area shape="rect" id="Node000001" title=" " alt="" coords="404,29,541,72"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="504,16,492,10,473,8,454,10,443,15,439,21,440,28,435,29,434,19,440,10,453,5,473,3,494,5,507,11"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1render_1_1c_canvas.html#a01d13a50afd94a2e6d847eb2ef0c186b" title=" " alt="" coords="197,29,356,72"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="388,53,357,53,357,48,388,48"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1render_1_1c_canvas.html#a8b2bcc95a8e76bff19d4aaa3938e8450" title=" " alt="" coords="5,29,149,72"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="181,53,149,53,149,48,181,48"/>
+</map>

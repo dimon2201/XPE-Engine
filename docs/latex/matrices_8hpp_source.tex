@@ -2,78 +2,78 @@
 \hypertarget{matrices_8hpp_source}{}\label{matrices_8hpp_source}\index{engine/src/math/matrices.hpp@{engine/src/math/matrices.hpp}}
 \mbox{\hyperlink{matrices_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
-\DoxyCodeLine{00004\ }
-\DoxyCodeLine{00005\ \ \ \ \ \textcolor{keyword}{namespace\ }math\ \{}
-\DoxyCodeLine{00006\ }
-\DoxyCodeLine{00007\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1math_1_1s_model_matrix}{sModelMatrix}}}
-\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ Position\ =\ \{\ 0,\ 0,\ 0\ \};}
-\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ Rotation\ =\ \{\ 0,\ 0,\ 0\ \};}
-\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ Scale\ =\ \{\ 1,\ 1,\ 1\ \};}
-\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00013\ }
-\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(}
-\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1math_1_1s_model_matrix}{sModelMatrix}},}
-\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ Position,}
-\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ Rotation,}
-\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ Scale}
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ )}
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sViewMatrix}}}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ Position\ =\ \{\ 0,\ 0,\ 1\ \};}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ Front\ =\ \{\ 0,\ 0,\ 0\ \};}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7624dd9549d662e8a5ce24b7c5155dbd}{Up}}\ =\ \{\ 0,\ 1,\ 0\ \};}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00027\ }
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sViewMatrix}},}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ Position,}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ Front,}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7624dd9549d662e8a5ce24b7c5155dbd}{Up}}}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ )}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ sOrthoMatrix}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a6e36d935ef09f3b1505f7e5ae139c91e}{Left}}\ =\ 0;}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7f4d601e14ef73841afa47a3d9f6aa13}{Right}}\ =\ 1;}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Bottom}}\ =\ 0;}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Top\ =\ 1;}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Near\ =\ 0.1f;}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Far\ =\ 1.0f;}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00044\ }
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ sOrthoMatrix,}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a6e36d935ef09f3b1505f7e5ae139c91e}{Left}},}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7f4d601e14ef73841afa47a3d9f6aa13}{Right}},}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Bottom}},}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ Top,}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ Near,}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ Far}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ )}
-\DoxyCodeLine{00054\ }
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ sPerspectiveMatrix}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{FovDegree}}\ =\ 60.0f;}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ AspectRatio\ =\ 1.3f;}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Near\ =\ 0.1f;}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Far\ =\ 100.0f;}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ sPerspectiveMatrix,}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{FovDegree}},}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ AspectRatio,}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ Near,}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ Far}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ )}
-\DoxyCodeLine{00070\ }
-\DoxyCodeLine{00071\ \ \ \ \ \}}
-\DoxyCodeLine{00072\ }
-\DoxyCodeLine{00073\ \}}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00003}00003\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}\ \{}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00005}00005\ \ \ \ \ \textcolor{keyword}{namespace\ }math\ \{}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00007}\mbox{\hyperlink{structxpe_1_1math_1_1s_model_matrix}{00007}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1math_1_1s_model_matrix}{sModelMatrix}}}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00008}00008\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00009}\mbox{\hyperlink{structxpe_1_1math_1_1s_model_matrix_a703c5fc61342a9749f76805dccaae0c5}{00009}}\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ Position\ =\ \{\ 0,\ 0,\ 0\ \};}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00010}\mbox{\hyperlink{structxpe_1_1math_1_1s_model_matrix_a839495fca075487c2d3f777d62f0b396}{00010}}\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ Rotation\ =\ \{\ 0,\ 0,\ 0\ \};}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00011}\mbox{\hyperlink{structxpe_1_1math_1_1s_model_matrix_a6230178a1e3d66ec14155442f2cb139a}{00011}}\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ Scale\ =\ \{\ 1,\ 1,\ 1\ \};}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00014}\mbox{\hyperlink{namespacexpe_1_1math_aac02ad64d4e89e0dc7089b884ba631a6}{00014}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1math_1_1s_model_matrix}{sModelMatrix}},}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ Position,}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ Rotation,}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ Scale}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00019}00019\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sViewMatrix}}}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ Position\ =\ \{\ 0,\ 0,\ 1\ \};}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ Front\ =\ \{\ 0,\ 0,\ 0\ \};}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7624dd9549d662e8a5ce24b7c5155dbd}{Up}}\ =\ \{\ 0,\ 1,\ 0\ \};}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00028}\mbox{\hyperlink{namespacexpe_1_1math_a1a2ce8e134b89e865c1b5d903113129e}{00028}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{sViewMatrix}},}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ Position,}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ Front,}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7624dd9549d662e8a5ce24b7c5155dbd}{Up}}}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00033}00033\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ sOrthoMatrix}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a6e36d935ef09f3b1505f7e5ae139c91e}{Left}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7f4d601e14ef73841afa47a3d9f6aa13}{Right}}\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Bottom}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Top\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Near\ =\ 0.1f;}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Far\ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00045}\mbox{\hyperlink{namespacexpe_1_1math_ad598b02ad44bbb24718c80baba9d88f8}{00045}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ sOrthoMatrix,}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a6e36d935ef09f3b1505f7e5ae139c91e}{Left}},}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_ae6ef6570753015ed6148c228eaac7bf8a7f4d601e14ef73841afa47a3d9f6aa13}{Right}},}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{Bottom}},}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ Top,}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ Near,}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ Far}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00053}00053\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ sPerspectiveMatrix}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{FovDegree}}\ =\ 60.0f;}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ AspectRatio\ =\ 1.3f;}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Near\ =\ 0.1f;}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Far\ =\ 100.0f;}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{json_8hpp_a64a0d7950ac2a45cdc342a649e970f96}{JSON}}(}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ sPerspectiveMatrix,}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{FovDegree}},}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ AspectRatio,}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ Near,}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ Far}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00069}00069\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00071}00071\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{matrices_8hpp_source_l00073}00073\ \}}
 
 \end{DoxyCode}

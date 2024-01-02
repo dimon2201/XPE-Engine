@@ -1,0 +1,17 @@
+<map id="xpe::render::sCameraBuffer" name="xpe::render::sCameraBuffer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="82,355,261,381"/>
+<area shape="rect" id="Node000002" href="$structxpe_1_1render_1_1s_item_buffer.html" title=" " alt="" coords="92,263,251,305"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="174,321,174,354,169,354,169,321"/>
+<area shape="rect" id="Node000003" href="$structxpe_1_1render_1_1s_buffer.html" title=" " alt="" coords="16,172,151,199"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="107,208,155,260,151,264,103,212"/>
+<area shape="rect" id="Node000004" href="$structxpe_1_1render_1_1s_resource.html" title=" " alt="" coords="5,81,162,108"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="86,124,86,171,81,171,81,124"/>
+<area shape="rect" id="Node000005" href="$classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="135,5,264,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="169,43,105,83,102,79,166,38"/>
+<area shape="rect" id="Node000006" href="$structxpe_1_1render_1_1s_camera_data.html" title=" " alt="" coords="174,172,348,199"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="209,46,227,107,256,170,252,172,222,109,204,48"/>
+<area shape="rect" id="Node000007" href="$structxpe_1_1render_1_1s_viewport.html" title=" " alt="" coords="237,81,389,108"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="233,39,295,79,292,83,230,43"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="241,212,193,264,189,260,237,208"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="300,123,271,173,266,170,295,120"/>
+</map>

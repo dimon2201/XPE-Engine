@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classxpe_1_1render_1_1c_skybox_manager.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li><li class="navelem"><a class="el" href="classxpe_1_1render_1_1c_skybox_manager.html">cSkyboxManager</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
@@ -84,6 +102,26 @@ $(function() {
 <div class="contents">
 
 <p><code>#include &lt;<a class="el" href="skybox__manager_8hpp_source.html">skybox_manager.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for xpe::render::cSkyboxManager:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_skybox_manager__coll__graph.png" border="0" usemap="#axpe_1_1render_1_1c_skybox_manager_coll__map" alt="Collaboration graph"/></div>
+<map name="axpe_1_1render_1_1c_skybox_manager_coll__map" id="axpe_1_1render_1_1c_skybox_manager_coll__map">
+<area shape="rect" title=" " alt="" coords="179,339,374,365"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_skybox.html" title=" " alt="" coords="204,248,349,275"/>
+<area shape="poly" title=" " alt="" coords="279,290,279,338,274,338,274,290"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_geometry.html" title=" " alt="" coords="5,157,164,184"/>
+<area shape="poly" title=" " alt="" coords="127,189,250,245,248,250,125,193"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_geometry_info.html" title=" " alt="" coords="187,157,366,184"/>
+<area shape="poly" title=" " alt="" coords="279,200,279,247,274,247,274,200"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_texture.html" title=" " alt="" coords="390,157,534,184"/>
+<area shape="poly" title=" " alt="" coords="427,194,364,226,310,250,308,245,362,222,425,189"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_resource.html" title=" " alt="" coords="384,81,540,108"/>
+<area shape="poly" title=" " alt="" coords="465,123,465,157,459,157,459,123"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="398,5,526,32"/>
+<area shape="poly" title=" " alt="" coords="465,47,465,81,459,81,459,47"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -99,7 +137,10 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:ab7bed947f4c5302e8104dce7e34d71bb" id="r_ab7bed947f4c5302e8104dce7e34d71bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structxpe_1_1render_1_1s_skybox.html">sSkybox</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab7bed947f4c5302e8104dce7e34d71bb">Skybox</a></td></tr>
 <tr class="separator:ab7bed947f4c5302e8104dce7e34d71bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="skybox__manager_8hpp_source.html#l00018">18</a> of file <a class="el" href="skybox__manager_8hpp_source.html">skybox_manager.hpp</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a38ce0b0196db0a643c46d2be4ac5d3cb" name="a38ce0b0196db0a643c46d2be4ac5d3cb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a38ce0b0196db0a643c46d2be4ac5d3cb">&#9670;&#160;</a></span>Free()</h2>
 
@@ -122,6 +163,8 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="skybox__manager_8cpp_source.html#l00014">14</a> of file <a class="el" href="skybox__manager_8cpp_source.html">skybox_manager.cpp</a>.</p>
 
 </div>
 </div>
@@ -148,6 +191,28 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="skybox__manager_8cpp_source.html#l00019">19</a> of file <a class="el" href="skybox__manager_8cpp_source.html">skybox_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_skybox_manager_a7dd6b461180ad3928c1b9b26d12c29b3_cgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_skybox_manager_a7dd6b461180ad3928c1b9b26d12c29b3_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_skybox_manager_a7dd6b461180ad3928c1b9b26d12c29b3_cgraph" id="aclassxpe_1_1render_1_1c_skybox_manager_a7dd6b461180ad3928c1b9b26d12c29b3_cgraph">
+<area shape="rect" title=" " alt="" coords="5,13,230,40"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_skybox_manager.html#aea9472d88211bd66da7999eabdb307cd" title=" " alt="" coords="278,5,473,48"/>
+<area shape="poly" title=" " alt="" coords="230,24,262,24,262,29,230,29"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_skybox_manager_a7dd6b461180ad3928c1b9b26d12c29b3_icgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_skybox_manager_a7dd6b461180ad3928c1b9b26d12c29b3_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_skybox_manager_a7dd6b461180ad3928c1b9b26d12c29b3_icgraph" id="aclassxpe_1_1render_1_1c_skybox_manager_a7dd6b461180ad3928c1b9b26d12c29b3_icgraph">
+<area shape="rect" title=" " alt="" coords="240,13,464,40"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_skybox_shader.html#ad0657596c465749935ee5c1b5aab5bfc" title=" " alt="" coords="5,5,192,48"/>
+<area shape="poly" title=" " alt="" coords="224,29,192,29,192,24,224,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="aea9472d88211bd66da7999eabdb307cd" name="aea9472d88211bd66da7999eabdb307cd"></a>
@@ -173,6 +238,20 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="skybox__manager_8cpp_source.html#l00009">9</a> of file <a class="el" href="skybox__manager_8cpp_source.html">skybox_manager.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_skybox_manager_aea9472d88211bd66da7999eabdb307cd_icgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_skybox_manager_aea9472d88211bd66da7999eabdb307cd_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_skybox_manager_aea9472d88211bd66da7999eabdb307cd_icgraph" id="aclassxpe_1_1render_1_1c_skybox_manager_aea9472d88211bd66da7999eabdb307cd_icgraph">
+<area shape="rect" title=" " alt="" coords="512,5,707,48"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_skybox_manager.html#a7dd6b461180ad3928c1b9b26d12c29b3" title=" " alt="" coords="240,13,464,40"/>
+<area shape="poly" title=" " alt="" coords="496,29,464,29,464,24,496,24"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_skybox_shader.html#ad0657596c465749935ee5c1b5aab5bfc" title=" " alt="" coords="5,5,192,48"/>
+<area shape="poly" title=" " alt="" coords="224,29,192,29,192,24,224,24"/>
+</map>
+</div>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -188,16 +267,22 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="skybox__manager_8hpp_source.html#l00026">26</a> of file <a class="el" href="skybox__manager_8hpp_source.html">skybox_manager.hpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>engine/src/rendering/<a class="el" href="skybox__manager_8hpp_source.html">skybox_manager.hpp</a></li>
-<li>engine/src/rendering/<a class="el" href="skybox__manager_8cpp.html">skybox_manager.cpp</a></li>
+<li>engine/src/rendering/<a class="el" href="skybox__manager_8cpp_source.html">skybox_manager.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li><li class="navelem"><a class="el" href="classxpe_1_1render_1_1c_skybox_manager.html">cSkyboxManager</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

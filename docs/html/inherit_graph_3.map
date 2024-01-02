@@ -1,0 +1,11 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,97,130,124"/>
+<area shape="rect" id="Node000001" href="$structxpe_1_1physics_1_1s_box_shape_descriptor.html" title=" " alt="" coords="178,5,407,32"/>
+<area shape="poly" id="edge4_Node000000_Node000001" title=" " alt="" coords="98,86,134,63,177,42,212,30,213,35,179,46,137,67,100,91"/>
+<area shape="rect" id="Node000002" href="$structxpe_1_1physics_1_1s_capsule_shape_descriptor.html" title=" " alt="" coords="195,56,390,99"/>
+<area shape="poly" id="edge5_Node000000_Node000002" title=" " alt="" coords="145,97,194,89,195,94,146,102"/>
+<area shape="rect" id="Node000003" href="$structxpe_1_1physics_1_1s_plane_shape_descriptor.html" title=" " alt="" coords="202,123,383,165"/>
+<area shape="poly" id="edge6_Node000000_Node000003" title=" " alt="" coords="145,119,202,128,201,133,145,125"/>
+<area shape="rect" id="Node000004" href="$structxpe_1_1physics_1_1s_sphere_shape_descriptor.html" title=" " alt="" coords="198,189,387,232"/>
+<area shape="poly" id="edge7_Node000000_Node000004" title=" " alt="" coords="102,131,138,154,179,175,208,186,206,191,177,180,136,158,99,136"/>
+</map>

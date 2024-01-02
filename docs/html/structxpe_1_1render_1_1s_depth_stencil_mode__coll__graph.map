@@ -1,0 +1,8 @@
+<map id="xpe::render::sDepthStencilMode" name="xpe::render::sDepthStencilMode">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,188,213,215"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="40,5,168,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,48,111,187,106,188,102,48"/>
+<area shape="rect" id="Node000003" href="$structxpe_1_1render_1_1s_stencil_test.html" title=" " alt="" coords="125,81,291,108"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="135,39,191,79,188,83,132,43"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="188,121,123,190,119,186,184,117"/>
+</map>

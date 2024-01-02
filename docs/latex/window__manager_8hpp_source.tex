@@ -2,118 +2,118 @@
 \hypertarget{window__manager_8hpp_source}{}\label{window__manager_8hpp_source}\index{engine/src/core/window\_manager.hpp@{engine/src/core/window\_manager.hpp}}
 \mbox{\hyperlink{window__manager_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}}
-\DoxyCodeLine{00004\ \{}
-\DoxyCodeLine{00005\ \ \ \ \ \textcolor{keyword}{namespace\ }core}
-\DoxyCodeLine{00006\ \ \ \ \ \{}
-\DoxyCodeLine{00007\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9}{eCursorMode}}}
-\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9a1e23852820b9154316c7c06e2b7ba051}{NORMAL}},}
-\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9a1e50e487f8672658546e3609404b53df}{HIDE}},}
-\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9afc93ea58f6d27ffed2b6518ffecf3e4e}{DISABLE}},}
-\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9a1f09b6651a28d99473712d885c2c31a3}{CAPTURED}},}
-\DoxyCodeLine{00013\ }
-\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9a5b39c8b553c821e7cddc6da64b5bd2ee}{DEFAULT}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9a1e23852820b9154316c7c06e2b7ba051}{NORMAL}}}
-\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacexpe_1_1core_a824c0df4ac99ea6c553e561da24f5ccc}{eWindowTheme}}}
-\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a824c0df4ac99ea6c553e561da24f5cccaf8589806bbf66241917092b2a6e18c6f}{LIGHT}},}
-\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a824c0df4ac99ea6c553e561da24f5cccaacaef50d33fc86532c260a045c672f3e}{DARK}},}
-\DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9a5b39c8b553c821e7cddc6da64b5bd2ee}{DEFAULT}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a824c0df4ac99ea6c553e561da24f5cccaf8589806bbf66241917092b2a6e18c6f}{LIGHT}}}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00024\ }
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor}{sWindowDescriptor}}}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_abeacae5dd25884d31e9b16fc50448178}{Title}};}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_a8030385588117fcdc1d58e52821dff97}{Width}};}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_a28561b3263b834433a0e5c4225251ea2}{Height}};}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_ad1b60bc35c4d6a23d1e13a7c11f660b5}{FrameWidth}};}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_ad00ce5b4a1f9e102bd12fec60bc958fc}{FrameHeight}};}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_a5cd3a322a51dc28601f0ddbd5936b378}{X}};}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_ae4ae37ad4db22feee6eb141986236944}{Y}};}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_a139f631a2603fa9c1f13df799874c65e}{VSync}};}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Fullscreen\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Gamma\ =\ 2.2f;\ \textcolor{comment}{//\ 2.2\ is\ not\ default\ for\ every\ monitor}}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Exposure\ =\ 1.0f;\ \textcolor{comment}{//\ level\ of\ camera\ exposure}}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9}{eCursorMode}}\ CursorMode\ =\ eCursorMode::DEFAULT;}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a824c0df4ac99ea6c553e561da24f5ccc}{eWindowTheme}}\ Theme\ =\ eWindowTheme::DEFAULT;}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00041\ }
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window}{sWindow}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ Instance\ =\ \textcolor{keyword}{nullptr};}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ Win32Instance\ =\ \textcolor{keyword}{nullptr};}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor}{sWindowDescriptor}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_aee788dddba446f855b1d3970d7de96cb}{Descriptor}};}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00048\ }
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_window_manager}{cWindowManager}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Init();}
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Free();}
-\DoxyCodeLine{00055\ }
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ InitWindow(\textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor}{sWindowDescriptor}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{windowDescriptor}});}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ FreeWindow();}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor}{sWindowDescriptor}}\&\ GetDescriptor();}
-\DoxyCodeLine{00060\ }
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ ShouldClose();}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Close();}
-\DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ PollEvents();}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Swap();}
-\DoxyCodeLine{00066\ }
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ IsWindowed();}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ IsFullscreen();}
-\DoxyCodeLine{00069\ }
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ GetWidth();}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ GetHeight();}
-\DoxyCodeLine{00072\ }
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ GetFrameWidth();}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ GetFrameHeight();}
-\DoxyCodeLine{00075\ }
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ GetPosX();}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ GetPosY();}
-\DoxyCodeLine{00078\ }
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ GetTitle();}
-\DoxyCodeLine{00080\ }
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}*\ GetInstance();}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}*\ GetWin32Instance();}
-\DoxyCodeLine{00083\ }
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ GetRefreshRate();}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ GetMonitorWidth();}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ GetMonitorHeight();}
-\DoxyCodeLine{00087\ }
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ SetPos(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a49526f1e6a80726936b0b54c8ac10411}{x}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{y}});}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ SetSize(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a531d26e89a16703584b7e1ec09302f99}{w}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{h}});}
-\DoxyCodeLine{00090\ }
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ SetUserPointer(\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{userPtr}});}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}*\ GetUserPointer();}
-\DoxyCodeLine{00093\ }
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ SetVSync(\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vsync}});}
-\DoxyCodeLine{00095\ }
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ SetFullscreen();}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ SetWindowed();}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ SetFullscreenWindowed();}
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ ToggleWindowMode();}
-\DoxyCodeLine{00100\ }
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ CreatePrimaryMonitor();}
-\DoxyCodeLine{00103\ }
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window}{sWindow}}\ s\_Window;}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ s\_WindowModeX;}
-\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ s\_WindowModeY;}
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ s\_WindowModeWidth;}
-\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ s\_WindowModeHeight;}
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ s\_EnableFullscreen;}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00111\ }
-\DoxyCodeLine{00112\ \ \ \ \ \}}
-\DoxyCodeLine{00113\ \}}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00003}00003\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacexpe}{xpe}}}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00004}00004\ \{}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00005}00005\ \ \ \ \ \textcolor{keyword}{namespace\ }core}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00006}00006\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00007}\mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9}{00007}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9}{eCursorMode}}}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00008}00008\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00009}00009\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9a1e23852820b9154316c7c06e2b7ba051}{NORMAL}},}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00010}00010\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9a1e50e487f8672658546e3609404b53df}{HIDE}},}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00011}00011\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9afc93ea58f6d27ffed2b6518ffecf3e4e}{DISABLE}},}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9a1f09b6651a28d99473712d885c2c31a3}{CAPTURED}},}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9a5b39c8b553c821e7cddc6da64b5bd2ee}{DEFAULT}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9a1e23852820b9154316c7c06e2b7ba051}{NORMAL}}}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00017}\mbox{\hyperlink{namespacexpe_1_1core_a824c0df4ac99ea6c553e561da24f5ccc}{00017}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacexpe_1_1core_a824c0df4ac99ea6c553e561da24f5ccc}{eWindowTheme}}}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a824c0df4ac99ea6c553e561da24f5cccaf8589806bbf66241917092b2a6e18c6f}{LIGHT}},}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a824c0df4ac99ea6c553e561da24f5cccaacaef50d33fc86532c260a045c672f3e}{DARK}},}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9a5b39c8b553c821e7cddc6da64b5bd2ee}{DEFAULT}}\ =\ \mbox{\hyperlink{namespacexpe_1_1core_a824c0df4ac99ea6c553e561da24f5cccaf8589806bbf66241917092b2a6e18c6f}{LIGHT}}}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00025}\mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor}{00025}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor}{sWindowDescriptor}}}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00027}\mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_abeacae5dd25884d31e9b16fc50448178}{00027}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_abeacae5dd25884d31e9b16fc50448178}{Title}};}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00028}\mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_a8030385588117fcdc1d58e52821dff97}{00028}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_a8030385588117fcdc1d58e52821dff97}{Width}};}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00029}\mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_a28561b3263b834433a0e5c4225251ea2}{00029}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_a28561b3263b834433a0e5c4225251ea2}{Height}};}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00030}\mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_ad1b60bc35c4d6a23d1e13a7c11f660b5}{00030}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_ad1b60bc35c4d6a23d1e13a7c11f660b5}{FrameWidth}};}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00031}\mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_ad00ce5b4a1f9e102bd12fec60bc958fc}{00031}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_ad00ce5b4a1f9e102bd12fec60bc958fc}{FrameHeight}};}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00032}\mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_a5cd3a322a51dc28601f0ddbd5936b378}{00032}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_a5cd3a322a51dc28601f0ddbd5936b378}{X}};}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00033}\mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_ae4ae37ad4db22feee6eb141986236944}{00033}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_accef6bf85b3c0f0eb539eb2a4f1c6109}{s32}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_ae4ae37ad4db22feee6eb141986236944}{Y}};}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00034}\mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_a139f631a2603fa9c1f13df799874c65e}{00034}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_a139f631a2603fa9c1f13df799874c65e}{VSync}};}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00035}\mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_accecff399d2a2aac407d5e6a07306b13}{00035}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Fullscreen\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00036}\mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_a83da1e1ac1cd29bab6b3ecd84f6a4012}{00036}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Gamma\ =\ 2.2f;\ \textcolor{comment}{//\ 2.2\ is\ not\ default\ for\ every\ monitor}}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00037}\mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_a90c1f78f2d1c9bd16d78819f3e57ece4}{00037}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Exposure\ =\ 1.0f;\ \textcolor{comment}{//\ level\ of\ camera\ exposure}}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00038}\mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_a0032ba121ba49c7ea012409675535f8a}{00038}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_aa255cadb2be4fc02d14cee6e1da73ac9}{eCursorMode}}\ CursorMode\ =\ eCursorMode::DEFAULT;}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00039}\mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor_a251d7e4cda638dad3d224de1b553f4b8}{00039}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacexpe_1_1core_a824c0df4ac99ea6c553e561da24f5ccc}{eWindowTheme}}\ Theme\ =\ eWindowTheme::DEFAULT;}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00042}\mbox{\hyperlink{structxpe_1_1core_1_1s_window}{00042}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window}{sWindow}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00044}\mbox{\hyperlink{structxpe_1_1core_1_1s_window_a215a0821d2571940d39e6e69b13927ad}{00044}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ Instance\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00045}\mbox{\hyperlink{structxpe_1_1core_1_1s_window_a2dc13ca8aa7731b29344417c6448648e}{00045}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ Win32Instance\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00046}\mbox{\hyperlink{structxpe_1_1core_1_1s_window_aee788dddba446f855b1d3970d7de96cb}{00046}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor}{sWindowDescriptor}}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_aee788dddba446f855b1d3970d7de96cb}{Descriptor}};}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00049}\mbox{\hyperlink{classxpe_1_1core_1_1c_window_manager}{00049}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{macro__build_8hpp_a0697ee40f69dc5dab56d13131f4c4835}{ENGINE\_API}}\ \mbox{\hyperlink{classxpe_1_1core_1_1c_window_manager}{cWindowManager}}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{final}}}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Init();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Free();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ InitWindow(\textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor}{sWindowDescriptor}}\&\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{windowDescriptor}});}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ FreeWindow();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window_descriptor}{sWindowDescriptor}}\&\ GetDescriptor();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ ShouldClose();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Close();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ PollEvents();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Swap();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ IsWindowed();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ IsFullscreen();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ GetWidth();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ GetHeight();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ GetFrameWidth();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ GetFrameHeight();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ GetPosX();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ GetPosY();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ GetTitle();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}*\ GetInstance();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}*\ GetWin32Instance();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ GetRefreshRate();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ GetMonitorWidth();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ GetMonitorHeight();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ SetPos(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a49526f1e6a80726936b0b54c8ac10411}{x}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{y}});}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ SetSize(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a531d26e89a16703584b7e1ec09302f99}{w}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{h}});}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ SetUserPointer(\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{userPtr}});}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}*\ GetUserPointer();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ SetVSync(\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacexpe_1_1core_a7a9b1d92471db2af59acf8c301267fde}{vsync}});}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ SetFullscreen();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ SetWindowed();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ SetFullscreenWindowed();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ ToggleWindowMode();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ CreatePrimaryMonitor();}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{structxpe_1_1core_1_1s_window}{sWindow}}\ s\_Window;}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ s\_WindowModeX;}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ s\_WindowModeY;}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ s\_WindowModeWidth;}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ s\_WindowModeHeight;}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ s\_EnableFullscreen;}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00112}00112\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{window__manager_8hpp_source_l00113}00113\ \}}
 
 \end{DoxyCode}

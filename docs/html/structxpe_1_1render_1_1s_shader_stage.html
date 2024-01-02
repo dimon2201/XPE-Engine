@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('structxpe_1_1render_1_1s_shader_stage.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li><li class="navelem"><a class="el" href="structxpe_1_1render_1_1s_shader_stage.html">sShaderStage</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
@@ -88,13 +106,30 @@ $(function() {
 <div class="dynheader">
 Inheritance diagram for xpe::render::sShaderStage:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="structxpe_1_1render_1_1s_shader_stage.png" usemap="#xpe::render::sShaderStage_map" alt=""/>
-  <map id="xpe::render::sShaderStage_map" name="xpe::render::sShaderStage_map">
-<area href="structxpe_1_1render_1_1s_resource.html" alt="xpe::render::sResource" shape="rect" coords="0,56,161,80"/>
-<area href="classxpe_1_1core_1_1c_object.html" alt="xpe::core::cObject" shape="rect" coords="0,0,161,24"/>
-  </map>
-</div></div>
+<div class="center"><img src="structxpe_1_1render_1_1s_shader_stage__inherit__graph.png" border="0" usemap="#axpe_1_1render_1_1s_shader_stage_inherit__map" alt="Inheritance graph"/></div>
+<map name="axpe_1_1render_1_1s_shader_stage_inherit__map" id="axpe_1_1render_1_1s_shader_stage_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,155,182,181"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_resource.html" title=" " alt="" coords="15,80,172,107"/>
+<area shape="poly" title=" " alt="" coords="96,122,96,154,91,154,91,122"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="29,5,158,32"/>
+<area shape="poly" title=" " alt="" coords="96,48,96,80,91,80,91,48"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for xpe::render::sShaderStage:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_shader_stage__coll__graph.png" border="0" usemap="#axpe_1_1render_1_1s_shader_stage_coll__map" alt="Collaboration graph"/></div>
+<map name="axpe_1_1render_1_1s_shader_stage_coll__map" id="axpe_1_1render_1_1s_shader_stage_coll__map">
+<area shape="rect" title=" " alt="" coords="77,172,253,199"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_resource.html" title=" " alt="" coords="5,81,162,108"/>
+<area shape="poly" title=" " alt="" coords="107,118,155,170,151,173,103,121"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_object.html" title=" " alt="" coords="101,5,229,32"/>
+<area shape="poly" title=" " alt="" coords="141,45,99,83,95,79,138,41"/>
+<area shape="rect" href="structxpe_1_1render_1_1s_blob.html" title=" " alt="" coords="185,81,313,108"/>
+<area shape="poly" title=" " alt="" coords="192,40,237,79,233,83,189,44"/>
+<area shape="poly" title=" " alt="" coords="228,122,179,173,175,170,224,118"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -180,7 +215,10 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a92908e592469d360bed7d9526fb59b69 inherit pub_attribs_structxpe_1_1render_1_1s_resource" id="r_a92908e592469d360bed7d9526fb59b69"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structxpe_1_1render_1_1s_resource.html#a93eeddbfb45d323aeb270cedb8ed20e4">eViewType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxpe_1_1render_1_1s_resource.html#a92908e592469d360bed7d9526fb59b69">ViewType</a> = <a class="el" href="structxpe_1_1render_1_1s_resource.html#a93eeddbfb45d323aeb270cedb8ed20e4ab50339a10e1de285ac99d4c3990b8693">eViewType::NONE</a></td></tr>
 <tr class="separator:a92908e592469d360bed7d9526fb59b69 inherit pub_attribs_structxpe_1_1render_1_1s_resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="shader_8hpp_source.html#l00009">9</a> of file <a class="el" href="shader_8hpp_source.html">shader.hpp</a>.</p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a3d61a06d4a3009d46e2180c0f9a8c781" name="a3d61a06d4a3009d46e2180c0f9a8c781"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3d61a06d4a3009d46e2180c0f9a8c781">&#9670;&#160;</a></span>eType</h2>
 
@@ -207,6 +245,8 @@ Public Attributes</h2></td></tr>
 <tr><td class="fieldname"><a id="a3d61a06d4a3009d46e2180c0f9a8c781ab22957ad8078e8d73de61aef53d13a74" name="a3d61a06d4a3009d46e2180c0f9a8c781ab22957ad8078e8d73de61aef53d13a74"></a>GEOMETRY&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a3d61a06d4a3009d46e2180c0f9a8c781aac404d7ce6ca5862e9b8a2641fbafd90" name="a3d61a06d4a3009d46e2180c0f9a8c781aac404d7ce6ca5862e9b8a2641fbafd90"></a>COMPUTE&#160;</td><td class="fielddoc"></td></tr>
 </table>
+
+<p class="definition">Definition at line <a class="el" href="shader_8hpp_source.html#l00011">11</a> of file <a class="el" href="shader_8hpp_source.html">shader.hpp</a>.</p>
 
 </div>
 </div>
@@ -263,6 +303,8 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="shader_8hpp_source.html#l00033">33</a> of file <a class="el" href="shader_8hpp_source.html">shader.hpp</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -293,6 +335,36 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="shader_8hpp_source.html#l00035">35</a> of file <a class="el" href="shader_8hpp_source.html">shader.hpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_shader_stage_acf471dfdf127b77268e9bcab19f8a6ba_icgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_shader_stage_acf471dfdf127b77268e9bcab19f8a6ba_icgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_shader_stage_acf471dfdf127b77268e9bcab19f8a6ba_icgraph" id="astructxpe_1_1render_1_1s_shader_stage_acf471dfdf127b77268e9bcab19f8a6ba_icgraph">
+<area shape="rect" title=" " alt="" coords="284,321,460,364"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_directional_shadow_shader.html#a34a3196a6415f11c376dcbba41d97b6c" title=" " alt="" coords="5,5,236,64"/>
+<area shape="poly" title=" " alt="" coords="359,307,343,256,317,195,281,132,259,104,234,78,219,67,222,63,237,74,263,100,285,129,322,193,348,254,364,306"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_final_shader.html#a3763390e93bd5d4588f493faf4080af3" title=" " alt="" coords="35,88,206,131"/>
+<area shape="poly" title=" " alt="" coords="353,308,334,270,308,226,274,182,234,145,205,129,207,124,237,140,278,178,312,223,339,267,358,306"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_opaque_shader.html#a16050985173c72f5015636dfcad6483f" title=" " alt="" coords="27,155,214,197"/>
+<area shape="poly" title=" " alt="" coords="343,311,296,260,266,234,234,212,211,200,214,196,237,207,270,230,299,256,347,307"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_point_shadow_shader.html#a5e5c6589bc518f1e9b50291b76bf0037" title=" " alt="" coords="23,221,218,264"/>
+<area shape="poly" title=" " alt="" coords="317,316,235,278,202,267,204,262,237,274,319,312"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_skybox_shader.html#a04b262012d3aeb73e97c1ccb095675c7" title=" " alt="" coords="27,288,214,331"/>
+<area shape="poly" title=" " alt="" coords="268,332,214,324,214,319,269,326"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_spot_shadow_shader.html#a0a939c3f4df9fdb95844a223a0aedf69" title=" " alt="" coords="25,355,216,397"/>
+<area shape="poly" title=" " alt="" coords="269,359,217,366,216,361,268,354"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_ssao_shader.html#abe0dfc617df3607eaa964137437fffcb" title=" " alt="" coords="34,421,207,464"/>
+<area shape="poly" title=" " alt="" coords="319,374,237,412,204,423,202,418,235,407,317,369"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_text_shader.html#ad8b58ce40667013c62bc85cb9ae913fa" title=" " alt="" coords="37,488,204,531"/>
+<area shape="poly" title=" " alt="" coords="347,378,299,430,270,456,237,478,206,493,204,488,234,474,266,452,296,426,343,374"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_transparent_shader.html#a06b2efa059709fd73f449e80f289e02a" title=" " alt="" coords="27,555,214,597"/>
+<area shape="poly" title=" " alt="" coords="358,379,339,418,312,463,278,507,237,545,215,558,213,553,234,541,274,503,308,460,334,416,353,377"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_widget_shader.html#ac6d0a01c7e25a93a16e38d9642dfe0f2" title=" " alt="" coords="29,621,212,664"/>
+<area shape="poly" title=" " alt="" coords="365,380,349,432,323,494,287,557,264,586,237,611,214,626,211,622,234,607,260,582,282,554,318,492,344,430,360,378"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a93f171a836a5716cd48b332327de8675" name="a93f171a836a5716cd48b332327de8675"></a>
@@ -321,6 +393,26 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="shader_8hpp_source.html#l00049">49</a> of file <a class="el" href="shader_8hpp_source.html">shader.hpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_shader_stage_a93f171a836a5716cd48b332327de8675_icgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_shader_stage_a93f171a836a5716cd48b332327de8675_icgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_shader_stage_a93f171a836a5716cd48b332327de8675_icgraph" id="astructxpe_1_1render_1_1s_shader_stage_a93f171a836a5716cd48b332327de8675_icgraph">
+<area shape="rect" title=" " alt="" coords="241,139,417,181"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_opaque_shader.html#a16050985173c72f5015636dfcad6483f" title=" " alt="" coords="5,5,193,48"/>
+<area shape="poly" title=" " alt="" coords="289,131,244,96,191,62,167,51,170,46,194,58,247,91,293,126"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_skybox_shader.html#a04b262012d3aeb73e97c1ccb095675c7" title=" " alt="" coords="6,72,192,115"/>
+<area shape="poly" title=" " alt="" coords="238,137,175,118,176,113,240,131"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_text_shader.html#ad8b58ce40667013c62bc85cb9ae913fa" title=" " alt="" coords="15,139,183,181"/>
+<area shape="poly" title=" " alt="" coords="225,163,183,163,183,157,225,157"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_transparent_shader.html#a06b2efa059709fd73f449e80f289e02a" title=" " alt="" coords="6,205,192,248"/>
+<area shape="poly" title=" " alt="" coords="240,189,176,207,175,202,238,183"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_widget_shader.html#ac6d0a01c7e25a93a16e38d9642dfe0f2" title=" " alt="" coords="7,272,191,315"/>
+<area shape="poly" title=" " alt="" coords="293,194,247,229,194,262,170,274,167,269,191,258,244,224,289,189"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -351,6 +443,28 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="shader_8hpp_source.html#l00042">42</a> of file <a class="el" href="shader_8hpp_source.html">shader.hpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structxpe_1_1render_1_1s_shader_stage_a94e63af7ae74675f7fcb248f99dadca8_icgraph.png" border="0" usemap="#astructxpe_1_1render_1_1s_shader_stage_a94e63af7ae74675f7fcb248f99dadca8_icgraph" alt=""/></div>
+<map name="astructxpe_1_1render_1_1s_shader_stage_a94e63af7ae74675f7fcb248f99dadca8_icgraph" id="astructxpe_1_1render_1_1s_shader_stage_a94e63af7ae74675f7fcb248f99dadca8_icgraph">
+<area shape="rect" title=" " alt="" coords="302,172,478,215"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_composite_transparent_shader.html#a27b9bbcaae81347a2efe7f2e2d414b5d" title=" " alt="" coords="5,5,254,48"/>
+<area shape="poly" title=" " alt="" coords="361,161,314,110,284,84,252,62,229,51,231,46,255,58,288,80,318,106,365,158"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_final_shader.html#a3763390e93bd5d4588f493faf4080af3" title=" " alt="" coords="44,72,215,115"/>
+<area shape="poly" title=" " alt="" coords="335,167,253,129,214,116,216,111,255,124,337,162"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_opaque_shader.html#a16050985173c72f5015636dfcad6483f" title=" " alt="" coords="36,139,223,181"/>
+<area shape="poly" title=" " alt="" coords="286,183,223,175,224,169,287,177"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_ssao_shader.html#abe0dfc617df3607eaa964137437fffcb" title=" " alt="" coords="43,205,216,248"/>
+<area shape="poly" title=" " alt="" coords="287,209,217,218,216,213,286,204"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_transparent_shader.html#a06b2efa059709fd73f449e80f289e02a" title=" " alt="" coords="36,272,223,315"/>
+<area shape="poly" title=" " alt="" coords="337,225,255,262,220,274,219,269,253,258,335,220"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_widget_shader.html#ac6d0a01c7e25a93a16e38d9642dfe0f2" title=" " alt="" coords="38,339,221,381"/>
+<area shape="poly" title=" " alt="" coords="365,229,318,281,288,307,255,329,223,344,220,339,252,324,284,302,314,277,361,225"/>
+</map>
+</div>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -366,6 +480,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="shader_8hpp_source.html#l00022">22</a> of file <a class="el" href="shader_8hpp_source.html">shader.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a8d965057dba54bb9b2abda7f75b1a01d" name="a8d965057dba54bb9b2abda7f75b1a01d"></a>
@@ -379,6 +495,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="shader_8hpp_source.html#l00028">28</a> of file <a class="el" href="shader_8hpp_source.html">shader.hpp</a>.</p>
 
 </div>
 </div>
@@ -394,6 +512,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="shader_8hpp_source.html#l00024">24</a> of file <a class="el" href="shader_8hpp_source.html">shader.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a54f108a78d8b8685c7fb088639525c4c" name="a54f108a78d8b8685c7fb088639525c4c"></a>
@@ -407,6 +527,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="shader_8hpp_source.html#l00026">26</a> of file <a class="el" href="shader_8hpp_source.html">shader.hpp</a>.</p>
 
 </div>
 </div>
@@ -422,6 +544,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="shader_8hpp_source.html#l00023">23</a> of file <a class="el" href="shader_8hpp_source.html">shader.hpp</a>.</p>
+
 </div>
 </div>
 <a id="aaa3b6a79d804caddfa1f27740fc4ea1e" name="aaa3b6a79d804caddfa1f27740fc4ea1e"></a>
@@ -435,6 +559,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="shader_8hpp_source.html#l00020">20</a> of file <a class="el" href="shader_8hpp_source.html">shader.hpp</a>.</p>
 
 </div>
 </div>
@@ -450,6 +576,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="shader_8hpp_source.html#l00025">25</a> of file <a class="el" href="shader_8hpp_source.html">shader.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a2721343f20cf208d65dd549bdad88bcf" name="a2721343f20cf208d65dd549bdad88bcf"></a>
@@ -463,6 +591,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="shader_8hpp_source.html#l00030">30</a> of file <a class="el" href="shader_8hpp_source.html">shader.hpp</a>.</p>
 
 </div>
 </div>
@@ -478,6 +608,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="shader_8hpp_source.html#l00027">27</a> of file <a class="el" href="shader_8hpp_source.html">shader.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a8cc1eba6805082953aee58e4c9fa298d" name="a8cc1eba6805082953aee58e4c9fa298d"></a>
@@ -491,6 +623,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="shader_8hpp_source.html#l00029">29</a> of file <a class="el" href="shader_8hpp_source.html">shader.hpp</a>.</p>
 
 </div>
 </div>
@@ -506,15 +640,21 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="shader_8hpp_source.html#l00021">21</a> of file <a class="el" href="shader_8hpp_source.html">shader.hpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>engine/src/rendering/core/<a class="el" href="shader_8hpp_source.html">shader.hpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li><li class="navelem"><a class="el" href="structxpe_1_1render_1_1s_shader_stage.html">sShaderStage</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

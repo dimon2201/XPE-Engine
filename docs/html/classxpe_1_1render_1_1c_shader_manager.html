@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classxpe_1_1render_1_1c_shader_manager.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li><li class="navelem"><a class="el" href="classxpe_1_1render_1_1c_shader_manager.html">cShaderManager</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
@@ -105,7 +123,10 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ad0ae2a451bce3fcb68a6fb712bffe722" id="r_ad0ae2a451bce3fcb68a6fb712bffe722"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">static</a> <a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad0ae2a451bce3fcb68a6fb712bffe722">ReloadStage</a> (<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">const</a> <a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">char</a> *<a class="el" href="namespacexpe_1_1core.html#a7a9b1d92471db2af59acf8c301267fde">filepath</a>)</td></tr>
 <tr class="separator:ad0ae2a451bce3fcb68a6fb712bffe722"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="shader_8hpp_source.html#l00128">128</a> of file <a class="el" href="shader_8hpp_source.html">shader.hpp</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a9beb94b29db3fb777fa97e8b15e2cc9b" name="a9beb94b29db3fb777fa97e8b15e2cc9b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9beb94b29db3fb777fa97e8b15e2cc9b">&#9670;&#160;</a></span>Free()</h2>
 
@@ -128,6 +149,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="shader_8cpp_source.html#l00260">260</a> of file <a class="el" href="shader_8cpp_source.html">shader.cpp</a>.</p>
 
 </div>
 </div>
@@ -157,6 +180,61 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="shader_8cpp_source.html#l00274">274</a> of file <a class="el" href="shader_8cpp_source.html">shader.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_shader_manager_a97a6e32b351d6afb063039f115b55ae7_cgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_shader_manager_a97a6e32b351d6afb063039f115b55ae7_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_shader_manager_a97a6e32b351d6afb063039f115b55ae7_cgraph" id="aclassxpe_1_1render_1_1c_shader_manager_a97a6e32b351d6afb063039f115b55ae7_cgraph">
+<area shape="rect" title=" " alt="" coords="5,165,198,208"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_shader_manager.html#a118920e0723385c43912ddc9ac7441d7" title=" " alt="" coords="246,120,438,163"/>
+<area shape="poly" title=" " alt="" coords="198,166,230,160,231,165,199,171"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_file_manager.html#a3026d07fbdb1dc19bc823cf2e474ba7d" title=" " alt="" coords="261,211,423,253"/>
+<area shape="poly" title=" " alt="" coords="199,202,246,211,245,217,198,207"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a816f76047d559204c31d48f1d3d443db" title=" " alt="" coords="486,29,637,72"/>
+<area shape="poly" title=" " alt="" coords="395,117,493,76,495,81,397,122"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ac9189ce9a5381facd88c5277f912f364" title=" " alt="" coords="491,120,633,163"/>
+<area shape="poly" title=" " alt="" coords="438,139,475,139,475,144,438,144"/>
+<area shape="rect" href="namespacexpe_1_1core.html#a21084dba4baabe2a8da4ee568572f6da" title=" " alt="" coords="505,187,618,213"/>
+<area shape="poly" title=" " alt="" coords="425,161,495,180,494,185,423,166"/>
+<area shape="poly" title=" " alt="" coords="520,29,518,19,525,10,540,5,562,3,585,5,599,11,597,16,584,10,562,8,541,10,528,15,523,21,525,28"/>
+<area shape="poly" title=" " alt="" coords="520,120,518,110,525,101,540,95,562,93,585,96,599,102,597,107,584,101,562,99,541,101,528,105,523,111,525,119"/>
+<area shape="poly" title=" " alt="" coords="300,211,298,201,305,192,320,186,342,184,365,186,380,193,377,197,364,192,342,189,321,191,308,196,304,202,305,210"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_shader_manager_a97a6e32b351d6afb063039f115b55ae7_icgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_shader_manager_a97a6e32b351d6afb063039f115b55ae7_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_shader_manager_a97a6e32b351d6afb063039f115b55ae7_icgraph" id="aclassxpe_1_1render_1_1c_shader_manager_a97a6e32b351d6afb063039f115b55ae7_icgraph">
+<area shape="rect" title=" " alt="" coords="302,388,494,431"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_canvas.html#a9d8c18ddfb24dcd26edf2ee2472f0fb5" title=" " alt="" coords="58,5,201,48"/>
+<area shape="poly" title=" " alt="" coords="390,373,377,306,352,222,334,178,312,136,284,96,252,62,228,47,200,37,202,32,230,42,255,58,289,93,316,133,339,176,357,220,382,305,395,372"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_composite_transparent_shader.html#a27b9bbcaae81347a2efe7f2e2d414b5d" title=" " alt="" coords="5,72,254,115"/>
+<area shape="poly" title=" " alt="" coords="386,374,369,319,343,253,304,185,280,155,252,129,235,118,238,113,255,125,284,152,308,182,347,250,374,317,391,372"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_directional_shadow_shader.html#a34a3196a6415f11c376dcbba41d97b6c" title=" " alt="" coords="14,139,245,197"/>
+<area shape="poly" title=" " alt="" coords="378,376,357,338,329,293,294,249,252,211,234,200,237,195,255,207,297,246,333,290,362,335,383,373"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_final_shader.html#a3763390e93bd5d4588f493faf4080af3" title=" " alt="" coords="44,221,215,264"/>
+<area shape="poly" title=" " alt="" coords="368,378,317,326,286,300,252,278,214,262,216,257,255,274,289,296,321,322,371,374"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_opaque_shader.html#a16050985173c72f5015636dfcad6483f" title=" " alt="" coords="36,288,223,331"/>
+<area shape="poly" title=" " alt="" coords="340,383,253,345,218,334,219,329,255,340,342,378"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_point_shadow_shader.html#a5e5c6589bc518f1e9b50291b76bf0037" title=" " alt="" coords="32,355,227,397"/>
+<area shape="poly" title=" " alt="" coords="286,398,227,391,227,385,287,393"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_skybox_shader.html#a04b262012d3aeb73e97c1ccb095675c7" title=" " alt="" coords="36,421,223,464"/>
+<area shape="poly" title=" " alt="" coords="287,426,223,434,223,428,286,421"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_spot_shadow_shader.html#a0a939c3f4df9fdb95844a223a0aedf69" title=" " alt="" coords="34,488,225,531"/>
+<area shape="poly" title=" " alt="" coords="342,440,255,478,219,490,218,485,253,474,340,435"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_ssao_shader.html#abe0dfc617df3607eaa964137437fffcb" title=" " alt="" coords="43,555,216,597"/>
+<area shape="poly" title=" " alt="" coords="371,444,321,496,289,523,255,545,217,561,215,556,252,540,286,518,317,492,368,441"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_text_shader.html#ad8b58ce40667013c62bc85cb9ae913fa" title=" " alt="" coords="46,621,213,664"/>
+<area shape="poly" title=" " alt="" coords="383,446,363,485,334,529,298,574,255,612,215,631,212,626,252,607,294,570,330,526,358,482,378,443"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_transparent_shader.html#a06b2efa059709fd73f449e80f289e02a" title=" " alt="" coords="36,688,223,731"/>
+<area shape="poly" title=" " alt="" coords="390,447,372,499,345,561,306,624,282,653,255,678,224,696,221,691,252,674,279,649,302,621,340,559,367,497,385,445"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_widget_shader.html#ac6d0a01c7e25a93a16e38d9642dfe0f2" title=" " alt="" coords="38,755,221,797"/>
+<area shape="poly" title=" " alt="" coords="394,446,380,511,355,591,337,633,314,674,287,712,255,745,223,764,220,759,252,741,283,708,310,671,332,631,350,589,375,509,389,445"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -192,6 +270,58 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="shader_8cpp_source.html#l00284">284</a> of file <a class="el" href="shader_8cpp_source.html">shader.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_shader_manager_a118920e0723385c43912ddc9ac7441d7_cgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_shader_manager_a118920e0723385c43912ddc9ac7441d7_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_shader_manager_a118920e0723385c43912ddc9ac7441d7_cgraph" id="aclassxpe_1_1render_1_1c_shader_manager_a118920e0723385c43912ddc9ac7441d7_cgraph">
+<area shape="rect" title=" " alt="" coords="5,120,198,163"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#a816f76047d559204c31d48f1d3d443db" title=" " alt="" coords="246,29,397,72"/>
+<area shape="poly" title=" " alt="" coords="154,117,252,76,255,81,156,122"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ac9189ce9a5381facd88c5277f912f364" title=" " alt="" coords="250,120,393,163"/>
+<area shape="poly" title=" " alt="" coords="198,139,235,139,235,144,198,144"/>
+<area shape="rect" href="namespacexpe_1_1core.html#a21084dba4baabe2a8da4ee568572f6da" title=" " alt="" coords="265,187,378,213"/>
+<area shape="poly" title=" " alt="" coords="184,161,255,180,253,185,183,166"/>
+<area shape="poly" title=" " alt="" coords="279,29,278,19,285,10,299,5,321,3,345,5,359,11,357,16,344,10,321,8,301,10,288,15,283,21,285,28"/>
+<area shape="poly" title=" " alt="" coords="279,120,278,110,285,101,299,95,321,93,345,96,359,102,357,107,344,101,321,99,301,101,288,105,283,111,285,119"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_shader_manager_a118920e0723385c43912ddc9ac7441d7_icgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_shader_manager_a118920e0723385c43912ddc9ac7441d7_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_shader_manager_a118920e0723385c43912ddc9ac7441d7_icgraph" id="aclassxpe_1_1render_1_1c_shader_manager_a118920e0723385c43912ddc9ac7441d7_icgraph">
+<area shape="rect" title=" " alt="" coords="542,388,734,431"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_shader_manager.html#a97a6e32b351d6afb063039f115b55ae7" title=" " alt="" coords="302,388,494,431"/>
+<area shape="poly" title=" " alt="" coords="527,412,494,412,494,407,527,407"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_canvas.html#a9d8c18ddfb24dcd26edf2ee2472f0fb5" title=" " alt="" coords="58,5,201,48"/>
+<area shape="poly" title=" " alt="" coords="390,373,377,306,352,222,334,178,312,136,284,96,252,62,228,47,200,37,202,32,230,42,255,58,289,93,316,133,339,176,357,220,382,305,395,372"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_composite_transparent_shader.html#a27b9bbcaae81347a2efe7f2e2d414b5d" title=" " alt="" coords="5,72,254,115"/>
+<area shape="poly" title=" " alt="" coords="386,374,369,319,343,253,304,185,280,155,252,129,235,118,238,113,255,125,284,152,308,182,347,250,374,317,391,372"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_directional_shadow_shader.html#a34a3196a6415f11c376dcbba41d97b6c" title=" " alt="" coords="14,139,245,197"/>
+<area shape="poly" title=" " alt="" coords="378,376,357,338,329,293,294,249,252,211,234,200,237,195,255,207,297,246,333,290,362,335,383,373"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_final_shader.html#a3763390e93bd5d4588f493faf4080af3" title=" " alt="" coords="44,221,215,264"/>
+<area shape="poly" title=" " alt="" coords="368,378,317,326,286,300,252,278,214,262,216,257,255,274,289,296,321,322,371,374"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_opaque_shader.html#a16050985173c72f5015636dfcad6483f" title=" " alt="" coords="36,288,223,331"/>
+<area shape="poly" title=" " alt="" coords="340,383,253,345,218,334,219,329,255,340,342,378"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_point_shadow_shader.html#a5e5c6589bc518f1e9b50291b76bf0037" title=" " alt="" coords="32,355,227,397"/>
+<area shape="poly" title=" " alt="" coords="286,398,227,391,227,385,287,393"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_skybox_shader.html#a04b262012d3aeb73e97c1ccb095675c7" title=" " alt="" coords="36,421,223,464"/>
+<area shape="poly" title=" " alt="" coords="287,426,223,434,223,428,286,421"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_spot_shadow_shader.html#a0a939c3f4df9fdb95844a223a0aedf69" title=" " alt="" coords="34,488,225,531"/>
+<area shape="poly" title=" " alt="" coords="342,440,255,478,219,490,218,485,253,474,340,435"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_ssao_shader.html#abe0dfc617df3607eaa964137437fffcb" title=" " alt="" coords="43,555,216,597"/>
+<area shape="poly" title=" " alt="" coords="371,444,321,496,289,523,255,545,217,561,215,556,252,540,286,518,317,492,368,441"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_text_shader.html#ad8b58ce40667013c62bc85cb9ae913fa" title=" " alt="" coords="46,621,213,664"/>
+<area shape="poly" title=" " alt="" coords="383,446,363,485,334,529,298,574,255,612,215,631,212,626,252,607,294,570,330,526,358,482,378,443"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_transparent_shader.html#a06b2efa059709fd73f449e80f289e02a" title=" " alt="" coords="36,688,223,731"/>
+<area shape="poly" title=" " alt="" coords="390,447,372,499,345,561,306,624,282,653,255,678,224,696,221,691,252,674,279,649,302,621,340,559,367,497,385,445"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_widget_shader.html#ac6d0a01c7e25a93a16e38d9642dfe0f2" title=" " alt="" coords="38,755,221,797"/>
+<area shape="poly" title=" " alt="" coords="394,446,380,511,355,591,337,633,314,674,287,712,255,745,223,764,220,759,252,741,283,708,310,671,332,631,350,589,375,509,389,445"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a4057793b0888fbca76fcaa4b670dae05" name="a4057793b0888fbca76fcaa4b670dae05"></a>
@@ -216,6 +346,32 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="shader_8cpp_source.html#l00488">488</a> of file <a class="el" href="shader_8cpp_source.html">shader.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_shader_manager_a4057793b0888fbca76fcaa4b670dae05_cgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_shader_manager_a4057793b0888fbca76fcaa4b670dae05_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_shader_manager_a4057793b0888fbca76fcaa4b670dae05_cgraph" id="aclassxpe_1_1render_1_1c_shader_manager_a4057793b0888fbca76fcaa4b670dae05_cgraph">
+<area shape="rect" title=" " alt="" coords="5,29,198,72"/>
+<area shape="poly" title=" " alt="" coords="63,29,62,19,68,10,81,5,102,3,123,5,136,11,134,16,122,10,101,8,83,10,71,15,67,21,68,28"/>
+<area shape="rect" href="namespacexpe_1_1core.html#a21084dba4baabe2a8da4ee568572f6da" title=" " alt="" coords="246,37,359,64"/>
+<area shape="poly" title=" " alt="" coords="198,48,230,48,230,53,198,53"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_shader_manager_a4057793b0888fbca76fcaa4b670dae05_icgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_shader_manager_a4057793b0888fbca76fcaa4b670dae05_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_shader_manager_a4057793b0888fbca76fcaa4b670dae05_icgraph" id="aclassxpe_1_1render_1_1c_shader_manager_a4057793b0888fbca76fcaa4b670dae05_icgraph">
+<area shape="rect" title=" " alt="" coords="432,29,624,72"/>
+<area shape="poly" title=" " alt="" coords="567,16,552,10,528,8,506,10,492,15,487,21,488,28,483,29,481,19,489,10,505,5,528,3,554,5,569,11"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#a0346f4840135da0c87a39899926cd98e" title=" " alt="" coords="198,37,384,64"/>
+<area shape="poly" title=" " alt="" coords="416,53,384,53,384,48,416,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,37,150,64"/>
+<area shape="poly" title=" " alt="" coords="182,53,150,53,150,48,182,48"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -242,6 +398,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="shader_8cpp_source.html#l00473">473</a> of file <a class="el" href="shader_8cpp_source.html">shader.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a7fedf125c3a33e37d90c849ec26c8a22" name="a7fedf125c3a33e37d90c849ec26c8a22"></a>
@@ -266,6 +424,18 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="shader_8cpp_source.html#l00244">244</a> of file <a class="el" href="shader_8cpp_source.html">shader.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_shader_manager_a7fedf125c3a33e37d90c849ec26c8a22_cgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_shader_manager_a7fedf125c3a33e37d90c849ec26c8a22_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_shader_manager_a7fedf125c3a33e37d90c849ec26c8a22_cgraph" id="aclassxpe_1_1render_1_1c_shader_manager_a7fedf125c3a33e37d90c849ec26c8a22_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,198,48"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_file_manager.html#a28a6dc4ad3fa49fe9827b2ef9c935d8f" title=" " alt="" coords="246,5,407,48"/>
+<area shape="poly" title=" " alt="" coords="198,24,230,24,230,29,198,29"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -292,6 +462,25 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="shader_8cpp_source.html#l00335">335</a> of file <a class="el" href="shader_8cpp_source.html">shader.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_shader_manager_ad0ae2a451bce3fcb68a6fb712bffe722_cgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_shader_manager_ad0ae2a451bce3fcb68a6fb712bffe722_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_shader_manager_ad0ae2a451bce3fcb68a6fb712bffe722_cgraph" id="aclassxpe_1_1render_1_1c_shader_manager_ad0ae2a451bce3fcb68a6fb712bffe722_cgraph">
+<area shape="rect" title=" " alt="" coords="5,120,198,163"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#ac9189ce9a5381facd88c5277f912f364" title=" " alt="" coords="255,29,398,72"/>
+<area shape="poly" title=" " alt="" coords="156,117,256,76,258,81,158,122"/>
+<area shape="rect" href="namespacexpe_1_1render_1_1context.html#addacfd4e0518c92c621f7104ba949cc8" title=" " alt="" coords="258,120,395,163"/>
+<area shape="poly" title=" " alt="" coords="198,139,242,139,242,144,198,144"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_file_manager.html#a3026d07fbdb1dc19bc823cf2e474ba7d" title=" " alt="" coords="246,211,407,253"/>
+<area shape="poly" title=" " alt="" coords="158,161,258,202,256,207,156,166"/>
+<area shape="poly" title=" " alt="" coords="284,29,282,19,289,10,304,5,326,3,350,5,365,11,363,16,349,10,326,8,305,10,292,15,287,21,289,28"/>
+<area shape="poly" title=" " alt="" coords="284,120,282,110,289,101,304,95,326,93,350,96,365,102,363,107,349,101,326,99,305,101,292,105,287,111,289,119"/>
+<area shape="poly" title=" " alt="" coords="284,211,282,201,289,192,304,186,326,184,350,186,365,193,363,198,349,192,326,189,305,191,292,196,287,202,289,210"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a25db8a33bd2cf7ff61d126363bcb945f" name="a25db8a33bd2cf7ff61d126363bcb945f"></a>
@@ -316,6 +505,34 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="shader_8cpp_source.html#l00404">404</a> of file <a class="el" href="shader_8cpp_source.html">shader.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_shader_manager_a25db8a33bd2cf7ff61d126363bcb945f_cgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_shader_manager_a25db8a33bd2cf7ff61d126363bcb945f_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_shader_manager_a25db8a33bd2cf7ff61d126363bcb945f_cgraph" id="aclassxpe_1_1render_1_1c_shader_manager_a25db8a33bd2cf7ff61d126363bcb945f_cgraph">
+<area shape="rect" title=" " alt="" coords="5,29,198,72"/>
+<area shape="poly" title=" " alt="" coords="65,29,63,19,69,10,82,5,102,3,122,5,135,11,132,16,121,10,101,8,84,10,73,15,68,21,70,28"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_shader_manager_a25db8a33bd2cf7ff61d126363bcb945f_icgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_shader_manager_a25db8a33bd2cf7ff61d126363bcb945f_icgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_shader_manager_a25db8a33bd2cf7ff61d126363bcb945f_icgraph" id="aclassxpe_1_1render_1_1c_shader_manager_a25db8a33bd2cf7ff61d126363bcb945f_icgraph">
+<area shape="rect" title=" " alt="" coords="438,64,630,107"/>
+<area shape="poly" title=" " alt="" coords="573,51,559,45,534,43,511,45,497,49,492,55,494,63,489,64,487,54,494,45,510,39,534,37,560,40,575,46"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_canvas.html#a9d8c18ddfb24dcd26edf2ee2472f0fb5" title=" " alt="" coords="222,5,366,48"/>
+<area shape="poly" title=" " alt="" coords="429,62,365,47,367,42,430,57"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#a0346f4840135da0c87a39899926cd98e" title=" " alt="" coords="201,72,387,99"/>
+<area shape="poly" title=" " alt="" coords="422,88,387,88,387,83,422,83"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_shader_manager.html#aee87be75b6982c9d1ff023c66f3d54c9" title=" " alt="" coords="198,123,390,165"/>
+<area shape="poly" title=" " alt="" coords="430,114,385,125,384,119,429,108"/>
+<area shape="rect" href="classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,72,150,99"/>
+<area shape="poly" title=" " alt="" coords="185,88,150,88,150,83,185,83"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -346,16 +563,35 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="shader_8cpp_source.html#l00438">438</a> of file <a class="el" href="shader_8cpp_source.html">shader.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxpe_1_1render_1_1c_shader_manager_aee87be75b6982c9d1ff023c66f3d54c9_cgraph.png" border="0" usemap="#aclassxpe_1_1render_1_1c_shader_manager_aee87be75b6982c9d1ff023c66f3d54c9_cgraph" alt=""/></div>
+<map name="aclassxpe_1_1render_1_1c_shader_manager_aee87be75b6982c9d1ff023c66f3d54c9_cgraph" id="aclassxpe_1_1render_1_1c_shader_manager_aee87be75b6982c9d1ff023c66f3d54c9_cgraph">
+<area shape="rect" title=" " alt="" coords="5,39,198,81"/>
+<area shape="rect" href="namespacexpe_1_1core.html#a21084dba4baabe2a8da4ee568572f6da" title=" " alt="" coords="285,5,399,32"/>
+<area shape="poly" title=" " alt="" coords="198,41,269,28,270,34,199,46"/>
+<area shape="rect" href="classxpe_1_1render_1_1c_shader_manager.html#a25db8a33bd2cf7ff61d126363bcb945f" title=" " alt="" coords="246,80,438,123"/>
+<area shape="poly" title=" " alt="" coords="199,74,231,80,230,85,198,79"/>
+<area shape="poly" title=" " alt="" coords="296,80,295,70,302,61,318,55,342,53,367,56,383,62,381,67,366,61,342,59,319,61,305,65,300,71,302,79"/>
+</map>
+</div>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>engine/src/rendering/core/<a class="el" href="shader_8hpp_source.html">shader.hpp</a></li>
-<li>engine/src/rendering/core/<a class="el" href="shader_8cpp.html">shader.cpp</a></li>
+<li>engine/src/rendering/core/<a class="el" href="shader_8cpp_source.html">shader.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacexpe.html">xpe</a></li><li class="navelem"><a class="el" href="namespacexpe_1_1render.html">render</a></li><li class="navelem"><a class="el" href="classxpe_1_1render_1_1c_shader_manager.html">cShaderManager</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

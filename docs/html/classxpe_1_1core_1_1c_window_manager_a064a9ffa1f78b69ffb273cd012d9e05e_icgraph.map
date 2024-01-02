@@ -1,0 +1,9 @@
+<map id="xpe::core::cWindowManager::SetWindowed" name="xpe::core::cWindowManager::SetWindowed">
+<area shape="rect" id="Node000001" title=" " alt="" coords="432,39,618,81"/>
+<area shape="rect" id="Node000002" href="$classxpe_1_1core_1_1c_window_manager.html#a5acf1469a7302505924c4c95048009c8" title=" " alt="" coords="198,5,384,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="416,47,384,43,385,37,417,42"/>
+<area shape="rect" id="Node000004" href="$classxpe_1_1core_1_1c_window_manager.html#ad0256b89189dfb6664b39067dc791cf0" title=" " alt="" coords="198,72,384,115"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="417,78,385,83,384,77,416,73"/>
+<area shape="rect" id="Node000003" href="$classxpe_1_1core_1_1c_app.html#adf244904fa58277fe265be994ae664fc" title=" " alt="" coords="5,13,150,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="182,29,150,29,150,24,182,24"/>
+</map>

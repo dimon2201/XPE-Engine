@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('xml_8hpp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li><li class="navelem"><a class="el" href="dir_0c92e0ec2b3a83cff45176222669dd0e.html">res</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
@@ -86,6 +104,30 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="stl_8hpp_source.html">stl/stl.hpp</a>&gt;</code><br />
 <code>#include &lt;pugixml.hpp&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for xml.hpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="xml_8hpp__incl.png" border="0" usemap="#aengine_2src_2res_2xml_8hpp" alt=""/></div>
+<map name="aengine_2src_2res_2xml_8hpp" id="aengine_2src_2res_2xml_8hpp">
+<area shape="rect" title=" " alt="" coords="23,5,176,32"/>
+<area shape="rect" href="stl_8hpp.html" title=" " alt="" coords="5,80,84,107"/>
+<area shape="poly" title=" " alt="" coords="92,34,65,69,61,66,88,31"/>
+<area shape="rect" title=" " alt="" coords="108,80,200,107"/>
+<area shape="poly" title=" " alt="" coords="111,31,137,66,133,69,107,34"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="xml_8hpp__dep__incl.png" border="0" usemap="#aengine_2src_2res_2xml_8hppdep" alt=""/></div>
+<map name="aengine_2src_2res_2xml_8hppdep" id="aengine_2src_2res_2xml_8hppdep">
+<area shape="rect" title=" " alt="" coords="77,5,230,32"/>
+<area shape="rect" href="pch_8hpp.html" title=" " alt="" coords="5,80,137,107"/>
+<area shape="poly" title=" " alt="" coords="130,45,87,82,83,78,126,40"/>
+<area shape="rect" href="xml_8cpp.html" title=" " alt="" coords="161,80,314,107"/>
+<area shape="poly" title=" " alt="" coords="182,40,225,78,221,82,178,45"/>
+</map>
+</div>
 </div>
 <p><a href="xml_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -341,11 +383,13 @@ Functions</h2></td></tr>
 <div class="line"><span class="keyword">inline</span> <span class="keywordtype">void</span> GetXmlValue(<a class="code hl_typedef" href="#aa0a06f210737bd93431285d99e56096a">xml</a>&amp; root, <span class="keyword">const</span> <span class="keywordtype">char</span>* name, type&amp; value) { \</div>
 <div class="line">    XML_EXPAND(<a class="code hl_define" href="#abc8a76f02422192235e571c96fda5186">XML_PASTE</a>(<a class="code hl_define" href="#a0ea8b8334d0b2f7921d97e51e2cc6e4a">XML_GET_VALUE</a>, __VA_ARGS__))\</div>
 <div class="line">}</div>
-<div class="ttc" id="axml_8hpp_html_a0ea8b8334d0b2f7921d97e51e2cc6e4a"><div class="ttname"><a href="#a0ea8b8334d0b2f7921d97e51e2cc6e4a">XML_GET_VALUE</a></div><div class="ttdeci">#define XML_GET_VALUE(v1)</div><div class="ttdef"><b>Definition</b> xml.hpp:141</div></div>
-<div class="ttc" id="axml_8hpp_html_a8ea27e84599c647e17b7ded11d983c2c"><div class="ttname"><a href="#a8ea27e84599c647e17b7ded11d983c2c">XML_SET_VALUE</a></div><div class="ttdeci">#define XML_SET_VALUE(v1)</div><div class="ttdef"><b>Definition</b> xml.hpp:140</div></div>
-<div class="ttc" id="axml_8hpp_html_aa0a06f210737bd93431285d99e56096a"><div class="ttname"><a href="#aa0a06f210737bd93431285d99e56096a">xml</a></div><div class="ttdeci">pugi::xml_node xml</div><div class="ttdef"><b>Definition</b> xml.hpp:7</div></div>
-<div class="ttc" id="axml_8hpp_html_abc8a76f02422192235e571c96fda5186"><div class="ttname"><a href="#abc8a76f02422192235e571c96fda5186">XML_PASTE</a></div><div class="ttdeci">#define XML_PASTE(...)</div><div class="ttdef"><b>Definition</b> xml.hpp:11</div></div>
+<div class="ttc" id="axml_8hpp_html_a0ea8b8334d0b2f7921d97e51e2cc6e4a"><div class="ttname"><a href="#a0ea8b8334d0b2f7921d97e51e2cc6e4a">XML_GET_VALUE</a></div><div class="ttdeci">#define XML_GET_VALUE(v1)</div><div class="ttdef"><b>Definition</b> <a href="xml_8hpp_source.html#l00141">xml.hpp:141</a></div></div>
+<div class="ttc" id="axml_8hpp_html_a8ea27e84599c647e17b7ded11d983c2c"><div class="ttname"><a href="#a8ea27e84599c647e17b7ded11d983c2c">XML_SET_VALUE</a></div><div class="ttdeci">#define XML_SET_VALUE(v1)</div><div class="ttdef"><b>Definition</b> <a href="xml_8hpp_source.html#l00140">xml.hpp:140</a></div></div>
+<div class="ttc" id="axml_8hpp_html_aa0a06f210737bd93431285d99e56096a"><div class="ttname"><a href="#aa0a06f210737bd93431285d99e56096a">xml</a></div><div class="ttdeci">pugi::xml_node xml</div><div class="ttdef"><b>Definition</b> <a href="xml_8hpp_source.html#l00007">xml.hpp:7</a></div></div>
+<div class="ttc" id="axml_8hpp_html_abc8a76f02422192235e571c96fda5186"><div class="ttname"><a href="#abc8a76f02422192235e571c96fda5186">XML_PASTE</a></div><div class="ttdeci">#define XML_PASTE(...)</div><div class="ttdef"><b>Definition</b> <a href="xml_8hpp_source.html#l00011">xml.hpp:11</a></div></div>
 </div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00143">143</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
+
 </div>
 </div>
 <a id="ab801abf6dc0e0e41c642369747db984b" name="ab801abf6dc0e0e41c642369747db984b"></a>
@@ -378,9 +422,11 @@ Functions</h2></td></tr>
 <div class="line">    XML_EXPAND(<a class="code hl_define" href="#abc8a76f02422192235e571c96fda5186">XML_PASTE</a>(<a class="code hl_define" href="#aac54f8e44376f3006258c4197d8cd358">XML_FROM</a>, __VA_ARGS__)) \</div>
 <div class="line">    <span class="keywordflow">return</span> child;                                                 \</div>
 <div class="line">}                                                \</div>
-<div class="ttc" id="axml_8hpp_html_a548fc3393ead01c2336427b005beb10b"><div class="ttname"><a href="#a548fc3393ead01c2336427b005beb10b">XML_TO</a></div><div class="ttdeci">#define XML_TO(v1)</div><div class="ttdef"><b>Definition</b> xml.hpp:153</div></div>
-<div class="ttc" id="axml_8hpp_html_aac54f8e44376f3006258c4197d8cd358"><div class="ttname"><a href="#aac54f8e44376f3006258c4197d8cd358">XML_FROM</a></div><div class="ttdeci">#define XML_FROM(v1)</div><div class="ttdef"><b>Definition</b> xml.hpp:154</div></div>
+<div class="ttc" id="axml_8hpp_html_a548fc3393ead01c2336427b005beb10b"><div class="ttname"><a href="#a548fc3393ead01c2336427b005beb10b">XML_TO</a></div><div class="ttdeci">#define XML_TO(v1)</div><div class="ttdef"><b>Definition</b> <a href="xml_8hpp_source.html#l00153">xml.hpp:153</a></div></div>
+<div class="ttc" id="axml_8hpp_html_aac54f8e44376f3006258c4197d8cd358"><div class="ttname"><a href="#aac54f8e44376f3006258c4197d8cd358">XML_FROM</a></div><div class="ttdeci">#define XML_FROM(v1)</div><div class="ttdef"><b>Definition</b> <a href="xml_8hpp_source.html#l00154">xml.hpp:154</a></div></div>
 </div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00156">156</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a6cfcafb83afd3d00bc784de9ad2e44c5" name="a6cfcafb83afd3d00bc784de9ad2e44c5"></a>
@@ -428,8 +474,10 @@ Functions</h2></td></tr>
 <div class="line">        });                \</div>
 <div class="line">        e = ((it != std::end(m)) ? it : std::begin(m))-&gt;first;                               \</div>
 <div class="line">    }</div>
-<div class="ttc" id="anamespacexpe_1_1res_html_ac5525e0fd8b81e865e788d9ee64021b5"><div class="ttname"><a href="namespacexpe_1_1res.html#ac5525e0fd8b81e865e788d9ee64021b5">xpe::res::GetXmlValue</a></div><div class="ttdeci">void GetXmlValue(xml &amp;root, const char *name, bool &amp;value)</div><div class="ttdef"><b>Definition</b> xml.cpp:102</div></div>
+<div class="ttc" id="anamespacexpe_1_1res_html_ac5525e0fd8b81e865e788d9ee64021b5"><div class="ttname"><a href="namespacexpe_1_1res.html#ac5525e0fd8b81e865e788d9ee64021b5">xpe::res::GetXmlValue</a></div><div class="ttdeci">void GetXmlValue(xml &amp;root, const char *name, bool &amp;value)</div><div class="ttdef"><b>Definition</b> <a href="xml_8cpp_source.html#l00102">xml.cpp:102</a></div></div>
 </div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00170">170</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
+
 </div>
 </div>
 <a id="ab64e6ffb4ce65b60c01142a8d85473c4" name="ab64e6ffb4ce65b60c01142a8d85473c4"></a>
@@ -447,6 +495,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00009">9</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
+
 </div>
 </div>
 <a id="aac54f8e44376f3006258c4197d8cd358" name="aac54f8e44376f3006258c4197d8cd358"></a>
@@ -463,6 +513,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00154">154</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -805,6 +857,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00010">10</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a0ea8b8334d0b2f7921d97e51e2cc6e4a" name="a0ea8b8334d0b2f7921d97e51e2cc6e4a"></a>
@@ -822,6 +876,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00141">141</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
+
 </div>
 </div>
 <a id="abc8a76f02422192235e571c96fda5186" name="abc8a76f02422192235e571c96fda5186"></a>
@@ -838,6 +894,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00011">11</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -899,6 +957,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00084">84</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -965,6 +1025,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00085">85</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -1036,6 +1098,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00086">86</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -1112,6 +1176,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00087">87</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -1193,6 +1259,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00088">88</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -1279,6 +1347,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00089">89</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -1370,6 +1440,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00090">90</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -1466,6 +1538,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00091">91</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -1567,6 +1641,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00092">92</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -1674,6 +1750,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00093">93</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a1c683b2eb4fc1e1b324e2464f82aaf5f" name="a1c683b2eb4fc1e1b324e2464f82aaf5f"></a>
@@ -1694,6 +1772,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00076">76</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -1805,6 +1885,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00094">94</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -1921,6 +2003,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00095">95</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -2042,6 +2126,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00096">96</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -2168,6 +2254,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00097">97</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -2299,6 +2387,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00098">98</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -2435,6 +2525,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00099">99</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -2576,6 +2668,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00100">100</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -2722,6 +2816,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00101">101</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -2873,6 +2969,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00102">102</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -3030,6 +3128,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00103">103</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
+
 </div>
 </div>
 <a id="acb3c1fc5e34f33d4755f01a9cfec7d45" name="acb3c1fc5e34f33d4755f01a9cfec7d45"></a>
@@ -3055,6 +3155,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00077">77</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -3216,6 +3318,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00104">104</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -3382,6 +3486,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00105">105</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -3553,6 +3659,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00106">106</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -3729,6 +3837,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00107">107</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -3910,6 +4020,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00108">108</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -4096,6 +4208,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00109">109</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -4287,6 +4401,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00110">110</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -4483,6 +4599,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00111">111</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -4684,6 +4802,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00112">112</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -4891,6 +5011,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00113">113</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a13203a865b9cdd1a7202beddf70169e0" name="a13203a865b9cdd1a7202beddf70169e0"></a>
@@ -4921,6 +5043,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00078">78</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -5132,6 +5256,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00114">114</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -5348,6 +5474,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00115">115</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -5569,6 +5697,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00116">116</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -5795,6 +5925,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00117">117</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -6026,6 +6158,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00118">118</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -6262,6 +6396,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00119">119</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -6503,6 +6639,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00120">120</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -6749,6 +6887,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00121">121</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -7000,6 +7140,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00122">122</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -7257,6 +7399,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00123">123</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a5cd3116c63aaed593c638addd6803aac" name="a5cd3116c63aaed593c638addd6803aac"></a>
@@ -7292,6 +7436,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00079">79</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -7553,6 +7699,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00124">124</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -7819,6 +7967,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00125">125</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -8090,6 +8240,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00126">126</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -8366,6 +8518,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00127">127</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -8647,6 +8801,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00128">128</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -8933,6 +9089,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00129">129</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -9224,6 +9382,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00130">130</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -9520,6 +9680,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00131">131</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -9821,6 +9983,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00132">132</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -10128,6 +10292,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00133">133</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
+
 </div>
 </div>
 <a id="aa08664f862112ad59d880943ee2c27e0" name="aa08664f862112ad59d880943ee2c27e0"></a>
@@ -10168,6 +10334,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00080">80</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -10479,6 +10647,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00134">134</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -10795,6 +10965,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00135">135</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -11116,6 +11288,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00136">136</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -11442,6 +11616,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00137">137</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -11774,6 +11950,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00138">138</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
+
 </div>
 </div>
 <a id="aa609c2a0c064c0c588be9bb77f8fab69" name="aa609c2a0c064c0c588be9bb77f8fab69"></a>
@@ -11819,6 +11997,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00081">81</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -11870,6 +12050,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00082">82</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -11927,6 +12109,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00083">83</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
+
 </div>
 </div>
 <a id="a8ea27e84599c647e17b7ded11d983c2c" name="a8ea27e84599c647e17b7ded11d983c2c"></a>
@@ -11943,6 +12127,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00140">140</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
 
 </div>
 </div>
@@ -11961,6 +12147,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00153">153</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Typedef Documentation</h2>
@@ -11976,12 +12164,18 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="xml_8hpp_source.html#l00007">7</a> of file <a class="el" href="xml_8hpp_source.html">xml.hpp</a>.</p>
+
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li><li class="navelem"><a class="el" href="dir_0c92e0ec2b3a83cff45176222669dd0e.html">res</a></li><li class="navelem"><a class="el" href="xml_8hpp.html">xml.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

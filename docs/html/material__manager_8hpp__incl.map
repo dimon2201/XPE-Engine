@@ -1,0 +1,20 @@
+<map id="engine/src/rendering/material/material_manager.hpp" name="engine/src/rendering/material/material_manager.hpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="46,5,249,48"/>
+<area shape="rect" id="Node000002" href="$material_8hpp.html" title=" " alt="" coords="5,96,130,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,50,98,86,94,83,127,47"/>
+<area shape="rect" id="Node000009" href="$bindings_8hpp.html" title=" " alt="" coords="153,104,305,131"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="168,47,209,91,205,94,164,50"/>
+<area shape="rect" id="Node000003" href="$buffers_8hpp.html" title=" " alt="" coords="77,187,218,213"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="90,137,126,174,123,177,86,141"/>
+<area shape="rect" id="Node000004" href="$rendering_2core_2context_8hpp.html" title=" " alt="" coords="60,261,235,288"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="150,214,150,246,145,246,145,214"/>
+<area shape="rect" id="Node000005" href="$shader_8hpp.html" title=" " alt="" coords="62,336,233,363"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="150,289,150,320,145,320,145,289"/>
+<area shape="rect" id="Node000006" href="$render__target_8hpp.html" title=" " alt="" coords="76,411,219,453"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="150,363,150,395,145,395,145,363"/>
+<area shape="rect" id="Node000007" href="$texture_8hpp.html" title=" " alt="" coords="61,501,234,528"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="150,454,150,485,145,485,145,454"/>
+<area shape="rect" id="Node000008" href="$rendering_2core_2core_8hpp.html" title=" " alt="" coords="69,576,226,603"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="150,529,150,560,145,560,145,529"/>
+<area shape="poly" id="edge9_Node000009_Node000003" title=" " alt="" coords="218,133,173,178,169,174,214,129"/>
+</map>

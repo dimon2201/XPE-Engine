@@ -10,11 +10,17 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +29,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;0.1</span>
+   <div id="projectname">XPE-Engine<span id="projectnumber">&#160;1.0</span>
    </div>
   </td>
  </tr>
@@ -48,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('skeleton__manager_8hpp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +92,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li><li class="navelem"><a class="el" href="dir_2afa4a2c4df85670c270dbd0d609878e.html">anim</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
@@ -83,6 +101,49 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="skeleton_8hpp_source.html">anim/skeleton.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="bindings_8hpp_source.html">rendering/bindings.hpp</a>&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for skeleton_manager.hpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="skeleton__manager_8hpp__incl.png" border="0" usemap="#aengine_2src_2anim_2skeleton__manager_8hpp" alt=""/></div>
+<map name="aengine_2src_2anim_2skeleton__manager_8hpp" id="aengine_2src_2anim_2skeleton__manager_8hpp">
+<area shape="rect" title=" " alt="" coords="141,5,307,48"/>
+<area shape="rect" href="skeleton_8hpp.html" title=" " alt="" coords="79,96,206,123"/>
+<area shape="poly" title=" " alt="" coords="205,51,168,87,164,83,201,47"/>
+<area shape="rect" href="bindings_8hpp.html" title=" " alt="" coords="231,96,382,123"/>
+<area shape="poly" title=" " alt="" coords="247,47,285,83,281,87,243,51"/>
+<area shape="rect" href="anim_8hpp.html" title=" " alt="" coords="5,179,112,205"/>
+<area shape="poly" title=" " alt="" coords="131,125,84,170,80,166,128,121"/>
+<area shape="rect" href="geometry_8hpp.html" title=" " alt="" coords="136,171,269,213"/>
+<area shape="poly" title=" " alt="" coords="154,122,180,157,176,160,150,125"/>
+<area shape="rect" href="buffers_8hpp.html" title=" " alt="" coords="184,261,325,288"/>
+<area shape="poly" title=" " alt="" coords="218,212,240,247,236,250,214,215"/>
+<area shape="rect" href="rendering_2core_2context_8hpp.html" title=" " alt="" coords="167,336,342,363"/>
+<area shape="poly" title=" " alt="" coords="257,289,257,320,252,320,252,289"/>
+<area shape="rect" href="shader_8hpp.html" title=" " alt="" coords="169,411,340,437"/>
+<area shape="poly" title=" " alt="" coords="257,363,257,395,252,395,252,363"/>
+<area shape="rect" href="render__target_8hpp.html" title=" " alt="" coords="183,485,326,528"/>
+<area shape="poly" title=" " alt="" coords="257,438,257,470,252,470,252,438"/>
+<area shape="rect" href="texture_8hpp.html" title=" " alt="" coords="168,576,341,603"/>
+<area shape="poly" title=" " alt="" coords="257,529,257,560,252,560,252,529"/>
+<area shape="rect" href="rendering_2core_2core_8hpp.html" title=" " alt="" coords="176,651,333,677"/>
+<area shape="poly" title=" " alt="" coords="257,603,257,635,252,635,252,603"/>
+<area shape="poly" title=" " alt="" coords="307,123,298,164,284,214,270,248,265,246,279,212,293,163,302,122"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="skeleton__manager_8hpp__dep__incl.png" border="0" usemap="#aengine_2src_2anim_2skeleton__manager_8hppdep" alt=""/></div>
+<map name="aengine_2src_2anim_2skeleton__manager_8hppdep" id="aengine_2src_2anim_2skeleton__manager_8hppdep">
+<area shape="rect" title=" " alt="" coords="175,5,341,48"/>
+<area shape="rect" href="anim__system_8cpp.html" title=" " alt="" coords="5,96,151,139"/>
+<area shape="poly" title=" " alt="" coords="203,58,121,98,119,93,201,53"/>
+<area shape="rect" href="skeleton__manager_8cpp.html" title=" " alt="" coords="175,96,341,139"/>
+<area shape="poly" title=" " alt="" coords="261,64,261,96,255,96,255,64"/>
+<area shape="rect" href="render__system_8cpp.html" title=" " alt="" coords="365,96,503,139"/>
+<area shape="poly" title=" " alt="" coords="314,53,394,93,392,98,312,58"/>
+</map>
+</div>
 </div>
 <p><a href="skeleton__manager_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -99,9 +160,13 @@ Namespaces</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li><li class="navelem"><a class="el" href="dir_2afa4a2c4df85670c270dbd0d609878e.html">anim</a></li><li class="navelem"><a class="el" href="skeleton__manager_8hpp.html">skeleton_manager.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>
