@@ -25,29 +25,31 @@ namespace xpe {
 
         struct ENGINE_API Buffers final
         {
-            static sVertexBuffer*       Vertex;
-            static sIndexBuffer*        Index;
-            static sCameraBuffer*       Camera;
-            static sDirectLightBuffer*  DirectLight;
-            static sPointLightBuffer*   PointLight;
-            static sSpotLightBuffer*    SpotLight;
-            static sMaterialDataBuffer* Material;
-            static sShadowPcfBuffer*    ShadowPCF;
-            static sSkeletonBuffer*     Skeleton;
-            static sSsaoBuffer*         SSAO;
+            static cVertexBuffer*               Vertex;
+            static cIndexBuffer*                Index;
+            static cCameraBuffer*               Camera;
+            static cDirectLightBuffer*          DirectLight;
+            static cPointLightBuffer*           PointLight;
+            static cSpotLightBuffer*            SpotLight;
+            static cMaterialDataBuffer*         Material;
+            static cShadowPcfBuffer*            ShadowPCF;
+            static cSkeletonBuffer*             Skeleton;
+            static cSsaoBuffer*                 SSAO;
+            static cParticleBuffer*             Particle;
+            static cParticleEmitterBuffer*      ParticleEmitter;
         };
 
         struct ENGINE_API Textures final
         {
-            static sTexture*            Canvas;
-            static sTexture*            SharedDepth;
-            static sTexture*            AlbedoAtlas;
-            static sTexture*            NormalAtlas;
-            static sTexture*            ParallaxAtlas;
-            static sTexture*            MetalAtlas;
-            static sTexture*            RoughnessAtlas;
-            static sTexture*            AOAtlas;
-            static sTexture*            EmissionAtlas;
+            static cTexture*            Canvas;
+            static cTexture*            SharedDepth;
+            static cTexture*            AlbedoAtlas;
+            static cTexture*            NormalAtlas;
+            static cTexture*            ParallaxAtlas;
+            static cTexture*            MetalAtlas;
+            static cTexture*            RoughnessAtlas;
+            static cTexture*            AOAtlas;
+            static cTexture*            EmissionAtlas;
             static sAtlas*              WidgetAtlas;
         };
 

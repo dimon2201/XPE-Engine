@@ -4,6 +4,7 @@
 #include <rendering/skybox_manager.hpp>
 #include <rendering/camera_manager.hpp>
 #include <rendering/shadow_manager.hpp>
+#include <rendering/core/shader.hpp>
 
 #include <anim/skeleton_manager.hpp>
 
@@ -46,56 +47,53 @@ namespace xpe {
 
         void cRenderSystem::InitBuffers(sViewport &viewport, u32 sampleCount)
         {
-            Buffers::DirectLight = new sDirectLightBuffer();
-            Buffers::DirectLight->Reserve(10);
-            Buffers::PointLight = new sPointLightBuffer();
-            Buffers::PointLight->Reserve(10);
-            Buffers::SpotLight = new sSpotLightBuffer();
-            Buffers::SpotLight->Reserve(10);
+            Buffers::DirectLight = new cDirectLightBuffer(4);
+            Buffers::PointLight = new cPointLightBuffer(4);
+            Buffers::SpotLight = new cSpotLightBuffer(4);
         }
 
         void cRenderSystem::InitRenderTargets(sViewport& viewport, u32 sampleCount)
         {
             // Shared depth texture for opaque and transparent render targets
-            Textures::SharedDepth = new sTexture();
-            Textures::SharedDepth->Type = sTexture::eType::TEXTURE_2D_DEPTH_STENCIL;
-            Textures::SharedDepth->Width = viewport.Width;
-            Textures::SharedDepth->Height = viewport.Height;
-            Textures::SharedDepth->Format = eTextureFormat::R32_TYPELESS;
-            Textures::SharedDepth->InitializeData = false;
-            Textures::SharedDepth->EnableRenderTarget = true;
-            Textures::SharedDepth->SampleCount = sampleCount;
+            Textures::SharedDepth = new cTexture();
+            Textures::SharedDepth->SetType(cTexture::eType::TEXTURE_2D_DEPTH_STENCIL);
+            Textures::SharedDepth->SetWidth(viewport.Width);
+            Textures::SharedDepth->SetHeight(viewport.Height);
+            Textures::SharedDepth->SetFormat(eTextureFormat::R32_TYPELESS);
+            Textures::SharedDepth->SetInitializeData(false);
+            Textures::SharedDepth->SetEnableRenderTarget(true);
+            Textures::SharedDepth->SetSampleCount(sampleCount);
             Textures::SharedDepth->SetResizable(false);
             Textures::SharedDepth->Init();
 
             // Opaque render target
-            sTexture* opaqueColor = new sTexture();
-            opaqueColor->Width = viewport.Width;
-            opaqueColor->Height = viewport.Height;
-            opaqueColor->Format = eTextureFormat::HDR;
-            opaqueColor->InitializeData = false;
-            opaqueColor->EnableRenderTarget = true;
-            opaqueColor->SampleCount = sampleCount;
+            cTexture* opaqueColor = new cTexture();
+            opaqueColor->SetWidth(viewport.Width);
+            opaqueColor->SetHeight(viewport.Height);
+            opaqueColor->SetFormat(eTextureFormat::HDR);
+            opaqueColor->SetInitializeData(false);
+            opaqueColor->SetEnableRenderTarget(true);
+            opaqueColor->SetSampleCount(sampleCount);
             opaqueColor->SetResizable(false);
             opaqueColor->Init();
 
-            sTexture* opaquePosition = new sTexture();
-            opaquePosition->Width = viewport.Width;
-            opaquePosition->Height = viewport.Height;
-            opaquePosition->Format = eTextureFormat::RGBA32;
-            opaquePosition->InitializeData = false;
-            opaquePosition->EnableRenderTarget = true;
-            opaquePosition->SampleCount = sampleCount;
+            cTexture* opaquePosition = new cTexture();
+            opaquePosition->SetWidth(viewport.Width);
+            opaquePosition->SetHeight(viewport.Height);
+            opaquePosition->SetFormat(eTextureFormat::RGBA32);
+            opaquePosition->SetInitializeData(false);
+            opaquePosition->SetEnableRenderTarget(true);
+            opaquePosition->SetSampleCount(sampleCount);
             opaquePosition->SetResizable(false);
             opaquePosition->Init();
 
-            sTexture* opaqueNormal = new sTexture();
-            opaqueNormal->Width = viewport.Width;
-            opaqueNormal->Height = viewport.Height;
-            opaqueNormal->Format = eTextureFormat::RGBA16;
-            opaqueNormal->InitializeData = false;
-            opaqueNormal->EnableRenderTarget = true;
-            opaqueNormal->SampleCount = sampleCount;
+            cTexture* opaqueNormal = new cTexture();
+            opaqueNormal->SetWidth(viewport.Width);
+            opaqueNormal->SetHeight(viewport.Height);
+            opaqueNormal->SetFormat(eTextureFormat::RGBA16);
+            opaqueNormal->SetInitializeData(false);
+            opaqueNormal->SetEnableRenderTarget(true);
+            opaqueNormal->SetSampleCount(sampleCount);
             opaqueNormal->SetResizable(false);
             opaqueNormal->Init();
 
@@ -107,23 +105,23 @@ namespace xpe {
             RenderTargets::Opaque->ClearDepth = 1;
 
             // Transparent render target
-            sTexture* transparentAccum = new sTexture();
-            transparentAccum->Width = viewport.Width;
-            transparentAccum->Height = viewport.Height;
-            transparentAccum->Format = eTextureFormat::HDR;
-            transparentAccum->InitializeData = false;
-            transparentAccum->EnableRenderTarget = true;
-            transparentAccum->SampleCount = sampleCount;
+            cTexture* transparentAccum = new cTexture();
+            transparentAccum->SetWidth(viewport.Width);
+            transparentAccum->SetHeight(viewport.Height);
+            transparentAccum->SetFormat(eTextureFormat::HDR);
+            transparentAccum->SetInitializeData(false);
+            transparentAccum->SetEnableRenderTarget(true);
+            transparentAccum->SetSampleCount(sampleCount);
             transparentAccum->SetResizable(false);
             transparentAccum->Init();
 
-            sTexture* transparentReveal = new sTexture();
-            transparentReveal->Width = viewport.Width;
-            transparentReveal->Height = viewport.Height;
-            transparentReveal->Format = eTextureFormat::R8;
-            transparentReveal->InitializeData = false;
-            transparentReveal->EnableRenderTarget = true;
-            transparentReveal->SampleCount = sampleCount;
+            cTexture* transparentReveal = new cTexture();
+            transparentReveal->SetWidth(viewport.Width);
+            transparentReveal->SetHeight(viewport.Height);
+            transparentReveal->SetFormat(eTextureFormat::R8);
+            transparentReveal->SetInitializeData(false);
+            transparentReveal->SetEnableRenderTarget(true);
+            transparentReveal->SetSampleCount(sampleCount);
             transparentReveal->SetResizable(false);
             transparentReveal->Init();
 
@@ -133,22 +131,22 @@ namespace xpe {
             RenderTargets::Transparent->ClearColors.emplace_back(glm::vec4(1.0f));
 
             // Scene render target
-            sTexture* sceneColor = new sTexture();
-            sceneColor->Width = viewport.Width;
-            sceneColor->Height = viewport.Height;
-            sceneColor->Format = eTextureFormat::RGBA8;
-            sceneColor->InitializeData = false;
-            sceneColor->EnableRenderTarget = true;
+            cTexture* sceneColor = new cTexture();
+            sceneColor->SetWidth(viewport.Width);
+            sceneColor->SetHeight(viewport.Height);
+            sceneColor->SetFormat(eTextureFormat::RGBA8);
+            sceneColor->SetInitializeData(false);
+            sceneColor->SetEnableRenderTarget(true);
             sceneColor->SetResizable(true);
             sceneColor->Init();
 
-            sTexture* sceneDepth = new sTexture();
-            sceneDepth->Type = sTexture::eType::TEXTURE_2D_DEPTH_STENCIL;
-            sceneDepth->Width = viewport.Width;
-            sceneDepth->Height = viewport.Height;
-            sceneDepth->Format = eTextureFormat::R32_TYPELESS;
-            sceneDepth->InitializeData = false;
-            sceneDepth->EnableRenderTarget = true;
+            cTexture* sceneDepth = new cTexture();
+            sceneDepth->SetType(cTexture::eType::TEXTURE_2D_DEPTH_STENCIL);
+            sceneDepth->SetWidth(viewport.Width);
+            sceneDepth->SetHeight(viewport.Height);
+            sceneDepth->SetFormat(eTextureFormat::R32_TYPELESS);
+            sceneDepth->SetInitializeData(false);
+            sceneDepth->SetEnableRenderTarget(true);
             sceneDepth->SetResizable(true);
             sceneDepth->Init();
 
@@ -158,22 +156,22 @@ namespace xpe {
             RenderTargets::Scene->ClearDepth = 1.0f;
 
             // UI render target
-            sTexture* uiColor = new sTexture();
-            uiColor->Width = viewport.Width;
-            uiColor->Height = viewport.Height;
-            uiColor->Format = eTextureFormat::RGBA8;
-            uiColor->InitializeData = false;
-            uiColor->EnableRenderTarget = true;
+            cTexture* uiColor = new cTexture();
+            uiColor->SetWidth(viewport.Width);
+            uiColor->SetHeight(viewport.Height);
+            uiColor->SetFormat(eTextureFormat::RGBA8);
+            uiColor->SetInitializeData(false);
+            uiColor->SetEnableRenderTarget(true);
             uiColor->SetResizable(true);
             uiColor->Init();
 
-            sTexture* uiDepth = new sTexture();
-            uiDepth->Type = sTexture::eType::TEXTURE_2D_DEPTH_STENCIL;
-            uiDepth->Width = viewport.Width;
-            uiDepth->Height = viewport.Height;
-            uiDepth->Format = eTextureFormat::R32_TYPELESS;
-            uiDepth->InitializeData = false;
-            uiDepth->EnableRenderTarget = true;
+            cTexture* uiDepth = new cTexture();
+            uiDepth->SetType(cTexture::eType::TEXTURE_2D_DEPTH_STENCIL);
+            uiDepth->SetWidth(viewport.Width);
+            uiDepth->SetHeight(viewport.Height);
+            uiDepth->SetFormat(eTextureFormat::R32_TYPELESS);
+            uiDepth->SetInitializeData(false);
+            uiDepth->SetEnableRenderTarget(true);
             uiDepth->SetResizable(true);
             uiDepth->Init();
 
@@ -183,22 +181,22 @@ namespace xpe {
             RenderTargets::UI->ClearDepth = 1.0f;
 
             // Final render target
-            sTexture* finalColor = new sTexture();
-            finalColor->Width = viewport.Width;
-            finalColor->Height = viewport.Height;
-            finalColor->Format = eTextureFormat::RGBA8;
-            finalColor->InitializeData = false;
-            finalColor->EnableRenderTarget = true;
+            cTexture* finalColor = new cTexture();
+            finalColor->SetWidth(viewport.Width);
+            finalColor->SetHeight(viewport.Height);
+            finalColor->SetFormat(eTextureFormat::RGBA8);
+            finalColor->SetInitializeData(false);
+            finalColor->SetEnableRenderTarget(true);
             finalColor->SetResizable(true);
             finalColor->Init();
 
-            sTexture* finalDepth = new sTexture();
-            finalDepth->Type = sTexture::eType::TEXTURE_2D_DEPTH_STENCIL;
-            finalDepth->Width = viewport.Width;
-            finalDepth->Height = viewport.Height;
-            finalDepth->Format = eTextureFormat::R32_TYPELESS;
-            finalDepth->InitializeData = false;
-            finalDepth->EnableRenderTarget = true;
+            cTexture* finalDepth = new cTexture();
+            finalDepth->SetType(cTexture::eType::TEXTURE_2D_DEPTH_STENCIL);
+            finalDepth->SetWidth(viewport.Width);
+            finalDepth->SetHeight(viewport.Height);
+            finalDepth->SetFormat(eTextureFormat::R32_TYPELESS);
+            finalDepth->SetInitializeData(false);
+            finalDepth->SetEnableRenderTarget(true);
             finalDepth->SetResizable(true);
             finalDepth->Init();
 
@@ -271,8 +269,8 @@ namespace xpe {
 
         void cRenderSystem::UpdateLight(cScene* scene)
         {
-            Buffers::DirectLight->Clear();
             {
+                usize index = 0;
                 auto components = scene->GetComponents<CDirectionalLight>();
                 for (auto [entity, light] : components.each())
                 {
@@ -280,13 +278,17 @@ namespace xpe {
                     lightData.Position = light.View.Position;
                     lightData.Color = light.Color;
                     lightData.ViewProjection = cMathManager::UpdateLightMatrix(light.Projection, light.View);
-                    Buffers::DirectLight->Add(lightData);
-                }
-            }
-            Buffers::DirectLight->Flush();
+                    
+                    Buffers::DirectLight->GetList()[index] = lightData;
 
-            Buffers::SpotLight->Clear();
+                    index += 1;
+                }
+
+                Buffers::DirectLight->Flush();
+            }
+
             {
+                usize index = 0;
                 auto components = scene->GetComponents<CSpotLight>();
                 for (auto [entity, light] : components.each())
                 {
@@ -300,13 +302,16 @@ namespace xpe {
                     lightData.Near = light.Projection.Near;
                     lightData.Far = light.Projection.Far;
 
-                    Buffers::SpotLight->Add(lightData);
-                }
-            }
-            Buffers::SpotLight->Flush();
+                    Buffers::SpotLight->GetList()[index] = lightData;
 
-            Buffers::PointLight->Clear();
+                    index += 1;
+                }
+
+                Buffers::SpotLight->Flush();
+            }
+
             {
+                usize index = 0;
                 auto components = scene->GetComponents<CPointLight>();
                 for (auto [entity, light] : components.each())
                 {
@@ -316,10 +321,14 @@ namespace xpe {
                     lightData.Constant = light.Constant;
                     lightData.Linear = light.Linear;
                     lightData.Quadratic = light.Quadratic;
-                    Buffers::PointLight->Add(lightData);
+
+                    Buffers::PointLight->GetList()[index] = lightData;
+
+                    index += 1;
                 }
+
+                Buffers::PointLight->Flush();
             }
-            Buffers::PointLight->Flush();
         }
 
         void cRenderSystem::UpdateShaders(cScene* scene)
@@ -354,7 +363,7 @@ namespace xpe {
             // Opaque
             RenderTargets::Opaque->Clear();
             {
-                cShader* shader = cShaderManager::GetShaders(cShader::eCategory::OPAQUE);
+                cShader* shader = cShaderManager::GetShaders(cShader::eCategory::OPAQUE_GEOMETRY);
                 while (shader != nullptr) {
                     if (shader->Enable) {
                         shader->Bind();
@@ -368,7 +377,7 @@ namespace xpe {
             // Transparent
             RenderTargets::Transparent->Clear();
             {
-                cShader* shader = cShaderManager::GetShaders(cShader::eCategory::TRANSPARENT);
+                cShader* shader = cShaderManager::GetShaders(cShader::eCategory::TRANSPARENT_GEOMETRY);
                 while (shader != nullptr) {
                     if (shader->Enable) {
                         shader->Bind();

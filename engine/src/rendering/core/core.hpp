@@ -6,15 +6,25 @@ namespace xpe {
 
         using namespace core;
 
-        struct ENGINE_API sResource : public cObject
+        class ENGINE_API cResource : public cObject
         {
+
+        public:
+            enum class eType
+            {
+                BUFFER,
+                TEXTURE,
+                SAMPLER
+            };
+
             enum class eViewType
             {
-                NONE,
-                DEPTH_STENCIL,
-                RENDER_TARGET,
-                SRV,
-                UAV
+                SRV = 0,
+                UAV = 1,
+                SRV_UAV = 2,
+                DEPTH_STENCIL = 3,
+                RENDER_TARGET = 4,
+                NONE = 5
             };
 
             enum class eMapType
@@ -26,9 +36,19 @@ namespace xpe {
                 WRITE_DISCARD
             };
 
-            void* Instance = nullptr;
-            void* ViewInstance = nullptr;
-            eViewType ViewType = eViewType::NONE;
+            inline void* GetInstance() const { return m_Instance; }
+            inline void* GetSRVInstance() const { return m_ViewInstance[0]; }
+            inline void* GetUAVInstance() const { return m_ViewInstance[1]; }
+            inline void** GetInstancePtr() { return &m_Instance; }
+            inline void** GetSRVInstancePtr() { return &m_ViewInstance[0]; }
+            inline void** GetUAVInstancePtr() { return &m_ViewInstance[1]; }
+            inline eViewType GetViewType() const { return m_ViewType; }
+
+        protected:
+            void* m_Instance = nullptr;
+            void* m_ViewInstance[2] = { nullptr };
+            eViewType m_ViewType = eViewType::NONE;
+
         };
 
         enum class ePrimitiveTopology
@@ -42,26 +62,18 @@ namespace xpe {
             DEFAULT = TRIANGLE_LIST
         };
 
-        struct ENGINE_API sBuffer : public sResource
+        class ENGINE_API cBuffer : public cResource
         {
+
+        public:
             enum class eType
             {
                 NONE,
                 VERTEX,
                 INDEX,
-                ITEM,
-                LIST,
-
-                CONSTANT = ITEM,
-                STRUCTURED = LIST,
-            };
-
-            enum class eSubType
-            {
-                NONE,
-                RAW,     // combined with VERTEX/INDEX/LIST buffer
-                APPEND,  // combined with LIST/ITEM buffer
-                CONSUME  // combined with LIST/ITEM buffer
+                CONSTANT,
+                STRUCTURED,
+                RW
             };
 
             enum class eUsage
@@ -72,18 +84,24 @@ namespace xpe {
                 STAGING
             };
 
-            eType Type = eType::NONE;
-            eSubType SubType = eSubType::NONE;
-            eUsage Usage = eUsage::DYNAMIC;
-            usize StructureSize = 0;
-            u32 NumElements = 0;
-            u32 Slot = 0;
-            void* InitialData = nullptr;
+            inline eType GetType() const { return m_Type; }
+            inline eViewType GetViewType() const { return m_ViewType; }
+            inline eUsage GetUsage() const { return m_Usage; }
+            inline u32 GetSlot() const { return m_Slot; }
+            inline usize GetStructureSize() const { return m_StructureSize; }
+            inline u32 GetNumElements() const { return m_NumElements; }
+            inline void* GetInitialData() const { return m_InitialData; }
+            inline usize GetByteSize() const { return m_NumElements * m_StructureSize; }
+            inline void SetSlot(u32 slot) { m_Slot = slot; }
 
-            [[nodiscard]] inline usize GetByteSize() const
-            {
-                return NumElements * StructureSize;
-            }
+        protected:
+            eType m_Type = eType::NONE;
+            eUsage m_Usage = eUsage::DYNAMIC;
+            usize m_StructureSize = 0;
+            u32 m_NumElements = 0;
+            u32 m_Slot = 0;
+            void* m_InitialData = nullptr;
+
         };
 
         struct ENGINE_API sBlob : public cObject
@@ -339,6 +357,356 @@ namespace xpe {
             bool      ScissorEnable = false;
             bool      MultisampleEnable = false;
             bool      AntialiasedLineEnable = false;
+        };
+
+        enum class eTextureFormat
+        {
+            R8, R16, R32, R32_TYPELESS,
+            RG8, RG16, RG32,
+            RGB8, RGB16, RGB32,
+            RGBA8, RGBA16, RGBA32,
+            SRGBA8,
+
+            DEFAULT = RGBA8,
+            HDR = RGBA32
+        };
+
+        struct ENGINE_API sMip final
+        {
+            eTextureFormat Format;
+            s32 Width, Height = 0;
+            void* Pixels = nullptr;
+
+            sMip() = default;
+
+            sMip(eTextureFormat format, s32 width, s32 height, void* pixels)
+                : Format(format), Width(width), Height(height), Pixels(pixels) {}
+        };
+
+        struct ENGINE_API sTextureLayer final
+        {
+            eTextureFormat Format;
+            s32 Width, Height = 0;
+            void* Pixels = nullptr;
+            vector<sMip> Mips;
+
+            sTextureLayer() = default;
+
+            sTextureLayer(eTextureFormat format, s32 width, s32 height, void* pixels)
+                : Format(format), Width(width), Height(height), Pixels(pixels) {}
+
+            void Free();
+
+            void CopyFrom(const sTextureLayer& other);
+
+            [[nodiscard]] sTextureLayer Clone() const;
+
+            void GenerateMips(const eTextureFormat& format, int width, int height);
+
+            void GenerateMipsU8(int width, int height);
+
+            void GenerateMipsFloat(int width, int height);
+
+            void FreeMips();
+
+            void Resize(const eTextureFormat& format, s32 width, s32 height);
+
+            void ResizeU8(s32 width, s32 height);
+
+            void ResizeFloat(s32 width, s32 height);
+
+            void* ResizePixelsU8(
+                const void* inputPixels, int inputWidth, int inputHeight,
+                int outputWidth, int outputHeight
+            );
+
+            void* ResizePixelsFloat(
+                const void* inputPixels, int inputWidth, int inputHeight,
+                int outputWidth, int outputHeight
+            );
+        };
+
+        enum class eFileFormat
+        {
+            PNG,
+            JPG,
+            TGA,
+            HDR,
+            BMP
+        };
+
+        class ENGINE_API cTexture : public cResource
+        {
+
+        public:
+            enum class eType
+            {
+                TEXTURE_1D,
+                TEXTURE_2D,
+                TEXTURE_2D_MS,
+                TEXTURE_2D_DEPTH_STENCIL,
+                TEXTURE_2D_ARRAY,
+                TEXTURE_3D,
+                TEXTURE_CUBE,
+
+                TEXTURE_DEFAULT = TEXTURE_2D
+            };
+
+            enum class eUsage
+            {
+                DEFAULT,
+                STATIC,
+                DYNAMIC,
+                STAGING,
+            };
+
+            cTexture();
+            ~cTexture();
+
+            void Init();
+            void Free();
+
+            sTextureLayer CreateLayer() const;
+            void RemoveLayerAt(u32 index);
+            u32 GetMipLevels() const;
+            static u32 GetMipsLevels(s32 width);
+            void WindowFrameResized(s32 width, s32 height);
+            void Resize(s32 width, s32 height);
+            void ResizePixels(s32 width, s32 height);
+            void Flip();
+            void GenerateMips();
+            void FlushLayer(u32 index);
+            void Flush();
+            void SetResizable(bool resizable);
+
+            inline bool IsResizable() const { return m_Resizable; }
+            inline eType GetType() const { return m_Type; }
+            inline eUsage GetUsage() const { return m_Usage; }
+            inline s32 GetWidth() const { return m_Width; }
+            inline s32 GetHeight() const { return m_Height; }
+            inline s32 GetDepth() const { return m_Depth; }
+            inline s32 GetChannelCount() const { return m_Channels; }
+            inline s32& GetWidthRef() { return m_Width; }
+            inline s32& GetHeightRef() { return m_Height; }
+            inline s32& GetDepthRef() { return m_Depth; }
+            inline s32& GetChannelCountRef() { return m_Channels; }
+            inline eTextureFormat GetFormat() const { return m_Format; }
+            inline u32 GetSampleCount() const { return m_SampleCount; }
+            inline dual IsRenderTargetEnabled() const { return m_EnableRenderTarget; }
+            inline u32 GetSlot() const { return m_Slot; }
+            inline u32 GetMostDetailedMip() const { return m_MostDetailedMip; }
+            inline dual IsDataInitialized() const { return m_InitializeData; }
+            inline vector<sTextureLayer>& GetLayers() { return m_Layers; }
+
+            inline void SetType(const eType& type) { m_Type = type; }
+            inline void SetUsage(const eUsage& usage) { m_Usage = usage; }
+            inline void SetWidth(s32 width) { m_Width = width; }
+            inline void SetHeight(s32 height) { m_Height = height; }
+            inline void SetDepth(s32 depth) { m_Depth = depth; }
+            inline void SetChannelCount(s32 channels) { m_Channels = channels; }
+            inline void SetFormat(const eTextureFormat& format) { m_Format = format; }
+            inline void SetSampleCount(u32 sampleCount) { m_SampleCount = sampleCount; }
+            inline void SetEnableRenderTarget(dual enableRenderTarget) { m_EnableRenderTarget = enableRenderTarget; }
+            inline void SetSlot(u32 slot) { m_Slot = slot; }
+            inline void SetMostDetailedMip(u32 mip) { m_MostDetailedMip = mip; }
+            inline void SetInitializeData(dual initializeData) { m_InitializeData = initializeData; }
+
+        protected:
+            void ResizeTextureU8(s32 width, s32 height);
+            void ResizeTextureFloat(s32 width, s32 height);
+
+            bool m_Resizable = false;
+            eType m_Type = eType::TEXTURE_DEFAULT;
+            eUsage m_Usage = eUsage::DEFAULT;
+            s32 m_Width;
+            s32 m_Height;
+            s32 m_Depth = 1;
+            s32 m_Channels;
+            eTextureFormat m_Format;
+            u32 m_SampleCount = 1;
+            dual m_EnableRenderTarget = false;
+            u32 m_Slot = 0;
+            u32 m_MostDetailedMip = 0;
+            dual m_InitializeData = true;
+            vector<sTextureLayer> m_Layers;
+
+        public:
+            // channels count table for each texture format
+            static const std::unordered_map<eTextureFormat, int> k_ChannelTable;
+            // bytes per pixel table for each texture format
+            static const std::unordered_map<eTextureFormat, int> k_BppTable;
+        };
+
+        struct ENGINE_API sAtlas : public cTexture
+        {
+            struct ENGINE_API sCell final
+            {
+                u32 LayerIndex = 0;
+                glm::vec2 Position = { 0, 0 };
+                glm::vec2 Size = { 0, 0 };
+                sTextureLayer* Texture = nullptr;
+
+                sCell() = default;
+
+                sCell(u32 atlasIndex, const glm::vec2& position, const glm::vec2& size, sTextureLayer* texture)
+                    : LayerIndex(atlasIndex), Position(position), Size(size), Texture(texture) {}
+            };
+
+            struct ENGINE_API sLocation final
+            {
+                u32 LayerIndex = 0;
+                glm::vec2 UV[4] = {
+                    glm::vec2(0),
+                    glm::vec2(0),
+                    glm::vec2(0),
+                    glm::vec2(0)
+                };
+            };
+
+            void AddLayer();
+
+            template<typename... Args>
+            sLocation AddCell(Args&&... args);
+
+            template<typename... Args>
+            void RemoveCell(Args&&... args);
+        };
+
+        template<typename... Args>
+        sAtlas::sLocation sAtlas::AddCell(Args &&... args)
+        {
+            sCell cell = sCell(std::forward<Args>(args)...);
+
+            if (cell.LayerIndex >= m_Layers.size()) {
+                LogWarning("Atlas with index={} is not initialized. Initialize atlasLayer before adding this cell!", cell.LayerIndex);
+                return {};
+            }
+
+            if (cell.Texture == nullptr || cell.Texture->Pixels == nullptr) {
+                LogWarning("Cell texture or texture pixels are not initialized. Initialize cell texture before adding this cell!");
+                return {};
+            }
+
+            sTextureLayer& atlasLayer = m_Layers[cell.LayerIndex];
+            sTextureLayer cellTexture = cell.Texture->Clone();
+            cellTexture.Resize(m_Format, cell.Size.x, cell.Size.y);
+
+            s32 cellX = cell.Position.x;
+            s32 cellY = cell.Position.y;
+            s32 cellWidth = cell.Size.x;
+            s32 cellHeight = cell.Size.y;
+            u8* atlasPixels = static_cast<u8*>(atlasLayer.Pixels);
+            u8* cellPixels = static_cast<u8*>(cellTexture.Pixels);
+            m_Channels = k_ChannelTable.at(m_Format);
+            int bpc = k_BppTable.at(m_Format) / m_Channels; // bytes per channel
+
+            for (int y = 0; y < cellHeight; ++y) {
+                for (int x = 0; x < cellWidth; ++x) {
+                    int cellId = (y * cellWidth + x) * m_Channels;
+                    int atlasX = x + cellX;
+                    int atlasY = y + cellY;
+                    int atlasId = (atlasY * atlasLayer.Width + atlasX) * m_Channels;
+                    for (int c = 0; c < m_Channels; ++c) {
+                        atlasPixels[atlasId + c * bpc] = cellPixels[cellId + c * bpc];
+                    }
+                }
+            }
+
+            cellTexture.Free();
+
+            sLocation location;
+            location.LayerIndex = cell.LayerIndex;
+            location.UV[0] = glm::fvec2(cellX, cellY) / glm::fvec2(atlasLayer.Width, atlasLayer.Height);
+            location.UV[1] = glm::fvec2(cellX, cellY + cellHeight) / glm::fvec2(atlasLayer.Width, atlasLayer.Height);
+            location.UV[2] = glm::fvec2(cellX + cellWidth, cellY + cellHeight) / glm::fvec2(atlasLayer.Width, atlasLayer.Height);
+            location.UV[3] = glm::fvec2(cellX + cellWidth, cellY) / glm::fvec2(atlasLayer.Width, atlasLayer.Height);
+            return location;
+        }
+
+        template<typename... Args>
+        void sAtlas::RemoveCell(Args &&... args)
+        {
+            sCell cell = sCell(std::forward<Args>(args)...);
+
+            if (cell.LayerIndex >= Layers.size()) {
+                LogWarning("Atlas with index={} is not initialized. Initialize atlasLayer before adding this cell!", cell.LayerIndex);
+                return;
+            }
+
+            sTextureLayer& atlasLayer = Layers[cell.LayerIndex];
+
+            s32 cellX = cell.Position.x;
+            s32 cellY = cell.Position.y;
+            s32 cellWidth = cell.Size.x;
+            s32 cellHeight = cell.Size.y;
+            u8* atlasPixels = static_cast<u8*>(atlasLayer.Pixels);
+            Channels = k_ChannelTable.at(Format);
+            int bpc = k_BppTable.at(Format) / Channels; // bytes per channel
+
+            for (int y = 0; y < cellHeight; ++y) {
+                for (int x = 0; x < cellWidth; ++x) {
+                    int atlasX = x + cellX;
+                    int atlasY = y + cellY;
+                    int atlasId = (atlasY * atlasLayer.Width + atlasX) * Channels;
+                    for (int c = 0; c < Channels; ++c) {
+                        atlasPixels[atlasId + c * bpc] = 0;
+                    }
+                }
+            }
+        }
+
+        struct ENGINE_API sSampler : public cResource
+        {
+            enum class eComparison
+            {
+                NEVER,
+                LESS,
+                EQUAL,
+                LESS_EQUAL,
+                GREATER,
+                NOT_EQUAL,
+                GREATER_EQUAL,
+                ALWAYS
+            };
+
+            enum class eAddress
+            {
+                WRAP,
+                MIRROR,
+                CLAMP,
+                BORDER,
+                MIRROR_ONCE
+            };
+
+            enum class eFilter
+            {
+                MIN_MAG_MIP_POINT,
+                MIN_MAG_MIP_LINEAR,
+                ANISOTROPIC
+            };
+
+            u32 Slot = 0;
+
+            eFilter Filter = eFilter::MIN_MAG_MIP_POINT;
+
+            f32 MinLOD = 0;
+            f32 MaxLOD = FLT_MAX;
+            f32 MipLODBias = 0;
+
+            u32 AnisotropyLevel = 1;
+
+            glm::vec4 BorderColor = { 0, 0, 0, 0 };
+
+            eComparison Comparison = eComparison::NEVER;
+
+            eAddress AddressU = eAddress::CLAMP;
+            eAddress AddressV = eAddress::CLAMP;
+            eAddress AddressW = eAddress::CLAMP;
+
+            sSampler();
+            ~sSampler();
+
+            void Init();
         };
 
     }

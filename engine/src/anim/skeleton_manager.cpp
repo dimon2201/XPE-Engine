@@ -6,7 +6,7 @@ namespace xpe {
 
         void cSkeletonManager::Init()
         {
-            Buffers::Skeleton = new sSkeletonBuffer();
+            Buffers::Skeleton = new cSkeletonBuffer(1024);
         }
 
         void cSkeletonManager::Free()

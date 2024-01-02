@@ -7,7 +7,7 @@ namespace xpe {
 
         void cShadowManager::Init()
         {
-            Buffers::ShadowPCF = new sShadowPcfBuffer();
+            Buffers::ShadowPCF = new cShadowPcfBuffer();
 
             Samplers::Shadow              = new sSampler();
             Samplers::Shadow->Slot        = K_SLOT_SHADOW_SAMPLER;
@@ -22,24 +22,24 @@ namespace xpe {
             Viewports::Shadow->Width = 400;
             Viewports::Shadow->Height = 300;
 
-            sTexture* shadowColor = new sTexture();
-            shadowColor->Width = Viewports::Shadow->Width;
-            shadowColor->Height = Viewports::Shadow->Height;
-            shadowColor->Format = eTextureFormat::R32;
-            shadowColor->InitializeData = false;
-            shadowColor->EnableRenderTarget = true;
-            shadowColor->Slot = K_SLOT_SHADOW_ATLAS;
+            cTexture* shadowColor = new cTexture();
+            shadowColor->SetWidth(Viewports::Shadow->Width);
+            shadowColor->SetHeight(Viewports::Shadow->Height);
+            shadowColor->SetFormat(eTextureFormat::R32);
+            shadowColor->SetInitializeData(false);
+            shadowColor->SetEnableRenderTarget(true);
+            shadowColor->SetSlot(K_SLOT_SHADOW_ATLAS);
             shadowColor->SetResizable(true);
             shadowColor->Init();
 
-            sTexture* shadowDepth = new sTexture();
-            shadowDepth->Type = sTexture::eType::TEXTURE_2D_DEPTH_STENCIL;
-            shadowDepth->Width = Viewports::Shadow->Width;
-            shadowDepth->Height = Viewports::Shadow->Height;
-            shadowDepth->Format = eTextureFormat::R32_TYPELESS;
-            shadowDepth->InitializeData = false;
-            shadowDepth->EnableRenderTarget = true;
-            shadowDepth->Slot = K_SLOT_SHADOW_ATLAS;
+            cTexture* shadowDepth = new cTexture();
+            shadowDepth->SetType(cTexture::eType::TEXTURE_2D_DEPTH_STENCIL);
+            shadowDepth->SetWidth(Viewports::Shadow->Width);
+            shadowDepth->SetHeight(Viewports::Shadow->Height);
+            shadowDepth->SetFormat(eTextureFormat::R32_TYPELESS);
+            shadowDepth->SetInitializeData(false);
+            shadowDepth->SetEnableRenderTarget(true);
+            shadowDepth->SetSlot(K_SLOT_SHADOW_ATLAS);
             shadowDepth->SetResizable(true);
             shadowDepth->Init();
 

@@ -25,7 +25,7 @@ namespace xpe {
             Assimp::Importer importer;
             const aiScene* scene = importer.ReadFile(filepath, cAssimpManager::GetLoadFlags(options));
 
-            if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
+            if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode || scene->mAnimations == nullptr) {
                 LogError("Failed to import 3D animation file {0}", filepath);
                 return {};
             }

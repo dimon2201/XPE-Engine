@@ -57,9 +57,7 @@
 #include <core/memory_manager.hpp>
 #include <core/allocators.hpp>
 #include <core/smart_pointers.hpp>
-#include <core/codes_keyboard.hpp>
-#include <core/codes_mouse.hpp>
-#include <core/codes_gamepad.hpp>
+#include <core/codes.hpp>
 #include <res/json.hpp>
 #include <res/xml.hpp>
 #include <core/app_config.hpp>

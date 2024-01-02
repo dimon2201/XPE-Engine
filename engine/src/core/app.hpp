@@ -35,6 +35,13 @@ namespace xpe
         class cPhysicsSystem;
     }
 
+    namespace particle
+    {
+        class cParticleSystem;
+    }
+
+    using namespace particle;
+
     namespace core {
 
         class ENGINE_API cApp : public cObject {
@@ -73,6 +80,7 @@ namespace xpe
             cAnimSystem* m_AnimSystem = nullptr;
             cAudioSystem* m_AudioSystem = nullptr;
             cPhysicsSystem* m_PhysicsSystem = nullptr;
+            cParticleSystem* m_ParticleSystem = nullptr;
         };
     }
 }

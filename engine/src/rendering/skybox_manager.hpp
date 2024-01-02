@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rendering/core/texture.hpp>
+#include <rendering/core/core.hpp>
 #include <rendering/geometry/geometries.hpp>
 
 namespace xpe {
@@ -11,9 +11,9 @@ namespace xpe {
         {
             sGeometry Geometry;
             sGeometryInfo GeometryInfo;
-            sTexture* Texture;
+            cTexture* Texture;
         };
-        JSON(sSkybox, Geometry)
+        //JSON(sSkybox, Geometry)
 
         class ENGINE_API cSkyboxManager final
         {

@@ -5,6 +5,7 @@
 #include <rendering/buffers.hpp>
 #include <rendering/font/font.hpp>
 #include <rendering/widget_manager.hpp>
+#include <particle/particle_manager.hpp>
 
 #include <anim/skeleton.hpp>
 
@@ -15,6 +16,11 @@ namespace xpe
     namespace physics
     {
         struct sActor;
+    }
+
+    namespace particle
+    {
+        struct sParticleEmitter;
     }
 
     namespace ecs
@@ -246,6 +252,7 @@ namespace xpe
             vector<cEntity*> Entities;
             sSkeleton Skeleton;
             vector<sAnimation> Animations;
+            sRagdoll* Ragdoll;
 
             JSON_CLASS(
                 CAnimation,
@@ -315,6 +322,7 @@ namespace xpe
         {
             CPhysicsActor(physics::sActor* actor)
             {
+                ParentEntity = actor->ParentEntity;
                 Actor = actor->Actor;
                 Material = actor->Material;
                 Shape = actor->Shape;
@@ -406,6 +414,23 @@ namespace xpe
                 Text,
                 Color,
                 FillFrame
+            )
+        };
+
+        struct ENGINE_API CParticleEmitter : particle::sParticleEmitter, cJson
+        {
+            CParticleEmitter(const sParticleEmitter& emitter)
+            {
+                ListIndex = emitter.ListIndex;
+                EmitterCount = emitter.EmitterCount;
+                SpawnCount = emitter.SpawnCount;
+            }
+
+            JSON_CLASS(
+                CParticleEmitter,
+                ListIndex,
+                EmitterCount,
+                SpawnCount
             )
         };
 

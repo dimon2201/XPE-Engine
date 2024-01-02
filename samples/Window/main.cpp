@@ -186,7 +186,8 @@ public:
                         &planeShapeDesc,
                         glm::vec3(0.0f),
                         0.5f, 0.5f, 0.5f,
-                        0.05f, 0.0f
+                        0.05f, 0.0f,
+                        10.0f
                 )
             );
         }
@@ -204,6 +205,42 @@ public:
             m_SunLight.SetTransparent(false);
             m_SunLight.SetShadow(false);
         }
+
+        // Spheres
+        for (s32 i = 0; i < 0; i++)
+        {
+            auto mat = sMaterial();
+            if (i == 0) { mat.Albedo = glm::vec4(1.0f, 0.0f, 0.0f, 0.2f); }
+            if (i == 1) { mat.Albedo = glm::vec4(0.0f, 1.0f, 0.0f, 0.4f); }
+            if (i == 2) { mat.Albedo = glm::vec4(0.0f, 0.0f, 1.0f, 0.6f); }
+            if (i == 3) { mat.Albedo = glm::vec4(1.0f, 1.0f, 0.0f, 0.8f); }
+
+            mat.Metallness = 0.0f;
+            mat.Roughness = 0.05f;
+            mat.AO = 0.0f;
+
+            m_Glasses[i] = cEntity("Glass-" + string(std::to_string(i)), m_Scene);
+            m_Glasses[i].SetPosition(glm::vec3(0, 1.0f + ((float)i * 3.0f), 95));
+            m_Glasses[i].SetScale(glm::vec3(1.0f));
+            m_Glasses[i].Add<CGeometryInfo>(cGeometryManager::AddGeometry(sSphere()).second);
+            m_Glasses[i].Add<CMaterial>(cMaterialManager::AddMaterial(mat));
+            m_Glasses[i].Add<CTransparent>();
+
+            sSphereShapeDescriptor sphereShapeDesc(1.0f);
+            m_Glasses[i].Add<CPhysicsActor>(
+                cPhysicsManager::AddActor(
+                    m_Glasses[i],
+                    CPhysicsActor::eActorType::RIGID_DYNAMIC,
+                    &sphereShapeDesc,
+                    glm::vec3(0.0f),
+                    0.5f, 0.5f, 0.5f,
+                    0.05f, 0.0f,
+                    10.0f
+                )
+            );
+        }
+
+        //m_Ragdoll = cPhysicsManager::AddRagdoll(m_Scene, glm::vec3(0, 20, 25));
 
         // Goblins
         {
@@ -233,8 +270,8 @@ public:
             m_Goblin4.SetScale(5, 5, 5);
             m_Goblin4.SetVisible(false);
 
-            auto [goblinGeometry, goblinGeometryInfo] = cGeometryManager::AddGeometry(cModelLoader::Load("res/models/winter-girl/source/dancing_vampire.dae").Merge());
-            auto [goblinSkeleton, goblinSkeletonInfo] = cSkeletonLoader::Load("res/models/winter-girl/source/dancing_vampire.dae");
+            auto [goblinGeometry, goblinGeometryInfo] = cGeometryManager::AddGeometry(cModelLoader::Load("res/models/winter-girl/source/skeleton.dae").Merge());
+            auto [goblinSkeleton, goblinSkeletonInfo] = cSkeletonLoader::Load("res/models/winter-girl/source/skeleton.dae");
             goblinSkeletonInfo.GeometryInfo = goblinGeometryInfo;
             m_Goblins.Add<CSkeleton>(goblinSkeleton);
             m_Goblins.Add<CSkeletonInfo>(goblinSkeletonInfo);
@@ -245,7 +282,7 @@ public:
                     m_Goblin4.GetID()
             };
             m_Goblins.Add<CAnimation>();
-            m_Goblins.Get<CAnimation>().Animations.emplace_back(cAnimLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
+            m_Goblins.Get<CAnimation>().Animations.emplace_back(cAnimLoader::Load("res/models/winter-girl/source/skeleton.dae"));
             m_Goblins.Get<CAnimation>().Animations[0].Play = true;
             m_Goblins.SetOpaque(true);
             m_Goblins.SetTransparent(false);
@@ -356,55 +393,31 @@ public:
             );
         }
 
-        // Cube
+        // Capsule
         {
-            m_Cube = cEntity("Cube", m_Scene);
-            m_Cube.SetPosition(glm::vec3(10.0f, 2.5f, 10.0f));
-            m_Cube.SetScale(glm::vec3(5.0f));
-            m_Cube.Add<CGeometry>(sCube()); // OPTIONAL : only for changing on CPU
-            m_Cube.Add<CGeometryInfo>(cGeometryManager::AddGeometry(sCube()).second);
-            m_Cube.Add<CMaterial>(cMaterialManager::AddMaterial());
-            m_Cube.Get<CGeometryInfo>().Entities = { m_Cube.GetID() };
-            m_Cube.SetOpaque(true);
-            m_Cube.SetTransparent(false);
-            m_Cube.SetShadow(true);
-        }
+            m_Capsule = cEntity("Cube", m_Scene);
+            m_Capsule.SetPosition(glm::vec3(10.0f, 5.0f, 10.0f));
+            m_Capsule.SetScale(glm::vec3(1.0f));
+            m_Capsule.Add<CGeometry>(sCapsule()); // OPTIONAL : only for changing on CPU
+            m_Capsule.Add<CGeometryInfo>(cGeometryManager::AddGeometry(sCapsule()).second);
+            m_Capsule.Add<CMaterial>(cMaterialManager::AddMaterial());
+            m_Capsule.Get<CGeometryInfo>().Entities = { m_Capsule.GetID() };
+            m_Capsule.SetOpaque(true);
+            m_Capsule.SetTransparent(false);
+            m_Capsule.SetShadow(true);
 
-        // Spheres
-        for (s32 i = 0; i < 4; i++)
-        {
-            auto mat = sMaterial();
-            if (i == 0) { mat.Albedo = glm::vec4(1.0f, 0.0f, 0.0f, 0.2f); }
-            if (i == 1) { mat.Albedo = glm::vec4(0.0f, 1.0f, 0.0f, 0.4f); }
-            if (i == 2) { mat.Albedo = glm::vec4(0.0f, 0.0f, 1.0f, 0.6f); }
-            if (i == 3) { mat.Albedo = glm::vec4(1.0f, 1.0f, 0.0f, 0.8f); }
-
-            mat.Metallness = 0.0f;
-            mat.Roughness = 0.05f;
-            mat.AO = 0.0f;
-
-            m_Glasses[i] = cEntity("Glass-" + string(std::to_string(i)), m_Scene);
-            m_Glasses[i].SetPosition(glm::vec3(0 + ((float)i * 0.5f), 1.1 + ((float)i * 2.0f), -5));
-            m_Glasses[i].SetScale(glm::vec3(1.0f));
-            m_Glasses[i].Add<CGeometry>(sSphere()); // OPTIONAL : if you need to change geometry on CPU
-            m_Glasses[i].Add<CGeometryInfo>(cGeometryManager::AddGeometry(sSphere()).second);
-            m_Glasses[i].Get<CGeometryInfo>().Entities = { m_Glasses[i].GetID() };
-            m_Glasses[i].Add<CMaterial>(cMaterialManager::AddMaterial(mat));
-            m_Glasses[i].SetOpaque(false);
-            m_Glasses[i].SetTransparent(true);
-            m_Glasses[i].SetShadow(true);
-
-            sSphereShapeDescriptor sphereShapeDesc(1.0f);
-            m_Glasses[i].Add<CPhysicsActor>(
-                    cPhysicsManager::AddActor(
-                            m_Glasses[i],
-                            CPhysicsActor::eActorType::RIGID_DYNAMIC,
-                            &sphereShapeDesc,
-                            glm::vec3(0.0f),
-                            0.5f, 0.5f, 0.5f,
-                            0.05f, 0.0f
-                    )
+            sCapsuleShapeDescriptor capsuleShapeDesc(0.5f, 0.5f);
+            sActor* physicsActor = cPhysicsManager::AddActor(
+                m_Capsule,
+                CPhysicsActor::eActorType::RIGID_DYNAMIC,
+                &capsuleShapeDesc,
+                glm::vec3(0.0f),
+                0.5f, 0.5f, 0.5f,
+                0.05f, 0.0f,
+                1.0f
             );
+
+            m_Capsule.Add<CPhysicsActor>(physicsActor);
         }
 
         // settings for shadows
@@ -482,6 +495,13 @@ public:
         if (key == eKey::V)
         {
             cAudioManager::VoiceRecord();
+        }
+
+        if (key == eKey::J)
+        {
+            cPhysicsManager::SetForce(m_Ragdoll->Bodyparts[0], glm::vec3(256.0f, 0.0f, 0.0f));
+            cPhysicsManager::SetForce(m_Ragdoll->Bodyparts[1], glm::vec3(256.0f, 0.0f, 256.0f));
+            cPhysicsManager::SetForce(m_Ragdoll->Bodyparts[2], glm::vec3(256.0f, 256.0f, 0.0f));
         }
 
         MoveWidget(key);
@@ -642,9 +662,10 @@ private:
     cEntity m_Goblin2;
     cEntity m_Goblin3;
     cEntity m_Goblin4;
-    cEntity m_Cube;
+    cEntity m_Capsule;
     cEntity m_AudioBox;
     cEntity m_Glasses[4];
+    sRagdoll* m_Ragdoll;
 
     sTestConfig m_TestConfig;
     sXmlConfig  m_XmlConfig;

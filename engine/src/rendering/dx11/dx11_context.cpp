@@ -1,16 +1,17 @@
-#ifdef DX11
-
-#include <rendering/core/debugger.hpp>
 #include <d3dcompiler.h>
 #include <d3d11.h>
+#include <rendering/core/core.hpp>
+#include <rendering/core/debugger.hpp>
 #include <rendering/core/context.hpp>
-
+#include <rendering/core/shader.hpp>
 
 namespace xpe {
 
     namespace render {
 
         namespace context {
+
+            using namespace core;
 
             static ID3D11Device* s_Device = nullptr;
             static ID3D11DeviceContext* s_ImmContext = nullptr;
@@ -21,76 +22,38 @@ namespace xpe {
             static IDXGIFactory* s_GIFactory = nullptr;
             static DXGI_MODE_DESC s_GIModeDesc;
 
-            static const std::unordered_map<sBuffer::eUsage, D3D11_USAGE> k_BufferUsageTable =
+            static const std::unordered_map<cBuffer::eUsage, D3D11_USAGE> k_BufferUsageTable =
             {
-                    { sBuffer::eUsage::DEFAULT, D3D11_USAGE_DEFAULT },
-                    { sBuffer::eUsage::STATIC,  D3D11_USAGE_IMMUTABLE },
-                    { sBuffer::eUsage::DYNAMIC, D3D11_USAGE_DYNAMIC },
-                    { sBuffer::eUsage::STAGING, D3D11_USAGE_STAGING }
+                    { cBuffer::eUsage::DEFAULT, D3D11_USAGE_DEFAULT },
+                    { cBuffer::eUsage::STATIC,  D3D11_USAGE_IMMUTABLE },
+                    { cBuffer::eUsage::DYNAMIC, D3D11_USAGE_DYNAMIC },
+                    { cBuffer::eUsage::STAGING, D3D11_USAGE_STAGING }
             };
 
-            static const std::unordered_map<sBuffer::eUsage, u32> k_BufferUsageCpuFlagTable =
+            static const std::unordered_map<cBuffer::eUsage, u32> k_BufferUsageCpuFlagTable =
             {
-                    { sBuffer::eUsage::DEFAULT, D3D11_CPU_ACCESS_WRITE },
-                    { sBuffer::eUsage::STATIC, 0 },
-                    { sBuffer::eUsage::DYNAMIC, D3D11_CPU_ACCESS_WRITE },
-                    { sBuffer::eUsage::STAGING, D3D11_CPU_ACCESS_READ | D3D11_CPU_ACCESS_WRITE }
+                    { cBuffer::eUsage::DEFAULT, D3D11_CPU_ACCESS_WRITE },
+                    { cBuffer::eUsage::STATIC, 0 },
+                    { cBuffer::eUsage::DYNAMIC, D3D11_CPU_ACCESS_WRITE },
+                    { cBuffer::eUsage::STAGING, D3D11_CPU_ACCESS_READ | D3D11_CPU_ACCESS_WRITE }
             };
 
-            static const std::unordered_map<sBuffer::eType, u32> k_BufferTypeBindFlagTable =
+            static const std::unordered_map<cBuffer::eType, u32> k_BufferTypeBindFlagTable =
             {
-                    { sBuffer::eType::VERTEX, D3D11_BIND_VERTEX_BUFFER },
-                    { sBuffer::eType::INDEX,  D3D11_BIND_INDEX_BUFFER },
-                    { sBuffer::eType::ITEM,   D3D11_BIND_CONSTANT_BUFFER },
-                    { sBuffer::eType::LIST,   D3D11_BIND_SHADER_RESOURCE }
+                    { cBuffer::eType::VERTEX, D3D11_BIND_VERTEX_BUFFER },
+                    { cBuffer::eType::INDEX,  D3D11_BIND_INDEX_BUFFER },
+                    { cBuffer::eType::CONSTANT,   D3D11_BIND_CONSTANT_BUFFER },
+                    { cBuffer::eType::STRUCTURED,   D3D11_BIND_SHADER_RESOURCE },
+                    { cBuffer::eType::RW,     D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_UNORDERED_ACCESS }
             };
 
-            static const std::unordered_map<sBuffer::eType, u32> k_BufferTypeMiscFlagTable =
+            static const std::unordered_map<cBuffer::eType, u32> k_BufferTypeMiscFlagTable =
             {
-                    { sBuffer::eType::VERTEX, 0 },
-                    { sBuffer::eType::INDEX,  0 },
-                    { sBuffer::eType::ITEM,   0 },
-                    { sBuffer::eType::LIST,   D3D11_RESOURCE_MISC_BUFFER_STRUCTURED }
-            };
-
-            static const std::unordered_map<sBuffer::eSubType, u32> k_BufferSubTypeBindFlagTable =
-            {
-                    { sBuffer::eSubType::NONE,    0 },
-                    { sBuffer::eSubType::RAW,     D3D11_BIND_SHADER_RESOURCE },
-                    { sBuffer::eSubType::APPEND,  0 },
-                    { sBuffer::eSubType::CONSUME, 0 }
-            };
-
-            static const std::unordered_map<sBuffer::eSubType, u32> k_BufferSubTypeMiscFlagTable =
-            {
-                    { sBuffer::eSubType::NONE,    0 },
-                    { sBuffer::eSubType::RAW,     D3D11_RESOURCE_MISC_BUFFER_ALLOW_RAW_VIEWS },
-                    { sBuffer::eSubType::APPEND,  0 },
-                    { sBuffer::eSubType::CONSUME, 0 }
-            };
-
-            static const std::unordered_map<sBuffer::eSubType, DXGI_FORMAT> k_BufferSubTypeFormatTable =
-            {
-                    { sBuffer::eSubType::NONE,    DXGI_FORMAT_UNKNOWN },
-                    { sBuffer::eSubType::RAW,     DXGI_FORMAT_R32_TYPELESS },
-                    { sBuffer::eSubType::APPEND,  DXGI_FORMAT_UNKNOWN },
-                    { sBuffer::eSubType::CONSUME, DXGI_FORMAT_UNKNOWN }
-            };
-
-            static const std::unordered_map<sBuffer::eSubType, u32> k_BufferSubTypeSRVFlagTable =
-            {
-                    { sBuffer::eSubType::NONE,    0 },
-                    { sBuffer::eSubType::RAW,     D3D11_BUFFEREX_SRV_FLAG_RAW },
-                    { sBuffer::eSubType::APPEND,  0 },
-                    { sBuffer::eSubType::CONSUME, 0 }
-            };
-
-            static const std::unordered_map<sBuffer::eSubType, u32> k_BufferSubTypeUAVFlagTable =
-            {
-                    { sBuffer::eSubType::NONE,    D3D11_BUFFER_UAV_FLAG_RAW },
-                    { sBuffer::eSubType::RAW,     D3D11_BUFFER_UAV_FLAG_RAW },
-                    { sBuffer::eSubType::APPEND,  D3D11_BUFFER_UAV_FLAG_APPEND },
-                    { sBuffer::eSubType::CONSUME, D3D11_BUFFER_UAV_FLAG_APPEND }
+                    { cBuffer::eType::VERTEX, 0 },
+                    { cBuffer::eType::INDEX,  0 },
+                    { cBuffer::eType::CONSTANT,   0 },
+                    { cBuffer::eType::STRUCTURED,   D3D11_RESOURCE_MISC_BUFFER_STRUCTURED },
+                    { cBuffer::eType::RW,     D3D11_RESOURCE_MISC_BUFFER_STRUCTURED }
             };
 
             static const std::unordered_map<eTextureFormat, DXGI_FORMAT> k_TextureFormatTable =
@@ -115,20 +78,20 @@ namespace xpe {
                     { eTextureFormat::SRGBA8, DXGI_FORMAT_R8G8B8A8_UNORM_SRGB }
             };
 
-            static const std::unordered_map<sTexture::eUsage, D3D11_USAGE> k_TextureUsageTable =
+            static const std::unordered_map<cTexture::eUsage, D3D11_USAGE> k_TextureUsageTable =
             {
-                    {sTexture::eUsage::DEFAULT, D3D11_USAGE_DEFAULT },
-                    {sTexture::eUsage::STATIC,  D3D11_USAGE_IMMUTABLE },
-                    {sTexture::eUsage::DYNAMIC, D3D11_USAGE_DYNAMIC },
-                    {sTexture::eUsage::STAGING, D3D11_USAGE_STAGING }
+                    {cTexture::eUsage::DEFAULT, D3D11_USAGE_DEFAULT },
+                    {cTexture::eUsage::STATIC,  D3D11_USAGE_IMMUTABLE },
+                    {cTexture::eUsage::DYNAMIC, D3D11_USAGE_DYNAMIC },
+                    {cTexture::eUsage::STAGING, D3D11_USAGE_STAGING }
             };
 
-            static const std::unordered_map<sTexture::eUsage, u32> k_TextureCpuFlagTable =
+            static const std::unordered_map<cTexture::eUsage, u32> k_TextureCpuFlagTable =
             {
-                    {sTexture::eUsage::DEFAULT, D3D11_CPU_ACCESS_WRITE },
-                    {sTexture::eUsage::STATIC,  0 },
-                    {sTexture::eUsage::DYNAMIC, D3D11_CPU_ACCESS_WRITE },
-                    {sTexture::eUsage::STAGING, D3D11_CPU_ACCESS_READ | D3D11_CPU_ACCESS_WRITE }
+                    {cTexture::eUsage::DEFAULT, D3D11_CPU_ACCESS_WRITE },
+                    {cTexture::eUsage::STATIC,  0 },
+                    {cTexture::eUsage::DYNAMIC, D3D11_CPU_ACCESS_WRITE },
+                    {cTexture::eUsage::STAGING, D3D11_CPU_ACCESS_READ | D3D11_CPU_ACCESS_WRITE }
             };
 
             static const std::unordered_map<sSampler::eComparison, D3D11_COMPARISON_FUNC> k_SamplerComparisonTable =
@@ -204,13 +167,13 @@ namespace xpe {
                     { eCullMode::BACK,  D3D11_CULL_BACK }
             };
 
-            static const std::unordered_map<sResource::eMapType, D3D11_MAP> k_MapTypeTable =
+            static const std::unordered_map<cResource::eMapType, D3D11_MAP> k_MapTypeTable =
             {
-                    { sResource::eMapType::READ, D3D11_MAP_READ },
-                    { sResource::eMapType::WRITE, D3D11_MAP_WRITE },
-                    { sResource::eMapType::READ_WRITE, D3D11_MAP_READ_WRITE },
-                    { sResource::eMapType::WRITE_NO_OVERWRITE, D3D11_MAP_WRITE_NO_OVERWRITE },
-                    { sResource::eMapType::WRITE_DISCARD, D3D11_MAP_WRITE_DISCARD },
+                    { cResource::eMapType::READ, D3D11_MAP_READ },
+                    { cResource::eMapType::WRITE, D3D11_MAP_WRITE },
+                    { cResource::eMapType::READ_WRITE, D3D11_MAP_READ_WRITE },
+                    { cResource::eMapType::WRITE_NO_OVERWRITE, D3D11_MAP_WRITE_NO_OVERWRITE },
+                    { cResource::eMapType::WRITE_DISCARD, D3D11_MAP_WRITE_DISCARD },
             };
 
             static const std::unordered_map<eDepthWriteMask, D3D11_DEPTH_WRITE_MASK> k_DepthWriteMaskTable =
@@ -278,15 +241,15 @@ namespace xpe {
                 main_free(initialData);
             }
 
-            static D3D11_SUBRESOURCE_DATA* InitBufferData(const sBuffer& buffer)
+            static D3D11_SUBRESOURCE_DATA* InitBufferData(const cBuffer& buffer)
             {
                 D3D11_SUBRESOURCE_DATA* initialData = nullptr;
 
-                if (buffer.InitialData != nullptr)
+                if (buffer.GetInitialData() != nullptr)
                 {
                     usize bufferSize = buffer.GetByteSize();
                     initialData = main_allocT(D3D11_SUBRESOURCE_DATA, bufferSize);
-                    initialData->pSysMem = buffer.InitialData;
+                    initialData->pSysMem = buffer.GetInitialData();
                     initialData->SysMemPitch = bufferSize;
                     initialData->SysMemSlicePitch = 0;
                 }
@@ -294,25 +257,25 @@ namespace xpe {
                 return initialData;
             }
 
-            static D3D11_SUBRESOURCE_DATA* InitTextureData(const sTexture& texture, const u32 arraySize, const u32 mipLevels)
+            static D3D11_SUBRESOURCE_DATA* InitTextureData(cTexture& texture, const u32 arraySize, const u32 mipLevels)
             {
                 D3D11_SUBRESOURCE_DATA* initialData = nullptr;
 
                 u32 initialDataSize = arraySize * mipLevels;
 
-                if (texture.InitializeData)
+                if (texture.IsDataInitialized())
                 {
                     initialData = main_allocT(D3D11_SUBRESOURCE_DATA, initialDataSize);
 
                     for (int i = 0; i < arraySize; i++)
                     {
-                        auto& textureLayer = texture.Layers[i];
+                        auto& textureLayer = texture.GetLayers()[i];
                         int mipSize = textureLayer.Mips.size();
                         int k = i * (mipSize + 1);
 
                         auto& textureData = initialData[k];
                         textureData.pSysMem = textureLayer.Pixels;
-                        textureData.SysMemPitch = textureLayer.Width * sTexture::k_BppTable.at(textureLayer.Format);
+                        textureData.SysMemPitch = textureLayer.Width * cTexture::k_BppTable.at(textureLayer.Format);
                         textureData.SysMemSlicePitch = 0;
 
                         for (int j = 0 ; j < mipSize ; j++)
@@ -320,7 +283,7 @@ namespace xpe {
                             auto& mip = textureLayer.Mips[j];
                             auto& mipData = initialData[++k];
                             mipData.pSysMem = mip.Pixels;
-                            mipData.SysMemPitch = mip.Width * sTexture::k_BppTable.at(mip.Format);
+                            mipData.SysMemPitch = mip.Width * cTexture::k_BppTable.at(mip.Format);
                             mipData.SysMemSlicePitch = 0;
                         }
                     }
@@ -329,11 +292,11 @@ namespace xpe {
                 return initialData;
             }
 
-            static void UpdateTextureFlags(sTexture& texture, u32& bindFlags, u32& miscFlags)
+            static void UpdateTextureFlags(cTexture& texture, u32& bindFlags, u32& miscFlags)
             {
                 bindFlags = D3D11_BIND_SHADER_RESOURCE;
 
-                if (texture.EnableRenderTarget) {
+                if (texture.IsRenderTargetEnabled()) {
                     bindFlags = D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_RENDER_TARGET;
                 }
 
@@ -505,15 +468,15 @@ namespace xpe {
                     auto& color = renderTarget.Colors[i];
                     auto& colorView = renderTarget.ColorViews[i];
 
-                    if (color && color->Instance && color->Width != 0 && color->Height != 0 && colorView == nullptr)
+                    if (color && color->GetInstance() && color->GetWidth() != 0 && color->GetHeight() != 0 && colorView == nullptr)
                     {
                         D3D11_RENDER_TARGET_VIEW_DESC desc = {};
-                        desc.Format = k_TextureFormatTable.at(color->Format);
-                        desc.ViewDimension = color->SampleCount > 1 ? D3D11_RTV_DIMENSION_TEXTURE2DMS : D3D11_RTV_DIMENSION_TEXTURE2D;
+                        desc.Format = k_TextureFormatTable.at(color->GetFormat());
+                        desc.ViewDimension = color->GetSampleCount() > 1 ? D3D11_RTV_DIMENSION_TEXTURE2DMS : D3D11_RTV_DIMENSION_TEXTURE2D;
                         desc.Texture2D.MipSlice = 0;
 
                         s_Device->CreateRenderTargetView(
-                                (ID3D11Resource*) color->Instance,
+                                (ID3D11Resource*) color->GetInstance(),
                                 &desc,
                                 (ID3D11RenderTargetView**) &colorView
                         );
@@ -524,15 +487,15 @@ namespace xpe {
                 auto& depth = renderTarget.DepthStencil;
                 auto& depthView = renderTarget.DepthStencilView;
 
-                if (depth && depth->Instance && depth->Width != 0 && depth->Height != 0 && depthView == nullptr)
+                if (depth && depth->GetInstance() && depth->GetWidth() != 0 && depth->GetHeight() != 0 && depthView == nullptr)
                 {
                     D3D11_DEPTH_STENCIL_VIEW_DESC desc = {};
                     desc.Format = DXGI_FORMAT_D32_FLOAT;
-                    desc.ViewDimension = depth->SampleCount > 1 ? D3D11_DSV_DIMENSION_TEXTURE2DMS : D3D11_DSV_DIMENSION_TEXTURE2D;
+                    desc.ViewDimension = depth->GetSampleCount() > 1 ? D3D11_DSV_DIMENSION_TEXTURE2DMS : D3D11_DSV_DIMENSION_TEXTURE2D;
                     desc.Texture2D.MipSlice = 0;
 
                     s_Device->CreateDepthStencilView(
-                            (ID3D11Resource*) depth->Instance,
+                            (ID3D11Resource*) depth->GetInstance(),
                             &desc,
                             (ID3D11DepthStencilView**) &depthView
                     );
@@ -621,9 +584,9 @@ namespace xpe {
                 LogDebugMessage();
             }
 
-            void CompileShaderStage(sShaderStage &stage) {
+            void CompileShaderStage(sShaderStage* stage) {
                 // skip stage that is already compiled
-                if (stage.Compiled) {
+                if (stage->Compiled) {
                     return;
                 }
 
@@ -631,14 +594,14 @@ namespace xpe {
                 ID3DBlob* errorBlob = nullptr;
 
                 D3DCompile(
-                        stage.Source.c_str(),
-                        stage.Source.length(),
+                        stage->Source.c_str(),
+                        stage->Source.length(),
                         nullptr,
                         nullptr,
                         nullptr,
-                        stage.EntryPoint.c_str(),
-                        stage.Profile.c_str(),
-                        (UINT)stage.Flag,
+                        stage->EntryPoint.c_str(),
+                        stage->Profile.c_str(),
+                        (UINT)stage->Flag,
                         0,
                         &shaderBlob,
                         &errorBlob
@@ -652,30 +615,30 @@ namespace xpe {
                 }
 
                 if (shaderBlob != nullptr) {
-                    stage.Compiled = true;
-                    stage.Blob.Instance = shaderBlob;
-                    stage.Blob.ByteCode = shaderBlob->GetBufferPointer();
-                    stage.Blob.ByteCodeSize = shaderBlob->GetBufferSize();
+                    stage->Compiled = true;
+                    stage->Blob.Instance = shaderBlob;
+                    stage->Blob.ByteCode = shaderBlob->GetBufferPointer();
+                    stage->Blob.ByteCodeSize = shaderBlob->GetBufferSize();
                 }
             }
 
-            void CreateShaderStage(sShaderStage &stage)
+            void CreateShaderStage(sShaderStage* stage)
             {
-                sBlob blob = stage.Blob;
+                sBlob blob = stage->Blob;
 
                 if (blob.Instance != nullptr) {
 
                     const void* byteCode = blob.ByteCode;
                     const usize byteCodeSize = blob.ByteCodeSize;
 
-                    switch (stage.Type) {
+                    switch (stage->Type) {
 
                         case sShaderStage::eType::VERTEX:
                             s_Device->CreateVertexShader(
                                     byteCode,
                                     byteCodeSize,
                                     nullptr,
-                                    (ID3D11VertexShader**)&stage.Instance
+                                    (ID3D11VertexShader**)stage->GetInstancePtr()
                             );
                             LogDebugMessage();
                             break;
@@ -685,7 +648,7 @@ namespace xpe {
                                     byteCode,
                                     byteCodeSize,
                                     nullptr,
-                                    (ID3D11PixelShader**)&stage.Instance
+                                    (ID3D11PixelShader**)stage->GetInstancePtr()
                             );
                             LogDebugMessage();
                             break;
@@ -695,7 +658,7 @@ namespace xpe {
                                     byteCode,
                                     byteCodeSize,
                                     nullptr,
-                                    (ID3D11GeometryShader**)&stage.Instance
+                                    (ID3D11GeometryShader**)stage->GetInstancePtr()
                             );
                             LogDebugMessage();
                             break;
@@ -705,7 +668,7 @@ namespace xpe {
                                     byteCode,
                                     byteCodeSize,
                                     nullptr,
-                                    (ID3D11ComputeShader**)&stage.Instance
+                                    (ID3D11ComputeShader**)stage->GetInstancePtr()
                             );
                             LogDebugMessage();
                             break;
@@ -714,244 +677,262 @@ namespace xpe {
                 }
             }
 
-            void BindVSStage(const sShaderStage &stage)
+            void BindVSStage(const sShaderStage* stage)
             {
-                s_ImmContext->VSSetShader((ID3D11VertexShader*) stage.Instance, nullptr, 0);
+                s_ImmContext->VSSetShader((ID3D11VertexShader*) stage->GetInstance(), nullptr, 0);
                 LogDebugMessage();
 
-                for (auto* buffer : stage.Buffers)
+                for (auto& binding : stage->BufferBindings)
                 {
-                    VSBindBuffer(*buffer);
+                    cBuffer* buffer = (cBuffer*)binding.Resource;
+                    VSBindBuffer(binding.ViewType, buffer->GetType(), buffer->GetSlot(), (void*)buffer->GetInstance(), (void*)binding.View);
                 }
 
-                for (auto* texture : stage.Textures)
+                for (auto& binding : stage->TextureBindings)
                 {
-                    VSBindTexture(*texture);
+                    cTexture* texture = (cTexture*)binding.Resource;
+                    VSBindTexture(*texture, texture->GetSlot());
                 }
 
-                for (auto* sampler : stage.Samplers)
+                for (auto* sampler : stage->Samplers)
                 {
                     VSBindSampler(*sampler);
                 }
             }
 
-            void BindPSStage(const sShaderStage &stage)
+            void BindPSStage(const sShaderStage* stage)
             {
-                s_ImmContext->PSSetShader((ID3D11PixelShader*) stage.Instance, nullptr, 0);
+                s_ImmContext->PSSetShader((ID3D11PixelShader*) stage->GetInstance(), nullptr, 0);
                 LogDebugMessage();
 
-                for (auto* buffer : stage.Buffers)
+                for (auto& binding : stage->BufferBindings)
                 {
-                    PSBindBuffer(*buffer);
+                    cBuffer* buffer = (cBuffer*)binding.Resource;
+                    PSBindBuffer(binding.ViewType, buffer->GetType(), buffer->GetSlot(), (void*)buffer->GetInstance(), (void*)binding.View);
                 }
 
-                for (auto* texture : stage.Textures)
+                for (auto& binding : stage->TextureBindings)
                 {
+                    cTexture* texture = (cTexture*)binding.Resource;
                     PSBindTexture(*texture);
                 }
 
-                for (auto* sampler : stage.Samplers)
+                for (auto* sampler : stage->Samplers)
                 {
                     PSBindSampler(*sampler);
                 }
             }
 
-            void BindGSStage(const sShaderStage &stage)
+            void BindGSStage(const sShaderStage* stage)
             {
-                s_ImmContext->GSSetShader((ID3D11GeometryShader*) stage.Instance, nullptr, 0);
+                s_ImmContext->GSSetShader((ID3D11GeometryShader*) stage->GetInstance(), nullptr, 0);
                 LogDebugMessage();
 
-                for (auto* buffer : stage.Buffers)
+                for (auto& binding : stage->BufferBindings)
                 {
-                    GSBindBuffer(*buffer);
+                    cBuffer* buffer = (cBuffer*)binding.Resource;
+                    GSBindBuffer(binding.ViewType, buffer->GetType(), buffer->GetSlot(), (void*)buffer->GetInstance(), (void*)binding.View);
                 }
 
-                for (auto* texture : stage.Textures)
+                for (auto& binding : stage->TextureBindings)
                 {
+                    cTexture* texture = (cTexture*)binding.Resource;
                     GSBindTexture(*texture);
                 }
 
-                for (auto* sampler : stage.Samplers)
+                for (auto* sampler : stage->Samplers)
                 {
                     GSBindSampler(*sampler);
                 }
             }
 
-            void BindCSStage(const sShaderStage &stage)
+            void BindCSStage(const sShaderStage* stage)
             {
-                s_ImmContext->CSSetShader((ID3D11ComputeShader*) stage.Instance, nullptr, 0);
+                s_ImmContext->CSSetShader((ID3D11ComputeShader*) stage->GetInstance(), nullptr, 0);
                 LogDebugMessage();
 
-                for (auto* buffer : stage.Buffers)
+                for (auto& binding : stage->BufferBindings)
                 {
-                    CSBindBuffer(*buffer);
+                    cBuffer* buffer = (cBuffer*)binding.Resource;
+                    CSBindBuffer(binding.ViewType, buffer->GetType(), buffer->GetSlot(), (void*)buffer->GetInstance(), (void*)binding.View);
                 }
 
-                for (auto* texture : stage.Textures)
+                for (auto& binding : stage->TextureBindings)
                 {
+                    cTexture* texture = (cTexture*)binding.Resource;
                     CSBindTexture(*texture);
                 }
 
-                for (auto* sampler : stage.Samplers)
+                for (auto* sampler : stage->Samplers)
                 {
                     CSBindSampler(*sampler);
                 }
             }
 
-            void UnbindVSStage(const sShaderStage &stage)
+            void UnbindVSStage(const sShaderStage* stage)
             {
-                for (auto* buffer : stage.Buffers)
+                for (auto& binding : stage->BufferBindings)
                 {
-                    VSUnbindBuffer(*buffer);
+                    VSUnbindBuffer(*((cBuffer*)binding.Resource));
                 }
 
-                for (auto* texture : stage.Textures)
+                for (auto& binding : stage->TextureBindings)
                 {
+                    cTexture* texture = (cTexture*)binding.Resource;
                     VSUnbindTexture(*texture);
                 }
 
-                for (auto* sampler : stage.Samplers)
+                for (auto* sampler : stage->Samplers)
                 {
                     VSUnbindSampler(*sampler);
                 }
             }
 
-            void UnbindPSStage(const sShaderStage &stage)
+            void UnbindPSStage(const sShaderStage* stage)
             {
-                for (auto* buffer : stage.Buffers)
+                for (auto& binding : stage->BufferBindings)
                 {
-                    PSUnbindBuffer(*buffer);
+                    PSUnbindBuffer(*((cBuffer*)binding.Resource));
                 }
 
-                for (auto* texture : stage.Textures)
+                for (auto& binding : stage->TextureBindings)
                 {
+                    cTexture* texture = (cTexture*)binding.Resource;
                     PSUnbindTexture(*texture);
                 }
 
-                for (auto* sampler : stage.Samplers)
+                for (auto* sampler : stage->Samplers)
                 {
                     PSUnbindSampler(*sampler);
                 }
             }
 
-            void UnbindGSStage(const sShaderStage &stage)
+            void UnbindGSStage(const sShaderStage* stage)
             {
-                for (auto* buffer : stage.Buffers)
+                for (auto& binding : stage->BufferBindings)
                 {
-                    GSUnbindBuffer(*buffer);
+                    GSUnbindBuffer(*((cBuffer*)binding.Resource));
                 }
 
-                for (auto* texture : stage.Textures)
+                for (auto& binding : stage->TextureBindings)
                 {
+                    cTexture* texture = (cTexture*)binding.Resource;
                     GSUnbindTexture(*texture);
                 }
 
-                for (auto* sampler : stage.Samplers)
+                for (auto* sampler : stage->Samplers)
                 {
                     GSUnbindSampler(*sampler);
                 }
             }
 
-            void UnbindCSStage(const sShaderStage &stage)
+            void UnbindCSStage(const sShaderStage* stage)
             {
-                for (auto* buffer : stage.Buffers)
+                for (auto& binding : stage->BufferBindings)
                 {
-                    CSUnbindBuffer(*buffer);
+                    CSUnbindBuffer(*((cBuffer*)binding.Resource));
                 }
 
-                for (auto* texture : stage.Textures)
+                for (auto& binding : stage->TextureBindings)
                 {
+                    cTexture* texture = (cTexture*)binding.Resource;
                     CSUnbindTexture(*texture);
                 }
 
-                for (auto* sampler : stage.Samplers)
+                for (auto* sampler : stage->Samplers)
                 {
                     CSUnbindSampler(*sampler);
                 }
             }
 
-            void FreeShaderStage(sShaderStage &stage)
+            void FreeShaderStage(sShaderStage* stage)
             {
-                if (stage.Blob.Instance != nullptr) {
-                    ((ID3DBlob*) stage.Blob.Instance)->Release();
+                if (stage->Blob.Instance != nullptr) {
+                    ((ID3DBlob*) stage->Blob.Instance)->Release();
                     LogDebugMessage();
-                    stage.Blob.Instance = nullptr;
+                    stage->Blob.Instance = nullptr;
                 }
 
-                if (stage.Instance != nullptr) {
-                    switch (stage.Type) {
+                if (stage->GetInstance() != nullptr) {
+                    switch (stage->Type) {
                         case sShaderStage::eType::VERTEX:
-                            ((ID3D11VertexShader*) stage.Instance)->Release();
+                            ((ID3D11VertexShader*) stage->GetInstance())->Release();
                             LogDebugMessage();
                             break;
 
                         case sShaderStage::eType::PIXEL:
-                            ((ID3D11PixelShader*) stage.Instance)->Release();
+                            ((ID3D11PixelShader*) stage->GetInstance())->Release();
                             LogDebugMessage();
                             break;
 
                         case sShaderStage::eType::GEOMETRY:
-                            ((ID3D11GeometryShader*) stage.Instance)->Release();
+                            ((ID3D11GeometryShader*) stage->GetInstance())->Release();
                             LogDebugMessage();
                             break;
 
                         case sShaderStage::eType::COMPUTE:
-                            ((ID3D11ComputeShader*) stage.Instance)->Release();
+                            ((ID3D11ComputeShader*) stage->GetInstance())->Release();
                             LogDebugMessage();
                             break;
                     }
-                    stage.Instance = nullptr;
+                    //stage.GetInstance() = nullptr;
                 }
             }
 
             void FreeShaderResourceView(void* viewInstance)
             {
-                ((ID3D11ShaderResourceView*) viewInstance)->Release();
+                ((ID3D11ShaderResourceView*)viewInstance)->Release();
                 LogDebugMessage();
             }
 
-            void CreateTexture1D(sTexture &texture)
+            void FreeUnorderedAccessView(void* viewInstance)
             {
-                u32 arraySize = texture.Layers.empty() ? 1 : texture.Layers.size();
+                ((ID3D11UnorderedAccessView*)viewInstance)->Release();
+                LogDebugMessage();
+            }
+
+            void CreateTexture1D(cTexture &texture)
+            {
+                u32 arraySize = texture.GetLayers().empty() ? 1 : texture.GetLayers().size();
                 u32 mipLevels = texture.GetMipLevels();
                 D3D11_SUBRESOURCE_DATA* initialData = InitTextureData(texture, arraySize, mipLevels);
                 D3D11_TEXTURE1D_DESC texDesc = {};
                 UpdateTextureFlags(texture, texDesc.BindFlags, texDesc.MiscFlags);
-                texDesc.Width = texture.Width;
+                texDesc.Width = texture.GetWidth();
                 texDesc.MipLevels = mipLevels;
                 texDesc.ArraySize = arraySize;
-                texDesc.Format = k_TextureFormatTable.at(texture.Format);
-                texDesc.Usage = k_TextureUsageTable.at(texture.Usage);
-                texDesc.CPUAccessFlags = k_TextureCpuFlagTable.at(texture.Usage);
+                texDesc.Format = k_TextureFormatTable.at(texture.GetFormat());
+                texDesc.Usage = k_TextureUsageTable.at(texture.GetUsage());
+                texDesc.CPUAccessFlags = k_TextureCpuFlagTable.at(texture.GetUsage());
 
-                s_Device->CreateTexture1D(&texDesc, initialData, (ID3D11Texture1D**) &texture.Instance);
+                s_Device->CreateTexture1D(&texDesc, initialData, (ID3D11Texture1D**) texture.GetInstancePtr());
                 LogDebugMessage();
 
-                if (texture.ViewType == sTexture::eViewType::SRV)
+                if (texture.GetViewType() == cTexture::eViewType::SRV)
                 {
                     D3D11_SHADER_RESOURCE_VIEW_DESC srv = {};
                     srv.Format = texDesc.Format;
                     srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE1D;
-                    srv.Texture1D.MostDetailedMip = texture.MostDetailedMip;
+                    srv.Texture1D.MostDetailedMip = texture.GetMostDetailedMip();
                     srv.Texture1D.MipLevels = mipLevels;
 
                     s_Device->CreateShaderResourceView(
-                            (ID3D11Texture1D*) texture.Instance,
+                            (ID3D11Texture1D*) texture.GetInstance(),
                             &srv,
-                            (ID3D11ShaderResourceView**) &texture.ViewInstance
+                            (ID3D11ShaderResourceView**) texture.GetSRVInstancePtr()
                     );
                     LogDebugMessage();
                 }
-                else if (texture.ViewType == sTexture::eViewType::UAV)
+                else if (texture.GetViewType() == cTexture::eViewType::UAV)
                 {
                     D3D11_UNORDERED_ACCESS_VIEW_DESC uav = {};
                     uav.Format = texDesc.Format;
                     uav.ViewDimension = D3D11_UAV_DIMENSION_TEXTURE1D;
 
                     s_Device->CreateUnorderedAccessView(
-                            (ID3D11Texture1D*) texture.Instance,
+                            (ID3D11Texture1D*) texture.GetInstance(),
                             &uav,
-                            (ID3D11UnorderedAccessView**) &texture.ViewInstance
+                            (ID3D11UnorderedAccessView**) texture.GetUAVInstancePtr()
                     );
                     LogDebugMessage();
                 }
@@ -961,51 +942,51 @@ namespace xpe {
                 FreeInitialData(initialData);
             }
 
-            void CreateTexture2D(sTexture &texture)
+            void CreateTexture2D(cTexture &texture)
             {
-                u32 arraySize = texture.Layers.empty() ? 1 : texture.Layers.size();
+                u32 arraySize = texture.GetLayers().empty() ? 1 : texture.GetLayers().size();
                 u32 mipLevels = texture.GetMipLevels();
                 D3D11_SUBRESOURCE_DATA* initialData = InitTextureData(texture, arraySize, mipLevels);
                 D3D11_TEXTURE2D_DESC desc = {};
                 UpdateTextureFlags(texture, desc.BindFlags, desc.MiscFlags);
-                desc.Width = texture.Width;
-                desc.Height = texture.Height;
+                desc.Width = texture.GetWidth();
+                desc.Height = texture.GetHeight();
                 desc.MipLevels = mipLevels;
                 desc.ArraySize = arraySize;
-                desc.Format = k_TextureFormatTable.at(texture.Format);
-                desc.SampleDesc.Count = texture.SampleCount;
+                desc.Format = k_TextureFormatTable.at(texture.GetFormat());
+                desc.SampleDesc.Count = texture.GetSampleCount();
                 desc.SampleDesc.Quality = 0;
-                desc.Usage = k_TextureUsageTable.at(texture.Usage);
-                desc.CPUAccessFlags = texture.SampleCount == 1 ? k_TextureCpuFlagTable.at(texture.Usage) : 0;
+                desc.Usage = k_TextureUsageTable.at(texture.GetUsage());
+                desc.CPUAccessFlags = texture.GetSampleCount() == 1 ? k_TextureCpuFlagTable.at(texture.GetUsage()) : 0;
 
-                s_Device->CreateTexture2D(&desc, initialData, (ID3D11Texture2D**)&texture.Instance);
+                s_Device->CreateTexture2D(&desc, initialData, (ID3D11Texture2D**)texture.GetInstancePtr());
                 LogDebugMessage();
 
-                if (texture.ViewType == sTexture::eViewType::SRV)
+                if (texture.GetViewType() == cTexture::eViewType::SRV)
                 {
                     D3D11_SHADER_RESOURCE_VIEW_DESC srv = {};
                     srv.Format = desc.Format;
-                    srv.ViewDimension = texture.SampleCount > 1 ? D3D11_SRV_DIMENSION_TEXTURE2DMS : D3D11_SRV_DIMENSION_TEXTURE2D;
-                    srv.Texture2D.MostDetailedMip = texture.MostDetailedMip;
+                    srv.ViewDimension = texture.GetSampleCount() > 1 ? D3D11_SRV_DIMENSION_TEXTURE2DMS : D3D11_SRV_DIMENSION_TEXTURE2D;
+                    srv.Texture2D.MostDetailedMip = texture.GetMostDetailedMip();
                     srv.Texture2D.MipLevels = mipLevels;
 
                     s_Device->CreateShaderResourceView(
-                            (ID3D11Texture2D*)texture.Instance,
+                            (ID3D11Texture2D*)texture.GetInstance(),
                             &srv,
-                            (ID3D11ShaderResourceView**)&texture.ViewInstance
+                            (ID3D11ShaderResourceView**)texture.GetSRVInstancePtr()
                     );
                     LogDebugMessage();
                 }
-                else if (texture.ViewType == sTexture::eViewType::UAV)
+                else if (texture.GetViewType() == cTexture::eViewType::UAV)
                 {
                     D3D11_UNORDERED_ACCESS_VIEW_DESC uav = {};
                     uav.Format = desc.Format;
                     uav.ViewDimension = D3D11_UAV_DIMENSION_TEXTURE2D;
 
                     s_Device->CreateUnorderedAccessView(
-                            (ID3D11Texture2D*)texture.Instance,
+                            (ID3D11Texture2D*)texture.GetInstance(),
                             &uav,
-                            (ID3D11UnorderedAccessView**)&texture.ViewInstance
+                            (ID3D11UnorderedAccessView**)texture.GetUAVInstancePtr()
                     );
                     LogDebugMessage();
                 }
@@ -1015,43 +996,43 @@ namespace xpe {
                 FreeInitialData(initialData);
             }
 
-            void CreateTexture2DArray(sTexture &texture)
+            void CreateTexture2DArray(cTexture &texture)
             {
-                u32 arraySize = texture.Layers.empty() ? 1 : texture.Layers.size();
+                u32 arraySize = texture.GetLayers().empty() ? 1 : texture.GetLayers().size();
                 u32 mipLevels = texture.GetMipLevels();
                 D3D11_SUBRESOURCE_DATA* initialData = InitTextureData(texture, arraySize, mipLevels);
                 D3D11_TEXTURE2D_DESC texDesc = {};
                 UpdateTextureFlags(texture, texDesc.BindFlags, texDesc.MiscFlags);
-                texDesc.Width = texture.Width;
-                texDesc.Height = texture.Height;
+                texDesc.Width = texture.GetWidth();
+                texDesc.Height = texture.GetHeight();
                 texDesc.MipLevels = mipLevels;
                 texDesc.ArraySize = arraySize;
-                texDesc.Format = k_TextureFormatTable.at(texture.Format);
+                texDesc.Format = k_TextureFormatTable.at(texture.GetFormat());
                 texDesc.SampleDesc.Count = 1;
                 texDesc.SampleDesc.Quality = 0;
-                texDesc.Usage = k_TextureUsageTable.at(texture.Usage);
-                texDesc.CPUAccessFlags = k_TextureCpuFlagTable.at(texture.Usage);
+                texDesc.Usage = k_TextureUsageTable.at(texture.GetUsage());
+                texDesc.CPUAccessFlags = k_TextureCpuFlagTable.at(texture.GetUsage());
 
-                s_Device->CreateTexture2D(&texDesc, initialData, (ID3D11Texture2D**)&texture.Instance);
+                s_Device->CreateTexture2D(&texDesc, initialData, (ID3D11Texture2D**)texture.GetInstancePtr());
                 LogDebugMessage();
 
-                if (texture.ViewType == sTexture::eViewType::SRV)
+                if (texture.GetViewType() == cTexture::eViewType::SRV)
                 {
                     D3D11_SHADER_RESOURCE_VIEW_DESC srv = {};
                     srv.Format = texDesc.Format;
                     srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2DARRAY;
-                    srv.Texture2DArray.MostDetailedMip = texture.MostDetailedMip;
+                    srv.Texture2DArray.MostDetailedMip = texture.GetMostDetailedMip();
                     srv.Texture2DArray.MipLevels = mipLevels;
                     srv.Texture2DArray.FirstArraySlice = 0;
                     srv.Texture2DArray.ArraySize = arraySize;
                     s_Device->CreateShaderResourceView(
-                            (ID3D11Texture2D*)texture.Instance,
+                            (ID3D11Texture2D*)texture.GetInstance(),
                             &srv,
-                            (ID3D11ShaderResourceView**)&texture.ViewInstance
+                            (ID3D11ShaderResourceView**)texture.GetSRVInstancePtr()
                     );
                     LogDebugMessage();
                 }
-                else if (texture.ViewType == sTexture::eViewType::UAV)
+                else if (texture.GetViewType() == cTexture::eViewType::UAV)
                 {
                     D3D11_UNORDERED_ACCESS_VIEW_DESC uav = {};
                     uav.Format = texDesc.Format;
@@ -1059,9 +1040,9 @@ namespace xpe {
                     uav.Texture2DArray.FirstArraySlice = 0;
                     uav.Texture2DArray.ArraySize = arraySize;
                     s_Device->CreateUnorderedAccessView(
-                            (ID3D11Texture2D*)texture.Instance,
+                            (ID3D11Texture2D*)texture.GetInstance(),
                             &uav,
-                            (ID3D11UnorderedAccessView**)&texture.ViewInstance
+                            (ID3D11UnorderedAccessView**)texture.GetUAVInstancePtr()
                     );
                     LogDebugMessage();
                 }
@@ -1071,49 +1052,49 @@ namespace xpe {
                 FreeInitialData(initialData);
             }
 
-            void CreateTexture3D(sTexture &texture)
+            void CreateTexture3D(cTexture &texture)
             {
-                u32 arraySize = texture.Layers.empty() ? 1 : texture.Layers.size();
+                u32 arraySize = texture.GetLayers().empty() ? 1 : texture.GetLayers().size();
                 u32 mipLevels = texture.GetMipLevels();
                 D3D11_SUBRESOURCE_DATA* initialData = InitTextureData(texture, arraySize, mipLevels);
                 D3D11_TEXTURE3D_DESC texDesc = {};
                 UpdateTextureFlags(texture, texDesc.BindFlags, texDesc.MiscFlags);
-                texDesc.Width = texture.Width;
-                texDesc.Height = texture.Height;
-                texDesc.Depth = texture.Depth;
+                texDesc.Width = texture.GetWidth();
+                texDesc.Height = texture.GetHeight();
+                texDesc.Depth = texture.GetDepth();
                 texDesc.MipLevels = mipLevels;
-                texDesc.Format = k_TextureFormatTable.at(texture.Format);
-                texDesc.Usage = k_TextureUsageTable.at(texture.Usage);
-                texDesc.CPUAccessFlags = k_TextureCpuFlagTable.at(texture.Usage);
+                texDesc.Format = k_TextureFormatTable.at(texture.GetFormat());
+                texDesc.Usage = k_TextureUsageTable.at(texture.GetUsage());
+                texDesc.CPUAccessFlags = k_TextureCpuFlagTable.at(texture.GetUsage());
 
-                s_Device->CreateTexture3D(&texDesc, initialData, (ID3D11Texture3D**)&texture.Instance);
+                s_Device->CreateTexture3D(&texDesc, initialData, (ID3D11Texture3D**)texture.GetInstancePtr());
                 LogDebugMessage();
 
-                if (texture.ViewType == sTexture::eViewType::SRV)
+                if (texture.GetViewType() == cTexture::eViewType::SRV)
                 {
                     D3D11_SHADER_RESOURCE_VIEW_DESC srv = {};
                     srv.Format = texDesc.Format;
                     srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE3D;
-                    srv.Texture3D.MostDetailedMip = texture.MostDetailedMip;
+                    srv.Texture3D.MostDetailedMip = texture.GetMostDetailedMip();
                     srv.Texture3D.MipLevels = mipLevels;
 
                     s_Device->CreateShaderResourceView(
-                            (ID3D11Texture3D*)texture.Instance,
+                            (ID3D11Texture3D*)texture.GetInstance(),
                             &srv,
-                            (ID3D11ShaderResourceView**)&texture.ViewInstance
+                            (ID3D11ShaderResourceView**)texture.GetSRVInstancePtr()
                     );
                     LogDebugMessage();
                 }
-                else if (texture.ViewType == sTexture::eViewType::UAV)
+                else if (texture.GetViewType() == cTexture::eViewType::UAV)
                 {
                     D3D11_UNORDERED_ACCESS_VIEW_DESC uav = {};
                     uav.Format = texDesc.Format;
                     uav.ViewDimension = D3D11_UAV_DIMENSION_TEXTURE3D;
 
                     s_Device->CreateUnorderedAccessView(
-                            (ID3D11Texture3D*)texture.Instance,
+                            (ID3D11Texture3D*)texture.GetInstance(),
                             &uav,
-                            (ID3D11UnorderedAccessView**)&texture.ViewInstance
+                            (ID3D11UnorderedAccessView**)texture.GetUAVInstancePtr()
                     );
                     LogDebugMessage();
                 }
@@ -1123,39 +1104,39 @@ namespace xpe {
                 FreeInitialData(initialData);
             }
 
-            void CreateTextureCube(sTexture &texture)
+            void CreateTextureCube(cTexture &texture)
             {
                 u32 arraySize = 6;
                 u32 mipLevels = texture.GetMipLevels();
                 D3D11_SUBRESOURCE_DATA* initialData = InitTextureData(texture, arraySize, mipLevels);
                 D3D11_TEXTURE2D_DESC texDesc = {};
                 UpdateTextureFlags(texture, texDesc.BindFlags, texDesc.MiscFlags);
-                texDesc.Width = texture.Width;
-                texDesc.Height = texture.Height;
+                texDesc.Width = texture.GetWidth();
+                texDesc.Height = texture.GetHeight();
                 texDesc.MipLevels = mipLevels;
                 texDesc.ArraySize = arraySize;
-                texDesc.Format = k_TextureFormatTable.at(texture.Format);
+                texDesc.Format = k_TextureFormatTable.at(texture.GetFormat());
                 texDesc.SampleDesc.Count = 1;
                 texDesc.SampleDesc.Quality = 0;
-                texDesc.Usage = k_TextureUsageTable.at(texture.Usage);
-                texDesc.CPUAccessFlags = k_TextureCpuFlagTable.at(texture.Usage);
+                texDesc.Usage = k_TextureUsageTable.at(texture.GetUsage());
+                texDesc.CPUAccessFlags = k_TextureCpuFlagTable.at(texture.GetUsage());
                 texDesc.MiscFlags |= D3D11_RESOURCE_MISC_TEXTURECUBE;
 
-                s_Device->CreateTexture2D(&texDesc, initialData, (ID3D11Texture2D**)&texture.Instance);
+                s_Device->CreateTexture2D(&texDesc, initialData, (ID3D11Texture2D**)texture.GetInstancePtr());
                 LogDebugMessage();
 
-                if (texture.ViewType == sTexture::eViewType::SRV)
+                if (texture.GetViewType() == cTexture::eViewType::SRV)
                 {
                     D3D11_SHADER_RESOURCE_VIEW_DESC srv = {};
                     srv.Format = texDesc.Format;
                     srv.ViewDimension = D3D11_SRV_DIMENSION_TEXTURECUBE;
-                    srv.TextureCube.MostDetailedMip = texture.MostDetailedMip;
+                    srv.TextureCube.MostDetailedMip = texture.GetMostDetailedMip();
                     srv.TextureCube.MipLevels = mipLevels;
 
                     s_Device->CreateShaderResourceView(
-                            (ID3D11Texture2D*)texture.Instance,
+                            (ID3D11Texture2D*)texture.GetInstance(),
                             &srv,
-                            (ID3D11ShaderResourceView**)&texture.ViewInstance
+                            (ID3D11ShaderResourceView**)texture.GetSRVInstancePtr()
                     );
                     LogDebugMessage();
                 }
@@ -1165,83 +1146,83 @@ namespace xpe {
                 FreeInitialData(initialData);
             }
 
-            void CreateTextureDepthStencil(sTexture &texture)
+            void CreateTextureDepthStencil(cTexture &texture)
             {
                 D3D11_TEXTURE2D_DESC texDesc = {};
                 texDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL | D3D11_BIND_SHADER_RESOURCE;
-                texDesc.Format = k_TextureFormatTable.at(texture.Format);
-                texDesc.Width = texture.Width;
-                texDesc.Height = texture.Height;
+                texDesc.Format = k_TextureFormatTable.at(texture.GetFormat());
+                texDesc.Width = texture.GetWidth();
+                texDesc.Height = texture.GetHeight();
                 texDesc.ArraySize = 1;
-                texDesc.SampleDesc.Count = texture.SampleCount;
+                texDesc.SampleDesc.Count = texture.GetSampleCount();
                 texDesc.SampleDesc.Quality = 0;
                 texDesc.MipLevels = 1;
-                texDesc.Usage = k_TextureUsageTable.at(texture.Usage);
+                texDesc.Usage = k_TextureUsageTable.at(texture.GetUsage());
                 texDesc.CPUAccessFlags = 0;
 
-                s_Device->CreateTexture2D(&texDesc, nullptr, (ID3D11Texture2D**)&texture.Instance);
+                s_Device->CreateTexture2D(&texDesc, nullptr, (ID3D11Texture2D**)texture.GetInstancePtr());
                 LogDebugMessage();
 
-                if (texture.ViewType == sTexture::eViewType::SRV)
+                if (texture.GetViewType() == cTexture::eViewType::SRV)
                 {
                     D3D11_SHADER_RESOURCE_VIEW_DESC srv = {};
                     srv.Format = DXGI_FORMAT_R32_FLOAT;
-                    srv.ViewDimension = texture.SampleCount == 1 ? D3D11_SRV_DIMENSION_TEXTURE2D : D3D11_SRV_DIMENSION_TEXTURE2DMS;
-                    srv.Texture2D.MostDetailedMip = texture.MostDetailedMip;
+                    srv.ViewDimension = texture.GetSampleCount() == 1 ? D3D11_SRV_DIMENSION_TEXTURE2D : D3D11_SRV_DIMENSION_TEXTURE2DMS;
+                    srv.Texture2D.MostDetailedMip = texture.GetMostDetailedMip();
                     srv.Texture2D.MipLevels = 1;
 
                     s_Device->CreateShaderResourceView(
-                            (ID3D11Texture2D*)texture.Instance,
+                            (ID3D11Texture2D*)texture.GetInstance(),
                             &srv,
-                            (ID3D11ShaderResourceView**)&texture.ViewInstance
+                            (ID3D11ShaderResourceView**)texture.GetSRVInstancePtr()
                     );
                     LogDebugMessage();
                 }
-                else if (texture.ViewType == sTexture::eViewType::UAV)
+                else if (texture.GetViewType() == cTexture::eViewType::UAV)
                 {
                     D3D11_UNORDERED_ACCESS_VIEW_DESC uav = {};
                     uav.Format = DXGI_FORMAT_R32_FLOAT;
                     uav.ViewDimension = D3D11_UAV_DIMENSION_TEXTURE2D;
 
                     s_Device->CreateUnorderedAccessView(
-                            (ID3D11Texture2D*)texture.Instance,
+                            (ID3D11Texture2D*)texture.GetInstance(),
                             &uav,
-                            (ID3D11UnorderedAccessView**)&texture.ViewInstance
+                            (ID3D11UnorderedAccessView**)texture.GetUAVInstancePtr()
                     );
                     LogDebugMessage();
                 }
             }
 
-            void VSBindTexture(sTexture::eViewType viewType, u32 slot, void* viewInstance)
+            void VSBindTexture(cTexture::eViewType viewType, u32 slot, void* viewInstance)
             {
-                if (viewType == sTexture::eViewType::SRV)
+                if (viewType == cTexture::eViewType::SRV)
                 {
                     s_ImmContext->VSSetShaderResources(slot, 1, (ID3D11ShaderResourceView**)&viewInstance);
                     LogDebugMessage();
                 }
             }
 
-            void PSBindTexture(sTexture::eViewType viewType, u32 slot, void* viewInstance)
+            void PSBindTexture(cTexture::eViewType viewType, u32 slot, void* viewInstance)
             {
-                if (viewType == sTexture::eViewType::SRV)
+                if (viewType == cTexture::eViewType::SRV)
                 {
                     s_ImmContext->PSSetShaderResources(slot, 1, (ID3D11ShaderResourceView**)&viewInstance);
                     LogDebugMessage();
                 }
             }
 
-            void GSBindTexture(sTexture::eViewType viewType, u32 slot, void* viewInstance)
+            void GSBindTexture(cTexture::eViewType viewType, u32 slot, void* viewInstance)
             {
-                if (viewType == sTexture::eViewType::SRV)
+                if (viewType == cTexture::eViewType::SRV)
                 {
                     s_ImmContext->GSSetShaderResources(slot, 1, (ID3D11ShaderResourceView**)&viewInstance);
                     LogDebugMessage();
                 }
             }
 
-            void CSBindTexture(sTexture::eViewType viewType, u32 slot, void* viewInstance)
+            void CSBindTexture(cTexture::eViewType viewType, u32 slot, void* viewInstance)
             {
-                if (viewType == sTexture::eViewType::SRV)
+                if (viewType == cTexture::eViewType::SRV)
                 {
                     s_ImmContext->CSSetShaderResources(slot, 1, (ID3D11ShaderResourceView**)&viewInstance);
                     LogDebugMessage();
@@ -1284,10 +1265,10 @@ namespace xpe {
                 LogDebugMessage();
             }
 
-            void GenerateMips(const sTexture& texture) {
+            void GenerateMips(const cTexture& texture) {
                 u32 mipLevels = texture.GetMipLevels();
                 if (mipLevels > 1) {
-                    s_ImmContext->GenerateMips((ID3D11ShaderResourceView*) texture.ViewInstance);
+                    s_ImmContext->GenerateMips((ID3D11ShaderResourceView*)texture.GetSRVInstance());
                     LogDebugMessage();
                 }
             }
@@ -1314,7 +1295,7 @@ namespace xpe {
                 desc.BorderColor[2] = sampler.BorderColor[2];
                 desc.BorderColor[3] = sampler.BorderColor[3];
 
-                s_Device->CreateSamplerState(&desc, (ID3D11SamplerState**)&sampler.Instance);
+                s_Device->CreateSamplerState(&desc, (ID3D11SamplerState**)sampler.GetInstancePtr());
                 LogDebugMessage();
             }
 
@@ -1344,67 +1325,92 @@ namespace xpe {
 
             void FreeSampler(sSampler& sampler)
             {
-                if (sampler.Instance != nullptr)
+                if (sampler.GetInstance() != nullptr)
                 {
-                    ((ID3D11SamplerState*)sampler.Instance)->Release();
+                    ((ID3D11SamplerState*)sampler.GetInstance())->Release();
                     LogDebugMessage();
-                    sampler.Instance = nullptr;
+                    //sampler.GetInstance() = nullptr;
                 }
             }
 
-            void CreateBuffer(sBuffer& buffer)
+            void CreateBuffer(cBuffer& buffer)
             {
-                sBuffer::eType bufferType = buffer.Type;
-                sBuffer::eSubType bufferSubType = buffer.SubType;
-                sBuffer::eUsage bufferUsage = buffer.Usage;
-                sResource::eViewType bufferViewType = buffer.ViewType;
+                cBuffer::eType bufferType = buffer.GetType();
+                cBuffer::eUsage bufferUsage = buffer.GetUsage();
+                cResource::eViewType bufferViewType = buffer.GetViewType();
                 usize byteSize = buffer.GetByteSize();
+                usize structureSize = buffer.GetStructureSize();
 
                 D3D11_SUBRESOURCE_DATA* initialData = InitBufferData(buffer);
                 D3D11_BUFFER_DESC bufferDesc = {};
                 memset(&bufferDesc, 0, sizeof(D3D11_BUFFER_DESC));
                 bufferDesc.ByteWidth = (UINT)byteSize;
-                bufferDesc.StructureByteStride = buffer.StructureSize;
+                bufferDesc.StructureByteStride = (UINT)structureSize;
                 bufferDesc.Usage = k_BufferUsageTable.at(bufferUsage);
                 bufferDesc.CPUAccessFlags = k_BufferUsageCpuFlagTable.at(bufferUsage);
                 bufferDesc.BindFlags = k_BufferTypeBindFlagTable.at(bufferType);
-                bufferDesc.BindFlags |= k_BufferSubTypeBindFlagTable.at(bufferSubType);
                 bufferDesc.MiscFlags = k_BufferTypeMiscFlagTable.at(bufferType);
-                bufferDesc.MiscFlags |= k_BufferSubTypeMiscFlagTable.at(bufferSubType);
 
-                s_Device->CreateBuffer(&bufferDesc, initialData, (ID3D11Buffer**)&buffer.Instance);
+                s_Device->CreateBuffer(&bufferDesc, initialData, (ID3D11Buffer**)buffer.GetInstancePtr());
                 LogDebugMessage();
 
-                if (bufferViewType == sBuffer::eViewType::SRV)
+                if (bufferViewType == cBuffer::eViewType::SRV)
                 {
                     D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
-                    srvDesc.Format = k_BufferSubTypeFormatTable.at(bufferSubType);
-                    srvDesc.ViewDimension = D3D11_SRV_DIMENSION_BUFFEREX;
-                    srvDesc.BufferEx.Flags = k_BufferSubTypeSRVFlagTable.at(bufferSubType);
+                    srvDesc.Format = DXGI_FORMAT_UNKNOWN;
+                    srvDesc.ViewDimension = D3D11_SRV_DIMENSION_BUFFER;
                     srvDesc.BufferEx.FirstElement = 0;
-                    srvDesc.BufferEx.NumElements = buffer.NumElements;
+                    srvDesc.BufferEx.NumElements = buffer.GetNumElements();
 
                     s_Device->CreateShaderResourceView(
-                            (ID3D11Resource*)buffer.Instance,
+                            (ID3D11Resource*)buffer.GetInstance(),
                             &srvDesc,
-                            (ID3D11ShaderResourceView**)&buffer.ViewInstance
+                            (ID3D11ShaderResourceView**)buffer.GetSRVInstancePtr()
                     );
                     LogDebugMessage();
                 }
-
-                else if (bufferViewType == sBuffer::eViewType::UAV)
+                else if (bufferViewType == cBuffer::eViewType::UAV)
                 {
                     D3D11_UNORDERED_ACCESS_VIEW_DESC uavDesc = {};
-                    uavDesc.Format = k_BufferSubTypeFormatTable.at(buffer.SubType);
+                    uavDesc.Format = DXGI_FORMAT_UNKNOWN;
                     uavDesc.ViewDimension = D3D11_UAV_DIMENSION_BUFFER;
-                    uavDesc.Buffer.Flags = k_BufferSubTypeUAVFlagTable.at(buffer.SubType);
+                    uavDesc.Buffer.Flags = 0;
                     uavDesc.Buffer.FirstElement = 0;
-                    uavDesc.Buffer.NumElements = buffer.NumElements;
+                    uavDesc.Buffer.NumElements = buffer.GetNumElements();
 
                     s_Device->CreateUnorderedAccessView(
-                            (ID3D11Resource*)buffer.Instance,
+                            (ID3D11Resource*)buffer.GetInstance(),
                             &uavDesc,
-                            (ID3D11UnorderedAccessView**)&buffer.ViewInstance
+                            (ID3D11UnorderedAccessView**)buffer.GetUAVInstancePtr()
+                    );
+                    LogDebugMessage();
+                }
+                else if (bufferViewType == cBuffer::eViewType::SRV_UAV)
+                {
+                    D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
+                    srvDesc.Format = DXGI_FORMAT_UNKNOWN;
+                    srvDesc.ViewDimension = D3D11_SRV_DIMENSION_BUFFEREX;
+                    srvDesc.BufferEx.FirstElement = 0;
+                    srvDesc.BufferEx.NumElements = buffer.GetNumElements();
+
+                    s_Device->CreateShaderResourceView(
+                        (ID3D11Resource*)buffer.GetInstance(),
+                        &srvDesc,
+                        (ID3D11ShaderResourceView**)buffer.GetSRVInstancePtr()
+                    );
+                    LogDebugMessage();
+
+                    D3D11_UNORDERED_ACCESS_VIEW_DESC uavDesc = {};
+                    uavDesc.Format = DXGI_FORMAT_UNKNOWN;
+                    uavDesc.ViewDimension = D3D11_UAV_DIMENSION_BUFFER;
+                    uavDesc.Buffer.Flags = 0;
+                    uavDesc.Buffer.FirstElement = 0;
+                    uavDesc.Buffer.NumElements = buffer.GetNumElements();
+
+                    s_Device->CreateUnorderedAccessView(
+                        (ID3D11Resource*)buffer.GetInstance(),
+                        &uavDesc,
+                        (ID3D11UnorderedAccessView**)buffer.GetUAVInstancePtr()
                     );
                     LogDebugMessage();
                 }
@@ -1412,211 +1418,211 @@ namespace xpe {
                 FreeInitialData(initialData);
             }
 
-            void UnbindListBufferVS(const sBuffer &buffer)
+            void UnbindListBufferVS(const cBuffer &buffer)
             {
                 static ID3D11ShaderResourceView* nullInstance = nullptr;
-                s_ImmContext->VSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&nullInstance);
+                s_ImmContext->VSSetShaderResources(buffer.GetSlot(), 1, (ID3D11ShaderResourceView**)&nullInstance);
                 LogDebugMessage();
             }
 
-            void BindListBufferGS(const sBuffer &buffer)
+            void BindListBufferGS(cBuffer &buffer)
             {
-                s_ImmContext->GSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&buffer.ViewInstance);
+                s_ImmContext->GSSetShaderResources(buffer.GetSlot(), 1, (ID3D11ShaderResourceView**)buffer.GetSRVInstancePtr());
                 LogDebugMessage();
             }
 
-            void UnbindListBufferGS(const sBuffer &buffer)
+            void UnbindListBufferGS(const cBuffer &buffer)
             {
                 static ID3D11ShaderResourceView* nullInstance = nullptr;
-                s_ImmContext->GSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&nullInstance);
+                s_ImmContext->GSSetShaderResources(buffer.GetSlot(), 1, (ID3D11ShaderResourceView**)&nullInstance);
                 LogDebugMessage();
             }
 
-            void BindListBufferPS(const sBuffer &buffer)
+            void BindListBufferPS(cBuffer &buffer)
             {
-                s_ImmContext->PSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&buffer.ViewInstance);
+                s_ImmContext->PSSetShaderResources(buffer.GetSlot(), 1, (ID3D11ShaderResourceView**)buffer.GetSRVInstancePtr());
                 LogDebugMessage();
             }
 
-            void UnbindListBufferPS(const sBuffer &buffer)
+            void UnbindListBufferPS(const cBuffer &buffer)
             {
                 static ID3D11ShaderResourceView* nullInstance = nullptr;
-                s_ImmContext->PSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&nullInstance);
+                s_ImmContext->PSSetShaderResources(buffer.GetSlot(), 1, (ID3D11ShaderResourceView**)&nullInstance);
                 LogDebugMessage();
             }
 
-            void BindListBufferCS(const sBuffer &buffer)
+            void BindListBufferCS(cBuffer &buffer)
             {
-                s_ImmContext->CSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&buffer.ViewInstance);
+                s_ImmContext->CSSetShaderResources(buffer.GetSlot(), 1, (ID3D11ShaderResourceView**)buffer.GetSRVInstancePtr());
                 LogDebugMessage();
             }
 
-            void UnbindListBufferCS(const sBuffer &buffer)
+            void UnbindListBufferCS(const cBuffer &buffer)
             {
                 static ID3D11ShaderResourceView* nullInstance = nullptr;
-                s_ImmContext->CSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&nullInstance);
+                s_ImmContext->CSSetShaderResources(buffer.GetSlot(), 1, (ID3D11ShaderResourceView**)&nullInstance);
                 LogDebugMessage();
             }
 
-            void BindItemBufferVS(const sBuffer &buffer)
+            void BindItemBufferVS(const cBuffer &buffer)
             {
 
             }
 
-            void UnbindItemBufferVS(const sBuffer &buffer)
+            void UnbindItemBufferVS(const cBuffer &buffer)
             {
                 static ID3D11ShaderResourceView* nullInstance = nullptr;
-                s_ImmContext->VSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&nullInstance);
+                s_ImmContext->VSSetConstantBuffers(buffer.GetSlot(), 1, (ID3D11Buffer**)&nullInstance);
                 LogDebugMessage();
             }
 
-            void BindItemBufferGS(const sBuffer &buffer)
+            void BindItemBufferGS(cBuffer &buffer)
             {
-                s_ImmContext->GSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&buffer.Instance);
+                s_ImmContext->GSSetConstantBuffers(buffer.GetSlot(), 1, (ID3D11Buffer**)buffer.GetInstancePtr());
                 LogDebugMessage();
             }
 
-            void UnbindItemBufferGS(const sBuffer &buffer)
-            {
-                static ID3D11ShaderResourceView* nullInstance = nullptr;
-                s_ImmContext->GSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&nullInstance);
-                LogDebugMessage();
-            }
-
-            void BindItemBufferPS(const sBuffer &buffer)
-            {
-                s_ImmContext->PSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&buffer.Instance);
-                LogDebugMessage();
-            }
-
-            void UnbindItemBufferPS(const sBuffer &buffer)
+            void UnbindItemBufferGS(const cBuffer &buffer)
             {
                 static ID3D11ShaderResourceView* nullInstance = nullptr;
-                s_ImmContext->PSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&nullInstance);
+                s_ImmContext->GSSetConstantBuffers(buffer.GetSlot(), 1, (ID3D11Buffer**)&nullInstance);
                 LogDebugMessage();
             }
 
-            void BindItemBufferCS(const sBuffer &buffer)
+            void BindItemBufferPS(cBuffer &buffer)
             {
-                s_ImmContext->CSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&buffer.Instance);
+                s_ImmContext->PSSetConstantBuffers(buffer.GetSlot(), 1, (ID3D11Buffer**)buffer.GetInstancePtr());
                 LogDebugMessage();
             }
 
-            void UnbindItemBufferCS(const sBuffer &buffer)
+            void UnbindItemBufferPS(const cBuffer &buffer)
             {
                 static ID3D11ShaderResourceView* nullInstance = nullptr;
-                s_ImmContext->CSSetConstantBuffers(buffer.Slot, 1, (ID3D11Buffer**)&nullInstance);
+                s_ImmContext->PSSetConstantBuffers(buffer.GetSlot(), 1, (ID3D11Buffer**)&nullInstance);
+                LogDebugMessage();
+            }
+
+            void BindItemBufferCS(cBuffer &buffer)
+            {
+                s_ImmContext->CSSetConstantBuffers(buffer.GetSlot(), 1, (ID3D11Buffer**)buffer.GetInstancePtr());
+                LogDebugMessage();
+            }
+
+            void UnbindItemBufferCS(const cBuffer &buffer)
+            {
+                static ID3D11ShaderResourceView* nullInstance = nullptr;
+                s_ImmContext->CSSetConstantBuffers(buffer.GetSlot(), 1, (ID3D11Buffer**)&nullInstance);
                 LogDebugMessage();
             }
 
             void* Map(
-                    const sResource &resource,
+                    const cResource &resource,
                     u32 subresourceIndex,
-                    sResource::eMapType mapType
+                    cResource::eMapType mapType
             ) {
                 D3D11_MAPPED_SUBRESOURCE mappedResource = {};
 
-                s_ImmContext->Map((ID3D11Resource*) resource.Instance, subresourceIndex, k_MapTypeTable.at(mapType), 0, &mappedResource);
+                s_ImmContext->Map((ID3D11Resource*) resource.GetInstance(), subresourceIndex, k_MapTypeTable.at(mapType), 0, &mappedResource);
                 LogDebugMessage();
 
                 return mappedResource.pData;
             }
 
-            void Unmap(const sResource& resource)
+            void Unmap(const cResource& resource)
             {
-                s_ImmContext->Unmap((ID3D11Resource*)resource.Instance, 0);
+                s_ImmContext->Unmap((ID3D11Resource*)resource.GetInstance(), 0);
                 LogDebugMessage();
             }
 
-            void UpdateSubData(const sResource& resource, u32 subresourceIndex, const void* data, u32 rowPitch, u32 depthPitch)
+            void UpdateSubData(const cResource& resource, u32 subresourceIndex, const void* data, u32 rowPitch, u32 depthPitch)
             {
-                s_ImmContext->UpdateSubresource((ID3D11Resource*) resource.Instance, subresourceIndex, nullptr, data, rowPitch, depthPitch);
+                s_ImmContext->UpdateSubresource((ID3D11Resource*) resource.GetInstance(), subresourceIndex, nullptr, data, rowPitch, depthPitch);
                 LogDebugMessage();
             }
 
-            void FreeBuffer(sBuffer& buffer)
+            void FreeBuffer(cBuffer& buffer)
             {
-                if (buffer.Instance != nullptr)
+                if (buffer.GetInstance() != nullptr)
                 {
-                    ((ID3D11Buffer*)buffer.Instance)->Release();
+                    ((ID3D11Buffer*)buffer.GetInstance())->Release();
                     LogDebugMessage();
-                    buffer.Instance = nullptr;
+                    //buffer.GetInstance() = nullptr;
                 }
             }
 
-            void BindVertexBuffer(const sBuffer &buffer)
+            void BindVertexBuffer(cBuffer &buffer)
             {
-                if (buffer.ViewType == sBuffer::eViewType::NONE) {
-                    UINT stride = buffer.StructureSize;
+                if (buffer.GetViewType() == cBuffer::eViewType::NONE) {
+                    UINT stride = buffer.GetStructureSize();
                     UINT offset = 0;
-                    s_ImmContext->IASetVertexBuffers(buffer.Slot, 1, (ID3D11Buffer**)&buffer.Instance, &stride, &offset);
+                    s_ImmContext->IASetVertexBuffers(buffer.GetSlot(), 1, (ID3D11Buffer**)buffer.GetInstancePtr(), &stride, &offset);
                     LogDebugMessage();
                 }
-                else if (buffer.ViewType == sBuffer::eViewType::SRV) {
-                    s_ImmContext->VSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&buffer.ViewInstance);
+                else if (buffer.GetViewType() == cBuffer::eViewType::SRV) {
+                    s_ImmContext->VSSetShaderResources(buffer.GetSlot(), 1, (ID3D11ShaderResourceView**)buffer.GetSRVInstancePtr());
                     LogDebugMessage();
                 }
             }
 
-            void BindIndexBuffer(const sBuffer &buffer)
+            void BindIndexBuffer(cBuffer &buffer)
             {
-                if (buffer.ViewType == sBuffer::eViewType::NONE) {
+                if (buffer.GetViewType() == cBuffer::eViewType::NONE) {
                     // we can skip 16-bit index type
-                    // it's very rare that we will bind index buffer with index range [0, ~65555]
+                    // it's very rare that we will bind index buffer with index range [0, 65536]
                     DXGI_FORMAT format = DXGI_FORMAT_R32_UINT;
-                    s_ImmContext->IASetIndexBuffer((ID3D11Buffer*)buffer.Instance, format, 0);
+                    s_ImmContext->IASetIndexBuffer((ID3D11Buffer*)buffer.GetInstance(), format, 0);
                     LogDebugMessage();
                 }
-                else if (buffer.ViewType == sBuffer::eViewType::SRV) {
-                    s_ImmContext->VSSetShaderResources(buffer.Slot, 1, (ID3D11ShaderResourceView**)&buffer.ViewInstance);
+                else if (buffer.GetViewType() == cBuffer::eViewType::SRV) {
+                    s_ImmContext->VSSetShaderResources(buffer.GetSlot(), 1, (ID3D11ShaderResourceView**)buffer.GetSRVInstancePtr());
                     LogDebugMessage();
                 }
             }
 
-            void VSBindBuffer(sBuffer::eViewType viewType, sBuffer::eType type, u32 slot, void* instance, void* viewInstance)
+            void VSBindBuffer(const cResource::eViewType& viewType, const cBuffer::eType& type, u32 slot, void* instance, void* viewInstance)
             {
-                if (type == sBuffer::eType::CONSTANT) {
+                if (type == cBuffer::eType::CONSTANT) {
                     s_ImmContext->VSSetConstantBuffers(slot, 1, (ID3D11Buffer**)&instance);
                     LogDebugMessage();
-                }
-                else if (viewType == sBuffer::eViewType::SRV) {
+                } else if (viewType == cBuffer::eViewType::SRV) {
                     s_ImmContext->VSSetShaderResources(slot, 1, (ID3D11ShaderResourceView**)&viewInstance);
                     LogDebugMessage();
                 }
             }
 
-            void PSBindBuffer(sBuffer::eViewType viewType, sBuffer::eType type, u32 slot, void* instance, void* viewInstance)
+            void PSBindBuffer(const cResource::eViewType& viewType, const cBuffer::eType& type, u32 slot, void* instance, void* viewInstance)
             {
-                if (type == sBuffer::eType::CONSTANT) {
+                if (type == cBuffer::eType::CONSTANT) {
                     s_ImmContext->PSSetConstantBuffers(slot, 1, (ID3D11Buffer**)&instance);
                     LogDebugMessage();
-                }
-                else if (viewType == sBuffer::eViewType::SRV) {
+                } else if (viewType == cBuffer::eViewType::SRV) {
                     s_ImmContext->PSSetShaderResources(slot, 1, (ID3D11ShaderResourceView**)&viewInstance);
                     LogDebugMessage();
                 }
             }
 
-            void GSBindBuffer(sBuffer::eViewType viewType, sBuffer::eType type, u32 slot, void* instance, void* viewInstance)
+            void GSBindBuffer(const cResource::eViewType& viewType, const cBuffer::eType& type, u32 slot, void* instance, void* viewInstance)
             {
-                if (type == sBuffer::eType::CONSTANT) {
+                if (type == cBuffer::eType::CONSTANT) {
                     s_ImmContext->GSSetConstantBuffers(slot, 1, (ID3D11Buffer**)&instance);
                     LogDebugMessage();
-                }
-                else if (viewType == sBuffer::eViewType::SRV) {
+                } else if (viewType == cBuffer::eViewType::SRV) {
                     s_ImmContext->GSSetShaderResources(slot, 1, (ID3D11ShaderResourceView**)&viewInstance);
                     LogDebugMessage();
                 }
             }
 
-            void CSBindBuffer(sBuffer::eViewType viewType, sBuffer::eType type, u32 slot, void* instance, void* viewInstance)
+            void CSBindBuffer(const cResource::eViewType& viewType, const cBuffer::eType& type, u32 slot, void* instance, void* viewInstance)
             {
-                if (type == sBuffer::eType::CONSTANT) {
+                if (type == cBuffer::eType::CONSTANT) {
                     s_ImmContext->CSSetConstantBuffers(slot, 1, (ID3D11Buffer**)&instance);
                     LogDebugMessage();
-                }
-                else if (viewType == sBuffer::eViewType::SRV) {
+                } else if (viewType == cBuffer::eViewType::SRV) {
                     s_ImmContext->CSSetShaderResources(slot, 1, (ID3D11ShaderResourceView**)&viewInstance);
+                    LogDebugMessage();
+                } else if (viewType == cBuffer::eViewType::UAV) {
+                    UINT counts[1] = { 0 };
+                    s_ImmContext->CSSetUnorderedAccessViews(slot, 1, (ID3D11UnorderedAccessView**)&viewInstance, &counts[0]);
                     LogDebugMessage();
                 }
             }
@@ -1854,5 +1860,3 @@ namespace xpe {
     }
 
 }
-
-#endif // DX11

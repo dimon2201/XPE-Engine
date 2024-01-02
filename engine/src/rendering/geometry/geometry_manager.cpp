@@ -7,8 +7,8 @@ namespace xpe {
 
         void cGeometryManager::Init()
         {
-            Buffers::Vertex = new sVertexBuffer();
-            Buffers::Index  = new sIndexBuffer();
+            Buffers::Vertex = new cVertexBuffer();
+            Buffers::Index  = new cIndexBuffer();
         }
 
         void cGeometryManager::Free()

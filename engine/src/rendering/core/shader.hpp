@@ -6,7 +6,19 @@ namespace xpe {
 
     namespace render {
 
-        struct ENGINE_API sShaderStage : public sResource
+        struct sBinding
+        {
+            sBinding() {}
+            sBinding(cResource* resource, void* view, const cResource::eType& resourceType, const cResource::eViewType& viewType)
+                : Resource(resource), View(view), ResourceType(resourceType), ViewType(viewType) {}
+
+            cResource* Resource;
+            void* View;
+            cResource::eType ResourceType;
+            cResource::eViewType ViewType;
+        };
+
+        struct ENGINE_API sShaderStage : public cResource
         {
             enum class eType
             {
@@ -14,8 +26,52 @@ namespace xpe {
                 VERTEX = 0,
                 PIXEL = 1,
                 GEOMETRY = 2,
-                COMPUTE = 3,
+                COMPUTE = 3
             };
+
+            sShaderStage() = default;
+            sShaderStage(u64 id, eType type) : ID(id), Type(type) {}
+
+            void SetBufferBinding(cBuffer* buffer, const cResource::eViewType& viewType, u32 slot = K_SLOT_DEFAULT)
+            {
+                if (slot != K_SLOT_DEFAULT) {
+                    buffer->SetSlot(slot);
+                }
+                if (viewType == cResource::eViewType::SRV)
+                {
+                    sBinding binding((cResource*)buffer, buffer->GetSRVInstance(), cResource::eType::BUFFER, cResource::eViewType::SRV);
+                    BufferBindings.emplace_back(binding);
+                }
+                else if (viewType == cResource::eViewType::UAV)
+                {
+                    sBinding binding((cResource*)buffer, buffer->GetUAVInstance(), cResource::eType::BUFFER, cResource::eViewType::UAV);
+                    BufferBindings.emplace_back(binding);
+                }
+            }
+
+            void SetTextureBinding(cTexture* texture, const cResource::eViewType& viewType, u32 slot = K_SLOT_DEFAULT)
+            {
+                if (slot != K_SLOT_DEFAULT) {
+                    texture->SetSlot(slot);
+                }
+                if (viewType == cResource::eViewType::SRV)
+                {
+                    sBinding binding((cResource*)texture, texture->GetSRVInstance(), cResource::eType::BUFFER, cResource::eViewType::SRV);
+                    TextureBindings.emplace_back(binding);
+                }
+                else if (viewType == cResource::eViewType::UAV)
+                {
+                    sBinding binding((cResource*)texture, texture->GetUAVInstance(), cResource::eType::BUFFER, cResource::eViewType::UAV);
+                    TextureBindings.emplace_back(binding);
+                }
+            }
+
+            inline void SetSampler(sSampler* sampler, u32 slot = K_SLOT_DEFAULT) {
+                if (slot != K_SLOT_DEFAULT) {
+                    sampler->Slot = slot;
+                }
+                Samplers.emplace_back(sampler);
+            }
 
             u64 ID;
             eType Type;
@@ -25,33 +81,9 @@ namespace xpe {
             string Profile;
             string EntryPoint;
             string Source;
-            vector<sBuffer*>  Buffers;
-            vector<sTexture*> Textures;
+            vector<sBinding> BufferBindings;
+            vector<sBinding> TextureBindings;
             vector<sSampler*> Samplers;
-
-            sShaderStage() = default;
-            sShaderStage(u64 id, eType type) : ID(id), Type(type) {}
-
-            inline void SetBuffer(sBuffer* buffer, u32 slot = K_SLOT_DEFAULT) {
-                if (slot != K_SLOT_DEFAULT) {
-                    buffer->Slot = slot;
-                }
-                Buffers.emplace_back(buffer);
-            }
-
-            inline void SetTexture(sTexture* texture, u32 slot = K_SLOT_DEFAULT) {
-                if (slot != K_SLOT_DEFAULT) {
-                    texture->Slot = slot;
-                }
-                Textures.emplace_back(texture);
-            }
-
-            inline void SetSampler(sSampler* sampler, u32 slot = K_SLOT_DEFAULT) {
-                if (slot != K_SLOT_DEFAULT) {
-                    sampler->Slot = slot;
-                }
-                Samplers.emplace_back(sampler);
-            }
         };
 
         class ENGINE_API cShader : public cObject
@@ -61,8 +93,8 @@ namespace xpe {
             {
                 NONE = 0,
                 PREPASS = 1,
-                OPAQUE = 2,
-                TRANSPARENT = 3,
+                OPAQUE_GEOMETRY = 2,
+                TRANSPARENT_GEOMETRY = 3,
                 POSTFX = 4,
                 UI = 5,
                 FINAL = 6,
@@ -76,8 +108,8 @@ namespace xpe {
             virtual void Unbind() = 0;
 
             u64 ID = 0;
-            bool Enable = true;
-            eCategory Category = eCategory::PREPASS;
+            dual Enable = true;
+            eCategory Category = eCategory::NONE;
             cShader* Next = nullptr;
         };
 
@@ -113,8 +145,8 @@ namespace xpe {
         class ENGINE_API cComputeShader : public cShader
         {
         public:
-            cComputeShader(const string& name, const glm::vec3& threadGroups = { 1, 1, 1 })
-            : cShader(eCategory::COMPUTE, name), m_ThreadGroups(threadGroups) {}
+            cComputeShader(const eCategory& category, const string& name, const glm::vec3& threadGroups = { 1, 1, 1 })
+            : cShader(category, name), m_ThreadGroups(threadGroups) {}
 
             void Bind() override;
             void Unbind() override;

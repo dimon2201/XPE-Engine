@@ -1,3 +1,4 @@
+#include <core/types.hpp>
 #include <rendering/material/material_manager.hpp>
 
 namespace xpe {
@@ -6,7 +7,7 @@ namespace xpe {
 
         void cMaterialManager::Init()
         {
-            Buffers::Material = new sMaterialDataBuffer();
+            Buffers::Material = new cMaterialDataBuffer(1024);
             InitSampler();
             Textures::AlbedoAtlas = InitTextureArray(sMaterial::k_AlbedoFormat);
             Textures::NormalAtlas = InitTextureArray(sMaterial::k_NormalFormat);
@@ -42,18 +43,18 @@ namespace xpe {
             Samplers::Material->Init();
         }
 
-        sTexture* cMaterialManager::InitTextureArray(const sMaterialFormat& materialFormat)
+        cTexture* cMaterialManager::InitTextureArray(const sMaterialFormat& materialFormat)
         {
-            sTexture* texture = new sTexture();
-            texture->InitializeData = true;
-            texture->Type = sTexture::eType::TEXTURE_2D_ARRAY;
-            texture->Usage = sTexture::eUsage::DEFAULT;
-            texture->Format = materialFormat.Format;
-            texture->Width = materialFormat.Width;
-            texture->Height = materialFormat.Height;
-            texture->Slot = materialFormat.Slot;
-            texture->Channels = sTexture::k_ChannelTable.at(materialFormat.Format);
-            texture->Layers.reserve(cHardwareManager::GPU.MaxTexture2dArray);
+            cTexture* texture = new cTexture();
+            texture->SetInitializeData(true);
+            texture->SetType(cTexture::eType::TEXTURE_2D_ARRAY);
+            texture->SetUsage(cTexture::eUsage::DEFAULT);
+            texture->SetFormat(materialFormat.Format);
+            texture->SetWidth(materialFormat.Width);
+            texture->SetHeight(materialFormat.Height);
+            texture->SetSlot(materialFormat.Slot);
+            texture->SetChannelCount(cTexture::k_ChannelTable.at(materialFormat.Format));
+            texture->GetLayers().reserve(cHardwareManager::GPU.MaxTexture2dArray);
             return texture;
         }
 
@@ -62,25 +63,25 @@ namespace xpe {
             Buffers::Material->Clear();
             Buffers::Material->Flush();
 
-            Textures::AlbedoAtlas->Layers.clear();
+            Textures::AlbedoAtlas->GetLayers().clear();
             Textures::AlbedoAtlas->Flush();
 
-            Textures::NormalAtlas->Layers.clear();
+            Textures::NormalAtlas->GetLayers().clear();
             Textures::NormalAtlas->Flush();
 
-            Textures::ParallaxAtlas->Layers.clear();
+            Textures::ParallaxAtlas->GetLayers().clear();
             Textures::ParallaxAtlas->Flush();
 
-            Textures::MetalAtlas->Layers.clear();
+            Textures::MetalAtlas->GetLayers().clear();
             Textures::MetalAtlas->Flush();
 
-            Textures::RoughnessAtlas->Layers.clear();
+            Textures::RoughnessAtlas->GetLayers().clear();
             Textures::RoughnessAtlas->Flush();
 
-            Textures::AOAtlas->Layers.clear();
+            Textures::AOAtlas->GetLayers().clear();
             Textures::AOAtlas->Flush();
 
-            Textures::EmissionAtlas->Layers.clear();
+            Textures::EmissionAtlas->GetLayers().clear();
             Textures::EmissionAtlas->Flush();
         }
 
@@ -89,12 +90,12 @@ namespace xpe {
             Buffers::Material->FlushItem(material.Index, material);
         }
 
-        void cMaterialManager::AddLayer(sTexture &texture, sTextureLayer* layer)
+        void cMaterialManager::AddLayer(cTexture &texture, sTextureLayer* layer)
         {
             if (layer == nullptr || layer->Pixels == nullptr) {
-                texture.Layers.emplace_back(texture.CreateLayer());
+                texture.GetLayers().emplace_back(texture.CreateLayer());
             } else {
-                texture.Layers.emplace_back(*layer);
+                texture.GetLayers().emplace_back(*layer);
 //                layer.ResizePixels(texture.Format, texture.Width, texture.Height);
             }
 
@@ -105,12 +106,12 @@ namespace xpe {
             texture.Flush();
         }
 
-        void cMaterialManager::SetLayer(sTexture &texture, sTextureLayer* layer, u32 layerIndex)
+        void cMaterialManager::SetLayer(cTexture &texture, sTextureLayer* layer, u32 layerIndex)
         {
             if (layer == nullptr || layer->Pixels == nullptr) {
-                texture.Layers[layerIndex] = texture.CreateLayer();
+                texture.GetLayers()[layerIndex] = texture.CreateLayer();
             } else {
-                texture.Layers[layerIndex] = *layer;
+                texture.GetLayers()[layerIndex] = *layer;
             //                layer.ResizePixels(texture.Format, texture.Width, texture.Height);
             }
 

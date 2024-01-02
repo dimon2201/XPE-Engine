@@ -15,15 +15,15 @@ namespace xpe {
             { ePrimitiveTopology::LINE_STRIP, "LINE_STRIP" },
         })
 
-        JSON(sVertexBuffer, List)
-        JSON(sIndexBuffer, List)
+        //JSON(cVertexBuffer, List)
+        //JSON(cIndexBuffer, List)
 
-        JSON(
-            sGeometry,
-            PrimitiveTopology,
-            Vertices,
-            Indices
-        )
+        //JSON(
+        //    sGeometry,
+        //    PrimitiveTopology,
+        //    Vertices,
+        //    Indices
+        //)
 
         struct ENGINE_API sTriangle : public sGeometry {
             sTriangle();
@@ -52,6 +52,10 @@ namespace xpe {
             sSphere(s32 xSegments = 64, s32 ySegments = 64);
         };
 
+        struct ENGINE_API sCapsule : public sGeometry {
+            sCapsule(s32 segments = 64);
+        };
+
         struct ENGINE_API sModel : public sGeometry {
             vector<sGeometry> Geometries;
 
@@ -60,7 +64,7 @@ namespace xpe {
             inline sGeometry& operator [](u32 i) { return Geometries[i]; }
         };
 
-        JSON(sModel, PrimitiveTopology, Geometries, Indices)
+        // JSON(sModel, PrimitiveTopology, Geometries, Indices)
 
         template<typename T>
         static void InitUV(vector<T>& vertices)

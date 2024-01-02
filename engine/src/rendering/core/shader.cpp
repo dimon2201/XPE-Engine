@@ -22,11 +22,11 @@ namespace xpe {
                     InitPrepass();
                     break;
 
-                case eCategory::OPAQUE:
+                case eCategory::OPAQUE_GEOMETRY:
                     InitOpaque();
                     break;
 
-                case eCategory::TRANSPARENT:
+                case eCategory::TRANSPARENT_GEOMETRY:
                     InitTransparent();
                     break;
 
@@ -183,15 +183,15 @@ namespace xpe {
             context::BindInputLayout(InputLayout);
 
             if (VertexStage != nullptr) {
-                context::BindVSStage(*VertexStage);
+                context::BindVSStage(VertexStage);
             }
 
             if (PixelStage != nullptr) {
-                context::BindPSStage(*PixelStage);
+                context::BindPSStage(PixelStage);
             }
 
             if (GeometryStage != nullptr) {
-                context::BindGSStage(*GeometryStage);
+                context::BindGSStage(GeometryStage);
             }
 
             if (RenderTarget != nullptr) {
@@ -206,15 +206,15 @@ namespace xpe {
         void cDefaultShader::Unbind()
         {
             if (VertexStage != nullptr) {
-                context::UnbindVSStage(*VertexStage);
+                context::UnbindVSStage(VertexStage);
             }
 
             if (PixelStage != nullptr) {
-                context::UnbindPSStage(*PixelStage);
+                context::UnbindPSStage(PixelStage);
             }
 
             if (GeometryStage != nullptr) {
-                context::UnbindGSStage(*GeometryStage);
+                context::UnbindGSStage(GeometryStage);
             }
 
             if (RenderTarget != nullptr) {
@@ -225,14 +225,14 @@ namespace xpe {
         void cComputeShader::Bind()
         {
             if (ComputeStage != nullptr) {
-                context::BindCSStage(*ComputeStage);
+                context::BindCSStage(ComputeStage);
             }
         }
 
         void cComputeShader::Unbind()
         {
             if (ComputeStage != nullptr) {
-                context::UnbindCSStage(*ComputeStage);
+                context::UnbindCSStage(ComputeStage);
             }
         }
 
@@ -327,8 +327,8 @@ namespace xpe {
             stage->Profile = profile;
             stage->EntryPoint = entryPoint;
             stage->Source = src;
-            context::CompileShaderStage(*stage);
-            context::CreateShaderStage(*stage);
+            context::CompileShaderStage(stage);
+            context::CreateShaderStage(stage);
             return stage;
         }
 
@@ -348,15 +348,15 @@ namespace xpe {
                 auto& stage = it->second;
                 stage.Source = src;
                 stage.Compiled = false;
-                context::FreeShaderStage(stage);
-                context::CreateShaderStage(stage);
+                context::FreeShaderStage(&stage);
+                context::CreateShaderStage(&stage);
             }
         }
 
         void cShaderManager::FreeStages()
         {
             for (auto& shader : *s_Stages) {
-                context::FreeShaderStage(shader.second);
+                context::FreeShaderStage(&shader.second);
             }
         }
 
@@ -409,11 +409,11 @@ namespace xpe {
                     SetShader(s_PrepassShaders, shader);
                     break;
 
-                case cShader::eCategory::OPAQUE:
+                case cShader::eCategory::OPAQUE_GEOMETRY:
                     SetShader(s_OpaqueShaders, shader);
                     break;
 
-                case cShader::eCategory::TRANSPARENT:
+                case cShader::eCategory::TRANSPARENT_GEOMETRY:
                     SetShader(s_TransparentShaders, shader);
                     break;
 
@@ -444,11 +444,11 @@ namespace xpe {
                     SetShader(s_PrepassShaders, shader, id);
                     break;
 
-                case cShader::eCategory::OPAQUE:
+                case cShader::eCategory::OPAQUE_GEOMETRY:
                     SetShader(s_OpaqueShaders, shader, id);
                     break;
 
-                case cShader::eCategory::TRANSPARENT:
+                case cShader::eCategory::TRANSPARENT_GEOMETRY:
                     SetShader(s_TransparentShaders, shader, id);
                     break;
 
@@ -477,8 +477,8 @@ namespace xpe {
                 case cShader::eCategory::NONE:        return nullptr;
                 case cShader::eCategory::COMPUTE:     return s_ComputeShaders;
                 case cShader::eCategory::PREPASS:     return s_PrepassShaders;
-                case cShader::eCategory::OPAQUE:      return s_OpaqueShaders;
-                case cShader::eCategory::TRANSPARENT: return s_TransparentShaders;
+                case cShader::eCategory::OPAQUE_GEOMETRY:      return s_OpaqueShaders;
+                case cShader::eCategory::TRANSPARENT_GEOMETRY: return s_TransparentShaders;
                 case cShader::eCategory::POSTFX:      return s_PostfxShaders;
                 case cShader::eCategory::UI:          return s_UiShaders;
                 case cShader::eCategory::FINAL:       return s_FinalShaders;

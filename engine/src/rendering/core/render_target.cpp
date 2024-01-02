@@ -5,7 +5,7 @@ namespace xpe {
 
     namespace render {
 
-        sRenderTarget::sRenderTarget(const vector<sTexture*> &colors, sViewport* viewport)
+        sRenderTarget::sRenderTarget(const vector<cTexture*> &colors, sViewport* viewport)
         {
             Colors.reserve(colors.size());
             ColorViews.reserve(colors.size());
@@ -18,17 +18,17 @@ namespace xpe {
             Init();
         }
 
-        sRenderTarget::sRenderTarget(const sTexture* depthStencil, sViewport* viewport)
+        sRenderTarget::sRenderTarget(const cTexture* depthStencil, sViewport* viewport)
         {
-            DepthStencil = (sTexture*)depthStencil;
+            DepthStencil = (cTexture*)depthStencil;
             DepthStencilView = nullptr;
             Viewport = viewport;
             Init();
         }
 
         sRenderTarget::sRenderTarget(
-            const vector<sTexture*> &colors,
-            const sTexture* depthStencil,
+            const vector<cTexture*> &colors,
+            const cTexture* depthStencil,
             sViewport* viewport
         ) {
             Colors.reserve(colors.size());
@@ -38,7 +38,7 @@ namespace xpe {
                 Colors.emplace_back(color);
                 ColorViews.emplace_back(nullptr);
             }
-            DepthStencil = (sTexture*)depthStencil;
+            DepthStencil = (cTexture*)depthStencil;
             DepthStencilView = nullptr;
             Viewport = viewport;
             Init();

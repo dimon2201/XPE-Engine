@@ -30,7 +30,9 @@ namespace xpe {
                 LockOnFps,
                 HotReloadShaders,
                 MsaaSampleCount.Value,
-                EnableSSAO
+                EnableSSAO,
+                MaxParticleCount,
+                MaxParticleEmitterCount
             )
 
             string WinTitle;
@@ -62,6 +64,9 @@ namespace xpe {
             bool EnableSSAO = true;
 
             sObserverSampleCount MsaaSampleCount = 1;
+
+            usize MaxParticleCount = 1024;
+            usize MaxParticleEmitterCount = 1024;
         };
 
     }

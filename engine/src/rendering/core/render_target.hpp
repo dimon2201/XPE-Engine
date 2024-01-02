@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rendering/core/texture.hpp>
+#include <rendering/core/core.hpp>
 
 namespace xpe {
 
@@ -10,15 +10,15 @@ namespace xpe {
         {
             vector<void*> ColorViews;
             void* DepthStencilView = nullptr;
-            vector<sTexture*> Colors;
-            sTexture* DepthStencil = nullptr;
+            vector<cTexture*> Colors;
+            cTexture* DepthStencil = nullptr;
             sViewport* Viewport = nullptr;
             vector<glm::vec4> ClearColors;
             float ClearDepth = K_DEPTH_INVALID;
 
-            sRenderTarget(const vector<sTexture*>& colors, sViewport* viewport);
-            sRenderTarget(const sTexture* depthStencil, sViewport* viewport);
-            sRenderTarget(const vector<sTexture*>& colors, const sTexture* depthStencil, sViewport* viewport);
+            sRenderTarget(const vector<cTexture*>& colors, sViewport* viewport);
+            sRenderTarget(const cTexture* depthStencil, sViewport* viewport);
+            sRenderTarget(const vector<cTexture*>& colors, const cTexture* depthStencil, sViewport* viewport);
             sRenderTarget(const vector<void*>& colorViews, sViewport* viewport);
 
             ~sRenderTarget();

@@ -6,6 +6,7 @@ namespace physx
     class PxRigidDynamic;
     class PxShape;
     class PxMaterial;
+    class PxJoint;
     class PxScene;
     class PxFoundation;
     class PxPhysics;
@@ -17,6 +18,11 @@ namespace xpe {
     namespace core
     {
         class cMainDispatcher;
+    }
+
+    namespace anim
+    {
+        struct sSkeleton;
     }
 
     namespace ecs
@@ -39,6 +45,7 @@ namespace xpe {
     {
         using namespace physx;
         using namespace core;
+        using namespace anim;
         using namespace ecs;
 
         class cPhysicsAllocator;
@@ -126,6 +133,7 @@ namespace xpe {
             sActor() = default;
 
             sActor(
+                cEntity* entity,
                 PxActor* actor,
                 PxMaterial* material,
                 PxShape* shape,
@@ -136,8 +144,10 @@ namespace xpe {
                 f32 dynamicFriction,
                 f32 restitution,
                 f32 contactOffset,
-                f32 restOffset
+                f32 restOffset,
+                f32 mass
             ) :
+                ParentEntity(entity),
                 Actor(actor),
                 Material(material),
                 Shape(shape),
@@ -148,10 +158,12 @@ namespace xpe {
                 DynamicFriction(dynamicFriction),
                 Restitution(restitution),
                 ContactOffset(contactOffset),
-                RestOffset(restOffset)
+                RestOffset(restOffset),
+                Mass(mass)
             {
             }
 
+            cEntity* ParentEntity = nullptr;
             PxActor* Actor = nullptr;
             PxMaterial* Material = nullptr;
             PxShape* Shape = nullptr;
@@ -163,33 +175,58 @@ namespace xpe {
             f32 Restitution = 0.0f;
             f32 ContactOffset = 0.0f;
             f32 RestOffset = 0.0f;
+            f32 Mass = 0.0f;
+        };
+
+        struct ENGINE_API sJoint : public cObject
+        {
+            sJoint(PxSphericalJoint* joint, sActor* actor1, sActor* actor2)
+            {
+                Joint = joint;
+                Actor1 = actor1;
+                Actor2 = actor2;
+            }
+
+            PxSphericalJoint* Joint = nullptr;
+            sActor* Actor1 = nullptr;
+            sActor* Actor2 = nullptr;
         };
 
         struct ENGINE_API sRagdoll : public cObject
         {
-            sRagdoll(const vector<sActor*>& bodyparts) : Bodyparts(bodyparts) {}
+            sRagdoll(const vector<sActor*>& bodyparts, const vector<sJoint*>& joints)
+                : Bodyparts(bodyparts), Joints(joints)
+            {}
             ~sRagdoll() = default;
 
-            static const usize k_BodypartCount = 12;
+            static const usize k_BodypartCount = 20;
 
             enum eBodypart
             {
-                NONE = 0,
-                HEAD = 1,
-                TORSO_TOP = 2,
-                TORSO_MIDDLE = 3,
-                TORSO_BOTTOM = 4,
-                LEFT_ARM_TOP = 5,
-                LEFT_ARM_BOTTOM = 6,
-                RIGHT_ARM_TOP = 7,
-                RIGHT_ARM_BOTTOM = 8,
-                LEFT_LEG_TOP = 9,
-                LEFT_LEG_BOTTOM = 10,
-                RIGHT_LEG_TOP = 11,
-                RIGHT_LEG_BOTTOM = 12
+                ROOT = 0,
+                SPINE1 = 1,
+                SPINE2 = 2,
+                NECK = 3,
+                HEAD = 4,
+                SHOULDER_LEFT = 5,
+                UPPERARM_LEFT = 6,
+                LOWERARM_LEFT = 7,
+                ARM_LEFT = 8,
+                SHOULDER_RIGHT = 9,
+                UPPERARM_RIGHT = 10,
+                LOWERARM_RIGHT = 11,
+                ARM_RIGHT = 12,
+                UPPERLEG_LEFT = 13,
+                LOWERLEG_LEFT = 14,
+                FOOT_LEFT = 15,
+                UPPERLEG_RIGHT = 16,
+                LOWERLEG_RIGHT = 17,
+                FOOT_RIGHT = 18,
+                NONE = 19
             };
 
             vector<sActor*> Bodyparts;
+            vector<sJoint*> Joints;
         };
 
         class ENGINE_API cPhysicsManager final
@@ -212,13 +249,25 @@ namespace xpe {
                 f32 dynamicFriction,
                 f32 restitution,
                 f32 contactOffset,
-                f32 restOffset
+                f32 restOffset,
+                f32 mass
             );
-            
-            static sRagdoll* AddRagdoll();
+            static sJoint* AddJoint(
+                sActor* actor1,
+                const glm::vec3& localPosition1,
+                sActor* actor2,
+                const glm::vec3& localPosition2
+            );
+            static sRagdoll* AddRagdoll(cScene* scene, sSkeleton* skeleton);
             static PxScene* AddScene(const string& tag);
 
+            static void ConstructRagdollJoints(sSkeleton* skeleton, sRagdoll* ragdoll);
+
             static void SetActorPose(sActor& actor, math::sTransform& transform);
+            static void SetJointPose(sJoint* joint, u32 actorIndex, const glm::vec3& position);
+            static void SetForce(sActor* actor, const glm::vec3& force);
+            static sActor* GetRagdollBodypartByName(sRagdoll* ragdoll, const string& name);
+            static glm::mat4 GetRagdollBodypartMatrix(sRagdoll* ragdoll, const string& name);
 
         private:
             static cPhysicsAllocator* s_Allocator;

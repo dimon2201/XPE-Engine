@@ -1,17 +1,17 @@
 #pragma once
 
-#include <rendering/core/texture.hpp>
+#include <rendering/core/core.hpp>
 
 namespace xpe
 {
-
     namespace render
     {
-
         using namespace core;
 
         struct ENGINE_API sFont : public cObject
         {
+            ~sFont();
+
             struct sGlyph final
             {
                 u8 Char;
@@ -32,9 +32,7 @@ namespace xpe
             f32 WhitespaceOffset;
             usize MaxGlyphHeight;
             unordered_map<char, sFont::sGlyph> AlphaBet;
-            sTexture Atlas;
-
-            ~sFont();
+            cTexture Atlas;
 
             inline float GetWhitespaceWidth()
             {

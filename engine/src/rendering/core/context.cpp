@@ -1,3 +1,4 @@
+#include <rendering/core/core.hpp>
 #include <rendering/core/context.hpp>
 
 namespace xpe {
@@ -9,14 +10,14 @@ namespace xpe {
             void* SwapchainTargetView = nullptr;
             void* SwapchainTextureInstance = nullptr;
 
-            void CopyBuffer(const sBuffer& buffer, const void* data, usize dataByteSize)
+            void WriteBuffer(cBuffer& buffer, const void* data, usize dataByteSize)
             {
-                if (buffer.Instance == nullptr || buffer.Usage == sBuffer::eUsage::STATIC) return;
+                if (buffer.GetInstance() == nullptr || buffer.GetUsage() == cBuffer::eUsage::STATIC) return;
 
-                sResource::eMapType mapType = sResource::eMapType::WRITE;
+                cResource::eMapType mapType = cResource::eMapType::WRITE;
 
-                if (buffer.Usage == sBuffer::eUsage::DYNAMIC) {
-                    mapType = sResource::eMapType::WRITE_DISCARD;
+                if (buffer.GetUsage() == cBuffer::eUsage::DYNAMIC) {
+                    mapType = cResource::eMapType::WRITE_DISCARD;
                 }
 
                 void* mappedData = Map(buffer, 0, mapType);
@@ -24,14 +25,14 @@ namespace xpe {
                 Unmap(buffer);
             }
 
-            void CopyBufferOffset(const sBuffer& buffer, usize offset, const void* data, usize dataByteSize)
+            void CopyBufferOffset(cBuffer& buffer, usize offset, const void* data, usize dataByteSize)
             {
-                if (buffer.Instance == nullptr || buffer.Usage == sBuffer::eUsage::STATIC) return;
+                if (buffer.GetInstance() == nullptr || buffer.GetUsage() == cBuffer::eUsage::STATIC) return;
 
-                sResource::eMapType mapType = sResource::eMapType::WRITE;
+                cResource::eMapType mapType = cResource::eMapType::WRITE;
 
-                if (buffer.Usage == sBuffer::eUsage::DYNAMIC) {
-                    mapType = sResource::eMapType::WRITE_NO_OVERWRITE;
+                if (buffer.GetUsage() == cBuffer::eUsage::DYNAMIC) {
+                    mapType = cResource::eMapType::WRITE_NO_OVERWRITE;
                 }
 
                 void* mappedData = Map(buffer, 0, mapType);
@@ -40,14 +41,14 @@ namespace xpe {
                 Unmap(buffer);
             }
 
-            void MoveBuffer(const sBuffer& buffer, const void* data, usize dataByteSize)
+            void MoveBuffer(cBuffer& buffer, const void* data, usize dataByteSize)
             {
-                if (buffer.Instance == nullptr || buffer.Usage == sBuffer::eUsage::STATIC) return;
+                if (buffer.GetInstance() == nullptr || buffer.GetUsage() == cBuffer::eUsage::STATIC) return;
 
-                sResource::eMapType mapType = sResource::eMapType::WRITE;
+                cResource::eMapType mapType = cResource::eMapType::WRITE;
 
-                if (buffer.Usage == sBuffer::eUsage::DYNAMIC) {
-                    mapType = sResource::eMapType::WRITE_DISCARD;
+                if (buffer.GetUsage() == cBuffer::eUsage::DYNAMIC) {
+                    mapType = cResource::eMapType::WRITE_DISCARD;
                 }
 
                 void* mappedData = Map(buffer, 0, mapType);
@@ -55,14 +56,14 @@ namespace xpe {
                 Unmap(buffer);
             }
 
-            void MoveBufferOffset(const sBuffer& buffer, usize offset, const void* data, usize dataByteSize)
+            void MoveBufferOffset(cBuffer& buffer, usize offset, const void* data, usize dataByteSize)
             {
-                if (buffer.Instance == nullptr || buffer.Usage == sBuffer::eUsage::STATIC) return;
+                if (buffer.GetInstance() == nullptr || buffer.GetUsage() == cBuffer::eUsage::STATIC) return;
 
-                sResource::eMapType mapType = sResource::eMapType::WRITE;
+                cResource::eMapType mapType = cResource::eMapType::WRITE;
 
-                if (buffer.Usage == sBuffer::eUsage::DYNAMIC) {
-                    mapType = sResource::eMapType::WRITE_NO_OVERWRITE;
+                if (buffer.GetUsage() == cBuffer::eUsage::DYNAMIC) {
+                    mapType = cResource::eMapType::WRITE_NO_OVERWRITE;
                 }
 
                 void* mappedData = Map(buffer, 0, mapType);
@@ -71,19 +72,19 @@ namespace xpe {
                 Unmap(buffer);
             }
 
-            void CopyTexture(const sTexture& texture, const void* data, usize dataByteSize, u32 layerIndex)
+            void CopyTexture(const cTexture& texture, const void* data, usize dataByteSize, u32 layerIndex)
             {
-                if (texture.Instance == nullptr || texture.Usage == sTexture::eUsage::STATIC) return;
+                if (texture.GetInstance() == nullptr || texture.GetUsage() == cTexture::eUsage::STATIC) return;
 
-                sResource::eMapType mapType = sResource::eMapType::WRITE;
+                cResource::eMapType mapType = cResource::eMapType::WRITE;
 
-                if (texture.Usage == sTexture::eUsage::DYNAMIC) {
-                    mapType = sResource::eMapType::WRITE_DISCARD;
+                if (texture.GetUsage() == cTexture::eUsage::DYNAMIC) {
+                    mapType = cResource::eMapType::WRITE_DISCARD;
                 }
 
                 void* mappedData = Map(texture, layerIndex, mapType);
                 if (mappedData == nullptr) {
-                    u32 rowPitch = dataByteSize / texture.Height;
+                    u32 rowPitch = dataByteSize / texture.GetHeight();
                     u32 depthPitch = dataByteSize;
                     UpdateSubData(texture, layerIndex, data, rowPitch, depthPitch);
                 }
@@ -93,19 +94,19 @@ namespace xpe {
                 }
             }
 
-            void CopyTextureOffset(const sTexture& texture, usize offset, const void* data, usize dataByteSize, u32 layerIndex)
+            void CopyTextureOffset(const cTexture& texture, usize offset, const void* data, usize dataByteSize, u32 layerIndex)
             {
-                if (texture.Instance == nullptr || texture.Usage == sTexture::eUsage::STATIC) return;
+                if (texture.GetInstance() == nullptr || texture.GetUsage() == cTexture::eUsage::STATIC) return;
 
-                sResource::eMapType mapType = sResource::eMapType::WRITE;
+                cResource::eMapType mapType = cResource::eMapType::WRITE;
 
-                if (texture.Usage == sTexture::eUsage::DYNAMIC) {
-                    mapType = sResource::eMapType::WRITE_DISCARD;
+                if (texture.GetUsage() == cTexture::eUsage::DYNAMIC) {
+                    mapType = cResource::eMapType::WRITE_DISCARD;
                 }
 
                 void* mappedData = Map(texture, layerIndex, mapType);
                 if (mappedData == nullptr) {
-                    u32 rowPitch = dataByteSize / texture.Height;
+                    u32 rowPitch = dataByteSize / texture.GetHeight();
                     u32 depthPitch = dataByteSize;
                     UpdateSubData(texture, layerIndex, data, rowPitch, depthPitch);
                 }
@@ -116,19 +117,19 @@ namespace xpe {
                 }
             }
 
-            void MoveTexture(const sTexture& texture, const void* data, usize dataByteSize, u32 layerIndex)
+            void MoveTexture(const cTexture& texture, const void* data, usize dataByteSize, u32 layerIndex)
             {
-                if (texture.Instance == nullptr || texture.Usage == sTexture::eUsage::STATIC) return;
+                if (texture.GetInstance() == nullptr || texture.GetUsage() == cTexture::eUsage::STATIC) return;
 
-                sResource::eMapType mapType = sResource::eMapType::WRITE;
+                cResource::eMapType mapType = cResource::eMapType::WRITE;
 
-                if (texture.Usage == sTexture::eUsage::DYNAMIC) {
-                    mapType = sResource::eMapType::WRITE_DISCARD;
+                if (texture.GetUsage() == cTexture::eUsage::DYNAMIC) {
+                    mapType = cResource::eMapType::WRITE_DISCARD;
                 }
 
                 void* mappedData = Map(texture, layerIndex, mapType);
                 if (mappedData == nullptr) {
-                    u32 rowPitch = dataByteSize / texture.Height;
+                    u32 rowPitch = dataByteSize / texture.GetHeight();
                     u32 depthPitch = dataByteSize;
                     UpdateSubData(texture, layerIndex, data, rowPitch, depthPitch);
                 }
@@ -138,19 +139,19 @@ namespace xpe {
                 }
             }
 
-            void MoveTextureOffset(const sTexture& texture, usize offset, const void* data, usize dataByteSize, u32 layerIndex)
+            void MoveTextureOffset(const cTexture& texture, usize offset, const void* data, usize dataByteSize, u32 layerIndex)
             {
-                if (texture.Instance == nullptr || texture.Usage == sTexture::eUsage::STATIC) return;
+                if (texture.GetInstance() == nullptr || texture.GetUsage() == cTexture::eUsage::STATIC) return;
 
-                sResource::eMapType mapType = sResource::eMapType::WRITE;
+                cResource::eMapType mapType = cResource::eMapType::WRITE;
 
-                if (texture.Usage == sTexture::eUsage::DYNAMIC) {
-                    mapType = sResource::eMapType::WRITE_DISCARD;
+                if (texture.GetUsage() == cTexture::eUsage::DYNAMIC) {
+                    mapType = cResource::eMapType::WRITE_DISCARD;
                 }
 
                 void* mappedData = Map(texture, layerIndex, mapType);
                 if (mappedData == nullptr) {
-                    u32 rowPitch = dataByteSize / texture.Height;
+                    u32 rowPitch = dataByteSize / texture.GetHeight();
                     u32 depthPitch = dataByteSize;
                     UpdateSubData(texture, layerIndex, data, rowPitch, depthPitch);
                 }
@@ -161,32 +162,32 @@ namespace xpe {
                 }
             }
 
-            void CreateTexture(sTexture& texture)
+            void CreateTexture(cTexture& texture)
             {
 
-                switch (texture.Type) {
+                switch (texture.GetType()) {
 
-                    case sTexture::eType::TEXTURE_1D:
+                    case cTexture::eType::TEXTURE_1D:
                         CreateTexture1D(texture);
                         break;
 
-                    case sTexture::eType::TEXTURE_2D:
+                    case cTexture::eType::TEXTURE_2D:
                         CreateTexture2D(texture);
                         break;
 
-                    case sTexture::eType::TEXTURE_2D_DEPTH_STENCIL:
+                    case cTexture::eType::TEXTURE_2D_DEPTH_STENCIL:
                         CreateTextureDepthStencil(texture);
                         break;
 
-                    case sTexture::eType::TEXTURE_2D_ARRAY:
+                    case cTexture::eType::TEXTURE_2D_ARRAY:
                         CreateTexture2DArray(texture);
                         break;
 
-                    case sTexture::eType::TEXTURE_3D:
+                    case cTexture::eType::TEXTURE_3D:
                         CreateTexture3D(texture);
                         break;
 
-                    case sTexture::eType::TEXTURE_CUBE:
+                    case cTexture::eType::TEXTURE_CUBE:
                         CreateTextureCube(texture);
                         break;
 
@@ -194,44 +195,49 @@ namespace xpe {
 
             }
 
-            void FreeTexture(sTexture& texture)
+            void FreeTexture(cTexture& texture)
             {
-                if (texture.Instance != nullptr) {
+                if (texture.GetInstance() != nullptr) {
 
-                    switch (texture.Type) {
+                    switch (texture.GetType()) {
 
-                        case sTexture::eType::TEXTURE_1D:
-                            FreeTexture1D(texture.Instance);
+                        case cTexture::eType::TEXTURE_1D:
+                            FreeTexture1D(texture.GetInstance());
                             break;
 
-                        case sTexture::eType::TEXTURE_2D:
-                            FreeTexture2D(texture.Instance);
+                        case cTexture::eType::TEXTURE_2D:
+                            FreeTexture2D(texture.GetInstance());
                             break;
 
-                        case sTexture::eType::TEXTURE_2D_ARRAY:
-                            FreeTexture2DArray(texture.Instance);
+                        case cTexture::eType::TEXTURE_2D_ARRAY:
+                            FreeTexture2DArray(texture.GetInstance());
                             break;
 
-                        case sTexture::eType::TEXTURE_2D_DEPTH_STENCIL:
-                            FreeTextureDepthStencil(texture.Instance);
+                        case cTexture::eType::TEXTURE_2D_DEPTH_STENCIL:
+                            FreeTextureDepthStencil(texture.GetInstance());
                             break;
 
-                        case sTexture::eType::TEXTURE_3D:
-                            FreeTexture3D(texture.Instance);
+                        case cTexture::eType::TEXTURE_3D:
+                            FreeTexture3D(texture.GetInstance());
                             break;
 
-                        case sTexture::eType::TEXTURE_CUBE:
-                            FreeTextureCube(texture.Instance);
+                        case cTexture::eType::TEXTURE_CUBE:
+                            FreeTextureCube(texture.GetInstance());
                             break;
 
                     }
 
-                    texture.Instance = nullptr;
+                    //texture.GetInstance() = nullptr;
                 }
 
-                if (texture.ViewInstance != nullptr) {
-                    FreeShaderResourceView(texture.ViewInstance);
-                    texture.ViewInstance = nullptr;
+                if (texture.GetSRVInstance() != nullptr && texture.GetViewType() == cResource::eViewType::SRV)
+                {
+                    FreeShaderResourceView(texture.GetSRVInstance());
+                    //texture.GetSRVInstance() = nullptr;
+                } else if (texture.GetUAVInstance() != nullptr && texture.GetViewType() == cResource::eViewType::UAV)
+                {
+                    FreeUnorderedAccessView(texture.GetUAVInstance());
+                    //texture.GetUAVInstance() = nullptr;
                 }
             }
 
@@ -247,141 +253,157 @@ namespace xpe {
                 BindViewport(viewport);
             }
 
-            void VSBindBuffer(const sBuffer &buffer)
+            void VSBindBuffer(const cResource::eViewType& viewType, cBuffer &buffer, void* view)
             {
-                VSBindBuffer(buffer.ViewType, buffer.Type, buffer.Slot, buffer.Instance, buffer.ViewInstance);
+                if (viewType == cResource::eViewType::SRV) {
+                    VSBindBuffer(cResource::eViewType::SRV, buffer.GetType(), buffer.GetSlot(), buffer.GetInstance(), view);
+                } else if (viewType == cResource::eViewType::UAV) {
+                    VSBindBuffer(cResource::eViewType::UAV, buffer.GetType(), buffer.GetSlot(), buffer.GetInstance(), view);
+                }
             }
 
-            void VSUnbindBuffer(const sBuffer &buffer)
+            void VSUnbindBuffer(cBuffer &buffer)
             {
                 static void* nullInstance = nullptr;
-                VSBindBuffer(buffer.ViewType, buffer.Type, buffer.Slot, nullInstance, nullInstance);
+                VSBindBuffer(buffer.GetViewType(), buffer.GetType(), buffer.GetSlot(), nullInstance, nullInstance);
             }
 
-            void PSBindBuffer(const sBuffer &buffer)
+            void PSBindBuffer(const cResource::eViewType& viewType, cBuffer &buffer, void* view)
             {
-                PSBindBuffer(buffer.ViewType, buffer.Type, buffer.Slot, buffer.Instance, buffer.ViewInstance);
+                if (viewType == cResource::eViewType::SRV) {
+                    PSBindBuffer(buffer.GetViewType(), buffer.GetType(), buffer.GetSlot(), buffer.GetInstance(), view);
+                } else if (viewType == cResource::eViewType::UAV) {
+                    PSBindBuffer(buffer.GetViewType(), buffer.GetType(), buffer.GetSlot(), buffer.GetInstance(), view);
+                }
             }
 
-            void PSUnbindBuffer(const sBuffer &buffer)
-            {
-                static void* nullInstance = nullptr;
-                PSBindBuffer(buffer.ViewType, buffer.Type, buffer.Slot, nullInstance, nullInstance);
-            }
-
-            void GSBindBuffer(const sBuffer &buffer)
-            {
-                GSBindBuffer(buffer.ViewType, buffer.Type, buffer.Slot, buffer.Instance, buffer.ViewInstance);
-            }
-
-            void GSUnbindBuffer(const sBuffer &buffer)
+            void PSUnbindBuffer(cBuffer &buffer)
             {
                 static void* nullInstance = nullptr;
-                GSBindBuffer(buffer.ViewType, buffer.Type, buffer.Slot, nullInstance, nullInstance);
+                PSBindBuffer(buffer.GetViewType(), buffer.GetType(), buffer.GetSlot(), nullInstance, nullInstance);
             }
 
-            void CSBindBuffer(const sBuffer &buffer)
+            void GSBindBuffer(const cResource::eViewType& viewType, cBuffer &buffer)
             {
-                CSBindBuffer(buffer.ViewType, buffer.Type, buffer.Slot, buffer.Instance, buffer.ViewInstance);
+                if (viewType == cResource::eViewType::SRV) {
+                    GSBindBuffer(buffer.GetViewType(), buffer.GetType(), buffer.GetSlot(), buffer.GetInstance(), buffer.GetSRVInstance());
+                } else if (viewType == cResource::eViewType::UAV) {
+                    GSBindBuffer(buffer.GetViewType(), buffer.GetType(), buffer.GetSlot(), buffer.GetInstance(), buffer.GetSRVInstance());
+                }
             }
 
-            void CSUnbindBuffer(const sBuffer &buffer)
+            void GSUnbindBuffer(cBuffer &buffer)
             {
                 static void* nullInstance = nullptr;
-                CSBindBuffer(buffer.ViewType, buffer.Type, buffer.Slot, nullInstance, nullInstance);
+                GSBindBuffer(buffer.GetViewType(), buffer.GetType(), buffer.GetSlot(), nullInstance, nullInstance);
             }
 
-            void VSBindTexture(const sTexture& texture)
+            void CSBindBuffer(const cResource::eViewType& viewType, cBuffer &buffer)
             {
-                VSBindTexture(texture.ViewType, texture.Slot, texture.ViewInstance);
+                if (viewType == cResource::eViewType::SRV) {
+                    CSBindBuffer(buffer.GetViewType(), buffer.GetType(), buffer.GetSlot(), buffer.GetInstance(), buffer.GetSRVInstance());
+                } else if (viewType == cResource::eViewType::UAV) {
+                    CSBindBuffer(buffer.GetViewType(), buffer.GetType(), buffer.GetSlot(), buffer.GetInstance(), buffer.GetUAVInstance());
+                }
             }
 
-            void VSBindTexture(const sTexture &texture, u32 slot)
+            void CSUnbindBuffer(cBuffer &buffer)
             {
-                VSBindTexture(texture.ViewType, slot, texture.ViewInstance);
+                static void* nullInstance = nullptr;
+                CSBindBuffer(buffer.GetViewType(), buffer.GetType(), buffer.GetSlot(), nullInstance, nullInstance);
+            }
+
+            void VSBindTexture(const cTexture& texture)
+            {
+                VSBindTexture(texture.GetViewType(), texture.GetSlot(), texture.GetSRVInstance());
+            }
+
+            void VSBindTexture(const cTexture &texture, u32 slot)
+            {
+                VSBindTexture(texture.GetViewType(), slot, texture.GetSRVInstance());
             }
 
             void VSBindTextureSlot(u32 slot)
             {
                 void* nullInstance = nullptr;
-                VSBindTexture(sTexture::eViewType::SRV, slot, nullInstance);
+                VSBindTexture(cTexture::eViewType::SRV, slot, nullInstance);
             }
 
-            void VSUnbindTexture(const sTexture& texture)
+            void VSUnbindTexture(const cTexture& texture)
             {
                 static void* nullInstance = nullptr;
-                VSBindTexture(texture.ViewType, texture.Slot, nullInstance);
+                VSBindTexture(texture.GetViewType(), texture.GetSlot(), nullInstance);
             }
 
-            void PSBindTexture(const sTexture& texture)
+            void PSBindTexture(const cTexture& texture)
             {
-                PSBindTexture(texture.ViewType, texture.Slot, texture.ViewInstance);
+                PSBindTexture(texture.GetViewType(), texture.GetSlot(), texture.GetSRVInstance());
             }
 
-            void PSBindTexture(const sTexture &texture, u32 slot)
+            void PSBindTexture(const cTexture &texture, u32 slot)
             {
-                PSBindTexture(texture.ViewType, slot, texture.ViewInstance);
+                PSBindTexture(texture.GetViewType(), slot, texture.GetSRVInstance());
             }
 
             void PSBindTextureSlot(u32 slot)
             {
                 void* nullInstance = nullptr;
-                PSBindTexture(sTexture::eViewType::SRV, slot, nullInstance);
+                PSBindTexture(cTexture::eViewType::SRV, slot, nullInstance);
             }
 
-            void PSUnbindTexture(const sTexture& texture)
+            void PSUnbindTexture(const cTexture& texture)
             {
                 static void* nullInstance = nullptr;
-                PSBindTexture(texture.ViewType, texture.Slot, nullInstance);
+                PSBindTexture(texture.GetViewType(), texture.GetSlot(), nullInstance);
             }
 
-            void GSBindTexture(const sTexture& texture)
+            void GSBindTexture(const cTexture& texture)
             {
-                GSBindTexture(texture.ViewType, texture.Slot, texture.ViewInstance);
+                GSBindTexture(texture.GetViewType(), texture.GetSlot(), texture.GetSRVInstance());
             }
 
-            void GSBindTexture(const sTexture &texture, u32 slot)
+            void GSBindTexture(const cTexture &texture, u32 slot)
             {
-                GSBindTexture(texture.ViewType, slot, texture.ViewInstance);
+                GSBindTexture(texture.GetViewType(), slot, texture.GetSRVInstance());
             }
 
             void GSBindTextureSlot(u32 slot)
             {
                 void* nullInstance = nullptr;
-                GSBindTexture(sTexture::eViewType::SRV, slot, nullInstance);
+                GSBindTexture(cTexture::eViewType::SRV, slot, nullInstance);
             }
 
-            void GSUnbindTexture(const sTexture& texture)
+            void GSUnbindTexture(const cTexture& texture)
             {
                 static void* nullInstance = nullptr;
-                GSBindTexture(texture.ViewType, texture.Slot, nullInstance);
+                GSBindTexture(texture.GetViewType(), texture.GetSlot(), nullInstance);
             }
 
-            void CSBindTexture(const sTexture& texture)
+            void CSBindTexture(const cTexture& texture)
             {
-                CSBindTexture(texture.ViewType, texture.Slot, texture.ViewInstance);
+                CSBindTexture(texture.GetViewType(), texture.GetSlot(), texture.GetSRVInstance());
             }
 
-            void CSBindTexture(const sTexture &texture, u32 slot)
+            void CSBindTexture(const cTexture &texture, u32 slot)
             {
-                CSBindTexture(texture.ViewType, slot, texture.ViewInstance);
+                CSBindTexture(texture.GetViewType(), slot, texture.GetSRVInstance());
             }
 
             void CSBindTextureSlot(u32 slot)
             {
                 void* nullInstance = nullptr;
-                CSBindTexture(sTexture::eViewType::SRV, slot, nullInstance);
+                CSBindTexture(cTexture::eViewType::SRV, slot, nullInstance);
             }
 
-            void CSUnbindTexture(const sTexture& texture)
+            void CSUnbindTexture(const cTexture& texture)
             {
                 static void* nullInstance = nullptr;
-                CSBindTexture(texture.ViewType, texture.Slot, nullInstance);
+                CSBindTexture(texture.GetViewType(), texture.GetSlot(), nullInstance);
             }
 
             void VSBindSampler(const sSampler &sampler)
             {
-                VSBindSampler(sampler.Slot, sampler.ViewInstance);
+                VSBindSampler(sampler.Slot, sampler.GetSRVInstance());
             }
 
             void VSUnbindSampler(const sSampler& sampler)
@@ -392,7 +414,7 @@ namespace xpe {
 
             void PSBindSampler(const sSampler &sampler)
             {
-                PSBindSampler(sampler.Slot, sampler.ViewInstance);
+                PSBindSampler(sampler.Slot, sampler.GetSRVInstance());
             }
 
             void PSUnbindSampler(const sSampler& sampler)
@@ -403,7 +425,7 @@ namespace xpe {
 
             void GSBindSampler(const sSampler &sampler)
             {
-                GSBindSampler(sampler.Slot, sampler.ViewInstance);
+                GSBindSampler(sampler.Slot, sampler.GetSRVInstance());
             }
 
             void GSUnbindSampler(const sSampler& sampler)
@@ -414,7 +436,7 @@ namespace xpe {
 
             void CSBindSampler(const sSampler &sampler)
             {
-                CSBindSampler(sampler.Slot, sampler.ViewInstance);
+                CSBindSampler(sampler.Slot, sampler.GetSRVInstance());
             }
 
             void CSUnbindSampler(const sSampler& sampler)

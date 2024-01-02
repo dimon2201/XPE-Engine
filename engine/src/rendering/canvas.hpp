@@ -6,6 +6,8 @@ namespace xpe {
 
     namespace render {
 
+        class cDefaultShader;
+
         class ENGINE_API cCanvas : public cObject
         {
 

@@ -13,6 +13,8 @@
 #include <physics/physics_manager.hpp>
 #include <physics/physics_system.hpp>
 
+#include <particle/particle_system.hpp>
+
 namespace xpe {
 
     using namespace render;
@@ -20,6 +22,7 @@ namespace xpe {
     using namespace anim;
     using namespace audio;
     using namespace physics;
+    using namespace particle;
 
     namespace core {
 
@@ -63,6 +66,7 @@ namespace xpe {
             m_AnimSystem = new cAnimSystem();
             m_AudioSystem = new cAudioSystem();
             m_PhysicsSystem = new cPhysicsSystem();
+            m_ParticleSystem = new cParticleSystem();
 
             InitShaders();
 
@@ -110,6 +114,9 @@ namespace xpe {
                 // calls physics simulation that will be automatically dispatched into TaskManager
                 // we don't need to submit physics system into task
                 m_PhysicsSystem->Update(m_Scene, DeltaTime);
+
+                // particles
+                m_ParticleSystem->Update(m_Scene, DeltaTime);
 
                 Render();
 
@@ -161,8 +168,9 @@ namespace xpe {
         {
             cShaderManager::SetShader(new cSkyboxShader("skybox"));
             cShaderManager::SetShader(new cDirectionalShadowShader("directional_shadow"));
-//            cShaderManager::SetShader(new cPointShadowShader("point_shadow"));
-//            cShaderManager::SetShader(new cSpotShadowShader("spot_shadow"));
+            //cShaderManager::SetShader(new cPointShadowShader("point_shadow"));
+            //cShaderManager::SetShader(new cSpotShadowShader("spot_shadow"));
+            cShaderManager::SetShader(new cParticleComputeShader("particle_compute", Config.MaxParticleCount, Config.MaxParticleEmitterCount));
             cShaderManager::SetShader(new cOpaqueShader("opaque"));
             cShaderManager::SetShader(new cTransparentShader("transparent"));
             cShaderManager::SetShader(new cCompositeTransparentShader("composite_transparent", Config.MsaaSampleCount));

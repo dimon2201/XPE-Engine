@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rendering/core/texture.hpp>
+#include <rendering/core/core.hpp>
 
 namespace xpe {
 

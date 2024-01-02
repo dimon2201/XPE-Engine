@@ -18,7 +18,7 @@ namespace xpe {
             //LogInfo(ss.str());
 
             void* ptr = align16_malloc(size);
-            PX_ASSERT((size_t(ptr) & 15)==0)
+            PX_ASSERT((size_t(ptr) & 15) == 0);
 
 #if PX_STOMP_ALLOCATED_MEMORY
             if (ptr != NULL)

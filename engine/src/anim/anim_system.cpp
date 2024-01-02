@@ -184,7 +184,7 @@ namespace xpe {
         void cAnimSystem::UpdateSkeletonTransform(
                 const sAnimationNode& animationNode,
                 sSkeleton &skeleton,
-                sSkeletonBuffer& skeletonBuffer,
+                cSkeletonBuffer& skeletonBuffer,
                 u32 skeletonIndex,
                 const glm::mat4 &parentTransform
         ) {
@@ -200,6 +200,8 @@ namespace xpe {
             if (bone != nullptr) {
                 AnimateBone(*bone, m_CurrentSeconds);
                 nodeTransform = bone->Transform;
+
+                //nodeTransform = cPhysicsManager::GetRagdollBodypartMatrix(ragdoll, nodeName);
             }
 
             glm::mat4 globalTransformation = parentTransform * nodeTransform;

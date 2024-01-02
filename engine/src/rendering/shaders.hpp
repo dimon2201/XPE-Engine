@@ -22,7 +22,7 @@ namespace xpe {
                     const std::function<void(EntityID entityId, sRenderInstance&)>& callback = [](EntityID, sRenderInstance&) {}
             );
 
-            sInstanceBuffer m_InstanceBuffer;
+            cInstanceBuffer* m_InstanceBuffer;
         };
 
         class ENGINE_API cOpaqueShader : public cInstancingShader
@@ -117,6 +117,7 @@ namespace xpe {
 
         public:
             cWidgetShader(const string& name);
+
             void Draw(cScene* scene) override;
 
         private:
@@ -148,7 +149,7 @@ namespace xpe {
 
             sGeometry m_Quad;
             sGeometryInfo m_QuadInfo;
-            sWidgetBuffer m_WidgetBuffer;
+            cWidgetBuffer* m_WidgetBuffer;
             glm::mat4 m_Projection2D;
             glm::mat4 m_Projection3D;
         };
@@ -163,7 +164,7 @@ namespace xpe {
             void Draw(cScene* scene) override;
 
         private:
-            void DrawTexts(sTexture& fontAtlas);
+            void DrawTexts(cTexture& fontAtlas);
             void UpdateText2D(
                     glm::mat4 projection,
                     sTransform transform,
@@ -187,10 +188,30 @@ namespace xpe {
 
             sGeometry m_Quad;
             sGeometryInfo m_QuadInfo;
-            sCharBuffer m_CharBuffer;
-            sTextBuffer m_TextBuffer;
+            cCharBuffer* m_CharBuffer;
+            cTextBuffer* m_TextBuffer;
             glm::mat4 m_Projection2D;
             glm::mat4 m_Projection3D;
+        };
+
+        class ENGINE_API cParticleComputeShader : public cComputeShader
+        {
+
+        public:
+            cParticleComputeShader(const string& name, usize maxParticleCount, usize maxEmitterCount);
+            ~cParticleComputeShader();
+
+            void Draw(cScene* scene) override;
+        };
+
+        class ENGINE_API cParticleRenderShader : public cDefaultShader
+        {
+
+        public:
+            cParticleRenderShader(const string& name);
+            ~cParticleRenderShader();
+
+            void Draw(cScene* scene) override;
         };
 
     }

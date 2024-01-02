@@ -61,6 +61,7 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
         PhysXCooking
         PhysXVehicle
         PhysXCharacterKinematic
+        PhysXExtensions
 )
 
 # Copy PhysX binaries

@@ -20,13 +20,13 @@ namespace xpe {
 
             static void Flush(const sMaterial& material);
 
-            static void AddLayer(sTexture& texture, sTextureLayer* layer);
+            static void AddLayer(cTexture& texture, sTextureLayer* layer);
 
-            static void SetLayer(sTexture& texture, sTextureLayer* layer, u32 layerIndex);
+            static void SetLayer(cTexture& texture, sTextureLayer* layer, u32 layerIndex);
 
         private:
             static void InitSampler();
-            static sTexture* InitTextureArray(const sMaterialFormat& materialFormat);
+            static cTexture* InitTextureArray(const sMaterialFormat& materialFormat);
         };
 
         template<typename... Args>
@@ -34,8 +34,10 @@ namespace xpe {
         {
             sMaterial material(std::forward<Args>(args)...);
 
-            material.Index = Buffers::Material->Size();
-            Buffers::Material->Add(material);
+            usize& counter = Buffers::Material->GetCounterRef();
+            material.Index = counter;
+            Buffers::Material->GetList()[counter] = material;
+            counter += 1;
 
             AddLayer(*Textures::AlbedoAtlas, material.AlbedoMap);
             AddLayer(*Textures::NormalAtlas, material.NormalMap);

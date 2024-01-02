@@ -9,7 +9,7 @@ namespace xpe {
 
         void cCameraManager::Init()
         {
-            Buffers::Camera = new sCameraBuffer();
+            Buffers::Camera = new cCameraBuffer();
         }
 
         void cCameraManager::Free()
@@ -20,7 +20,7 @@ namespace xpe {
 
         glm::mat4 cCameraManager::GetViewProjection()
         {
-            return Buffers::Camera->Item.Projection * Buffers::Camera->Item.View;
+            return Buffers::Camera->GetItem().Projection * Buffers::Camera->GetItem().View;
         }
 
         void cCameraManager::Flush()
@@ -30,7 +30,7 @@ namespace xpe {
 
         void cCameraManager::Bind()
         {
-            context::VSBindBuffer(*Buffers::Camera);
+            context::VSBindBuffer(cResource::eViewType::SRV, cBuffer::eType::STRUCTURED, Buffers::Camera->GetSlot(), Buffers::Camera->GetInstance(), Buffers::Camera->GetSRVInstance());
         }
 
         void cCameraManager::Unbind()
@@ -40,35 +40,35 @@ namespace xpe {
 
         void cCameraManager::SetExposure(float exposure)
         {
-            Buffers::Camera->Item.Exposure = exposure;
+            Buffers::Camera->GetItem().Exposure = exposure;
             Buffers::Camera->Flush();
         }
 
         void cCameraManager::SetGamma(float gamma)
         {
-            Buffers::Camera->Item.Gamma = gamma;
+            Buffers::Camera->GetItem().Gamma = gamma;
             Buffers::Camera->Flush();
         }
 
         float cCameraManager::GetExposure()
         {
-            return Buffers::Camera->Item.Exposure;
+            return Buffers::Camera->GetItem().Exposure;
         }
 
         float cCameraManager::GetGamma()
         {
-            return Buffers::Camera->Item.Gamma;
+            return Buffers::Camera->GetItem().Gamma;
         }
 
         void cCameraManager::SetViewport(const sViewport &viewport)
         {
-            Buffers::Camera->Item.Viewport = viewport;
+            Buffers::Camera->GetItem().Viewport = viewport;
             Buffers::Camera->Flush();
         }
 
         sViewport* cCameraManager::GetViewport()
         {
-            return &Buffers::Camera->Item.Viewport;
+            return &Buffers::Camera->GetItem().Viewport;
         }
 
         cCamera* cCameraManager::GetCamera()

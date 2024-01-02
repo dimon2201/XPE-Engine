@@ -1,6 +1,7 @@
 #include <rendering/canvas.hpp>
 #include <rendering/camera_manager.hpp>
 #include <rendering/bindings.hpp>
+#include <rendering/core/shader.hpp>
 
 namespace xpe {
 
@@ -31,8 +32,8 @@ namespace xpe {
         {
             context::PSBindTextureSlot(0);
             context::BindRenderTarget(m_PresentTarget->ColorViews, m_PresentTarget->DepthStencilView, m_PresentTarget->Viewport);
-            context::BindVSStage(*m_Shader->VertexStage);
-            context::BindPSStage(*m_Shader->PixelStage);
+            context::BindVSStage(m_Shader->VertexStage);
+            context::BindPSStage(m_Shader->PixelStage);
             context::PSBindSampler(*m_PresentSampler);
             context::PSBindTexture(*Textures::Canvas, 0);
 
