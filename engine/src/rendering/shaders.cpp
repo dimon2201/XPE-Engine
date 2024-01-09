@@ -13,18 +13,15 @@ namespace xpe {
         using namespace particle;
 
         cInstancingShader::cInstancingShader(eCategory category, const string& name)
-        : cDefaultShader(category, name)
+            : cDefaultShader(category, name)
         {
-            m_InstanceBuffer = new cInstanceBuffer(64);
+            m_InstanceBuffer = new cInstanceBuffer(1024);
         }
 
-        void cInstancingShader::DrawInstanced(
-                cScene* scene,
-                const sGeometryInfo& geometryInfo,
-                const std::function<void(EntityID entityId, sRenderInstance&)>& callback
-        ) {
-            usize entityCount = geometryInfo.Entities.size();
+        void cInstancingShader::DrawInstanced(cScene* scene, const sGeometryInfo& geometryInfo)
+        {
             usize instanceCount = 0;
+            usize entityCount = geometryInfo.Entities.size();
             for (usize i = 0; i < entityCount; i++)
             {
                 auto& entity = geometryInfo.Entities[i];
@@ -35,7 +32,6 @@ namespace xpe {
                 sRenderInstance instance;
                 instance.ModelMatrix = cMathManager::UpdateModelMatrix(scene->GetComponent<CTransform>(entity));
                 instance.NormalMatrix = cMathManager::UpdateNormalMatrix(instance.ModelMatrix);
-                callback(entity, instance);
 
                 m_InstanceBuffer->GetList()[i] = instance;
 
@@ -45,9 +41,6 @@ namespace xpe {
 
             context::BindPrimitiveTopology(geometryInfo.PrimitiveTopology);
             context::VSBindBuffer(cResource::eViewType::SRV, cBuffer::eType::STRUCTURED, m_InstanceBuffer->GetSlot(), m_InstanceBuffer->GetInstance(), m_InstanceBuffer->GetSRVInstance());
-            context::PSBindBuffer(cResource::eViewType::SRV, cBuffer::eType::STRUCTURED, Buffers::DirectLight->GetSlot(), Buffers::DirectLight->GetInstance(), Buffers::DirectLight->GetSRVInstance());
-            context::PSBindBuffer(cResource::eViewType::SRV, cBuffer::eType::STRUCTURED, Buffers::SpotLight->GetSlot(), Buffers::SpotLight->GetInstance(), Buffers::SpotLight->GetSRVInstance());
-            context::PSBindBuffer(cResource::eViewType::SRV, cBuffer::eType::STRUCTURED, Buffers::PointLight->GetSlot(), Buffers::PointLight->GetInstance(), Buffers::PointLight->GetSRVInstance());
 
             if (geometryInfo.IndexCount == 0) {
                 context::DrawVertexed(geometryInfo.VertexCount, instanceCount, geometryInfo.VertexOffset);
@@ -59,30 +52,34 @@ namespace xpe {
         }
 
         cOpaqueShader::cOpaqueShader(const string &name)
-        : cInstancingShader(eCategory::OPAQUE_GEOMETRY, name)
+            : cInstancingShader(eCategory::OPAQUE_GEOMETRY, name)
         {
-            VertexStage = cShaderManager::GetFromFile(sShaderStage::eType::VERTEX, "engine_shaders/passes/geometry_pass.vs");
-            PixelStage =  cShaderManager::GetFromFile(sShaderStage::eType::PIXEL, "engine_shaders/passes/pbr_pass_opaque.ps");
+            VertexStage = cShaderManager::GetFromFile(sShaderStage::eType::VERTEX, "engine_shaders/passes/geometry.vs");
+            PixelStage =  cShaderManager::GetFromFile(sShaderStage::eType::PIXEL, "engine_shaders/passes/pbr_opaque.ps");
 
             RenderTarget = RenderTargets::Opaque;
 
-            VertexStage->SetBufferBinding(Buffers::Camera, cResource::eViewType::SRV);
-            VertexStage->SetBufferBinding(Buffers::Skeleton, cResource::eViewType::SRV);
+            VertexStage->SetBufferBinding(Buffers::Camera, cResource::eViewType::SRV, K_SLOT_CAMERA);
+            VertexStage->SetBufferBinding(Buffers::Skeleton, cResource::eViewType::SRV, K_SLOT_SKELETONS);
 
-            PixelStage->SetBufferBinding(Buffers::Material, cResource::eViewType::SRV);
-            PixelStage->SetBufferBinding(Buffers::ShadowPCF, cResource::eViewType::SRV);
+            PixelStage->SetBufferBinding(Buffers::Material, cResource::eViewType::SRV, K_SLOT_MATERIALS);
+            PixelStage->SetBufferBinding(Buffers::DirectLight, cResource::eViewType::SRV, K_SLOT_DIRECT_LIGHTS);
 
-            PixelStage->SetTextureBinding(Textures::AlbedoAtlas, cResource::eViewType::SRV);
-            PixelStage->SetTextureBinding(Textures::NormalAtlas, cResource::eViewType::SRV);
-            PixelStage->SetTextureBinding(Textures::ParallaxAtlas, cResource::eViewType::SRV);
-            PixelStage->SetTextureBinding(Textures::MetalAtlas, cResource::eViewType::SRV);
-            PixelStage->SetTextureBinding(Textures::RoughnessAtlas, cResource::eViewType::SRV);
-            PixelStage->SetTextureBinding(Textures::AOAtlas, cResource::eViewType::SRV);
-            PixelStage->SetTextureBinding(Textures::EmissionAtlas, cResource::eViewType::SRV);
-            PixelStage->SetTextureBinding(RenderTargets::Shadow->Colors[0], cResource::eViewType::SRV);
+            //PixelStage->SetTextureBinding(Textures::AlbedoAtlas, cResource::eViewType::SRV);
+            //PixelStage->SetTextureBinding(Textures::NormalAtlas, cResource::eViewType::SRV);
+            //PixelStage->SetTextureBinding(Textures::ParallaxAtlas, cResource::eViewType::SRV);
+            //PixelStage->SetTextureBinding(Textures::MetalAtlas, cResource::eViewType::SRV);
+            //PixelStage->SetTextureBinding(Textures::RoughnessAtlas, cResource::eViewType::SRV);
+            //PixelStage->SetTextureBinding(Textures::AOAtlas, cResource::eViewType::SRV);
+            //PixelStage->SetTextureBinding(Textures::EmissionAtlas, cResource::eViewType::SRV);
+            PixelStage->SetTextureBinding(RenderTargets::Shadow->GetDepthStencil(), cResource::eViewType::SRV, K_SLOT_SHADOW_ATLAS);
 
             PixelStage->SetSampler(Samplers::Material);
-            PixelStage->SetSampler(Samplers::Shadow);
+
+            Viewport = Viewports::Main;
+
+            DepthStencilMode.EnableDepth = true;
+            DepthStencilMode.DepthWriteMask = eDepthWriteMask::ALL;
 
             Init();
         }
@@ -93,60 +90,45 @@ namespace xpe {
             {
                 auto components = scene->GetComponents<COpaque, CGeometryInfo>();
                 for (auto [entity, opaque, geometryInfo]: components.each()) {
-                    DrawInstanced(
-                            scene,
-                            geometryInfo,
-                            [scene](EntityID entityId, sRenderInstance &instance) {
-                                instance.MaterialIndex = scene->GetComponent<CMaterial>(entityId).Index;
-                            }
-                    );
+                    DrawInstanced(scene, geometryInfo);
                 }
             }
             // Draw skeletons
             {
                 auto components = scene->GetComponents<COpaque, CSkeletonInfo>();
                 for (auto [entity, opaque, skeletonInfo]: components.each()) {
-                    auto& skeletonInfoCaptured = skeletonInfo;
-                    DrawInstanced(
-                            scene,
-                            skeletonInfo.GeometryInfo,
-                            [scene, skeletonInfoCaptured](EntityID entityId, sRenderInstance &instance) {
-                                instance.MaterialIndex = scene->GetComponent<CMaterial>(entityId).Index;
-                                instance.SkeletonIndex = skeletonInfoCaptured.SkeletonIndex;
-                            }
-                    );
+                    DrawInstanced(scene, skeletonInfo.GeometryInfo);
                 }
             }
         }
 
         cTransparentShader::cTransparentShader(const string &name)
-        : cInstancingShader(eCategory::TRANSPARENT_GEOMETRY, name)
+            : cInstancingShader(eCategory::TRANSPARENT_GEOMETRY, name)
         {
             VertexStage = cShaderManager::GetFromFile(sShaderStage::eType::VERTEX, "engine_shaders/passes/geometry_pass.vs");
             PixelStage =  cShaderManager::GetFromFile(sShaderStage::eType::PIXEL, "engine_shaders/passes/pbr_pass_transparent.ps");
 
             RenderTarget = RenderTargets::Transparent;
 
-            VertexStage->SetBufferBinding(Buffers::Camera, cResource::eViewType::SRV);
-            VertexStage->SetBufferBinding(Buffers::Skeleton, cResource::eViewType::SRV);
+            VertexStage->SetBufferBinding(Buffers::Camera, cResource::eViewType::SRV, K_SLOT_CAMERA);
+            VertexStage->SetBufferBinding(Buffers::Skeleton, cResource::eViewType::SRV, K_SLOT_SKELETONS);
 
-            PixelStage->SetBufferBinding(Buffers::Material, cResource::eViewType::SRV);
-            PixelStage->SetBufferBinding(Buffers::DirectLight, cResource::eViewType::SRV);
-            PixelStage->SetBufferBinding(Buffers::PointLight, cResource::eViewType::SRV);
-            PixelStage->SetBufferBinding(Buffers::SpotLight, cResource::eViewType::SRV);
-            PixelStage->SetBufferBinding(Buffers::ShadowPCF, cResource::eViewType::SRV);
+            PixelStage->SetBufferBinding(Buffers::Material, cResource::eViewType::SRV, K_SLOT_MATERIALS);
+            PixelStage->SetBufferBinding(Buffers::DirectLight, cResource::eViewType::SRV, K_SLOT_DIRECT_LIGHTS);
+            PixelStage->SetBufferBinding(Buffers::PointLight, cResource::eViewType::SRV, K_SLOT_POINT_LIGHTS);
+            PixelStage->SetBufferBinding(Buffers::SpotLight, cResource::eViewType::SRV, K_SLOT_SPOT_LIGHTS);
+            PixelStage->SetBufferBinding(Buffers::ShadowPCF, cResource::eViewType::SRV, K_SLOT_SHADOW_PCF);
 
-            PixelStage->SetTextureBinding(Textures::AlbedoAtlas, cResource::eViewType::SRV);
-            PixelStage->SetTextureBinding(Textures::NormalAtlas, cResource::eViewType::SRV);
-            PixelStage->SetTextureBinding(Textures::ParallaxAtlas, cResource::eViewType::SRV);
-            PixelStage->SetTextureBinding(Textures::MetalAtlas, cResource::eViewType::SRV);
-            PixelStage->SetTextureBinding(Textures::RoughnessAtlas, cResource::eViewType::SRV);
-            PixelStage->SetTextureBinding(Textures::AOAtlas, cResource::eViewType::SRV);
-            PixelStage->SetTextureBinding(Textures::EmissionAtlas, cResource::eViewType::SRV);
-            PixelStage->SetTextureBinding(RenderTargets::Shadow->Colors[0], cResource::eViewType::SRV);
+            PixelStage->SetTextureBinding(Textures::AlbedoAtlas, cResource::eViewType::SRV, 0);
+            PixelStage->SetTextureBinding(Textures::NormalAtlas, cResource::eViewType::SRV, 0);
+            PixelStage->SetTextureBinding(Textures::ParallaxAtlas, cResource::eViewType::SRV, 0);
+            PixelStage->SetTextureBinding(Textures::MetalAtlas, cResource::eViewType::SRV, 0);
+            PixelStage->SetTextureBinding(Textures::RoughnessAtlas, cResource::eViewType::SRV, 0);
+            PixelStage->SetTextureBinding(Textures::AOAtlas, cResource::eViewType::SRV, 0);
+            PixelStage->SetTextureBinding(Textures::EmissionAtlas, cResource::eViewType::SRV, 0);
+            PixelStage->SetTextureBinding(RenderTargets::Shadow->GetColors()[0], cResource::eViewType::SRV, 0);
 
             PixelStage->SetSampler(Samplers::Material);
-            PixelStage->SetSampler(Samplers::Shadow);
 
             Init();
         }
@@ -157,13 +139,7 @@ namespace xpe {
             {
                 auto components = scene->GetComponents<CTransparent, CGeometryInfo>();
                 for (auto [entity, transparent, geometryInfo]: components.each()) {
-                    DrawInstanced(
-                            scene,
-                            geometryInfo,
-                            [scene](EntityID entityId, sRenderInstance &instance) {
-                                instance.MaterialIndex = scene->GetComponent<CMaterial>(entityId).Index;
-                            }
-                    );
+                    DrawInstanced(scene, geometryInfo);
                 }
             }
             // Draw skeletons
@@ -171,79 +147,29 @@ namespace xpe {
                 auto components = scene->GetComponents<CTransparent, CSkeletonInfo>();
                 for (auto [entity, transparent, skeletonInfo]: components.each()) {
                     auto& skeletonInfoCaptured = skeletonInfo;
-                    DrawInstanced(
-                            scene,
-                            skeletonInfo.GeometryInfo,
-                            [scene, skeletonInfoCaptured](EntityID entityId, sRenderInstance &instance) {
-                                instance.MaterialIndex = scene->GetComponent<CMaterial>(entityId).Index;
-                                instance.SkeletonIndex = skeletonInfoCaptured.SkeletonIndex;
-                            }
-                    );
-                }
-            }
-        }
-
-        cShadowShader::cShadowShader(const string &name)
-        : cInstancingShader(eCategory::PREPASS, name)
-        {
-        }
-
-        void cShadowShader::InitPrepass()
-        {
-            DepthStencilMode.DepthWriteMask = eDepthWriteMask::ALL;
-
-            sBlendTarget target;
-            target.Enable = false;
-            BlendMode.Targets.push_back(target);
-            BlendMode.IndependentBlendEnable = true;
-
-            Rasterizer.CullMode = eCullMode::FRONT;
-        }
-
-        void cShadowShader::DrawShadow(cScene *scene, u32 lightIndex)
-        {
-            // Draw geometry
-            {
-                auto components = scene->GetComponents<CHasShadow, CGeometryInfo>();
-                for (auto [entity, hasShadow, geometryInfo]: components.each())
-                {
-                    DrawInstanced(
-                            scene,
-                            geometryInfo,
-                            [&lightIndex](EntityID entityId, sRenderInstance& instance) {
-                                instance.LightIndex = lightIndex;
-                            }
-                    );
-                }
-            }
-            // Draw skeletons
-            {
-                auto components = scene->GetComponents<CHasShadow, CSkeletonInfo>();
-                for (auto [entity, hasShadow, skeletonInfo]: components.each())
-                {
-                    auto& skeletonInfoCaptured = skeletonInfo;
-                    DrawInstanced(
-                            scene,
-                            skeletonInfo.GeometryInfo,
-                            [skeletonInfoCaptured, &lightIndex](EntityID entityId, sRenderInstance &instance) {
-                                instance.SkeletonIndex = skeletonInfoCaptured.SkeletonIndex;
-                                instance.LightIndex = lightIndex;
-                            }
-                    );
+                    DrawInstanced(scene, skeletonInfo.GeometryInfo);
                 }
             }
         }
 
         cDirectionalShadowShader::cDirectionalShadowShader(const string &name)
-        : cShadowShader(name)
+            : cInstancingShader(eCategory::PREPASS, name)
         {
-            VertexStage = cShaderManager::GetFromFile(sShaderStage::eType::VERTEX, "engine_shaders/passes/directional_shadow_pass.vs");
-            PixelStage = cShaderManager::GetFromFile(sShaderStage::eType::PIXEL, "engine_shaders/passes/directional_shadow_pass.ps");
+            VertexStage = cShaderManager::GetFromFile(sShaderStage::eType::VERTEX, "engine_shaders/passes/directional_shadow.vs");
+            // PixelStage = cShaderManager::GetFromFile(sShaderStage::eType::PIXEL, "engine_shaders/passes/directional_shadow.ps");
+            PixelStage = nullptr;
 
             RenderTarget = RenderTargets::Shadow;
+            RenderTarget->SetClearDepth(1.0f);
 
-            VertexStage->SetBufferBinding(Buffers::Skeleton, cResource::eViewType::SRV);
-            VertexStage->SetBufferBinding(Buffers::DirectLight, cResource::eViewType::SRV);
+            VertexStage->SetBufferBinding(Buffers::DirectLight, cResource::eViewType::SRV, K_SLOT_DIRECT_LIGHTS);
+
+            Viewport = Viewports::Shadow;
+
+            DepthStencilMode.EnableDepth = true;
+            DepthStencilMode.DepthWriteMask = eDepthWriteMask::ALL;
+
+            Rasterizer.CullMode = eCullMode::NONE;
 
             Init();
         }
@@ -251,24 +177,26 @@ namespace xpe {
         void cDirectionalShadowShader::Draw(cScene* scene)
         {
             auto lights = scene->GetComponents<CDirectionalLight>();
-            u32 lightIndex = 0;
-            for (auto [lightEntity, light]: lights.each())
+            for (auto [lightEntity, light] : lights.each())
             {
-                DrawShadow(scene, lightIndex);
-                lightIndex++;
+                for (auto entityID : light.Entities)
+                {
+                    CGeometryInfo& geometryInfo = scene->GetComponent<CGeometryInfo>(entityID);
+                    DrawInstanced(scene, geometryInfo);
+                }
             }
         }
 
         cPointShadowShader::cPointShadowShader(const string &name)
-        : cShadowShader(name)
+            : cInstancingShader(eCategory::PREPASS, name)
         {
             VertexStage = cShaderManager::GetFromFile(sShaderStage::eType::VERTEX, "engine_shaders/passes/point_shadow_pass.vs");
             PixelStage = cShaderManager::GetFromFile(sShaderStage::eType::PIXEL, "engine_shaders/passes/point_shadow_pass.ps");
 
             RenderTarget = RenderTargets::Shadow;
 
-            VertexStage->SetBufferBinding(Buffers::Skeleton, cResource::eViewType::SRV);
-            VertexStage->SetBufferBinding(Buffers::PointLight, cResource::eViewType::SRV);
+            VertexStage->SetBufferBinding(Buffers::Skeleton, cResource::eViewType::SRV, K_SLOT_SKELETONS);
+            VertexStage->SetBufferBinding(Buffers::PointLight, cResource::eViewType::SRV, K_SLOT_POINT_LIGHTS);
 
             Init();
         }
@@ -279,21 +207,21 @@ namespace xpe {
             u32 lightIndex = 0;
             for (auto [lightEntity, light]: lights.each())
             {
-                DrawShadow(scene, lightIndex);
+                //DrawShadow(scene, lightIndex);
                 lightIndex++;
             }
         }
 
         cSpotShadowShader::cSpotShadowShader(const string &name)
-        : cShadowShader(name)
+            : cInstancingShader(eCategory::PREPASS, name)
         {
             VertexStage = cShaderManager::GetFromFile(sShaderStage::eType::VERTEX, "engine_shaders/passes/spot_shadow_pass.vs");
             PixelStage = cShaderManager::GetFromFile(sShaderStage::eType::PIXEL, "engine_shaders/passes/spot_shadow_pass.ps");
 
             RenderTarget = RenderTargets::Shadow;
 
-            VertexStage->SetBufferBinding(Buffers::Skeleton, cResource::eViewType::SRV);
-            VertexStage->SetBufferBinding(Buffers::SpotLight, cResource::eViewType::SRV);
+            VertexStage->SetBufferBinding(Buffers::Skeleton, cResource::eViewType::SRV, K_SLOT_SKELETONS);
+            VertexStage->SetBufferBinding(Buffers::SpotLight, cResource::eViewType::SRV, K_SLOT_SPOT_LIGHTS);
 
             Init();
         }
@@ -304,13 +232,13 @@ namespace xpe {
             u32 lightIndex = 0;
             for (auto [lightEntity, light]: lights.each())
             {
-                DrawShadow(scene, lightIndex);
+                //DrawShadow(scene, lightIndex);
                 lightIndex++;
             }
         }
 
         cSkyboxShader::cSkyboxShader(const string& name)
-        : cDefaultShader(eCategory::OPAQUE_GEOMETRY, name)
+            : cDefaultShader(eCategory::OPAQUE_GEOMETRY, name)
         {
             Samplers::Skybox = new sSampler();
             Samplers::Skybox->Filter = sSampler::eFilter::MIN_MAG_MIP_LINEAR;
@@ -321,7 +249,7 @@ namespace xpe {
 
             RenderTarget = RenderTargets::Opaque;
 
-            VertexStage->SetBufferBinding(Buffers::Camera, cResource::eViewType::SRV);
+            VertexStage->SetBufferBinding(Buffers::Camera, cResource::eViewType::SRV, K_SLOT_CAMERA);
 
             PixelStage->SetSampler(Samplers::Skybox);
 
@@ -348,7 +276,7 @@ namespace xpe {
                 sGeometryInfo geometryInfo = skybox.GeometryInfo;
                 cTexture& skyboxTexture = *skybox.Texture;
                 context::BindPrimitiveTopology(geometryInfo.PrimitiveTopology);
-                context::PSBindTexture(skyboxTexture);
+                context::PSBindTexture(cResource::eViewType::SRV, 0, skyboxTexture.GetInstance(), skyboxTexture.GetSRVInstance());
                 context::DrawIndexed(
                         geometryInfo.IndexCount,
                         1,
@@ -359,15 +287,15 @@ namespace xpe {
         }
 
         cCompositeTransparentShader::cCompositeTransparentShader(const string& name, u32 sampleCount)
-        : cDefaultShader(eCategory::POSTFX, name)
+            : cDefaultShader(eCategory::POSTFX, name)
         {
             VertexStage = cShaderManager::GetFromFile(sShaderStage::eType::VERTEX, "engine_shaders/passes/screen.vs");
             PixelStage = cShaderManager::GetFromFile(sShaderStage::eType::PIXEL, sampleCount > 1 ? "engine_shaders/passes/msaa/composite_pass_transparent.ps" : "engine_shaders/passes/composite_pass_transparent.ps");
 
             RenderTarget = RenderTargets::Opaque;
 
-            PixelStage->SetTextureBinding(RenderTargets::Transparent->Colors[0], cResource::eViewType::SRV, 0);
-            PixelStage->SetTextureBinding(RenderTargets::Transparent->Colors[1], cResource::eViewType::SRV, 1);
+            PixelStage->SetTextureBinding(RenderTargets::Transparent->GetColors()[0], cResource::eViewType::SRV, 0);
+            PixelStage->SetTextureBinding(RenderTargets::Transparent->GetColors()[1], cResource::eViewType::SRV, 1);
 
             Init();
         }
@@ -405,45 +333,40 @@ namespace xpe {
         {
             Buffers::SSAO = new cSsaoBuffer();
 
-            Viewports::SSAO = new sViewport();
-            Viewports::SSAO->Width = cWindowManager::GetFrameWidth();
-            Viewports::SSAO->Height = cWindowManager::GetFrameHeight();
+            Viewports::SSAO = new sViewport(glm::vec4(0.0f, 0.0f, cWindowManager::GetFrameWidth(), cWindowManager::GetFrameHeight()), glm::vec2(0.0f, 1.0f));
 
-            cTexture* ssaoColor = new cTexture();
-            ssaoColor->SetWidth(Viewports::SSAO->Width);
-            ssaoColor->SetHeight(Viewports::SSAO->Height);
-            ssaoColor->SetFormat(eTextureFormat::RGBA8);
-            ssaoColor->SetSampleCount(sampleCount);
-            ssaoColor->SetInitializeData(false);
-            ssaoColor->SetEnableRenderTarget(true);
+            cTexture* ssaoColor = new cTexture(
+                cTexture::eType::TEXTURE_2D,
+                cResource::eViewType::SRV,
+                cTexture::eUsage::DEFAULT,
+                glm::vec3(Viewports::SSAO->Width, Viewports::SSAO->Height, 1.0f),
+                1,
+                eTextureFormat::R16,
+                sampleCount,
+                true,
+                0,
+                0,
+                false,
+                {}
+            );
             ssaoColor->SetResizable(true);
-            ssaoColor->Init();
 
-            cTexture* ssaoDepth = new cTexture();
-            ssaoDepth->SetType(cTexture::eType::TEXTURE_2D_DEPTH_STENCIL);
-            ssaoDepth->SetWidth(Viewports::SSAO->Width);
-            ssaoDepth->SetHeight(Viewports::SSAO->Height);
-            ssaoDepth->SetFormat(eTextureFormat::R32_TYPELESS);
-            ssaoDepth->SetSampleCount(sampleCount);
-            ssaoDepth->SetInitializeData(false);
-            ssaoDepth->SetEnableRenderTarget(true);
-            ssaoDepth->SetResizable(true);
-            ssaoDepth->Init();
-
-            RenderTargets::SSAO = new sRenderTarget({ ssaoColor }, ssaoDepth, Viewports::SSAO);
+            RenderTargets::SSAO = new cRenderTarget({ ssaoColor }, nullptr);
             RenderTargets::SSAO->SetResizable(true);
-            RenderTargets::SSAO->ClearColors.emplace_back(glm::vec4(1.0f));
-            RenderTargets::SSAO->ClearDepth = 1.0f;
+            RenderTargets::SSAO->GetClearColors().emplace_back(glm::vec4(1.0f));
 
             RenderTarget = RenderTargets::SSAO;
 
             VertexStage = cShaderManager::GetFromFile(sShaderStage::eType::VERTEX, "engine_shaders/passes/screen.vs");
             PixelStage = cShaderManager::GetFromFile(sShaderStage::eType::PIXEL, sampleCount > 1 ? "engine_shaders/passes/msaa/ssao_pass.ps" : "engine_shaders/passes/ssao_pass.ps");
 
-            PixelStage->SetBufferBinding(Buffers::SSAO, cResource::eViewType::SRV);
-            PixelStage->SetTextureBinding(RenderTargets::Opaque->Colors[1], cResource::eViewType::SRV, 1);
-            PixelStage->SetTextureBinding(RenderTargets::Opaque->Colors[2], cResource::eViewType::SRV, 2);
-            PixelStage->SetTextureBinding(RenderTargets::Opaque->DepthStencil, cResource::eViewType::SRV, 3);
+            PixelStage->SetBufferBinding(Buffers::SSAO, cResource::eViewType::SRV, K_SLOT_SSAO);
+            PixelStage->SetTextureBinding(RenderTargets::Opaque->GetColors()[1], cResource::eViewType::SRV, 1);
+            PixelStage->SetTextureBinding(RenderTargets::Opaque->GetColors()[2], cResource::eViewType::SRV, 2);
+            PixelStage->SetTextureBinding(RenderTargets::Opaque->GetDepthStencil(), cResource::eViewType::SRV, 3);
+
+            DepthStencilMode.EnableDepth = false;
+            DepthStencilMode.DepthWriteMask = eDepthWriteMask::ZERO;
 
             Init();
         }
@@ -461,17 +384,19 @@ namespace xpe {
         }
 
         cFinalShader::cFinalShader(const string &name, u32 sampleCount)
-        : cDefaultShader(eCategory::FINAL, name)
+            : cDefaultShader(eCategory::FINAL, name)
         {
             VertexStage = cShaderManager::GetFromFile(sShaderStage::eType::VERTEX, "engine_shaders/passes/screen.vs");
-            PixelStage = cShaderManager::GetFromFile(sShaderStage::eType::PIXEL, sampleCount > 1 ? "engine_shaders/passes/msaa/final_pass.ps" : "engine_shaders/passes/final_pass.ps");
+            PixelStage = cShaderManager::GetFromFile(sShaderStage::eType::PIXEL, sampleCount > 1 ? "engine_shaders/passes/msaa/final.ps" : "engine_shaders/passes/final.ps");
 
             RenderTarget = RenderTargets::Final;
 
-            PixelStage->SetBufferBinding(Buffers::Camera, cResource::eViewType::SRV);
-            PixelStage->SetTextureBinding(RenderTargets::Opaque->Colors[0], cResource::eViewType::SRV, 0);
-            PixelStage->SetTextureBinding(RenderTargets::SSAO->Colors[0], cResource::eViewType::SRV, 1);
-            PixelStage->SetTextureBinding(RenderTargets::UI->Colors[0], cResource::eViewType::SRV, 2);
+            PixelStage->SetBufferBinding(Buffers::Camera, cResource::eViewType::SRV, K_SLOT_CAMERA);
+            PixelStage->SetTextureBinding(RenderTargets::Opaque->GetColors()[0], cResource::eViewType::SRV, 0);
+            PixelStage->SetTextureBinding(RenderTargets::SSAO->GetColors()[0], cResource::eViewType::SRV, 1);
+            //PixelStage->SetTextureBinding(RenderTargets::UI->Colors[0], cResource::eViewType::SRV, 2);
+
+            Viewport = Viewports::Main;
 
             Init();
         }
@@ -494,9 +419,9 @@ namespace xpe {
             VertexStage = cShaderManager::GetFromFile(sShaderStage::eType::VERTEX, "engine_shaders/passes/widget_pass.vs");
             PixelStage = cShaderManager::GetFromFile(sShaderStage::eType::PIXEL, "engine_shaders/passes/widget_pass.ps");
 
-            VertexStage->SetBufferBinding(m_WidgetBuffer, cResource::eViewType::SRV);
+            VertexStage->SetBufferBinding(m_WidgetBuffer, cResource::eViewType::SRV, K_SLOT_WIDGETS);
 
-            PixelStage->SetTextureBinding(Textures::WidgetAtlas, cResource::eViewType::SRV);
+            PixelStage->SetTextureBinding(Textures::WidgetAtlas, cResource::eViewType::SRV, 0);
             PixelStage->SetSampler(Samplers::Widget);
 
             Init();
@@ -505,10 +430,10 @@ namespace xpe {
         void cWidgetShader::Draw(cScene* scene)
         {
             sOrthoMatrix orthoMatrix;
-            orthoMatrix.Left = cCameraManager::GetViewport()->Left;
-            orthoMatrix.Top = cCameraManager::GetViewport()->Top;
-            orthoMatrix.Right = cCameraManager::GetViewport()->Width;
-            orthoMatrix.Bottom = cCameraManager::GetViewport()->Height;
+            orthoMatrix.Left = Viewports::Main->Left;
+            orthoMatrix.Top = Viewports::Main->Top;
+            orthoMatrix.Right = Viewports::Main->Width;
+            orthoMatrix.Bottom = Viewports::Main->Height;
             orthoMatrix.Near = -1.0f;
             orthoMatrix.Far = 1.0f;
             m_Projection2D = cMathManager::UpdateOrthoMatrix(orthoMatrix);
@@ -753,8 +678,8 @@ namespace xpe {
             VertexStage = cShaderManager::GetFromFile(sShaderStage::eType::VERTEX, "engine_shaders/passes/text_pass.vs");
             PixelStage = cShaderManager::GetFromFile(sShaderStage::eType::PIXEL, "engine_shaders/passes/text_pass.ps");
 
-            VertexStage->SetBufferBinding(m_CharBuffer, cResource::eViewType::SRV);
-            VertexStage->SetBufferBinding(m_TextBuffer, cResource::eViewType::SRV);
+            VertexStage->SetBufferBinding(m_CharBuffer, cResource::eViewType::SRV, K_SLOT_CHARS);
+            VertexStage->SetBufferBinding(m_TextBuffer, cResource::eViewType::SRV, K_SLOT_TEXTS);
 
             PixelStage->SetSampler(Samplers::Font);
 
@@ -769,10 +694,10 @@ namespace xpe {
         void cTextShader::Draw(cScene *scene)
         {
             sOrthoMatrix orthoMatrix;
-            orthoMatrix.Left = cCameraManager::GetViewport()->Left;
-            orthoMatrix.Top = cCameraManager::GetViewport()->Top;
-            orthoMatrix.Right = cCameraManager::GetViewport()->Width;
-            orthoMatrix.Bottom = cCameraManager::GetViewport()->Height;
+            orthoMatrix.Left = Viewports::Main->Left;
+            orthoMatrix.Top = Viewports::Main->Top;
+            orthoMatrix.Right = Viewports::Main->Width;
+            orthoMatrix.Bottom = Viewports::Main->Height;
             orthoMatrix.Near = -1.0f;
             orthoMatrix.Far = 1.0f;
             m_Projection2D = cMathManager::UpdateOrthoMatrix(orthoMatrix);
@@ -784,7 +709,7 @@ namespace xpe {
                 auto components = scene->GetComponents<CVisible, CSpace2D, CTransform, CLabel>();
                 for (auto [entity, visible, space, transform, label] : components.each())
                 {
-                    fontAtlas = &label.Font->Atlas;
+                    fontAtlas = label.Font->Atlas;
                     UpdateText2D(
                             m_Projection2D,
                             transform,
@@ -802,7 +727,7 @@ namespace xpe {
                 auto components = scene->GetComponents<CVisible, CSpace2D, CTransform, CLabel>();
                 for (auto [entity, visible, space, transform, label] : components.each())
                 {
-                    fontAtlas = &label.Font->Atlas;
+                    fontAtlas = label.Font->Atlas;
                     UpdateText3D(
                             m_Projection3D,
                             transform,
@@ -830,7 +755,7 @@ namespace xpe {
 
             //context::VSBindBuffer(cResource::eViewType::SRV, *m_CharBuffer, m_CharBuffer->GetSRVInstance());
             //context::VSBindBuffer(cResource::eViewType::SRV, *m_TextBuffer, m_TextBuffer->GetSRVInstance());
-            context::PSBindTexture(fontAtlas, K_SLOT_FONT_ATLAS);
+            context::PSBindTexture(cResource::eViewType::SRV, K_SLOT_FONT_ATLAS, fontAtlas.GetInstance(), fontAtlas.GetSRVInstance());
             context::DrawIndexed(m_QuadInfo.IndexCount, m_CharBuffer->Size(), m_QuadInfo.VertexOffset, m_QuadInfo.IndexOffset);
             context::PSUnbindTexture(fontAtlas);
             context::VSUnbindBuffer(*m_TextBuffer);
@@ -1011,18 +936,17 @@ namespace xpe {
         }
 
         cParticleComputeShader::cParticleComputeShader(const string& name, usize maxParticleCount, usize maxEmitterCount)
-            : cComputeShader(eCategory::PREPASS, name, glm::vec3(32, 1, 1))
+            : cComputeShader(eCategory::PREPASS, name, glm::vec3(1, 1, 1))
         {
             Buffers::Particle = new cParticleBuffer(maxParticleCount);
             Buffers::ParticleEmitter = new cParticleEmitterBuffer(maxEmitterCount);
+            Buffers::ParticlePassInfo = new cParticlePassInfoBuffer(1);
             
-            Buffers::Particle->SetSlot(K_SLOT_BUFFER_PARTICLE_UAV);
-            Buffers::ParticleEmitter->SetSlot(K_SLOT_BUFFER_PARTICLE_EMITTER);
-
             ComputeStage = cShaderManager::GetFromFile(sShaderStage::eType::COMPUTE, "engine_shaders/passes/particle.gpus");
             
-            ComputeStage->SetBufferBinding(Buffers::Particle, cResource::eViewType::UAV);
-            ComputeStage->SetBufferBinding(Buffers::ParticleEmitter, cResource::eViewType::SRV);
+            ComputeStage->SetBufferBinding(Buffers::Particle, cResource::eViewType::UAV, K_SLOT_BUFFER_PARTICLE_UAV);
+            ComputeStage->SetBufferBinding(Buffers::ParticleEmitter, cResource::eViewType::SRV, K_SLOT_BUFFER_PARTICLE_EMITTER);
+            ComputeStage->SetBufferBinding(Buffers::ParticlePassInfo, cResource::eViewType::UAV, K_SLOT_BUFFER_PARTICLE_PASS_INFO);
         }
 
         cParticleComputeShader::~cParticleComputeShader()
@@ -1031,9 +955,10 @@ namespace xpe {
 
         void cParticleComputeShader::Draw(cScene* scene)
         {
-            if (cParticleManager::GetEmitterCount(scene) > 0)
-            {
-                context::Dispatch(m_ThreadGroups);
+            usize emitterCount = cParticleManager::GetEmitterCount(scene);
+
+            if (emitterCount > 0) {
+                context::Dispatch(glm::vec3(emitterCount, 1, 1));
             }
         }
 
@@ -1041,7 +966,16 @@ namespace xpe {
             : cDefaultShader(eCategory::OPAQUE_GEOMETRY, name)
         {
             VertexStage = cShaderManager::GetFromFile(sShaderStage::eType::VERTEX, "engine_shaders/passes/particle.vs");
-            PixelStage = cShaderManager::GetFromFile(sShaderStage::eType::PIXEL, "engine_shaders/passes/particle.PS");
+            PixelStage = cShaderManager::GetFromFile(sShaderStage::eType::PIXEL, "engine_shaders/passes/particle.ps");
+            
+            VertexStage->SetBufferBinding(Buffers::Camera, cResource::eViewType::SRV, K_SLOT_CAMERA);
+            VertexStage->SetBufferBinding(Buffers::Particle, cResource::eViewType::SRV, K_SLOT_BUFFER_PARTICLE_SRV);
+            
+            RenderTarget = RenderTargets::Opaque;
+
+            Viewport = Viewports::Main;
+
+            Init();
         }
 
         cParticleRenderShader::~cParticleRenderShader()
@@ -1050,7 +984,14 @@ namespace xpe {
 
         void cParticleRenderShader::Draw(cScene* scene)
         {
-            
+            usize particleCount = 0;
+
+            auto emitters = scene->GetComponents<CParticleEmitter>();
+            for (auto [entity, emitter] : emitters.each()) {
+                particleCount += emitter.SpawnCount;
+            }
+
+            context::DrawQuads(particleCount);
         }
     }
 

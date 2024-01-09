@@ -3,7 +3,7 @@
 #include <rendering/geometry/geometry_manager.hpp>
 #include <rendering/skybox_manager.hpp>
 #include <rendering/camera_manager.hpp>
-#include <rendering/shadow_manager.hpp>
+#include <rendering/light_manager.hpp>
 #include <rendering/core/shader.hpp>
 
 #include <anim/skeleton_manager.hpp>
@@ -14,13 +14,12 @@ namespace xpe {
 
     namespace render {
 
-        cRenderSystem::cRenderSystem(sViewport& viewport, u32 sampleCount)
+        cRenderSystem::cRenderSystem(const glm::vec2& windowSize, u32 sampleCount)
         {
             context::Init();
-            InitManagers(viewport, sampleCount);
-            cCameraManager::SetViewport(viewport);
-            InitBuffers(*cCameraManager::GetViewport(), sampleCount);
-            InitRenderTargets(*cCameraManager::GetViewport(), sampleCount);
+            InitManagers(windowSize, sampleCount);
+            InitBuffers(windowSize, sampleCount);
+            InitRenderTargets(windowSize, sampleCount);
             AddWindowFrameResized(cRenderSystem, eWindowFrameResizedPriority::RENDER_SYSTEM);
         }
 
@@ -33,7 +32,7 @@ namespace xpe {
             RemoveWindowFrameResized();
         }
 
-        void cRenderSystem::InitManagers(sViewport &viewport, u32 sampleCount)
+        void cRenderSystem::InitManagers(const glm::vec2& windowSize, u32 sampleCount)
         {
             cShaderManager::Init();
             cCameraManager::Init();
@@ -41,177 +40,253 @@ namespace xpe {
             cMaterialManager::Init();
             cSkeletonManager::Init();
             cSkyboxManager::Init();
-            cShadowManager::Init();
+            cLightManager::Init(1024, glm::vec2(256));
             cWidgetManager::Init();
         }
 
-        void cRenderSystem::InitBuffers(sViewport &viewport, u32 sampleCount)
+        void cRenderSystem::InitBuffers(const glm::vec2& windowSize, u32 sampleCount)
         {
-            Buffers::DirectLight = new cDirectLightBuffer(4);
             Buffers::PointLight = new cPointLightBuffer(4);
             Buffers::SpotLight = new cSpotLightBuffer(4);
         }
 
-        void cRenderSystem::InitRenderTargets(sViewport& viewport, u32 sampleCount)
+        void cRenderSystem::InitRenderTargets(const glm::vec2& windowSize, u32 sampleCount)
         {
+            Viewports::Main = new sViewport(glm::vec4(0.0f, 0.0f, windowSize.x, windowSize.y), glm::vec2(0.0f, 1.0f));
+
             // Shared depth texture for opaque and transparent render targets
-            Textures::SharedDepth = new cTexture();
-            Textures::SharedDepth->SetType(cTexture::eType::TEXTURE_2D_DEPTH_STENCIL);
-            Textures::SharedDepth->SetWidth(viewport.Width);
-            Textures::SharedDepth->SetHeight(viewport.Height);
-            Textures::SharedDepth->SetFormat(eTextureFormat::R32_TYPELESS);
-            Textures::SharedDepth->SetInitializeData(false);
-            Textures::SharedDepth->SetEnableRenderTarget(true);
-            Textures::SharedDepth->SetSampleCount(sampleCount);
+            Textures::SharedDepth = new cTexture(
+                cTexture::eType::TEXTURE_2D_DEPTH_STENCIL,
+                cResource::eViewType::SRV,
+                cTexture::eUsage::DEFAULT,
+                glm::vec3(windowSize.x, windowSize.y, 1.0f),
+                1,
+                eTextureFormat::R32_TYPELESS,
+                sampleCount,
+                true,
+                0,
+                0,
+                false,
+                {}
+            );
             Textures::SharedDepth->SetResizable(false);
-            Textures::SharedDepth->Init();
 
             // Opaque render target
-            cTexture* opaqueColor = new cTexture();
-            opaqueColor->SetWidth(viewport.Width);
-            opaqueColor->SetHeight(viewport.Height);
-            opaqueColor->SetFormat(eTextureFormat::HDR);
-            opaqueColor->SetInitializeData(false);
-            opaqueColor->SetEnableRenderTarget(true);
-            opaqueColor->SetSampleCount(sampleCount);
+            cTexture* opaqueColor = new cTexture(
+                cTexture::eType::TEXTURE_2D,
+                cResource::eViewType::SRV,
+                cTexture::eUsage::DEFAULT,
+                glm::vec3(windowSize.x, windowSize.y, 1.0f),
+                4,
+                eTextureFormat::HDR,
+                sampleCount,
+                true,
+                0,
+                0,
+                false,
+                {}
+            );
             opaqueColor->SetResizable(false);
-            opaqueColor->Init();
 
-            cTexture* opaquePosition = new cTexture();
-            opaquePosition->SetWidth(viewport.Width);
-            opaquePosition->SetHeight(viewport.Height);
-            opaquePosition->SetFormat(eTextureFormat::RGBA32);
-            opaquePosition->SetInitializeData(false);
-            opaquePosition->SetEnableRenderTarget(true);
-            opaquePosition->SetSampleCount(sampleCount);
+            cTexture* opaquePosition = new cTexture(
+                cTexture::eType::TEXTURE_2D,
+                cResource::eViewType::SRV,
+                cTexture::eUsage::DEFAULT,
+                glm::vec3(windowSize.x, windowSize.y, 1.0f),
+                4,
+                eTextureFormat::RGBA32,
+                sampleCount,
+                true,
+                0,
+                0,
+                false,
+                {}
+            );
             opaquePosition->SetResizable(false);
-            opaquePosition->Init();
 
-            cTexture* opaqueNormal = new cTexture();
-            opaqueNormal->SetWidth(viewport.Width);
-            opaqueNormal->SetHeight(viewport.Height);
-            opaqueNormal->SetFormat(eTextureFormat::RGBA16);
-            opaqueNormal->SetInitializeData(false);
-            opaqueNormal->SetEnableRenderTarget(true);
-            opaqueNormal->SetSampleCount(sampleCount);
+            cTexture* opaqueNormal = new cTexture(
+                cTexture::eType::TEXTURE_2D,
+                cResource::eViewType::SRV,
+                cTexture::eUsage::DEFAULT,
+                glm::vec3(windowSize.x, windowSize.y, 1.0f),
+                4,
+                eTextureFormat::RGBA16,
+                sampleCount,
+                true,
+                0,
+                0,
+                false,
+                {}
+            );
             opaqueNormal->SetResizable(false);
-            opaqueNormal->Init();
 
-            RenderTargets::Opaque = new sRenderTarget({ opaqueColor, opaquePosition, opaqueNormal }, Textures::SharedDepth, &viewport);
+            RenderTargets::Opaque = new cRenderTarget({ opaqueColor, opaquePosition, opaqueNormal }, Textures::SharedDepth);
             RenderTargets::Opaque->SetResizable(false);
-            RenderTargets::Opaque->ClearColors.emplace_back(glm::vec4(0));
-            RenderTargets::Opaque->ClearColors.emplace_back(glm::vec4(0));
-            RenderTargets::Opaque->ClearColors.emplace_back(glm::vec4(0));
-            RenderTargets::Opaque->ClearDepth = 1;
+            RenderTargets::Opaque->GetClearColors().emplace_back(glm::vec4(0));
+            RenderTargets::Opaque->GetClearColors().emplace_back(glm::vec4(0));
+            RenderTargets::Opaque->GetClearColors().emplace_back(glm::vec4(0));
+            RenderTargets::Opaque->SetClearDepth(1);
 
             // Transparent render target
-            cTexture* transparentAccum = new cTexture();
-            transparentAccum->SetWidth(viewport.Width);
-            transparentAccum->SetHeight(viewport.Height);
-            transparentAccum->SetFormat(eTextureFormat::HDR);
-            transparentAccum->SetInitializeData(false);
-            transparentAccum->SetEnableRenderTarget(true);
-            transparentAccum->SetSampleCount(sampleCount);
+            cTexture* transparentAccum = new cTexture(
+                cTexture::eType::TEXTURE_2D,
+                cResource::eViewType::SRV,
+                cTexture::eUsage::DEFAULT,
+                glm::vec3(windowSize.x, windowSize.y, 1.0f),
+                4,
+                eTextureFormat::HDR,
+                sampleCount,
+                true,
+                0,
+                0,
+                false,
+                {}
+            );
             transparentAccum->SetResizable(false);
-            transparentAccum->Init();
 
-            cTexture* transparentReveal = new cTexture();
-            transparentReveal->SetWidth(viewport.Width);
-            transparentReveal->SetHeight(viewport.Height);
-            transparentReveal->SetFormat(eTextureFormat::R8);
-            transparentReveal->SetInitializeData(false);
-            transparentReveal->SetEnableRenderTarget(true);
-            transparentReveal->SetSampleCount(sampleCount);
+            cTexture* transparentReveal = new cTexture(
+                cTexture::eType::TEXTURE_2D,
+                cResource::eViewType::SRV,
+                cTexture::eUsage::DEFAULT,
+                glm::vec3(windowSize.x, windowSize.y, 1.0f),
+                1,
+                eTextureFormat::R8,
+                sampleCount,
+                true,
+                0,
+                0,
+                false,
+                {}
+            );
+            transparentAccum->SetResizable(false);
             transparentReveal->SetResizable(false);
-            transparentReveal->Init();
 
-            RenderTargets::Transparent = new sRenderTarget({transparentAccum, transparentReveal }, Textures::SharedDepth, &viewport);
+            RenderTargets::Transparent = new cRenderTarget({transparentAccum, transparentReveal }, Textures::SharedDepth);
             RenderTargets::Transparent->SetResizable(false);
-            RenderTargets::Transparent->ClearColors.emplace_back(glm::vec4(0.0f));
-            RenderTargets::Transparent->ClearColors.emplace_back(glm::vec4(1.0f));
+            RenderTargets::Transparent->GetClearColors().emplace_back(glm::vec4(0.0f));
+            RenderTargets::Transparent->GetClearColors().emplace_back(glm::vec4(1.0f));
 
             // Scene render target
-            cTexture* sceneColor = new cTexture();
-            sceneColor->SetWidth(viewport.Width);
-            sceneColor->SetHeight(viewport.Height);
-            sceneColor->SetFormat(eTextureFormat::RGBA8);
-            sceneColor->SetInitializeData(false);
-            sceneColor->SetEnableRenderTarget(true);
+            cTexture* sceneColor = new cTexture(
+                cTexture::eType::TEXTURE_2D,
+                cResource::eViewType::SRV,
+                cTexture::eUsage::DEFAULT,
+                glm::vec3(windowSize.x, windowSize.y, 1.0f),
+                4,
+                eTextureFormat::RGBA8,
+                1,
+                true,
+                0,
+                0,
+                false,
+                {}
+            );
             sceneColor->SetResizable(true);
-            sceneColor->Init();
 
-            cTexture* sceneDepth = new cTexture();
-            sceneDepth->SetType(cTexture::eType::TEXTURE_2D_DEPTH_STENCIL);
-            sceneDepth->SetWidth(viewport.Width);
-            sceneDepth->SetHeight(viewport.Height);
-            sceneDepth->SetFormat(eTextureFormat::R32_TYPELESS);
-            sceneDepth->SetInitializeData(false);
-            sceneDepth->SetEnableRenderTarget(true);
+            cTexture* sceneDepth = new cTexture(
+                cTexture::eType::TEXTURE_2D_DEPTH_STENCIL,
+                cResource::eViewType::SRV,
+                cTexture::eUsage::DEFAULT,
+                glm::vec3(windowSize.x, windowSize.y, 1.0f),
+                1,
+                eTextureFormat::R32_TYPELESS,
+                1,
+                true,
+                0,
+                0,
+                false,
+                {}
+            );
             sceneDepth->SetResizable(true);
-            sceneDepth->Init();
 
-            RenderTargets::Scene = new sRenderTarget({ sceneColor }, sceneDepth, &viewport);
+            RenderTargets::Scene = new cRenderTarget({ sceneColor }, sceneDepth);
             RenderTargets::Scene->SetResizable(true);
-            RenderTargets::Scene->ClearColors.emplace_back(glm::vec4(0.0f));
-            RenderTargets::Scene->ClearDepth = 1.0f;
+            RenderTargets::Scene->GetClearColors().emplace_back(glm::vec4(0.0f));
+            RenderTargets::Scene->SetClearDepth(1.0f);
 
             // UI render target
-            cTexture* uiColor = new cTexture();
-            uiColor->SetWidth(viewport.Width);
-            uiColor->SetHeight(viewport.Height);
-            uiColor->SetFormat(eTextureFormat::RGBA8);
-            uiColor->SetInitializeData(false);
-            uiColor->SetEnableRenderTarget(true);
+            cTexture* uiColor = new cTexture(
+                cTexture::eType::TEXTURE_2D,
+                cResource::eViewType::SRV,
+                cTexture::eUsage::DEFAULT,
+                glm::vec3(windowSize.x, windowSize.y, 1.0f),
+                4,
+                eTextureFormat::RGBA8,
+                1,
+                true,
+                0,
+                0,
+                false,
+                {}
+            );
             uiColor->SetResizable(true);
-            uiColor->Init();
 
-            cTexture* uiDepth = new cTexture();
-            uiDepth->SetType(cTexture::eType::TEXTURE_2D_DEPTH_STENCIL);
-            uiDepth->SetWidth(viewport.Width);
-            uiDepth->SetHeight(viewport.Height);
-            uiDepth->SetFormat(eTextureFormat::R32_TYPELESS);
-            uiDepth->SetInitializeData(false);
-            uiDepth->SetEnableRenderTarget(true);
+            cTexture* uiDepth = new cTexture(
+                cTexture::eType::TEXTURE_2D_DEPTH_STENCIL,
+                cResource::eViewType::SRV,
+                cTexture::eUsage::DEFAULT,
+                glm::vec3(windowSize.x, windowSize.y, 1.0f),
+                1,
+                eTextureFormat::R32_TYPELESS,
+                1,
+                true,
+                0,
+                0,
+                false,
+                {}
+            );
             uiDepth->SetResizable(true);
-            uiDepth->Init();
 
-            RenderTargets::UI = new sRenderTarget({ uiColor }, uiDepth, &viewport);
+            RenderTargets::UI = new cRenderTarget({ uiColor }, uiDepth);
             RenderTargets::UI->SetResizable(true);
-            RenderTargets::UI->ClearColors.emplace_back(glm::vec4(0.0f));
-            RenderTargets::UI->ClearDepth = 1.0f;
+            RenderTargets::UI->GetClearColors().emplace_back(glm::vec4(0.0f));
+            RenderTargets::UI->SetClearDepth(1.0f);
 
             // Final render target
-            cTexture* finalColor = new cTexture();
-            finalColor->SetWidth(viewport.Width);
-            finalColor->SetHeight(viewport.Height);
-            finalColor->SetFormat(eTextureFormat::RGBA8);
-            finalColor->SetInitializeData(false);
-            finalColor->SetEnableRenderTarget(true);
+            cTexture* finalColor = new cTexture(
+                cTexture::eType::TEXTURE_2D,
+                cResource::eViewType::SRV,
+                cTexture::eUsage::DEFAULT,
+                glm::vec3(windowSize.x, windowSize.y, 1.0f),
+                4,
+                eTextureFormat::RGBA8,
+                1,
+                true,
+                0,
+                0,
+                false,
+                {}
+            );
             finalColor->SetResizable(true);
-            finalColor->Init();
 
-            cTexture* finalDepth = new cTexture();
-            finalDepth->SetType(cTexture::eType::TEXTURE_2D_DEPTH_STENCIL);
-            finalDepth->SetWidth(viewport.Width);
-            finalDepth->SetHeight(viewport.Height);
-            finalDepth->SetFormat(eTextureFormat::R32_TYPELESS);
-            finalDepth->SetInitializeData(false);
-            finalDepth->SetEnableRenderTarget(true);
+            cTexture* finalDepth = new cTexture(
+                cTexture::eType::TEXTURE_2D_DEPTH_STENCIL,
+                cResource::eViewType::SRV,
+                cTexture::eUsage::DEFAULT,
+                glm::vec3(windowSize.x, windowSize.y, 1.0f),
+                1,
+                eTextureFormat::R32_TYPELESS,
+                1,
+                true,
+                0,
+                0,
+                false,
+                {}
+            );
             finalDepth->SetResizable(true);
-            finalDepth->Init();
 
-            RenderTargets::Final = new sRenderTarget({ finalColor }, finalDepth, &viewport);
+            RenderTargets::Final = new cRenderTarget({ finalColor }, finalDepth);
             RenderTargets::Final->SetResizable(true);
-            RenderTargets::Final->ClearColors.emplace_back(glm::vec4(0.0f));
-            RenderTargets::Final->ClearDepth = 1.0f;
+            RenderTargets::Final->GetClearColors().emplace_back(glm::vec4(0.0f));
+            RenderTargets::Final->SetClearDepth(1.0f);
 
-            Textures::Canvas = RenderTargets::Final->Colors[0];
+            Textures::Canvas = RenderTargets::Final->GetColors()[0];
         }
 
         void cRenderSystem::FreeManagers()
         {
             cWidgetManager::Free();
-            cShadowManager::Free();
+            cLightManager::Free();
             cSkyboxManager::Free();
             cSkeletonManager::Free();
             cMaterialManager::Free();
@@ -238,18 +313,18 @@ namespace xpe {
 
         void cRenderSystem::WindowFrameResized(int width, int height)
         {
-            sViewport& viewport = *cCameraManager::GetViewport();
-            viewport.Width = width;
-            viewport.Height = height;
+            Viewports::Main->Width = width;
+            Viewports::Main->Height = height;
+
             cCameraManager::Flush();
 
             Textures::SharedDepth->Resize(width, height);
 
-            RenderTargets::Opaque->DepthStencil = Textures::SharedDepth;
+            RenderTargets::Opaque->SetDepthStencil(Textures::SharedDepth);
             RenderTargets::Opaque->ResizeColors(width, height);
             RenderTargets::Opaque->Resize(width, height);
 
-            RenderTargets::Transparent->DepthStencil = Textures::SharedDepth;
+            RenderTargets::Transparent->SetDepthStencil(Textures::SharedDepth);
             RenderTargets::Transparent->ResizeColors(width, height);
             RenderTargets::Transparent->Resize(width, height);
         }
@@ -274,10 +349,20 @@ namespace xpe {
                 auto components = scene->GetComponents<CDirectionalLight>();
                 for (auto [entity, light] : components.each())
                 {
-                    sDirectLightData lightData;
-                    lightData.Position = light.View.Position;
+                    auto transform = scene->GetComponent<CTransform>(entity);
+                    light.View = glm::lookAt(transform.Position, transform.Position + light.Direction, glm::vec3(0.0f, 1.0f, 0.0f));
+                    light.Projection = glm::ortho(
+                        -10.0f, 10.0f,
+                        -10.0f, 10.0f,
+                        0.01f,
+                        100.0f
+                    );
+
+                    sLightData lightData;
+                    lightData.Position = transform.Position;
                     lightData.Color = light.Color;
-                    lightData.ViewProjection = cMathManager::UpdateLightMatrix(light.Projection, light.View);
+                    lightData.View = light.View;
+                    lightData.Projection = light.Projection;
                     
                     Buffers::DirectLight->GetList()[index] = lightData;
 
@@ -333,100 +418,117 @@ namespace xpe {
 
         void cRenderSystem::UpdateShaders(cScene* scene)
         {
-            // Compute
-            {
-                cShader* shader = cShaderManager::GetShaders(cShader::eCategory::COMPUTE);
-                while (shader != nullptr) {
-                    if (shader->Enable) {
-                        shader->Bind();
-                        shader->Draw(scene);
-                        shader->Unbind();
-                    }
-                    shader = shader->Next;
-                }
-            }
-
             // Prepass
             RenderTargets::Shadow->Clear();
             {
-                cShader* shader = cShaderManager::GetShaders(cShader::eCategory::PREPASS);
-                while (shader != nullptr) {
-                    if (shader->Enable) {
+                auto shaders = cShaderManager::GetShaders(cShader::eCategory::PREPASS);
+                if (shaders == nullptr) {
+                    LogError("GetShaders() returned NULL for PREPASS category!");
+                }
+
+                for (auto shader : *shaders)
+                {
+                    if (shader != nullptr)
+                    {
                         shader->Bind();
                         shader->Draw(scene);
                         shader->Unbind();
                     }
-                    shader = shader->Next;
                 }
             }
 
             // Opaque
             RenderTargets::Opaque->Clear();
             {
-                cShader* shader = cShaderManager::GetShaders(cShader::eCategory::OPAQUE_GEOMETRY);
-                while (shader != nullptr) {
-                    if (shader->Enable) {
+                auto shaders = cShaderManager::GetShaders(cShader::eCategory::OPAQUE_GEOMETRY);
+                if (shaders == nullptr) {
+                    LogError("GetShaders() returned NULL for OPAQUE_GEOMETRY category!");
+                }
+
+                for (auto shader : *shaders)
+                {
+                    if (shader != nullptr)
+                    {
                         shader->Bind();
                         shader->Draw(scene);
                         shader->Unbind();
                     }
-                    shader = shader->Next;
                 }
             }
 
             // Transparent
             RenderTargets::Transparent->Clear();
             {
-                cShader* shader = cShaderManager::GetShaders(cShader::eCategory::TRANSPARENT_GEOMETRY);
-                while (shader != nullptr) {
-                    if (shader->Enable) {
+                auto shaders = cShaderManager::GetShaders(cShader::eCategory::TRANSPARENT_GEOMETRY);
+                if (shaders == nullptr) {
+                    LogError("GetShaders() returned NULL for TRANSPARENT_GEOMETRY category!");
+                }
+
+                for (auto shader : *shaders)
+                {
+                    if (shader != nullptr)
+                    {
                         shader->Bind();
                         shader->Draw(scene);
                         shader->Unbind();
                     }
-                    shader = shader->Next;
                 }
             }
 
             // PostFX
             RenderTargets::Scene->Clear();
             {
-                cShader* shader = cShaderManager::GetShaders(cShader::eCategory::POSTFX);
-                while (shader != nullptr) {
-                    if (shader->Enable) {
+                auto shaders = cShaderManager::GetShaders(cShader::eCategory::POSTFX);
+                if (shaders == nullptr) {
+                    LogError("GetShaders() returned NULL for POSTFX category!");
+                }
+
+                for (auto shader : *shaders)
+                {
+                    if (shader != nullptr)
+                    {
                         shader->Bind();
                         shader->Draw(scene);
                         shader->Unbind();
                     }
-                    shader = shader->Next;
                 }
             }
 
             // UI
             RenderTargets::UI->Clear();
             {
-                cShader* shader = cShaderManager::GetShaders(cShader::eCategory::UI);
-                while (shader != nullptr) {
-                    if (shader->Enable) {
+                auto shaders = cShaderManager::GetShaders(cShader::eCategory::UI);
+                if (shaders == nullptr) {
+                    LogError("GetShaders() returned NULL for UI category!");
+                }
+
+                for (auto shader : *shaders)
+                {
+                    if (shader != nullptr)
+                    {
                         shader->Bind();
                         shader->Draw(scene);
                         shader->Unbind();
                     }
-                    shader = shader->Next;
                 }
             }
 
             // Final
             RenderTargets::Final->Clear();
             {
-                cShader* shader = cShaderManager::GetShaders(cShader::eCategory::FINAL);
-                while (shader != nullptr) {
-                    if (shader->Enable) {
+                auto shaders = cShaderManager::GetShaders(cShader::eCategory::FINAL);
+                if (shaders == nullptr) {
+                    LogError("GetShaders() returned NULL for FINAL category!");
+                }
+
+                for (auto shader : *shaders)
+                {
+                    if (shader != nullptr)
+                    {
                         shader->Bind();
                         shader->Draw(scene);
                         shader->Unbind();
                     }
-                    shader = shader->Next;
                 }
             }
         }

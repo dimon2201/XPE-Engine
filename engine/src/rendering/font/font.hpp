@@ -10,6 +10,7 @@ namespace xpe
 
         struct ENGINE_API sFont : public cObject
         {
+            sFont() {}
             ~sFont();
 
             struct sGlyph final
@@ -32,7 +33,7 @@ namespace xpe
             f32 WhitespaceOffset;
             usize MaxGlyphHeight;
             unordered_map<char, sFont::sGlyph> AlphaBet;
-            cTexture Atlas;
+            cTexture* Atlas;
 
             inline float GetWhitespaceWidth()
             {

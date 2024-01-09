@@ -245,7 +245,7 @@ namespace xpe {
             float _pad0 = 0;
             glm::mat4 View;
             glm::mat4 Projection;
-            sViewport Viewport;
+            sViewport Viewport { glm::vec4(0.0f), glm::vec2(0.0f) };
             float Exposure = 1.0f;
             float Gamma = 2.2f;
         };
@@ -279,6 +279,20 @@ namespace xpe {
         struct ENGINE_API cDirectLightBuffer : public cStructuredBuffer<sDirectLightData>
         {
             cDirectLightBuffer(usize count = 0) : cStructuredBuffer<sDirectLightData>(count, K_SLOT_DIRECT_LIGHTS) {}
+        };
+
+        struct ENGINE_API sLightData
+        {
+            glm::vec3 Position = glm::vec3(0.0f);
+            glm::vec3 Color = glm::vec3(0.0f);
+            glm::mat4 View = glm::mat4(1.0f);
+            glm::mat4 Projection = glm::mat4(1.0f);
+            glm::mat4 ViewProjection;
+        };
+
+        struct ENGINE_API cLightBuffer : public cStructuredBuffer<sLightData>
+        {
+            cLightBuffer(usize count = 0) : cStructuredBuffer<sLightData>(count, K_SLOT_DIRECT_LIGHTS) {}
         };
 
         struct ENGINE_API sPointLightData
@@ -430,6 +444,11 @@ namespace xpe {
             cTextBuffer(usize count = 0) : cStructuredBuffer<sText>(count, K_SLOT_TEXTS) {}
         };
 
+        struct ENGINE_API sParticlePassInfo
+        {
+            u32 ParticleCount;
+        };
+
         struct ENGINE_API cParticleBuffer : public cRWBuffer<sParticle>
         {
             cParticleBuffer(usize count = 0)
@@ -439,6 +458,11 @@ namespace xpe {
         struct ENGINE_API cParticleEmitterBuffer : public cStructuredBuffer<sParticleEmitter>
         {
             cParticleEmitterBuffer(usize count = 0) : cStructuredBuffer<sParticleEmitter>(count, K_SLOT_BUFFER_PARTICLE_EMITTER) {}
+        };
+
+        struct ENGINE_API cParticlePassInfoBuffer : public cRWBuffer<sParticlePassInfo>
+        {
+            cParticlePassInfoBuffer(usize count = 0) : cRWBuffer<sParticlePassInfo>(count, K_SLOT_BUFFER_PARTICLE_PASS_INFO) {}
         };
 
     }

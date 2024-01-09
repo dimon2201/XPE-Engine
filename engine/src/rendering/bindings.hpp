@@ -9,18 +9,19 @@ namespace xpe {
         struct ENGINE_API Viewports final
         {
             static sViewport*           Shadow;
+            static sViewport*           Main;
             static sViewport*           SSAO;
         };
 
         struct ENGINE_API RenderTargets final
         {
-            static sRenderTarget*       Scene;
-            static sRenderTarget*       Opaque;
-            static sRenderTarget*       Transparent;
-            static sRenderTarget*       UI;
-            static sRenderTarget*       Final;
-            static sRenderTarget*       Shadow;
-            static sRenderTarget*       SSAO;
+            static cRenderTarget*       Scene;
+            static cRenderTarget*       Opaque;
+            static cRenderTarget*       Transparent;
+            static cRenderTarget*       UI;
+            static cRenderTarget*       Final;
+            static cRenderTarget*       Shadow;
+            static cRenderTarget*       SSAO;
         };
 
         struct ENGINE_API Buffers final
@@ -28,7 +29,7 @@ namespace xpe {
             static cVertexBuffer*               Vertex;
             static cIndexBuffer*                Index;
             static cCameraBuffer*               Camera;
-            static cDirectLightBuffer*          DirectLight;
+            static cLightBuffer*                DirectLight;
             static cPointLightBuffer*           PointLight;
             static cSpotLightBuffer*            SpotLight;
             static cMaterialDataBuffer*         Material;
@@ -37,6 +38,7 @@ namespace xpe {
             static cSsaoBuffer*                 SSAO;
             static cParticleBuffer*             Particle;
             static cParticleEmitterBuffer*      ParticleEmitter;
+            static cParticlePassInfoBuffer*     ParticlePassInfo;
         };
 
         struct ENGINE_API Textures final
@@ -56,7 +58,6 @@ namespace xpe {
         struct ENGINE_API Samplers final
         {
             static sSampler*            Material;
-            static sSampler*            Shadow;
             static sSampler*            Widget;
             static sSampler*            Skybox;
             static sSampler*            Font;

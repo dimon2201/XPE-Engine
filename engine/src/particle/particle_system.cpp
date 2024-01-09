@@ -26,7 +26,7 @@ namespace xpe {
                 for (auto [entity, emitter] : emitters.each())
                 {
                     sParticleEmitter gpuEmitter;
-                    gpuEmitter.EmitterCount = cParticleManager::GetEmitterCount(scene);
+                    gpuEmitter._EmitterCount = cParticleManager::GetEmitterCount(scene);
                     gpuEmitter.SpawnCount = emitter.SpawnCount;
 
                     Buffers::ParticleEmitter->Add(gpuEmitter);

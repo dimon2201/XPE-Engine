@@ -75,6 +75,7 @@ namespace xpe
             cRegistry m_Registry;
             unordered_map<EntityID, unordered_map<ComponentID, cJson*>> m_Jsons;
             unordered_map<EntityID, unordered_map<ComponentID, cXml*>>  m_Xmls;
+
         };
 
         template<typename T, typename... Args>
@@ -151,8 +152,6 @@ namespace xpe
         {
 
         public:
-            vector<cEntity*> Children;
-
             cEntity() = default;
             cEntity(const string& tag, cScene* scene);
 
@@ -230,6 +229,9 @@ namespace xpe
             void MoveImpl(const glm::vec3& diff);
             void RotateImpl(const glm::vec3& diff);
             void ScaleImpl(const glm::vec3& diff);
+
+        public:
+            vector<cEntity*> Children;
 
         protected:
             EntityID m_ID = EntityNull;

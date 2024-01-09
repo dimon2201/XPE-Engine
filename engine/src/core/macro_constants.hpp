@@ -69,9 +69,10 @@
 #define K_SLOT_SHADOW_PCF 0
 
 // particle
-#define K_SLOT_BUFFER_PARTICLE_UAV 7
+#define K_SLOT_BUFFER_PARTICLE_UAV 0
 #define K_SLOT_BUFFER_PARTICLE_SRV 11
 #define K_SLOT_BUFFER_PARTICLE_EMITTER 12
+#define K_SLOT_BUFFER_PARTICLE_PASS_INFO 1
 
 // ---------- Constant Buffers --------------- //
 

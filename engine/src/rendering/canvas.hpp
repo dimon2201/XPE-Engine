@@ -30,8 +30,9 @@ namespace xpe {
             cDefaultShader* m_Shader;
             sViewport* m_Viewport;
             sSampler* m_PresentSampler;
-            sRenderTarget* m_PresentTarget;
+            cRenderTarget* m_PresentTarget;
             u32 m_BoundTargetIndex = 0;
+
         };
 
     }

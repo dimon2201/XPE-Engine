@@ -25,9 +25,6 @@ namespace xpe {
             static float GetExposure();
             static float GetGamma();
 
-            static void SetViewport(const sViewport& viewport);
-            static sViewport* GetViewport();
-
             static cCamera* GetCamera();
             static void SetCamera(cCamera* camera);
 

@@ -39,13 +39,13 @@ namespace xpe {
             Buffers::Material->GetList()[counter] = material;
             counter += 1;
 
-            AddLayer(*Textures::AlbedoAtlas, material.AlbedoMap);
-            AddLayer(*Textures::NormalAtlas, material.NormalMap);
-            AddLayer(*Textures::ParallaxAtlas, material.ParallaxMap);
-            AddLayer(*Textures::MetalAtlas, material.MetalMap);
-            AddLayer(*Textures::RoughnessAtlas, material.RoughnessMap);
-            AddLayer(*Textures::AOAtlas, material.AOMap);
-            AddLayer(*Textures::EmissionAtlas, material.EmissionMap);
+            AddLayer(*Textures::AlbedoAtlas, &material.AlbedoMap);
+            AddLayer(*Textures::NormalAtlas, &material.NormalMap);
+            AddLayer(*Textures::ParallaxAtlas, &material.ParallaxMap);
+            AddLayer(*Textures::MetalAtlas, &material.MetalMap);
+            AddLayer(*Textures::RoughnessAtlas, &material.RoughnessMap);
+            AddLayer(*Textures::AOAtlas, &material.AOMap);
+            AddLayer(*Textures::EmissionAtlas, &material.EmissionMap);
 
             Buffers::Material->Flush();
 

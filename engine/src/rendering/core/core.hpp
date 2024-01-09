@@ -113,6 +113,10 @@ namespace xpe {
 
         struct ENGINE_API sViewport : public cObject
         {
+            sViewport(const glm::vec4& rect, const glm::vec2& depth)
+                : Left(rect.x), Top(rect.y), Width(rect.z), Height(rect.w), MinDepth(depth.x), MaxDepth(depth.y)
+            {}
+
             float Left = 0;
             float Top = 0;
             float Width = 0;
@@ -361,7 +365,7 @@ namespace xpe {
 
         enum class eTextureFormat
         {
-            R8, R16, R32, R32_TYPELESS,
+            R8, R16, R32, R32_TYPELESS, R16_TYPELESS,
             RG8, RG16, RG32,
             RGB8, RGB16, RGB32,
             RGBA8, RGBA16, RGBA32,
@@ -460,11 +464,24 @@ namespace xpe {
                 STAGING,
             };
 
-            cTexture();
+            cTexture(
+                eType type,
+                eViewType viewType,
+                eUsage usage,
+                const glm::vec3& size,
+                usize channelCount,
+                eTextureFormat format,
+                usize sampleCount,
+                dual enableRenderTarget,
+                u32 slot,
+                u32 mostDetailedMip,
+                dual initializeData,
+                const vector<sTextureLayer>& layers
+            );
             ~cTexture();
 
-            void Init();
-            void Free();
+            //void Init();
+            //void Free();
 
             sTextureLayer CreateLayer() const;
             void RemoveLayerAt(u32 index);
@@ -498,19 +515,6 @@ namespace xpe {
             inline dual IsDataInitialized() const { return m_InitializeData; }
             inline vector<sTextureLayer>& GetLayers() { return m_Layers; }
 
-            inline void SetType(const eType& type) { m_Type = type; }
-            inline void SetUsage(const eUsage& usage) { m_Usage = usage; }
-            inline void SetWidth(s32 width) { m_Width = width; }
-            inline void SetHeight(s32 height) { m_Height = height; }
-            inline void SetDepth(s32 depth) { m_Depth = depth; }
-            inline void SetChannelCount(s32 channels) { m_Channels = channels; }
-            inline void SetFormat(const eTextureFormat& format) { m_Format = format; }
-            inline void SetSampleCount(u32 sampleCount) { m_SampleCount = sampleCount; }
-            inline void SetEnableRenderTarget(dual enableRenderTarget) { m_EnableRenderTarget = enableRenderTarget; }
-            inline void SetSlot(u32 slot) { m_Slot = slot; }
-            inline void SetMostDetailedMip(u32 mip) { m_MostDetailedMip = mip; }
-            inline void SetInitializeData(dual initializeData) { m_InitializeData = initializeData; }
-
         protected:
             void ResizeTextureU8(s32 width, s32 height);
             void ResizeTextureFloat(s32 width, s32 height);
@@ -535,6 +539,61 @@ namespace xpe {
             static const std::unordered_map<eTextureFormat, int> k_ChannelTable;
             // bytes per pixel table for each texture format
             static const std::unordered_map<eTextureFormat, int> k_BppTable;
+        };
+
+        struct ENGINE_API sAtlas2DTexture
+        {
+            sAtlas2DTexture() = default;
+            sAtlas2DTexture(u32 bottomLeft, u32 topRight) : BottomLeft(bottomLeft), TopRight(topRight)
+            {}
+
+            u32 BottomLeft = 0;
+            u32 TopRight = 0;
+        };
+
+        struct ENGINE_API cAtlas2D : public cTexture
+        {
+
+        public:
+            cAtlas2D(
+                const glm::vec2& size,
+                usize channelCount,
+                eTextureFormat format,
+                usize sampleCount,
+                dual enableRenderTarget,
+                u32 slot,
+                u32 mostDetailedMip,
+                dual initializeData
+            ) : cTexture(
+                cTexture::eType::TEXTURE_2D,
+                cResource::eViewType::SRV,
+                cTexture::eUsage::DYNAMIC,
+                glm::vec3(size.x, size.y, 1.0f),
+                channelCount,
+                format,
+                sampleCount,
+                enableRenderTarget,
+                slot,
+                mostDetailedMip,
+                initializeData,
+                {}
+            ) {}
+            ~cAtlas2D() {}
+
+            inline glm::vec2 GetPositionFromIndex(s32 idx) {
+                return glm::vec2(idx % m_Width, (idx / m_Width) % m_Height);
+            }
+
+            inline u32 GetIndexFromPosition(const glm::vec2& position) {
+                return position.x + (position.y * m_Width);
+            }
+
+            sAtlas2DTexture AddTexture(const glm::vec2& size);
+            void RemoveTexture(const sAtlas2DTexture& texture);
+
+        private:
+            vector<sAtlas2DTexture> m_Textures;
+
         };
 
         struct ENGINE_API sAtlas : public cTexture

@@ -135,29 +135,34 @@ namespace xpe
 
         struct ENGINE_API CDirectionalLight : cJson
         {
-            glm::vec3 Color = { 1, 1, 1 };
-            sOrthoMatrix Projection;
-            sViewMatrix View;
-
-            CDirectionalLight(const glm::vec3& position, const glm::vec3& color)
+            CDirectionalLight(const glm::vec3& direction, const glm::vec3& color)
             {
+                Direction = direction;
                 Color = color;
-                Projection.Left = -20.0f;
-                Projection.Right = 20.0f;
-                Projection.Bottom = -20.0f;
-                Projection.Top = 20.0f;
-                Projection.Near = 0;
-                Projection.Far = 100.0f;
-                View.Position = position;
-                View.Front = { 0, 0, 0 };
-                View.Up = { 0, 1, 0 };
+                View = glm::mat4(1.0f);
+                Projection = glm::mat4(1.0f);
+                //Projection.Left = -20.0f;
+                //Projection.Right = 20.0f;
+                //Projection.Bottom = -20.0f;
+                //Projection.Top = 20.0f;
+                //Projection.Near = 0;
+                //Projection.Far = 100.0f;
+                //View.Front = { 0, 0, 0 };
+                //View.Up = { 0, 1, 0 };
             }
+
+            glm::vec3 Direction = glm::vec3(0.0f);
+            glm::vec3 Color = glm::vec3(1.0f);
+            glm::mat4 View = glm::mat4(1.0f);
+            glm::mat4 Projection = glm::mat4(1.0f);
+            vector<EntityID> Entities;
 
             JSON_CLASS(
                 CDirectionalLight,
                 Color,
+                View,
                 Projection,
-                View
+                Entities
             )
         };
 
@@ -421,15 +426,16 @@ namespace xpe
         {
             CParticleEmitter(const sParticleEmitter& emitter)
             {
-                ListIndex = emitter.ListIndex;
-                EmitterCount = emitter.EmitterCount;
+                _BufferOffset = emitter._BufferOffset;
+                _EmitterCount = emitter._EmitterCount;
                 SpawnCount = emitter.SpawnCount;
+                WorldPosition = emitter.WorldPosition;
             }
 
             JSON_CLASS(
                 CParticleEmitter,
-                ListIndex,
-                EmitterCount,
+                _BufferOffset,
+                _EmitterCount,
                 SpawnCount
             )
         };

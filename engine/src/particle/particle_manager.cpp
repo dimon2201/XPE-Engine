@@ -9,7 +9,6 @@ namespace xpe {
     namespace particle {
 
         usize cParticleManager::m_EmitterCount = 0;
-        s32 cParticleManager::m_LastEmitterIndex = 0;
 
         void cParticleManager::Init()
         {
@@ -22,31 +21,36 @@ namespace xpe {
         sParticleEmitter cParticleManager::AddEmitter(usize spawnCount)
         {
             sParticleEmitter emitter;
-            emitter.ListIndex = m_LastEmitterIndex;
-            emitter.EmitterCount = m_EmitterCount + 1;
+            emitter._BufferOffset = m_EmitterCount;
+            emitter._EmitterCount = m_EmitterCount + 1;
             emitter.SpawnCount = spawnCount;
 
-            //Buffers::ParticleEmitter->GetList()[m_LastEmitterIndex] = emitter;
-            //Buffers::ParticleEmitter->Flush();
-
             m_EmitterCount += 1;
-            m_LastEmitterIndex += 1;
 
             return emitter;
         }
 
         void cParticleManager::RemoveEmitter(const sParticleEmitter& emitter)
         {
-            if (m_LastEmitterIndex < 2)
+            if (m_EmitterCount < 2)
             {
-                m_LastEmitterIndex = 0;
+                m_EmitterCount = 0;
                 return;
             }
 
-            Buffers::ParticleEmitter->GetList()[emitter.ListIndex] = Buffers::ParticleEmitter->GetList()[m_LastEmitterIndex - 1];
+            Buffers::ParticleEmitter->GetList()[emitter._BufferOffset] = Buffers::ParticleEmitter->GetList()[m_EmitterCount - 1];
 
             m_EmitterCount -= 1;
-            m_LastEmitterIndex -= 1;
+        }
+
+        void cParticleManager::UpdateEmitter(const cEntity& entity, cScene* scene)
+        {
+            auto& emitter = scene->GetComponent<CParticleEmitter>(entity.GetID());
+            auto& transform = scene->GetComponent<CTransform>(entity.GetID());
+            emitter.WorldPosition = transform.Position;
+
+            Buffers::ParticleEmitter->GetList()[emitter._BufferOffset] = emitter;
+            Buffers::ParticleEmitter->Flush();
         }
 
         usize cParticleManager::GetEmitterCount(ecs::cScene* scene)

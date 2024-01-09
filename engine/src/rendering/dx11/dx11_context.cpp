@@ -32,7 +32,7 @@ namespace xpe {
 
             static const std::unordered_map<cBuffer::eUsage, u32> k_BufferUsageCpuFlagTable =
             {
-                    { cBuffer::eUsage::DEFAULT, D3D11_CPU_ACCESS_WRITE },
+                    { cBuffer::eUsage::DEFAULT, 0 },
                     { cBuffer::eUsage::STATIC, 0 },
                     { cBuffer::eUsage::DYNAMIC, D3D11_CPU_ACCESS_WRITE },
                     { cBuffer::eUsage::STAGING, D3D11_CPU_ACCESS_READ | D3D11_CPU_ACCESS_WRITE }
@@ -62,6 +62,7 @@ namespace xpe {
                     { eTextureFormat::R16, DXGI_FORMAT_R16_UNORM },
                     { eTextureFormat::R32, DXGI_FORMAT_R32_FLOAT },
                     { eTextureFormat::R32_TYPELESS, DXGI_FORMAT_R32_TYPELESS },
+                    { eTextureFormat::R16_TYPELESS, DXGI_FORMAT_R16_TYPELESS },
 
                     { eTextureFormat::RG8, DXGI_FORMAT_R8G8_UNORM },
                     { eTextureFormat::RG16, DXGI_FORMAT_R16G16_UNORM },
@@ -412,14 +413,14 @@ namespace xpe {
                 LogDebugMessage();
             }
 
-            void ResizeSwapchain(sRenderTarget& renderTarget, int width, int height)
+            void ResizeSwapchain(cRenderTarget& renderTarget, int width, int height)
             {
                 UnbindRenderTarget();
                 if (SwapchainTextureInstance) {
                     ((ID3D11Texture2D*) SwapchainTextureInstance)->Release();
                     SwapchainTextureInstance = nullptr;
                 }
-                FreeRenderTargetColorViews(renderTarget.ColorViews);
+                FreeRenderTargetColorViews(renderTarget.GetColorViews());
 
                 s_SwapChain->ResizeBuffers(1, 0, 0, DXGI_FORMAT_UNKNOWN, 0ul);
                 LogDebugMessage();
@@ -432,15 +433,8 @@ namespace xpe {
 
                 CreateSwapchainTargetView();
 
-                renderTarget.ColorViews[0] = SwapchainTargetView;
-                BindRenderTarget(renderTarget.ColorViews, renderTarget.DepthStencilView);
-
-                if (renderTarget.Viewport) {
-                    renderTarget.Viewport->Width = width;
-                    renderTarget.Viewport->Height = height;
-                }
-
-                BindViewport(renderTarget.Viewport);
+                renderTarget.GetColorViews()[0] = SwapchainTargetView;
+                BindRenderTarget(renderTarget.GetColorViews(), renderTarget.GetDepthStencilView());
             }
 
             void CreateSwapchainTargetView()
@@ -460,13 +454,13 @@ namespace xpe {
                 LogDebugMessage();
             }
 
-            void CreateRenderTarget(sRenderTarget& renderTarget)
+            void CreateRenderTarget(cRenderTarget& renderTarget)
             {
-                u32 colorCount = renderTarget.Colors.size();
-                for (u32 i = 0 ; i < colorCount ; i++)
+                u32 colorCount = renderTarget.GetColors().size();
+                for (u32 i = 0; i < colorCount; i++)
                 {
-                    auto& color = renderTarget.Colors[i];
-                    auto& colorView = renderTarget.ColorViews[i];
+                    auto& color = renderTarget.GetColors()[i];
+                    auto& colorView = renderTarget.GetColorViews()[i];
 
                     if (color && color->GetInstance() && color->GetWidth() != 0 && color->GetHeight() != 0 && colorView == nullptr)
                     {
@@ -484,20 +478,20 @@ namespace xpe {
                     }
                 }
 
-                auto& depth = renderTarget.DepthStencil;
-                auto& depthView = renderTarget.DepthStencilView;
+                auto depth = renderTarget.GetDepthStencilPtr();
+                auto depthView = renderTarget.GetDepthStencilViewPtr();
 
-                if (depth && depth->GetInstance() && depth->GetWidth() != 0 && depth->GetHeight() != 0 && depthView == nullptr)
+                if ((*depth) && (*depth)->GetInstance() && (*depth)->GetWidth() != 0 && (*depth)->GetHeight() != 0 && (*depthView) == nullptr)
                 {
                     D3D11_DEPTH_STENCIL_VIEW_DESC desc = {};
-                    desc.Format = DXGI_FORMAT_D32_FLOAT;
-                    desc.ViewDimension = depth->GetSampleCount() > 1 ? D3D11_DSV_DIMENSION_TEXTURE2DMS : D3D11_DSV_DIMENSION_TEXTURE2D;
+                    desc.Format = (*depth)->GetFormat() == eTextureFormat::R16_TYPELESS ? DXGI_FORMAT_D16_UNORM : DXGI_FORMAT_D32_FLOAT;
+                    desc.ViewDimension = (*depth)->GetSampleCount() > 1 ? D3D11_DSV_DIMENSION_TEXTURE2DMS : D3D11_DSV_DIMENSION_TEXTURE2D;
                     desc.Texture2D.MipSlice = 0;
 
                     s_Device->CreateDepthStencilView(
-                            (ID3D11Resource*) depth->GetInstance(),
+                            (ID3D11Resource*)(*depth)->GetInstance(),
                             &desc,
-                            (ID3D11DepthStencilView**) &depthView
+                            (ID3D11DepthStencilView**)depthView
                     );
                     LogDebugMessage();
                 }
@@ -567,14 +561,10 @@ namespace xpe {
                 }
             }
 
-            void ResizeRenderTarget(sRenderTarget& renderTarget, int width, int height)
+            void ResizeRenderTarget(cRenderTarget& renderTarget, int width, int height)
             {
                 UnbindRenderTarget();
                 FreeRenderTarget(renderTarget);
-                if (renderTarget.Viewport) {
-                    renderTarget.Viewport->Width = width;
-                    renderTarget.Viewport->Height = height;
-                }
                 CreateRenderTarget(renderTarget);
             }
 
@@ -685,7 +675,7 @@ namespace xpe {
                 for (auto& binding : stage->BufferBindings)
                 {
                     cBuffer* buffer = (cBuffer*)binding.Resource;
-                    VSBindBuffer(binding.ViewType, buffer->GetType(), buffer->GetSlot(), (void*)buffer->GetInstance(), (void*)binding.View);
+                    VSBindBuffer(binding.ViewType, buffer->GetType(), binding.Slot, (void*)buffer->GetInstance(), (void*)binding.View);
                 }
 
                 for (auto& binding : stage->TextureBindings)
@@ -702,24 +692,32 @@ namespace xpe {
 
             void BindPSStage(const sShaderStage* stage)
             {
-                s_ImmContext->PSSetShader((ID3D11PixelShader*) stage->GetInstance(), nullptr, 0);
-                LogDebugMessage();
-
-                for (auto& binding : stage->BufferBindings)
+                if (stage != nullptr)
                 {
-                    cBuffer* buffer = (cBuffer*)binding.Resource;
-                    PSBindBuffer(binding.ViewType, buffer->GetType(), buffer->GetSlot(), (void*)buffer->GetInstance(), (void*)binding.View);
+                    s_ImmContext->PSSetShader((ID3D11PixelShader*)stage->GetInstance(), nullptr, 0);
+                    LogDebugMessage();
+
+                    for (auto& binding : stage->BufferBindings)
+                    {
+                        cBuffer* buffer = (cBuffer*)binding.Resource;
+                        PSBindBuffer(binding.ViewType, buffer->GetType(), binding.Slot, (void*)buffer->GetInstance(), (void*)binding.View);
+                    }
+
+                    for (auto& binding : stage->TextureBindings)
+                    {
+                        cTexture* texture = (cTexture*)binding.Resource;
+                        PSBindTexture(binding.ViewType, binding.Slot, (void*)texture->GetInstance(), binding.View);
+                    }
+
+                    for (auto* sampler : stage->Samplers)
+                    {
+                        PSBindSampler(*sampler);
+                    }
                 }
-
-                for (auto& binding : stage->TextureBindings)
+                else
                 {
-                    cTexture* texture = (cTexture*)binding.Resource;
-                    PSBindTexture(*texture);
-                }
-
-                for (auto* sampler : stage->Samplers)
-                {
-                    PSBindSampler(*sampler);
+                    s_ImmContext->PSSetShader(nullptr, nullptr, 0);
+                    LogDebugMessage();
                 }
             }
 
@@ -731,7 +729,7 @@ namespace xpe {
                 for (auto& binding : stage->BufferBindings)
                 {
                     cBuffer* buffer = (cBuffer*)binding.Resource;
-                    GSBindBuffer(binding.ViewType, buffer->GetType(), buffer->GetSlot(), (void*)buffer->GetInstance(), (void*)binding.View);
+                    GSBindBuffer(binding.ViewType, buffer->GetType(), binding.Slot, (void*)buffer->GetInstance(), (void*)binding.View);
                 }
 
                 for (auto& binding : stage->TextureBindings)
@@ -754,7 +752,7 @@ namespace xpe {
                 for (auto& binding : stage->BufferBindings)
                 {
                     cBuffer* buffer = (cBuffer*)binding.Resource;
-                    CSBindBuffer(binding.ViewType, buffer->GetType(), buffer->GetSlot(), (void*)buffer->GetInstance(), (void*)binding.View);
+                    CSBindBuffer(binding.ViewType, buffer->GetType(), binding.Slot, (void*)buffer->GetInstance(), (void*)binding.View);
                 }
 
                 for (auto& binding : stage->TextureBindings)
@@ -773,7 +771,8 @@ namespace xpe {
             {
                 for (auto& binding : stage->BufferBindings)
                 {
-                    VSUnbindBuffer(*((cBuffer*)binding.Resource));
+                    cBuffer* buffer = (cBuffer*)binding.Resource;
+                    VSBindBuffer(binding.ViewType, buffer->GetType(), binding.Slot, nullptr, nullptr);
                 }
 
                 for (auto& binding : stage->TextureBindings)
@@ -792,13 +791,14 @@ namespace xpe {
             {
                 for (auto& binding : stage->BufferBindings)
                 {
-                    PSUnbindBuffer(*((cBuffer*)binding.Resource));
+                    cBuffer* buffer = (cBuffer*)binding.Resource;
+                    PSBindBuffer(binding.ViewType, buffer->GetType(), binding.Slot, nullptr, nullptr);
                 }
 
                 for (auto& binding : stage->TextureBindings)
                 {
                     cTexture* texture = (cTexture*)binding.Resource;
-                    PSUnbindTexture(*texture);
+                    PSBindTexture(binding.ViewType, binding.Slot, nullptr, nullptr);
                 }
 
                 for (auto* sampler : stage->Samplers)
@@ -811,7 +811,8 @@ namespace xpe {
             {
                 for (auto& binding : stage->BufferBindings)
                 {
-                    GSUnbindBuffer(*((cBuffer*)binding.Resource));
+                    cBuffer* buffer = (cBuffer*)binding.Resource;
+                    GSBindBuffer(binding.ViewType, buffer->GetType(), binding.Slot, nullptr, nullptr);
                 }
 
                 for (auto& binding : stage->TextureBindings)
@@ -830,7 +831,8 @@ namespace xpe {
             {
                 for (auto& binding : stage->BufferBindings)
                 {
-                    CSUnbindBuffer(*((cBuffer*)binding.Resource));
+                    cBuffer* buffer = (cBuffer*)binding.Resource;
+                    CSBindBuffer(binding.ViewType, buffer->GetType(), binding.Slot, nullptr, nullptr);
                 }
 
                 for (auto& binding : stage->TextureBindings)
@@ -1166,7 +1168,7 @@ namespace xpe {
                 if (texture.GetViewType() == cTexture::eViewType::SRV)
                 {
                     D3D11_SHADER_RESOURCE_VIEW_DESC srv = {};
-                    srv.Format = DXGI_FORMAT_R32_FLOAT;
+                    srv.Format = texture.GetFormat() == eTextureFormat::R16_TYPELESS ? DXGI_FORMAT_R16_FLOAT : DXGI_FORMAT_R32_FLOAT;
                     srv.ViewDimension = texture.GetSampleCount() == 1 ? D3D11_SRV_DIMENSION_TEXTURE2D : D3D11_SRV_DIMENSION_TEXTURE2DMS;
                     srv.Texture2D.MostDetailedMip = texture.GetMostDetailedMip();
                     srv.Texture2D.MipLevels = 1;
@@ -1181,7 +1183,7 @@ namespace xpe {
                 else if (texture.GetViewType() == cTexture::eViewType::UAV)
                 {
                     D3D11_UNORDERED_ACCESS_VIEW_DESC uav = {};
-                    uav.Format = DXGI_FORMAT_R32_FLOAT;
+                    uav.Format = texture.GetFormat() == eTextureFormat::R16_TYPELESS ? DXGI_FORMAT_R16_FLOAT : DXGI_FORMAT_R32_FLOAT;
                     uav.ViewDimension = D3D11_UAV_DIMENSION_TEXTURE2D;
 
                     s_Device->CreateUnorderedAccessView(
@@ -1198,15 +1200,6 @@ namespace xpe {
                 if (viewType == cTexture::eViewType::SRV)
                 {
                     s_ImmContext->VSSetShaderResources(slot, 1, (ID3D11ShaderResourceView**)&viewInstance);
-                    LogDebugMessage();
-                }
-            }
-
-            void PSBindTexture(cTexture::eViewType viewType, u32 slot, void* viewInstance)
-            {
-                if (viewType == cTexture::eViewType::SRV)
-                {
-                    s_ImmContext->PSSetShaderResources(slot, 1, (ID3D11ShaderResourceView**)&viewInstance);
                     LogDebugMessage();
                 }
             }
@@ -1389,9 +1382,8 @@ namespace xpe {
                 {
                     D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
                     srvDesc.Format = DXGI_FORMAT_UNKNOWN;
-                    srvDesc.ViewDimension = D3D11_SRV_DIMENSION_BUFFEREX;
-                    srvDesc.BufferEx.FirstElement = 0;
-                    srvDesc.BufferEx.NumElements = buffer.GetNumElements();
+                    srvDesc.ViewDimension = D3D11_SRV_DIMENSION_BUFFER;
+                    srvDesc.Buffer.ElementWidth = buffer.GetNumElements();
 
                     s_Device->CreateShaderResourceView(
                         (ID3D11Resource*)buffer.GetInstance(),
@@ -1403,8 +1395,6 @@ namespace xpe {
                     D3D11_UNORDERED_ACCESS_VIEW_DESC uavDesc = {};
                     uavDesc.Format = DXGI_FORMAT_UNKNOWN;
                     uavDesc.ViewDimension = D3D11_UAV_DIMENSION_BUFFER;
-                    uavDesc.Buffer.Flags = 0;
-                    uavDesc.Buffer.FirstElement = 0;
                     uavDesc.Buffer.NumElements = buffer.GetNumElements();
 
                     s_Device->CreateUnorderedAccessView(
@@ -1566,14 +1556,16 @@ namespace xpe {
 
             void BindIndexBuffer(cBuffer &buffer)
             {
-                if (buffer.GetViewType() == cBuffer::eViewType::NONE) {
+                if (buffer.GetViewType() == cBuffer::eViewType::NONE)
+                {
                     // we can skip 16-bit index type
                     // it's very rare that we will bind index buffer with index range [0, 65536]
                     DXGI_FORMAT format = DXGI_FORMAT_R32_UINT;
                     s_ImmContext->IASetIndexBuffer((ID3D11Buffer*)buffer.GetInstance(), format, 0);
                     LogDebugMessage();
                 }
-                else if (buffer.GetViewType() == cBuffer::eViewType::SRV) {
+                else if (buffer.GetViewType() == cBuffer::eViewType::SRV) 
+                {
                     s_ImmContext->VSSetShaderResources(buffer.GetSlot(), 1, (ID3D11ShaderResourceView**)buffer.GetSRVInstancePtr());
                     LogDebugMessage();
                 }
@@ -1601,6 +1593,14 @@ namespace xpe {
                 }
             }
 
+            void PSBindTexture(const cResource::eViewType& viewType, u32 slot, void* instance, void* viewInstance)
+            {
+                if (viewType == cTexture::eViewType::SRV) {
+                    s_ImmContext->PSSetShaderResources(slot, 1, (ID3D11ShaderResourceView**)&viewInstance);
+                    LogDebugMessage();
+                }
+            }
+
             void GSBindBuffer(const cResource::eViewType& viewType, const cBuffer::eType& type, u32 slot, void* instance, void* viewInstance)
             {
                 if (type == cBuffer::eType::CONSTANT) {
@@ -1621,8 +1621,7 @@ namespace xpe {
                     s_ImmContext->CSSetShaderResources(slot, 1, (ID3D11ShaderResourceView**)&viewInstance);
                     LogDebugMessage();
                 } else if (viewType == cBuffer::eViewType::UAV) {
-                    UINT counts[1] = { 0 };
-                    s_ImmContext->CSSetUnorderedAccessViews(slot, 1, (ID3D11UnorderedAccessView**)&viewInstance, &counts[0]);
+                    s_ImmContext->CSSetUnorderedAccessViews(slot, 1, (ID3D11UnorderedAccessView**)&viewInstance, nullptr);
                     LogDebugMessage();
                 }
             }
@@ -1842,6 +1841,15 @@ namespace xpe {
                 LogDebugMessage();
 
                 s_ImmContext->Draw(4, 1);
+                LogDebugMessage();
+            }
+
+            void DrawQuads(usize count)
+            {
+                s_ImmContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+                LogDebugMessage();
+
+                s_ImmContext->DrawInstanced(4, count, 0, 0);
                 LogDebugMessage();
             }
 

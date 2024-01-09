@@ -60,17 +60,6 @@ namespace xpe {
             return Buffers::Camera->GetItem().Gamma;
         }
 
-        void cCameraManager::SetViewport(const sViewport &viewport)
-        {
-            Buffers::Camera->GetItem().Viewport = viewport;
-            Buffers::Camera->Flush();
-        }
-
-        sViewport* cCameraManager::GetViewport()
-        {
-            return &Buffers::Camera->GetItem().Viewport;
-        }
-
         cCamera* cCameraManager::GetCamera()
         {
             return s_Camera;

@@ -241,10 +241,10 @@ namespace xpe {
                 }
             }
 
-            void FreeRenderTarget(sRenderTarget& renderTarget)
+            void FreeRenderTarget(cRenderTarget& renderTarget)
             {
-                FreeRenderTargetColorViews(renderTarget.ColorViews);
-                FreeRenderTargetDepthView(&renderTarget.DepthStencilView);
+                FreeRenderTargetColorViews(renderTarget.GetColorViews());
+                FreeRenderTargetDepthView(renderTarget.GetDepthStencilViewPtr());
             }
 
             void BindRenderTarget(const vector<void*> &colorViews, void* depthView, sViewport* viewport)
@@ -264,8 +264,7 @@ namespace xpe {
 
             void VSUnbindBuffer(cBuffer &buffer)
             {
-                static void* nullInstance = nullptr;
-                VSBindBuffer(buffer.GetViewType(), buffer.GetType(), buffer.GetSlot(), nullInstance, nullInstance);
+                VSBindBuffer(buffer.GetViewType(), buffer.GetType(), buffer.GetSlot(), nullptr, nullptr);
             }
 
             void PSBindBuffer(const cResource::eViewType& viewType, cBuffer &buffer, void* view)
@@ -279,8 +278,7 @@ namespace xpe {
 
             void PSUnbindBuffer(cBuffer &buffer)
             {
-                static void* nullInstance = nullptr;
-                PSBindBuffer(buffer.GetViewType(), buffer.GetType(), buffer.GetSlot(), nullInstance, nullInstance);
+                PSBindBuffer(buffer.GetViewType(), buffer.GetType(), buffer.GetSlot(), nullptr, nullptr);
             }
 
             void GSBindBuffer(const cResource::eViewType& viewType, cBuffer &buffer)
@@ -294,8 +292,7 @@ namespace xpe {
 
             void GSUnbindBuffer(cBuffer &buffer)
             {
-                static void* nullInstance = nullptr;
-                GSBindBuffer(buffer.GetViewType(), buffer.GetType(), buffer.GetSlot(), nullInstance, nullInstance);
+                GSBindBuffer(buffer.GetViewType(), buffer.GetType(), buffer.GetSlot(), nullptr, nullptr);
             }
 
             void CSBindBuffer(const cResource::eViewType& viewType, cBuffer &buffer)
@@ -309,8 +306,7 @@ namespace xpe {
 
             void CSUnbindBuffer(cBuffer &buffer)
             {
-                static void* nullInstance = nullptr;
-                CSBindBuffer(buffer.GetViewType(), buffer.GetType(), buffer.GetSlot(), nullInstance, nullInstance);
+                CSBindBuffer(buffer.GetViewType(), buffer.GetType(), buffer.GetSlot(), nullptr, nullptr);
             }
 
             void VSBindTexture(const cTexture& texture)
@@ -335,26 +331,9 @@ namespace xpe {
                 VSBindTexture(texture.GetViewType(), texture.GetSlot(), nullInstance);
             }
 
-            void PSBindTexture(const cTexture& texture)
-            {
-                PSBindTexture(texture.GetViewType(), texture.GetSlot(), texture.GetSRVInstance());
-            }
-
-            void PSBindTexture(const cTexture &texture, u32 slot)
-            {
-                PSBindTexture(texture.GetViewType(), slot, texture.GetSRVInstance());
-            }
-
-            void PSBindTextureSlot(u32 slot)
-            {
-                void* nullInstance = nullptr;
-                PSBindTexture(cTexture::eViewType::SRV, slot, nullInstance);
-            }
-
             void PSUnbindTexture(const cTexture& texture)
             {
-                static void* nullInstance = nullptr;
-                PSBindTexture(texture.GetViewType(), texture.GetSlot(), nullInstance);
+                PSBindTexture(texture.GetViewType(), texture.GetSlot(), nullptr, nullptr);
             }
 
             void GSBindTexture(const cTexture& texture)

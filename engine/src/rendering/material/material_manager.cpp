@@ -45,16 +45,21 @@ namespace xpe {
 
         cTexture* cMaterialManager::InitTextureArray(const sMaterialFormat& materialFormat)
         {
-            cTexture* texture = new cTexture();
-            texture->SetInitializeData(true);
-            texture->SetType(cTexture::eType::TEXTURE_2D_ARRAY);
-            texture->SetUsage(cTexture::eUsage::DEFAULT);
-            texture->SetFormat(materialFormat.Format);
-            texture->SetWidth(materialFormat.Width);
-            texture->SetHeight(materialFormat.Height);
-            texture->SetSlot(materialFormat.Slot);
-            texture->SetChannelCount(cTexture::k_ChannelTable.at(materialFormat.Format));
-            texture->GetLayers().reserve(cHardwareManager::GPU.MaxTexture2dArray);
+            cTexture* texture = new cTexture(
+                cTexture::eType::TEXTURE_2D_ARRAY,
+                cResource::eViewType::SRV,
+                cTexture::eUsage::DEFAULT,
+                glm::vec3(materialFormat.Width, materialFormat.Height, 1),
+                cTexture::k_ChannelTable.at(materialFormat.Format),
+                materialFormat.Format,
+                1,
+                false,
+                materialFormat.Slot,
+                0,
+                false,
+                {}
+            );
+
             return texture;
         }
 

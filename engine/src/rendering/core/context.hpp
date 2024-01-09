@@ -18,10 +18,10 @@ namespace xpe {
 
             ENGINE_API void CreateSwapchain(int width, int height);
             ENGINE_API void FreeSwapchain();
-            ENGINE_API void ResizeSwapchain(sRenderTarget& presentTarget, int width, int height);
+            ENGINE_API void ResizeSwapchain(cRenderTarget& presentTarget, int width, int height);
             ENGINE_API void CreateSwapchainTargetView();
 
-            ENGINE_API void CreateRenderTarget(sRenderTarget& renderTarget);
+            ENGINE_API void CreateRenderTarget(cRenderTarget& renderTarget);
             ENGINE_API void BindRenderTarget(const vector<void*>& colorViews, void* depthView);
             ENGINE_API void BindRenderTarget(const vector<void*>& colorViews, void* depthView, sViewport* viewport);
             ENGINE_API void UnbindRenderTarget();
@@ -29,12 +29,12 @@ namespace xpe {
             ENGINE_API void ClearDepthTarget(void* depthView, const f32 depth);
             ENGINE_API void ClearStencilTarget(void* depthView, const u8 stencil);
             ENGINE_API void ClearDepthStencilTarget(void* depthView, const f32 depth, const u8 stencil);
-            ENGINE_API void FreeRenderTarget(sRenderTarget& renderTarget);
+            ENGINE_API void FreeRenderTarget(cRenderTarget& renderTarget);
             ENGINE_API void FreeRenderTargetColors(vector<cTexture*>& colors);
             ENGINE_API void FreeRenderTargetColorViews(vector<void*>& colorViews);
             ENGINE_API void FreeRenderTargetDepth(cTexture* depth);
             ENGINE_API void FreeRenderTargetDepthView(void** depthView);
-            ENGINE_API void ResizeRenderTarget(sRenderTarget& renderTarget, int width, int height);
+            ENGINE_API void ResizeRenderTarget(cRenderTarget& renderTarget, int width, int height);
 
             ENGINE_API void Present();
 
@@ -70,10 +70,7 @@ namespace xpe {
             ENGINE_API void VSBindTextureSlot(u32 slot);
             ENGINE_API void VSUnbindTexture(const cTexture& texture);
 
-            ENGINE_API void PSBindTexture(cTexture::eViewType viewType, u32 slot, void* viewInstance);
-            ENGINE_API void PSBindTexture(const cTexture& texture);
-            ENGINE_API void PSBindTexture(const cTexture& texture, u32 slot);
-            ENGINE_API void PSBindTextureSlot(u32 slot);
+            ENGINE_API void PSBindTexture(const cResource::eViewType& viewType, u32 slot, void* instance, void* viewInstance);
             ENGINE_API void PSUnbindTexture(const cTexture& texture);
 
             ENGINE_API void GSBindTexture(cTexture::eViewType viewType, u32 slot, void* viewInstance);
@@ -129,11 +126,9 @@ namespace xpe {
             ENGINE_API void BindIndexBuffer(cBuffer& buffer);
 
             ENGINE_API void VSBindBuffer(const cResource::eViewType& viewType, const cBuffer::eType& type, u32 slot, void* instance, void* viewInstance);
-            //ENGINE_API void VSBindBuffer(const cResource::eViewType& viewType, cBuffer& buffer, void* view);
             ENGINE_API void VSUnbindBuffer(cBuffer& buffer);
 
             ENGINE_API void PSBindBuffer(const cResource::eViewType& viewType, const cBuffer::eType& type, u32 slot, void* instance, void* viewInstance);
-            //ENGINE_API void PSBindBuffer(const cResource::eViewType& viewType, cBuffer& buffer, void* view);
             ENGINE_API void PSUnbindBuffer(cBuffer& buffer);
 
             ENGINE_API void GSBindBuffer(const cResource::eViewType& viewType, const cBuffer::eType& type, u32 slot, void* instance, void* viewInstance);
@@ -178,6 +173,7 @@ namespace xpe {
             ENGINE_API void DrawVertexed(usize vertexCount, usize instanceCount = 1, usize vertexOffset = 0, usize instanceOffset = 0);
 
             ENGINE_API void DrawQuad();
+            ENGINE_API void DrawQuads(usize count);
 
             ENGINE_API void Dispatch(const glm::ivec3& threadGroupCount);
 

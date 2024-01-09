@@ -1,7 +1,7 @@
 #pragma once
 
 #include <rendering/camera_manager.hpp>
-#include <rendering/shadow_manager.hpp>
+#include <rendering/light_manager.hpp>
 #include <rendering/skybox_manager.hpp>
 
 #include <ecs/components.hpp>
@@ -73,8 +73,6 @@ namespace xpe
             cScene* m_Scene = nullptr;
 
             cCanvas* m_Canvas = nullptr;
-
-            sViewport m_Viewport;
 
             cRenderSystem* m_RenderSystem = nullptr;
             cAnimSystem* m_AnimSystem = nullptr;

@@ -11,6 +11,8 @@ namespace xpe {
                 glyph.second.BitmapData = nullptr;
             }
             AlphaBet.clear();
+
+            delete Atlas;
         }
 
     }

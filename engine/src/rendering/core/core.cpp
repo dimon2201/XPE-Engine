@@ -92,9 +92,39 @@ namespace xpe {
                 { eTextureFormat::SRGBA8, 4 },
         };
 
-        cTexture::cTexture()
+        cTexture::cTexture(
+            eType type,
+            eViewType viewType,
+            eUsage usage,
+            const glm::vec3& size,
+            usize channelCount,
+            eTextureFormat format,
+            usize sampleCount,
+            dual enableRenderTarget,
+            u32 slot,
+            u32 mostDetailedMip,
+            dual initializeData,
+            const vector<sTextureLayer>& layers
+        )
         {
-            m_ViewType = eViewType::SRV;
+            m_Type = type;
+            m_ViewType = viewType;
+            m_Usage = usage;
+            m_Width = size.x;
+            m_Height = size.y;
+            m_Depth = size.z;
+            m_Channels = channelCount;
+            m_Format = format;
+            m_SampleCount = sampleCount;
+            m_EnableRenderTarget = enableRenderTarget;
+            m_Slot = slot;
+            m_MostDetailedMip = mostDetailedMip;
+            m_InitializeData = initializeData;
+            for (auto& layer : layers) {
+                m_Layers.emplace_back(layer);
+            }
+
+            context::CreateTexture(*this);
         }
 
         cTexture::~cTexture()
@@ -104,16 +134,7 @@ namespace xpe {
                 layer.Free();
             }
             GetLayers().clear();
-            Free();
-        }
 
-        void cTexture::Init()
-        {
-            context::CreateTexture(*this);
-        }
-
-        void cTexture::Free()
-        {
             context::FreeTexture(*this);
             RemoveWindowFrameResized();
         }
@@ -320,6 +341,10 @@ namespace xpe {
                 GenerateMipsFloat(width, height);
                 break;
 
+            case eTextureFormat::R16_TYPELESS:
+                GenerateMipsFloat(width, height);
+                break;
+
             case eTextureFormat::RG8:
                 GenerateMipsU8(width, height);
                 break;
@@ -493,6 +518,55 @@ namespace xpe {
                 channels
             );
             return output;
+        }
+
+        sAtlas2DTexture cAtlas2D::AddTexture(const glm::vec2& size)
+        {
+            for (s32 yy = 0; yy < m_Height; yy++)
+            {
+                for (s32 xx = 0; xx < m_Width; xx++)
+                {
+                    dual intersection = false;
+                    glm::vec2 newBottomLeft = glm::vec2(xx, yy);
+                    glm::vec2 newTopRight = newBottomLeft + size;
+
+                    for (auto& texture : m_Textures)
+                    {
+                        glm::vec2 texBottomLeft = GetPositionFromIndex(texture.BottomLeft);
+                        glm::vec2 texTopRight = GetPositionFromIndex(texture.TopRight);
+
+                        if ((newBottomLeft.x < texTopRight.x &&
+                            newTopRight.x > texBottomLeft.x &&
+                            newBottomLeft.y < texTopRight.y &&
+                            newTopRight.y > texBottomLeft.y) ||
+                            (newTopRight.x > m_Width) || (newTopRight.y > m_Height))
+                        {
+                            intersection = true;
+                            break;
+                        }
+                    }
+
+                    if (intersection == false)
+                    {
+                        m_Textures.emplace_back(
+                            GetIndexFromPosition(newBottomLeft), GetIndexFromPosition(newTopRight)
+                        );
+
+                        return m_Textures.back();
+                    }
+                }
+            }
+
+            return { 0, 0 };
+        }
+
+        void cAtlas2D::RemoveTexture(const sAtlas2DTexture& texture)
+        {
+            for (auto it = m_Textures.begin(); it < m_Textures.end(); it++) {
+                if (it->BottomLeft == texture.BottomLeft && it->TopRight == texture.TopRight) {
+                    m_Textures.erase(it);
+                }
+            }
         }
 
         void sAtlas::AddLayer()
