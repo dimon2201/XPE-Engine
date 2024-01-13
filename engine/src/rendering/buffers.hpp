@@ -262,6 +262,8 @@ namespace xpe {
             u32 MaterialIndex = 0;
             u32 SkeletonIndex = 0;
             u32 LightIndex    = 0;
+            u32 ShadowCasterCount = 0;
+            glm::vec4 ShadowCasters[5];
         };
 
         struct ENGINE_API cInstanceBuffer : public cStructuredBuffer<sRenderInstance>
@@ -287,7 +289,7 @@ namespace xpe {
             glm::vec3 Color = glm::vec3(0.0f);
             glm::mat4 View = glm::mat4(1.0f);
             glm::mat4 Projection = glm::mat4(1.0f);
-            glm::mat4 ViewProjection;
+            glm::vec4 ShadowCaster = glm::vec4(0.0f);
         };
 
         struct ENGINE_API cLightBuffer : public cStructuredBuffer<sLightData>

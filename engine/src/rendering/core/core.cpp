@@ -532,8 +532,8 @@ namespace xpe {
 
                     for (auto& texture : m_Textures)
                     {
-                        glm::vec2 texBottomLeft = GetPositionFromIndex(texture.BottomLeft);
-                        glm::vec2 texTopRight = GetPositionFromIndex(texture.TopRight);
+                        glm::vec2 texBottomLeft = glm::vec2(texture.Offsets.x, texture.Offsets.y);
+                        glm::vec2 texTopRight = glm::vec2(texture.Offsets.z, texture.Offsets.w);
 
                         if ((newBottomLeft.x < texTopRight.x &&
                             newTopRight.x > texBottomLeft.x &&
@@ -549,21 +549,21 @@ namespace xpe {
                     if (intersection == false)
                     {
                         m_Textures.emplace_back(
-                            GetIndexFromPosition(newBottomLeft), GetIndexFromPosition(newTopRight)
+                            glm::vec4(newBottomLeft.x, newBottomLeft.y, newTopRight.x, newTopRight.y)
                         );
 
-                        return m_Textures.back();
+                        return m_Textures[m_Textures.size() - 1];
                     }
                 }
             }
 
-            return { 0, 0 };
+            return { glm::vec4(0.0f)};
         }
 
         void cAtlas2D::RemoveTexture(const sAtlas2DTexture& texture)
         {
             for (auto it = m_Textures.begin(); it < m_Textures.end(); it++) {
-                if (it->BottomLeft == texture.BottomLeft && it->TopRight == texture.TopRight) {
+                if (it->Offsets == texture.Offsets) {
                     m_Textures.erase(it);
                 }
             }

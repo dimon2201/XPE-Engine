@@ -544,11 +544,9 @@ namespace xpe {
         struct ENGINE_API sAtlas2DTexture
         {
             sAtlas2DTexture() = default;
-            sAtlas2DTexture(u32 bottomLeft, u32 topRight) : BottomLeft(bottomLeft), TopRight(topRight)
-            {}
+            sAtlas2DTexture(const glm::vec4& offsets) : Offsets(offsets) {}
 
-            u32 BottomLeft = 0;
-            u32 TopRight = 0;
+            glm::vec4 Offsets;
         };
 
         struct ENGINE_API cAtlas2D : public cTexture
@@ -556,6 +554,8 @@ namespace xpe {
 
         public:
             cAtlas2D(
+                cTexture::eType type,
+                cTexture::eUsage usage,
                 const glm::vec2& size,
                 usize channelCount,
                 eTextureFormat format,
@@ -565,9 +565,9 @@ namespace xpe {
                 u32 mostDetailedMip,
                 dual initializeData
             ) : cTexture(
-                cTexture::eType::TEXTURE_2D,
+                type,
                 cResource::eViewType::SRV,
-                cTexture::eUsage::DYNAMIC,
+                usage,
                 glm::vec3(size.x, size.y, 1.0f),
                 channelCount,
                 format,
@@ -579,14 +579,6 @@ namespace xpe {
                 {}
             ) {}
             ~cAtlas2D() {}
-
-            inline glm::vec2 GetPositionFromIndex(s32 idx) {
-                return glm::vec2(idx % m_Width, (idx / m_Width) % m_Height);
-            }
-
-            inline u32 GetIndexFromPosition(const glm::vec2& position) {
-                return position.x + (position.y * m_Width);
-            }
 
             sAtlas2DTexture AddTexture(const glm::vec2& size);
             void RemoveTexture(const sAtlas2DTexture& texture);

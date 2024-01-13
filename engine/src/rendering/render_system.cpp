@@ -40,7 +40,7 @@ namespace xpe {
             cMaterialManager::Init();
             cSkeletonManager::Init();
             cSkyboxManager::Init();
-            cLightManager::Init(1024, glm::vec2(256));
+            cLightManager::Init(4, glm::vec2(4096));
             cWidgetManager::Init();
         }
 
@@ -338,82 +338,7 @@ namespace xpe {
         void cRenderSystem::Update(cScene* scene, const cTime& dt)
         {
             cSkeletonManager::Flush();
-            UpdateLight(scene);
             UpdateShaders(scene);
-        }
-
-        void cRenderSystem::UpdateLight(cScene* scene)
-        {
-            {
-                usize index = 0;
-                auto components = scene->GetComponents<CDirectionalLight>();
-                for (auto [entity, light] : components.each())
-                {
-                    auto transform = scene->GetComponent<CTransform>(entity);
-                    light.View = glm::lookAt(transform.Position, transform.Position + light.Direction, glm::vec3(0.0f, 1.0f, 0.0f));
-                    light.Projection = glm::ortho(
-                        -10.0f, 10.0f,
-                        -10.0f, 10.0f,
-                        0.01f,
-                        100.0f
-                    );
-
-                    sLightData lightData;
-                    lightData.Position = transform.Position;
-                    lightData.Color = light.Color;
-                    lightData.View = light.View;
-                    lightData.Projection = light.Projection;
-                    
-                    Buffers::DirectLight->GetList()[index] = lightData;
-
-                    index += 1;
-                }
-
-                Buffers::DirectLight->Flush();
-            }
-
-            {
-                usize index = 0;
-                auto components = scene->GetComponents<CSpotLight>();
-                for (auto [entity, light] : components.each())
-                {
-                    sSpotLightData lightData;
-                    lightData.Position = light.View.Position;
-                    lightData.Color = light.Color;
-                    lightData.Direction = light.View.Front;
-                    lightData.Outer = light.Outer;
-                    lightData.Cutoff = light.Cutoff;
-                    lightData.ViewProjection = cMathManager::UpdateLightMatrix(light.Projection, light.View);
-                    lightData.Near = light.Projection.Near;
-                    lightData.Far = light.Projection.Far;
-
-                    Buffers::SpotLight->GetList()[index] = lightData;
-
-                    index += 1;
-                }
-
-                Buffers::SpotLight->Flush();
-            }
-
-            {
-                usize index = 0;
-                auto components = scene->GetComponents<CPointLight>();
-                for (auto [entity, light] : components.each())
-                {
-                    sPointLightData lightData;
-                    lightData.Position = light.Position;
-                    lightData.Color = light.Color;
-                    lightData.Constant = light.Constant;
-                    lightData.Linear = light.Linear;
-                    lightData.Quadratic = light.Quadratic;
-
-                    Buffers::PointLight->GetList()[index] = lightData;
-
-                    index += 1;
-                }
-
-                Buffers::PointLight->Flush();
-            }
         }
 
         void cRenderSystem::UpdateShaders(cScene* scene)

@@ -30,7 +30,6 @@ namespace xpe {
             void FreeBuffers();
             void FreeRenderTargets();
 
-            void UpdateLight(cScene* scene);
             void UpdateShaders(cScene* scene);
         };
 

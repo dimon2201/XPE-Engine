@@ -17,7 +17,7 @@ namespace xpe {
             ~cInstancingShader() {}
 
         protected:
-            void DrawInstanced(cScene* scene, const sGeometryInfo& geometryInfo);
+            void DrawInstanced(cScene* scene, const sGeometryInfo& geometryInfo, s32 lightIndex);
 
             cInstanceBuffer* m_InstanceBuffer;
 

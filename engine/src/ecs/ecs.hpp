@@ -175,7 +175,6 @@ namespace xpe
             void SetVisible(bool visible);
             void SetTransparent(bool transparent);
             void SetOpaque(bool opaque);
-            void SetShadow(bool shadow);
 
             template<typename... Args>
             void Move(Args&&... args);
@@ -196,7 +195,6 @@ namespace xpe
             bool IsVisible();
             bool IsTransparent();
             bool IsOpaque();
-            bool HasShadow();
 
             void UpdateXmlChildren();
 

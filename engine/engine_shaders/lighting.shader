@@ -2,7 +2,9 @@ struct DirectLight
 {
     float3 Position;
     float3 Color;
-    float4x4 ViewProjection;
+    float4x4 View;
+    float4x4 Projection;
+    float4 ShadowCaster;
 };
 
 StructuredBuffer<DirectLight> DirectLights : K_SLOT_DIRECT_LIGHTS;

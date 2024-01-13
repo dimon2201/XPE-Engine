@@ -1,0 +1,40 @@
+#include ../types.shader
+#include ../particle.shader
+
+[numthreads(64, 1, 1)]
+void cs_main(uint3 groupID : SV_GroupID, uint3 groupThreadID : SV_GroupThreadID)
+{
+	int emitterIndex = groupID.x;
+	int particleIndex = groupThreadID.x;
+	uint bufferOffset = 0;
+
+	int prevEmitterIndex = emitterIndex - 1;
+	while (prevEmitterIndex >= 0)
+	{
+		bufferOffset += ParticleEmittersSRV[emitterIndex].SpawnCount;
+		prevEmitterIndex -= 1;
+	}
+
+	// Calculate count of work per thread
+	uint spawnCount = ParticleEmittersSRV[emitterIndex].SpawnCount;
+	uint workPerThread = (uint)(ceil((float)spawnCount / 64.0));
+	if ((particleIndex * workPerThread) < spawnCount)
+	{
+		// Do thread work n times
+		for (int i = 0; i < workPerThread; i++)
+		{
+			uint offset = bufferOffset + (particleIndex * workPerThread) + i;		
+
+			// Write particle to buffer
+			float angle = radians((float)particleIndex * 25.0);
+			float3 velocity = normalize(float3(cos(angle), 1.0, sin(angle)));
+			ParticlesUAV[offset].WorldPosition = ParticleEmittersSRV[emitterIndex].WorldPosition;
+			ParticlesUAV[offset].Velocity = velocity;
+			if (ParticlesUAV[offset].Lifetime > 1.0) {
+				ParticlesUAV[offset].Lifetime = 0.0;
+			} else {
+				ParticlesUAV[offset].Lifetime += 0.009;
+			}
+		}
+	}
+}

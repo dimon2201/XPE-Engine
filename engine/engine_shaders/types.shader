@@ -38,6 +38,12 @@
 #define K_SLOT_SHADOW_SAMPLER          register(s1)
 #define K_SLOT_SHADOW_PCF              register(b0)
 
+// particle
+#define K_SLOT_BUFFER_PARTICLE_UAV   			register(u0)
+#define K_SLOT_BUFFER_PARTICLE_SRV   			register(t11)
+#define K_SLOT_BUFFER_PARTICLE_EMITTER			register(t12)
+#define K_SLOT_BUFFER_PARTICLE_PASS_INFO		register(u1)
+
 // ---------- Constant Buffer --------------- //
 
 // ---------- Vertex Stage --------------- //

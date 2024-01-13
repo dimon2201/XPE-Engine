@@ -16,15 +16,17 @@ struct VSIn
 
 struct VSOut
 {
-    float3 positionWorld : XPE_POSITION_WORLD;
-    float zView          : XPE_Z_VIEW;
-    float2 uv            : XPE_UV2;
-    float3 normal        : XPE_NORMAL_WORLD;
-    float4 positionClip  : SV_POSITION;
-    float3 viewPosition  : XPE_VIEW_POSITION;
-    uint materialIndex   : XPE_MATERIAL_INDEX;
-    float3x3 tbn         : XPE_TBN;
-    float gamma          : XPE_GAMMA;
+    float3 positionWorld    : XPE_POSITION_WORLD;
+    float zView             : XPE_Z_VIEW;
+    float2 uv               : XPE_UV2;
+    float3 normal           : XPE_NORMAL_WORLD;
+    float4 positionClip     : SV_POSITION;
+    float3 viewPosition     : XPE_VIEW_POSITION;
+    uint materialIndex      : XPE_MATERIAL_INDEX;
+    float3x3 tbn            : XPE_TBN;
+    float gamma             : XPE_GAMMA;
+    uint shadowCasterCount  : XPE_SHADOW_CASTER_COUNT;
+    float4 shadowCasters[5] : XPE_SHADOW_CASTERS;
 };
 
 VSOut vs_main(VSIn vsIn)
@@ -69,15 +71,19 @@ VSOut vs_main(VSIn vsIn)
     tangentWorld = normalize(tangentWorld);
     float3 bitangentWorld = -cross(normalWorld, tangentWorld);
 
-    vsOut.positionWorld = positionWorld.xyz;
-    vsOut.zView         = positionView.z;
-    vsOut.uv            = vsIn.uv;
-    vsOut.normal        = normalWorld.xyz;
-    vsOut.positionClip  = positionClip;
-    vsOut.viewPosition  = CameraPosition;
-    vsOut.materialIndex = instance.MaterialIndex;
-    vsOut.tbn           = float3x3(tangentWorld, bitangentWorld, normalWorld);
-    vsOut.gamma         = ViewportGamma;
+    vsOut.positionWorld     = positionWorld.xyz;
+    vsOut.zView             = positionView.z;
+    vsOut.uv                = vsIn.uv;
+    vsOut.normal            = normalWorld.xyz;
+    vsOut.positionClip      = positionClip;
+    vsOut.viewPosition      = CameraPosition;
+    vsOut.materialIndex     = instance.MaterialIndex;
+    vsOut.tbn               = float3x3(tangentWorld, bitangentWorld, normalWorld);
+    vsOut.gamma             = ViewportGamma;
+    vsOut.shadowCasterCount = instance.ShadowCasterCount;
+    for (int i = 0; i < instance.ShadowCasterCount; i++) {
+        vsOut.shadowCasters[i] = instance.ShadowCasters[i];
+    }
 
     return vsOut;
 }

@@ -5,6 +5,7 @@
 #include <rendering/buffers.hpp>
 #include <rendering/font/font.hpp>
 #include <rendering/widget_manager.hpp>
+#include <rendering/light_manager.hpp>
 #include <particle/particle_manager.hpp>
 
 #include <anim/skeleton.hpp>
@@ -58,9 +59,6 @@ namespace xpe
 
         struct ENGINE_API CTransparent { bool Transparent = true; };
         JSON(CTransparent, Transparent)
-
-        struct ENGINE_API CHasShadow { bool HasShadow = true; };
-        JSON(CHasShadow, HasShadow)
 
         struct ENGINE_API CCamera : cJson
         {
@@ -135,35 +133,46 @@ namespace xpe
 
         struct ENGINE_API CDirectionalLight : cJson
         {
-            CDirectionalLight(const glm::vec3& direction, const glm::vec3& color)
-            {
-                Direction = direction;
-                Color = color;
-                View = glm::mat4(1.0f);
-                Projection = glm::mat4(1.0f);
-                //Projection.Left = -20.0f;
-                //Projection.Right = 20.0f;
-                //Projection.Bottom = -20.0f;
-                //Projection.Top = 20.0f;
-                //Projection.Near = 0;
-                //Projection.Far = 100.0f;
-                //View.Front = { 0, 0, 0 };
-                //View.Up = { 0, 1, 0 };
-            }
+            CDirectionalLight(s32 lightIndex, const glm::vec3& direction, const glm::vec3& color)
+                : LightIndex(lightIndex), Direction(glm::normalize(direction)), Color(color)
+            {}
 
+            s32 LightIndex = 0;
             glm::vec3 Direction = glm::vec3(0.0f);
-            glm::vec3 Color = glm::vec3(1.0f);
+            glm::vec3 Color = glm::vec3(0.0f);
             glm::mat4 View = glm::mat4(1.0f);
             glm::mat4 Projection = glm::mat4(1.0f);
-            vector<EntityID> Entities;
 
             JSON_CLASS(
                 CDirectionalLight,
                 Color,
                 View,
-                Projection,
-                Entities
+                Projection
             )
+        };
+
+        struct ENGINE_API CShadowCaster : sShadowCaster
+        {
+            CShadowCaster(const vector<EntityID>& entities, const sShadowCaster& caster)
+            {
+                AtlasTexture.Offsets = caster.AtlasTexture.Offsets;
+                Entities = entities;
+            }
+
+            vector<EntityID> Entities;
+        };
+
+        struct ENGINE_API CShadowReceiver
+        {
+            CShadowReceiver() = default;
+            CShadowReceiver(const vector<CShadowCaster>& casters)
+            {
+                for (auto& caster : casters) {
+                    ShadowCasterTextures.emplace_back(caster.AtlasTexture);
+                }
+            }
+
+            vector<sAtlas2DTexture> ShadowCasterTextures;
         };
 
         struct ENGINE_API CPointLight : cJson, sPointLightData

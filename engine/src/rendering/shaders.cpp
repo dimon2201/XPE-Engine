@@ -18,7 +18,7 @@ namespace xpe {
             m_InstanceBuffer = new cInstanceBuffer(1024);
         }
 
-        void cInstancingShader::DrawInstanced(cScene* scene, const sGeometryInfo& geometryInfo)
+        void cInstancingShader::DrawInstanced(cScene* scene, const sGeometryInfo& geometryInfo, s32 lightIndex)
         {
             usize instanceCount = 0;
             usize entityCount = geometryInfo.Entities.size();
@@ -32,6 +32,18 @@ namespace xpe {
                 sRenderInstance instance;
                 instance.ModelMatrix = cMathManager::UpdateModelMatrix(scene->GetComponent<CTransform>(entity));
                 instance.NormalMatrix = cMathManager::UpdateNormalMatrix(instance.ModelMatrix);
+                instance.LightIndex = lightIndex;
+
+                if (scene->HasAnyComponent<CShadowReceiver>(entity))
+                {
+                    auto& receiver = scene->GetComponent<CShadowReceiver>(entity);
+                    instance.ShadowCasterCount = receiver.ShadowCasterTextures.size();
+
+                    for (s32 i = 0; i < receiver.ShadowCasterTextures.size(); i++)
+                    {
+                        instance.ShadowCasters[i] = receiver.ShadowCasterTextures[i].Offsets;
+                    }
+                }
 
                 m_InstanceBuffer->GetList()[i] = instance;
 
@@ -90,14 +102,14 @@ namespace xpe {
             {
                 auto components = scene->GetComponents<COpaque, CGeometryInfo>();
                 for (auto [entity, opaque, geometryInfo]: components.each()) {
-                    DrawInstanced(scene, geometryInfo);
+                    DrawInstanced(scene, geometryInfo, 0);
                 }
             }
             // Draw skeletons
             {
                 auto components = scene->GetComponents<COpaque, CSkeletonInfo>();
                 for (auto [entity, opaque, skeletonInfo]: components.each()) {
-                    DrawInstanced(scene, skeletonInfo.GeometryInfo);
+                    DrawInstanced(scene, skeletonInfo.GeometryInfo, 0);
                 }
             }
         }
@@ -139,7 +151,7 @@ namespace xpe {
             {
                 auto components = scene->GetComponents<CTransparent, CGeometryInfo>();
                 for (auto [entity, transparent, geometryInfo]: components.each()) {
-                    DrawInstanced(scene, geometryInfo);
+                    DrawInstanced(scene, geometryInfo, 0);
                 }
             }
             // Draw skeletons
@@ -147,7 +159,7 @@ namespace xpe {
                 auto components = scene->GetComponents<CTransparent, CSkeletonInfo>();
                 for (auto [entity, transparent, skeletonInfo]: components.each()) {
                     auto& skeletonInfoCaptured = skeletonInfo;
-                    DrawInstanced(scene, skeletonInfo.GeometryInfo);
+                    DrawInstanced(scene, skeletonInfo.GeometryInfo, 0);
                 }
             }
         }
@@ -176,13 +188,27 @@ namespace xpe {
 
         void cDirectionalShadowShader::Draw(cScene* scene)
         {
-            auto lights = scene->GetComponents<CDirectionalLight>();
-            for (auto [lightEntity, light] : lights.each())
+            context::UnbindViewport();
+
+            auto casters = scene->GetComponents<CShadowCaster>();
+            for (auto [casterEntity, caster] : casters.each())
             {
-                for (auto entityID : light.Entities)
+                for (auto entityID : caster.Entities)
                 {
+                    Viewports::Shadow->Left = caster.AtlasTexture.Offsets.x;
+                    Viewports::Shadow->Top = caster.AtlasTexture.Offsets.y;
+                    Viewports::Shadow->Width = caster.AtlasTexture.Offsets.z - caster.AtlasTexture.Offsets.x;
+                    Viewports::Shadow->Height = caster.AtlasTexture.Offsets.w - caster.AtlasTexture.Offsets.y;
+
+                    context::BindViewport(Viewports::Shadow);
+
                     CGeometryInfo& geometryInfo = scene->GetComponent<CGeometryInfo>(entityID);
-                    DrawInstanced(scene, geometryInfo);
+
+                    if (scene->HasAnyComponent<CDirectionalLight>(casterEntity))
+                    {
+                        auto& light = scene->GetComponent<CDirectionalLight>(casterEntity);
+                        DrawInstanced(scene, geometryInfo, light.LightIndex);
+                    }
                 }
             }
         }
