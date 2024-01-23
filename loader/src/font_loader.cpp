@@ -114,21 +114,27 @@ namespace xpe {
                         }
                     }
 
-                    font->Atlas.Type = render::sTexture::eType::TEXTURE_2D;
-                    font->Atlas.Width = textureWidth;
-                    font->Atlas.Height = textureHeight;
-                    font->Atlas.Depth = 1;
-                    font->Atlas.Channels = 1;
-                    font->Atlas.Format = eTextureFormat::R8;
-                    font->Atlas.Slot = 0;
-                    font->Atlas.MostDetailedMip = 0;
-                    font->Atlas.Layers.push_back({});
-                    font->Atlas.Layers[0].Width = font->Atlas.Width;
-                    font->Atlas.Layers[0].Height = font->Atlas.Height;
-                    font->Atlas.Layers[0].Format = font->Atlas.Format;
-                    font->Atlas.Layers[0].Pixels = main_alloc(font->Atlas.Width * font->Atlas.Height);
-                    memset(font->Atlas.Layers[0].Pixels, 0, font->Atlas.Width * font->Atlas.Height);
-                    const sTextureLayer& layer = font->Atlas.Layers[0];
+                    sTextureLayer layer;
+                    layer.Width = textureWidth;
+                    layer.Height = textureHeight;
+                    layer.Format = eTextureFormat::R8;
+                    layer.Pixels = main_alloc(textureWidth * textureHeight);
+                    memset(layer.Pixels, 0, textureWidth * textureHeight);
+
+                    font->Atlas = new cTexture(
+                        cTexture::eType::TEXTURE_2D,
+                        cResource::eViewType::SRV,
+                        cTexture::eUsage::DYNAMIC,
+                        glm::vec3(textureWidth, textureHeight, 1),
+                        1,
+                        eTextureFormat::R8,
+                        1,
+                        false,
+                        0,
+                        0,
+                        true,
+                        { layer }
+                    );
 
                     // Fill atlas texture with glyphs
                     xOffset = 0;
@@ -170,7 +176,6 @@ namespace xpe {
                         }
                     }
 
-                    font->Atlas.Init();
                     s_FontFaces->insert({ filepath, fontFace });
                     s_Fonts->insert({ filepath, font });
                 }

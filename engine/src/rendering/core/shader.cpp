@@ -6,13 +6,13 @@ namespace xpe {
     namespace render {
 
         unordered_map<string, sShaderStage>* cShaderManager::s_Stages = nullptr;
-        cShader* cShaderManager::s_ComputeShaders = nullptr;
-        cShader* cShaderManager::s_PrepassShaders = nullptr;
-        cShader* cShaderManager::s_OpaqueShaders = nullptr;
-        cShader* cShaderManager::s_TransparentShaders = nullptr;
-        cShader* cShaderManager::s_PostfxShaders = nullptr;
-        cShader* cShaderManager::s_UiShaders = nullptr;
-        cShader* cShaderManager::s_FinalShaders = nullptr;
+        vector<cShader*>* cShaderManager::s_ComputeShaders;
+        vector<cShader*>* cShaderManager::s_PrepassShaders;
+        vector<cShader*>* cShaderManager::s_OpaqueShaders;
+        vector<cShader*>* cShaderManager::s_TransparentShaders;
+        vector<cShader*>* cShaderManager::s_PostfxShaders;
+        vector<cShader*>* cShaderManager::s_UiShaders;
+        vector<cShader*>* cShaderManager::s_FinalShaders;
 
         void cDefaultShader::Init()
         {
@@ -22,11 +22,11 @@ namespace xpe {
                     InitPrepass();
                     break;
 
-                case eCategory::OPAQUE:
+                case eCategory::OPAQUE_GEOMETRY:
                     InitOpaque();
                     break;
 
-                case eCategory::TRANSPARENT:
+                case eCategory::TRANSPARENT_GEOMETRY:
                     InitTransparent();
                     break;
 
@@ -46,7 +46,8 @@ namespace xpe {
                     break;
             }
 
-            if (Category != eCategory::NONE) {
+            if (Category != eCategory::NONE)
+            {
                 context::CreateRasterizer(Rasterizer);
                 context::CreateDepthStencilMode(DepthStencilMode);
                 context::CreateBlendMode(BlendMode);
@@ -77,13 +78,6 @@ namespace xpe {
         void cDefaultShader::InitPrepass()
         {
             DepthStencilMode.DepthWriteMask = eDepthWriteMask::ALL;
-
-            sBlendTarget target;
-            target.Enable = false;
-            BlendMode.Targets.push_back(target);
-            BlendMode.Targets.push_back(target);
-            BlendMode.Targets.push_back(target);
-            BlendMode.IndependentBlendEnable = true;
 
             Rasterizer.CullMode = eCullMode::NONE;
         }
@@ -163,7 +157,7 @@ namespace xpe {
         }
 
         cDefaultShader::cDefaultShader(cShader::eCategory category, const string& name)
-        : cShader(category, name)
+            : cShader(category, name)
         {
         }
 
@@ -183,19 +177,25 @@ namespace xpe {
             context::BindInputLayout(InputLayout);
 
             if (VertexStage != nullptr) {
-                context::BindVSStage(*VertexStage);
+                context::BindVSStage(VertexStage);
             }
 
             if (PixelStage != nullptr) {
-                context::BindPSStage(*PixelStage);
+                context::BindPSStage(PixelStage);
+            } else {
+                context::BindPSStage(nullptr);
             }
 
             if (GeometryStage != nullptr) {
-                context::BindGSStage(*GeometryStage);
+                context::BindGSStage(GeometryStage);
             }
 
             if (RenderTarget != nullptr) {
                 RenderTarget->Bind();
+            }
+            
+            if (Viewport != nullptr) {
+                context::BindViewport(Viewport);
             }
 
             context::BindRasterizer(Rasterizer.State);
@@ -206,15 +206,15 @@ namespace xpe {
         void cDefaultShader::Unbind()
         {
             if (VertexStage != nullptr) {
-                context::UnbindVSStage(*VertexStage);
+                context::UnbindVSStage(VertexStage);
             }
 
             if (PixelStage != nullptr) {
-                context::UnbindPSStage(*PixelStage);
+                context::UnbindPSStage(PixelStage);
             }
 
             if (GeometryStage != nullptr) {
-                context::UnbindGSStage(*GeometryStage);
+                context::UnbindGSStage(GeometryStage);
             }
 
             if (RenderTarget != nullptr) {
@@ -225,20 +225,15 @@ namespace xpe {
         void cComputeShader::Bind()
         {
             if (ComputeStage != nullptr) {
-                context::BindCSStage(*ComputeStage);
+                context::BindCSStage(ComputeStage);
             }
         }
 
         void cComputeShader::Unbind()
         {
             if (ComputeStage != nullptr) {
-                context::UnbindCSStage(*ComputeStage);
+                context::UnbindCSStage(ComputeStage);
             }
-        }
-
-        void cComputeShader::Draw(ecs::cScene *scene)
-        {
-            context::Dispatch(m_ThreadGroups);
         }
 
         void cShaderManager::Init()
@@ -254,6 +249,33 @@ namespace xpe {
             cFileManager::CreateDir("generated/engine_shaders/passes/msaa");
             cFileManager::CreateDir("generated/engine_shaders/text");
 
+            s_ComputeShaders = new vector<cShader*>();
+            s_PrepassShaders = new vector<cShader*>();
+            s_OpaqueShaders = new vector<cShader*>();
+            s_TransparentShaders = new vector<cShader*>();
+            s_PostfxShaders = new vector<cShader*>();
+            s_UiShaders = new vector<cShader*>();
+            s_FinalShaders = new vector<cShader*>();
+
+            s_ComputeShaders->resize(s_MaxShaderCount);
+            s_PrepassShaders->resize(s_MaxShaderCount);
+            s_OpaqueShaders->resize(s_MaxShaderCount);
+            s_TransparentShaders->resize(s_MaxShaderCount);
+            s_PostfxShaders->resize(s_MaxShaderCount);
+            s_UiShaders->resize(s_MaxShaderCount);
+            s_FinalShaders->resize(s_MaxShaderCount);
+
+            for (usize i = 0; i < s_MaxShaderCount; i++)
+            {
+                (*s_ComputeShaders)[i] = nullptr;
+                (*s_PrepassShaders)[i] = nullptr;
+                (*s_OpaqueShaders)[i] = nullptr;
+                (*s_TransparentShaders)[i] = nullptr;
+                (*s_PostfxShaders)[i] = nullptr;
+                (*s_UiShaders)[i] = nullptr;
+                (*s_FinalShaders)[i] = nullptr;
+            }
+
             LogInfo("cShaderManager initialized");
         }
 
@@ -262,13 +284,13 @@ namespace xpe {
             LogInfo("cShaderManager::Free()");
             FreeStages();
             delete s_Stages;
-            delete s_ComputeShaders;
-            delete s_PrepassShaders;
-            delete s_OpaqueShaders;
-            delete s_TransparentShaders;
-            delete s_PostfxShaders;
-            delete s_UiShaders;
-            delete s_FinalShaders;
+            FreeShaders(s_ComputeShaders);
+            FreeShaders(s_PrepassShaders);
+            FreeShaders(s_OpaqueShaders);
+            FreeShaders(s_TransparentShaders);
+            FreeShaders(s_PostfxShaders);
+            FreeShaders(s_UiShaders);
+            FreeShaders(s_FinalShaders);
         }
 
         sShaderStage* cShaderManager::GetFromFile(const sShaderStage::eType &type, const char *filepath)
@@ -327,8 +349,8 @@ namespace xpe {
             stage->Profile = profile;
             stage->EntryPoint = entryPoint;
             stage->Source = src;
-            context::CompileShaderStage(*stage);
-            context::CreateShaderStage(*stage);
+            context::CompileShaderStage(stage);
+            context::CreateShaderStage(stage);
             return stage;
         }
 
@@ -348,15 +370,24 @@ namespace xpe {
                 auto& stage = it->second;
                 stage.Source = src;
                 stage.Compiled = false;
-                context::FreeShaderStage(stage);
-                context::CreateShaderStage(stage);
+                context::FreeShaderStage(&stage);
+                context::CreateShaderStage(&stage);
             }
         }
 
         void cShaderManager::FreeStages()
         {
             for (auto& shader : *s_Stages) {
-                context::FreeShaderStage(shader.second);
+                context::FreeShaderStage(&shader.second);
+            }
+        }
+
+        void cShaderManager::FreeShaders(vector<cShader*>* shaders)
+        {
+            for (auto shader : *shaders) {
+                if (shader != nullptr) {
+                    delete shader;
+                }
             }
         }
 
@@ -368,176 +399,74 @@ namespace xpe {
             cFileManager::WriteFile(generatedFilepath.c_str(), src);
         }
 
-        void cShaderManager::SetShader(cShader*& dest, cShader* src)
-        {
-            if (dest == nullptr) {
-                dest = src;
-                return;
-            }
-
-            cShader*& next = dest->Next;
-            while (next != nullptr) {
-                next = next->Next;
-            }
-            next = src;
-        }
-
-        void cShaderManager::SetShader(cShader*& dest, cShader* src, u64 id)
-        {
-            if (dest == nullptr) {
-                LogWarning("Can't set shader by ID because destination is NULL");
-                return;
-            }
-
-            cShader*& next = dest->Next;
-            while (next != nullptr) {
-                if (next->ID == id) {
-                    cShader* prev = next->Next;
-                    next->Next = src;
-                    src->Next = prev;
-                    break;
-                }
-                next = next->Next;
-            }
-        }
-
-        void cShaderManager::SetShader(cShader* shader)
+        void cShaderManager::SetShader(cShader* shader, u32 slot)
         {
             switch (shader->Category)
             {
                 case cShader::eCategory::PREPASS:
-                    SetShader(s_PrepassShaders, shader);
+                    (*s_PrepassShaders)[slot] = shader;
                     break;
 
-                case cShader::eCategory::OPAQUE:
-                    SetShader(s_OpaqueShaders, shader);
+                case cShader::eCategory::OPAQUE_GEOMETRY:
+                    (*s_OpaqueShaders)[slot] = shader;
                     break;
 
-                case cShader::eCategory::TRANSPARENT:
-                    SetShader(s_TransparentShaders, shader);
+                case cShader::eCategory::TRANSPARENT_GEOMETRY:
+                    (*s_TransparentShaders)[slot] = shader;
                     break;
 
                 case cShader::eCategory::POSTFX:
-                    SetShader(s_PostfxShaders, shader);
+                    (*s_PostfxShaders)[slot] = shader;
                     break;
 
                 case cShader::eCategory::UI:
-                    SetShader(s_UiShaders, shader);
+                    (*s_UiShaders)[slot] = shader;
                     break;
 
                 case cShader::eCategory::FINAL:
-                    SetShader(s_FinalShaders, shader);
-                    break;
-
-                case cShader::eCategory::COMPUTE:
-                    SetShader(s_ComputeShaders, shader);
+                    (*s_FinalShaders)[slot] = shader;
                     break;
             }
         }
 
-        void cShaderManager::SetShaderAfter(cShader* shader, const string &name)
-        {
-            u64 id = Hash(name);
-            switch (shader->Category)
-            {
-                case cShader::eCategory::PREPASS:
-                    SetShader(s_PrepassShaders, shader, id);
-                    break;
-
-                case cShader::eCategory::OPAQUE:
-                    SetShader(s_OpaqueShaders, shader, id);
-                    break;
-
-                case cShader::eCategory::TRANSPARENT:
-                    SetShader(s_TransparentShaders, shader, id);
-                    break;
-
-                case cShader::eCategory::POSTFX:
-                    SetShader(s_PostfxShaders, shader, id);
-                    break;
-
-                case cShader::eCategory::UI:
-                    SetShader(s_UiShaders, shader, id);
-                    break;
-
-                case cShader::eCategory::FINAL:
-                    SetShader(s_FinalShaders, shader, id);
-                    break;
-
-                case cShader::eCategory::COMPUTE:
-                    SetShader(s_ComputeShaders, shader, id);
-                    break;
-            }
-        }
-
-        cShader* cShaderManager::GetShaders(cShader::eCategory category)
+        vector<cShader*>* cShaderManager::GetShaders(const cShader::eCategory& category)
         {
             switch (category)
             {
                 case cShader::eCategory::NONE:        return nullptr;
-                case cShader::eCategory::COMPUTE:     return s_ComputeShaders;
                 case cShader::eCategory::PREPASS:     return s_PrepassShaders;
-                case cShader::eCategory::OPAQUE:      return s_OpaqueShaders;
-                case cShader::eCategory::TRANSPARENT: return s_TransparentShaders;
+                case cShader::eCategory::OPAQUE_GEOMETRY:      return s_OpaqueShaders;
+                case cShader::eCategory::TRANSPARENT_GEOMETRY: return s_TransparentShaders;
                 case cShader::eCategory::POSTFX:      return s_PostfxShaders;
                 case cShader::eCategory::UI:          return s_UiShaders;
                 case cShader::eCategory::FINAL:       return s_FinalShaders;
+                default: return nullptr;
             }
         }
 
-        cShader* cShaderManager::GetShader(const string& name)
+        cShader* cShaderManager::GetShader(const cShader::eCategory& category, const string& name)
         {
-            u64 id = Hash(name);
-            cShader* shader = nullptr;
-
-            shader = GetShader(s_ComputeShaders, id);
-            if (shader != nullptr) {
-                return shader;
-            }
-
-            shader = GetShader(s_PrepassShaders, id);
-            if (shader != nullptr) {
-                return shader;
-            }
-
-            shader = GetShader(s_OpaqueShaders, id);
-            if (shader != nullptr) {
-                return shader;
-            }
-
-            shader = GetShader(s_TransparentShaders, id);
-            if (shader != nullptr) {
-                return shader;
-            }
-
-            shader = GetShader(s_PostfxShaders, id);
-            if (shader != nullptr) {
-                return shader;
-            }
-
-            shader = GetShader(s_UiShaders, id);
-            if (shader != nullptr) {
-                return shader;
-            }
-
-            shader = GetShader(s_FinalShaders, id);
-            if (shader != nullptr) {
-                return shader;
-            }
-
-            return shader;
-        }
-
-        cShader* cShaderManager::GetShader(cShader*& src, u64 id)
-        {
-            cShader* next = src;
-            while (next != nullptr)
+            switch (category)
             {
-                if (next->ID == id) {
-                    return next;
-                }
-                next = next->Next;
+                case cShader::eCategory::NONE:        return nullptr;
+                case cShader::eCategory::PREPASS:     return GetShader(s_PrepassShaders, name);
+                case cShader::eCategory::OPAQUE_GEOMETRY:      return GetShader(s_OpaqueShaders, name);
+                case cShader::eCategory::TRANSPARENT_GEOMETRY: return GetShader(s_TransparentShaders, name);
+                case cShader::eCategory::POSTFX:      return GetShader(s_PostfxShaders, name);
+                case cShader::eCategory::UI:          return GetShader(s_UiShaders, name);
+                case cShader::eCategory::FINAL:       return GetShader(s_FinalShaders, name);
+                default: return nullptr;
             }
+        }
+
+        cShader* cShaderManager::GetShader(const vector<cShader*>* shaders, const string& name)
+        {
+            for (auto shader : *shaders) {
+                if (shader != nullptr && shader->Name == name) {
+                    return shader;
+                }
+            }
+
             return nullptr;
         }
 

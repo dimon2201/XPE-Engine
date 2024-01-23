@@ -34,8 +34,11 @@ namespace xpe {
             auto& normal = mesh->mNormals[i];
             vertex.Normal = { normal.x, normal.y, normal.z };
 
-            auto& tangent = mesh->mTangents[i];
-            vertex.Tangent = { tangent.x, tangent.y, tangent.z };
+            if (mesh->mTangents != nullptr)
+            {
+                auto& tangent = mesh->mTangents[i];
+                vertex.Tangent = { tangent.x, tangent.y, tangent.z };
+            }
 
             return vertex;
         }

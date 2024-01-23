@@ -6,7 +6,20 @@ namespace xpe {
 
     namespace render {
 
-        struct ENGINE_API sShaderStage : public sResource
+        struct sBinding
+        {
+            sBinding() {}
+            sBinding(cResource* resource, void* view, const cResource::eType& resourceType, const cResource::eViewType& viewType, u32 slot)
+                : Resource(resource), View(view), ResourceType(resourceType), ViewType(viewType), Slot(slot) {}
+
+            cResource* Resource;
+            void* View;
+            cResource::eType ResourceType;
+            cResource::eViewType ViewType;
+            u32 Slot;
+        };
+
+        struct ENGINE_API sShaderStage : public cResource
         {
             enum class eType
             {
@@ -14,8 +27,46 @@ namespace xpe {
                 VERTEX = 0,
                 PIXEL = 1,
                 GEOMETRY = 2,
-                COMPUTE = 3,
+                COMPUTE = 3
             };
+
+            sShaderStage() = default;
+            sShaderStage(u64 id, eType type) : ID(id), Type(type) {}
+
+            void SetBufferBinding(cBuffer* buffer, const cResource::eViewType& viewType, u32 slot)
+            {
+                if (viewType == cResource::eViewType::SRV)
+                {
+                    sBinding binding((cResource*)buffer, buffer->GetSRVInstance(), cResource::eType::BUFFER, cResource::eViewType::SRV, slot);
+                    BufferBindings.emplace_back(binding);
+                }
+                else if (viewType == cResource::eViewType::UAV)
+                {
+                    sBinding binding((cResource*)buffer, buffer->GetUAVInstance(), cResource::eType::BUFFER, cResource::eViewType::UAV, slot);
+                    BufferBindings.emplace_back(binding);
+                }
+            }
+
+            void SetTextureBinding(cTexture* texture, const cResource::eViewType& viewType, u32 slot)
+            {
+                if (viewType == cResource::eViewType::SRV)
+                {
+                    sBinding binding((cResource*)texture, texture->GetSRVInstance(), cResource::eType::TEXTURE, cResource::eViewType::SRV, slot);
+                    TextureBindings.emplace_back(binding);
+                }
+                else if (viewType == cResource::eViewType::UAV)
+                {
+                    sBinding binding((cResource*)texture, texture->GetUAVInstance(), cResource::eType::TEXTURE, cResource::eViewType::UAV, slot);
+                    TextureBindings.emplace_back(binding);
+                }
+            }
+
+            inline void SetSampler(sSampler* sampler, u32 slot = K_SLOT_DEFAULT) {
+                if (slot != K_SLOT_DEFAULT) {
+                    sampler->Slot = slot;
+                }
+                Samplers.emplace_back(sampler);
+            }
 
             u64 ID;
             eType Type;
@@ -25,33 +76,9 @@ namespace xpe {
             string Profile;
             string EntryPoint;
             string Source;
-            vector<sBuffer*>  Buffers;
-            vector<sTexture*> Textures;
+            vector<sBinding> BufferBindings;
+            vector<sBinding> TextureBindings;
             vector<sSampler*> Samplers;
-
-            sShaderStage() = default;
-            sShaderStage(u64 id, eType type) : ID(id), Type(type) {}
-
-            inline void SetBuffer(sBuffer* buffer, u32 slot = K_SLOT_DEFAULT) {
-                if (slot != K_SLOT_DEFAULT) {
-                    buffer->Slot = slot;
-                }
-                Buffers.emplace_back(buffer);
-            }
-
-            inline void SetTexture(sTexture* texture, u32 slot = K_SLOT_DEFAULT) {
-                if (slot != K_SLOT_DEFAULT) {
-                    texture->Slot = slot;
-                }
-                Textures.emplace_back(texture);
-            }
-
-            inline void SetSampler(sSampler* sampler, u32 slot = K_SLOT_DEFAULT) {
-                if (slot != K_SLOT_DEFAULT) {
-                    sampler->Slot = slot;
-                }
-                Samplers.emplace_back(sampler);
-            }
         };
 
         class ENGINE_API cShader : public cObject
@@ -61,28 +88,28 @@ namespace xpe {
             {
                 NONE = 0,
                 PREPASS = 1,
-                OPAQUE = 2,
-                TRANSPARENT = 3,
+                OPAQUE_GEOMETRY = 2,
+                TRANSPARENT_GEOMETRY = 3,
                 POSTFX = 4,
                 UI = 5,
-                FINAL = 6,
-                COMPUTE = 7
+                FINAL = 6
             };
 
-            cShader(cShader::eCategory category, const string& name) : Category(category), ID(Hash(name)) {}
+            cShader(cShader::eCategory category, const string& name) : Category(category), Name(name) {}
             virtual ~cShader() {}
             virtual void Draw(ecs::cScene* scene) {}
             virtual void Bind() = 0;
             virtual void Unbind() = 0;
 
-            u64 ID = 0;
-            bool Enable = true;
-            eCategory Category = eCategory::PREPASS;
+            string Name = "";
+            dual Enable = true;
+            eCategory Category = eCategory::NONE;
             cShader* Next = nullptr;
         };
 
         class ENGINE_API cDefaultShader : public cShader
         {
+
         public:
             cDefaultShader(cShader::eCategory category, const string& name);
             ~cDefaultShader() override;
@@ -95,7 +122,8 @@ namespace xpe {
             sShaderStage* VertexStage = nullptr;
             sShaderStage* PixelStage = nullptr;
             sShaderStage* GeometryStage = nullptr;
-            sRenderTarget* RenderTarget = nullptr;
+            cRenderTarget* RenderTarget = nullptr;
+            sViewport* Viewport = nullptr;
             sRasterizer Rasterizer;
             sDepthStencilMode DepthStencilMode;
             sBlendMode BlendMode;
@@ -108,21 +136,21 @@ namespace xpe {
             virtual void InitPostFX();
             virtual void InitUI();
             virtual void InitFinal();
+
         };
 
         class ENGINE_API cComputeShader : public cShader
         {
         public:
-            cComputeShader(const string& name, const glm::vec3& threadGroups = { 1, 1, 1 })
-            : cShader(eCategory::COMPUTE, name), m_ThreadGroups(threadGroups) {}
+            cComputeShader(const eCategory& category, const string& name, const glm::vec3& threadGroups = { 1, 1, 1 })
+            : cShader(category, name) {}
 
             void Bind() override;
             void Unbind() override;
 
-            void Draw(ecs::cScene *scene) override;
+            virtual void Draw(ecs::cScene* scene) {}
 
             sShaderStage* ComputeStage = nullptr;
-            glm::ivec3 m_ThreadGroups;
         };
 
         class ENGINE_API cShaderManager final
@@ -139,29 +167,28 @@ namespace xpe {
                     const string& src
             );
 
-            static void SetShader(cShader* shader);
-            static void SetShaderAfter(cShader* shader, const string& name);
-            static cShader* GetShaders(cShader::eCategory category);
-            static cShader* GetShader(const string& name);
+            static void SetShader(cShader* shader, u32 slot);
+            static vector<cShader*>* GetShaders(const cShader::eCategory& category);
+            static cShader* GetShader(const cShader::eCategory& category, const string& name);
 
             static void ReloadStage(const char* filepath);
 
         private:
             static void FreeStages();
+            static void FreeShaders(vector<cShader*>* shaders);
             static void WriteGeneratedShader(const char* filepath, const string& src);
 
-            static void SetShader(cShader*& dest, cShader* src);
-            static void SetShader(cShader*& dest, cShader* src, u64 id);
-            static cShader* GetShader(cShader*& src, u64 id);
+            static cShader* GetShader(const vector<cShader*>* shaders, const string& name);
 
             static unordered_map<string, sShaderStage>* s_Stages;
-            static cShader* s_ComputeShaders;
-            static cShader* s_PrepassShaders;
-            static cShader* s_OpaqueShaders;
-            static cShader* s_TransparentShaders;
-            static cShader* s_PostfxShaders;
-            static cShader* s_UiShaders;
-            static cShader* s_FinalShaders;
+            static const usize s_MaxShaderCount = 64;
+            static vector<cShader*>* s_ComputeShaders;
+            static vector<cShader*>* s_PrepassShaders;
+            static vector<cShader*>* s_OpaqueShaders;
+            static vector<cShader*>* s_TransparentShaders;
+            static vector<cShader*>* s_PostfxShaders;
+            static vector<cShader*>* s_UiShaders;
+            static vector<cShader*>* s_FinalShaders;
         };
 
     }

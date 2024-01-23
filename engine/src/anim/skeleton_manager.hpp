@@ -27,7 +27,10 @@ namespace xpe {
             sSkeleton skeleton(std::forward<Args>(args)...);
             sSkeletonInfo skeletonInfo;
             skeletonInfo.SkeletonIndex = Buffers::Skeleton->Size();
-            Buffers::Skeleton->Resize(Buffers::Skeleton->Size() + skeleton.Bones.size());
+            for (auto& bone : skeleton.Bones) {
+                //(*Buffers::Skeleton)[skeletonInfo.SkeletonIndex + bone.second.ID]->Transform = glm::mat4(1.0f);
+            }
+
             return { skeleton, skeletonInfo };
         }
 

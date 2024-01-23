@@ -12,6 +12,7 @@
 
 #include <physics/physics_manager.hpp>
 #include <physics/physics_system.hpp>
+#include <core/texture_manager.hpp>
 
 namespace xpe {
 
@@ -20,6 +21,7 @@ namespace xpe {
     using namespace anim;
     using namespace audio;
     using namespace physics;
+    using namespace particle;
 
     namespace core {
 
@@ -50,19 +52,21 @@ namespace xpe {
             cWindowManager::InitWindow(winDesc);
             cInputManager::Init();
             cPhysicsManager::Init(cTaskManager::GetSimulationDispatcher());
+            MParticle::Init();
 
             render::context::EnableInfoLog = Config.EnableGPUInfoLog;
             render::context::EnableWarnLog = Config.EnableGPUWarnLog;
             render::context::EnableErrorLog = Config.EnableGPUErrorLog;
 
-            m_Viewport.Width = cWindowManager::GetWidth();
-            m_Viewport.Height = cWindowManager::GetHeight();
+            glm::vec2 windowSize = glm::vec2(Config.WinWidth, Config.WinHeight);
 
-            m_RenderSystem = new cRenderSystem(m_Viewport, Config.MsaaSampleCount);
+            m_RenderSystem = new cRenderSystem(windowSize, Config.MsaaSampleCount);
             m_Canvas = new cCanvas();
             m_AnimSystem = new cAnimSystem();
             m_AudioSystem = new cAudioSystem();
             m_PhysicsSystem = new cPhysicsSystem();
+
+            MTexture::Init(glm::vec2(8192));
 
             InitShaders();
 
@@ -110,6 +114,9 @@ namespace xpe {
                 // calls physics simulation that will be automatically dispatched into TaskManager
                 // we don't need to submit physics system into task
                 m_PhysicsSystem->Update(m_Scene, DeltaTime);
+
+                // particles
+                MParticle::Update(m_Scene, DeltaTime);
 
                 Render();
 
@@ -159,19 +166,21 @@ namespace xpe {
 
         void cApp::InitShaders()
         {
-            cShaderManager::SetShader(new cSkyboxShader("skybox"));
-            cShaderManager::SetShader(new cDirectionalShadowShader("directional_shadow"));
-//            cShaderManager::SetShader(new cPointShadowShader("point_shadow"));
-//            cShaderManager::SetShader(new cSpotShadowShader("spot_shadow"));
-            cShaderManager::SetShader(new cOpaqueShader("opaque"));
-            cShaderManager::SetShader(new cTransparentShader("transparent"));
-            cShaderManager::SetShader(new cCompositeTransparentShader("composite_transparent", Config.MsaaSampleCount));
-            cShaderManager::SetShader(new cSsaoShader("ssao", Config.MsaaSampleCount));
-            cShaderManager::SetShader(new cWidgetShader("widget"));
-            cShaderManager::SetShader(new cTextShader("text"));
-            cShaderManager::SetShader(new cFinalShader("final", Config.MsaaSampleCount));
+            //cShaderManager::SetShader(new cSkyboxShader("skybox"), 0);
+            cShaderManager::SetShader(new cDirectionalShadowShader("directional_shadow"), 0);
+            //cShaderManager::SetShader(new cPointShadowShader("point_shadow"));
+            //cShaderManager::SetShader(new cSpotShadowShader("spot_shadow"));
+            cShaderManager::SetShader(new cParticleComputeShader("particle_compute", Config.MaxParticleCount, Config.MaxParticleEmitterCount), 1);
+            cShaderManager::SetShader(new cOpaqueShader("opaque"), 1);
+            cShaderManager::SetShader(new cParticleRenderShader("particle_render"), 2);
+            //cShaderManager::SetShader(new cTransparentShader("transparent"), 0);
+            //cShaderManager::SetShader(new cCompositeTransparentShader("composite_transparent", Config.MsaaSampleCount), 0);
+            cShaderManager::SetShader(new cSsaoShader("ssao", Config.MsaaSampleCount), 1);
+            //cShaderManager::SetShader(new cWidgetShader("widget"), 0);
+            //cShaderManager::SetShader(new cTextShader("text"), 1);
+            cShaderManager::SetShader(new cFinalShader("final", Config.MsaaSampleCount), 0);
 
-            cShaderManager::GetShader("ssao")->Enable = Config.EnableSSAO;
+            cShaderManager::GetShader(cShader::eCategory::POSTFX, "ssao")->Enable = Config.EnableSSAO;
         }
 
         void cApp::Render()

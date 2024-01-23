@@ -1,10 +1,11 @@
 #pragma once
 
 #include <rendering/geometry/geometries.hpp>
-#include <rendering/material/material.hpp>
 #include <rendering/buffers.hpp>
 #include <rendering/font/font.hpp>
 #include <rendering/widget_manager.hpp>
+#include <rendering/light_manager.hpp>
+#include <particle/particle_manager.hpp>
 
 #include <anim/skeleton.hpp>
 
@@ -15,6 +16,11 @@ namespace xpe
     namespace physics
     {
         struct sActor;
+    }
+
+    namespace particle
+    {
+        struct sParticleEmitter;
     }
 
     namespace ecs
@@ -52,9 +58,6 @@ namespace xpe
 
         struct ENGINE_API CTransparent { bool Transparent = true; };
         JSON(CTransparent, Transparent)
-
-        struct ENGINE_API CHasShadow { bool HasShadow = true; };
-        JSON(CHasShadow, HasShadow)
 
         struct ENGINE_API CCamera : cJson
         {
@@ -102,57 +105,58 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API CMaterial : cJson, sMaterial
+        struct ENGINE_API CMaterial2
         {
-            CMaterial(const sMaterial& material = {}) : sMaterial(material) {}
-            CMaterial(sMaterial&& material) : sMaterial(material) {}
+            CMaterial2() = default;
+            CMaterial2(const sAtlas2DTexture& diffuse) : DiffuseTexture(diffuse) {}
 
-            JSON_CLASS(
-                CMaterial,
-                Albedo,
-                EnableAlbedoMap,
-                EnableNormalMap,
-                EnableParallaxMap,
-                ParallaxHeightScale,
-                ParallaxMinLayers,
-                ParallaxMaxLayers,
-                Metallness,
-                EnableMetalMap,
-                Roughness,
-                EnableRoughnessMap,
-                AO,
-                EnableAOMap,
-                Emission,
-                EnableEmissionMap
-            )
+            u32 BufferIndex = 0;
+            glm::vec4 DiffuseColor = glm::vec4(1.0f);
+            render::sAtlas2DTexture DiffuseTexture;
         };
 
         struct ENGINE_API CDirectionalLight : cJson
         {
-            glm::vec3 Color = { 1, 1, 1 };
-            sOrthoMatrix Projection;
-            sViewMatrix View;
+            CDirectionalLight(s32 lightIndex, const glm::vec3& direction, const glm::vec3& color)
+                : LightIndex(lightIndex), Direction(glm::normalize(direction)), Color(color)
+            {}
 
-            CDirectionalLight(const glm::vec3& position, const glm::vec3& color)
-            {
-                Color = color;
-                Projection.Left = -20.0f;
-                Projection.Right = 20.0f;
-                Projection.Bottom = -20.0f;
-                Projection.Top = 20.0f;
-                Projection.Near = 0;
-                Projection.Far = 100.0f;
-                View.Position = position;
-                View.Front = { 0, 0, 0 };
-                View.Up = { 0, 1, 0 };
-            }
+            s32 LightIndex = 0;
+            glm::vec3 Direction = glm::vec3(0.0f);
+            glm::vec3 Color = glm::vec3(0.0f);
+            glm::mat4 View = glm::mat4(1.0f);
+            glm::mat4 Projection = glm::mat4(1.0f);
 
             JSON_CLASS(
                 CDirectionalLight,
                 Color,
-                Projection,
-                View
+                View,
+                Projection
             )
+        };
+
+        struct ENGINE_API CShadowCaster : sShadowCaster
+        {
+            CShadowCaster(const vector<EntityID>& entities, const sShadowCaster& caster)
+            {
+                AtlasTexture.Offsets = caster.AtlasTexture.Offsets;
+                Entities = entities;
+            }
+
+            vector<EntityID> Entities;
+        };
+
+        struct ENGINE_API CShadowReceiver
+        {
+            CShadowReceiver() = default;
+            CShadowReceiver(const vector<CShadowCaster>& casters)
+            {
+                for (auto& caster : casters) {
+                    ShadowCasterTextures.emplace_back(caster.AtlasTexture);
+                }
+            }
+
+            vector<sAtlas2DTexture> ShadowCasterTextures;
         };
 
         struct ENGINE_API CPointLight : cJson, sPointLightData
@@ -246,6 +250,7 @@ namespace xpe
             vector<cEntity*> Entities;
             sSkeleton Skeleton;
             vector<sAnimation> Animations;
+            sRagdoll* Ragdoll;
 
             JSON_CLASS(
                 CAnimation,
@@ -315,6 +320,7 @@ namespace xpe
         {
             CPhysicsActor(physics::sActor* actor)
             {
+                ParentEntity = actor->ParentEntity;
                 Actor = actor->Actor;
                 Material = actor->Material;
                 Shape = actor->Shape;
@@ -406,6 +412,25 @@ namespace xpe
                 Text,
                 Color,
                 FillFrame
+            )
+        };
+
+        struct ENGINE_API CParticleEmitter : particle::sParticleEmitter, cJson
+        {
+            CParticleEmitter(const sParticleEmitter& emitter)
+            {
+                _BufferOffset = emitter._BufferOffset;
+                _EmitterCount = emitter._EmitterCount;
+                SpawnCount = emitter.SpawnCount;
+                WorldPosition = emitter.WorldPosition;
+                MaxLifetime = emitter.MaxLifetime;
+            }
+
+            JSON_CLASS(
+                CParticleEmitter,
+                _BufferOffset,
+                _EmitterCount,
+                SpawnCount
             )
         };
 

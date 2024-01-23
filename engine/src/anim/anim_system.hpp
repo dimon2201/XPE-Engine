@@ -4,11 +4,17 @@
 
 namespace xpe {
 
+    namespace physics
+    {
+        struct sRagdoll;
+    }
+
     namespace anim {
 
         using namespace core;
         using namespace ecs;
         using namespace render;
+        using namespace physics;
 
         class ENGINE_API cAnimSystem : public cSystem
         {
@@ -33,10 +39,12 @@ namespace xpe {
             void UpdateSkeletonTransform(
                     const sAnimationNode& animationNode,
                     sSkeleton& skeleton,
-                    sSkeletonBuffer& skeletonBuffer,
+                    cSkeletonBuffer& skeletonBuffer,
                     u32 skeletonIndex,
                     const glm::mat4& parentTransform
             );
+            
+            void ConstructRagdollJoints(sSkeleton& skeleton, sRagdoll& ragdoll);
 
             float m_CurrentSeconds = 0;
             float m_DeltaSeconds = 0;

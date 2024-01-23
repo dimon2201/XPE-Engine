@@ -73,7 +73,7 @@ float3 PBR(DirectLight directLight, float3 albedo, float metallness, float rough
 {
     L = normalize(directLight.Position);
     float3 lightColor = directLight.Color;
-    float directShadow = GetDirectionalShadow(L, ToLightSpace(W, directLight.ViewProjection));
+    float directShadow = GetDirectionalShadow(L, ToLightSpace(W, (float4x4)0));
     float radianceFactor = directShadow;
     return PBR(lightColor, radianceFactor, albedo, metallness, roughness);
 }

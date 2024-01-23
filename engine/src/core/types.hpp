@@ -33,7 +33,7 @@ namespace xpe
 
         #endif
 
-        using Boolean = u32;
+        using dual = u32;
 
         class ENGINE_API cObject
         {

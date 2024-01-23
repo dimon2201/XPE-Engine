@@ -4,6 +4,7 @@
 #include <rendering/render_system.hpp>
 #include <rendering/skybox_manager.hpp>
 #include <rendering/camera_manager.hpp>
+#include <rendering/light_manager.hpp>
 #include <rendering/canvas.hpp>
 
 #include <audio/audio_manager.hpp>
@@ -17,6 +18,9 @@
 #include <skeleton_loader.hpp>
 #include <anim_loader.hpp>
 #include <audio_loader.hpp>
+
+#include <particle/particle_manager.hpp>
+#include <core/texture_manager.hpp>
 
 #include "test_config.hpp"
 
@@ -39,7 +43,7 @@ protected:
     void InitShaders() override
     {
         cApp::InitShaders();
-        Textures::Canvas = RenderTargets::Final->Colors[0];
+        Textures::Canvas = RenderTargets::Final->GetColors()[0];
     }
 
 public:
@@ -165,45 +169,115 @@ public:
             cSkyboxManager::Get().Skybox = skybox;
         }
 
+        sAtlas2DTexture diffuseTexture = MTexture::LoadTexture("C:/Users/USER100/CLionProjects/XPE-Engine/out/build/x64-Debug/bin/Debug/res/textures/lowres.png");
+
+        // Capsule
+        {
+            m_Capsule = cEntity("Cube", m_Scene);
+            m_Capsule.SetPosition(glm::vec3(7.0f, 5.0f, 5.0f));
+            m_Capsule.SetScale(glm::vec3(1.0f));
+            m_Capsule.Add<CGeometryInfo>(cGeometryManager::AddGeometry(sCapsule()).second);
+            m_Capsule.Get<CGeometryInfo>().Entities = { m_Capsule.GetID() };
+            m_Capsule.SetOpaque(true);
+            m_Capsule.SetTransparent(false);
+
+            sCapsuleShapeDescriptor capsuleShapeDesc(0.5f, 0.5f);
+            sActor* physicsActor = cPhysicsManager::AddActor(
+                m_Capsule,
+                CPhysicsActor::eActorType::RIGID_DYNAMIC,
+                &capsuleShapeDesc,
+                glm::vec3(0.0f),
+                0.5f, 0.5f, 0.5f,
+                0.05f, 0.0f,
+                1.0f
+            );
+
+            m_Capsule.Add<CPhysicsActor>(physicsActor);
+        }
+
+        // Sunlight
+        {
+            auto object = cEntity("SunLight", m_Scene);
+            object.SetPosition(0.0f, 2.0f, 0.0f);
+            object.SetScale(1.3f, 1.3f, 1.3f);
+            object.Add<CGeometry>(sSphere());
+            object.Add<CGeometryInfo>(cGeometryManager::AddGeometry(sSphere()).second);
+            object.Get<CGeometryInfo>().Entities = { object.GetID() };
+            object.SetOpaque(true);
+
+            m_SunLight = cEntity("SunLight", m_Scene);
+            m_SunLight.SetPosition(1.0, 5.0, 0.0);
+            m_SunLight.Add<CDirectionalLight>(0, glm::vec3(-1.0f, -1.0f, 0.0f), glm::vec3(1.0f));
+            m_SunLight.Add<CShadowCaster>(
+                vector<EntityID>{ object.GetID(), m_Capsule.GetID() },
+                cLightManager::AddShadowCaster()
+            );
+
+            m_Light2 = cEntity("Light2", m_Scene);
+            m_Light2.SetPosition(1.0, 7.0, 5.0);
+            m_Light2.Add<CDirectionalLight>(1, glm::vec3(-1.0f, -1.0f, -1.0f), glm::vec3(1.0f));
+            m_Light2.Add<CShadowCaster>(
+                vector<EntityID>{ object.GetID(), m_Capsule.GetID() },
+                cLightManager::AddShadowCaster()
+            );
+        }
+
         // Plane
         {
             m_Plane = cEntity("sPlane", m_Scene);
             m_Plane.SetPosition(0, 0, 0);
             m_Plane.SetScale(5.0, 1.0, 5.0);
-            m_Plane.Add<CMaterial>(cMaterialManager::AddMaterial());
-            m_Plane.Add<CGeometry>(sPlane(10));
+            m_Plane.Add<CMaterial2>(MMaterial::AddMaterial(diffuseTexture));
             m_Plane.Add<CGeometryInfo>(cGeometryManager::AddGeometry(sPlane(10)).second);
             m_Plane.Get<CGeometryInfo>().Entities = { m_Plane.GetID() };
             m_Plane.SetOpaque(true);
             m_Plane.SetTransparent(false);
-            m_Plane.SetShadow(false);
 
             sPlaneShapeDescriptor planeShapeDesc;
             m_Plane.Add<CPhysicsActor>(
-                    cPhysicsManager::AddActor(
-                        m_Plane,
-                        CPhysicsActor::eActorType::RIGID_STATIC,
-                        &planeShapeDesc,
-                        glm::vec3(0.0f),
-                        0.5f, 0.5f, 0.5f,
-                        0.05f, 0.0f
+                cPhysicsManager::AddActor(
+                    m_Plane,
+                    CPhysicsActor::eActorType::RIGID_STATIC,
+                    &planeShapeDesc,
+                    glm::vec3(0.0f),
+                    0.5f, 0.5f, 0.5f,
+                    0.05f, 0.0f,
+                    10.0f
+                )
+            );
+
+            m_Plane.Add<CShadowReceiver>(
+                vector<CShadowCaster> {
+                    m_SunLight.Get<CShadowCaster>(),
+                    m_Light2.Get<CShadowCaster>()
+                }
+            );
+        }
+
+        // Spheres
+        for (s32 i = 0; i < 0; i++)
+        {
+            m_Glasses[i] = cEntity("Glass-" + string(std::to_string(i)), m_Scene);
+            m_Glasses[i].SetPosition(glm::vec3(0, 1.0f + ((float)i * 3.0f), 95));
+            m_Glasses[i].SetScale(glm::vec3(1.0f));
+            m_Glasses[i].Add<CGeometryInfo>(cGeometryManager::AddGeometry(sSphere()).second);
+            m_Glasses[i].Add<CTransparent>();
+
+            sSphereShapeDescriptor sphereShapeDesc(1.0f);
+            m_Glasses[i].Add<CPhysicsActor>(
+                cPhysicsManager::AddActor(
+                    m_Glasses[i],
+                    CPhysicsActor::eActorType::RIGID_DYNAMIC,
+                    &sphereShapeDesc,
+                    glm::vec3(0.0f),
+                    0.5f, 0.5f, 0.5f,
+                    0.05f, 0.0f,
+                    10.0f
                 )
             );
         }
 
-        // Sunlight
-        {
-            m_SunLight = cEntity("SunLight", m_Scene);
-            m_SunLight.SetPosition(-2.0, 4.0, -1.0);
-            m_SunLight.Add<CMaterial>(cMaterialManager::AddMaterial());
-            m_SunLight.Add<CGeometry>(sSphere());
-            m_SunLight.Add<CGeometryInfo>(cGeometryManager::AddGeometry(sSphere()).second);
-            m_SunLight.Get<CGeometryInfo>().Entities = { m_SunLight.GetID() };
-            m_SunLight.Add<CDirectionalLight>(glm::vec3(-2, 4, -1), glm::vec3(1, 1, 10));
-            m_SunLight.SetOpaque(true);
-            m_SunLight.SetTransparent(false);
-            m_SunLight.SetShadow(false);
-        }
+        //m_Ragdoll = cPhysicsManager::AddRagdoll(m_Scene, glm::vec3(0, 20, 25));
 
         // Goblins
         {
@@ -233,8 +307,8 @@ public:
             m_Goblin4.SetScale(5, 5, 5);
             m_Goblin4.SetVisible(false);
 
-            auto [goblinGeometry, goblinGeometryInfo] = cGeometryManager::AddGeometry(cModelLoader::Load("res/models/winter-girl/source/dancing_vampire.dae").Merge());
-            auto [goblinSkeleton, goblinSkeletonInfo] = cSkeletonLoader::Load("res/models/winter-girl/source/dancing_vampire.dae");
+            auto [goblinGeometry, goblinGeometryInfo] = cGeometryManager::AddGeometry(cModelLoader::Load("res/models/winter-girl/source/skeleton.dae").Merge());
+            auto [goblinSkeleton, goblinSkeletonInfo] = cSkeletonLoader::Load("res/models/winter-girl/source/skeleton.dae");
             goblinSkeletonInfo.GeometryInfo = goblinGeometryInfo;
             m_Goblins.Add<CSkeleton>(goblinSkeleton);
             m_Goblins.Add<CSkeletonInfo>(goblinSkeletonInfo);
@@ -245,11 +319,10 @@ public:
                     m_Goblin4.GetID()
             };
             m_Goblins.Add<CAnimation>();
-            m_Goblins.Get<CAnimation>().Animations.emplace_back(cAnimLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
+            m_Goblins.Get<CAnimation>().Animations.emplace_back(cAnimLoader::Load("res/models/winter-girl/source/skeleton.dae"));
             m_Goblins.Get<CAnimation>().Animations[0].Play = true;
             m_Goblins.SetOpaque(true);
             m_Goblins.SetTransparent(false);
-            m_Goblins.SetShadow(true);
 
             sMaterialFilepath materialFilepath;
             materialFilepath.Name = "niz";
@@ -257,159 +330,16 @@ public:
             materialFilepath.BumpFilepath = "res/models/winter-girl/textures/Vampire_normal.png";
             materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
             materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/Vampire_specular.png";
-
-            auto& material1 = m_Goblin1.Add<CMaterial>(cMaterialManager::AddMaterial());
-            material1.Albedo = { 1, 1, 1, 1 };
-            material1.Emission = { 0, 0, 10 };
-            material1.Metallness = 0.0f;
-            material1.Roughness = 0.05f;
-            material1.AO = 0.0f;
-            material1.EnableAlbedoMap = false;
-            material1.EnableNormalMap = false;
-            material1.EnableRoughnessMap = false;
-            material1.EnableMetalMap = false;
-            material1.EnableAOMap = false;
-            cMaterialManager::Flush(material1);
-
-            auto& material2 = m_Goblin2.Add<CMaterial>(cMaterialManager::AddMaterial());
-            material2.Albedo = { 1, 1, 1, 1 };
-            material2.Emission = { 0, 0, 10 };
-            material2.Metallness = 0.0f;
-            material2.Roughness = 0.05f;
-            material2.AO = 0.0f;
-            material2.EnableAlbedoMap = false;
-            material2.EnableNormalMap = false;
-            material2.EnableRoughnessMap = false;
-            material2.EnableMetalMap = false;
-            material2.EnableAOMap = false;
-            cMaterialManager::Flush(material2);
-
-            auto& material3 = m_Goblin3.Add<CMaterial>(cMaterialManager::AddMaterial());
-            material3.Albedo = { 1, 1, 1, 1 };
-            material3.Emission = { 0, 0, 10 };
-            material3.Metallness = 0.0f;
-            material3.Roughness = 0.05f;
-            material3.AO = 0.0f;
-            material3.EnableAlbedoMap = false;
-            material3.EnableNormalMap = false;
-            material3.EnableRoughnessMap = false;
-            material3.EnableMetalMap = false;
-            material3.EnableAOMap = false;
-            cMaterialManager::Flush(material3);
-
-            auto& material4 = m_Goblin4.Add<CMaterial>(cMaterialManager::AddMaterial());
-            material4.Albedo = { 1, 1, 1, 1 };
-            material4.Emission = { 0, 0, 10 };
-            material4.Metallness = 0.0f;
-            material4.Roughness = 0.05f;
-            material4.AO = 0.0f;
-            material4.EnableAlbedoMap = false;
-            material4.EnableNormalMap = false;
-            material4.EnableRoughnessMap = false;
-            material4.EnableMetalMap = false;
-            material4.EnableAOMap = false;
-            cMaterialManager::Flush(material4);
-
-            // for testing image resizing on CPU, we can write resized image into file
-
-            cTextureLoader::SaveLayer(
-                    "generated/Vampire_diffuse_resized.png",
-                    material1.AlbedoMap,
-                    eFileFormat::PNG
-            );
-
-            cTextureLoader::SaveLayer(
-                    "generated/Vampire_normal_resized.png",
-                    material1.NormalMap,
-                    eFileFormat::PNG
-            );
-
-            cTextureLoader::SaveLayer(
-                    "generated/Vampire_roughness_resized.png",
-                    material1.RoughnessMap,
-                    eFileFormat::PNG
-            );
-
-            cTextureLoader::SaveLayer(
-                    "generated/Vampire_metallic_resized.png",
-                    material1.MetalMap,
-                    eFileFormat::PNG
-            );
-
-            int w, h, c;
-            sTextureLayer* layer = cTextureLoader::LoadLayer("res/skybox/back.jpg", eTextureFormat::RGBA8, w, h, c);
-            sAtlas atlas;
-            atlas.Width = 1024;
-            atlas.Height = 1024;
-            atlas.Channels = c;
-            atlas.Format = eTextureFormat::RGBA8;
-            atlas.AddLayer();
-            atlas.AddCell(0, glm::vec2(0, 0), glm::vec2(32, 32), layer);
-            atlas.AddCell(0, glm::vec2(32, 0), glm::vec2(64, 64), layer);
-            atlas.AddCell(0, glm::vec2(32 + 64, 0), glm::vec2(128, 128), layer);
-            atlas.AddCell(0, glm::vec2(32 + 64 + 128, 0), glm::vec2(256, 256), layer);
-            atlas.Init();
-            cTextureLoader::SaveLayer(
-                "generated/test_atlas.png",
-                &atlas.Layers[0],
-                eFileFormat::PNG
-            );
-        }
-
-        // Cube
-        {
-            m_Cube = cEntity("Cube", m_Scene);
-            m_Cube.SetPosition(glm::vec3(10.0f, 2.5f, 10.0f));
-            m_Cube.SetScale(glm::vec3(5.0f));
-            m_Cube.Add<CGeometry>(sCube()); // OPTIONAL : only for changing on CPU
-            m_Cube.Add<CGeometryInfo>(cGeometryManager::AddGeometry(sCube()).second);
-            m_Cube.Add<CMaterial>(cMaterialManager::AddMaterial());
-            m_Cube.Get<CGeometryInfo>().Entities = { m_Cube.GetID() };
-            m_Cube.SetOpaque(true);
-            m_Cube.SetTransparent(false);
-            m_Cube.SetShadow(true);
-        }
-
-        // Spheres
-        for (s32 i = 0; i < 4; i++)
-        {
-            auto mat = sMaterial();
-            if (i == 0) { mat.Albedo = glm::vec4(1.0f, 0.0f, 0.0f, 0.2f); }
-            if (i == 1) { mat.Albedo = glm::vec4(0.0f, 1.0f, 0.0f, 0.4f); }
-            if (i == 2) { mat.Albedo = glm::vec4(0.0f, 0.0f, 1.0f, 0.6f); }
-            if (i == 3) { mat.Albedo = glm::vec4(1.0f, 1.0f, 0.0f, 0.8f); }
-
-            mat.Metallness = 0.0f;
-            mat.Roughness = 0.05f;
-            mat.AO = 0.0f;
-
-            m_Glasses[i] = cEntity("Glass-" + string(std::to_string(i)), m_Scene);
-            m_Glasses[i].SetPosition(glm::vec3(0 + ((float)i * 0.5f), 1.1 + ((float)i * 2.0f), -5));
-            m_Glasses[i].SetScale(glm::vec3(1.0f));
-            m_Glasses[i].Add<CGeometry>(sSphere()); // OPTIONAL : if you need to change geometry on CPU
-            m_Glasses[i].Add<CGeometryInfo>(cGeometryManager::AddGeometry(sSphere()).second);
-            m_Glasses[i].Get<CGeometryInfo>().Entities = { m_Glasses[i].GetID() };
-            m_Glasses[i].Add<CMaterial>(cMaterialManager::AddMaterial(mat));
-            m_Glasses[i].SetOpaque(false);
-            m_Glasses[i].SetTransparent(true);
-            m_Glasses[i].SetShadow(true);
-
-            sSphereShapeDescriptor sphereShapeDesc(1.0f);
-            m_Glasses[i].Add<CPhysicsActor>(
-                    cPhysicsManager::AddActor(
-                            m_Glasses[i],
-                            CPhysicsActor::eActorType::RIGID_DYNAMIC,
-                            &sphereShapeDesc,
-                            glm::vec3(0.0f),
-                            0.5f, 0.5f, 0.5f,
-                            0.05f, 0.0f
-                    )
-            );
         }
 
         // settings for shadows
-        Buffers::ShadowPCF->Item.FilterSize = 0;
+        Buffers::ShadowPCF->GetItem().FilterSize = 0;
         Buffers::ShadowPCF->Flush();
+
+        // Texture atlas test
+        sAtlas2DTexture texture = MTexture::LoadTexture(
+            "C:/Users/USER100/CLionProjects/XPE-Engine/samples/res/textures/texture.png"
+        );
 
         {
             m_AudioBox = cEntity("AudioBox", m_Scene);
@@ -418,7 +348,6 @@ public:
             m_AudioBox.SetScale(glm::vec3(1.0f));
             m_AudioBox.Add<CGeometry>(sCube());
             m_AudioBox.Add<CGeometryInfo>(cGeometryManager::AddGeometry(sCube()).second);
-            m_AudioBox.Add<CMaterial>(cMaterialManager::AddMaterial());
             m_AudioBox.Get<CGeometryInfo>().Entities = { m_AudioBox.GetID() };
             m_AudioBox.SetOpaque(true);
 
@@ -426,8 +355,22 @@ public:
             test1.File = cAudioLoader::Load("res/audio/mono_test.wav");
         }
 
-        Buffers::SSAO->Item.Intensity = 2;
+        {
+            for (s32 i = 0; i < 4; i++)
+            {
+                m_ParticleEmitters[i] = cEntity("ParticleEmitter", m_Scene);
+
+                m_ParticleEmitters[i].SetPosition(glm::vec3(15.0f + (2.5f * (float)i), 1.0f, 15.0f));
+                m_ParticleEmitters[i].SetScale(glm::vec3(1.0f));
+                m_ParticleEmitters[i].Add<CParticleEmitter>(MParticle::AddEmitter(8));
+                MParticle::UpdateEmitter(m_ParticleEmitters[i], m_Scene);
+            }
+        }
+
+        Buffers::SSAO->GetItem().Intensity = 2;
         Buffers::SSAO->Flush();
+
+        MMaterial::Update(m_Scene);
     }
 
     void Update() override final
@@ -437,6 +380,7 @@ public:
         UpdateListener();
         AnimateLight();
         DisplayStats();
+        cLightManager::UpdateLights(m_Scene);
     }
 
     void Free()
@@ -470,18 +414,26 @@ public:
 
         if (key == eKey::R)
         {
-            Textures::Canvas = RenderTargets::Shadow->Colors[0];
-            m_Canvas->SetViewport(RenderTargets::Shadow->Viewport);
+            Textures::Canvas = RenderTargets::Shadow->GetColors()[0];
         }
 
         if (key == eKey::T)
         {
-            Textures::Canvas = RenderTargets::Final->Colors[0];
+            Textures::Canvas = RenderTargets::Final->GetColors()[0];
         }
 
         if (key == eKey::V)
         {
             cAudioManager::VoiceRecord();
+        }
+
+        if (key == eKey::J)
+        {
+            m_Scene->GetComponent<CTransform>(m_SunLight.GetID()).Position.x -= 0.1f;
+
+            //cPhysicsManager::SetForce(m_Ragdoll->Bodyparts[0], glm::vec3(256.0f, 0.0f, 0.0f));
+            //cPhysicsManager::SetForce(m_Ragdoll->Bodyparts[1], glm::vec3(256.0f, 0.0f, 256.0f));
+            //cPhysicsManager::SetForce(m_Ragdoll->Bodyparts[2], glm::vec3(256.0f, 256.0f, 0.0f));
         }
 
         MoveWidget(key);
@@ -511,6 +463,7 @@ private:
 
     void InitCamera() {
         m_PerspectiveCamera = new cPerspectiveCamera(cWindowManager::GetWidth(), cWindowManager::GetHeight());
+        m_PerspectiveCamera->Component.Near = 0.001f;
         m_PerspectiveCamera->Component.Far = m_TestConfig.CameraFar;
         m_PerspectiveCamera->Component.Position = { 5, 5, 20 };
         m_PerspectiveCamera->Component.AspectRatio = Config.AspectRatio;
@@ -573,8 +526,6 @@ private:
         {
             pos.z -= 1;
         }
-
-        m_SunLight.Get<CDirectionalLight>().View.Position = pos;
     }
 
     void MoveWidget(const eKey key)
@@ -636,15 +587,18 @@ private:
     cPerspectiveCamera* m_PerspectiveCamera;
 
     cEntity m_SunLight;
+    cEntity m_Light2;
     cEntity m_Plane;
     cEntity m_Goblins;
     cEntity m_Goblin1;
     cEntity m_Goblin2;
     cEntity m_Goblin3;
     cEntity m_Goblin4;
-    cEntity m_Cube;
+    cEntity m_Capsule;
     cEntity m_AudioBox;
     cEntity m_Glasses[4];
+    cEntity m_ParticleEmitters[4];
+    sRagdoll* m_Ragdoll;
 
     sTestConfig m_TestConfig;
     sXmlConfig  m_XmlConfig;

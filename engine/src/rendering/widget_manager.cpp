@@ -15,17 +15,17 @@ namespace xpe {
             Samplers::Widget->AddressW     = sSampler::eAddress::WRAP;
             Samplers::Widget->Init();
 
-            Textures::WidgetAtlas = new sAtlas();
-            Textures::WidgetAtlas->InitializeData = true;
-            Textures::WidgetAtlas->Type = sTexture::eType::TEXTURE_2D;
-            Textures::WidgetAtlas->Usage = sTexture::eUsage::DEFAULT;
-            Textures::WidgetAtlas->Format = eTextureFormat::RGBA8;
-            Textures::WidgetAtlas->Width = 1024;
-            Textures::WidgetAtlas->Height = 1024;
-            Textures::WidgetAtlas->Channels = 4;
-            Textures::WidgetAtlas->Slot = K_SLOT_WIDGET_ATLAS;
-            Textures::WidgetAtlas->AddLayer();
-            Textures::WidgetAtlas->Init();
+            //Textures::WidgetAtlas = new sAtlas();
+            //Textures::WidgetAtlas->SetInitializeData(true);
+            //Textures::WidgetAtlas->SetType(cTexture::eType::TEXTURE_2D);
+            //Textures::WidgetAtlas->SetUsage(cTexture::eUsage::DEFAULT);
+            //Textures::WidgetAtlas->SetFormat(eTextureFormat::RGBA8);
+            //Textures::WidgetAtlas->SetWidth(1024);
+            //Textures::WidgetAtlas->SetHeight(1024);
+            //Textures::WidgetAtlas->SetChannelCount(4);
+            //Textures::WidgetAtlas->SetSlot(K_SLOT_WIDGET_ATLAS);
+            //Textures::WidgetAtlas->AddLayer();
+            //Textures::WidgetAtlas->Init();
         }
 
         void cWidgetManager::Free()

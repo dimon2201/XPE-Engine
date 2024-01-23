@@ -5,119 +5,117 @@ namespace xpe {
 
     namespace render {
 
-        sRenderTarget::sRenderTarget(const vector<sTexture*> &colors, sViewport* viewport)
+        cRenderTarget::cRenderTarget(const vector<cTexture*> &colors)
         {
-            Colors.reserve(colors.size());
-            ColorViews.reserve(colors.size());
+            m_Colors.reserve(colors.size());
+            m_ColorViews.reserve(colors.size());
             for (auto& color : colors)
             {
-                Colors.emplace_back(color);
-                ColorViews.emplace_back(nullptr);
+                m_Colors.emplace_back(color);
+                m_ColorViews.emplace_back(nullptr);
             }
-            Viewport = viewport;
+
             Init();
         }
 
-        sRenderTarget::sRenderTarget(const sTexture* depthStencil, sViewport* viewport)
+        cRenderTarget::cRenderTarget(const cTexture* depthStencil)
         {
-            DepthStencil = (sTexture*)depthStencil;
-            DepthStencilView = nullptr;
-            Viewport = viewport;
+            m_DepthStencil = (cTexture*)depthStencil;
+            m_DepthStencilView = nullptr;
+
             Init();
         }
 
-        sRenderTarget::sRenderTarget(
-            const vector<sTexture*> &colors,
-            const sTexture* depthStencil,
-            sViewport* viewport
+        cRenderTarget::cRenderTarget(
+            const vector<cTexture*> &colors,
+            const cTexture* depthStencil
         ) {
-            Colors.reserve(colors.size());
-            ColorViews.reserve(colors.size());
+            m_Colors.reserve(colors.size());
+            m_ColorViews.reserve(colors.size());
             for (auto& color : colors)
             {
-                Colors.emplace_back(color);
-                ColorViews.emplace_back(nullptr);
+                m_Colors.emplace_back(color);
+                m_ColorViews.emplace_back(nullptr);
             }
-            DepthStencil = (sTexture*)depthStencil;
-            DepthStencilView = nullptr;
-            Viewport = viewport;
+            m_DepthStencil = (cTexture*)depthStencil;
+            m_DepthStencilView = nullptr;
+
             Init();
         }
 
-        sRenderTarget::sRenderTarget(const vector<void*> &colorViews, sViewport* viewport)
+        cRenderTarget::cRenderTarget(const vector<void*> &colorViews)
         {
-            ColorViews.reserve(colorViews.size());
+            m_ColorViews.reserve(colorViews.size());
             for (auto& colorView : colorViews)
             {
-                ColorViews.emplace_back(colorView);
+                m_ColorViews.emplace_back(colorView);
             }
-            Viewport = viewport;
         }
 
-        sRenderTarget::~sRenderTarget()
+        cRenderTarget::~cRenderTarget()
         {
             context::FreeRenderTarget(*this);
             RemoveWindowFrameResized();
         }
 
-        void sRenderTarget::Init()
+        void cRenderTarget::Init()
         {
             context::CreateRenderTarget(*this);
         }
 
-        void sRenderTarget::Resize(s32 width, s32 height)
+        void cRenderTarget::Resize(s32 width, s32 height)
         {
             context::ResizeRenderTarget(*this, width, height);
         }
 
-        void sRenderTarget::ResizeColors(s32 width, s32 height)
+        void cRenderTarget::ResizeColors(s32 width, s32 height)
         {
-            for (auto* color : Colors) {
+            for (auto* color : m_Colors) {
                 color->Resize(width, height);
             }
         }
 
-        void sRenderTarget::WindowFrameResized(s32 width, s32 height)
+        void cRenderTarget::WindowFrameResized(s32 width, s32 height)
         {
             Resize(width, height);
         }
 
-        void sRenderTarget::Bind()
+        void cRenderTarget::Bind()
         {
-            context::BindRenderTarget(ColorViews, DepthStencilView);
+            context::BindRenderTarget(m_ColorViews, m_DepthStencilView);
         }
 
-        void sRenderTarget::BindColor(u32 index)
+        void cRenderTarget::BindColor(u32 index)
         {
-            context::PSBindTexture(*Colors[index]);
+            context::PSBindTexture(cResource::eViewType::SRV, 0, m_Colors[index]->GetInstance(), m_Colors[index]->GetSRVInstance());
         }
 
-        void sRenderTarget::BindDepth()
+        void cRenderTarget::BindDepth()
         {
-            context::PSBindTexture(*DepthStencil);
+            context::PSBindTexture(cResource::eViewType::SRV, 0, m_DepthStencil->GetInstance(), m_DepthStencil->GetSRVInstance());
         }
 
-        void sRenderTarget::Unbind()
+        void cRenderTarget::Unbind()
         {
             context::UnbindRenderTarget();
         }
 
-        void sRenderTarget::Clear()
+        void cRenderTarget::Clear()
         {
-            usize size = ClearColors.size();
+            usize size = m_ClearColors.size();
             for (int i = 0 ; i < size ; i++) {
-                context::ClearColorTarget(ColorViews[i], ClearColors[i]);
+                context::ClearColorTarget(m_ColorViews[i], m_ClearColors[i]);
             }
-            if (ClearDepth != K_DEPTH_INVALID) {
-                context::ClearDepthTarget(DepthStencilView, ClearDepth);
+            if (m_ClearDepth != K_DEPTH_INVALID && m_DepthStencilView != nullptr) {
+                context::ClearDepthTarget(m_DepthStencilView, m_ClearDepth);
             }
         }
 
-        void sRenderTarget::SetResizable(bool resizable)
+        void cRenderTarget::SetResizable(bool resizable)
         {
             m_Resizable = resizable;
             if (resizable) {
-                AddWindowFrameResized(sRenderTarget, eWindowFrameResizedPriority::RENDER_TARGET);
+                AddWindowFrameResized(cRenderTarget, eWindowFrameResizedPriority::RENDER_TARGET);
             } else {
                 RemoveWindowFrameResized();
             }

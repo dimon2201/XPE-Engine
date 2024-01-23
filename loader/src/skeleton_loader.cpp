@@ -104,7 +104,9 @@ namespace xpe {
             }
 
             ParseSkeletonFromScene(scene->mRootNode, scene, skeleton);
-            ParseSkeletonFromAnim(scene->mAnimations[0], skeleton);
+            if (scene->mAnimations != nullptr) {
+                ParseSkeletonFromAnim(scene->mAnimations[0], skeleton);
+            }
 
             return cSkeletonManager::AddSkeleton(skeleton);
         }

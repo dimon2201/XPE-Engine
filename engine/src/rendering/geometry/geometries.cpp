@@ -222,6 +222,98 @@ namespace xpe {
             Indices = indexList;
         }
 
+        sCapsule::sCapsule(s32 segments)
+        {
+            PrimitiveTopology = ePrimitiveTopology::TRIANGLE_STRIP;
+
+            auto& vertices = Vertices;
+            vertices.resize(segments * 2);
+
+            glm::vec3 origin = glm::vec3(0.0f);
+            glm::vec3 top = origin + glm::vec3(0.0f, 0.5f, 0.0f);
+            glm::vec3 bottom = origin - glm::vec3(0.0f, 0.5f, 0.0f);
+
+            // Cylinder
+            u32 pointer = 0;
+            sVertex vertex;
+            for (u32 i = 0; i < segments; i++)
+            {
+                f32 angle = (f32)i * (360.0f / (f32)segments);
+
+                glm::vec3 topVertexPosition = glm::vec3(
+                    origin.x + glm::cos(glm::radians(angle)),
+                    top.y,
+                    origin.z + glm::sin(glm::radians(angle))
+                );
+
+                glm::vec3 bottomVertexPosition = glm::vec3(
+                    origin.x + glm::cos(glm::radians(angle)),
+                    bottom.y,
+                    origin.z + glm::sin(glm::radians(angle))
+                );
+
+                topVertexPosition.x *= 0.5f;
+                topVertexPosition.z *= 0.5f;
+                bottomVertexPosition.x *= 0.5f;
+                bottomVertexPosition.z *= 0.5f;
+
+                vertex.Position = bottomVertexPosition;
+                vertex.Normal = glm::normalize(bottomVertexPosition - bottom);
+                vertices[pointer++] = vertex;
+                vertex.Position = topVertexPosition;
+                vertex.Normal = glm::normalize(topVertexPosition - top);
+                vertices[pointer++] = vertex;
+            }
+
+            usize cylinderVertexCount = pointer;
+
+            // Top sphere
+            sSphere topSphere;
+            for (u32 i = 0; i < topSphere.Vertices.size(); i++)
+            {
+                topSphere.Vertices[i].Position *= 0.5f;
+                topSphere.Vertices[i].Position.y += top.y;
+                vertices.push_back(topSphere.Vertices[i]);
+            }
+
+            usize topSphereVertexCount = topSphere.Vertices.size();
+
+            // Bottom sphere
+            sSphere bottomSphere;
+            for (u32 i = 0; i < bottomSphere.Vertices.size(); i++)
+            {
+                bottomSphere.Vertices[i].Position *= 0.5f;
+                bottomSphere.Vertices[i].Position.y += bottom.y;
+                vertices.push_back(bottomSphere.Vertices[i]);
+            }
+
+            vector<u32> indexList;
+            indexList.resize((segments * 2) + 2);
+
+            // Cylinder
+            pointer = 0;
+            for (u32 i = 0; i < segments; i++)
+            {
+                indexList[pointer++] = i * 2;
+                indexList[pointer++] = (i * 2) + 1;
+            }
+
+            indexList[pointer++] = 0;
+            indexList[pointer++] = 1;
+
+            // Top sphere
+            for (u32 i = 0; i < topSphere.Indices.size(); i++) {
+                indexList.push_back(cylinderVertexCount + topSphere.Indices[i]);
+            }
+
+            // Bottom sphere
+            for (u32 i = 0; i < bottomSphere.Indices.size(); i++) {
+                indexList.push_back(cylinderVertexCount + topSphereVertexCount + bottomSphere.Indices[i]);
+            }
+
+            Indices = indexList;
+        }
+
         sGeometry sModel::Merge()
         {
             sGeometry baked;

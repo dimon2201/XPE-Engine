@@ -1,0 +1,23 @@
+struct VSOut
+{
+	float4 clipPosition : SV_POSITION;
+	float3 worldPosition : XPE_POSITION_WORLD;
+    float3 normal        : XPE_NORMAL_WORLD;
+};
+
+struct PSOut
+{
+    float4 color : SV_Target0;
+    float4 position : SV_Target1;
+    float4 normal : SV_Target2;
+};
+
+PSOut ps_main(VSOut vsOut)
+{
+    PSOut psOut = (PSOut)0;
+    psOut.color = float4(0.0, 1.0, 0.0, 1.0);
+    psOut.position = float4(vsOut.worldPosition, 0.0);
+    psOut.normal = float4(vsOut.normal, 0.0);
+
+    return psOut;
+}

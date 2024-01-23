@@ -1,5 +1,5 @@
 SamplerState ShadowSampler                   : K_SLOT_SHADOW_SAMPLER;
-Texture2D ShadowAtlas                        : K_SLOT_SHADOW_ATLAS;
+Texture2D ShadowAtlas                        : K_SLOT_TEXTURE_SHADOW_ATLAS;
 cbuffer ShadowPCF                            : K_SLOT_SHADOW_PCF
 {
     int PcfFilterSize = 0;
@@ -53,4 +53,45 @@ float GetDirectionalShadow(float3 lightDir, float3 positionLightSpace)
 float GetSpotShadow(float3 lightDir, float3 positionLightSpace)
 {
     return ShadowMapping(lightDir, positionLightSpace, ShadowAtlas, ShadowSampler, PcfFilterSize);
+}
+
+
+
+uint2 GetShadowAtlasSize() 
+{
+    uint width = 0;
+    uint height = 0;
+    ShadowAtlas.GetDimensions(width, height);
+
+    return uint2(width, height);
+}
+
+bool IsShadowed(int lightIndex, float4 shadowCaster, float3 worldPosition)
+{
+    uint2 shadowAtlasSize = GetShadowAtlasSize();
+    float2 bottomLeft = float2(shadowCaster.x, shadowCaster.y) / float2(shadowAtlasSize);
+    float2 topRight = float2(shadowCaster.z, shadowCaster.w) / float2(shadowAtlasSize);
+    float2 shadowMapSize = topRight - bottomLeft;
+
+    float4 viewPosition = mul(DirectLights[lightIndex].View, float4(worldPosition, 1.0));
+    float4 clipPosition = mul(DirectLights[lightIndex].Projection, float4(viewPosition.xyz, 1.0));
+
+    if (clipPosition.x < -1.0 || clipPosition.y > 1.0 ||
+        clipPosition.y < -1.0 || clipPosition.y > 1.0) {
+        return false;
+    }
+
+    clipPosition.x = (clipPosition.x / 2.0) + 0.5;
+    clipPosition.y = (clipPosition.y / -2.0) + 0.5;
+
+    clipPosition.x = (clipPosition.x * shadowMapSize.x) + bottomLeft.x;
+    clipPosition.y = (clipPosition.y * shadowMapSize.y) + bottomLeft.y;
+    
+    float pointDepth = viewPosition.z / 1024.0;
+    float shadowMapDepth = ShadowAtlas.Load(int3(float2(shadowAtlasSize.x, shadowAtlasSize.y) * clipPosition.xy, 0)).x;
+    if (shadowMapDepth < pointDepth && shadowMapDepth > 0.0) {
+        return true;
+    } else {
+        return false;
+    }
 }

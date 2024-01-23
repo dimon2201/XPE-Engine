@@ -1,7 +1,7 @@
 #pragma once
 
 #include <rendering/camera_manager.hpp>
-#include <rendering/shadow_manager.hpp>
+#include <rendering/light_manager.hpp>
 #include <rendering/skybox_manager.hpp>
 
 #include <ecs/components.hpp>
@@ -35,6 +35,13 @@ namespace xpe
         class cPhysicsSystem;
     }
 
+    namespace particle
+    {
+        class cParticleSystem;
+    }
+
+    using namespace particle;
+
     namespace core {
 
         class ENGINE_API cApp : public cObject {
@@ -67,12 +74,11 @@ namespace xpe
 
             cCanvas* m_Canvas = nullptr;
 
-            sViewport m_Viewport;
-
             cRenderSystem* m_RenderSystem = nullptr;
             cAnimSystem* m_AnimSystem = nullptr;
             cAudioSystem* m_AudioSystem = nullptr;
             cPhysicsSystem* m_PhysicsSystem = nullptr;
+            cParticleSystem* m_ParticleSystem = nullptr;
         };
     }
 }

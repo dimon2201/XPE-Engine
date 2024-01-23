@@ -5,190 +5,183 @@ namespace xpe {
 
     namespace render {
 
-        sIndexBuffer::sIndexBuffer(const usize indexCount, sBuffer::eSubType subtype, sBuffer::eViewType viewtype)
+        cIndexBuffer::cIndexBuffer(const usize indexCount, cBuffer::eViewType viewtype)
         {
-            Type = sBuffer::eType::INDEX;
-            SubType = subtype;
-            ViewType = viewtype;
-            StructureSize = sizeof(u32);
-            NumElements = indexCount;
+            m_Type = cBuffer::eType::INDEX;
+            m_ViewType = viewtype;
+            m_StructureSize = sizeof(u32);
+            m_NumElements = indexCount;
             if (indexCount > 0) {
-                List.resize(indexCount);
-                InitialData = List.data();
+                m_List.resize(indexCount);
+                m_InitialData = m_List.data();
                 context::CreateBuffer(*this);
             }
         }
 
-        sIndexBuffer::sIndexBuffer(const vector<u32>& indexArray, sBuffer::eSubType subtype, sBuffer::eViewType viewtype)
-                : List(indexArray)
+        cIndexBuffer::cIndexBuffer(const vector<u32>& indexArray, cBuffer::eViewType viewtype) : m_List(indexArray)
         {
-            Type = sBuffer::eType::INDEX;
-            SubType = subtype;
-            ViewType = viewtype;
-            StructureSize = sizeof(u32);
-            NumElements = indexArray.size();
+            m_Type = cBuffer::eType::INDEX;
+            m_ViewType = viewtype;
+            m_StructureSize = sizeof(u32);
+            m_NumElements = indexArray.size();
             if (indexArray.size() > 0) {
-                InitialData = List.data();
+                m_InitialData = m_List.data();
                 context::CreateBuffer(*this);
                 Flush();
             }
         }
 
-        sIndexBuffer::~sIndexBuffer()
+        cIndexBuffer::~cIndexBuffer()
         {
             context::FreeBuffer(*this);
         }
 
-        void sIndexBuffer::Flush()
+        void cIndexBuffer::Flush()
         {
-            usize size = List.size();
-            if (size != NumElements) {
+            usize size = m_List.size();
+            if (size != m_NumElements) {
                 Recreate(size);
-            }
-            else {
-                context::CopyBuffer(*this, List.data(), GetByteSize());
+            } else {
+                context::WriteBuffer(*this, m_List.data(), GetByteSize());
             }
         }
 
-        void sIndexBuffer::FlushIndices(const vector<u32> &indices)
+        void cIndexBuffer::FlushIndices(const vector<u32> &indices)
         {
             if (sizeof(indices) > GetByteSize()) {
                 Resize(indices.size());
             }
-            memcpy((void*)List.data(), (const void*)indices.data(), indices.size());
+            memcpy((void*)m_List.data(), (const void*)indices.data(), indices.size());
             Flush();
         }
 
-        void sIndexBuffer::FlushIndex(u32 i, u32 index)
+        void cIndexBuffer::FlushIndex(u32 i, u32 index)
         {
-            if (i >= List.size()) {
+            if (i >= m_List.size()) {
                 Resize(i + 1);
             }
-            List[i] = index;
-            context::MoveBufferOffset(*this, StructureSize * i, &List.back(), StructureSize);
+            m_List[i] = index;
+            context::MoveBufferOffset(*this, m_StructureSize * i, &m_List.back(), m_StructureSize);
         }
 
-        void sIndexBuffer::Recreate(const usize indexCount)
+        void cIndexBuffer::Recreate(const usize indexCount)
         {
-            NumElements = indexCount;
-            StructureSize = sizeof(u32);
-            InitialData = List.data();
+            m_NumElements = indexCount;
+            m_StructureSize = sizeof(u32);
+            m_InitialData = m_List.data();
             context::FreeBuffer(*this);
             context::CreateBuffer(*this);
-            context::CopyBuffer(*this, List.data(), GetByteSize());
+            context::WriteBuffer(*this, m_List.data(), GetByteSize());
         }
 
-        usize sIndexBuffer::AddIndices(const vector<u32>& indices)
+        usize cIndexBuffer::AddIndices(const vector<u32>& indices)
         {
-            usize indexOffset = List.size();
-            List.resize(List.size() + indices.size());
-            memcpy(&List[indexOffset], indices.data(), indices.size() * sizeof(u32));
+            usize indexOffset = m_List.size();
+            m_List.resize(m_List.size() + indices.size());
+            memcpy(&m_List[indexOffset], indices.data(), indices.size() * sizeof(u32));
             return indexOffset;
         }
 
-        void sIndexBuffer::Resize(const usize indexCount)
+        void cIndexBuffer::Resize(const usize indexCount)
         {
-            List.resize(indexCount);
+            m_List.resize(indexCount);
         }
 
-        void sIndexBuffer::Reserve(const usize indexCount)
+        void cIndexBuffer::Reserve(const usize indexCount)
         {
-            List.reserve(indexCount);
+            m_List.reserve(indexCount);
         }
 
-        sVertexBuffer::sVertexBuffer(const usize vertexCount, sBuffer::eSubType subtype, sBuffer::eViewType viewtype)
+        cVertexBuffer::cVertexBuffer(const usize vertexCount, cBuffer::eViewType viewType)
         {
-            Type = sBuffer::eType::VERTEX;
-            SubType = subtype;
-            ViewType = viewtype;
-            StructureSize = sizeof(sVertex);
-            NumElements = vertexCount;
+            m_Type = cBuffer::eType::VERTEX;
+            m_ViewType = viewType;
+            m_StructureSize = sizeof(sVertex);
+            m_NumElements = vertexCount;
             if (vertexCount > 0) {
-                List.resize(vertexCount);
-                InitialData = List.data();
+                m_List.resize(vertexCount);
+                m_InitialData = m_List.data();
                 context::CreateBuffer(*this);
             }
         }
 
-        sVertexBuffer::sVertexBuffer(const vector<sVertex>& vertexArray, sBuffer::eSubType subtype, sBuffer::eViewType viewtype)
-                : List(vertexArray)
+        cVertexBuffer::cVertexBuffer(const vector<sVertex>& vertexArray, cBuffer::eViewType viewtype)
+                : m_List(vertexArray)
         {
-            Type = sBuffer::eType::VERTEX;
-            SubType = subtype;
-            ViewType = viewtype;
-            StructureSize = sizeof(sVertex);
-            NumElements = vertexArray.size();
+            m_Type = cBuffer::eType::VERTEX;
+            m_ViewType = viewtype;
+            m_StructureSize = sizeof(sVertex);
+            m_NumElements = vertexArray.size();
             if (vertexArray.size() > 0) {
-                InitialData = List.data();
+                m_InitialData = m_List.data();
                 context::CreateBuffer(*this);
                 Flush();
             }
         }
 
-        sVertexBuffer::~sVertexBuffer()
+        cVertexBuffer::~cVertexBuffer()
         {
             context::FreeBuffer(*this);
         }
 
-        void sVertexBuffer::Flush()
+        void cVertexBuffer::Flush()
         {
-            usize size = List.size();
-            if (size != NumElements) {
+            usize size = m_List.size();
+            if (size != m_NumElements) {
                 Recreate(size);
-            }
-            else {
-                context::CopyBuffer(*this, List.data(), GetByteSize());
+            } else {
+                context::WriteBuffer(*this, m_List.data(), GetByteSize());
             }
         }
 
-        void sVertexBuffer::FlushVertex(u32 index, const sVertex& vertex)
+        void cVertexBuffer::FlushVertex(u32 index, const sVertex& vertex)
         {
-            if (index >= List.size()) {
+            if (index >= m_List.size()) {
                 Resize(index + 1);
             }
-            List[index] = vertex;
-            context::MoveBufferOffset(*this, StructureSize * index, &List.back(), StructureSize);
+            m_List[index] = vertex;
+            context::MoveBufferOffset(*this, m_StructureSize * index, &m_List.back(), m_StructureSize);
         }
 
-        void sVertexBuffer::FlushVertices(const vector<sVertex> &vertices)
+        void cVertexBuffer::FlushVertices(const vector<sVertex> &vertices)
         {
             if (sizeof(vertices) > GetByteSize()) {
                 Resize(vertices.size());
             }
-            memcpy((void*)List.data(), (const void*)vertices.data(), sizeof(vertices));
+            memcpy((void*)m_List.data(), (const void*)vertices.data(), sizeof(vertices));
             Flush();
         }
 
-        void sVertexBuffer::Recreate(const usize vertexCount)
+        void cVertexBuffer::Recreate(const usize vertexCount)
         {
-            NumElements = vertexCount;
-            StructureSize = sizeof(sVertex);
-            InitialData = List.data();
+            m_NumElements = vertexCount;
+            m_StructureSize = sizeof(sVertex);
+            m_InitialData = m_List.data();
             context::FreeBuffer(*this);
             context::CreateBuffer(*this);
-            context::CopyBuffer(*this, List.data(), GetByteSize());
+            context::WriteBuffer(*this, m_List.data(), GetByteSize());
         }
 
-        void sVertexBuffer::Resize(const usize vertexCount)
+        void cVertexBuffer::Resize(const usize vertexCount)
         {
-            List.resize(vertexCount);
+            m_List.resize(vertexCount);
         }
 
-        void sVertexBuffer::Reserve(const usize vertexCount)
+        void cVertexBuffer::Reserve(const usize vertexCount)
         {
-            List.reserve(vertexCount);
+            m_List.reserve(vertexCount);
         }
 
-        void sVertexBuffer::Clear()
+        void cVertexBuffer::Clear()
         {
-            List.clear();
+            m_List.clear();
         }
 
-        usize sVertexBuffer::AddVertices(const vector<sVertex>& vertices)
+        usize cVertexBuffer::AddVertices(const vector<sVertex>& vertices)
         {
-            usize vertexOffset = List.size();
-            List.resize(List.size() + vertices.size());
-            memcpy(&List[vertexOffset], vertices.data(), vertices.size() * sizeof(sVertex));
+            usize vertexOffset = m_List.size();
+            m_List.resize(m_List.size() + vertices.size());
+            memcpy(&m_List[vertexOffset], vertices.data(), vertices.size() * sizeof(sVertex));
             return vertexOffset;
         }
 

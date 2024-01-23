@@ -158,16 +158,6 @@ namespace xpe {
             }
         }
 
-        void cEntity::SetShadow(bool shadow)
-        {
-            if (shadow) {
-                Add<CHasShadow>();
-            }
-            else {
-                Remove<CHasShadow>();
-            }
-        }
-
         const string &cEntity::GetTag()
         {
             return Get<CTag>().Tag;
@@ -206,11 +196,6 @@ namespace xpe {
         bool cEntity::IsOpaque()
         {
             return HasAny<COpaque>();
-        }
-
-        bool cEntity::HasShadow()
-        {
-            return HasAny<CHasShadow>();
         }
 
         xml cEntity::ToXml(xml &root)

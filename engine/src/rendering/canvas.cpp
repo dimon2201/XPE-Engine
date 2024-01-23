@@ -1,6 +1,7 @@
 #include <rendering/canvas.hpp>
 #include <rendering/camera_manager.hpp>
 #include <rendering/bindings.hpp>
+#include <rendering/core/shader.hpp>
 
 namespace xpe {
 
@@ -11,11 +12,13 @@ namespace xpe {
             m_Shader = new cDefaultShader(cShader::eCategory::NONE, "canvas");
             m_Shader->VertexStage = cShaderManager::GetFromFile(sShaderStage::eType::VERTEX, "engine_shaders/passes/screen.vs");
             m_Shader->PixelStage = cShaderManager::GetFromFile(sShaderStage::eType::PIXEL, "engine_shaders/passes/canvas.ps");
-            m_Viewport = cCameraManager::GetViewport();
-            cShaderManager::SetShader(m_Shader);
+            m_Viewport = Viewports::Main;
+
+            cShaderManager::SetShader(m_Shader, 0);
 
             CreatePresentTarget();
             CreatePresentSampler();
+
             AddWindowFrameResized(cCanvas, 1);
         }
 
@@ -29,14 +32,13 @@ namespace xpe {
 
         void cCanvas::Draw()
         {
-            context::PSBindTextureSlot(0);
-            context::BindRenderTarget(m_PresentTarget->ColorViews, m_PresentTarget->DepthStencilView, m_PresentTarget->Viewport);
-            context::BindVSStage(*m_Shader->VertexStage);
-            context::BindPSStage(*m_Shader->PixelStage);
+            context::BindRenderTarget(m_PresentTarget->GetColorViews(), m_PresentTarget->GetDepthStencilView());
+            context::BindVSStage(m_Shader->VertexStage);
+            context::BindPSStage(m_Shader->PixelStage);
             context::PSBindSampler(*m_PresentSampler);
-            context::PSBindTexture(*Textures::Canvas, 0);
+            context::PSBindTexture(cResource::eViewType::SRV, 0, Textures::Canvas->GetInstance(), Textures::Canvas->GetSRVInstance());
 
-            context::ClearColorTarget(m_PresentTarget->ColorViews[m_BoundTargetIndex], glm::vec4(0, 0, 0, 1));
+            context::ClearColorTarget(m_PresentTarget->GetColorViews()[m_BoundTargetIndex], glm::vec4(0, 0, 0, 1));
 
             context::DrawQuad();
 
@@ -50,9 +52,8 @@ namespace xpe {
 
         void cCanvas::CreatePresentTarget()
         {
-            m_PresentTarget = new sRenderTarget(
-                    vector<void*> { context::SwapchainTargetView },
-                    m_Viewport
+            m_PresentTarget = new cRenderTarget(
+                vector<void*> { context::SwapchainTargetView }
             );
             m_PresentTarget->SetResizable(false);
         }
