@@ -5,6 +5,7 @@
 #include <rendering/geometry/geometry_manager.hpp>
 #include <ecs/components.hpp>
 #include <particle/particle_manager.hpp>
+#include <core/texture_manager.hpp>
 
 namespace xpe {
 
@@ -33,6 +34,14 @@ namespace xpe {
                 instance.ModelMatrix = cMathManager::UpdateModelMatrix(scene->GetComponent<CTransform>(entity));
                 instance.NormalMatrix = cMathManager::UpdateNormalMatrix(instance.ModelMatrix);
                 instance.LightIndex = lightIndex;
+                if (scene->HasAnyComponent<CMaterial2>(entity))
+                {
+                    instance.MaterialIndex = scene->GetComponent<CMaterial2>(entity).BufferIndex;
+                }
+                else
+                {
+                    instance.MaterialIndex = -1;
+                }
 
                 if (scene->HasAnyComponent<CShadowReceiver>(entity))
                 {
@@ -73,20 +82,11 @@ namespace xpe {
 
             VertexStage->SetBufferBinding(Buffers::Camera, cResource::eViewType::SRV, K_SLOT_CAMERA);
             VertexStage->SetBufferBinding(Buffers::Skeleton, cResource::eViewType::SRV, K_SLOT_SKELETONS);
-
-            PixelStage->SetBufferBinding(Buffers::Material, cResource::eViewType::SRV, K_SLOT_MATERIALS);
+            VertexStage->SetBufferBinding(Buffers::Material, cResource::eViewType::SRV, K_SLOT_BUFFER_MATERIALS);
+            
             PixelStage->SetBufferBinding(Buffers::DirectLight, cResource::eViewType::SRV, K_SLOT_DIRECT_LIGHTS);
-
-            //PixelStage->SetTextureBinding(Textures::AlbedoAtlas, cResource::eViewType::SRV);
-            //PixelStage->SetTextureBinding(Textures::NormalAtlas, cResource::eViewType::SRV);
-            //PixelStage->SetTextureBinding(Textures::ParallaxAtlas, cResource::eViewType::SRV);
-            //PixelStage->SetTextureBinding(Textures::MetalAtlas, cResource::eViewType::SRV);
-            //PixelStage->SetTextureBinding(Textures::RoughnessAtlas, cResource::eViewType::SRV);
-            //PixelStage->SetTextureBinding(Textures::AOAtlas, cResource::eViewType::SRV);
-            //PixelStage->SetTextureBinding(Textures::EmissionAtlas, cResource::eViewType::SRV);
-            PixelStage->SetTextureBinding(RenderTargets::Shadow->GetDepthStencil(), cResource::eViewType::SRV, K_SLOT_SHADOW_ATLAS);
-
-            PixelStage->SetSampler(Samplers::Material);
+            PixelStage->SetTextureBinding(RenderTargets::Shadow->GetDepthStencil(), cResource::eViewType::SRV, K_SLOT_TEXTURE_SHADOW_ATLAS);
+            PixelStage->SetTextureBinding(MTexture::GetAtlas(), cResource::eViewType::SRV, K_SLOT_TEXTURE_ATLAS);
 
             Viewport = Viewports::Main;
 
@@ -125,7 +125,7 @@ namespace xpe {
             VertexStage->SetBufferBinding(Buffers::Camera, cResource::eViewType::SRV, K_SLOT_CAMERA);
             VertexStage->SetBufferBinding(Buffers::Skeleton, cResource::eViewType::SRV, K_SLOT_SKELETONS);
 
-            PixelStage->SetBufferBinding(Buffers::Material, cResource::eViewType::SRV, K_SLOT_MATERIALS);
+            PixelStage->SetBufferBinding(Buffers::Material, cResource::eViewType::SRV, K_SLOT_BUFFER_MATERIALS);
             PixelStage->SetBufferBinding(Buffers::DirectLight, cResource::eViewType::SRV, K_SLOT_DIRECT_LIGHTS);
             PixelStage->SetBufferBinding(Buffers::PointLight, cResource::eViewType::SRV, K_SLOT_POINT_LIGHTS);
             PixelStage->SetBufferBinding(Buffers::SpotLight, cResource::eViewType::SRV, K_SLOT_SPOT_LIGHTS);
@@ -981,7 +981,7 @@ namespace xpe {
 
         void cParticleComputeShader::Draw(cScene* scene)
         {
-            usize emitterCount = cParticleManager::GetEmitterCount(scene);
+            usize emitterCount = MParticle::GetEmitterCount(scene);
 
             if (emitterCount > 0) {
                 context::Dispatch(glm::vec3(emitterCount, 1, 1));

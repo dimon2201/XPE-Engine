@@ -2,7 +2,6 @@
 #include ../material.shader
 #include ../lighting.shader
 #include ../shadow.shader
-#include ../pbr.shader
 #include ../gamma_correction.shader
 
 struct VSOut
@@ -18,6 +17,7 @@ struct VSOut
     float gamma             : XPE_GAMMA;
     uint shadowCasterCount  : XPE_SHADOW_CASTER_COUNT;
     float4 shadowCasters[5] : XPE_SHADOW_CASTERS;
+    float4 diffuseTextureOffsets : XPE_DIFFUSE_TEXTURE_OFFSETS;
 };
 
 struct PSOut
@@ -32,7 +32,7 @@ PSOut ps_main(VSOut psIn)
     UV = psIn.uv;
     W = psIn.positionWorld;
     V = normalize(psIn.viewPosition - psIn.positionWorld);
-    N = GetNormal(psIn.materialIndex, psIn.uv, psIn.normal, psIn.tbn);
+    // N = GetNormal(psIn.materialIndex, psIn.uv, psIn.normal, psIn.tbn);
     float NdotV = max(dot(N, V), 0.0);
     R = reflect(-V, N);
 
@@ -45,6 +45,10 @@ PSOut ps_main(VSOut psIn)
         if (IsShadowed(i, psIn.shadowCasters[i], psIn.positionWorld)) {
             Lo *= float3(0.25, 0.25, 0.25);
         }
+    }
+
+    if (psIn.diffuseTextureOffsets.z > 0.0) {
+        Lo = AtlasLoad(TextureAtlas, psIn.diffuseTextureOffsets, UV).xyz;
     }
 
     PSOut psOut;

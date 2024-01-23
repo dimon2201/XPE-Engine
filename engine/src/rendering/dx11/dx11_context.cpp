@@ -948,7 +948,11 @@ namespace xpe {
             {
                 u32 arraySize = texture.GetLayers().empty() ? 1 : texture.GetLayers().size();
                 u32 mipLevels = texture.GetMipLevels();
-                D3D11_SUBRESOURCE_DATA* initialData = InitTextureData(texture, arraySize, mipLevels);
+                D3D11_SUBRESOURCE_DATA* initialData = nullptr;
+                if (texture.IsDataInitialized()) {
+                    initialData = InitTextureData(texture, arraySize, mipLevels);
+                }
+
                 D3D11_TEXTURE2D_DESC desc = {};
                 UpdateTextureFlags(texture, desc.BindFlags, desc.MiscFlags);
                 desc.Width = texture.GetWidth();
@@ -995,7 +999,9 @@ namespace xpe {
 
                 GenerateMips(texture);
 
-                FreeInitialData(initialData);
+                if (texture.IsDataInitialized()) {
+                    FreeInitialData(initialData);
+                }
             }
 
             void CreateTexture2DArray(cTexture &texture)
@@ -1258,7 +1264,29 @@ namespace xpe {
                 LogDebugMessage();
             }
 
-            void GenerateMips(const cTexture& texture) {
+            void WriteTextureOffset(const cTexture& texture, const glm::vec2& offset, const glm::vec2& size, const void* data, usize dataByteSize)
+            {
+                D3D11_BOX box = {};
+                box.left = offset.x;
+                box.right = offset.x + size.x;
+                box.top = offset.y;
+                box.bottom = offset.y + size.y;
+                box.front = 0;
+                box.back = 1;
+
+                s_ImmContext->UpdateSubresource(
+                    (ID3D11Resource*)texture.GetInstance(),
+                    0,
+                    &box,
+                    data,
+                    dataByteSize / size.y,
+                    dataByteSize
+                );
+                LogDebugMessage();
+            }
+
+            void GenerateMips(const cTexture& texture)
+            {
                 u32 mipLevels = texture.GetMipLevels();
                 if (mipLevels > 1) {
                     s_ImmContext->GenerateMips((ID3D11ShaderResourceView*)texture.GetSRVInstance());
@@ -1456,7 +1484,6 @@ namespace xpe {
 
             void BindItemBufferVS(const cBuffer &buffer)
             {
-
             }
 
             void UnbindItemBufferVS(const cBuffer &buffer)

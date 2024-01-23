@@ -541,53 +541,6 @@ namespace xpe {
             static const std::unordered_map<eTextureFormat, int> k_BppTable;
         };
 
-        struct ENGINE_API sAtlas2DTexture
-        {
-            sAtlas2DTexture() = default;
-            sAtlas2DTexture(const glm::vec4& offsets) : Offsets(offsets) {}
-
-            glm::vec4 Offsets;
-        };
-
-        struct ENGINE_API cAtlas2D : public cTexture
-        {
-
-        public:
-            cAtlas2D(
-                cTexture::eType type,
-                cTexture::eUsage usage,
-                const glm::vec2& size,
-                usize channelCount,
-                eTextureFormat format,
-                usize sampleCount,
-                dual enableRenderTarget,
-                u32 slot,
-                u32 mostDetailedMip,
-                dual initializeData
-            ) : cTexture(
-                type,
-                cResource::eViewType::SRV,
-                usage,
-                glm::vec3(size.x, size.y, 1.0f),
-                channelCount,
-                format,
-                sampleCount,
-                enableRenderTarget,
-                slot,
-                mostDetailedMip,
-                initializeData,
-                {}
-            ) {}
-            ~cAtlas2D() {}
-
-            sAtlas2DTexture AddTexture(const glm::vec2& size);
-            void RemoveTexture(const sAtlas2DTexture& texture);
-
-        private:
-            vector<sAtlas2DTexture> m_Textures;
-
-        };
-
         struct ENGINE_API sAtlas : public cTexture
         {
             struct ENGINE_API sCell final
@@ -758,6 +711,53 @@ namespace xpe {
             ~sSampler();
 
             void Init();
+        };
+
+        struct ENGINE_API sAtlas2DTexture
+        {
+            sAtlas2DTexture() = default;
+            sAtlas2DTexture(const glm::vec4& offsets) : Offsets(offsets) {}
+
+            glm::vec4 Offsets = glm::vec4(0.0f);
+        };
+
+        class ENGINE_API cAtlas2D : public cTexture
+        {
+
+        public:
+            cAtlas2D(
+                cTexture::eType type,
+                cTexture::eUsage usage,
+                const glm::vec2& size,
+                usize channelCount,
+                eTextureFormat format,
+                usize sampleCount,
+                dual enableRenderTarget,
+                u32 slot,
+                u32 mostDetailedMip,
+                dual initializeData
+            ) : cTexture(
+                type,
+                cResource::eViewType::SRV,
+                usage,
+                glm::vec3(size.x, size.y, 1.0f),
+                channelCount,
+                format,
+                sampleCount,
+                enableRenderTarget,
+                slot,
+                mostDetailedMip,
+                initializeData,
+                {}
+            ) {}
+            ~cAtlas2D() {}
+
+            sAtlas2DTexture AddTexture(const glm::vec2& size, const void* data, usize dataByteSize);
+            void RemoveTexture(const sAtlas2DTexture& texture);
+
+        private:
+            vector<sAtlas2DTexture> m_Textures;
+
         };
 
     }

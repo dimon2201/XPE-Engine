@@ -1,7 +1,6 @@
 #pragma once
 
 #include <rendering/geometry/geometries.hpp>
-#include <rendering/material/material.hpp>
 #include <rendering/buffers.hpp>
 #include <rendering/font/font.hpp>
 #include <rendering/widget_manager.hpp>
@@ -106,29 +105,14 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API CMaterial : cJson, sMaterial
+        struct ENGINE_API CMaterial2
         {
-            CMaterial(const sMaterial& material = {}) : sMaterial(material) {}
-            CMaterial(sMaterial&& material) : sMaterial(material) {}
+            CMaterial2() = default;
+            CMaterial2(const sAtlas2DTexture& diffuse) : DiffuseTexture(diffuse) {}
 
-            JSON_CLASS(
-                CMaterial,
-                Albedo,
-                EnableAlbedoMap,
-                EnableNormalMap,
-                EnableParallaxMap,
-                ParallaxHeightScale,
-                ParallaxMinLayers,
-                ParallaxMaxLayers,
-                Metallness,
-                EnableMetalMap,
-                Roughness,
-                EnableRoughnessMap,
-                AO,
-                EnableAOMap,
-                Emission,
-                EnableEmissionMap
-            )
+            u32 BufferIndex = 0;
+            glm::vec4 DiffuseColor = glm::vec4(1.0f);
+            render::sAtlas2DTexture DiffuseTexture;
         };
 
         struct ENGINE_API CDirectionalLight : cJson
@@ -439,6 +423,7 @@ namespace xpe
                 _EmitterCount = emitter._EmitterCount;
                 SpawnCount = emitter.SpawnCount;
                 WorldPosition = emitter.WorldPosition;
+                MaxLifetime = emitter.MaxLifetime;
             }
 
             JSON_CLASS(

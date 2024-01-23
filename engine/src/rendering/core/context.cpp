@@ -105,12 +105,14 @@ namespace xpe {
                 }
 
                 void* mappedData = Map(texture, layerIndex, mapType);
-                if (mappedData == nullptr) {
+                if (mappedData == nullptr)
+                {
                     u32 rowPitch = dataByteSize / texture.GetHeight();
                     u32 depthPitch = dataByteSize;
                     UpdateSubData(texture, layerIndex, data, rowPitch, depthPitch);
                 }
-                else {
+                else
+                {
                     void* dst = (void*)((u8*)mappedData + offset);
                     memcpy(dst, data, dataByteSize);
                     Unmap(texture);

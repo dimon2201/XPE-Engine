@@ -97,6 +97,7 @@ namespace xpe {
             ENGINE_API void CopyTextureOffset(const cTexture& texture, usize offset, const void* data, usize dataByteSize, u32 layerIndex = 0);
             ENGINE_API void MoveTexture(const cTexture& texture, const void* data, usize dataByteSize, u32 layerIndex = 0);
             ENGINE_API void MoveTextureOffset(const cTexture& texture, usize offset, const void* data, usize dataByteSize, u32 layerIndex = 0);
+            ENGINE_API void WriteTextureOffset(const cTexture& texture, const glm::vec2& offset, const glm::vec2& size, const void* data, usize dataByteSize);
 
             ENGINE_API void GenerateMips(const cTexture& texture);
 

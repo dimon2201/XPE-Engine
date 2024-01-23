@@ -12,8 +12,7 @@
 
 #include <physics/physics_manager.hpp>
 #include <physics/physics_system.hpp>
-
-#include <particle/particle_system.hpp>
+#include <core/texture_manager.hpp>
 
 namespace xpe {
 
@@ -53,6 +52,7 @@ namespace xpe {
             cWindowManager::InitWindow(winDesc);
             cInputManager::Init();
             cPhysicsManager::Init(cTaskManager::GetSimulationDispatcher());
+            MParticle::Init();
 
             render::context::EnableInfoLog = Config.EnableGPUInfoLog;
             render::context::EnableWarnLog = Config.EnableGPUWarnLog;
@@ -65,7 +65,8 @@ namespace xpe {
             m_AnimSystem = new cAnimSystem();
             m_AudioSystem = new cAudioSystem();
             m_PhysicsSystem = new cPhysicsSystem();
-            m_ParticleSystem = new cParticleSystem();
+
+            MTexture::Init(glm::vec2(8192));
 
             InitShaders();
 
@@ -115,7 +116,7 @@ namespace xpe {
                 m_PhysicsSystem->Update(m_Scene, DeltaTime);
 
                 // particles
-                m_ParticleSystem->Update(m_Scene, DeltaTime);
+                MParticle::Update(m_Scene, DeltaTime);
 
                 Render();
 

@@ -35,7 +35,7 @@ namespace xpe {
                 eTextureFormat::R32_TYPELESS,
                 1,
                 true,
-                K_SLOT_SHADOW_ATLAS,
+                K_SLOT_TEXTURE_SHADOW_ATLAS,
                 0,
                 false
             );
@@ -55,7 +55,7 @@ namespace xpe {
 
         sShadowCaster cLightManager::AddShadowCaster()
         {
-            sAtlas2DTexture texture = m_Atlas->AddTexture(m_ShadowMapSize);
+            sAtlas2DTexture texture = m_Atlas->AddTexture(m_ShadowMapSize, nullptr, 0);
 
             return texture.Offsets;
         }

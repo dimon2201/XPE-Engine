@@ -11,6 +11,7 @@ struct ParticleEmitter
     uint _EmitterCount;
     uint SpawnCount;
     float3 WorldPosition;
+    float MaxLifetime;
 };
 
 struct ParticlePassInfo

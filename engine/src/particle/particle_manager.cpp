@@ -8,29 +8,49 @@ namespace xpe {
 
     namespace particle {
 
-        usize cParticleManager::m_EmitterCount = 0;
+        usize MParticle::m_EmitterCount = 0;
 
-        void cParticleManager::Init()
+        void MParticle::Init()
         {
         }
 
-        void cParticleManager::Free()
+        void MParticle::Free()
         {
         }
 
-        sParticleEmitter cParticleManager::AddEmitter(usize spawnCount)
+        void MParticle::Update(cScene* scene, const cTime& dt)
+        {
+            auto emitters = scene->GetComponents<CParticleEmitter>();
+
+            if (emitters.size() > 0)
+            {
+                for (auto [entity, emitter] : emitters.each())
+                {
+                    sParticleEmitter gpuEmitter;
+                    gpuEmitter._EmitterCount = MParticle::GetEmitterCount(scene);
+                    gpuEmitter.SpawnCount = emitter.SpawnCount;
+
+                    Buffers::ParticleEmitter->Add(gpuEmitter);
+                }
+
+                Buffers::ParticleEmitter->Flush();
+            }
+        }
+
+        sParticleEmitter MParticle::AddEmitter(usize spawnCount)
         {
             sParticleEmitter emitter;
             emitter._BufferOffset = m_EmitterCount;
             emitter._EmitterCount = m_EmitterCount + 1;
             emitter.SpawnCount = spawnCount;
+            emitter.MaxLifetime = 10.0f;
 
             m_EmitterCount += 1;
 
             return emitter;
         }
 
-        void cParticleManager::RemoveEmitter(const sParticleEmitter& emitter)
+        void MParticle::RemoveEmitter(const sParticleEmitter& emitter)
         {
             if (m_EmitterCount < 2)
             {
@@ -43,7 +63,7 @@ namespace xpe {
             m_EmitterCount -= 1;
         }
 
-        void cParticleManager::UpdateEmitter(const cEntity& entity, cScene* scene)
+        void MParticle::UpdateEmitter(const cEntity& entity, cScene* scene)
         {
             auto& emitter = scene->GetComponent<CParticleEmitter>(entity.GetID());
             auto& transform = scene->GetComponent<CTransform>(entity.GetID());
@@ -53,7 +73,7 @@ namespace xpe {
             Buffers::ParticleEmitter->Flush();
         }
 
-        usize cParticleManager::GetEmitterCount(ecs::cScene* scene)
+        usize MParticle::GetEmitterCount(ecs::cScene* scene)
         {
             auto emitters = scene->GetComponents<CParticleEmitter>();
             m_EmitterCount = emitters.size();

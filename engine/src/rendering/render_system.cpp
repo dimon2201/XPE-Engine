@@ -37,7 +37,7 @@ namespace xpe {
             cShaderManager::Init();
             cCameraManager::Init();
             cGeometryManager::Init();
-            cMaterialManager::Init();
+            MMaterial::Init();
             cSkeletonManager::Init();
             cSkyboxManager::Init();
             cLightManager::Init(4, glm::vec2(4096));
@@ -289,7 +289,7 @@ namespace xpe {
             cLightManager::Free();
             cSkyboxManager::Free();
             cSkeletonManager::Free();
-            cMaterialManager::Free();
+            MMaterial::Free();
             cGeometryManager::Free();
             cCameraManager::Free();
             cShaderManager::Free();

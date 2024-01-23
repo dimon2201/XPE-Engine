@@ -1,5 +1,5 @@
 SamplerState ShadowSampler                   : K_SLOT_SHADOW_SAMPLER;
-Texture2D ShadowAtlas                        : K_SLOT_SHADOW_ATLAS;
+Texture2D ShadowAtlas                        : K_SLOT_TEXTURE_SHADOW_ATLAS;
 cbuffer ShadowPCF                            : K_SLOT_SHADOW_PCF
 {
     int PcfFilterSize = 0;

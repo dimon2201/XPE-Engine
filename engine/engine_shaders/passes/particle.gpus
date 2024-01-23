@@ -30,7 +30,7 @@ void cs_main(uint3 groupID : SV_GroupID, uint3 groupThreadID : SV_GroupThreadID)
 			float3 velocity = normalize(float3(cos(angle), 1.0, sin(angle)));
 			ParticlesUAV[offset].WorldPosition = ParticleEmittersSRV[emitterIndex].WorldPosition;
 			ParticlesUAV[offset].Velocity = velocity;
-			if (ParticlesUAV[offset].Lifetime > 1.0) {
+			if (ParticlesUAV[offset].Lifetime > ParticleEmittersSRV[emitterIndex].MaxLifetime) {
 				ParticlesUAV[offset].Lifetime = 0.0;
 			} else {
 				ParticlesUAV[offset].Lifetime += 0.009;

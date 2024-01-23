@@ -1,8 +1,7 @@
 #pragma once
 
 #include <build.hpp>
-
-#include <rendering/core/texture.hpp>
+#include <rendering/core/core.hpp>
 
 namespace xpe {
 
@@ -28,12 +27,12 @@ namespace xpe {
         public:
             static void Init();
             static void Free();
-            static sTexture* Load(const char* filepath, const eTextureFormat& format);
-            static sTexture* LoadCube(const sTextureCubeFilepath& cubeFilepath, const eTextureFormat& format);
-            static sTextureLayer* LoadLayer(
-                    const char* filepath,
-                    const eTextureFormat& format,
-                    int& width, int& height, int& channels
+            static cTexture* Load(const char* filepath, const eTextureFormat& format);
+            static cTexture* LoadCube(const sTextureCubeFilepath& cubeFilepath, const eTextureFormat& format);
+            static sTextureLayer LoadLayer(
+                const char* filepath,
+                const eTextureFormat& format,
+                int& width, int& height, int& channels
             );
             static bool SaveLayer(const char* filepath, sTextureLayer* textureLayer, const eFileFormat& fileFormat);
         };

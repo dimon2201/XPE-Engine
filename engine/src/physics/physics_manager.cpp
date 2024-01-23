@@ -350,19 +350,13 @@ namespace xpe
                 //cPhysicsManager::SetActorPose(*bodypart, transform);
             }
 
-            auto mat = sMaterial();
-            mat.Albedo = glm::vec4(1.0f);
-            mat.Metallness = 0.0f;
-            mat.Roughness = 0.05f;
-            mat.AO = 0.0f;
-
             for (s32 i = 0; i < sRagdoll::k_BodypartCount; i++)
             {
                 cEntity* entity = new cEntity("RagdollBodypart" + i, scene);
 
                 entity->SetPosition(glm::vec3(1.0f));
                 entity->SetScale(glm::vec3(0.1f));
-                entity->Add<CMaterial>(mat);
+                entity->Add<CMaterial2>();
                 entity->Add<CGeometryInfo>(cGeometryManager::AddGeometry(sSphere()).second);
 
                 sCapsuleShapeDescriptor capsuleShapeDesc(0.5f, 0.5f);

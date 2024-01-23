@@ -49,7 +49,7 @@
 
 // materials
 #define K_SLOT_MATERIAL_SAMPLER 0
-#define K_SLOT_MATERIALS 0
+#define K_SLOT_BUFFER_MATERIALS 2
 #define K_SLOT_ALBEDO 1
 #define K_SLOT_BUMPING 2
 #define K_SLOT_PARALLAX 3
@@ -64,7 +64,7 @@
 #define K_SLOT_SPOT_LIGHTS 10
 
 // shadows
-#define K_SLOT_SHADOW_ATLAS 11
+#define K_SLOT_TEXTURE_SHADOW_ATLAS 11
 #define K_SLOT_SHADOW_SAMPLER 1
 #define K_SLOT_SHADOW_PCF 0
 
@@ -73,6 +73,9 @@
 #define K_SLOT_BUFFER_PARTICLE_SRV 11
 #define K_SLOT_BUFFER_PARTICLE_EMITTER 12
 #define K_SLOT_BUFFER_PARTICLE_PASS_INFO 1
+
+// texture atlas
+#define K_SLOT_TEXTURE_ATLAS 12
 
 // ---------- Constant Buffers --------------- //
 

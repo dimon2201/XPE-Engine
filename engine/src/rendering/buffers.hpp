@@ -331,33 +331,13 @@ namespace xpe {
 
         struct ENGINE_API sMaterialData
         {
-            // albedo mapping
-            glm::vec4 Albedo = { 0.5, 0.5, 0.5, 1.0 };
-            dual EnableAlbedoMap = false;
-            // normal mapping
-            dual EnableNormalMap = false;
-            // parallax occlusion mapping
-            dual EnableParallaxMap = false;
-            float ParallaxHeightScale = 0.1;
-            float ParallaxMinLayers = 8;
-            float ParallaxMaxLayers = 32;
-            // metal mapping
-            float Metallness = 0.5f;
-            dual EnableMetalMap = false;
-            // roughness mapping
-            float Roughness = 0.5f;
-            dual EnableRoughnessMap = false;
-            // ambient occlusion mapping
-            float AO = 0.5f;
-            dual EnableAOMap = false;
-            // emission mapping
-            glm::vec3 Emission = { 0, 0, 0 };
-            dual EnableEmissionMap = false;
+            glm::vec4 DiffuseColor = glm::vec4(1.0f);
+            glm::vec4 DiffuseTextureOffsets = glm::vec4(0.0f);
         };
 
         struct ENGINE_API cMaterialDataBuffer : public cStructuredBuffer<sMaterialData>
         {
-            cMaterialDataBuffer(usize size = 0) : cStructuredBuffer<sMaterialData>(size, K_SLOT_MATERIALS) {}
+            cMaterialDataBuffer(usize size = 0) : cStructuredBuffer<sMaterialData>(size, K_SLOT_BUFFER_MATERIALS) {}
         };
 
         struct ENGINE_API sShadowPcf final

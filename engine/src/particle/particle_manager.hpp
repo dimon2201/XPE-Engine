@@ -2,14 +2,16 @@
 
 #include <core/types.hpp>
 
-namespace xpe {
+namespace xpe
+{
 
     namespace ecs
     {
         class cScene;
     }
 
-    namespace particle {
+    namespace particle
+    {
 
         using namespace core;
         using namespace ecs;
@@ -18,23 +20,26 @@ namespace xpe {
         {
             glm::vec3 WorldPosition;
             glm::vec3 Velocity;
-            float Lifetime = 0.0f;
+            f32 Lifetime = 0.0f;
         };
 
         struct ENGINE_API sParticleEmitter
         {
-            s32 _BufferOffset;
-            u32 _EmitterCount;
-            u32 SpawnCount;
-            glm::vec3 WorldPosition;
+            s32 _BufferOffset = 0;
+            u32 _EmitterCount = 0;
+            u32 SpawnCount = 0;
+            glm::vec3 WorldPosition = glm::vec3(0.0f);
+            f32 MaxLifetime = 0.0f;
         };
 
-        class ENGINE_API cParticleManager final
+        class ENGINE_API MParticle final
         {
 
         public:
             static void Init();
             static void Free();
+
+            static void Update(cScene* scene, const cTime& dt);
 
             static sParticleEmitter AddEmitter(usize spawnCount);
             static void RemoveEmitter(const sParticleEmitter& emitter);

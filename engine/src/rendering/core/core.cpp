@@ -120,8 +120,15 @@ namespace xpe {
             m_Slot = slot;
             m_MostDetailedMip = mostDetailedMip;
             m_InitializeData = initializeData;
-            for (auto& layer : layers) {
-                m_Layers.emplace_back(layer);
+            if (initializeData)
+            {
+                for (auto& layer : layers) {
+                    m_Layers.emplace_back(layer);
+                }
+            }
+            else
+            {
+                m_Layers.clear();
             }
 
             context::CreateTexture(*this);
@@ -520,7 +527,27 @@ namespace xpe {
             return output;
         }
 
-        sAtlas2DTexture cAtlas2D::AddTexture(const glm::vec2& size)
+        void sAtlas::AddLayer()
+        {
+            m_Layers.emplace_back(CreateLayer());
+        }
+
+        sSampler::sSampler()
+        {
+            m_ViewType = eViewType::SRV;
+        }
+
+        sSampler::~sSampler()
+        {
+            context::FreeSampler(*this);
+        }
+
+        void sSampler::Init()
+        {
+            context::CreateSampler(*this);
+        }
+
+        sAtlas2DTexture cAtlas2D::AddTexture(const glm::vec2& size, const void* data, usize dataByteSize)
         {
             for (s32 yy = 0; yy < m_Height; yy++)
             {
@@ -548,6 +575,18 @@ namespace xpe {
 
                     if (intersection == false)
                     {
+                        if (data != nullptr && dataByteSize > 0)
+                        {
+                            glm::vec2 textureSize = newTopRight - newBottomLeft;
+                            context::WriteTextureOffset(
+                                *this,
+                                newBottomLeft,
+                                textureSize,
+                                data,
+                                textureSize.x * textureSize.y * 4
+                            );
+                        }
+
                         m_Textures.emplace_back(
                             glm::vec4(newBottomLeft.x, newBottomLeft.y, newTopRight.x, newTopRight.y)
                         );
@@ -557,7 +596,7 @@ namespace xpe {
                 }
             }
 
-            return { glm::vec4(0.0f)};
+            return { glm::vec4(0.0f) };
         }
 
         void cAtlas2D::RemoveTexture(const sAtlas2DTexture& texture)
@@ -567,26 +606,6 @@ namespace xpe {
                     m_Textures.erase(it);
                 }
             }
-        }
-
-        void sAtlas::AddLayer()
-        {
-            m_Layers.emplace_back(CreateLayer());
-        }
-
-        sSampler::sSampler()
-        {
-            m_ViewType = eViewType::SRV;
-        }
-
-        sSampler::~sSampler()
-        {
-            context::FreeSampler(*this);
-        }
-
-        void sSampler::Init()
-        {
-            context::CreateSampler(*this);
         }
 
     }

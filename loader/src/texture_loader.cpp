@@ -11,12 +11,12 @@ namespace xpe {
 
     namespace res {
 
-        static vector<sTexture*>* s_Textures = nullptr;
+        static vector<cTexture*>* s_Textures = nullptr;
         static unordered_map<string, sTextureLayer>* s_TextureLayers = nullptr;
 
         void cTextureLoader::Init()
         {
-            s_Textures = new vector<sTexture*>();
+            s_Textures = new vector<cTexture*>();
             s_TextureLayers = new unordered_map<string, sTextureLayer>();
         }
 
@@ -33,28 +33,37 @@ namespace xpe {
             delete s_TextureLayers;
         }
 
-        sTexture* cTextureLoader::Load(const char* filepath, const eTextureFormat &format)
+        cTexture* cTextureLoader::Load(const char* filepath, const eTextureFormat &format)
         {
-            sTexture* texture = new sTexture();
-            texture->Format = format;
-            texture->Depth = 1;
-            sTextureLayer* textureLayer = LoadLayer(filepath, format, texture->Width, texture->Height, texture->Channels);
-            texture->Layers.emplace_back(*textureLayer);
-            texture->Init();
+            s32 width, height, channelCount;
+            width = height = channelCount = 0;
+
+            sTextureLayer textureLayer = LoadLayer(filepath, format, width, height, channelCount);
+            cTexture* texture = new cTexture(
+                cTexture::eType::TEXTURE_2D,
+                cResource::eViewType::SRV,
+                cTexture::eUsage::DYNAMIC,
+                glm::vec3(width, height, 1),
+                channelCount,
+                format,
+                1,
+                false,
+                0,
+                0,
+                true,
+                { textureLayer }
+            );
             s_Textures->emplace_back(texture);
+
             return texture;
         }
 
-        sTextureLayer* cTextureLoader::LoadLayer(
+        sTextureLayer cTextureLoader::LoadLayer(
                 const char* filepath,
                 const eTextureFormat &format,
                 int &width, int &height, int &channels
         ) {
-            if (s_TextureLayers->find(filepath) != s_TextureLayers->end()) {
-                return &s_TextureLayers->at(filepath);
-            }
-
-            int desiredChannels = sTexture::k_ChannelTable.at(format);
+            int desiredChannels = cTexture::k_ChannelTable.at(format);
             sTextureLayer layer;
             int w;
             int h;
@@ -124,76 +133,36 @@ namespace xpe {
             height = h;
             channels = c;
 
-            s_TextureLayers->insert({ filepath, layer });
-            return &s_TextureLayers->at(filepath);
+            return layer;
         }
 
-        sTexture* cTextureLoader::LoadCube(const sTextureCubeFilepath &cubeFilepath, const eTextureFormat &format)
+        cTexture* cTextureLoader::LoadCube(const sTextureCubeFilepath &cubeFilepath, const eTextureFormat &format)
         {
-            sTexture* textureCube = new sTexture();
-            textureCube->Type = sTexture::eType::TEXTURE_CUBE;
-            textureCube->Format = format;
+            s32 width, height, channelCount;
+            width = height = channelCount = 0;
 
-            sTextureLayer* front = LoadLayer(
-                    cubeFilepath.FrontFilepath.c_str(),
-                    format,
-                    textureCube->Width, textureCube->Height, textureCube->Channels
+            sTextureLayer front = LoadLayer(cubeFilepath.FrontFilepath.c_str(), format, width, height, channelCount);
+            sTextureLayer back = LoadLayer(cubeFilepath.BackFilepath.c_str(), format, width, height, channelCount);
+            sTextureLayer right = LoadLayer(cubeFilepath.RightFilepath.c_str(), format, width, height, channelCount);
+            sTextureLayer left = LoadLayer(cubeFilepath.LeftFilepath.c_str(), format, width, height, channelCount);
+            sTextureLayer top = LoadLayer(cubeFilepath.TopFilepath.c_str(), format, width, height, channelCount);
+            sTextureLayer bottom = LoadLayer(cubeFilepath.BottomFilepath.c_str(), format, width, height, channelCount);
+
+            cTexture* textureCube = new cTexture(
+                cTexture::eType::TEXTURE_CUBE,
+                cResource::eViewType::SRV,
+                cTexture::eUsage::DEFAULT,
+                glm::vec3(width, height, 1),
+                channelCount,
+                format,
+                1,
+                false,
+                0,
+                0,
+                true,
+                { right, left, top, bottom, front, back }
             );
 
-            sTextureLayer* back = LoadLayer(
-                    cubeFilepath.BackFilepath.c_str(),
-                    format,
-                    textureCube->Width, textureCube->Height, textureCube->Channels
-            );
-
-            sTextureLayer* right = LoadLayer(
-                    cubeFilepath.RightFilepath.c_str(),
-                    format,
-                    textureCube->Width, textureCube->Height, textureCube->Channels
-            );
-
-            sTextureLayer* left = LoadLayer(
-                    cubeFilepath.LeftFilepath.c_str(),
-                    format,
-                    textureCube->Width, textureCube->Height, textureCube->Channels
-            );
-
-            sTextureLayer* top = LoadLayer(
-                    cubeFilepath.TopFilepath.c_str(),
-                    format,
-                    textureCube->Width, textureCube->Height, textureCube->Channels
-            );
-
-            sTextureLayer* bottom = LoadLayer(
-                    cubeFilepath.BottomFilepath.c_str(),
-                    format,
-                    textureCube->Width, textureCube->Height, textureCube->Channels
-            );
-
-            // !IMPORTANT!
-            // DX11 has specific order of texture layers for cube mapping
-#ifdef DX11
-            textureCube->Layers = {
-                *right,
-                *left,
-                *top,
-                *bottom,
-                *front,
-                *back,
-            };
-
-#else       // other APIs probably have same order as OpenGL as following
-            textureCube->Layers = {
-                *front,
-                *back,
-                *right,
-                *left,
-                *top,
-                *bottom,
-            };
-#endif
-
-            textureCube->Init();
             s_Textures->emplace_back(textureCube);
             return textureCube;
         }
@@ -208,7 +177,7 @@ namespace xpe {
                 return false;
             }
 
-            int channels = sTexture::k_ChannelTable.at(textureLayer->Format);
+            int channels = cTexture::k_ChannelTable.at(textureLayer->Format);
 
             switch (fileFormat) {
 

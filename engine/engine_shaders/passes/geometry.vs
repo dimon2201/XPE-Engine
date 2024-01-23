@@ -2,6 +2,7 @@
 #include ../instancing.shader
 #include ../camera.shader
 #include ../skeleton.shader
+#include ../material.shader
 
 struct VSIn
 {
@@ -27,6 +28,7 @@ struct VSOut
     float gamma             : XPE_GAMMA;
     uint shadowCasterCount  : XPE_SHADOW_CASTER_COUNT;
     float4 shadowCasters[5] : XPE_SHADOW_CASTERS;
+    float4 diffuseTextureOffsets : XPE_DIFFUSE_TEXTURE_OFFSETS;
 };
 
 VSOut vs_main(VSIn vsIn)
@@ -83,6 +85,11 @@ VSOut vs_main(VSIn vsIn)
     vsOut.shadowCasterCount = instance.ShadowCasterCount;
     for (int i = 0; i < instance.ShadowCasterCount; i++) {
         vsOut.shadowCasters[i] = instance.ShadowCasters[i];
+    }
+    if (instance.MaterialIndex != -1) {
+        vsOut.diffuseTextureOffsets = Materials[instance.MaterialIndex].DiffuseTextureOffsets;
+    } else {
+        vsOut.diffuseTextureOffsets = float4(0.0, 0.0, 0.0, 0.0);
     }
 
     return vsOut;

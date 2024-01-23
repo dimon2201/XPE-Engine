@@ -89,3 +89,4 @@
 
 using namespace xpe::core;
 using namespace xpe::ecs;
+using namespace xpe::physics;
