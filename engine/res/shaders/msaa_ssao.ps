@@ -1,0 +1,62 @@
+#include ssao.shader
+#include msaa_sampling.shader
+
+struct VSOut
+{
+    float4 positionClip : SV_POSITION;
+    float2 uv : XPE_UV;
+};
+
+struct PSOut
+{
+    float4 color : SV_Target0;
+};
+
+Texture2DMS<float4> PositionTexture : register(t1);
+Texture2DMS<float4> NormalTexture : register(t2);
+
+PSOut ps_main(VSOut psIn)
+{
+    uint width = 0;
+    uint height = 0;
+    uint textureSamples = 0;
+    PositionTexture.GetDimensions(width, height, textureSamples);
+
+    int2 sampleDirections[4] =
+    {
+        int2(-1, -1),
+        int2(-1, 1),
+        int2(1, -1),
+        int2(1, 1)
+    };
+
+    float occlusion = 0.0;
+    int2 curCoord = int2(psIn.uv * float2(width, height));
+    float3 curPos = PositionTexture.Load(int2(curCoord), 0).xyz;
+    float3 curNormal = NormalTexture.Load(int2(curCoord), 0).xyz;
+
+    int directionCount = SsaoDirectionCount;
+    int sampleCount = SsaoSampleCount;
+    float intensity = SsaoIntensity;
+
+    for (int dir = 0; dir < directionCount; dir++)
+    {
+        for (int s = 0; s < sampleCount; s++)
+        {
+            int2 sampleCoord = int2(curCoord + (sampleDirections[dir] * 2 * (s + 1)));
+            float3 samplePos = PositionTexture.Load(int2(sampleCoord), 0).xyz;
+            float3 curToSample = samplePos - curPos;
+            if (length(curToSample) < 1.0) {
+                occlusion += max(0.0, pow(dot(curNormal, normalize(curToSample)), 3.0));
+            }
+        }
+    }
+    occlusion /= float(directionCount) * float(sampleCount);
+    occlusion *= intensity;
+    occlusion = 1.0 - occlusion;
+
+    PSOut psOut;
+    psOut.color = float4(occlusion, occlusion, occlusion, 1.0);
+
+    return psOut;
+}

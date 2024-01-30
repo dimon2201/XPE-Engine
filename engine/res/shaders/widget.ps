@@ -1,0 +1,34 @@
+#include types.shader
+
+SamplerState   WidgetSampler   : K_SLOT_WIDGET_SAMPLER;
+Texture2D      WidgetAtlas     : K_SLOT_WIDGET_ATLAS;
+
+struct VSOut
+{
+    float4 positionOut : SV_POSITION;
+    float2 uv : XPE_UV2;
+    float4 color : XPE_WIDGET_COLOR;
+    bool hasTexture : XPE_ENABLE_TEXTURE;
+};
+
+struct PSOut
+{
+    float4 color : SV_Target0;
+};
+
+PSOut ps_main(VSOut psIn)
+{
+    PSOut psOut;
+
+    float2 uv = psIn.uv;
+    float4 color = psIn.color;
+    bool hasTexture = psIn.hasTexture;
+
+    if (hasTexture) {
+        color *= WidgetAtlas.Sample(WidgetSampler, uv);
+    }
+
+    psOut.color = color;
+
+    return psOut;
+}

@@ -12,7 +12,24 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -O3")
 build_engine_dll()
 
 # Add engine sources
-file(GLOB_RECURSE SOURCE_FILES src/*.c src/*.cpp)
+file(GLOB_RECURSE SOURCE_FILES
+        src/*.c src/*.cpp
+
+        thirdparty/imgui/imgui.cpp
+        thirdparty/imgui/imgui_draw.cpp
+        thirdparty/imgui/imgui_tables.cpp
+        thirdparty/imgui/imgui_widgets.cpp
+        thirdparty/imgui/imgui_demo.cpp
+        thirdparty/imgui/backends/imgui_impl_glfw.cpp
+        thirdparty/imgui/backends/imgui_impl_dx11.cpp
+        thirdparty/imgui/misc/cpp/imgui_stdlib.cpp
+
+        thirdparty/ImGuizmo/ImGuizmo.cpp
+        thirdparty/ImGuizmo/ImGradient.cpp
+        thirdparty/ImGuizmo/ImSequencer.cpp
+        thirdparty/ImGuizmo/ImCurveEdit.cpp
+        thirdparty/ImGuizmo/GraphEditor.cpp
+)
 file(GLOB_RECURSE HEADER_FILES src/*.h src/*.hpp)
 
 # Include third party dependency headers
@@ -30,6 +47,10 @@ include_directories(
         thirdparty/stbi
         thirdparty/pugixml/src
         thirdparty/entt/src
+        thirdparty/Assimp142/include
+        thirdparty/Freetype/include
+        thirdparty/imgui
+        thirdparty/ImGuizmo
 )
 
 # Create shared dynamic library
@@ -52,7 +73,7 @@ add_subdirectory(thirdparty/entt)
 # Link libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE gdi32 d3d11 d3dcompiler)
 target_link_libraries(${PROJECT_NAME} PUBLIC spdlog glfw glm nlohmann_json OpenAL sndfile pugixml EnTT)
-
+target_link_libraries(${PROJECT_NAME} PUBLIC ${CMAKE_BINARY_DIR}/lib/assimp-vc142-mt.lib ${CMAKE_BINARY_DIR}/lib/freetype.lib sndfile)
 # Link PhysX SDK
 target_link_libraries(${PROJECT_NAME} PUBLIC
         PhysX
@@ -124,8 +145,22 @@ if(EXISTS ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/release/PhysXFoundatio
 	file(COPY_FILE ${CMAKE_BINARY_DIR}/lib/bin/win.x86_64.vc143.mt/release/PhysXFoundation.dll ${CMAKE_BINARY_DIR}/bin/Release/PhysXFoundation.dll)
 endif()
 
+configure_file(${CMAKE_SOURCE_DIR}/engine/thirdparty/Assimp142/lib/Release/assimp-vc142-mt.lib ${CMAKE_BINARY_DIR}/lib/assimp-vc142-mt.lib COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/engine/thirdparty/Assimp142/bin/Release/assimp-vc142-mt.dll ${CMAKE_BINARY_DIR}/bin/Debug/assimp-vc142-mt.dll COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/engine/thirdparty/Assimp142/bin/Release/assimp-vc142-mt.dll ${CMAKE_BINARY_DIR}/bin/Release/assimp-vc142-mt.dll COPYONLY)
+
+configure_file(${CMAKE_SOURCE_DIR}/engine/thirdparty/Freetype/lib/freetype.lib ${CMAKE_BINARY_DIR}/lib/freetype.lib COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/engine/thirdparty/Freetype/bin/freetype.dll ${CMAKE_BINARY_DIR}/bin/Debug/freetype.dll COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/engine/thirdparty/Freetype/bin/freetype.dll ${CMAKE_BINARY_DIR}/bin/Release/freetype.dll COPYONLY)
+
 # Move shaders into bin folder
-copy_engine_shaders(engine)
+copy_build_dir(engine/res/shaders res/shaders)
 foreach(CONFIG ${CMAKE_CONFIGURATION_TYPES})
-    copy_engine_shaders_to_config(engine ${CONFIG})
+    copy_build_dir(engine/res/shaders ${CONFIG}/res/shaders)
+endforeach()
+
+# Move editor res into bin folder
+copy_build_dir(engine/editor_res editor_res)
+foreach(CONFIG ${CMAKE_CONFIGURATION_TYPES})
+    copy_build_dir(engine/editor_res ${CONFIG}/editor_res)
 endforeach()

@@ -1,5 +1,25 @@
 #pragma once
 
+namespace xpe::core {}
+namespace xpe::ecs {}
+namespace xpe::audio {}
+namespace xpe::render {}
+namespace xpe::anim {}
+namespace xpe::math {}
+namespace xpe::physics {}
+namespace xpe::res {}
+namespace xpe::ui {}
+
+using namespace xpe::core;
+using namespace xpe::ecs;
+using namespace xpe::audio;
+using namespace xpe::render;
+using namespace xpe::anim;
+using namespace xpe::math;
+using namespace xpe::physics;
+using namespace xpe::res;
+using namespace xpe::ui;
+
 // skip non-critical Win API warnings
 #pragma warning(disable : 4081)
 #pragma warning(disable : 4103)
@@ -7,10 +27,11 @@
 #pragma warning(disable : 4251) // dll-interface warning
 
 // Macros
-#include <core/macro_platform.hpp>
-#include <core/macro_build.hpp>
-#include <core/macro_constants.hpp>
-#include <core/macro_debugbreak.hpp>
+#include <macro_platform.hpp>
+#include <macro_build.hpp>
+#include <macro_constants.hpp>
+#include <macro_debugbreak.hpp>
+#include <macro_icons.hpp>
 
 // STL
 #define _ENFORCE_MATCHING_ALLOCATORS 0
@@ -53,41 +74,30 @@
 #include <gtx/string_cast.hpp>
 
 // Core
-#include <core/types.hpp>
-#include <core/memory_manager.hpp>
-#include <core/allocators.hpp>
-#include <core/smart_pointers.hpp>
-#include <core/codes_keyboard.hpp>
-#include <core/codes_mouse.hpp>
-#include <core/codes_gamepad.hpp>
-#include <res/json.hpp>
-#include <res/xml.hpp>
-#include <core/app_config.hpp>
-#include <core/hardware_manager.hpp>
+#include <types.hpp>
+#include <profile_manager.hpp>
+#include <memory_manager.hpp>
+#include <allocators.hpp>
+#include <smart_pointers.hpp>
+#include <codes_keyboard.hpp>
+#include <codes_mouse.hpp>
+#include <codes_gamepad.hpp>
+#include <json.hpp>
+#include <xml.hpp>
+#include <app_config.hpp>
+#include <hardware_manager.hpp>
 
 // STL customization
-#include <stl/stl.hpp>
-#include <stl/ring_buffer.hpp>
+#include <stl.hpp>
+#include <ring_buffer.hpp>
 
 // Core
-#include <core/time_manager.hpp>
-#include <core/log_manager.hpp>
-#include <core/thread.hpp>
-#include <core/task_manager.hpp>
-#include <core/event_manager.hpp>
-#include <core/observers.hpp>
-#include <core/file_manager.hpp>
-#include <core/window_manager.hpp>
-#include <core/input_manager.hpp>
-
-// Physics
-#include <physics/physics_manager.hpp>
-
-// Math
-#include <math/math_manager.hpp>
-
-// ECS
-#include <ecs/ecs.hpp>
-
-using namespace xpe::core;
-using namespace xpe::ecs;
+#include <log_manager.hpp>
+#include <thread.hpp>
+#include <task_manager.hpp>
+#include <event_manager.hpp>
+#include <file_manager.hpp>
+#include <window_manager.hpp>
+#include <input_manager.hpp>
+#include <proc_manager.hpp>
+#include <assimp_manager.hpp>

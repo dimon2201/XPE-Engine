@@ -1,155 +1,119 @@
-#include <core/app.hpp>
 #include <launcher.hpp>
-
-#include <rendering/render_system.hpp>
-#include <rendering/skybox_manager.hpp>
-#include <rendering/camera_manager.hpp>
-#include <rendering/canvas.hpp>
-
-#include <audio/audio_manager.hpp>
-
-#include <ecs/components.hpp>
-
-#include <model_loader.hpp>
-#include <material_loader.hpp>
-#include <font_loader.hpp>
-#include <texture_loader.hpp>
-#include <skeleton_loader.hpp>
-#include <anim_loader.hpp>
-#include <audio_loader.hpp>
-
-#include "test_config.hpp"
-
-using namespace xpe::core;
-using namespace xpe::ecs;
-using namespace xpe::render;
-using namespace xpe::math;
-using namespace xpe::res;
-using namespace xpe::audio;
-using namespace xpe::physics;
+#include <test_config.hpp>
 
 class cExample : public cApp
 {
 public:
-    cExample() {}
+    cExample() : cApp("Example") {}
     ~cExample() {}
 
 protected:
-
     void InitShaders() override
     {
         cApp::InitShaders();
-        Textures::Canvas = RenderTargets::Final->Colors[0];
     }
 
 public:
-
-    static void HandleButtonPress() {
-
-    }
-
-    static void HandleButtonHover() {
+    static void HandleButtonPress()
+    {
 
     }
 
-    void Init() override final {
+    static void HandleButtonHover()
+    {
+
+    }
+
+    void Init() override final
+    {
         LogInfo("cExample::Init()");
 
         // read test configs from file
-        if (!xpe::res::ReadJsonFile("config/test_config.json", m_TestConfig))
+        if (!xpe::res::LoadJSON("config/test_config.json", m_TestConfig))
         {
             LogError("test_config.json file not found in config/test_config.json path.");
         }
 
-        // read xml configs from file
-        if (!m_XmlConfig.LoadFile("config/xml_config.xml"))
+        MEvent::WindowClosed.Add("Example", 1, [this]()
         {
-            LogError("xml_config.xml file not found in config/xml_config.xml path.");
-        }
-
-        // save xml configs into file
-        if (!m_XmlConfig.SaveFile("config/xml_config_saved.xml"))
+            WindowClosed();
+        });
+        MEvent::KeyPressed.Add("Example", 1, [this](const eKey key)
         {
-            LogError("xml_config_saved.xml file not found in config/xml_config_saved.xml path.");
-        }
-
-        AddWindowClosed(cExample, 1);
-        AddKeyPressed(cExample, 1);
-        AddKeyHold(cExample, 1);
-        AddCursorMove(cExample, 1);
-
-        cFontLoader::Init();
-        cTextureLoader::Init();
-        cAudioLoader::Init();
+            KeyPressed(key);
+        });
+        MEvent::KeyHold.Add("Example", 1, [this](const eKey key)
+        {
+            KeyHold(key);
+        });
+        MEvent::CursorMoved.Add("Example", 1, [this](const double x, const double y)
+        {
+            CursorMoved(x, y);
+        });
 
         InitCamera();
 
-        // Create physics scene and add into current scene
-        m_Scene->PhysicsScene = cPhysicsManager::AddScene(m_Scene->GetTag());
-
-        // Widgets
-        {
-            m_Menu = cEntity("Menu", m_Scene);
-            m_Menu.SetPosition(0, 0, 0);
-            m_Menu.Add<CButton>();
-            m_Menu.Get<CButton>().Color = { 0, 0, 1, 1 };
-            m_Menu.Get<CButton>().Pressed = HandleButtonPress;
-            m_Menu.Get<CButton>().Hovered = HandleButtonHover;
-            m_Menu.SetSpace2D();
-
-            m_Label = cEntity("Stats", m_Scene);
-            m_Label.SetPosition(0.5, 0.5, 0);
-            m_Label.Add<CLabel>(cFontLoader::Load("res/fonts/Roboto-Bold.ttf", 32), "Test Label", glm::vec4(0, 1, 0, 1));
-            m_Label.Get<CLabel>().Font->NewLineOffset = 1.0f;
-            m_Label.SetSpace2D();
-
-            m_Button = cEntity("Button", m_Scene);
-            m_Button.SetPosition(0.5, 0.5, 0);
-            m_Button.Add<CButton>();
-            m_Button.Get<CButton>().Color = { 1, 0, 0, 1 };
-            m_Button.Get<CButton>().ColorHover = { 0.75, 0, 0, 1 };
-            m_Button.Get<CButton>().ColorPressed = { 0.5, 0, 0, 1 };
-            m_Button.SetSpace2D();
-
-            m_Menu.Children = { &m_Label, &m_Button };
-            m_Menu.SetSpace2D();
-            m_Menu.SetVisible(false);
-            m_Menu.UpdateXmlChildren();
-
-            // save widget xml into file
-            if (!m_Menu.SaveFile("config/widget_xml_saved.xml"))
-            {
-                LogError("widget_xml_saved.xml file not found in config/widget_xml_saved.xml path.");
-            }
-        }
-
-        // Text 2D
-        {
-//            m_Text2D = new cEntity("Text2D", m_Scene);
-//            m_Text2D->SetPosition(glm::vec3(0, 1, 0));
-//            m_Text2D->SetScale(glm::vec3(1));
+//        // Widgets
+//        {
+//            m_Menu = cEntity("Menu", m_Scene);
+//            m_Menu.Get<CTransform>().Position = { 0, 0, 0 };
+//            m_Menu.Add<CButton>();
+//            m_Menu.Get<CButton>().Color = { 0, 0, 1, 1 };
+//            m_Menu.Get<CButton>().Pressed = HandleButtonPress;
+//            m_Menu.Get<CButton>().Hovered = HandleButtonHover;
+//            m_Menu.Add<CSpace2D>();
 //
-//            auto* textComponent = m_Text2D->Add<sCText2D>();
-//            textComponent->Text = "FPS: \n CPU: \n";
-//            textComponent->Font->NewLineOffset = 1.0f;
-        }
-
-        // Text 3D
-        {
-//            m_Text3D = new cEntity("Text3D", m_Scene);
-//            m_Text3D->SetPosition(glm::vec3(0, 25, 50));
-//            m_Text3D->SetScale(glm::vec3(0.25, 0.25, 1));
+//            m_Label = cEntity("Stats", m_Scene);
+//            m_Label.Get<CTransform>().Position = { 0.5, 0.5, 0 };
+//            m_Label.Add<CLabel>();
+//            m_Label.Get<CLabel>().Text = "Test Label";
+//            m_Label.Get<CLabel>().Color = glm::vec4(0, 1, 0, 1);
+//            sFont* fontRoboto = MFont::Load("res/fonts/Roboto-Bold.ttf", 32);
+//            if (fontRoboto != nullptr)
+//            {
+//                m_Label.Get<CLabel>().Font = fontRoboto;
+//                m_Label.Get<CLabel>().Font->NewLineOffset = 1.0f;
+//            }
+//            m_Label.Add<CSpace2D>();
 //
-//            auto* textComponent = m_Text3D->Add<sCText3D>();
-//            textComponent->Text = "Hi,\nWelcome to Example Window\nThis is a testing version of XPE-Engine";
-//            textComponent->Font = cFontLoader::Load("res/fonts/Roboto-Bold.ttf", 32);
-//            textComponent->Font->NewLineOffset = 1.0f;
-        }
-
-        // sSkybox
+//            m_Button = cEntity("Button", m_Scene);
+//            m_Button.Get<CTransform>().Position = { 0.5, 0.5, 0 };
+//            m_Button.Add<CButton>();
+//            m_Button.Get<CButton>().Color = { 1, 0, 0, 1 };
+//            m_Button.Get<CButton>().ColorHover = { 0.75, 0, 0, 1 };
+//            m_Button.Get<CButton>().ColorPressed = { 0.5, 0, 0, 1 };
+//            m_Button.Add<CSpace2D>();
+//
+//            m_Menu.Add<CSpace2D>();
+//            m_Menu.Remove<CVisible>();
+//        }
+//
+//        // Text 2D
+//        {
+////            m_Text2D = new cEntity("Text2D", m_Scene);
+////            m_Text2D->SetPosition(glm::vec3(0, 1, 0));
+////            m_Text2D->SetScale(glm::vec3(1));
+////
+////            auto* textComponent = m_Text2D->Add<sCText2D>();
+////            textComponent->Text = "FPS: \n CPU: \n";
+////            textComponent->Font->NewLineOffset = 1.0f;
+//        }
+//
+//        // Text 3D
+//        {
+////            m_Text3D = new cEntity("Text3D", m_Scene);
+////            m_Text3D->SetPosition(glm::vec3(0, 25, 50));
+////            m_Text3D->SetScale(glm::vec3(0.25, 0.25, 1));
+////
+////            auto* textComponent = m_Text3D->Add<sCText3D>();
+////            textComponent->Text = "Hi,\nWelcome to Example Window\nThis is a testing version of XPE-Engine";
+////            textComponent->Font = cFontLoader::Load("res/fonts/Roboto-Bold.ttf", 32);
+////            textComponent->Font->NewLineOffset = 1.0f;
+//        }
+//
+        // Skybox
         {
             sTextureCubeFilepath skyboxPath;
-            skyboxPath.Name = "sSkybox";
             skyboxPath.FrontFilepath = "res/skybox/front.jpg";
             skyboxPath.BackFilepath = "res/skybox/back.jpg";
             skyboxPath.LeftFilepath = "res/skybox/left.jpg";
@@ -157,52 +121,42 @@ public:
             skyboxPath.TopFilepath = "res/skybox/top.jpg";
             skyboxPath.BottomFilepath = "res/skybox/bottom.jpg";
 
-            sSkybox skybox;
-            std::tie(skybox.Geometry, skybox.GeometryInfo) = cGeometryManager::AddGeometry(sCube());
-            skybox.Texture = cTextureLoader::LoadCube(skyboxPath, eTextureFormat::RGBA8);
-            skybox.Texture->GenerateMips();
-
-            cSkyboxManager::Get().Skybox = skybox;
+            m_Scene->Skybox = new sSkybox();
+            m_Scene->Skybox->Geometry = sCube();
+            m_Scene->Skybox->GeometryInfo = MGeometry::Add(m_Scene->Skybox->Geometry);
+            m_Scene->Skybox->Texture = MTexture::LoadCubemap("Skybox", skyboxPath, eTextureFormat::RGBA8);
         }
 
         // Plane
         {
             m_Plane = cEntity("sPlane", m_Scene);
-            m_Plane.SetPosition(0, 0, 0);
-            m_Plane.SetScale(5.0, 1.0, 5.0);
-            m_Plane.Add<CMaterial>(cMaterialManager::AddMaterial());
-            m_Plane.Add<CGeometry>(sPlane(10));
-            m_Plane.Add<CGeometryInfo>(cGeometryManager::AddGeometry(sPlane(10)).second);
+            m_Plane.Get<CTransform>().Position = { 0, 0, 0 };
+            m_Plane.Get<CTransform>().Scale = { 5, 1, 5 };
+            m_Plane.Add<CMaterialInfo>(MMaterial::Add(CMaterial()));
+            m_Plane.Add<CGeometryInfo>(MGeometry::Add(sPlane(10)));
             m_Plane.Get<CGeometryInfo>().Entities = { m_Plane.GetID() };
-            m_Plane.SetOpaque(true);
-            m_Plane.SetTransparent(false);
-            m_Plane.SetShadow(false);
+            m_Plane.Add<COpaque>();
 
             sPlaneShapeDescriptor planeShapeDesc;
-            m_Plane.Add<CPhysicsActor>(
-                    cPhysicsManager::AddActor(
-                        m_Plane,
-                        CPhysicsActor::eActorType::RIGID_STATIC,
-                        &planeShapeDesc,
-                        glm::vec3(0.0f),
-                        0.5f, 0.5f, 0.5f,
-                        0.05f, 0.0f
-                )
+            MPhysics::AddActor(
+                m_Plane,
+                eActorType::RIGID_STATIC,
+                &planeShapeDesc,
+                glm::vec3(0.0f),
+                0.5f, 0.5f, 0.5f,
+                0.05f, 0.0f
             );
         }
 
         // Sunlight
         {
             m_SunLight = cEntity("SunLight", m_Scene);
-            m_SunLight.SetPosition(-2.0, 4.0, -1.0);
-            m_SunLight.Add<CMaterial>(cMaterialManager::AddMaterial());
-            m_SunLight.Add<CGeometry>(sSphere());
-            m_SunLight.Add<CGeometryInfo>(cGeometryManager::AddGeometry(sSphere()).second);
+            m_SunLight.Get<CTransform>().Position = { -2.0, 4.0, -1.0 };
+            m_SunLight.Add<CMaterialInfo>(MMaterial::Add(CMaterial()));
+            m_SunLight.Add<CGeometryInfo>(MGeometry::Add(sSphere()));
             m_SunLight.Get<CGeometryInfo>().Entities = { m_SunLight.GetID() };
             m_SunLight.Add<CDirectionalLight>(glm::vec3(-2, 4, -1), glm::vec3(1, 1, 10));
-            m_SunLight.SetOpaque(true);
-            m_SunLight.SetTransparent(false);
-            m_SunLight.SetShadow(false);
+            m_SunLight.Add<COpaque>();
         }
 
         // Goblins
@@ -210,55 +164,56 @@ public:
             m_Goblins = cEntity("Goblins", m_Scene);
 
             m_Goblin1 = cEntity("Goblin1", m_Scene);
-            m_Goblin1.SetPosition(-4, 0, -4);
-            m_Goblin1.SetRotation(0, 0, 0);
-            m_Goblin1.SetScale(5, 5, 5);
-            m_Goblin1.SetVisible(true);
+            m_Goblin1.Get<CTransform>().Position = { -4, 0, -4 };
+            m_Goblin1.Get<CTransform>().Rotation = { 0, 0, 0 };
+            m_Goblin1.Get<CTransform>().Scale = { 5, 5, 5 };
 
             m_Goblin2 = cEntity("Goblin2", m_Scene);
-            m_Goblin2.SetPosition(-4, 0, 4);
-            m_Goblin2.SetRotation(0, 0, 0);
-            m_Goblin2.SetScale(5, 5, 5);
-            m_Goblin2.SetVisible(false);
+            m_Goblin2.Get<CTransform>().Position = { -4, 0, 4 };
+            m_Goblin2.Get<CTransform>().Rotation = { 0, 0, 0 };
+            m_Goblin2.Get<CTransform>().Scale = { 5, 5, 5 };
+            m_Goblin2.Remove<CVisible>();
 
             m_Goblin3 = cEntity("Goblin3", m_Scene);
-            m_Goblin3.SetPosition(4, 0, -4);
-            m_Goblin3.SetRotation(0, 0, 0);
-            m_Goblin3.SetScale(5, 5, 5);
-            m_Goblin3.SetVisible(false);
+            m_Goblin3.Get<CTransform>().Position = { 4, 0, -4 };
+            m_Goblin3.Get<CTransform>().Rotation = { 0, 0, 0 };
+            m_Goblin3.Get<CTransform>().Scale = { 5, 5, 5 };
+            m_Goblin3.Remove<CVisible>();
 
             m_Goblin4 = cEntity("Goblin4", m_Scene);
-            m_Goblin4.SetPosition(4, 0, 4);
-            m_Goblin4.SetRotation(0, 0, 0);
-            m_Goblin4.SetScale(5, 5, 5);
-            m_Goblin4.SetVisible(false);
+            m_Goblin4.Get<CTransform>().Position = { 4, 0, 4 };
+            m_Goblin4.Get<CTransform>().Rotation = { 0, 0, 0 };
+            m_Goblin4.Get<CTransform>().Scale = { 5, 5, 5 };
+            m_Goblin4.Remove<CVisible>();
 
-            auto [goblinGeometry, goblinGeometryInfo] = cGeometryManager::AddGeometry(cModelLoader::Load("res/models/winter-girl/source/dancing_vampire.dae").Merge());
-            auto [goblinSkeleton, goblinSkeletonInfo] = cSkeletonLoader::Load("res/models/winter-girl/source/dancing_vampire.dae");
-            goblinSkeletonInfo.GeometryInfo = goblinGeometryInfo;
+            auto goblinGeometry = MGeometry::Load("res/models/winter-girl/source/dancing_vampire.dae");
+            MGeometry::Merge(goblinGeometry);
+            auto goblinGeometryInfo = MGeometry::Add(goblinGeometry);
+            auto goblinSkeleton = MAnim::LoadSkeleton("res/models/winter-girl/source/dancing_vampire.dae");
+            auto goblinSkeletonInfo = MAnim::AddSkeleton(goblinSkeleton);
+            auto goblinAnimation = MAnim::LoadAnimation("res/models/winter-girl/source/dancing_vampire.dae");
             m_Goblins.Add<CSkeleton>(goblinSkeleton);
+            m_Goblins.Add<CGeometryInfo>(goblinGeometryInfo);
             m_Goblins.Add<CSkeletonInfo>(goblinSkeletonInfo);
-            m_Goblins.Get<CSkeletonInfo>().GeometryInfo.Entities = {
+            m_Goblins.Get<CGeometryInfo>().Entities =
+            {
                     m_Goblin1.GetID(),
                     m_Goblin2.GetID(),
                     m_Goblin3.GetID(),
                     m_Goblin4.GetID()
             };
-            m_Goblins.Add<CAnimation>();
-            m_Goblins.Get<CAnimation>().Animations.emplace_back(cAnimLoader::Load("res/models/winter-girl/source/dancing_vampire.dae"));
-            m_Goblins.Get<CAnimation>().Animations[0].Play = true;
-            m_Goblins.SetOpaque(true);
-            m_Goblins.SetTransparent(false);
-            m_Goblins.SetShadow(true);
+            m_Goblins.Add<CAnimation>(goblinAnimation);
+            m_Goblins.Get<CAnimation>().Play = true;
+            m_Goblins.Add<COpaque>();
+            m_Goblins.Add<CShadow>();
 
             sMaterialFilepath materialFilepath;
-            materialFilepath.Name = "niz";
             materialFilepath.AlbedoFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
             materialFilepath.BumpFilepath = "res/models/winter-girl/textures/Vampire_normal.png";
             materialFilepath.RoughnessFilepath = "res/models/winter-girl/textures/Vampire_diffuse.png";
             materialFilepath.MetallicFilepath = "res/models/winter-girl/textures/Vampire_specular.png";
 
-            auto& material1 = m_Goblin1.Add<CMaterial>(cMaterialManager::AddMaterial());
+            CMaterial material1;
             material1.Albedo = { 1, 1, 1, 1 };
             material1.Emission = { 0, 0, 10 };
             material1.Metallness = 0.0f;
@@ -269,9 +224,9 @@ public:
             material1.EnableRoughnessMap = false;
             material1.EnableMetalMap = false;
             material1.EnableAOMap = false;
-            cMaterialManager::Flush(material1);
+            m_Goblin1.Add<CMaterialInfo>(MMaterial::Add(material1));
 
-            auto& material2 = m_Goblin2.Add<CMaterial>(cMaterialManager::AddMaterial());
+            CMaterial material2;
             material2.Albedo = { 1, 1, 1, 1 };
             material2.Emission = { 0, 0, 10 };
             material2.Metallness = 0.0f;
@@ -282,9 +237,9 @@ public:
             material2.EnableRoughnessMap = false;
             material2.EnableMetalMap = false;
             material2.EnableAOMap = false;
-            cMaterialManager::Flush(material2);
+            m_Goblin2.Add<CMaterialInfo>(MMaterial::Add(material2));
 
-            auto& material3 = m_Goblin3.Add<CMaterial>(cMaterialManager::AddMaterial());
+            CMaterial material3;
             material3.Albedo = { 1, 1, 1, 1 };
             material3.Emission = { 0, 0, 10 };
             material3.Metallness = 0.0f;
@@ -295,9 +250,9 @@ public:
             material3.EnableRoughnessMap = false;
             material3.EnableMetalMap = false;
             material3.EnableAOMap = false;
-            cMaterialManager::Flush(material3);
+            m_Goblin3.Add<CMaterialInfo>(MMaterial::Add(material3));
 
-            auto& material4 = m_Goblin4.Add<CMaterial>(cMaterialManager::AddMaterial());
+            CMaterial material4;
             material4.Albedo = { 1, 1, 1, 1 };
             material4.Emission = { 0, 0, 10 };
             material4.Metallness = 0.0f;
@@ -308,37 +263,37 @@ public:
             material4.EnableRoughnessMap = false;
             material4.EnableMetalMap = false;
             material4.EnableAOMap = false;
-            cMaterialManager::Flush(material4);
+            m_Goblin4.Add<CMaterialInfo>(MMaterial::Add(material4));
 
             // for testing image resizing on CPU, we can write resized image into file
 
-            cTextureLoader::SaveLayer(
+            MTexture::SaveLayer(
                     "generated/Vampire_diffuse_resized.png",
                     material1.AlbedoMap,
                     eFileFormat::PNG
             );
 
-            cTextureLoader::SaveLayer(
+            MTexture::SaveLayer(
                     "generated/Vampire_normal_resized.png",
                     material1.NormalMap,
                     eFileFormat::PNG
             );
 
-            cTextureLoader::SaveLayer(
+            MTexture::SaveLayer(
                     "generated/Vampire_roughness_resized.png",
                     material1.RoughnessMap,
                     eFileFormat::PNG
             );
 
-            cTextureLoader::SaveLayer(
+            MTexture::SaveLayer(
                     "generated/Vampire_metallic_resized.png",
                     material1.MetalMap,
                     eFileFormat::PNG
             );
 
             int w, h, c;
-            sTextureLayer* layer = cTextureLoader::LoadLayer("res/skybox/back.jpg", eTextureFormat::RGBA8, w, h, c);
-            sAtlas atlas;
+            cTextureLayer* layer = MTexture::LoadLayer("res/skybox/back.jpg", eTextureFormat::RGBA8, w, h, c);
+            cAtlas atlas;
             atlas.Width = 1024;
             atlas.Height = 1024;
             atlas.Channels = c;
@@ -349,7 +304,7 @@ public:
             atlas.AddCell(0, glm::vec2(32 + 64, 0), glm::vec2(128, 128), layer);
             atlas.AddCell(0, glm::vec2(32 + 64 + 128, 0), glm::vec2(256, 256), layer);
             atlas.Init();
-            cTextureLoader::SaveLayer(
+            MTexture::SaveLayer(
                 "generated/test_atlas.png",
                 &atlas.Layers[0],
                 eFileFormat::PNG
@@ -359,21 +314,20 @@ public:
         // Cube
         {
             m_Cube = cEntity("Cube", m_Scene);
-            m_Cube.SetPosition(glm::vec3(10.0f, 2.5f, 10.0f));
-            m_Cube.SetScale(glm::vec3(5.0f));
-            m_Cube.Add<CGeometry>(sCube()); // OPTIONAL : only for changing on CPU
-            m_Cube.Add<CGeometryInfo>(cGeometryManager::AddGeometry(sCube()).second);
-            m_Cube.Add<CMaterial>(cMaterialManager::AddMaterial());
+            m_Cube.Get<CTransform>().Position = { 10.0f, 2.5f, 10.0f };
+            m_Cube.Get<CTransform>().Scale = glm::vec3(5.0f);
+            m_Cube.Add<CGeometryInfo>(MGeometry::Add(sCube()));
             m_Cube.Get<CGeometryInfo>().Entities = { m_Cube.GetID() };
-            m_Cube.SetOpaque(true);
-            m_Cube.SetTransparent(false);
-            m_Cube.SetShadow(true);
+            m_Cube.Add<CMaterialInfo>(MMaterial::Add(CMaterial()));
+            m_Cube.Add<COpaque>();
+            m_Cube.Add<CShadow>();
         }
 
         // Spheres
         for (s32 i = 0; i < 4; i++)
         {
-            auto mat = sMaterial();
+            CMaterial mat;
+
             if (i == 0) { mat.Albedo = glm::vec4(1.0f, 0.0f, 0.0f, 0.2f); }
             if (i == 1) { mat.Albedo = glm::vec4(0.0f, 1.0f, 0.0f, 0.4f); }
             if (i == 2) { mat.Albedo = glm::vec4(0.0f, 0.0f, 1.0f, 0.6f); }
@@ -384,73 +338,60 @@ public:
             mat.AO = 0.0f;
 
             m_Glasses[i] = cEntity("Glass-" + string(std::to_string(i)), m_Scene);
-            m_Glasses[i].SetPosition(glm::vec3(0 + ((float)i * 0.5f), 1.1 + ((float)i * 2.0f), -5));
-            m_Glasses[i].SetScale(glm::vec3(1.0f));
-            m_Glasses[i].Add<CGeometry>(sSphere()); // OPTIONAL : if you need to change geometry on CPU
-            m_Glasses[i].Add<CGeometryInfo>(cGeometryManager::AddGeometry(sSphere()).second);
+            m_Glasses[i].Get<CTransform>().Position = glm::vec3(0 + ((float)i * 0.5f), 1.1 + ((float)i * 2.0f), -5);
+            m_Glasses[i].Get<CTransform>().Scale = glm::vec3(1.0f);
+            m_Glasses[i].Add<CGeometryInfo>(MGeometry::Add(sSphere()));
             m_Glasses[i].Get<CGeometryInfo>().Entities = { m_Glasses[i].GetID() };
-            m_Glasses[i].Add<CMaterial>(cMaterialManager::AddMaterial(mat));
-            m_Glasses[i].SetOpaque(false);
-            m_Glasses[i].SetTransparent(true);
-            m_Glasses[i].SetShadow(true);
+            m_Glasses[i].Add<CMaterialInfo>(MMaterial::Add(mat));
+            m_Glasses[i].Add<CTransparent>();
+            m_Glasses[i].Add<CShadow>();
 
             sSphereShapeDescriptor sphereShapeDesc(1.0f);
-            m_Glasses[i].Add<CPhysicsActor>(
-                    cPhysicsManager::AddActor(
-                            m_Glasses[i],
-                            CPhysicsActor::eActorType::RIGID_DYNAMIC,
-                            &sphereShapeDesc,
-                            glm::vec3(0.0f),
-                            0.5f, 0.5f, 0.5f,
-                            0.05f, 0.0f
-                    )
+            MPhysics::AddActor(
+                m_Glasses[i],
+                eActorType::RIGID_DYNAMIC,
+                &sphereShapeDesc,
+                glm::vec3(0.0f),
+                0.5f, 0.5f, 0.5f,
+                0.05f, 0.0f
             );
         }
-
-        // settings for shadows
-        Buffers::ShadowPCF->Item.FilterSize = 0;
-        Buffers::ShadowPCF->Flush();
-
-        {
-            m_AudioBox = cEntity("AudioBox", m_Scene);
-
-            m_AudioBox.SetPosition(glm::vec3(-5.0f, 5.0f, 10.0f));
-            m_AudioBox.SetScale(glm::vec3(1.0f));
-            m_AudioBox.Add<CGeometry>(sCube());
-            m_AudioBox.Add<CGeometryInfo>(cGeometryManager::AddGeometry(sCube()).second);
-            m_AudioBox.Add<CMaterial>(cMaterialManager::AddMaterial());
-            m_AudioBox.Get<CGeometryInfo>().Entities = { m_AudioBox.GetID() };
-            m_AudioBox.SetOpaque(true);
-
-            auto& test1 = m_AudioBox.Add<CStreamAudio>(CStreamAudio());
-            test1.File = cAudioLoader::Load("res/audio/mono_test.wav");
-        }
-
-        Buffers::SSAO->Item.Intensity = 2;
-        Buffers::SSAO->Flush();
+//        // settings for shadows
+//        Buffers::ShadowPCF->Item.FilterSize = 0;
+//        Buffers::ShadowPCF->Flush();
+//
+//        {
+//            m_AudioBox = cEntity("AudioBox", m_Scene);
+//
+//            m_AudioBox.Get<CTransform>().Position = glm::vec3(-5.0f, 5.0f, 10.0f);
+//            m_AudioBox.Get<CTransform>().Scale = glm::vec3(1.0f);
+//            m_AudioBox.Add<CGeometryInfo>(MGeometry::Add(sCube()));
+//            m_AudioBox.Get<CGeometryInfo>().Entities = { m_AudioBox.GetID() };
+//            m_AudioBox.Add<CMaterialInfo>(MMaterial::Add(CMaterial()));
+//            m_AudioBox.Add<COpaque>();
+//
+//            auto& test1 = m_AudioBox.Add<CStreamAudio>(CStreamAudio());
+//            test1.File = MAudio::Load("res/audio/mono_test.wav");
+//        }
+//
+//        Buffers::SSAO->Item.Intensity = 2;
+//        Buffers::SSAO->Flush();
     }
 
     void Update() override final
     {
-        LockFPSFromConfig();
         UpdateCamera();
         UpdateListener();
-        AnimateLight();
-        DisplayStats();
+//        DisplayStats();
     }
 
     void Free()
     {
         LogInfo("cExample::Free()");
-
-        cFontLoader::Free();
-        cTextureLoader::Free();
-        cAudioLoader::Free();
-
-        RemoveWindowClose();
-        RemoveKeyPressed();
-        RemoveKeyHold();
-        RemoveCursorMove();
+        MEvent::WindowClosed.Remove("Example");
+        MEvent::KeyPressed.Remove("Example");
+        MEvent::KeyHold.Remove("Example");
+        MEvent::CursorMoved.Remove("Example");
     }
 
     void WindowClosed()
@@ -462,7 +403,7 @@ public:
     {
         if (key == eKey::Esc)
         {
-            cWindowManager::Close();
+            MWindow::Close();
         }
 
         MoveLight(key);
@@ -481,68 +422,72 @@ public:
 
         if (key == eKey::V)
         {
-            cAudioManager::VoiceRecord();
+            MAudio::VoiceRecord();
         }
-
-        MoveWidget(key);
     }
 
     void KeyHold(const eKey key)
     {
         MoveLight(key);
-        PlayAnimations(key);
-        MoveWidget(key);
     }
 
     void CursorMoved(const double x, const double y)
     {
-        auto& camera = *m_PerspectiveCamera;
-        if (cInputManager::MousePressed(eMouse::ButtonRight)) {
-            camera.EnableLook = false;
-            cInputManager::CaptureCursor(x, y);
-            auto& cursorDelta = cInputManager::GetMouseCursor().Delta;
-            camera.Pan(cursorDelta);
-        } else {
-            camera.EnableLook = true;
+        if (MCamera::Camera != nullptr)
+        {
+            if (MInput::MousePressed(eMouse::ButtonRight))
+            {
+                MCamera::Camera->EnableLook = false;
+                MInput::CaptureCursor(x, y);
+                MCamera::Pan(MInput::GetMouseCursor().Delta);
+            }
+            else
+            {
+                MCamera::Camera->EnableLook = true;
+            }
         }
     }
 
 private:
 
-    void InitCamera() {
-        m_PerspectiveCamera = new cPerspectiveCamera(cWindowManager::GetWidth(), cWindowManager::GetHeight());
-        m_PerspectiveCamera->Component.Far = m_TestConfig.CameraFar;
-        m_PerspectiveCamera->Component.Position = { 5, 5, 20 };
-        m_PerspectiveCamera->Component.AspectRatio = Config.AspectRatio;
-        m_PerspectiveCamera->MoveSpeed = m_TestConfig.CameraMoveSpeed;
-        m_PerspectiveCamera->ZoomAcceleration = m_TestConfig.CameraZoomAcceleration;
-        m_PerspectiveCamera->PanAcceleration = m_TestConfig.CameraPanAcceleration;
-        m_PerspectiveCamera->HorizontalSensitivity = m_TestConfig.CameraHorizontalSens;
-        m_PerspectiveCamera->VerticalSensitivity = m_TestConfig.CameraVerticalSens;
-        m_PerspectiveCamera->Flush();
+    void InitCamera()
+    {
+        MCamera::Camera->Projection.Far = m_TestConfig.CameraFar;
+        MCamera::Camera->Position = { 5, 5, 20 };
+        MCamera::Camera->Projection.AspectRatio = m_Config.AspectRatio;
+        MCamera::Camera->MoveSpeed = m_TestConfig.CameraMoveSpeed;
+        MCamera::Camera->ZoomAcceleration = m_TestConfig.CameraZoomAcceleration;
+        MCamera::Camera->PanAcceleration = m_TestConfig.CameraPanAcceleration;
+        MCamera::Camera->HorizontalSensitivity = m_TestConfig.CameraHorizontalSens;
+        MCamera::Camera->VerticalSensitivity = m_TestConfig.CameraVerticalSens;
+        MCamera::Flush();
     }
 
     void UpdateCamera()
     {
-        auto& camera = *m_PerspectiveCamera;
-        if (cInputManager::MousePressed(eMouse::ButtonLeft)) {
-            camera.LookMode = cCamera::eLookMode::EDITOR;
-        } else {
-            camera.LookMode = cCamera::eLookMode::GAME;
+        if (MCamera::Camera != nullptr)
+        {
+            if (MInput::MousePressed(eMouse::ButtonLeft))
+            {
+                MCamera::Camera->Mode = eCameraMode::EDITOR;
+            }
+            else
+            {
+                MCamera::Camera->Mode = eCameraMode::GAME;
+            }
+            MCamera::Move();
         }
-        camera.Move();
     }
 
-    void UpdateListener() {
-        auto& camera = *m_PerspectiveCamera;
-
-        cAudioManager::SetListenerPosition(camera.Component.Position);
-        cAudioManager::SetListenerOrientation(camera.Pitch, camera.Yaw, camera.Roll, camera.Component.Up);
+    void UpdateListener()
+    {
+        MAudio::SetListenerPosition(MCamera::Camera->Position);
+        MAudio::SetListenerOrientation(MCamera::Camera->Rotation, MCamera::Camera->Up);
     }
 
     void MoveLight(const eKey key)
     {
-        auto& pos = m_SunLight.GetPosition();
+        auto& pos = m_SunLight.Get<CTransform>().Position;
 
         if (key == eKey::Up)
         {
@@ -577,64 +522,15 @@ private:
         m_SunLight.Get<CDirectionalLight>().View.Position = pos;
     }
 
-    void MoveWidget(const eKey key)
-    {
-        if (key == eKey::Up)
-        {
-            m_Menu.Move(0, 0.1, 0);
-        }
-
-        if (key == eKey::Down)
-        {
-            m_Menu.Move(0, -0.1, 0);
-        }
-
-        if (key == eKey::Left)
-        {
-            m_Menu.Move(-0.1, 0, 0);
-        }
-
-        if (key == eKey::Right)
-        {
-            m_Menu.Move(0.1, 0, 0);
-        }
-    }
-
     void PlayAnimations(const eKey key)
     {
         if (key == eKey::P)
         {
-            m_Goblins.Get<CAnimation>().Animations[0].Play = !m_Goblins.Get<CAnimation>().Animations[0].Play;
+            m_Goblins.Get<CAnimation>().Play = !m_Goblins.Get<CAnimation>().Play;
         }
-    }
-
-    void AnimateLight()
-    {
-        if (m_TestConfig.AnimateLight)
-        {
-            auto& pos = m_SunLight.GetPosition();
-
-            // translation light up and down every N ticks
-            static int tick = 1;
-
-            pos.x = 100 * sin(tick / 3000.0f);
-            pos.z = 100 * sin(tick / 3000.0f);
-
-            tick++;
-        }
-    }
-
-    void DisplayStats() {
-        auto& text = m_Label.Get<CLabel>().Text;
-        text = "\nFPS: " + std::to_string(CPUTime.Fps()) +
-                 "\nCPU: " + std::to_string(CPUTime.Millis()) +
-                 "\nGamma: " + std::to_string(cCameraManager::GetGamma()) +
-                 "\nExposure: " + std::to_string(cCameraManager::GetExposure());
     }
 
 private:
-    cPerspectiveCamera* m_PerspectiveCamera;
-
     cEntity m_SunLight;
     cEntity m_Plane;
     cEntity m_Goblins;
@@ -647,22 +543,13 @@ private:
     cEntity m_Glasses[4];
 
     sTestConfig m_TestConfig;
-    sXmlConfig  m_XmlConfig;
 
     cEntity m_Menu;
     cEntity m_Button;
     cEntity m_Label;
 };
 
-cApp* CreateApplication() {
-    cApp* app = new cExample();
-
-    // read app configs
-    if (!xpe::res::ReadJsonFile("config/app_config.json", app->Config))
-    {
-        FMT_ASSERT(false, "Failed to read app config from config/app_config.json file. Please provide config file!");
-        return 0;
-    }
-
-    return app;
+cApp* CreateApplication()
+{
+    return new cExample();
 }

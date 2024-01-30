@@ -2,7 +2,7 @@
 macro(add_engine_configs)
 
     # define all engine build config types
-    set(CMAKE_CONFIGURATION_TYPES Debug;Release;)
+    set(CMAKE_CONFIGURATION_TYPES Debug;Release;EditorDebug;EditorRelease)
 
     set(LIB_PATH ${CMAKE_BINARY_DIR}/lib)
     set(BIN_PATH ${CMAKE_BINARY_DIR}/bin)
@@ -22,6 +22,12 @@ macro(add_engine_configs)
 
     foreach(CONFIG ${CMAKE_CONFIGURATION_TYPES})
 
+        if (${CONFIG} MATCHES "EditorDebug")
+            set(CONFIG "Debug")
+        elseif(${CONFIG} MATCHES "EditorRelease")
+            set(CONFIG "Release")
+        endif()
+
         message(STATUS "Configuration=${CONFIG}")
 
         string(TOUPPER ${CONFIG} UPPER_CONFIG)
@@ -36,10 +42,21 @@ endmacro()
 # add engine definitions
 macro(add_engine_definitions)
     add_engine_configs()
-    add_compile_definitions($<$<CONFIG:Debug>:DEBUG>)
+
+    add_compile_definitions($<$<CONFIG:EditorDebug>:K_EDITOR>)
+    add_compile_definitions($<$<CONFIG:EditorRelease>:K_EDITOR>)
+
+    add_compile_definitions($<$<CONFIG:Debug>:K_DEBUG>)
     add_compile_definitions($<$<CONFIG:Debug>:PX_DEBUG>)
     add_compile_definitions($<$<CONFIG:Debug>:PX_CHECKED>)
     add_compile_definitions($<$<CONFIG:Debug>:PX_DEBUG_CRT>)
+    add_compile_definitions($<$<CONFIG:Debug>:K_PROFILER>)
+
+    add_compile_definitions($<$<CONFIG:EditorDebug>:K_DEBUG>)
+    add_compile_definitions($<$<CONFIG:EditorDebug>:PX_DEBUG>)
+    add_compile_definitions($<$<CONFIG:EditorDebug>:PX_CHECKED>)
+    add_compile_definitions($<$<CONFIG:EditorDebug>:PX_DEBUG_CRT>)
+    add_compile_definitions($<$<CONFIG:EditorDebug>:K_PROFILER>)
 endmacro()
 
 # copying target dir to destination dir. If destination does not exist, create it.
@@ -172,11 +189,13 @@ endmacro()
 # add DLL_BUILD macro to define engine build as DLL
 macro(build_engine_dll)
     add_definitions(-DENGINE_DLL_BUILD=1)
+    add_definitions(-DASSIMP_DLL=1)
 endmacro()
 
 # include engine and all it's dependencies and also defines engine as DLL import
 # provide path to engine project
 macro(include_engine path)
+    add_definitions(-DASSIMP_DLL=1)
     add_definitions(-DENGINE_DLL=1)
     include_directories(
         ${path}/src
@@ -192,6 +211,10 @@ macro(include_engine path)
         ${path}/thirdparty/stbi
         ${path}/thirdparty/pugixml/src
         ${path}/thirdparty/entt/src
+        ${path}/thirdparty/Assimp142/include
+        ${path}/thirdparty/Freetype/include
+        ${path}/thirdparty/imgui
+        ${path}/thirdparty/ImGuizmo
     )
 endmacro()
 
@@ -227,10 +250,79 @@ macro(link_engine project path)
 
 endmacro()
 
-macro(copy_engine_shaders path)
-    copy_build_dir(${path}/engine_shaders engine_shaders)
+# set all config types available in gamelib project
+macro(add_gamelib_configs)
+
+    # define all gamelib build config types
+    set(CMAKE_CONFIGURATION_TYPES Debug;Release;)
+
+    set(LIB_PATH ${CMAKE_BINARY_DIR}/lib)
+    set(BIN_PATH ${CMAKE_BINARY_DIR}/bin)
+
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${LIB_PATH})
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BIN_PATH})
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BIN_PATH})
+
+    message(STATUS "Setting configuration types : ${CMAKE_CONFIGURATION_TYPES}")
+
+    foreach(CONFIG ${CMAKE_CONFIGURATION_TYPES})
+
+        message(STATUS "Configuration=${CONFIG}")
+
+        string(TOUPPER ${CONFIG} UPPER_CONFIG)
+
+        message(STATUS "Setting runtime output path ${BIN_PATH}/${CONFIG}")
+        set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_${UPPER_CONFIG} ${BIN_PATH}/${CONFIG})
+
+    endforeach()
+
 endmacro()
 
-macro(copy_engine_shaders_to_config path config)
-    copy_build_dir(${path}/engine_shaders ${config}/engine_shaders)
+# add gamelib definitions
+macro(add_gamelib_definitions)
+    add_gamelib_configs()
+    add_compile_definitions($<$<CONFIG:Debug>:DEBUG>)
+endmacro()
+
+# add DLL_BUILD macro to define gamelib build as DLL
+macro(build_gamelib_dll)
+    add_definitions(-DGAMELIB_DLL_BUILD=1)
+endmacro()
+
+# include gamelib and all it's dependencies and also defines gamelib as DLL import
+# provide path to gamelib project
+macro(include_gamelib path)
+    add_definitions(-DGAMELIB_DLL=1)
+    include_directories(${path})
+endmacro()
+
+# link target project with gamelib
+# provide your project name and path to gamelib project
+macro(link_gamelib project path gamelib)
+    get_filename_component(dir_name ${PROJECT_BINARY_DIR} NAME)
+
+    ## ---------------- Debug ---------------
+
+    if (EXISTS ${PROJECT_BINARY_DIR}/${path}/Debug/${gamelib}.lib)
+        configure_file(${PROJECT_BINARY_DIR}/${path}/Debug/${gamelib}.lib ${PROJECT_BINARY_DIR}/Debug/${gamelib}.lib COPYONLY)
+    endif()
+
+    if (EXISTS ${PROJECT_BINARY_DIR}/${path}/Debug/${gamelib}.dll)
+        configure_file(${PROJECT_BINARY_DIR}/${path}/Debug/${gamelib}.dll ${PROJECT_BINARY_DIR}/Debug/${gamelib}.dll COPYONLY)
+    endif()
+
+    ## ---------------- Release ---------------
+
+    if (EXISTS ${PROJECT_BINARY_DIR}/${path}/Release/${gamelib}.lib)
+        configure_file(${PROJECT_BINARY_DIR}/${path}/Release/${gamelib}.lib ${PROJECT_BINARY_DIR}/Release/${gamelib}.lib COPYONLY)
+    endif()
+
+    if (EXISTS ${PROJECT_BINARY_DIR}/${path}/Release/${gamelib}.dll)
+        configure_file(${PROJECT_BINARY_DIR}/${path}/Release/${gamelib}.dll ${PROJECT_BINARY_DIR}/Release/${gamelib}.dll COPYONLY)
+    endif()
+
+    message(STATUS "Linking ${project} -> ${gamelib}.lib")
+    message(STATUS "Linking ${project} -> ${gamelib}.dll")
+    target_link_libraries(${project} PUBLIC ${gamelib})
+
 endmacro()

@@ -32,3 +32,9 @@
 [submodule "docs/css/doxygen-awesome-css"]
 	path = docs/css/doxygen-awesome-css
 	url = https://github.com/jothepro/doxygen-awesome-css.git
+[submodule "engine/thirdparty/imgui"]
+	path = engine/thirdparty/imgui
+	url = https://github.com/ocornut/imgui.git
+[submodule "engine/thirdparty/ImGuizmo"]
+	path = engine/thirdparty/ImGuizmo
+	url = https://github.com/CedricGuillemet/ImGuizmo.git
