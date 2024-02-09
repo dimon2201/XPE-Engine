@@ -8,6 +8,11 @@ namespace xpe
 {
     namespace render
     {
+        bool MRender::EnableInfoLog = false;
+        bool MRender::EnableWarnLog = false;
+        bool MRender::EnableErrorLog = true;
+        u32  MRender::AnisotropyLevel = 1;
+
         void MRender::Init(sViewport& viewport, u32 sampleCount)
         {
             context::Init();
@@ -222,6 +227,7 @@ namespace xpe
             Textures::WidgetAtlas->Height = 1024;
             Textures::WidgetAtlas->Channels = 4;
             Textures::WidgetAtlas->Slot = K_SLOT_WIDGET_ATLAS;
+            Textures::WidgetAtlas->EnableMipmapping = true;
             Textures::WidgetAtlas->AddLayer();
             Textures::WidgetAtlas->Init();
 
@@ -236,35 +242,59 @@ namespace xpe
             Samplers::Shadow->AddressW    = cSampler::eAddress::BORDER;
             Samplers::Shadow->Init();
 
-            Viewports::Shadow = new sViewport();
-            Viewports::Shadow->Width = 400;
-            Viewports::Shadow->Height = 300;
+            Textures::ShadowCircle = new cCircleFilter3D();
+            Textures::ShadowCircle->Usage = cTexture::eUsage::DEFAULT;
+            Textures::ShadowCircle->Width = 3 * 3 / 2;
+            Textures::ShadowCircle->Height = 9;
+            Textures::ShadowCircle->Depth = 9;
+            Textures::ShadowCircle->Slot = K_SLOT_SHADOW_CIRCLE_FILTER;
+            Textures::ShadowCircle->Init();
+
+            Samplers::ShadowCircle = new cSampler();
+            Samplers::ShadowCircle->Slot = K_SLOT_SHADOW_CIRCLE_SAMPLER;
+            Samplers::ShadowCircle->Filter = cSampler::eFilter::MIN_MAG_MIP_POINT;
+            Samplers::ShadowCircle->AddressU = cSampler::eAddress::WRAP;
+            Samplers::ShadowCircle->AddressV = cSampler::eAddress::WRAP;
+            Samplers::ShadowCircle->AddressW = cSampler::eAddress::WRAP;
+            Samplers::ShadowCircle->Init();
+
+            Viewports::DirectionalShadow = new sViewport();
+            Viewports::DirectionalShadow->Width = 256;
+            Viewports::DirectionalShadow->Height = 256;
+
+            Viewports::PointShadow = new sViewport();
+            Viewports::PointShadow->Width = 256;
+            Viewports::PointShadow->Height = 256;
+
+            Viewports::SpotShadow = new sViewport();
+            Viewports::SpotShadow->Width = 256;
+            Viewports::SpotShadow->Height = 256;
 
             cTexture* shadowColor = new cTexture();
-            shadowColor->Width = Viewports::Shadow->Width;
-            shadowColor->Height = Viewports::Shadow->Height;
+            shadowColor->Width = 256;
+            shadowColor->Height = 256;
             shadowColor->Format = eTextureFormat::R32;
             shadowColor->InitializeData = false;
             shadowColor->EnableRenderTarget = true;
             shadowColor->Slot = K_SLOT_SHADOW_ATLAS;
-            shadowColor->SetResizable(true);
+            shadowColor->SetResizable(false);
             shadowColor->Init();
 
             cTexture* shadowDepth = new cTexture();
             shadowDepth->Type = cTexture::eType::TEXTURE_2D_DEPTH_STENCIL;
-            shadowDepth->Width = Viewports::Shadow->Width;
-            shadowDepth->Height = Viewports::Shadow->Height;
+            shadowDepth->Width = 256;
+            shadowDepth->Height = 256;
             shadowDepth->Format = eTextureFormat::R32_TYPELESS;
             shadowDepth->InitializeData = false;
             shadowDepth->EnableRenderTarget = true;
             shadowDepth->Slot = K_SLOT_SHADOW_ATLAS;
-            shadowDepth->SetResizable(true);
+            shadowDepth->SetResizable(false);
             shadowDepth->Init();
 
-            RenderTargets::Shadow = new cRenderTarget({ shadowColor }, shadowDepth, Viewports::Shadow);
-            RenderTargets::Shadow->SetResizable(true);
-            RenderTargets::Shadow->ClearColors.emplace_back(glm::vec4(1.0f));
-            RenderTargets::Shadow->ClearDepth = 1.0f;
+            RenderTargets::DirectionalShadow = new cRenderTarget({ shadowColor }, shadowDepth, Viewports::DirectionalShadow);
+            RenderTargets::DirectionalShadow->SetResizable(false);
+            RenderTargets::DirectionalShadow->ClearColors.emplace_back(glm::vec4(1.0f));
+            RenderTargets::DirectionalShadow->ClearDepth = 1.0f;
         }
 
         void MRender::FreeManagers()
@@ -283,6 +313,7 @@ namespace xpe
             delete Buffers::DirectLight;
             delete Buffers::PointLight;
             delete Buffers::SpotLight;
+            delete Buffers::ShadowPCF;
         }
 
         void MRender::FreeRenderTargets()
@@ -296,30 +327,28 @@ namespace xpe
             delete Textures::WidgetAtlas;
             delete Buffers::ShadowPCF;
             delete Samplers::Shadow;
-            delete RenderTargets::Shadow;
-            delete Viewports::Shadow;
-            for (auto* color : RenderTargets::Shadow->Colors)
+            delete RenderTargets::DirectionalShadow;
+            delete Viewports::DirectionalShadow;
+            for (auto* color : RenderTargets::DirectionalShadow->Colors)
             {
                 delete color;
             }
-            delete RenderTargets::Shadow->DepthStencil;
+            delete RenderTargets::DirectionalShadow->DepthStencil;
+            delete Textures::ShadowCircle;
+            delete Samplers::ShadowCircle;
         }
 
         void MRender::WindowFrameResized(int width, int height)
         {
-            MCamera::Camera->Viewport.Width = width;
-            MCamera::Camera->Viewport.Height = height;
-            MCamera::Flush();
+            MCamera::Resize(width, height);
 
             Textures::SharedDepth->Resize(width, height);
 
             RenderTargets::Opaque->DepthStencil = Textures::SharedDepth;
-            RenderTargets::Opaque->ResizeColors(width, height);
-            RenderTargets::Opaque->Resize(width, height);
+            RenderTargets::Opaque->ResizeColor(width, height);
 
             RenderTargets::Transparent->DepthStencil = Textures::SharedDepth;
-            RenderTargets::Transparent->ResizeColors(width, height);
-            RenderTargets::Transparent->Resize(width, height);
+            RenderTargets::Transparent->ResizeColor(width, height);
         }
 
         void MRender::Prepare()
@@ -360,17 +389,25 @@ namespace xpe
                 auto components = scene->GetComponents<CSpotLight>();
                 for (auto [entity, light] : components.each())
                 {
+                    glm::quat orientation = glm::quat({ -light.Rotation.x, -light.Rotation.y, light.Rotation.z });
+                    glm::mat4 viewMatrix = glm::translate(glm::mat4(1.0f), light.View.Position) * glm::toMat4(orientation);
+                    viewMatrix = glm::inverse(viewMatrix);
+
                     sSpotLightData lightData;
                     lightData.Position = light.View.Position;
-                    lightData.Color = light.Color * light.Intensity;
-                    lightData.Direction = light.View.Front;
-                    lightData.Outer = light.Outer;
-                    lightData.Cutoff = light.Cutoff;
-                    lightData.ViewProjection = MMath::UpdateLightMatrix(light.Projection, light.View);
+                    lightData.Direction = glm::rotate(orientation, glm::vec3(0.0f, 0.0f, 1.0f));
+                    lightData.Color = light.Color;
+                    lightData.InnerCutoff = glm::cos(glm::radians(light.InnerCutoff));
+                    lightData.OuterCutoff = glm::cos(glm::radians(light.OuterCutoff));
+                    lightData.ViewProjection = MMath::UpdatePerspectiveMatrix(light.Projection) * viewMatrix;
                     lightData.Near = light.Projection.Near;
                     lightData.Far = light.Projection.Far;
-
+                    lightData.Constant = light.Constant;
+                    lightData.Linear = light.Linear;
+                    lightData.Quadratic = light.Quadratic;
                     Buffers::SpotLight->Add(lightData);
+
+                    LogInfo("Spot light direction [{},{},{}]", lightData.Direction.x, lightData.Direction.y, lightData.Direction.z);
                 }
             }
             Buffers::SpotLight->Flush();
@@ -386,6 +423,7 @@ namespace xpe
                     lightData.Constant = light.Constant;
                     lightData.Linear = light.Linear;
                     lightData.Quadratic = light.Quadratic;
+                    lightData.ViewProjection = MMath::UpdateLightMatrix(light.Projection, light.View);
                     Buffers::PointLight->Add(lightData);
                 }
             }
@@ -412,7 +450,7 @@ namespace xpe
             }
 
             // Prepass
-            RenderTargets::Shadow->Clear();
+            RenderTargets::DirectionalShadow->Clear();
             {
                 cShader* shader = MShader::GetShaders(cShader::eCategory::PREPASS);
                 while (shader != nullptr) {

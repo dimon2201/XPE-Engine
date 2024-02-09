@@ -9,10 +9,10 @@ namespace xpe
             enum class eViewType
             {
                 NONE,
-                DEPTH_STENCIL,
-                RENDER_TARGET,
-                SRV,
-                UAV
+                SRV, // shader resource view
+                RTV, // render target view
+                DSV, // depth stencil view
+                UAV  // unordered access view
             };
 
             enum class eMapType

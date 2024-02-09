@@ -75,10 +75,12 @@ namespace xpe
             PixelStage->SetTexture(Textures::RoughnessAtlas);
             PixelStage->SetTexture(Textures::AOAtlas);
             PixelStage->SetTexture(Textures::EmissionAtlas);
-            PixelStage->SetTexture(RenderTargets::Shadow->Colors[0]);
+            PixelStage->SetTexture(RenderTargets::DirectionalShadow->Colors[0]);
+            PixelStage->SetTexture(Textures::ShadowCircle);
 
             PixelStage->SetSampler(Samplers::Material);
             PixelStage->SetSampler(Samplers::Shadow);
+            PixelStage->SetSampler(Samplers::ShadowCircle);
 
             Init();
         }
@@ -139,10 +141,12 @@ namespace xpe
             PixelStage->SetTexture(Textures::RoughnessAtlas);
             PixelStage->SetTexture(Textures::AOAtlas);
             PixelStage->SetTexture(Textures::EmissionAtlas);
-            PixelStage->SetTexture(RenderTargets::Shadow->Colors[0]);
+            PixelStage->SetTexture(RenderTargets::DirectionalShadow->Colors[0]);
+            PixelStage->SetTexture(Textures::ShadowCircle);
 
             PixelStage->SetSampler(Samplers::Material);
             PixelStage->SetSampler(Samplers::Shadow);
+            PixelStage->SetSampler(Samplers::ShadowCircle);
 
             Init();
         }
@@ -234,7 +238,7 @@ namespace xpe
             VertexStage = MShader::GetFromFile(cShaderStage::eType::VERTEX, "res/shaders/directional_shadow.vs");
             PixelStage = MShader::GetFromFile(cShaderStage::eType::PIXEL, "res/shaders/directional_shadow.ps");
 
-            RenderTarget = RenderTargets::Shadow;
+            RenderTarget = RenderTargets::DirectionalShadow;
 
             VertexStage->SetBuffer(Buffers::Skeleton);
             VertexStage->SetBuffer(Buffers::DirectLight);
@@ -244,6 +248,7 @@ namespace xpe
 
         void cDirectionalShadowShader::Draw(cScene* scene)
         {
+            RenderTargets::DirectionalShadow->Clear();
             auto lights = scene->GetComponents<CDirectionalLight>();
             u32 lightIndex = 0;
             for (auto [lightEntity, light]: lights.each())
@@ -259,7 +264,7 @@ namespace xpe
             VertexStage = MShader::GetFromFile(cShaderStage::eType::VERTEX, "res/shaders/point_shadow.vs");
             PixelStage = MShader::GetFromFile(cShaderStage::eType::PIXEL, "res/shaders/point_shadow.ps");
 
-            RenderTarget = RenderTargets::Shadow;
+            RenderTarget = RenderTargets::DirectionalShadow;
 
             VertexStage->SetBuffer(Buffers::Skeleton);
             VertexStage->SetBuffer(Buffers::PointLight);
@@ -284,7 +289,7 @@ namespace xpe
             VertexStage = MShader::GetFromFile(cShaderStage::eType::VERTEX, "res/shaders/spot_shadow.vs");
             PixelStage = MShader::GetFromFile(cShaderStage::eType::PIXEL, "res/shaders/spot_shadow.ps");
 
-            RenderTarget = RenderTargets::Shadow;
+            RenderTarget = RenderTargets::DirectionalShadow;
 
             VertexStage->SetBuffer(Buffers::Skeleton);
             VertexStage->SetBuffer(Buffers::SpotLight);
@@ -734,10 +739,10 @@ namespace xpe
             glm::vec4 v3 = modelMatrix * glm::vec4(m_Quad.Vertices[2].Position, 1.0);
             glm::vec4 v4 = modelMatrix * glm::vec4(m_Quad.Vertices[3].Position, 1.0);
 
-            float minX = min(min(min(v1.x, v2.x), v3.x), v4.x);
-            float maxX = max(max(max(v1.x, v2.x), v3.x), v4.x);
-            float minY = min(min(min(v1.y, v2.y), v3.y), v4.y);
-            float maxY = max(max(max(v1.y, v2.y), v3.y), v4.y);
+            float minX = Min(Min(Min(v1.x, v2.x), v3.x), v4.x);
+            float maxX = Max(Max(Max(v1.x, v2.x), v3.x), v4.x);
+            float minY = Min(Min(Min(v1.y, v2.y), v3.y), v4.y);
+            float maxY = Max(Max(Max(v1.y, v2.y), v3.y), v4.y);
 
             bool isNotHovered = mousePos.x < minX || mousePos.x > maxX || mousePos.y < minY || mousePos.y > maxY;
 
@@ -1032,10 +1037,10 @@ namespace xpe
             glm::vec4 v3 = modelMatrix * glm::vec4(m_Quad.Vertices[2].Position, 1.0);
             glm::vec4 v4 = modelMatrix * glm::vec4(m_Quad.Vertices[3].Position, 1.0);
 
-            float minX = min(min(min(v1.x, v2.x), v3.x), v4.x);
-            float maxX = max(max(max(v1.x, v2.x), v3.x), v4.x);
-            float minY = min(min(min(v1.y, v2.y), v3.y), v4.y);
-            float maxY = max(max(max(v1.y, v2.y), v3.y), v4.y);
+            float minX = Min(Min(Min(v1.x, v2.x), v3.x), v4.x);
+            float maxX = Max(Max(Max(v1.x, v2.x), v3.x), v4.x);
+            float minY = Min(Min(Min(v1.y, v2.y), v3.y), v4.y);
+            float maxY = Max(Max(Max(v1.y, v2.y), v3.y), v4.y);
 
             bool isNotHovered = mousePos.x < minX || mousePos.x > maxX || mousePos.y < minY || mousePos.y > maxY;
 

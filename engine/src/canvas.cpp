@@ -11,6 +11,7 @@ namespace xpe
             m_Shader->VertexStage = MShader::GetFromFile(cShaderStage::eType::VERTEX, "res/shaders/screen.vs");
             m_Shader->PixelStage = MShader::GetFromFile(cShaderStage::eType::PIXEL, "res/shaders/canvas.ps");
             m_Viewport = viewport;
+            Viewports::Canvas = viewport;
             MShader::SetShader(m_Shader);
 
             CreatePresentTarget();
@@ -33,7 +34,7 @@ namespace xpe
         void cCanvas::Draw()
         {
             context::PSBindTextureSlot(0);
-            context::BindRenderTarget(m_PresentTarget->ColorViews, m_PresentTarget->DepthStencilView, m_PresentTarget->Viewport);
+            m_PresentTarget->Bind();
             context::VSBindStage(*m_Shader->VertexStage);
             context::PSBindStage(*m_Shader->PixelStage);
             context::PSBindSampler(*m_PresentSampler);
@@ -55,7 +56,7 @@ namespace xpe
         {
             m_PresentTarget = new cRenderTarget(
                     vector<void*> { context::SwapchainTargetView },
-                    m_Viewport
+                    Viewports::Canvas
             );
             m_PresentTarget->SetResizable(false);
         }
@@ -69,12 +70,6 @@ namespace xpe
             m_PresentSampler->AddressW = cSampler::eAddress::CLAMP;
             m_PresentSampler->AnisotropyLevel = 1;
             m_PresentSampler->Init();
-        }
-
-        void cCanvas::SetViewport(sViewport* viewport)
-        {
-            m_Viewport = viewport;
-            WindowFrameResized(viewport->Width, viewport->Height);
         }
     }
 }

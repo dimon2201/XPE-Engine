@@ -68,15 +68,24 @@ namespace xpe
 
         void cRenderTarget::Resize(s32 width, s32 height)
         {
+            for (auto* color : Colors)
+            {
+                color->Resize(width, height);
+            }
+            if (DepthStencil != nullptr)
+            {
+                DepthStencil->Resize(width, height);
+            }
             context::ResizeRenderTarget(*this, width, height);
         }
 
-        void cRenderTarget::ResizeColors(s32 width, s32 height)
+        void cRenderTarget::ResizeColor(s32 width, s32 height)
         {
             for (auto* color : Colors)
             {
                 color->Resize(width, height);
             }
+            context::ResizeRenderTarget(*this, width, height);
         }
 
         void cRenderTarget::WindowFrameResized(s32 width, s32 height)
@@ -87,21 +96,13 @@ namespace xpe
         void cRenderTarget::Bind()
         {
             context::BindRenderTarget(ColorViews, DepthStencilView);
-        }
-
-        void cRenderTarget::BindColor(u32 index)
-        {
-            context::PSBindTexture(*Colors[index]);
-        }
-
-        void cRenderTarget::BindDepth()
-        {
-            context::PSBindTexture(*DepthStencil);
+            context::BindViewport(Viewport);
         }
 
         void cRenderTarget::Unbind()
         {
             context::UnbindRenderTarget();
+            context::UnbindViewport();
         }
 
         void cRenderTarget::Clear()

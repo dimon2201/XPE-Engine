@@ -24,11 +24,9 @@ namespace xpe
             ~cRenderTarget();
 
             void Resize(s32 width, s32 height);
-            void ResizeColors(s32 width, s32 height);
+            void ResizeColor(s32 width, s32 height);
 
             void Bind();
-            void BindColor(u32 index);
-            void BindDepth();
             void Unbind();
 
             void WindowFrameResized(s32 width, s32 height);

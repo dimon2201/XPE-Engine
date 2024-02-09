@@ -18,27 +18,14 @@ namespace xpe
             HDR = RGBA32
         };
 
-        struct ENGINE_API sMip final
-        {
-            eTextureFormat Format;
-            s32 Width, Height = 0;
-            void* Pixels = nullptr;
-
-            sMip() = default;
-
-            sMip(eTextureFormat format, s32 width, s32 height, void* pixels)
-            : Format(format), Width(width), Height(height), Pixels(pixels) {}
-        };
-
         class ENGINE_API cTextureLayer final
         {
 
         public:
 
             eTextureFormat Format;
-            s32 Width, Height = 0;
+            s32 Width, Height, Depth = 0;
             void* Pixels = nullptr;
-            vector<sMip> Mips;
 
             cTextureLayer() = default;
 
@@ -50,14 +37,6 @@ namespace xpe
             void CopyFrom(const cTextureLayer& other);
 
             [[nodiscard]] cTextureLayer Clone() const;
-
-            void GenerateMips(const eTextureFormat& format, int width, int height);
-
-            void GenerateMipsU8(int width, int height);
-
-            void GenerateMipsFloat(int width, int height);
-
-            void FreeMips();
 
             void Resize(const eTextureFormat& format, s32 width, s32 height);
 
@@ -118,35 +97,28 @@ namespace xpe
 
             eType Type = eType::TEXTURE_DEFAULT;
             eUsage Usage = eUsage::DEFAULT;
-
             s32 Width;
             s32 Height;
             s32 Depth = 1;
             s32 Channels;
             eTextureFormat Format;
             u32 SampleCount = 1;
-
             bool EnableRenderTarget = false;
-
             u32 Slot = 0;
-
-            u32 MostDetailedMip = 0;
-
             bool InitializeData = true;
             vector<cTextureLayer> Layers;
+            bool EnableMipmapping = false;
+            u32 MostDetailedMip = 0;
 
             cTexture();
             ~cTexture();
 
-            void Init();
+            virtual void Init();
             void Free();
 
             cTextureLayer CreateLayer() const;
 
             void RemoveLayerAt(u32 index);
-
-            [[nodiscard]] u32 GetMipLevels() const;
-            static u32 GetMipsLevels(s32 width);
 
             void WindowFrameResized(s32 width, s32 height);
 
@@ -156,14 +128,14 @@ namespace xpe
 
             void Flip();
 
-            void GenerateMips();
-
             void FlushLayer(u32 index);
 
             void Flush();
 
             void SetResizable(bool resizable);
             [[nodiscard]] inline bool IsResizable() const { return m_Resizable; }
+
+            void SetMipmapping(bool enable);
 
         private:
             void ResizeTextureU8(s32 width, s32 height);
@@ -208,6 +180,14 @@ namespace xpe
 
             template<typename... Args>
             void RemoveCell(Args&&... args);
+        };
+
+        class ENGINE_API cCircleFilter3D : public cTexture
+        {
+        public:
+            int FilterSize = 0;
+
+            void Init() override final;
         };
 
         template<typename... Args>
@@ -302,7 +282,7 @@ namespace xpe
             }
         }
 
-        class ENGINE_API cSampler : public sResource
+        class ENGINE_API cSampler : public cObject
         {
 
         public:
@@ -335,6 +315,8 @@ namespace xpe
                 ANISOTROPIC
             };
 
+            void* Instance = nullptr;
+
             u32 Slot = 0;
 
             eFilter Filter = eFilter::MIN_MAG_MIP_POINT;
@@ -353,7 +335,6 @@ namespace xpe
             eAddress AddressV = eAddress::CLAMP;
             eAddress AddressW = eAddress::CLAMP;
 
-            cSampler();
             ~cSampler();
 
             void Init();

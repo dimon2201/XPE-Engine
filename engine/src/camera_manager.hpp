@@ -24,6 +24,8 @@ namespace xpe
             static void ZoomOut();
             static void Look(const double x, const double y);
 
+            static void Resize(int width, int height);
+
             static void ScrollChanged(const double x, const double y);
             static void WindowFrameResized(int width, int height);
             static void WindowRatioChanged(float ratio);

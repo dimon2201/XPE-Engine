@@ -8,7 +8,10 @@ namespace xpe
     {
         struct ENGINE_API Viewports final
         {
-            static sViewport*           Shadow;
+            static sViewport*           Canvas;
+            static sViewport*           DirectionalShadow;
+            static sViewport*           PointShadow;
+            static sViewport*           SpotShadow;
             static sViewport*           SSAO;
         };
 
@@ -19,7 +22,9 @@ namespace xpe
             static cRenderTarget*       Transparent;
             static cRenderTarget*       UI;
             static cRenderTarget*       Final;
-            static cRenderTarget*       Shadow;
+            static cRenderTarget*       DirectionalShadow;
+            static cRenderTarget*       PointShadow;
+            static cRenderTarget*       SpotShadow;
             static cRenderTarget*       SSAO;
         };
 
@@ -49,6 +54,7 @@ namespace xpe
             static cTexture*            AOAtlas;
             static cTexture*            EmissionAtlas;
             static cAtlas*              WidgetAtlas;
+            static cCircleFilter3D*     ShadowCircle;
         };
 
         struct ENGINE_API Samplers final
@@ -58,6 +64,7 @@ namespace xpe
             static cSampler*            Widget;
             static cSampler*            Skybox;
             static cSampler*            Font;
+            static cSampler*            ShadowCircle;
         };
     }
 }

@@ -22,7 +22,8 @@ namespace xpe
                 GpuWarning,
                 GpuError,
                 MsaaSampleCount,
-                EnableSSAO
+                EnableSSAO,
+                AnisotropyLevel
             )
 
             string Title;
@@ -44,6 +45,8 @@ namespace xpe
             bool EnableSSAO = true;
 
             u32 MsaaSampleCount = 1;
+
+            u32 AnisotropyLevel = 4;
         };
     }
 }

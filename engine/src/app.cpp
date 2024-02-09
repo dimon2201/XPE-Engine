@@ -78,9 +78,10 @@ namespace xpe
             MAudio::Init();
             MPhysics::Init(MTask::GetSimulationDispatcher());
 
-            render::context::EnableInfoLog = m_Config.GpuInfo;
-            render::context::EnableWarnLog = m_Config.GpuWarning;
-            render::context::EnableErrorLog = m_Config.GpuError;
+            MRender::EnableInfoLog = m_Config.GpuInfo;
+            MRender::EnableWarnLog = m_Config.GpuWarning;
+            MRender::EnableErrorLog = m_Config.GpuError;
+            MRender::AnisotropyLevel = m_Config.AnisotropyLevel;
 
             MCamera::Camera = new CPerspectiveCamera();
             MCamera::Camera->Viewport.Width = MWindow::GetWidth();
@@ -175,8 +176,8 @@ namespace xpe
         {
             MShader::SetShader(new cSkyboxShader("skybox"));
             MShader::SetShader(new cDirectionalShadowShader("directional_shadow"));
-//            MShader::SetShader(new cPointShadowShader("point_shadow"));
-//            MShader::SetShader(new cSpotShadowShader("spot_shadow"));
+            MShader::SetShader(new cPointShadowShader("point_shadow"));
+            MShader::SetShader(new cSpotShadowShader("spot_shadow"));
             MShader::SetShader(new cOpaqueShader("opaque"));
             MShader::SetShader(new cTransparentShader("transparent"));
             MShader::SetShader(new cCompositeTransparentShader("composite_transparent", m_Config.MsaaSampleCount));

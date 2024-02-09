@@ -4,7 +4,10 @@ namespace xpe
 {
     namespace render
     {
-        sViewport*           Viewports::Shadow = nullptr;
+        sViewport*           Viewports::Canvas = nullptr;
+        sViewport*           Viewports::DirectionalShadow = nullptr;
+        sViewport*           Viewports::PointShadow = nullptr;
+        sViewport*           Viewports::SpotShadow = nullptr;
         sViewport*           Viewports::SSAO = nullptr;
 
         cRenderTarget*       RenderTargets::Scene = nullptr;
@@ -12,7 +15,9 @@ namespace xpe
         cRenderTarget*       RenderTargets::Transparent = nullptr;
         cRenderTarget*       RenderTargets::UI = nullptr;
         cRenderTarget*       RenderTargets::Final = nullptr;
-        cRenderTarget*       RenderTargets::Shadow = nullptr;
+        cRenderTarget*       RenderTargets::DirectionalShadow = nullptr;
+        cRenderTarget*       RenderTargets::PointShadow = nullptr;
+        cRenderTarget*       RenderTargets::SpotShadow = nullptr;
         cRenderTarget*       RenderTargets::SSAO = nullptr;
 
         sVertexBuffer*       Buffers::Vertex = nullptr;
@@ -36,11 +41,13 @@ namespace xpe
         cTexture*            Textures::AOAtlas = nullptr;
         cTexture*            Textures::EmissionAtlas = nullptr;
         cAtlas*              Textures::WidgetAtlas = nullptr;
+        cCircleFilter3D*     Textures::ShadowCircle = nullptr;
 
         cSampler*            Samplers::Material = nullptr;
         cSampler*            Samplers::Shadow = nullptr;
         cSampler*            Samplers::Widget = nullptr;
         cSampler*            Samplers::Skybox = nullptr;
         cSampler*            Samplers::Font = nullptr;
+        cSampler*            Samplers::ShadowCircle = nullptr;
     }
 }

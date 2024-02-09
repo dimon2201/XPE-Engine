@@ -18,7 +18,7 @@ hot_free(addr)
 addr->~T();               \
 main_free(addr)
 
-#ifdef DEBUG
+#ifdef K_DEBUG
 
 #define TOKENPASTE(x, y) x ## y
 #define TOKENPASTE2(x, y) TOKENPASTE(x, y)

@@ -2,8 +2,8 @@ namespace xpe
 {
     namespace core
     {
-        sMemoryStats MHardware::Memory;
-        sGpuStats MHardware::GPU;
-        sCpuStats MHardware::CPU;
+        sMemInfo MHardware::MemInfo;
+        sGpuInfo MHardware::GpuInfo;
+        sCpuInfo MHardware::CpuInfo;
     }
 }

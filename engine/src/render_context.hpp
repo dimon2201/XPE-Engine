@@ -21,7 +21,6 @@ namespace xpe
 
             ENGINE_API void CreateRenderTarget(cRenderTarget& renderTarget);
             ENGINE_API void BindRenderTarget(const vector<void*>& colorViews, void* depthView);
-            ENGINE_API void BindRenderTarget(const vector<void*>& colorViews, void* depthView, sViewport* viewport);
             ENGINE_API void UnbindRenderTarget();
             ENGINE_API void ClearColorTarget(void* colorView, const glm::vec4& color);
             ENGINE_API void ClearDepthTarget(void* depthView, const f32 depth);
@@ -104,19 +103,19 @@ namespace xpe
             ENGINE_API void FreeSampler(cSampler& sampler);
 
             ENGINE_API void VSBindSampler(const cSampler& sampler);
-            ENGINE_API void VSBindSampler(u32 slot, void* viewInstance);
+            ENGINE_API void VSBindSampler(u32 slot, void* instance);
             ENGINE_API void VSUnbindSampler(const cSampler& sampler);
 
             ENGINE_API void PSBindSampler(const cSampler& sampler);
-            ENGINE_API void PSBindSampler(u32 slot, void* viewInstance);
+            ENGINE_API void PSBindSampler(u32 slot, void* instance);
             ENGINE_API void PSUnbindSampler(const cSampler& sampler);
 
             ENGINE_API void GSBindSampler(const cSampler& sampler);
-            ENGINE_API void GSBindSampler(u32 slot, void* viewInstance);
+            ENGINE_API void GSBindSampler(u32 slot, void* instance);
             ENGINE_API void GSUnbindSampler(const cSampler& sampler);
 
             ENGINE_API void CSBindSampler(const cSampler& sampler);
-            ENGINE_API void CSBindSampler(u32 slot, void* viewInstance);
+            ENGINE_API void CSBindSampler(u32 slot, void* instance);
             ENGINE_API void CSUnbindSampler(const cSampler& sampler);
 
             ENGINE_API void CreateBuffer(sBuffer& buffer);

@@ -19,7 +19,8 @@ struct PointLight
 
 StructuredBuffer<PointLight> PointLights : K_SLOT_POINT_LIGHTS;
 
-float Attenuation(PointLight pointLight) {
+float Attenuation(PointLight pointLight)
+{
     float d = length(pointLight.Position - W);
     float q = pointLight.Quadratic;
     float l = pointLight.Linear;
@@ -37,16 +38,22 @@ struct SpotLight
     float4x4 ViewProjection;
     float Near;
     float Far;
+    float Constant;
+    float Linear;
+    float Quadratic;
 };
 
 StructuredBuffer<SpotLight> SpotLights : K_SLOT_SPOT_LIGHTS;
 
-float Attenuation(SpotLight spotLight) {
-    float3 lightDir     = normalize(spotLight.Position - W);
-    float3 spotDir      = normalize(-spotLight.Direction);
-    float theta         = dot(lightDir, spotDir);
-    float cutoff        = spotLight.Cutoff;
-    float gamma         = spotLight.Outer;
-    float epsilon       = cutoff - gamma;
-    return clamp((theta - gamma) / epsilon, 0.0, 1.0);
+float Attenuation(float3 lightDir, SpotLight spotLight)
+{
+    float theta = dot(lightDir, normalize(-spotLight.Direction));
+    float epsilon = (spotLight.InnerCutoff - spotLight.OuterCutoff);
+    float intensity = clamp((theta - spotLight.OuterCutoff) / epsilon, 0.0, 1.0);
+    float d = length(spotLight.Position - W);
+    float q = spotLight.Quadratic;
+    float l = spotLight.Linear;
+    float c = spotLight.Constant;
+    float attenuation = 1.0 / ( q * d * d + l * d + c );
+    return attenuation * intensity;
 }

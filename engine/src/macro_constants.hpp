@@ -64,9 +64,12 @@
 #define K_SLOT_SPOT_LIGHTS 10
 
 // shadows
+#define K_SLOT_SHADOW_PCF 0
 #define K_SLOT_SHADOW_ATLAS 11
 #define K_SLOT_SHADOW_SAMPLER 1
-#define K_SLOT_SHADOW_PCF 0
+#define K_SLOT_SHADOW_RANDOM_TEXTURE 12
+#define K_SLOT_SHADOW_CIRCLE_SAMPLER 2
+#define K_SLOT_SHADOW_CIRCLE_FILTER 13
 
 // ---------- Constant Buffers --------------- //
 

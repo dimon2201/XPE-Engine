@@ -2,33 +2,32 @@
 
 #define _WIN32_WINNT 0x0501
 #include <Windows.h>
-#include "hardware_manager.hpp"
-
+#include <hardware_manager.hpp>
 
 namespace xpe
 {
     namespace core
     {
-        void MHardware::UpdateMemoryStats()
+        void MHardware::UpdateMemInfo()
         {
             MEMORYSTATUSEX memStatus;
             memStatus.dwLength = sizeof(memStatus);
             GlobalMemoryStatusEx(&memStatus);
-            Memory.TotalPhysical = memStatus.ullTotalPhys;
-            Memory.AvailablePhysical = memStatus.ullAvailPhys;
-            Memory.TotalPageFile = memStatus.ullTotalPageFile;
-            Memory.AvailablePageFile = memStatus.ullAvailPageFile;
-            Memory.TotalVirtual = memStatus.ullTotalVirtual;
-            Memory.AvailableVirtual = memStatus.ullAvailVirtual;
-            Memory.AvailableVirtualExtended = memStatus.ullAvailExtendedVirtual;
+            MemInfo.TotalPhysical = memStatus.ullTotalPhys;
+            MemInfo.AvailablePhysical = memStatus.ullAvailPhys;
+            MemInfo.TotalPageFile = memStatus.ullTotalPageFile;
+            MemInfo.AvailablePageFile = memStatus.ullAvailPageFile;
+            MemInfo.TotalVirtual = memStatus.ullTotalVirtual;
+            MemInfo.AvailableVirtual = memStatus.ullAvailVirtual;
+            MemInfo.AvailableVirtualExtended = memStatus.ullAvailExtendedVirtual;
         }
 
-        void MHardware::UpdateCpuStats()
+        void MHardware::UpdateCpuInfo()
         {
             SYSTEM_INFO sysinfo;
             GetSystemInfo(&sysinfo);
-            CPU.Threads = sysinfo.dwNumberOfProcessors;
-            CPU.Cores = sysinfo.dwNumberOfProcessors / 2;
+            CpuInfo.Threads = sysinfo.dwNumberOfProcessors;
+            CpuInfo.Cores = sysinfo.dwNumberOfProcessors / 2;
         }
 
         u32 MHardware::GetCurrentPID()

@@ -112,7 +112,7 @@ namespace xpe
             else if (logError)
             {
                 LogError(ss.str());
-                debug_break();
+                Breakpoint();
             }
         }
 

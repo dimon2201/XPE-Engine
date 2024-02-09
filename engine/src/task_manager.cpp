@@ -120,7 +120,7 @@ namespace xpe
             s_AudioDispatcher = new cTaskDispatcher(1, 10, "AudioThread", cThread::ePriority::NORMAL);
             s_NetworkDispatcher = new cTaskDispatcher(1, 10, "NetworkThread", cThread::ePriority::NORMAL);
             s_SimulationDispatcher = new cSimulationDispatcher(1, 10, "SimulationThread", cThread::ePriority::NORMAL);
-            s_ThreadPoolDispatcher = new cTaskDispatcher(MHardware::CPU.Threads - 3, 100, "ThreadPool", cThread::ePriority::NORMAL);
+            s_ThreadPoolDispatcher = new cTaskDispatcher(MHardware::CpuInfo.Threads - 3, 100, "ThreadPool", cThread::ePriority::NORMAL);
         }
 
         void MTask::Free()

@@ -219,7 +219,7 @@ namespace xpe {
 
             if (bone != nullptr)
             {
-                *skeletonBuffer[bone->ID + skeletonIndex] = { globalTransformation * bone->Offset };
+                skeletonBuffer.Set(bone->ID + skeletonIndex, { globalTransformation * bone->Offset });
             }
 
             for (auto& node : animationNode.Children)
@@ -387,6 +387,11 @@ namespace xpe {
             CSkeletonInfo skeletonInfo;
             skeletonInfo.SkeletonIndex = Buffers::Skeleton->Size();
             Buffers::Skeleton->Resize(Buffers::Skeleton->Size() + skeleton.Bones.size());
+            for (auto& bonePair : skeleton.Bones)
+            {
+                auto& bone = bonePair.second;
+                Buffers::Skeleton->Set(bone.ID + skeletonInfo.SkeletonIndex, { glm::mat4(1.0) });
+            }
             return skeletonInfo;
         }
     }

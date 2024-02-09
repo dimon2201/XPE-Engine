@@ -5,7 +5,7 @@ namespace xpe
     namespace math
     {
         template<typename T>
-        void clamp(T& value, const T min, const T max)
+        void Clamp(T& value, const T min, const T max)
         {
             if (value < min)
             {
@@ -18,15 +18,23 @@ namespace xpe
         }
 
         template<typename T>
-        T min(const T& right, const T& left)
+        T Min(const T& right, const T& left)
         {
             return right < left ? right : left;
         }
 
         template<typename T>
-        T max(const T& right, const T& left)
+        T Max(const T& right, const T& left)
         {
             return right > left ? right : left;
+        }
+
+        template<typename T>
+        T Random(const T& min, const T& max)
+        {
+            static std::default_random_engine generator;
+            std::uniform_real_distribution<T> distribution(min, max);
+            return distribution(generator);
         }
 
         struct ENGINE_API sRay final

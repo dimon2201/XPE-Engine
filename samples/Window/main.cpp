@@ -411,8 +411,8 @@ public:
 
         if (key == eKey::R)
         {
-            Textures::Canvas = RenderTargets::Shadow->Colors[0];
-            m_Canvas->SetViewport(RenderTargets::Shadow->Viewport);
+            Textures::Canvas = RenderTargets::DirectionalShadow->Colors[0];
+            Viewports::Canvas = Viewports::DirectionalShadow;
         }
 
         if (key == eKey::T)

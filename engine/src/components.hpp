@@ -231,9 +231,16 @@ namespace xpe
             )
         };
 
-        struct ENGINE_API CPointLight : public cJson, public sPointLightData
+        struct ENGINE_API CPointLight : public cJson
         {
             glm::vec3 Intensity = { 1, 1, 1 };
+            glm::vec3 Position = { 0, 0, 0 };
+            glm::vec3 Color = { 0, 0, 0 };
+            float Constant = 1.0f;
+            float Linear = 0.09f;
+            float Quadratic = 0.032f;
+            sPerspectiveMatrix Projection;
+            sViewMatrix View;
 
             CPointLight() = default;
 
@@ -258,10 +265,14 @@ namespace xpe
         {
             glm::vec3 Color;
             glm::vec3 Intensity = { 1, 1, 1 };
-            float Cutoff = 0.90f;
-            float Outer = 0.95f;
+            float InnerCutoff = 12.5f;
+            float OuterCutoff = 17.5f;
             sPerspectiveMatrix Projection;
             sViewMatrix View;
+            float Constant = 1.0f;
+            float Linear = 0.09f;
+            float Quadratic = 0.032f;
+            glm::vec3 Rotation = { 0, 0, 0 };
 
             CSpotLight(
                     const glm::vec3& position = { 0, 0, 0 },
@@ -270,10 +281,6 @@ namespace xpe
             )
             {
                 Color = color;
-                Projection.FovDegree = 90.0f;
-                Projection.AspectRatio = 1.0;
-                Projection.Near = 0.1f;
-                Projection.Far = 75.0f;
                 View.Position = position;
                 View.Front = direction;
                 View.Up = { 0, 1, 0 };
@@ -283,10 +290,11 @@ namespace xpe
                 CSpotLight,
                 Color,
                 Intensity,
-                Cutoff,
-                Outer,
+                InnerCutoff,
+                OuterCutoff,
                 Projection,
-                View
+                View,
+                Rotation
             )
         };
 

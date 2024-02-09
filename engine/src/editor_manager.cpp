@@ -682,8 +682,8 @@ namespace xpe
                     ui::Vec3Control("Position", component.View.Position);
                     ui::Vec3Control("Direction", component.View.Front);
                     ui::ColorIntensiveEdit3("Color", component.Color, component.Intensity);
-                    ui::InputFloat("CutOff", component.Cutoff, 0.1f);
-                    ui::InputFloat("Outer CutOff", component.Outer, 0.1f);
+                    ui::InputFloat("CutOff", component.InnerCutoff, 0.1f);
+                    ui::InputFloat("OuterCutoff CutOff", component.OuterCutoff, 0.1f);
                 });
             }
 

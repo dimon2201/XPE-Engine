@@ -4,8 +4,8 @@
 
 int main(int argc, char** argv)
 {
-    MHardware::UpdateMemoryStats();
-    MHardware::UpdateCpuStats();
+    MHardware::UpdateMemInfo();
+    MHardware::UpdateCpuInfo();
     MProfile::BeginSession();
     MMemory::Init();
     auto* application = CreateApplication();

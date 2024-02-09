@@ -94,20 +94,21 @@ namespace xpe
         JSON(sIndexBuffer, List)
 
         template<typename T>
-        struct sItemBuffer : public sBuffer
+        class cItemBuffer : public sBuffer
         {
+        public:
             T Item;
 
-            sItemBuffer() = default;
-            sItemBuffer(u32 slot, sBuffer::eSubType subtype = sBuffer::eSubType::NONE, sBuffer::eViewType viewtype = sBuffer::eViewType::NONE);
-            ~sItemBuffer();
+            cItemBuffer() = default;
+            cItemBuffer(u32 slot, sBuffer::eSubType subtype = sBuffer::eSubType::NONE, sBuffer::eViewType viewtype = sBuffer::eViewType::NONE);
+            ~cItemBuffer();
 
             void Flush();
             void FlushItem(const T& item);
         };
 
         template<typename T>
-        sItemBuffer<T>::sItemBuffer(u32 slot, sBuffer::eSubType subtype, sBuffer::eViewType viewtype)
+        cItemBuffer<T>::cItemBuffer(u32 slot, sBuffer::eSubType subtype, sBuffer::eViewType viewtype)
         {
             Type = sBuffer::eType::ITEM;
             ViewType = viewtype;
@@ -121,38 +122,35 @@ namespace xpe
         }
 
         template<typename T>
-        sItemBuffer<T>::~sItemBuffer()
+        cItemBuffer<T>::~cItemBuffer()
         {
             context::FreeBuffer(*this);
         }
 
         template<typename T>
-        void sItemBuffer<T>::Flush()
+        void cItemBuffer<T>::Flush()
         {
             context::CopyBuffer(*this, &Item, StructureSize);
         }
 
         template<typename T>
-        void sItemBuffer<T>::FlushItem(const T &item)
+        void cItemBuffer<T>::FlushItem(const T &item)
         {
             Item = item;
             context::CopyBuffer(*this, &Item, StructureSize);
         }
 
         template<typename T>
-        class sListBuffer : public sBuffer
+        class cListBuffer : public sBuffer
         {
 
         public:
-            sListBuffer() = default;
-            sListBuffer(usize count, u32 slot, sBuffer::eSubType subtype = sBuffer::eSubType::NONE, sBuffer::eViewType viewtype = sBuffer::eViewType::SRV);
-            ~sListBuffer();
+            cListBuffer() = default;
+            cListBuffer(usize count, u32 slot, sBuffer::eSubType subtype = sBuffer::eSubType::NONE, sBuffer::eViewType viewtype = sBuffer::eViewType::SRV);
+            ~cListBuffer();
 
-        public:
             void Flush();
-
             void FlushItem(u32 index, const T& item);
-
             void FlushItemAt(u32 index);
 
             template<typename ... Args>
@@ -187,12 +185,12 @@ namespace xpe
 
             inline T* Get(u32 index)
             {
-                if (index >= m_List.size())
-                {
-                    LogError("Index {} is out of bounds of size {}", index, m_List.size());
-                    return nullptr;
-                }
                 return &m_List[index];
+            }
+
+            inline void Set(u32 index, const T& item)
+            {
+                m_List[index] = item;
             }
 
             inline T* operator [](u32 index)
@@ -205,7 +203,7 @@ namespace xpe
         };
 
         template<typename T>
-        sListBuffer<T>::sListBuffer(usize count, u32 slot, sBuffer::eSubType subtype, sBuffer::eViewType viewtype)
+        cListBuffer<T>::cListBuffer(usize count, u32 slot, sBuffer::eSubType subtype, sBuffer::eViewType viewtype)
         {
             Type = sBuffer::eType::LIST;
             SubType = subtype;
@@ -223,14 +221,14 @@ namespace xpe
         }
 
         template<typename T>
-        sListBuffer<T>::~sListBuffer()
+        cListBuffer<T>::~cListBuffer()
         {
             context::FreeBuffer(*this);
             m_List.clear();
         }
 
         template<typename T>
-        void sListBuffer<T>::Flush()
+        void cListBuffer<T>::Flush()
         {
             usize size = m_List.size();
             if (size != NumElements)
@@ -244,7 +242,7 @@ namespace xpe
         }
 
         template<typename T>
-        void sListBuffer<T>::FlushItem(u32 index, const T& newItem)
+        void cListBuffer<T>::FlushItem(u32 index, const T& newItem)
         {
             T* item = operator[](index);
             if (item == nullptr)
@@ -256,7 +254,7 @@ namespace xpe
         }
 
         template<typename T>
-        void sListBuffer<T>::FlushItemAt(u32 index)
+        void cListBuffer<T>::FlushItemAt(u32 index)
         {
             T* item = operator[](index);
             if (item == nullptr)
@@ -267,7 +265,7 @@ namespace xpe
         }
 
         template<typename T>
-        void sListBuffer<T>::Recreate(const usize count)
+        void cListBuffer<T>::Recreate(const usize count)
         {
             m_List.resize(count);
             NumElements = count;
@@ -278,39 +276,39 @@ namespace xpe
         }
 
         template<typename T>
-        void sListBuffer<T>::Resize(const usize count)
+        void cListBuffer<T>::Resize(const usize count)
         {
             m_List.resize(count);
         }
 
         template<typename T>
-        void sListBuffer<T>::Reserve(const usize count)
+        void cListBuffer<T>::Reserve(const usize count)
         {
             m_List.reserve(count);
         }
 
         template<typename T>
-        void sListBuffer<T>::Clear()
+        void cListBuffer<T>::Clear()
         {
             m_List.clear();
         }
 
         template<typename T>
-        bool sListBuffer<T>::Empty()
+        bool cListBuffer<T>::Empty()
         {
             return m_List.empty();
         }
 
         template<typename T>
         template<typename... Args>
-        u32 sListBuffer<T>::Add(Args &&... args)
+        u32 cListBuffer<T>::Add(Args &&... args)
         {
             m_List.emplace_back(args...);
             return m_List.size() - 1;
         }
 
         template<typename T>
-        void sListBuffer<T>::RemoveAt(u32 index)
+        void cListBuffer<T>::RemoveAt(u32 index)
         {
             m_List.erase(m_List.begin() + index);
         }
@@ -326,9 +324,9 @@ namespace xpe
             float Gamma = 2.2f;
         };
 
-        struct ENGINE_API sCameraBuffer : public sItemBuffer<sCameraData>
+        struct ENGINE_API sCameraBuffer : public cItemBuffer<sCameraData>
         {
-            sCameraBuffer() : sItemBuffer<sCameraData>(K_SLOT_CAMERA) {}
+            sCameraBuffer() : cItemBuffer<sCameraData>(K_SLOT_CAMERA) {}
         };
 
         struct ENGINE_API sRenderInstance final
@@ -340,9 +338,9 @@ namespace xpe
             u32 LightIndex    = 0;
         };
 
-        struct ENGINE_API sInstanceBuffer : public sListBuffer<sRenderInstance>
+        struct ENGINE_API sInstanceBuffer : public cListBuffer<sRenderInstance>
         {
-            sInstanceBuffer(usize count = 0) : sListBuffer<sRenderInstance>(count, K_SLOT_INSTANCES) {}
+            sInstanceBuffer(usize count = 0) : cListBuffer<sRenderInstance>(count, K_SLOT_INSTANCES) {}
         };
 
         struct ENGINE_API sDirectLightData
@@ -352,9 +350,9 @@ namespace xpe
             glm::mat4 ViewProjection;
         };
 
-        struct ENGINE_API sDirectLightBuffer : public sListBuffer<sDirectLightData>
+        struct ENGINE_API sDirectLightBuffer : public cListBuffer<sDirectLightData>
         {
-            sDirectLightBuffer(usize size = 0) : sListBuffer<sDirectLightData>(size, K_SLOT_DIRECT_LIGHTS) {}
+            sDirectLightBuffer(usize size = 0) : cListBuffer<sDirectLightData>(size, K_SLOT_DIRECT_LIGHTS) {}
         };
 
         struct ENGINE_API sPointLightData
@@ -367,26 +365,29 @@ namespace xpe
             glm::mat4 ViewProjection;
         };
 
-        struct ENGINE_API sPointLightBuffer : public sListBuffer<sPointLightData>
+        struct ENGINE_API sPointLightBuffer : public cListBuffer<sPointLightData>
         {
-            sPointLightBuffer(usize size = 0) : sListBuffer<sPointLightData>(size, K_SLOT_POINT_LIGHTS) {}
+            sPointLightBuffer(usize size = 0) : cListBuffer<sPointLightData>(size, K_SLOT_POINT_LIGHTS) {}
         };
 
         struct ENGINE_API sSpotLightData
         {
             glm::vec3 Position = { 0, 0, 0 };
-            glm::vec3 Direction = { 1, 1, 1 };
+            glm::vec3 Direction = { 0, 0, 0 };
             glm::vec3 Color = { 1, 1, 1 };
-            float Cutoff = 1;
-            float Outer = 1;
+            float InnerCutoff = 1;
+            float OuterCutoff = 1;
             glm::mat4 ViewProjection;
             float Near = 0;
             float Far = 1;
+            float Constant = 1.0f;
+            float Linear = 0.09f;
+            float Quadratic = 0.032f;
         };
 
-        struct ENGINE_API sSpotLightBuffer : public sListBuffer<sSpotLightData>
+        struct ENGINE_API sSpotLightBuffer : public cListBuffer<sSpotLightData>
         {
-            sSpotLightBuffer(usize size = 0) : sListBuffer<sSpotLightData>(size, K_SLOT_SPOT_LIGHTS) {}
+            sSpotLightBuffer(usize size = 0) : cListBuffer<sSpotLightData>(size, K_SLOT_SPOT_LIGHTS) {}
         };
 
         struct ENGINE_API sMaterialData
@@ -415,22 +416,22 @@ namespace xpe
             Boolean EnableEmissionMap = false;
         };
 
-        struct ENGINE_API sMaterialDataBuffer : public sListBuffer<sMaterialData>
+        struct ENGINE_API sMaterialDataBuffer : public cListBuffer<sMaterialData>
         {
-            sMaterialDataBuffer(usize size = 0) : sListBuffer<sMaterialData>(size, K_SLOT_MATERIALS) {}
+            sMaterialDataBuffer(usize size = 0) : cListBuffer<sMaterialData>(size, K_SLOT_MATERIALS) {}
         };
 
         struct ENGINE_API sShadowPcf final
         {
-            int FilterSize = 0;
             float MinBias = 0.005f;
             float MaxBias = 0.05f;
+            Boolean EnablePCF = false;
             float _pad0 = 0;
         };
 
-        struct ENGINE_API sShadowPcfBuffer : public sItemBuffer<sShadowPcf>
+        struct ENGINE_API sShadowPcfBuffer : public cItemBuffer<sShadowPcf>
         {
-            sShadowPcfBuffer() : sItemBuffer<sShadowPcf>(K_SLOT_SHADOW_PCF) {}
+            sShadowPcfBuffer() : cItemBuffer<sShadowPcf>(K_SLOT_SHADOW_PCF) {}
         };
 
         struct ENGINE_API sSkeletonData final
@@ -438,9 +439,9 @@ namespace xpe
             glm::mat4 Transform;
         };
 
-        struct ENGINE_API sSkeletonBuffer : public sListBuffer<sSkeletonData>
+        struct ENGINE_API sSkeletonBuffer : public cListBuffer<sSkeletonData>
         {
-            sSkeletonBuffer(usize size = 0) : sListBuffer<sSkeletonData>(size, K_SLOT_SKELETONS) {}
+            sSkeletonBuffer(usize size = 0) : cListBuffer<sSkeletonData>(size, K_SLOT_SKELETONS) {}
         };
 
         struct ENGINE_API sSsaoData final
@@ -451,9 +452,9 @@ namespace xpe
             float _pad0 = 0;
         };
 
-        struct ENGINE_API sSsaoBuffer : public sItemBuffer<sSsaoData>
+        struct ENGINE_API sSsaoBuffer : public cItemBuffer<sSsaoData>
         {
-            sSsaoBuffer() : sItemBuffer<sSsaoData>(K_SLOT_SSAO) {}
+            sSsaoBuffer() : cItemBuffer<sSsaoData>(K_SLOT_SSAO) {}
         };
 
         struct ENGINE_API sWidgetData
@@ -470,9 +471,9 @@ namespace xpe
             };
         };
 
-        struct ENGINE_API sWidgetBuffer : public sListBuffer<sWidgetData>
+        struct ENGINE_API sWidgetBuffer : public cListBuffer<sWidgetData>
         {
-            sWidgetBuffer(usize count = 0) : sListBuffer<sWidgetData>(count, K_SLOT_WIDGETS) {}
+            sWidgetBuffer(usize count = 0) : cListBuffer<sWidgetData>(count, K_SLOT_WIDGETS) {}
         };
 
         struct ENGINE_API sChar final
@@ -489,9 +490,9 @@ namespace xpe
             f32 AtlasYOffset = 0;
         };
 
-        struct ENGINE_API sCharBuffer : public sListBuffer<sChar>
+        struct ENGINE_API sCharBuffer : public cListBuffer<sChar>
         {
-            sCharBuffer(usize count = 0) : sListBuffer<sChar>(count, K_SLOT_CHARS) {}
+            sCharBuffer(usize count = 0) : cListBuffer<sChar>(count, K_SLOT_CHARS) {}
         };
 
         struct ENGINE_API sText final
@@ -501,9 +502,9 @@ namespace xpe
             glm::vec4 Color = { 1, 1, 1, 1 };
         };
 
-        struct ENGINE_API sTextBuffer : public sListBuffer<sText>
+        struct ENGINE_API sTextBuffer : public cListBuffer<sText>
         {
-            sTextBuffer(usize count = 0) : sListBuffer<sText>(count, K_SLOT_TEXTS) {}
+            sTextBuffer(usize count = 0) : cListBuffer<sText>(count, K_SLOT_TEXTS) {}
         };
     }
 }

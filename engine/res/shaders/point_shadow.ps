@@ -1,0 +1,19 @@
+#include types.shader
+
+struct VSOut
+{
+    float4 positionLight  : SV_POSITION;
+    float4 positionWorld  : XPE_POSITION_WORLD;
+    float4 lightPositionWorld  : XPE_LIGHT_POSITION_WORLD;
+};
+
+struct PSOut
+{
+    float depth : SV_Target0;
+};
+
+PSOut ps_main(VSOut psIn) {
+    PSOut psOut;
+    psOut.depth = length(psIn.positionWorld - psIn.lightPositionWorld);
+    return psOut;
+}

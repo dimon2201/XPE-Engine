@@ -83,7 +83,7 @@ float3 PBR(PointLight pointLight, float3 albedo, float metallness, float roughne
     L = normalize(pointLight.Position - W);
     float3 lightColor = pointLight.Color;
     float A = Attenuation(pointLight);
-    float pointShadow = 1.0;
+    float pointShadow = GetPointShadow(L, ToLightSpace(W, pointLight.ViewProjection));
     float radianceFactor = A * pointShadow;
 
     return PBR(lightColor, radianceFactor, albedo, metallness, roughness);
@@ -93,9 +93,9 @@ float3 PBR(SpotLight spotLight, float3 albedo, float metallness, float roughness
 {
     L = normalize(spotLight.Position - W);
     float3 lightColor = spotLight.Color;
-    float A = Attenuation(spotLight);
+    float A = Attenuation(L, spotLight);
     float spotShadow = GetSpotShadow(L, ToLightSpace(W, spotLight.ViewProjection));
-    float radianceFactor = A * spotShadow;
+    float radianceFactor = A;
 
     return PBR(lightColor, radianceFactor, albedo, metallness, roughness);
 }

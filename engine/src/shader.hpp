@@ -7,7 +7,7 @@ namespace xpe
 {
     namespace render
     {
-        class ENGINE_API cShaderStage : public sResource
+        class ENGINE_API cShaderStage : public cObject
         {
 
         public:
@@ -20,6 +20,7 @@ namespace xpe
                 COMPUTE = 3,
             };
 
+            void* Instance = nullptr;
             u64 ID;
             eType Type;
             sBlob Blob;

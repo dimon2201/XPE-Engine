@@ -53,7 +53,7 @@ namespace xpe
             if (status == GLFW_FALSE)
             {
                 LogError("Failed to initialize GLFW");
-                debug_break();
+                Breakpoint();
                 FMT_ASSERT(false, "Failed to initialize GLFW");
             }
 

@@ -1,6 +1,7 @@
 #include <material_manager.hpp>
 #include <texture_manager.hpp>
 #include <components.hpp>
+#include <render_manager.hpp>
 
 namespace xpe
 {
@@ -37,7 +38,7 @@ namespace xpe
             Samplers::Material                  = new cSampler();
             Samplers::Material->Slot            = K_SLOT_MATERIAL_SAMPLER;
             Samplers::Material->Filter          = cSampler::eFilter::ANISOTROPIC;
-            Samplers::Material->AnisotropyLevel = MHardware::GPU.MaxAnisotropyLevel;
+            Samplers::Material->AnisotropyLevel = MRender::AnisotropyLevel;
             Samplers::Material->AddressU        = cSampler::eAddress::WRAP;
             Samplers::Material->AddressV        = cSampler::eAddress::WRAP;
             Samplers::Material->AddressW        = cSampler::eAddress::WRAP;
@@ -55,7 +56,8 @@ namespace xpe
             texture->Height = materialFormat.Height;
             texture->Slot = materialFormat.Slot;
             texture->Channels = cTexture::k_ChannelTable.at(materialFormat.Format);
-            texture->Layers.reserve(MHardware::GPU.MaxTexture2dArray);
+            texture->Layers.reserve(MHardware::GpuInfo.MaxTexture2dArray);
+            texture->EnableMipmapping = true;
             return texture;
         }
 
@@ -94,10 +96,9 @@ namespace xpe
             }
             else
             {
+                layer->Resize(texture.Format, texture.Width, texture.Height);
                 texture.Layers.emplace_back(*layer);
-//                layer.ResizePixels(texture.Format, texture.Width, texture.Height);
             }
-
             texture.Flush();
         }
 
@@ -110,13 +111,7 @@ namespace xpe
             else
             {
                 texture.Layers[layerIndex] = *layer;
-            //                layer.ResizePixels(texture.Format, texture.Width, texture.Height);
             }
-
-            //            if (layer.Mips.empty()) {
-            //                layer.GenerateMips(texture.Format, texture.Width, texture.Height);
-            //            }
-
             texture.Flush();
         }
 

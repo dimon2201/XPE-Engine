@@ -1,5 +1,6 @@
 #include <texture_manager.hpp>
 #include <render_context.hpp>
+#include <math_manager.hpp>
 
 #define STB_IMAGE_IMPLEMENTATION
 #define STB_IMAGE_WRITE_IMPLEMENTATION
@@ -99,21 +100,6 @@ namespace xpe
             Layers.erase(Layers.begin() + index);
         }
 
-        u32 cTexture::GetMipLevels() const
-        {
-            if (Layers.empty())
-            {
-                return 1;
-            }
-            auto& mips = Layers.front().Mips;
-            return mips.empty() ? 1 : mips.size();
-        }
-
-        u32 cTexture::GetMipsLevels(s32 width)
-        {
-            return (u32)(log(width) / log(2)) + 1;
-        }
-
         void cTexture::WindowFrameResized(s32 width, s32 height)
         {
             Resize(width, height);
@@ -197,14 +183,6 @@ namespace xpe
             }
         }
 
-        void cTexture::GenerateMips()
-        {
-            for (auto& layer : Layers)
-            {
-                layer.GenerateMips(Format, Width, Height);
-            }
-        }
-
         void cTexture::FlushLayer(u32 index)
         {
             context::CopyTexture(*this, Layers[index].Pixels, Width * Height * k_BppTable.at(Format), index);
@@ -232,12 +210,19 @@ namespace xpe
             }
         }
 
+        void cTexture::SetMipmapping(bool enable)
+        {
+            if (enable == EnableMipmapping) return;
+            EnableMipmapping = enable;
+            context::FreeTexture(*this);
+            context::CreateTexture(*this);
+        }
+
         void cTextureLayer::Free()
         {
             if (Pixels != nullptr)
             {
                 main_free(Pixels);
-                FreeMips();
                 Pixels = nullptr;
             }
         }
@@ -258,91 +243,6 @@ namespace xpe
             cTextureLayer clone;
             clone.CopyFrom(*this);
             return clone;
-        }
-
-        void cTextureLayer::GenerateMips(const eTextureFormat &format, int width, int height)
-        {
-            if (Pixels == nullptr) return;
-
-            switch (format)
-            {
-                case eTextureFormat::R8:
-                    GenerateMipsU8(width, height);
-                    break;
-
-                case eTextureFormat::R32:
-                    GenerateMipsFloat(width, height);
-                    break;
-
-                case eTextureFormat::R32_TYPELESS:
-                    GenerateMipsFloat(width, height);
-                    break;
-
-                case eTextureFormat::RG8:
-                    GenerateMipsU8(width, height);
-                    break;
-
-                case eTextureFormat::RG32:
-                    GenerateMipsFloat(width, height);
-                    break;
-
-                case eTextureFormat::RGB8:
-                    GenerateMipsU8(width, height);
-                    break;
-
-                case eTextureFormat::RGB32:
-                    GenerateMipsFloat(width, height);
-                    break;
-
-                case eTextureFormat::RGBA8:
-                    GenerateMipsU8(width, height);
-                    break;
-
-                case eTextureFormat::SRGBA8:
-                    GenerateMipsU8(width, height);
-                    break;
-
-                case eTextureFormat::RGBA32:
-                    GenerateMipsFloat(width, height);
-                    break;
-            }
-        }
-
-        void cTextureLayer::GenerateMipsU8(int width, int height)
-        {
-            void* previousMip = Pixels;
-            while (width != 1 && height != 1)
-            {
-                width /= 2;
-                height /= 2;
-                previousMip = ResizePixelsU8(previousMip, width * 2, height * 2, width, height);
-                Mips.emplace_back(Format, width, height, previousMip);
-            }
-        }
-
-        void cTextureLayer::GenerateMipsFloat(int width, int height)
-        {
-            void* previousMip = Pixels;
-            while (width != 1 && height != 1)
-            {
-                width /= 2;
-                height /= 2;
-                previousMip = ResizePixelsFloat(previousMip, width * 2, height * 2, width, height);
-                Mips.emplace_back(Format, width, height, previousMip);
-            }
-        }
-
-        void cTextureLayer::FreeMips()
-        {
-            for (auto& mip : Mips)
-            {
-                if (mip.Pixels != nullptr)
-                {
-                    main_free(mip.Pixels);
-                    mip.Pixels = nullptr;
-                }
-            }
-            Mips.clear();
         }
 
         void cTextureLayer::Resize(const eTextureFormat &format, s32 width, s32 height)
@@ -393,12 +293,6 @@ namespace xpe
             Pixels = pixels;
             Width = width;
             Height = height;
-
-            if (!Mips.empty())
-            {
-                FreeMips();
-                GenerateMipsU8(width, height);
-            }
         }
 
         void cTextureLayer::ResizeFloat(s32 width, s32 height)
@@ -407,11 +301,6 @@ namespace xpe
             Pixels = pixels;
             Width = width;
             Height = height;
-            if (!Mips.empty())
-            {
-                FreeMips();
-                GenerateMipsFloat(width, height);
-            }
         }
 
         void* cTextureLayer::ResizePixelsU8(
@@ -451,11 +340,6 @@ namespace xpe
         void cAtlas::AddLayer()
         {
             Layers.emplace_back(CreateLayer());
-        }
-
-        cSampler::cSampler()
-        {
-            ViewType = eViewType::SRV;
         }
 
         cSampler::~cSampler()
@@ -753,6 +637,60 @@ namespace xpe
             }
 
             return false;
+        }
+
+        void cCircleFilter3D::Init()
+        {
+            Type = eType::TEXTURE_3D;
+            Format = eTextureFormat::RGBA32;
+            Channels = k_ChannelTable.at(Format);
+            InitializeData = true;
+            EnableMipmapping = false;
+            int samplesSize = Width * Height * Depth * 4;
+            vector<float> samples;
+            samples.resize(samplesSize);
+            int index = 0;
+
+            for (int texY = 0; texY < Height; texY++)
+            {
+                for (int texX = 0; texX < Width; texX++)
+                {
+                    for (int v = FilterSize - 1; v >= 0; v--)
+                    {
+                        for (int u = 0; u < FilterSize; u++)
+                        {
+                            float x = ((float)u + 0.5f + Random(-0.5f, 0.5f)) / (float) FilterSize;
+                            float y = ((float)v + 0.5f + Random(-0.5f, 0.5f)) / (float) FilterSize;
+
+                            assert(index + 1 < samples.size());
+                            samples[index] = sqrtf(y) * cosf(2 * K_PI * x);
+                            samples[index + 1] = sqrtf(y) * sinf(2 * K_PI * x);
+
+                            index += 2;
+                        }
+                    }
+                }
+            }
+
+            if (Layers.empty())
+            {
+                Layers.emplace_back();
+                Layers[0].Pixels = main_alloc(samplesSize * sizeof(float));
+            }
+
+            else if (Layers[0].Width != Width || Layers[0].Height != Height || Layers[0].Depth != Depth)
+            {
+                Layers[0].Free();
+                Layers[0].Pixels = main_alloc(samplesSize * sizeof(float));
+            }
+
+            Layers[0].Format = Format;
+            Layers[0].Width  = Width;
+            Layers[0].Height = Height;
+            Layers[0].Depth  = Depth;
+            memcpy(Layers[0].Pixels, samples.data(), samplesSize * sizeof(float));
+
+            cTexture::Init();
         }
     }
 }

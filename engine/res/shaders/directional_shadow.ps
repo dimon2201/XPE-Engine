@@ -13,7 +13,7 @@ struct PSOut
 PSOut ps_main(VSOut psIn) {
     PSOut psOut;
 
-    float depth = psIn.positionLight.z / psIn.positionLight.w;
+    float depth = psIn.positionLight.z;
     depth = depth * 0.5 + 0.5;
     psOut.depth = depth;
 

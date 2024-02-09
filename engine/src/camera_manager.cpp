@@ -52,10 +52,10 @@ namespace xpe
             int width = s_ViewWidth;
             int height = s_ViewHeight;
 
-            float x = math::min(width / 1000.0f, 2.4f);
+            float x = Min(width / 1000.0f, 2.4f);
             float xFactor = 0.0366f * (x * x) - 0.1778f * x + 0.3021f;
 
-            float y = math::min(height / 1000.0f, 2.4f);
+            float y = Min(height / 1000.0f, 2.4f);
             float yFactor = 0.0366f * (y * y) - 0.1778f * y + 0.3021f;
 
             return { xFactor * panAcc, yFactor * panAcc };
@@ -64,7 +64,7 @@ namespace xpe
         float MCamera::GetZoomSpeed()
         {
             float distance = Camera->MoveSpeed * Camera->ZoomAcceleration;
-            distance = math::max(distance, 0.0f);
+            distance = Max(distance, 0.0f);
             return distance * distance;
         }
 
@@ -147,7 +147,7 @@ namespace xpe
             auto& fov = Camera->Projection.FovDegree;
 
             fov -= (float) GetZoomSpeed();
-            math::clamp(fov, Camera->MinFovDegree, Camera->MaxFovDegree);
+            math::Clamp(fov, Camera->MinFovDegree, Camera->MaxFovDegree);
 
             cameraBuffer.Item.Projection = MMath::UpdatePerspectiveMatrix(Camera->Projection);
             cameraBuffer.Flush();
@@ -159,7 +159,7 @@ namespace xpe
             auto& fov = Camera->Projection.FovDegree;
 
             fov += (float) GetZoomSpeed();
-            math::clamp(fov, Camera->MinFovDegree, Camera->MaxFovDegree);
+            math::Clamp(fov, Camera->MinFovDegree, Camera->MaxFovDegree);
 
             cameraBuffer.Item.Projection = MMath::UpdatePerspectiveMatrix(Camera->Projection);
             cameraBuffer.Flush();
@@ -171,7 +171,7 @@ namespace xpe
             auto& fov = Camera->Projection.FovDegree;
 
             fov -= (float) y * GetZoomSpeed();
-            math::clamp(fov, Camera->MinFovDegree, Camera->MaxFovDegree);
+            math::Clamp(fov, Camera->MinFovDegree, Camera->MaxFovDegree);
 
             cameraBuffer.Item.Projection = MMath::UpdatePerspectiveMatrix(Camera->Projection);
             cameraBuffer.Flush();
@@ -194,6 +194,17 @@ namespace xpe
 
             UpdateView(s_Position);
             Buffers::Camera->Flush();
+        }
+
+        void MCamera::Resize(int width, int height)
+        {
+            LogInfo("MCamera::Resize: width={}, height={}", width, height);
+            if (Camera != nullptr)
+            {
+                Camera->Viewport.Width = width;
+                Camera->Viewport.Height = height;
+                Flush();
+            }
         }
 
         void MCamera::WindowFrameResized(int w, int h)

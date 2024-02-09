@@ -14,11 +14,7 @@ namespace xpe
             ~cCanvas();
 
             void Draw();
-
             void WindowFrameResized(s32 width, s32 height);
-
-            void SetViewport(sViewport* viewport);
-            inline sViewport* GetViewport() { return m_Viewport; }
 
         private:
             void CreatePresentTarget();

@@ -1,4 +1,5 @@
 #include <render_debugger.hpp>
+#include <render_manager.hpp>
 
 namespace xpe
 {
@@ -7,9 +8,6 @@ namespace xpe
         namespace context
         {
             DebuggerCallback Callback = nullptr;
-            bool EnableInfoLog = false;
-            bool EnableWarnLog = false;
-            bool EnableErrorLog = true;
         }
 
         static void ReceiveMessage(const sDebugMessage& message)
@@ -83,7 +81,7 @@ namespace xpe
             ss << "Description: " << description << "\n";
             ss << "--------------------------------------------------- \n";
 
-            if (context::EnableErrorLog)
+            if (MRender::EnableErrorLog)
             {
 
                 switch (type)
@@ -91,19 +89,19 @@ namespace xpe
 
                     case eDebugType::D_ERROR:
                         LogError(ss.str().c_str());
-                        debug_break();
+                        Breakpoint();
                         break;
 
                     case eDebugType::D_UNDEFINED_BEHAVIOUR:
                         LogError(ss.str().c_str());
-                        debug_break();
+                        Breakpoint();
                         break;
 
                 }
 
             }
 
-            if (context::EnableWarnLog)
+            if (MRender::EnableWarnLog)
             {
 
                 switch (type)
@@ -125,7 +123,7 @@ namespace xpe
 
             }
 
-            if (context::EnableInfoLog)
+            if (MRender::EnableInfoLog)
             {
                 LogInfo(ss.str().c_str());
             }

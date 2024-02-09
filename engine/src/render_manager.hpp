@@ -11,6 +11,11 @@ namespace xpe
         {
 
         public:
+            static bool EnableInfoLog;
+            static bool EnableWarnLog;
+            static bool EnableErrorLog;
+            static u32 AnisotropyLevel;
+
             static void Init(sViewport& viewport, u32 sampleCount);
             static void Free();
             static void Prepare();

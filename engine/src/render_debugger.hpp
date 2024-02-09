@@ -87,9 +87,6 @@ namespace xpe
         namespace context
         {
             extern DebuggerCallback Callback;
-            extern bool EnableInfoLog;
-            extern bool EnableWarnLog;
-            extern bool EnableErrorLog;
 
             ENGINE_API void InitDebug();
             ENGINE_API void FreeDebug();

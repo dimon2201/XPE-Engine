@@ -257,10 +257,16 @@ namespace xpe
                 FreeRenderTargetDepthView(&renderTarget.DepthStencilView);
             }
 
-            void BindRenderTarget(const vector<void*> &colorViews, void* depthView, sViewport* viewport)
+            void ResizeRenderTarget(cRenderTarget& renderTarget, int width, int height)
             {
-                BindRenderTarget(colorViews, depthView);
-                BindViewport(viewport);
+                UnbindRenderTarget();
+                FreeRenderTarget(renderTarget);
+                if (renderTarget.Viewport)
+                {
+                    renderTarget.Viewport->Width = width;
+                    renderTarget.Viewport->Height = height;
+                }
+                CreateRenderTarget(renderTarget);
             }
 
             void VSBindBuffer(const sBuffer &buffer)
@@ -397,7 +403,7 @@ namespace xpe
 
             void VSBindSampler(const cSampler &sampler)
             {
-                VSBindSampler(sampler.Slot, sampler.ViewInstance);
+                VSBindSampler(sampler.Slot, sampler.Instance);
             }
 
             void VSUnbindSampler(const cSampler& sampler)
@@ -408,7 +414,7 @@ namespace xpe
 
             void PSBindSampler(const cSampler &sampler)
             {
-                PSBindSampler(sampler.Slot, sampler.ViewInstance);
+                PSBindSampler(sampler.Slot, sampler.Instance);
             }
 
             void PSUnbindSampler(const cSampler& sampler)
@@ -419,7 +425,7 @@ namespace xpe
 
             void GSBindSampler(const cSampler &sampler)
             {
-                GSBindSampler(sampler.Slot, sampler.ViewInstance);
+                GSBindSampler(sampler.Slot, sampler.Instance);
             }
 
             void GSUnbindSampler(const cSampler& sampler)
@@ -430,7 +436,7 @@ namespace xpe
 
             void CSBindSampler(const cSampler &sampler)
             {
-                CSBindSampler(sampler.Slot, sampler.ViewInstance);
+                CSBindSampler(sampler.Slot, sampler.Instance);
             }
 
             void CSUnbindSampler(const cSampler& sampler)

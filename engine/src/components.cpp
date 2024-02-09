@@ -5,13 +5,13 @@ namespace xpe
 {
     namespace ecs
     {
-        const sMaterialFormat CMaterial::k_AlbedoFormat = { eTextureFormat::SRGBA8, 2048, 2048, K_SLOT_ALBEDO };
-        const sMaterialFormat CMaterial::k_NormalFormat   = { eTextureFormat::RGBA8, 2048, 2048, K_SLOT_BUMPING };
-        const sMaterialFormat CMaterial::k_ParallaxFormat = { eTextureFormat::R8, 2048, 2048, K_SLOT_PARALLAX };
-        const sMaterialFormat CMaterial::k_MetalFormat = { eTextureFormat::R8, 2048, 2048, K_SLOT_METALLIC };
-        const sMaterialFormat CMaterial::k_RoughnessFormat = { eTextureFormat::R8, 2048, 2048, K_SLOT_ROUGHNESS };
-        const sMaterialFormat CMaterial::k_AoFormat = { eTextureFormat::R8, 2048, 2048, K_SLOT_AO };
-        const sMaterialFormat CMaterial::k_EmissionFormat = { eTextureFormat::SRGBA8, 2048, 2048, K_SLOT_EMISSION };
+        const sMaterialFormat CMaterial::k_AlbedoFormat = { eTextureFormat::SRGBA8, 512, 512, K_SLOT_ALBEDO };
+        const sMaterialFormat CMaterial::k_NormalFormat   = { eTextureFormat::RGBA8, 512, 512, K_SLOT_BUMPING };
+        const sMaterialFormat CMaterial::k_ParallaxFormat = { eTextureFormat::R8, 512, 512, K_SLOT_PARALLAX };
+        const sMaterialFormat CMaterial::k_MetalFormat = { eTextureFormat::R8, 512, 512, K_SLOT_METALLIC };
+        const sMaterialFormat CMaterial::k_RoughnessFormat = { eTextureFormat::R8, 512, 512, K_SLOT_ROUGHNESS };
+        const sMaterialFormat CMaterial::k_AoFormat = { eTextureFormat::R8, 512, 512, K_SLOT_AO };
+        const sMaterialFormat CMaterial::k_EmissionFormat = { eTextureFormat::SRGBA8, 512, 512, K_SLOT_EMISSION };
 
         static void InitUV(sVertex* v0, sVertex* v1, sVertex* v2, sVertex* v3)
         {
